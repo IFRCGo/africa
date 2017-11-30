@@ -1,0 +1,48 @@
+/* Styles for migration-appeals
+--------------------------------*/
+
+/* Map styling
+---------------*/
+.adm-border {
+  fill: none;
+  stroke: #fff;
+  stroke-linejoin: round;
+}
+
+.adm {
+  fill: #e5e5e5;
+  stroke: #fff;
+  stroke-width: .25px;
+  stroke-linejoin: round;
+}
+
+/* Headings Style
+------------------*/
+h1.page-header {
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+.subheading {
+  margin-top: 10px;
+  color: #777;
+  text-align: left;
+}
+
+/* Responsive SVG
+------------------*/
+.svg-container {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    padding-bottom: 80%; /* aspect ratio */
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.svg-content-responsive {
+    display: inline-block;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
