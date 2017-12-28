@@ -94,7 +94,7 @@ function loadFDRS(url){
 
 					$('#NoStaff').html( fillKeyFigureCard('Paid staff', d['#staff']) );
 
-					$('#NoLocUnit').html( fillKeyFigureCard('Local units', d['#volunteer']) );
+					$('#NoLocUnit').html( fillKeyFigureCard('Local units', d['#org+offices']) );
 
 					$('#NoReachDR').html( fillKeyFigureCard('People Reached by Disaster Response Programmes', d['#reached+disaster_response']) );
 
@@ -187,8 +187,14 @@ function fillRiskCard (title, data, csscat) {
 function determineLevel(val, range) {
 	var lvl = 1;
  	range.forEach(function(item,index){
-		if (val >= item){
-			lvl = index+1;
+		if (isNaN(val)) {
+			if (val == item){
+				lvl = index+1;
+			}
+		} else {
+			if (val >= item){
+				lvl = index+1;
+			}
 		}
 	});		
 	return lvl;
