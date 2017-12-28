@@ -109,9 +109,17 @@ function loadFDRS(url){
 					FDRSlink += NSname.replace( / /g, '-');
 					FDRSlink = FDRSlink.toLowerCase();
 					
-					$('#FDRSlink').html( FDRSlink );
+					$('#FDRSlink').prop( 'href', FDRSlink );
 					
 					$('#page-title').html( 'National Society Profile - ' + d['#org+name'] );
+					
+					$('#breadcrumb-country').html( d['#country+name'] );
+					if (d['#region+name'] == 'Africa') {
+						$('#breadcrumb-region').html( '<a href="/africa">Africa</a>' );
+					} else {
+						$('#breadcrumb-region').html( d['#region+name'] );
+					}
+					
                 });
             }
     });
