@@ -74,24 +74,58 @@ function createAppealsTable(data){
 
 // Fill the Key Figures
 function loadFDRS(url){
-    var hxlurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url='+url;
     $.ajax({
             type: 'GET',
-            url: hxlurl,
+            url: url,
             dataType: 'json',
             success: function(result){
                 var data = hxlProxyToJSON(result);
                 console.log(data);
-                var html = '<div class="column small-up-2 medium-up-3 large-up-3"><h1>Areas of Focus: People Reached</h1>';
                 data.forEach(function(d){
-                    html+='<div class="column"><div class="card padded"><img alt="'+d['#meta+title']+' Area of Focus" title="'+d['#meta+title']+'" class="text-center" width="100" src="img/'+d['#meta+icon']+'.svg"><h5 class="keyfiguretitle text-center">'+d['#meta+title']+'</h5><p class="keyfigure text-center">'+niceFormatNumber(d['#indicator'])+'</p><p class="small text-center">Source: <a href="'+d['#meta+url']+'">'+d['#meta+source']+'</a></p></div></div>';
-                });
-                html+='</div>'; //closing div
 
-                // Send html to proper id
-                $('#aof').html(html);
+					$('#NoVolunteers').html( fillKeyFigureCard( 'People volunteering their time', d['#volunteer']) );
+					
+					if (d['#volunteer+f'] == '' || d['#volunteer'] == '') {
+						$('#PercVolunteers').html( fillKeyFigureCard('Percentage of volunteers who are women', 'n/a' ) );
+					} else {
+						$('#PercVolunteers').html( fillKeyFigureCard('Percentage of volunteers who are women', Math.round(d['#volunteer+f'] / d['#volunteer'] * 100) ) );
+					}
+
+
+					$('#NoStaff').html( fillKeyFigureCard('Paid staff', d['#staff']) );
+
+					$('#NoLocUnit').html( fillKeyFigureCard('Local units', d['#volunteer']) );
+
+					$('#NoReachDR').html( fillKeyFigureCard('People Reached by Disaster Response Programmes', d['#reached+disaster_response']) );
+
+					$('#NoReachedDev').html( fillKeyFigureCard('People Reached by Resilience Programmes', d['#reached+development_programme']) );
+
+					$('#Income').html( fillKeyFigureCard('Income (in CHF)', d['#value+income']) );
+
+					$('#Expenditure').html( fillKeyFigureCard('Expenditure (in CHF)', d['#value+expenditure']) );
+					
+					var NSname = d['#org+name'];
+					var FDRSlink = 'http://data.ifrc.org/fdrs/societies/';
+					FDRSlink += NSname.replace( / /g, '-');
+					FDRSlink = FDRSlink.toLowerCase();
+					
+					$('#FDRSlink').html( FDRSlink );
+					
+					$('#page-title').html( 'National Society Profile - ' + d['#org+name'] );
+                });
             }
     });
+}
+
+
+function fillKeyFigureCard (title, value) {
+	if (value == '') {
+		value = 'n/a';
+	}
+	
+	var html = '<h4 class="keyfiguretitle text-center minheight">'+title+'</h4>';
+	html += '<p class="keyfigure text-center">'+ niceFormatNumber(value,true) +'</p>';
+	return html;
 }
 
 function loadINFORMindex(url) {
@@ -125,11 +159,11 @@ function loadINFORMindex(url) {
 				
                 });
 
-                // Send html to proper id
             }
 	
     });
 }
+
 
 function fillRiskCard (title, data, csscat) {
 	var html = '<h4 class="keyfiguretitle text-center minheight">'+title+'</h4>';
@@ -163,7 +197,9 @@ if ( patt.test(hash) ) {
 }
 
 // Load the Key Figures with FDRS data
-//loadFDRS(hxlINFORMCallURL);
+var hxlFDRSCallURL = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23date%2Breported%3D2016&filter02=select&select-query02-01=%23country%2Bcode%3DCOUNTRYCODE&strip-headers=on&header-row=2&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1uuxSSLYBerjlbvM2Xuye5nONrdHKHyJu8NitjPk93eA%2Fedit%23gid%3D206658392';
+hxlFDRSCallURL = hxlFDRSCallURL.replace('COUNTRYCODE',hash);
+loadFDRS(hxlFDRSCallURL);
 
 // Get the INFORM index numbers
 var hxlINFORMCallURL = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23country%2Bcode%3DCOUNTRYCODE&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1qO4nDJqgRyjxi-Uj5uwSJwFEVf7mloTrtFa9pP3qPwY%2Fedit%23gid%3D646091966';
