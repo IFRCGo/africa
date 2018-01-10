@@ -88,7 +88,7 @@ function createPNSsTable(url){
 		// Run through data and prep for tables
 			data.forEach(function(d,i){
 
-				html += '<tr><td>'+d['#project+partner']+'</td><td>'+d['#project+name']+'</td><td>'+d['#project+sector']+'</td><td>'+d['#project+budget']+'</td><td>'+d['#meta+funding']+'</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td></tr>';
+				html += '<tr><td>'+d['#org+partner']+'</td><td>'+d['#activity+name']+'</td><td>'+d['#activity+sector']+'</td><td>'+d['#activity+budget']+'</td><td>'+d['#meta+funding']+'</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td></tr>';
 			});
 			// Send data to appeals or DREFs html tables
 			$('#pnstable').append(html);
