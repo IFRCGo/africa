@@ -235,7 +235,7 @@ if ( patt.test(hash) ) {
 }
 
 // Load the PNS data
-var hxlPNSCallURL = 'https://proxy.hxlstandard.org/data?filter01=select&select-query01-01=%23country%2Bcode%3DCOUNTRYCODE&filter02=sort&sort-tags02=%23project%2Bpartner%2C+%23data%2Bstart&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1SqZRFRsJSRXeyic3QUDWOqrwp5mDsUiOQIfeTRxKVEk%2Fedit%23gid%3D1941804323'
+var hxlPNSCallURL = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23country%2Bcode%3DCOUNTRYCODE&filter02=sort&sort-tags02=%23project%2Bpartner%2C+%23data%2Bstart&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1SqZRFRsJSRXeyic3QUDWOqrwp5mDsUiOQIfeTRxKVEk%2Fedit%23gid%3D1941804323'
 hxlPNSCallURL = hxlPNSCallURL.replace('COUNTRYCODE',hash);
 createPNSsTable(hxlPNSCallURL);
 
