@@ -72,6 +72,30 @@ function createAppealsTable(data){
     
 }
 
+// Generate tables for PNS projects
+function createPNSsTable(url){
+    // Initialize html tables
+    var html = "";
+
+	$.ajax({
+		type: 'GET',
+		url: url,
+		dataType: 'json',
+		success: function(result){
+			var data = hxlProxyToJSON(result);
+			console.log(data);
+
+		// Run through data and prep for tables
+			data.forEach(function(d,i){
+
+				html += '<tr><td>'+d['#project+partner']+'</td><td>'+d['#project+name']+'</td><td>'+d['#project+sector']+'</td><td>'+d['#project+budget']+'</td><td>'+d['#meta+funding']+'</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td></tr>';
+			});
+			// Send data to appeals or DREFs html tables
+			$('#pnstable').append(html);
+		}
+	})
+}
+
 // Fill the Key Figures
 function loadFDRS(url){
     $.ajax({
@@ -209,6 +233,11 @@ if ( patt.test(hash) ) {
 } else {
 	hash = "KEN";
 }
+
+// Load the PNS data
+var hxlPNSCallURL = 'https://proxy.hxlstandard.org/data?filter01=select&select-query01-01=%23country%2Bcode%3DCOUNTRYCODE&filter02=sort&sort-tags02=%23project%2Bpartner%2C+%23data%2Bstart&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1SqZRFRsJSRXeyic3QUDWOqrwp5mDsUiOQIfeTRxKVEk%2Fedit%23gid%3D1941804323'
+hxlPNSCallURL = hxlPNSCallURL.replace('COUNTRYCODE',hash);
+createPNSsTable(hxlPNSCallURL);
 
 // Load the Key Figures with FDRS data
 var hxlFDRSCallURL = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23date%2Breported%3D2016&filter02=select&select-query02-01=%23country%2Bcode%3DCOUNTRYCODE&strip-headers=on&header-row=2&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1uuxSSLYBerjlbvM2Xuye5nONrdHKHyJu8NitjPk93eA%2Fedit%23gid%3D206658392';
