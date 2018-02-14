@@ -139,7 +139,7 @@ function loadFDRS(url){
 					
 					$('#breadcrumb-country').html( d['#country+name'] );
 					if (d['#region+name'] == 'Africa') {
-						$('#breadcrumb-region').html( '<a href="/africa">Africa</a>' );
+						$('#breadcrumb-region').html( '<a href="/africa/profile_overview.html">Africa</a>' );
 					} else {
 						$('#breadcrumb-region').html( d['#region+name'] );
 					}
