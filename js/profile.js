@@ -90,8 +90,8 @@ function createGovernanceTable(url) {
 				html += '<tr><th>Last and next election</th><td>'+d['#date+election+last']+' / '+d['#date+election+next']+'</td></tr>';
 				html += '<tr><th>Last Constitutional review</th><td>'+d['#date+constitutionalreview']+'</td></tr>';
 				html += '<tr><th>Stategic Plan period</th><td>'+d['#org+strategicplan']+'</td></tr>';
-				html += '<tr><th>Secretary General</th><td>'+d['#org+president']+'</td></tr>';
-				html += '<tr><th>Programme Director</th><td>'+d['#org+sg']+'</td></tr>';
+				html += '<tr><th>Secretary General</th><td>'+d['#org+sg']+'</td></tr>';
+				html += '<tr><th>Programme Director</th><td>'+d['#org+director+programmes']+'</td></tr>';
 				html += '<tr><th>Latest Youth Policy</th><td>'+d['#date+policy+youth']+'</td></tr>';
 				html += '<tr><th>Latest Volunteer Policy</th><td>'+d['#date+policy+volunteer']+'</td></tr>';
 				html += '<tr><th>Latest Resource Mobilisation Policy</th><td>'+d['#date+policy+rm']+'</td></tr>';
