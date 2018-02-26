@@ -14,4 +14,12 @@ ol {
 	list-style: inside;
 	list-style-type: lower-alpha;
 }
-
+#NSgovernanceTable th {
+	text-align: right;
+	padding-right: 10px;
+}
+#NSgovernanceTable th, #NSgovernanceTable td {
+	margin: 0px;
+	padding-top: 0px !important;
+	padding-bottom: 3px !important;
+}

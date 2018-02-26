@@ -72,6 +72,46 @@ function createAppealsTable(data){
     
 }
 
+function createGovernanceTable(url) {
+    // Initialize html tables
+    var html = "";
+
+	$.ajax({
+		type: 'GET',
+		url: url,
+		dataType: 'json',
+		success: function(result){
+			var data = hxlProxyToJSON(result);
+			console.log(data);
+
+			// Run through data and prep for tables
+			data.forEach(function(d,i){
+				html += '<tr><th>President</th><td>'+d['#org+president']+'</td></tr>';
+				html += '<tr><th>Last and next election</th><td>'+d['#date+election+last']+' / '+d['#date+election+next']+'</td></tr>';
+				html += '<tr><th>Last Constitutional review</th><td>'+d['#date+constitutionalReview']+'</td></tr>';
+				html += '<tr><th>Stategic Plan period</th><td>'+d['#org+strategicplan']+'</td></tr>';
+				html += '<tr><th>Secretary General</th><td>'+d['#org+president']+'</td></tr>';
+				html += '<tr><th>Programme Director</th><td>'+d['#org+sg']+'</td></tr>';
+				html += '<tr><th>Latest Youth Policy</th><td>'+d['#date+policy+youth']+'</td></tr>';
+				html += '<tr><th>Latest Volunteer Policy</th><td>'+d['#date+policy+volunteer']+'</td></tr>';
+				html += '<tr><th>Latest Resource Mobilisation Policy</th><td>'+d['#date+policy+rm']+'</td></tr>';
+				html += '<tr><th>Date OCAC / BOCA conducted</th><td>OCAC: '+d['#date+ocac']+' - BOCA: '+d['#date+boca']+'</td></tr>';
+				html += '<tr><th>Last consolidated audit</th><td>'+d['#date+audit']+'</td></tr>';
+			});
+					// Send data to appeals or DREFs html tables
+			$('#NSgovernanceTable').append(html);
+			if (html!="") {
+				$('#Overview').css("height","340px");
+				$('#Overview').css("visibility","visible");
+			}
+		}
+	})
+
+    // Send data to appeals or DREFs html tables
+    
+	
+}
+
 // Generate tables for PNS projects
 function createPNSsTable(url){
     // Initialize html tables
@@ -224,6 +264,50 @@ function determineLevel(val, range) {
 	return lvl;
 }
 
+function generateMap(geom, ISO3) {
+
+	var baselayer = L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
+	var baselayer2 = L.tileLayer('https://data.humdata.org/mapbox-layer-tiles/{z}/{x}/{y}.png', {minZoom:4});
+
+	map = L.map('map',{
+				center: [0,0],
+				zoom: 2,
+				layers: [baselayer,baselayer2]
+			});
+
+	map.overlay = L.geoJson(geom,{
+		onEachFeature:onEachFeature,
+		style:style
+	}).addTo(map);
+
+	function style(feature) {
+		var color = '#aaaaaa';
+		var fillOpacity = 0;
+		var weight =0
+		var cls = 'country'
+		if(feature.properties['ISO_A3']==ISO3){
+			color = '#D33F49';
+			fillOpacity = 0.7;
+			weight = 1
+		};
+
+		return {
+				'color': color,
+				'fillcolor': color,
+				'weight': weight,
+				'opacity': 0.7,
+				'fillOpacity':fillOpacity,
+				'className':cls
+			};
+	}
+    function onEachFeature(feature, layer){
+		if(feature.properties['ISO_A3']==ISO3){
+			var bounds = layer.getBounds();
+			map.fitBounds(bounds);
+		}
+	}
+
+}
 
 // Identify for which country / National Society
 var hash = decodeURIComponent(window.location.hash).substring(1);
@@ -233,6 +317,25 @@ if ( patt.test(hash) ) {
 } else {
 	hash = "KEN";
 }
+
+// get the world map
+var worldmap = 'http://ifrcgo.org/assets/map/worldmap.json';
+$.ajax({
+    type: 'GET',
+    url: worldmap,
+    dataType: 'json',
+    success:function(response){
+		console.log(response);
+		var geom = topojson.feature(response,response.objects.geom);
+		generateMap(geom,hash)
+    }
+});
+
+//Load Governance data
+var hxlGovernanceURL = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23country%2Bcode%3DCOUNTRYCODE&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1cL39UdUqbyF4llbtTUHes8N9jpjOzgC-rpoq0oIc6jk%2Fedit%23gid%3D0';
+hxlGovernanceURL = hxlGovernanceURL.replace('COUNTRYCODE',hash);
+console.log(hxlGovernanceURL);
+createGovernanceTable(hxlGovernanceURL);
 
 // Load the PNS data
 var hxlPNSCallURL = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23country%2Bcode%3DCOUNTRYCODE&filter02=sort&sort-tags02=%23project%2Bpartner%2C+%23data%2Bstart&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1SqZRFRsJSRXeyic3QUDWOqrwp5mDsUiOQIfeTRxKVEk%2Fedit%23gid%3D1941804323'
@@ -253,7 +356,6 @@ loadINFORMindex(hxlINFORMCallURL);
 var hxlAppealsCallURL = 'https://proxy.hxlstandard.org/data.json?filter01=merge&merge-url01=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8%2Fedit%23gid%3D0&merge-keys01=%23country%2Bname&merge-tags01=%23country%2Bcode&filter02=clean&clean-date-format02=%23date&filter03=replace-map&replace-map-url03=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo%2Fedit%23gid%3D0&filter04=select&select-query04-01=%23country%2Bcode%3DCOUNTRYCODE&filter05=sort&sort-tags05=%23date%2Bend&sort-reverse05=on&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU%2Fedit%23gid%3D0&sheet=1';
 
 hxlAppealsCallURL = hxlAppealsCallURL.replace('COUNTRYCODE',hash);
-
 
 // Get appeals and DREFs data
 $.ajax({

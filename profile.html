@@ -30,11 +30,9 @@
     <link rel="apple-touch-icon" sizes="152x152" href="http://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="http://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-180x180.png">
     <link rel="shortcut icon" href="http://ifrcgo.org/assets/graphics/favicon/favicon.ico">
-    <link rel="icon" type="image/png" href="http://ifrcgo.org/assets/graphics/favicon/favicon-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="http://ifrcgo.org/assets/graphics/favicon/favicon-160x160.png" sizes="160x160">
     <link rel="icon" type="image/png" href="http://ifrcgo.org/assets/graphics/favicon/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="http://ifrcgo.org/assets/graphics/favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="http://ifrcgo.org/assets/graphicsfavicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://ifrcgo.org/assets/graphics/favicon/favicon-32x32.png" sizes="32x32">
 
     <!-- Meta tags for social media -->
     <meta name="description" content="IFRC Africa Operations Room">
@@ -103,59 +101,73 @@
     </ul>
 </nav>
 
-<section id="Overview">
+<section id="Title">
 	<div class="row">
 		<h1 id="page-title">National Society Profile</h1>
 	</div>
 </section>
 
+<section id="Overview" style="height:0px; visibility:hidden; overflow:hidden">
+	<div class="row">
+		<div class="row small-up-2 medium-up-12">
+			<div class="column medium-up-6">
+				<div id="map"></div>
+			</div>
+			<div class="column medium-up-6">
+				<table id="NSgovernanceTable">
+				</table>
+			</div>
+		</div>
+	</div>
+</section>
+
+<hr />
 	
 <section id="FDRS">
 	<div class="row">
 		<h1>2016 Key Figures</h1>
-		<div class="column small-up-2 medium-up-4">
 	
-		<div class="column">
-			<div id="NoVolunteers" class="card no-border">
+		<div class="row small-up-2 medium-up-4">
+			<div class="column small-up-2 medium-up-4">
+				<div id="NoVolunteers" class="card no-border">
+				</div>
+			</div>
+			<div class="column small-up-2 medium-up-4">
+				<div id="PercVolunteers" class="card no-border">
+				</div>
+			</div>
+			<div class="column small-up-2 medium-up-4">
+				<div id="NoStaff" class="card no-border">
+				</div>
+			</div>
+			<div class="column small-up-2 medium-up-4">
+				<div id="NoLocUnit" class="card no-border">
+				</div>
+			</div>
+		</div>	
+		
+		<div class="row small-up-2 medium-up-4">
+			<div class="column">
+				<div id="NoReachDR" class="card no-border">
+				</div>
+			</div>
+			<div class="column">
+				<div id="NoReachedDev" class="card no-border">
+				</div>
+			</div>
+			<div class="column">
+				<div id="Income" class="card no-border">
+				</div>
+			</div>
+			<div class="column">
+				<div id="Expenditure" class="card no-border">
+				</div>
 			</div>
 		</div>
-		<div class="column">
-			<div id="PercVolunteers" class="card no-border">
-			</div>
-		</div>
-		<div class="column">
-			<div id="NoStaff" class="card no-border">
-			</div>
-		</div>
-		<div class="column">
-			<div id="NoLocUnit" class="card no-border">
-			</div>
+		<div class="medium-12 column">
+			<p class="text-right"><i>Go to <a id="FDRSlink" target="_blank" href="http://data.ifrc.org/fdrs/societies/">FDRS website</a> for more in-depth figures.</i></p>
 		</div>
 	</div>	
-	<div class="row">
-		<div class="column small-up-2 medium-up-4">
-	
-		<div class="column">
-			<div id="NoReachDR" class="card no-border">
-			</div>
-		</div>
-		<div class="column">
-			<div id="NoReachedDev" class="card no-border">
-			</div>
-		</div>
-		<div class="column">
-			<div id="Income" class="card no-border">
-			</div>
-		</div>
-		<div class="column">
-			<div id="Expenditure" class="card no-border">
-			</div>
-		</div>
-	</div>	
-	<div class="medium-12 column">
-		<p class="text-right"><i>Go to <a id="FDRSlink" target="_blank" href="http://data.ifrc.org/fdrs/societies/">FDRS website</a> for more in-depth figures.</i></p>
-	</div>
-	</div>
 </section>	
 
 <hr />
@@ -182,32 +194,34 @@
 <section id="RiskIndex">
 	<div class="row">
 		<h1>INFORM Risk Index</h1>
-		<div class="column small-up-2 medium-up-4">
+		<div class="row small-up-2 medium-up-4">
 	
-		<div class="column">
-			<div id="hazard" class="card categorycard">
-				<p>Please wait while we're loading the data</p>
+			<div class="column">
+				<div id="hazard" class="card categorycard">
+					<p>Please wait while we're loading the data</p>
+				</div>
 			</div>
-		</div>
-		<div class="column">
-			<div id="vulnerability" class="card categorycard">
-				<p>Please wait while we're loading the data</p>
+			<div class="column">
+				<div id="vulnerability" class="card categorycard">
+					<p>Please wait while we're loading the data</p>
+				</div>
 			</div>
-		</div>
-		<div class="column">
-			<div id="lack_of_coping" class="card categorycard">
-				<p>Please wait while we're loading the data</p>
+			<div class="column">
+				<div id="lack_of_coping" class="card categorycard">
+					<p>Please wait while we're loading the data</p>
+				</div>
 			</div>
-		</div>
-		<div class="column">
-			<div id="INFORM_sum" class="card categorycard">
-				<p>Please wait while we're loading the data</p>
+			<div class="column">
+				<div id="INFORM_sum" class="card categorycard">
+					<p>Please wait while we're loading the data</p>
+				</div>
 			</div>
 		</div>
 	</div>	
-	<div class="medium-12 column">
-		<p class="text-right"><i>Go to <a href="http://www.inform-index.org/">the INFORM website</a> for more info about the INFORM Risk Index.</i></p>
-	</div>
+	<div class="row">
+		<div class="medium-12 row">
+			<p class="text-right"><i>Go to <a href="http://www.inform-index.org/">the INFORM website</a> for more info about the INFORM Risk Index.</i></p>
+		</div>
 	</div>
 </section>	
 	
