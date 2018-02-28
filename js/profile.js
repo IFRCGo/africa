@@ -52,6 +52,45 @@ function niceFormatNumber(num,round){
     }
 }
 
+// Determine PacScoreCard value: Good, Medium, Bad
+function scorePac(val, check, correction, grace) {
+	var score = 'Bad';
+// year year-year  year/year  no  yes  ongoing  
+
+	if (val == 'ongoing') {
+		score = 'Medium';
+	}
+
+	if (check == 'yn') {
+		if (val == 'yes') {
+			score = 'Good';
+		}
+	}		
+	
+	if (check == 'period') {
+		var patt = /-/i;
+		if (patt.test(val)) {
+			val = val.substr(val.indexOf('-')+1);
+			if (val.length == 2) {
+				val = concat('20',val);
+			}
+			check = 'year';
+		} 
+	}
+
+	if (check == 'year') {
+		if (!isNaN(val)) {
+			if ((new Date()).getFullYear()+correction <= val) {
+				score = 'Good';
+			} else if ((new Date()).getFullYear()+grace <= val) {
+				score = 'Medium';
+			}
+		}
+	}
+console.log(val + ' : ' + score);
+	return score;
+}
+
 // Generate tables for appeals and DREFs
 function createAppealsTable(data){
     // Initialize html tables
@@ -74,7 +113,8 @@ function createAppealsTable(data){
 
 function createGovernanceTable(url) {
     // Initialize html tables
-    var html = "";
+    var htmlGov = "";
+	var htmlPac = "";
 
 	$.ajax({
 		type: 'GET',
@@ -86,22 +126,42 @@ function createGovernanceTable(url) {
 
 			// Run through data and prep for tables
 			data.forEach(function(d,i){
-				html += '<tr><th>President</th><td>'+d['#org+president']+'</td></tr>';
-				html += '<tr><th>Last and next election</th><td>'+d['#date+election+last']+' / '+d['#date+election+next']+'</td></tr>';
-				html += '<tr><th>Last Constitutional review</th><td>'+d['#date+constitutionalreview']+'</td></tr>';
-				html += '<tr><th>Stategic Plan period</th><td>'+d['#org+strategicplan']+'</td></tr>';
-				html += '<tr><th>Secretary General</th><td>'+d['#org+sg']+'</td></tr>';
-				html += '<tr><th>Programme Director</th><td>'+d['#org+director+programmes']+'</td></tr>';
-				html += '<tr><th>Latest Youth Policy</th><td>'+d['#date+policy+youth']+'</td></tr>';
-				html += '<tr><th>Latest Volunteer Policy</th><td>'+d['#date+policy+volunteer']+'</td></tr>';
-				html += '<tr><th>Latest Resource Mobilisation Policy</th><td>'+d['#date+policy+rm']+'</td></tr>';
-				html += '<tr><th>Date OCAC / BOCA conducted</th><td>OCAC: '+d['#date+ocac']+' - BOCA: '+d['#date+boca']+'</td></tr>';
-				html += '<tr><th>Last consolidated audit</th><td>'+d['#date+audit']+'</td></tr>';
+				// only show governance data when this is available (read: sg field is filled)
+				if (d['#org+sg'].length>0) {
+					htmlGov += '<tr><th>President</th><td>'+d['#org+president']+'</td></tr>';
+					htmlGov += '<tr><th>Last and next election</th><td>'+d['#date+election+last']+' / '+d['#date+election+next']+'</td></tr>';
+					htmlGov += '<tr><th>Secretary General</th><td>'+d['#org+sg']+'</td></tr>';
+					htmlGov += '<tr><th>No. of Governing Board members</th><td>'+d['#org+board']+'</td></tr>';
+					htmlGov += '<tr><th>Stategic Plan period</th><td>'+d['#org+strategicplan']+'</td></tr>';
+					htmlGov += '<tr><th>Secretary General</th><td>'+d['#org+sg']+'</td></tr>';
+					htmlGov += '<tr><th>Programme Director</th><td>'+d['#org+director+programmes']+'</td></tr>';
+					htmlGov += '<tr><th>Latest Youth Policy</th><td>'+d['#date+policy+youth']+'</td></tr>';
+					htmlGov += '<tr><th>Latest Volunteer Policy</th><td>'+d['#date+policy+volunteer']+'</td></tr>';
+					htmlGov += '<tr><th>Latest Resource Mobilisation Policy</th><td>'+d['#date+policy+rm']+'</td></tr>';
+					htmlGov += '<tr><th>Date OCAC / BOCA conducted</th><td>OCAC: '+d['#date+ocac']+' - BOCA: '+d['#date+boca']+'</td></tr>';
+					htmlGov += '<tr><th>Last consolidated audit</th><td>'+d['#date+audit']+'</td></tr>';
+				}
+				
+				htmlPac += '<tr>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#date+ocac'],'year',-5,-8)+'">OCAC/BOCA</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#org+strategicplan'],'period',0,-2)+'">Strategic plan</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#date+policy+rm'],'period',-5,-8)+'">RM Strategy</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind1'],'yn',0)+'">Receiving gov. financial/in-kind support</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind2'],'yn',0)+'">&lt;50% domestically generated income </td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind3'],'yn',0)+'">Audited and produce fin statements annually</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind4'],'yn',0)+'">Self-assessment or peer review process</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind5'],'yn',0)+'">Reporting annually to FDRS</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind6'],'yn',0)+'">Youth policy/programme and impl. YABC</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind7'],'yn',0)+'">Updated Act/statutes in last 5 years</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac9+ind1'],'yn',0)+'">Risk management framework</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac9+ind3'],'yn',0)+'">Complying with CMC dashboard</td>';
+				htmlPac += '</tr>';
 			});
 					// Send data to appeals or DREFs html tables
-			$('#NSgovernanceTable').append(html);
-			if (html!="") {
-				$('#Overview').css("height","340px");
+			$('#NSgovernanceTable').append(htmlGov);
+			$('#PacScorecardTable').append(htmlPac);
+			if (htmlGov!="") {
+				$('#Overview').css("height","360px");
 				$('#Overview').css("visibility","visible");
 			}
 		}

@@ -23,3 +23,20 @@ ol {
 	padding-top: 0px !important;
 	padding-bottom: 3px !important;
 }
+#PacScorecardTable th, #PacScorecardTable td {
+	padding: 3px;
+	border: 1px solid white;
+	font-size: 11px;
+	color: white;
+	text-align: center;
+}
+
+.pacScoreGood {
+	background-color : #157723;
+}
+.pacScoreMedium {
+	background-color: orange;
+}
+.pacScoreBad {
+	background-color: #D33F49;
+}
