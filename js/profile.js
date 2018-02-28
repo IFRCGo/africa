@@ -87,7 +87,6 @@ function scorePac(val, check, correction, grace) {
 			}
 		}
 	}
-console.log(val + ' : ' + score);
 	return score;
 }
 
@@ -143,18 +142,26 @@ function createGovernanceTable(url) {
 				}
 				
 				htmlPac += '<tr>';
-				htmlPac += '<td class="pacScore'+scorePac(d['#date+ocac'],'year',-5,-8)+'">OCAC/BOCA</td>';
-				htmlPac += '<td class="pacScore'+scorePac(d['#org+strategicplan'],'period',0,-2)+'">Strategic plan</td>';
-				htmlPac += '<td class="pacScore'+scorePac(d['#date+policy+rm'],'period',-5,-8)+'">RM Strategy</td>';
-				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind1'],'yn',0)+'">Receiving gov. financial/in-kind support</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind1'],'yn',0)+'">Receiving government financial / in-kind support</td>';
 				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind2'],'yn',0)+'">&lt;50% domestically generated income </td>';
 				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind3'],'yn',0)+'">Audited and produce fin statements annually</td>';
 				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind4'],'yn',0)+'">Self-assessment or peer review process</td>';
 				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind5'],'yn',0)+'">Reporting annually to FDRS</td>';
-				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind6'],'yn',0)+'">Youth policy/programme and impl. YABC</td>';
-				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind7'],'yn',0)+'">Updated Act/statutes in last 5 years</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind6'],'yn',0)+'">Youth policy / programme and implementation YABC</td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind7'],'yn',0)+'">Updated Act / statutes in last 5 years</td>';
 				htmlPac += '<td class="pacScore'+scorePac(d['#pac9+ind1'],'yn',0)+'">Risk management framework</td>';
 				htmlPac += '<td class="pacScore'+scorePac(d['#pac9+ind3'],'yn',0)+'">Complying with CMC dashboard</td>';
+				htmlPac += '</tr>';
+				htmlPac += '<tr>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind1'],'yn',0)+'"><strong>'+d['#pac8+ind1'].toUpperCase()+'</strong></td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind2'],'yn',0)+'"><strong>'+d['#pac8+ind2'].toUpperCase()+'</strong></td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind3'],'yn',0)+'"><strong>'+d['#pac8+ind3'].toUpperCase()+'</strong></td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind4'],'yn',0)+'"><strong>'+d['#pac8+ind4'].toUpperCase()+'</strong></td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind5'],'yn',0)+'"><strong>'+d['#pac8+ind5'].toUpperCase()+'</strong></td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind6'],'yn',0)+'"><strong>'+d['#pac8+ind6'].toUpperCase()+'</strong></td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind7'],'yn',0)+'"><strong>'+d['#pac8+ind7'].toUpperCase()+'</strong></td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac9+ind1'],'yn',0)+'"><strong>'+d['#pac9+ind1'].toUpperCase()+'</strong></td>';
+				htmlPac += '<td class="pacScore'+scorePac(d['#pac9+ind3'],'yn',0)+'"><strong>'+d['#pac9+ind3'].toUpperCase()+'</strong></td>';
 				htmlPac += '</tr>';
 			});
 					// Send data to appeals or DREFs html tables
