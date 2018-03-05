@@ -129,7 +129,6 @@ function createGovernanceTable(url) {
 				if (d['#org+sg'].length>0) {
 					htmlGov += '<tr><th>President</th><td>'+d['#org+president']+'</td></tr>';
 					htmlGov += '<tr><th>Last and next election</th><td>'+d['#date+election+last']+' / '+d['#date+election+next']+'</td></tr>';
-					htmlGov += '<tr><th>Secretary General</th><td>'+d['#org+sg']+'</td></tr>';
 					htmlGov += '<tr><th>No. of Governing Board members</th><td>'+d['#org+board']+'</td></tr>';
 					htmlGov += '<tr><th>Stategic Plan period</th><td>'+d['#org+strategicplan']+'</td></tr>';
 					htmlGov += '<tr><th>Secretary General</th><td>'+d['#org+sg']+'</td></tr>';
