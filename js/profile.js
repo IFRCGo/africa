@@ -170,10 +170,10 @@ function createGovernanceTable(url) {
 				$('#Overview').css("height","360px");
 				$('#Overview').css("visibility","visible");
 			}
-			if (hash == 'COG') {
+//			if (hash == 'COG') {
 				$('#PacIndicators').css("height","187px");
 				$('#PacIndicators').css("visibility","visible");
-			}
+//			}
 		}
 	})
 
