@@ -170,7 +170,7 @@ function createGovernanceTable(url) {
 				$('#Overview').css("height","360px");
 				$('#Overview').css("visibility","visible");
 			}
-			if (hash == 'ZWE') {
+			if (hash == 'COG') {
 				$('#PacIndicators').css("height","187px");
 				$('#PacIndicators').css("visibility","visible");
 			}
@@ -379,6 +379,231 @@ function generateMap(geom, ISO3) {
 
 }
 
+function generateBranchMap(brMap, brNodes) {
+	var baselayer = L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
+	var baselayer2 = L.tileLayer('https://data.humdata.org/mapbox-layer-tiles/{z}/{x}/{y}.png', {minZoom:4});
+	var bounds;
+
+	map = L.map('map',{
+				center: [0,0],
+				zoom: 2,
+				layers: [baselayer,baselayer2]
+			});
+
+	// Add branch areas		
+	var layer_RedCrossBranches = new L.geoJson(brMap,{
+		style:styleMap
+	})
+	bounds = layer_RedCrossBranches.getBounds();
+	map.addLayer(layer_RedCrossBranches);
+	
+	var highlightLayer;
+	function highlightFeature(e) {
+		highlightLayer = e.target;
+
+		if (e.target.feature.geometry.type === 'LineString') {
+		  highlightLayer.setStyle({
+			color: 'LIGHTGREY',
+		  });
+		} else {
+		  highlightLayer.setStyle({
+			fillColor: 'RED',
+			fillOpacity: 1
+		  });
+		}
+	}
+
+	function styleMap() {
+		return {
+			opacity: 1,
+			color: 'rgba(0,0,0,1.0)',
+			dashArray: '',
+			lineCap: 'butt',
+			lineJoin: 'miter',
+			weight: 1.0, 
+			fill: true,
+			fillOpacity: 1,
+			fillColor: 'LIGHTGREY',
+		}
+	}
+	function styleNode() {
+		return {
+			radius: 4.0,
+			opacity: 1,
+			color: 'rgba(0,0,0,1.0)',
+			dashArray: '',
+			lineCap: 'butt',
+			lineJoin: 'miter',
+			weight: 1,
+			fill: true,
+			fillOpacity: 1,
+			fillColor: 'RED',
+		};
+	}
+	function popupNode(feature, layer) {
+		var popupContent = '<table>\
+				<tr>\
+					<th scope="row">Branch</th>\
+					<td>' + (feature.properties['Branch'] !== null ? feature.properties['Branch'] : '') + '</td>\
+				</tr>\
+				<tr>\
+					<th scope="row">Address</th>\
+					<td>' + (feature.properties['Address'] !== null ? feature.properties['Address'] : '') + '</td>\
+				</tr>\
+				<tr>\
+					<th scope="row">Staff</th>\
+					<td>' + (feature.properties['Staff'] !== null ? feature.properties['Staff'] : '') + '</td>\
+				</tr>\
+				<tr>\
+					<th scope="row">Volunteers</th>\
+					<td>' + (feature.properties['Volunteers'] !== null ? feature.properties['Volunteers'] : '') + '</td>\
+				</tr>\
+			</table>';
+		layer.bindPopup(popupContent, {maxHeight: 400, minWidth: 250, maxWidth: 500});
+
+		layer.on({
+			mouseout: function(e) {
+				for (i in e.target._eventParents) {
+					e.target._eventParents[i].resetStyle(e.target);
+				}
+				this.closePopup();
+			},
+			mouseover: function(e) {
+				highlightFeature;
+				this.openPopup();
+			},
+
+		});
+	}
+
+	var layer_RedCrossNodes = new L.geoJson(brNodes, {
+		onEachFeature: popupNode,
+		pointToLayer: function (feature, latlng) {
+			var context = {
+				feature: feature,
+				variables: {}
+			};
+			return L.circleMarker(latlng, styleNode(feature));
+		},
+	});
+	map.addLayer(layer_RedCrossNodes);
+
+	map.fitBounds(bounds);
+
+}
+function makeMap(brMap, brNodes) {
+	var baselayer = L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
+	var baselayer2 = L.tileLayer('https://data.humdata.org/mapbox-layer-tiles/{z}/{x}/{y}.png', {minZoom:4});
+	var bounds;
+
+	map = L.map('map',{
+				center: [0,0],
+				zoom: 2,
+				layers: [baselayer,baselayer2]
+			});
+
+	function styleMap() {
+		return {
+			opacity: 1,
+			color: 'rgba(0,0,0,1.0)',
+			dashArray: '',
+			lineCap: 'butt',
+			lineJoin: 'miter',
+			weight: 1.0, 
+			fill: true,
+			fillOpacity: 0.7,
+			fillColor: '#D33F49',
+		}
+	}
+
+	var layer_RedCrossBranches = new L.geoJson(brMap,{
+		style:styleMap
+	})
+	bounds = layer_RedCrossBranches.getBounds();
+	map.addLayer(layer_RedCrossBranches);
+	map.fitBounds(bounds);
+	
+	var highlightLayer;
+	function highlightFeature(e) {
+		highlightLayer = e.target;
+
+		if (e.target.feature.geometry.type === 'LineString') {
+		  highlightLayer.setStyle({
+			color: 'LIGHTGREY',
+		  });
+		} else {
+		  highlightLayer.setStyle({
+			fillColor: 'RED',
+			fillOpacity: 1
+		  });
+		}
+	}
+
+	function styleNode() {
+		return {
+			radius: 4.0,
+			opacity: 1,
+			color: 'rgba(0,0,0,1.0)',
+			dashArray: '',
+			lineCap: 'butt',
+			lineJoin: 'miter',
+			weight: 1,
+			fill: true,
+			fillOpacity: 1,
+			fillColor: 'RED',
+		};
+	}
+	function popupNode(feature, layer) {
+		var popupContent = '<table>\
+				<tr>\
+					<th scope="row">Branch</th>\
+					<td>' + (feature.properties['Branch'] !== null ? feature.properties['Branch'] : '') + '</td>\
+				</tr>\
+				<tr>\
+					<th scope="row">Address</th>\
+					<td>' + (feature.properties['Address'] !== null ? feature.properties['Address'] : '') + '</td>\
+				</tr>\
+				<tr>\
+					<th scope="row">Staff</th>\
+					<td>' + (feature.properties['Staff'] !== null ? feature.properties['Staff'] : '') + '</td>\
+				</tr>\
+				<tr>\
+					<th scope="row">Volunteers</th>\
+					<td>' + (feature.properties['Volunteers'] !== null ? feature.properties['Volunteers'] : '') + '</td>\
+				</tr>\
+			</table>';
+		layer.bindPopup(popupContent, {maxHeight: 400, minWidth: 250, maxWidth: 500});
+
+		layer.on({
+			mouseout: function(e) {
+				for (i in e.target._eventParents) {
+					e.target._eventParents[i].resetStyle(e.target);
+				}
+				this.closePopup();
+			},
+			mouseover: function(e) {
+				highlightFeature;
+				this.openPopup();
+			},
+
+		});
+	}
+
+	var layer_RedCrossNodes = new L.geoJson(brNodes, {
+		onEachFeature: popupNode,
+		pointToLayer: function (feature, latlng) {
+			var context = {
+				feature: feature,
+				variables: {}
+			};
+			return L.circleMarker(latlng, styleNode(feature));
+		},
+	});
+	map.addLayer(layer_RedCrossNodes);
+
+
+}
+
 // Identify for which country / National Society
 var hash = decodeURIComponent(window.location.hash).substring(1);
 var patt = new RegExp("^[a-zA-Z]{3}$");
@@ -388,18 +613,33 @@ if ( patt.test(hash) ) {
 	hash = "KEN";
 }
 
-// get the world map
-var worldmap = 'http://ifrcgo.org/assets/map/worldmap.json';
-$.ajax({
+
+// get the branch map data
+var branchmap = 'http://ifrcgo.org/africa/maps/' + hash + '_map.geojson';
+var branchnodes = 'http://ifrcgo.org/africa/maps/' + hash + '_nodes.geojson';
+
+var brMapCall = $.ajax({
     type: 'GET',
-    url: worldmap,
+    url: branchmap,
     dataType: 'json',
-    success:function(response){
-		console.log(response);
-		var geom = topojson.feature(response,response.objects.geom);
-		generateMap(geom,hash)
-    }
+	success:function(response){
+		booBranchMap = true;
+	}
 });
+
+var brNodesCall = $.ajax({
+    type: 'GET',
+    url: branchnodes,
+    dataType: 'json',
+	success:function(response){
+		booBranchNodes = true;
+	}
+});
+
+$.when(brMapCall, brNodesCall).always(function(mapArgs, nodesArgs){ 
+	makeMap(mapArgs,nodesArgs)
+});
+
 
 //Load Governance data
 var hxlGovernanceURL = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23country%2Bcode%3DCOUNTRYCODE&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1cL39UdUqbyF4llbtTUHes8N9jpjOzgC-rpoq0oIc6jk%2Fedit%23gid%3D0';
@@ -437,3 +677,5 @@ $.ajax({
         createAppealsTable(data);
     }
 });
+
+
