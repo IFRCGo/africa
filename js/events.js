@@ -231,20 +231,11 @@ function getParticipants(ns,lang) {
 	}
 	return participants; 
 }
-
-function printResults(json) {
-    console.log(json)
-}
 // Get appeals and DREFs data
 $.ajax({
     type: 'GET',
-    url: 'https://cors-anywhere.herokuapp.com/https://kc.humanitarianresponse.info/api/v1/data/203425',
-    dataType: 'json',
-//	jsonpCallback: "printResults",
-    success:function(response){
-//        var data = hxlProxyToJSON(response);
-		console.log(response);
-        creatEventsTable(response);
-    }
+	url: 'https://kc.humanitarianresponse.info/api/v1/data/203425?format=jsonp',
+    dataType: 'jsonp',
+	jsonpCallback: "creatEventsTable"
 });
 
