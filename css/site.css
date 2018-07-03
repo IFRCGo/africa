@@ -44,3 +44,30 @@ ol {
 .pacScoreBad {
 	background-color: #D33F49;
 }
+
+#eventstable i, #pasteventstable i {
+	font-size: small;
+}
+
+#eventstable .table_icon, #pasteventstable .table_icon {
+	width: 50px;
+	padding: 5px;
+}
+#eventstable .event_month, #pasteventstable .event_month {
+	background-color: white;
+	border-style: hidden;
+	color: red;
+}
+#eventstable .event_header, #pasteventstable .event_header {
+	background-color: lightgray;
+}
+#eventstable .event_item, #pasteventstable .event_item {
+	background-color: white;
+	border-bottom-color: lightgrey;
+	border-left-color: white;
+	border-right-color: white;
+}
+#eventstable h2, #pasteventstable h2 {
+	color: #D33F49;
+	font-weight: bold;
+}
