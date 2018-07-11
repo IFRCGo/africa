@@ -40,8 +40,12 @@ function creatEventsTable(data){
 	var pastYear = -1;
 	var curMonth = -1;
 	
-	data.sort(function(a, b){return a.Start_date - b.Start_date});
-
+	data.sort(function(a, b){
+		var dateA = new Date(a.Start_date);
+		var dateB = new Date(b.Start_date);
+		return dateA - dateB;
+	});
+	
     // Run through data and prep for tables
     data.forEach(function(d,i){
 		var eventDate = new Date(d['Start_date']);
@@ -107,127 +111,143 @@ function createEventRow(d, lang) {
 
 function getCountry(iso3,lang) {
 	var countries = [
-		['AGO','Angola'],
-		['BEN','Benin'],
-		['BWA','Botswana'],
-		['BFA','Burkina Faso'],
-		['BDI','Burundi'],
-		['CMR','Cameroon'],
-		['CPV','Cape Verde'],
-		['CAF','Central African Republic'],
-		['TCD','Chad'],
-		['COM','Comoros'],
-		['COD','Democratic Republic of the Congo'],
-		['COG','Republic of Congo'],
-		['CIV','Cote d\'Ivoire'],
-		['DJI','Djibouti'],
-		['GNQ','Equatorial Guinea'],
-		['ERI','Eritrea'],
-		['ETH','Ethiopia'],
-		['GAB','Gabon'],
-		['GMB','Gambia'],
-		['GHA','Ghana'],
-		['GIN','Guinea'],
-		['GNB','Guinea-Bissau'],
-		['KEN','Kenya'],
-		['LSO','Lesotho'],
-		['LBR','Liberia'],
-		['MDG','Madagascar'],
-		['MWI','Malawi'],
-		['MLI','Mali'],
-		['MUS','Mauritius'],
-		['MRT','Mauritania'],
-		['MOZ','Mozambique'],
-		['NAM','Namibia'],
-		['NER','Niger'],
-		['NGA','Nigeria'],
-		['RWA','Rwanda'],
-		['STP','Sao Tome and Principe'],
-		['SEN','Senegal'],
-		['SYC','Seychelles'],
-		['SLE','Sierra Leone'],
-		['SOM','Somalia'],
-		['ZAF','South Africa'],
-		['SSD','South Sudan'],
-		['SDN','Sudan'],
-		['SWZ','Swaziland'],
-		['TZA','Tanzania'],
-		['TGO','Togo'],
-		['UGA','Uganda'],
-		['ZMB','Zambia'],
-		['ZWE','Zimbabwe'],
-		['OTHER','outside in Africa Region']
+		['AGO','Angola','Angola'],
+		['BEN','Benin','Bénin'],
+		['BWA','Botswana','Botswana'],
+		['BFA','Burkina Faso','Burkina Faso'],
+		['BDI','Burundi','Burundi'],
+		['CMR','Cameroon','Cameroun'],
+		['CPV','Cape Verde','Cap-vert'],
+		['CAF','Central African Republic','République centrafricaine'],
+		['TCD','Chad','Tchad'],
+		['COM','Comoros','Comores'],
+		['COD','Democratic Republic of the Congo','République démocratique du congo'],
+		['COG','Republic of Congo','République du congo'],
+		['CIV','Cote d\'Ivoire','Cote d\'Ivoire'],
+		['DJI','Djibouti','Djibouti'],
+		['GNQ','Equatorial Guinea','Guinée équatoriale'],
+		['ERI','Eritrea','Érythrée'],
+		['ETH','Ethiopia','Éthiopie'],
+		['GAB','Gabon','Gabon'],
+		['GMB','Gambia','Gambie'],
+		['GHA','Ghana','Ghana'],
+		['GIN','Guinea','Guinée'],
+		['GNB','Guinea-Bissau','Guinée-bissau'],
+		['KEN','Kenya','Kenya'],
+		['LSO','Lesotho','Lesotho'],
+		['LBR','Liberia','Liberia'],
+		['MDG','Madagascar','Madagascar'],
+		['MWI','Malawi','Malawi'],
+		['MLI','Mali','Mali'],
+		['MUS','Mauritius','Maurice'],
+		['MRT','Mauritania','Mauritanie'],
+		['MOZ','Mozambique','Mozambique'],
+		['NAM','Namibia','Namibie'],
+		['NER','Niger','Niger'],
+		['NGA','Nigeria','Nigeria'],
+		['RWA','Rwanda','Rwanda'],
+		['STP','Sao Tome and Principe','Sao Tomé-et-Principe'],
+		['SEN','Senegal','Sénégal'],
+		['SYC','Seychelles','Seychelles'],
+		['SLE','Sierra Leone','Sierra Leone'],
+		['SOM','Somalia','Somalie'],
+		['ZAF','South Africa','Afrique du sud'],
+		['SSD','South Sudan','Soudan du sud'],
+		['SDN','Sudan','Soudan'],
+		['SWZ','Eswatini (the Kingdom of)','Eswatini (royaume de)'],
+		['TZA','Tanzania','Tanzanie'],
+		['TGO','Togo','Togo'],
+		['UGA','Uganda','Ouganda'],
+		['ZMB','Zambia','Zambie'],
+		['ZWE','Zimbabwe','Zimbabwe'],
+		['OTHER','outside the Africa Region','en dehors de la Région Afrique']
 	];
 	var country = '';
-	countries.forEach(function(d,i){
-		if (d[0] == iso3) {
-			country = d[1];
-		}			
-	});
+	if (lang == 'FR') {
+		countries.forEach(function(d,i){
+			if (d[0] == iso3) {
+				country = d[2];
+			}			
+		});
+	} else {
+		countries.forEach(function(d,i){
+			if (d[0] == iso3) {
+				country = d[1];
+			}			
+		});
+	}
 	return country;
 }
 
 function getParticipants(ns,lang) {
 	var natSocieties = [
-		['AGO','Angola Red Cross'],
-		['BEN','Red Cross of Benin'],
-		['BWA','Botswana Red Cross Society'],
-		['BFA','Burkinabe Red Cross Society'],
-		['BDI','Burundi Red Cross'],
-		['CMR','Cameroon Red Cross Society'],
-		['CPV','Red Cross of Cape Verde'],
-		['CAF','Central African Red Cross Society'],
-		['TCD','Red Cross of Chad'],
-		['COM','The Comoros Red Crescent'],
-		['COD','Red Cross of the Democratic Republic of the Congo'],
-		['COG','Congolese Red Cross'],
-		['CIV','Red Cross Society of Côte d\'Ivoire'],
-		['DJI','Red Crescent Society of Djibouti'],
-		['GNQ','Red Cross of Equatorial Guinea'],
-		['ERI','Red Cross Society of Eritrea'],
-		['ETH','Ethiopian Red Cross Society'],
-		['GAB','Gabonese Red Cross Society'],
-		['GMB','Gambia Red Cross Society'],
-		['GHA','Ghana Red Cross Society'],
-		['GIN','Red Cross Society of Guinea'],
-		['GNB','Red Cross Society of Guinea-Bissau'],
-		['KEN','Kenya Red Cross Society'],
-		['LSO','Lesotho Red Cross Society'],
-		['LBR','Liberian Red Cross Society'],
-		['MDG','Madagasy Red Cross Society'],
-		['MWI','Malawi Red Cross Society'],
-		['MLI','Mali Red Cross'],
-		['MUS','Mauritius Red Cross Society'],
-		['MRT','Mauritanian Red Crescent'],
-		['MOZ','Mozambique Red Cross Society'],
-		['NAM','Namibia Red Cross'],
-		['NER','Red Cross Society of Niger'],
-		['NGA','Nigerian Red Cross Society'],
-		['RWA','Rwandan Red Cross'],
-		['STP','Sao Tome and Principe Red Cross'],
-		['SEN','Senegalese Red Cross Society'],
-		['SYC','Seychelles Red Cross Society'],
-		['SLE','Sierra Leone Red Cross Society'],
-		['SOM','Somali Red Crescent Society'],
-		['ZAF','South African Red Cross Society'],
-		['SSD','South Sudan Red Cross'],
-		['SDN','The Sudanese Red Crescent'],
-		['SWZ','Baphalali Swaziland Red Cross Society'],
-		['TZA','Tanzania Red Cross National Society'],
-		['TGO','Togolese Red Cross'],
-		['UGA','Uganda Red Cross Society'],
-		['ZMB','Zambia Red Cross Society'],
-		['ZWE','Zimbabwe Red Cross Society']
+		['AGO','Angola Red Cross','Croix-Rouge angolaise'],
+		['BEN','Red Cross of Benin','Croix-Rouge béninoise'],
+		['BWA','Botswana Red Cross Society','Croix-Rouge du Botswana'],
+		['BFA','Burkinabe Red Cross Society','Croix-Rouge burkinabè'],
+		['BDI','Burundi Red Cross','Croix-Rouge du Burundi'],
+		['CMR','Cameroon Red Cross Society','Croix-Rouge camerounaise'],
+		['CPV','Red Cross of Cape Verde','Croix-Rouge du Cap-Vert'],
+		['CAF','Central African Red Cross Society','Société de la Croix-Rouge centrafricaine'],
+		['TCD','Red Cross of Chad','Croix-Rouge du Tchad'],
+		['COM','The Comoros Red Crescent','Croissant-Rouge comorien'],
+		['COD','Red Cross of the Democratic Republic of the Congo','Croix-Rouge de la République démocratique du Congo'],
+		['COG','Congolese Red Cross','Croix-Rouge congolaise'],
+		['CIV','Red Cross Society of Côte d\'Ivoire','Croix-Rouge de la Côte d\'Ivoire'],
+		['DJI','Red Crescent Society of Djibouti','Société du Croissant-Rouge de Djibouti'],
+		['GNQ','Red Cross of Equatorial Guinea','Croix-Rouge de Guinée Équatoriale'],
+		['ERI','Red Cross Society of Eritrea','Croix-Rouge érythréenne'],
+		['ETH','Ethiopian Red Cross Society','Croix-Rouge éthiopienne'],
+		['GAB','Gabonese Red Cross Society','Croix-Rouge gabonaise'],
+		['GMB','Gambia Red Cross Society','Croix-Rouge de la Gambie'],
+		['GHA','Ghana Red Cross Society','Croix-Rouge du Ghana'],
+		['GIN','Red Cross Society of Guinea','Croix-Rouge guinéenne'],
+		['GNB','Red Cross Society of Guinea-Bissau','Croix-Rouge de la Guinée-Bissau'],
+		['KEN','Kenya Red Cross Society','Croix-Rouge du Kenya'],
+		['LSO','Lesotho Red Cross Society','Croix-Rouge du Lesotho'],
+		['LBR','Liberian Red Cross Society','Croix-Rouge du Libéria'],
+		['MDG','Madagasy Red Cross Society','Croix-Rouge Malagasy'],
+		['MWI','Malawi Red Cross Society','Croix-Rouge du Malawi'],
+		['MLI','Mali Red Cross','Croix-Rouge malienne'],
+		['MUS','Mauritius Red Cross Society','Croix-Rouge de Maurice'],
+		['MRT','Mauritanian Red Crescent','Croissant-Rouge mauritanien'],
+		['MOZ','Mozambique Red Cross Society','Croix-Rouge du Mozambique'],
+		['NAM','Namibia Red Cross','Croix-Rouge de Namibie'],
+		['NER','Red Cross Society of Niger','Croix-Rouge nigérienne'],
+		['NGA','Nigerian Red Cross Society','Croix-Rouge du Nigéria'],
+		['RWA','Rwandan Red Cross','Croix-Rouge rwandaise'],
+		['STP','Sao Tome and Principe Red Cross','Croix-Rouge de Sao Tomé-et-Principe'],
+		['SEN','Senegalese Red Cross Society','Croix-Rouge sénégalaise'],
+		['SYC','Seychelles Red Cross Society','Croix-Rouge des Seychelles'],
+		['SLE','Sierra Leone Red Cross Society','Croix-Rouge de Sierra Leone'],
+		['SOM','Somali Red Crescent Society','Croissant-Rouge de Somalie'],
+		['ZAF','South African Red Cross Society','Croix-Rouge sud-africaine'],
+		['SSD','South Sudan Red Cross','Croissant-Rouge sud-soudanais'],
+		['SDN','The Sudanese Red Crescent','Croissant-Rouge soudanais'],
+		['SWZ','Baphalali Swaziland Red Cross Society','Croix-Rouge du Swaziland'],
+		['TZA','Tanzania Red Cross National Society','Croix-Rouge nationale de Tanzanie'],
+		['TGO','Togolese Red Cross','Croix-Rouge togolaise'],
+		['UGA','Uganda Red Cross Society','Croix-Rouge de l\'Ouganda'],
+		['ZMB','Zambia Red Cross Society','Croix-Rouge de Zambie'],
+		['ZWE','Zimbabwe Red Cross Society','Croix-Rouge du Zimbabwe']
 	];
 	var participants = '';
 	if (ns === undefined) {
 		participants = '-';
 	} else {
-		natSocieties.forEach(function(d,i){
-			if (ns.indexOf(d[0])>=0) {
-				participants += d[1] + '<br />';
-			}			
-		});
+		if (lang == 'FR') {
+			natSocieties.forEach(function(d,i){
+				if (ns.indexOf(d[0])>=0) {
+					participants += d[2] + '<br />';
+				}			
+			});
+		} else {
+			natSocieties.forEach(function(d,i){
+				if (ns.indexOf(d[0])>=0) {
+					participants += d[1] + '<br />';
+				}			
+			});
+		}
 	}
 	return participants; 
 }
