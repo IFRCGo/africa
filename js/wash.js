@@ -161,6 +161,8 @@ function createTable(data) {
 		table += d['#capacity+washkit5'];
 		table += '</td><td>';
 		table += d['#capacity+washkit10'];
+		table += '</td><td>';
+		table += d['#date+update'];
 		table += '</td></tr>';
 	});
 
