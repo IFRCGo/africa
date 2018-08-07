@@ -114,6 +114,7 @@ function createGovernanceTable(url) {
     // Initialize html tables
     var htmlGov = "";
 	var htmlPac = "";
+	var hasWASH = false;
 
 	$.ajax({
 		type: 'GET',
@@ -162,6 +163,20 @@ function createGovernanceTable(url) {
 				htmlPac += '<td class="pacScore'+scorePac(d['#pac9+ind1'],'yn',0)+'"><strong>'+d['#pac9+ind1'].toUpperCase()+'</strong></td>';
 				htmlPac += '<td class="pacScore'+scorePac(d['#pac9+ind3'],'yn',0)+'"><strong>'+d['#pac9+ind3'].toUpperCase()+'</strong></td>';
 				htmlPac += '</tr>';
+				
+				// only show WASH data when this is available (read: NoTotalStaff is filled)
+				if (d['#capacity+total'].length>0) {
+					$('#NoWashStaff').html( fillKeyFigureCard('Total WASH Staff', d['#capacity+total']) );
+					$('#NoWashKit2').html( fillKeyFigureCard('WASH Kit2', d['#capacity+washkit2']) );
+					$('#NoWashKit5').html( fillKeyFigureCard('WASH Kit5', d['#capacity+washkit5']) );
+					$('#NoWashKit10').html( fillKeyFigureCard('WASH Kit10', d['#capacity+washkit10']) );
+					$('#NoWashHQ').html( fillKeyFigureCard('WASH Staff at HQ', d['#capacity+hq']) );
+					$('#NoWashBranch').html( fillKeyFigureCard('WASH Staff at Branch', d['#capacity+branch']) );
+					$('#NoWashNDRT').html( fillKeyFigureCard('NDRT Trained', d['#capacity+ndrt']) );
+					$('#NoWashRDRT').html( fillKeyFigureCard('RDRT Trained', d['#capacity+rdrt']) );
+				} else {
+					$('#NoWashStaff').html( fillKeyFigureCard('', 'No data' ) );
+				}
 			});
 					// Send data to appeals or DREFs html tables
 			$('#NSgovernanceTable').append(htmlGov);
@@ -266,7 +281,7 @@ function fillKeyFigureCard (title, value) {
 	}
 	
 	var html = '<h4 class="keyfiguretitle text-center minheight">'+title+'</h4>';
-	html += '<p class="keyfigure text-center">'+ niceFormatNumber(value,true) +'</p>';
+	html += '<p class="keyfigure text-center">'+ niceFormatNumber(value,false) +'</p>';
 	return html;
 }
 
@@ -642,7 +657,7 @@ $.when(brMapCall, brNodesCall).always(function(mapArgs, nodesArgs){
 
 
 //Load Governance data
-var hxlGovernanceURL = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23country%2Bcode%3DCOUNTRYCODE&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1cL39UdUqbyF4llbtTUHes8N9jpjOzgC-rpoq0oIc6jk%2Fedit%23gid%3D0';
+var hxlGovernanceURL = 'https://proxy.hxlstandard.org/data.json?filter01=merge&merge-url01=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1aYeTU8SaEt8ryxiVEoKqE5jsiLsSnPoDICRoCpwom3A%2Fedit%23gid%3D261283785&merge-keys01=%23country%2Bcode&merge-tags01=%23capacity%2Btotal%2C%23capacity%2Bhq%2C%23capacity%2Bbranch%2C%23capacity%2Bndrt%2C%23capacity%2Brdrt%2C%23capacity%2Bwashkit2%2C%23capacity%2Bwashkit5%2C%23capacity%2Bwashkit10&filter02=select&select-query02-01=%23country%2Bcode%3DCOUNTRYCODE&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1cL39UdUqbyF4llbtTUHes8N9jpjOzgC-rpoq0oIc6jk%2Fedit%23gid%3D0';
 hxlGovernanceURL = hxlGovernanceURL.replace('COUNTRYCODE',hash);
 console.log(hxlGovernanceURL);
 createGovernanceTable(hxlGovernanceURL);
