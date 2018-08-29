@@ -216,7 +216,8 @@ function createAlertSum(etc, hos, com, mor, dis) {
 
 function createAlertRow(row,nr) {
 	var html = "";
-	
+
+	console.log (row);
 	if (row.type === 'disinfection') { 
 		html += '<tr><td><strong>' + nr + ': Disinfection</strong></td></tr>';
 		html += '<tr><td><strong>' + row['group_location/houses_disinfected'] + ' houses to be disinfected</strong> in ';
@@ -234,7 +235,7 @@ function createAlertRow(row,nr) {
 	} else  {
 		html += '<tr><td><strong>' + nr + ': ' + rV(checkField(row['group_location/collection_site'])) + '</strong><br />';
 		html += checkField(row['group_location/collection_zone']) + ' - ' + checkField(row['group_location/collection_area']) ;
-		html += ' - ' + checkField(row['group_location/location_name']) + '</td></tr>';
+		html += ' - ' + checkField(row['group_location/location_village']) + '</td></tr>';
 		html += '<tr><td><strong>Person</strong>: ' + rV(checkField(row['group_deceased/gender_of_deceased'])) ;
 		html += ' - ' + rV(checkField(row['group_deceased/age_of_deceased'])) + 'yrs</td></tr>';
 		html += '<tr><td><strong>Planned Activity</strong>: ' + rV(checkField(row['group_response/action_taken']));
