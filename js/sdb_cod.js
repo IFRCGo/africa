@@ -18,24 +18,16 @@ function createActivityTable(data) {
 
 	var curDate = new Date();
 	var todayDate = "";
-	if (curDate.getMonth() < 9) {
-		todayDate = curDate.getFullYear() + '-0' + (curDate.getMonth() + 1) + '-' + curDate.getDate();
-	} else {
-		todayDate = curDate.getFullYear() + '-' + (curDate.getMonth() + 1) + '-' + curDate.getDate();
-	}
+	todayDate = curDate.getFullYear() + '-' + twoNum(curDate.getMonth() + 1) + '-' + twoNum(curDate.getDate());
 
 	var yesDate = new Date();
 	yesDate.setDate(yesDate.getDate() - 1);
 	var yesterdayDate = "";
-	if (yesDate.getMonth() < 9) {
-		yesterdayDate = yesDate.getFullYear() + '-0' + (yesDate.getMonth() + 1) + '-' + yesDate.getDate();
-	} else {
-		yesterdayDate = yesDate.getFullYear() + '-' + (yesDate.getMonth() + 1) + '-' + yesDate.getDate();
-	}
+	yesterdayDate = yesDate.getFullYear() + '-' + twoNum(yesDate.getMonth() + 1) + '-' + twoNum(yesDate.getDate());
 	
     data.forEach(function(d,i){
 		var eventDate = d.activity_date;
-console.log(d);
+
 		// Today's Activities
 		if(eventDate === todayDate) {
 
@@ -140,25 +132,16 @@ function createAlertTable(data) {
 
 	var curDate = new Date();
 	var todayDate = "";
-	if (curDate.getMonth() < 9) {
-		todayDate = curDate.getFullYear() + '-0' + (curDate.getMonth() + 1) + '-' + curDate.getDate();
-	} else {
-		todayDate = curDate.getFullYear() + '-' + (curDate.getMonth() + 1) + '-' + curDate.getDate();
-	}
+	todayDate = curDate.getFullYear() + '-' + twoNum(curDate.getMonth() + 1) + '-' + twoNum(curDate.getDate());
 
 	var yesDate = new Date();
 	yesDate.setDate(yesDate.getDate() - 1);
 	var yesterdayDate = "";
-	if (yesDate.getMonth() < 9) {
-		yesterdayDate = yesDate.getFullYear() + '-0' + (yesDate.getMonth() + 1) + '-' + yesDate.getDate();
-	} else {
-		yesterdayDate = yesDate.getFullYear() + '-' + (yesDate.getMonth() + 1) + '-' + yesDate.getDate();
-	}
+	yesterdayDate = yesDate.getFullYear() + '-' + twoNum(yesDate.getMonth() + 1) + '-' + twoNum(yesDate.getDate());
  
    data.forEach(function(d,i){
 		var eventDate = d.time_received.substring(0,10);
 
-	
 		// Today's Activities
 		if(eventDate === todayDate) {
 
@@ -217,7 +200,6 @@ function createAlertSum(etc, hos, com, mor, dis) {
 function createAlertRow(row,nr) {
 	var html = "";
 
-	console.log (row);
 	if (row.type === 'disinfection') { 
 		html += '<tr><td><strong>' + nr + ': Disinfection</strong></td></tr>';
 		html += '<tr><td><strong>' + row['group_location/houses_disinfected'] + ' houses to be disinfected</strong> in ';
@@ -258,6 +240,16 @@ function checkField(field) {
 	} else {
 		return field;
 	}
+}
+
+function twoNum (v) {
+	var newVal = '';
+	if (v<10) {
+		newVal = '0' + v.toString();
+	} else {
+		newVal = '' + v.toString();
+	}
+	return newVal;
 }
 
 function rV(v) {
