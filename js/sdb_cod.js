@@ -1,7 +1,7 @@
 "use strict";
+
 function createActivityTable(data) {
 
-	
 	var todayActs = "";
 	var todayActNr = 1;
 	var yesterdayActs = "";
@@ -45,6 +45,7 @@ function createActivityTable(data) {
 				noDisinfectionDay += Number(d['disinfection/houses_disinfected']);
 			}
 
+		//Yesterday's Activities
 		} else if(eventDate === yesterdayDate) {
 
 			yesterdayActs += createActivityRow(d,yesterdayActNr);
@@ -62,7 +63,7 @@ function createActivityTable(data) {
 			}
 		}
 	   
-   });
+    });
 	// Send data to html tables
 	$('#statsActDay').append(createActSum(statusSuccessDay,statusUnsuccesDay,statusPendingDay,noDisinfectionDay));
 	$('#statsActYes').append(createActSum(statusSuccessYes,statusUnsuccesYes ,statusPendingYes,noDisinfectionYes));
@@ -78,7 +79,6 @@ function createActSum(ok, nok, pnd, dis) {
 	html += '<br /><br />Houses disinfected : ' + dis;
 	return html;
 }
-
 
 function createActivityRow(row,nr) {
 	var html = "";
@@ -113,7 +113,66 @@ function createActivityRow(row,nr) {
 	return html;
 }
 
-function createAlertTable(data) {
+function getMatchedActRow(row) {
+	var html = "";
+
+	if (row.type === 'disinfection') {
+		
+		html += '<strong> Disinfection</strong><br/>';
+		html += '<strong>' + row['disinfection/houses_disinfected'] + ' houses disinfected</strong> in ' + row['disinfection/disinfection_zone'] + ' - ' + checkField(row['disinfection/disinfection_area']) + '<br/>';
+		html += '<strong>Comments</strong><br />' + checkField(row.comments);
+		
+	} else {
+	
+		html += '<strong>' + checkField(row['burial/status']) + '</strong>';
+		if (checkField(row['burial/why_not_success']) !== '') {
+			html += ' - ' + row['burial/why_not_success'];
+		}
+		html += '<br/>';
+		html += '<strong>' + rV(checkField(row['burial/burial_activity'])) + '</strong><br/>';
+		html += '<strong>' + rV(checkField(row['burial/collection_site'])) + '</strong>: ';
+		html += row['burial/collection_zone'] + ' - ' + checkField(row['burial/collection_area']) ;
+		html += ' - ' + checkField(row['burial/collection_place']) + '<br/>';
+		html += '<strong>Person</strong>: ' + checkField(row['burial/gender']) + ' - ' + checkField(row['burial/age']) + 'yrs<br/>';
+		html += '<strong>Activities</strong>: Swap: ' + rV(checkField(row['burial/swap_taken'])) ;
+		html += ' - Disinfection: ' + rV(checkField(row['burial/disinfected'])) + '<br/';
+		html += '<strong>Burial</strong>: ' + checkField(row['burial/burial_zone']) + ' - ' + checkField(row['burial/burial_area']) + ' - ' + checkField(row['burial/burial_place']) + '<br/>';
+		html += '<strong>Comments</strong>: ' + checkField(row.comments) +  '<br/>';
+
+	}
+
+	return html;
+
+}
+
+
+function matchActToAlert(altRow, actData) {
+	var matchData = [];
+	var alertDate = altRow['time_received'].substring(0,10);  //'time_received' - date/time alert received
+	var alertDateMs = Date.parse(alertDate);
+
+	actData.forEach(function(d,i){
+		var actDateMs = Date.parse(d['activity_date'])
+		if (alertDateMs <= actDateMs) {  //alert date <= activity date (i.e. burial date)
+			if ((altRow['group_location/collection_site']===d['burial/collection_site']) && 
+				(altRow['group_location/collection_zone']===d['burial/collection_zone']) &&
+				(altRow['group_location/collection_area']===d['burial/collection_area'])){
+					if ((altRow['group_deceased/gender_of_deceased']===d['burial/gender']) &&
+						(altRow['group_deceased/age_of_deceased']===d['burial/age'])) {
+							//console.log('matched: ', altRow, d);
+							matchData.push(d);
+					}
+					
+			}
+
+		}
+		
+	});
+
+	return matchData;
+}
+
+function createAlertTable(alertData, actData) {
 	var todayAlerts = "";
 	var todayAlertNr = 1;
 	var yesterdayAlerts = "";
@@ -139,13 +198,13 @@ function createAlertTable(data) {
 	var yesterdayDate = "";
 	yesterdayDate = yesDate.getFullYear() + '-' + twoNum(yesDate.getMonth() + 1) + '-' + twoNum(yesDate.getDate());
  
-   data.forEach(function(d,i){
+    alertData.forEach(function(d,i){
 		var eventDate = d.time_received.substring(0,10);
 
 		// Today's Activities
 		if(eventDate === todayDate) {
 
-			todayAlerts += createAlertRow(d,todayAlertNr);
+			todayAlerts += createAlertRow(d,todayAlertNr,actData);
 
 			todayAlertNr++;
 
@@ -163,7 +222,7 @@ function createAlertTable(data) {
 
 		} else if(eventDate === yesterdayDate) {
 
-			yesterdayAlerts += createAlertRow(d,yesterdayAlertsNr);
+			yesterdayAlerts += createAlertRow(d,yesterdayAlertsNr,actData);
 
 			yesterdayAlertsNr++;
 
@@ -197,8 +256,12 @@ function createAlertSum(etc, hos, com, mor, dis) {
 	return html;
 }
 
-function createAlertRow(row,nr) {
+function createAlertRow(row,nr, actData) {
+	console.log('createAlertRow: ', row, nr)
 	var html = "";
+
+	var actMatches = matchActToAlert(row, actData);
+	console.log(actMatches);
 
 	if (row.type === 'disinfection') { 
 		html += '<tr><td><strong>' + nr + ': Disinfection</strong></td></tr>';
@@ -213,6 +276,12 @@ function createAlertRow(row,nr) {
 			html += ' (' + row['group_response/reason_not'] + ')';
 		}
 		html += '<tr><td><strong>Comments</strong><br />' + checkField(row.comments) +  '</td></tr>';
+		if (actMatches.length==0) {
+			html += '<tr><td><strong>Activity matches found</strong>: <i>None</i></td></tr>';
+		} else {
+			html += '<tr><td><strong>Activity matches found</strong>: </td></tr>';
+			html += '<table><tr><td>TEXT 1</td></tr>'
+		}
 		html += '<tr><td><strong><hr /></td></tr>';
 	} else  {
 		html += '<tr><td><strong>' + nr + ': ' + rV(checkField(row['group_location/collection_site'])) + '</strong><br />';
@@ -229,8 +298,20 @@ function createAlertRow(row,nr) {
 		}
 		html += '</td></tr>';
 		html += '<tr><td><strong>Comments</strong>: ' + checkField(row.comments) +  '</td></tr>';
+		if (actMatches.length==0) {
+			html += '<tr><td><strong>Activity matches found</strong>: <i>None</i></td></tr>';
+		} else {
+			html += '<tr><td><strong>Activity matches found</strong>: ' + actMatches.length + '</td></tr>';			
+			actMatches.forEach(function(d,i) {
+				html += '<tr bgcolor="#7dc0e0"><td style="padding:10px 30px"><small><big><i>Activity Match ' + (i+1) + '</i></big>: ';
+				html += getMatchedActRow(d);
+				html += '</small></td></tr>';
+
+			})
+		}
 		html += '<tr><td><hr /></td></tr>';	
 	}
+
 	return html;
 }
 
@@ -288,18 +369,35 @@ function rV(v) {
 	return newVal;
 }
 
-// Get Alert data
-$.ajax({
-    type: 'GET',
-	url: 'https://kc.humanitarianresponse.info/api/v1/data/264381?format=jsonp',
-    dataType: 'jsonp',
-	jsonpCallback: "createAlertTable"
-});
-// Get activity data
-$.ajax({
-    type: 'GET',
-	url: 'https://kc.humanitarianresponse.info/api/v1/data/265029?format=jsonp',
-    dataType: 'jsonp',
-	jsonpCallback: "createActivityTable"
-});
 
+// Get Alert & Activity data - simultaneous AJAX requests
+$(document).ready(function () {
+    var d1 = $.ajax({
+        type: 'GET',
+		url: 'https://kc.humanitarianresponse.info/api/v1/data/264381?format=jsonp',
+    	dataType: 'jsonp',
+    });
+
+    var d2 = $.ajax({
+        type: 'GET',
+		url: 'https://kc.humanitarianresponse.info/api/v1/data/265029?format=jsonp',
+    	dataType: 'jsonp',
+    });
+
+    $.when(d1, d2).then(function (a1, a2) {
+        console.log('Ajax calls succeedeed');
+        createAlertTable(a1[0], a2[0]);
+        createActivityTable(a2[0]);
+    }, function (jqXHR, textStatus, errorThrown) {
+        var x1 = d1;
+        var x2 = d2;
+        if (x1.readyState != 4) {
+            x1.abort();
+        }
+        if (x2.readyState != 4) {
+            x2.abort();
+        }
+        alert("Data request failed");
+        console.log('Ajax request failed');
+    });
+});
