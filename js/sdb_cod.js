@@ -1,5 +1,63 @@
 "use strict";
 
+function createAlertActMatchTable(alertData, actData) {
+	var html = "";
+	var matchedAltActHtml = "";
+
+	var curDate = new Date();
+	var todayDate = "";
+	todayDate = curDate.getFullYear() + '-' + twoNum(curDate.getMonth() + 1) + '-' + twoNum(curDate.getDate());
+
+	var yesDate = new Date();
+	yesDate.setDate(yesDate.getDate() - 1);
+	var yesterdayDate = "";
+	yesterdayDate = yesDate.getFullYear() + '-' + twoNum(yesDate.getMonth() + 1) + '-' + twoNum(yesDate.getDate());
+ 
+ 	html += '<tr bgcolor="#cfdff9">';
+	html += '<th>' + 'Alert received' + '</th>'; 
+	html += '<th>' + 'Time of alert' + '</th>'; 
+	html += '<th>' + 'Zone Santé' + '</th>'; 
+	html += '<th>' + 'Aire de Santé' + '</th>'; 
+	html += '<th>' + 'Localité' + '</th>'; 	
+	html += '<th>' + 'Site de Collection' + '</th>'; 
+	html += '<th>' + 'Nom' + '</th>'; 
+	html += '<th>' + 'Résidence' + '</th>'; 
+	html += '<th>' + 'Résultat' + '</th>'; 
+	html += '<th>' + 'Status' + '</th>'; 
+	html += '<th>' + 'Début de la reponse' + '</th>'; 	
+	html += '<th>' + 'Heure de la reponse' + '</th>'; 
+	html += '<th>' + 'Prélevement post-mortem?' + '</th>'; 
+	html += '<th>' + 'Desinfection du lieu' + '</th>'; 
+	html += '<th>' + 'Sexe du défunct' + '</th>'; 
+	html += '<th>' + 'Sexe calcul' + '</th>'; 
+	html += '<th>' + 'Age du défunct (ans)' + '</th>'; 
+	html += '<th>' + 'Age du défunct (mois)' + '</th>'; 
+	html += '<th>' + 'Groupe d\'âge' + '</th>'; 
+	html += '<th>' + 'Fin de reponse' + '</th>'; 
+	html += '<th>' + 'Commentaire' + '</th>'; 
+	html += '<th>' + 'Raison' + '</th>'; 
+	html += '<th>' + 'Fiche' + '</th>'; 
+	html += '<th>' + 'RegAlert' + '</th>'; 
+	html += '<th>' + 'RegAct' + '</th>'; 
+	html += '<th>' + 'Confirmed case YN' + '</th>'; 
+	html += '</tr>'
+
+	$('#tableAltActMatches').append(html);
+
+	alertData.forEach(function(d,i){
+		var eventDate = d.time_received.substring(0,10);
+
+		// Today & Yesterday's Activities
+		if ((eventDate === todayDate) || (eventDate === yesterdayDate)) {
+			matchedAltActHtml = createAltActRow(d,actData);
+		}
+
+		$('#tableAltActMatches').append(matchedAltActHtml);
+
+	})
+
+}
+
 function createActivityTable(data) {
 
 	var todayActs = "";
@@ -257,17 +315,17 @@ function createAlertSum(etc, hos, com, mor, dis) {
 }
 
 function createAlertRow(row,nr, actData) {
-	console.log('createAlertRow: ', row, nr)
+	//console.log('createAlertRow: ', row, nr)
 	var html = "";
 
 	var actMatches = matchActToAlert(row, actData);
-	console.log(actMatches);
+	//console.log(actMatches);
 
 	if (row.type === 'disinfection') { 
 		html += '<tr><td><strong>' + nr + ': Disinfection</strong></td></tr>';
 		html += '<tr><td><strong>' + row['group_location/houses_disinfected'] + ' houses to be disinfected</strong> in ';
 		html += row['group_location/collection_zone'] + ' - ' + checkField(row['group_location/collection_area']);
-		html += ' - ' + checkField(row['group_location/location_name']) + '</td></tr>';
+		html += ' - ' + checkField(row['group_location/location_village']) + '</td></tr>';
 		html += '<tr><td><strong>Planned Activity</strong>: ' + rV(checkField(row['group_response/action_taken']));
 		if (checkField(row['group_response/reason_later']) !== '') {
 			html += ' (' + row['group_response/reason_later'] + ')';
@@ -314,6 +372,53 @@ function createAlertRow(row,nr, actData) {
 
 	return html;
 }
+
+function createAltActRow(altRow,actData) {
+	var html = "";
+
+	var actMatches = matchActToAlert(altRow, actData);
+	console.log(altRow, actMatches);
+
+	html += '<tr>';
+	html += '<td>' + altRow['time_received'].substring(0,10) + '</td>'; //Alert received
+	html += '<td>' + '' + '</td>'; //Time of alert
+	html += '<td>' + altRow['group_location/collection_zone'] + '</td>'; //Zone Santé	
+	html += '<td>' + altRow['group_location/collection_area']  + '</td>'; //Aire de Santé	
+	html += '<td>' + altRow['group_location/location_village']  + '</td>'; //Localité	
+	html += '<td>' + altRow['group_location/collection_site'] + '</td>'; //Site de Collection	
+	html += '<td>' + '' + '</td>'; //Nom	
+	html += '<td>' + '' + '</td>'; //Résidence	
+	html += '<td>' + altRow['group_response/action_taken'] + '</td>'; //Résultat
+
+	
+
+	if (actMatches.length == 0) {
+		html += '<td>' + '<i>No activity found</i>' + '</td>'; //Status	
+	} else {
+		html += '<td>' + actMatches[0]['burial/status'] + '</td>'; //Status	
+		html += '<td>' + '' + '</td>'; //Début de la reponse	
+		html += '<td>' + '' + '</td>'; //Heure de la reponse	
+		html += '<td>' + '' + '</td>'; //Prélevement post-mortem?	
+		html += '<td>' + '' + '</td>'; //Desinfection du lieu	
+		html += '<td>' + '' + '</td>'; //Sexe du défunct	
+		html += '<td>' + '' + '</td>'; //Sexe calcul	
+		html += '<td>' + '' + '</td>'; //Age du défunct (ans)	
+		html += '<td>' + '' + '</td>'; //Age du défunct (mois)	
+		html += '<td>' + '' + '</td>'; //Groupe d'âge	
+		html += '<td>' + '' + '</td>'; //Fin de reponse	
+		html += '<td>' + '' + '</td>'; //Commentaire	
+		html += '<td>' + '' + '</td>'; //Raison	
+		html += '<td>' + '' + '</td>'; //Fiche	
+		html += '<td>' + '' + '</td>'; //RegAlert	
+		html += '<td>' + '' + '</td>'; //RegAct	
+		html += '<td>' + '' + '</td>'; //Confirmed case YN
+	}
+
+	html += '</tr>';
+
+	return html;
+}
+
 
 function checkField(field) {
 	if (field === undefined) {
@@ -386,6 +491,7 @@ $(document).ready(function () {
 
     $.when(d1, d2).then(function (a1, a2) {
         console.log('Ajax calls succeedeed');
+        createAlertActMatchTable(a1[0], a2[0]);
         createAlertTable(a1[0], a2[0]);
         createActivityTable(a2[0]);
     }, function (jqXHR, textStatus, errorThrown) {
@@ -401,3 +507,4 @@ $(document).ready(function () {
         console.log('Ajax request failed');
     });
 });
+
