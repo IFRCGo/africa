@@ -39,7 +39,6 @@ function createAlertActMatchTable(alertData, actData) {
 	html += '<th>' + 'Fiche' + '</th>'; 
 	html += '<th>' + 'RegAlert' + '</th>'; 
 	html += '<th>' + 'RegAct' + '</th>'; 
-	html += '<th>' + 'Confirmed case YN' + '</th>'; 
 	html += '</tr>'
 
 	$('#tableAltActMatches').append(html);
@@ -381,7 +380,7 @@ function createAltActRow(altRow,actData) {
 
 	html += '<tr>';
 	html += '<td>' + altRow['time_received'].substring(0,10) + '</td>'; //Alert received
-	html += '<td>' + '' + '</td>'; //Time of alert
+	html += '<td>' + calculateTimeFromDatetime(altRow['time_received']) + '</td>'; //Time of alert
 	html += '<td>' + altRow['group_location/collection_zone'] + '</td>'; //Zone Santé	
 	html += '<td>' + altRow['group_location/collection_area']  + '</td>'; //Aire de Santé	
 	html += '<td>' + altRow['group_location/location_village']  + '</td>'; //Localité	
@@ -400,8 +399,13 @@ function createAltActRow(altRow,actData) {
 			html += emptyText;
 		};
 	} else {
+
+		actMatches = computeMissingFields(actMatches);
+		//cleaning null data
+		let comments = (actMatches[0]['comments'] == null) ? "" : actMatches[0]['comments'];
+
 		html += '<td>' + actMatches[0]['burial/status'] + '</td>'; //Status	
-		html += '<td>' + '' + '</td>'; //Début de la reponse	
+		html += '<td>' + actMatches[0]['debut_reponse'] + '</td>'; //Début de la reponse
 		html += '<td>' + '' + '</td>'; //Heure de la reponse	
 		html += '<td>' + actMatches[0]['burial/swap_taken'] + '</td>'; //Prélevement post-mortem?
 		html += '<td>' + actMatches[0]['burial/disinfected'] + '</td>'; //Desinfection du lieu
@@ -411,16 +415,66 @@ function createAltActRow(altRow,actData) {
 		html += '<td>' + '' + '</td>'; //Age du défunct (mois)	
 		html += '<td>' + '' + '</td>'; //Groupe d'âge	
 		html += '<td>' + '' + '</td>'; //Fin de reponse	
-		html += '<td>' + actMatches[0]['comments'] + '</td>'; //Commentaire
-		html += '<td>' + '' + '</td>'; //Raison	
+		html += '<td>' + comments + '</td>'; //Commentaire
+		html += '<td>' + actMatches[0]['burial/reason'] + '</td>'; //Raison
 		html += '<td>' + '' + '</td>'; //Fiche	
-		html += '<td>' + '' + '</td>'; //RegAlert	
-		html += '<td>' + '' + '</td>'; //RegAct	
-		html += '<td>' + '' + '</td>'; //Confirmed case YN
+		html += '<td>' + 'Y' + '</td>'; //RegAlert
+		html += '<td>' + 'Y' + '</td>'; //RegAct
 	}
 
 	html += '</tr>';
 
+	return html;
+}
+
+function computeMissingFields(data) {
+
+	//Date of activity start
+	switch(data[0]['burial/burial_activity']) {
+	    case 'new':
+	        data[0]['debut_reponse'] = data[0]['activity_date'];
+	        break;
+	    case 'continue':
+	        data[0]['debut_reponse'] = data[0]['activity_date'];
+	        break;
+			case 'yesterday':
+	        data[0]['debut_reponse'] = 'yesterday';
+					break;
+	    default:
+	        data[0]['debut_reponse'] = '01/01/1900';
+	}
+
+return data;
+}
+
+function calculateTimeFromDatetime(date){
+	function checkTime(i) {
+	  if (i < 10) {
+	    i = "0" + i;
+	  }
+	  return i;
+	}
+
+	//Parsing time (the time below is assumed to be GMT+2) from string
+	//Removing timezone stamp at end of string - need to check this with SIMS
+		console.log(date);
+	if(date.indexOf('+')>0){
+		date = date.substring(0,date.indexOf('+')-4);
+	}
+	let parts = date.split('-');
+	let loc = parts.pop();
+	date = parts.join('-');
+	console.log(date.indexOf('+'));
+	console.log(date);
+	let newDate = new Date(date);
+//	let time = newDate.getTime();
+	let h = newDate.getHours();
+	let m = newDate.getMinutes();
+	let s = newDate.getSeconds();
+	// add a zero in front of numbers<10
+	m = checkTime(m);
+	s = checkTime(s);
+	let html = h + ":" + m + ":" + s;
 	return html;
 }
 
