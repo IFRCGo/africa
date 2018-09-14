@@ -393,7 +393,12 @@ function createAltActRow(altRow,actData) {
 	
 
 	if (actMatches.length == 0) {
-		html += '<td>' + '<i>No activity found</i>' + '</td>'; //Status	
+		html += '<td class="error">' + 'No activity found' + '</td>'; //Status
+		let emptyText = '<td>' + '' + '</td>';
+		let i = 0;
+		for (i = 0; i < 16; i++) {
+			html += emptyText;
+		};
 	} else {
 		html += '<td>' + actMatches[0]['burial/status'] + '</td>'; //Status	
 		html += '<td>' + '' + '</td>'; //Début de la reponse	
