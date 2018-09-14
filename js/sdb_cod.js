@@ -398,15 +398,15 @@ function createAltActRow(altRow,actData) {
 		html += '<td>' + actMatches[0]['burial/status'] + '</td>'; //Status	
 		html += '<td>' + '' + '</td>'; //Début de la reponse	
 		html += '<td>' + '' + '</td>'; //Heure de la reponse	
-		html += '<td>' + '' + '</td>'; //Prélevement post-mortem?	
-		html += '<td>' + '' + '</td>'; //Desinfection du lieu	
-		html += '<td>' + '' + '</td>'; //Sexe du défunct	
+		html += '<td>' + actMatches[0]['burial/swap_taken'] + '</td>'; //Prélevement post-mortem?
+		html += '<td>' + actMatches[0]['burial/disinfected'] + '</td>'; //Desinfection du lieu
+		html += '<td>' + actMatches[0]['burial/gender'] + '</td>'; //Sexe du défunct
 		html += '<td>' + '' + '</td>'; //Sexe calcul	
 		html += '<td>' + '' + '</td>'; //Age du défunct (ans)	
 		html += '<td>' + '' + '</td>'; //Age du défunct (mois)	
 		html += '<td>' + '' + '</td>'; //Groupe d'âge	
 		html += '<td>' + '' + '</td>'; //Fin de reponse	
-		html += '<td>' + '' + '</td>'; //Commentaire	
+		html += '<td>' + actMatches[0]['comments'] + '</td>'; //Commentaire
 		html += '<td>' + '' + '</td>'; //Raison	
 		html += '<td>' + '' + '</td>'; //Fiche	
 		html += '<td>' + '' + '</td>'; //RegAlert	
@@ -507,4 +507,3 @@ $(document).ready(function () {
         console.log('Ajax request failed');
     });
 });
-
