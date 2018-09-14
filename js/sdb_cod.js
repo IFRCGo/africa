@@ -460,10 +460,11 @@ function calculateTimeFromDatetime(date){
 		console.log(date);
 	if(date.indexOf('+')>0){
 		date = date.substring(0,date.indexOf('+')-4);
-	}
+	} else {
 	let parts = date.split('-');
 	let loc = parts.pop();
 	date = parts.join('-');
+	}
 	console.log(date.indexOf('+'));
 	console.log(date);
 	let newDate = new Date(date);
