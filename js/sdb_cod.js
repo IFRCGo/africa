@@ -377,7 +377,7 @@ function createAltActRow(altRow,actData) {
 	var html = "";
 
 	var actMatches = matchActToAlert(altRow, actData);
-	console.log(altRow, actMatches);
+	//console.log(altRow, actMatches);
 
 	html += '<tr>';
 	html += '<td>' + altRow['time_received'].substring(0,10) + '</td>'; //Alert received
@@ -428,7 +428,7 @@ function createAltActRow(altRow,actData) {
 
 
 function computeMissingFields(data) {
-	console.log('computeMissingFields: ', data);
+	//console.log('computeMissingFields: ', data);
 
 
 	//Date of activity start
