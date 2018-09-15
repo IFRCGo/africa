@@ -1,5 +1,6 @@
 "use strict";
 
+
 function createAlertActMatchTable(alertData, actData) {
 	var html = "";
 	var matchedAltActHtml = "";
@@ -381,11 +382,11 @@ function createAltActRow(altRow,actData) {
 	html += '<tr>';
 	html += '<td>' + altRow['time_received'].substring(0,10) + '</td>'; //Alert received
 	html += '<td>' + calculateTimeFromDatetime(altRow['time_received']) + '</td>'; //Time of alert
-	html += '<td>' + altRow['group_location/collection_zone'] + '</td>'; //Zone Santé	
-	html += '<td>' + altRow['group_location/collection_area']  + '</td>'; //Aire de Santé	
-	html += '<td>' + altRow['group_location/location_village']  + '</td>'; //Localité	
-	html += '<td>' + altRow['group_location/collection_site'] + '</td>'; //Site de Collection	
-	html += '<td>' + '' + '</td>'; //Nom	
+	html += '<td>' + checkField(altRow['group_location/collection_zone']) + '</td>'; //Zone Santé	
+	html += '<td>' + checkField(altRow['group_location/collection_area'])  + '</td>'; //Aire de Santé	
+	html += '<td>' + checkField(altRow['group_location/location_village'])  + '</td>'; //Localité
+	html += '<td>' + checkField(altRow['group_location/collection_site']) + '</td>'; //Site de Collection	
+	html += '<td>' + checkField(altRow['group_deceased/name_of_deceased']) + '</td>'; //Nom	
 	html += '<td>' + '' + '</td>'; //Résidence	
 	html += '<td>' + altRow['group_response/action_taken'] + '</td>'; //Résultat
 
@@ -401,21 +402,18 @@ function createAltActRow(altRow,actData) {
 	} else {
 
 		actMatches = computeMissingFields(actMatches);
-		//cleaning null data
-	//	let comments = (actMatches[0]['comments'] == null) ? "" : actMatches[0]['comments'];
-
+		//Note: 'checkField' replaces null/undefined with blank cell
 		html += '<td>' + checkField(actMatches[0]['burial/status']) + '</td>'; //Status
 		html += '<td>' + checkField(actMatches[0]['debut_reponse']) + '</td>'; //Début de la reponse
 		html += '<td>' + '' + '</td>'; //Heure de la reponse	
 		html += '<td>' + checkField(actMatches[0]['burial/swap_taken']) + '</td>'; //Prélevement post-mortem?
 		html += '<td>' + checkField(actMatches[0]['burial/disinfected']) + '</td>'; //Desinfection du lieu
 		html += '<td>' + checkField(actMatches[0]['burial/gender']) + '</td>'; //Sexe du défunct
-		html += '<td>' + '' + '</td>'; //Sexe calcul	
+		html += '<td>' + getSexCalcul(actMatches[0]['burial/gender']) + '</td>'; //Sexe calcul	
 		html += '<td>' + checkField(actMatches[0]['burial/age']) + '</td>'; //Age du défunct (ans)
 		html += '<td>' + '' + '</td>'; //Age du défunct (mois)	
-		html += '<td>' + '' + '</td>'; //Groupe d'âge	
-		html += '<td>' + '' + '</td>'; //Fin de reponse	
-		console.log(checkField(actMatches[0]['burial/reason']));
+		html += '<td>' + getGroupAge(actMatches[0]['burial/age']) + '</td>'; //Groupe d'âge	
+		html += '<td>' + actMatches[0]['end'].substring(0,10) + ' ' + calculateTimeFromDatetime(actMatches[0]['end']) + '</td>'; //Fin de reponse	
 		html += '<td>' + checkField(actMatches[0]['comments']) + '</td>'; //Commentaire
 		html += '<td>' + checkField(actMatches[0]['burial/reason']) + '</td>'; //Raison
 		html += '<td>' + '' + '</td>'; //Fiche	
@@ -430,6 +428,8 @@ function createAltActRow(altRow,actData) {
 
 
 function computeMissingFields(data) {
+	console.log('computeMissingFields: ', data);
+
 
 	//Date of activity start
 	switch(data[0]['burial/burial_activity']) {
@@ -439,9 +439,9 @@ function computeMissingFields(data) {
 	    case 'continue':
 	        data[0]['debut_reponse'] = data[0]['activity_date'];
 	        break;
-			case 'yesterday':
-	        data[0]['debut_reponse'] = yesterdayDate;
-					break;
+		case 'yesterday':
+	        data[0]['debut_reponse'] = getDayBefore(data[0]['activity_date']);
+			break;
 	    default:
 	        data[0]['debut_reponse'] = '01/01/1900';
 	}
@@ -449,6 +449,55 @@ function computeMissingFields(data) {
 return data;
 }
 
+function getSexCalcul(sex) {
+	switch (sex) {
+		case 'female': var val = 1; break;
+		case 'male': var val = -1; break;
+		default: var val = 0;
+	}
+	return val;
+}
+
+function getGroupAge(age) {
+	var ageGroup = '';
+	switch (true) {
+		case age < 5: ageGroup = '00-04y'; break;
+		case age < 15: ageGroup = '05-14y'; break;
+		case age < 25: ageGroup = '15-24y'; break;
+		case age < 35: ageGroup = '25-34y'; break;
+		case age < 45: ageGroup = '35-44y'; break;
+		case age < 60: ageGroup = '45-59y'; break;
+		case age < 110: ageGroup = '60y+'; break;
+		default: ageGroup = 'inconnu';
+	}
+	return ageGroup;
+}
+
+function getToday() {
+	var todayDate = new Date();
+	var today = todayDate.getFullYear() + '-' + twoNum(todayDate.getMonth() + 1) + '-' + twoNum(todayDate.getDate());
+	return today;
+};
+
+function getYesterday() {
+	var yesterdayDate = new Date();
+	yesterdayDate.setDate(yesterdayDate.getDate() - 1);
+	var yesterday = yesterdayDate.getFullYear() + '-' + twoNum(yesterdayDate.getMonth() + 1) + '-' + twoNum(yesterdayDate.getDate());
+	return yesterday;
+};
+
+
+function getDayBefore(currentDay) {  //function accepts string in format YYYY-MM-DD and returns string of previous day in same format
+
+	var currentDate = new Date(parseInt(currentDay.substring(0,4)), parseInt(currentDay.substring(5,7))-1,parseInt(currentDay.substring(8,10)));
+
+	var dateBefore = new Date();
+	dateBefore.setDate(currentDate.getDate() - 1);
+	var dayBefore = "";
+	dayBefore = dateBefore.getFullYear() + '-' + twoNum(dateBefore.getMonth() + 1) + '-' + twoNum(dateBefore.getDate());
+
+	return dayBefore;
+};
 
 function calculateTimeFromDatetime(date){
 	function checkTime(i) {
