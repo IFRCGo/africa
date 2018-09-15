@@ -402,21 +402,22 @@ function createAltActRow(altRow,actData) {
 
 		actMatches = computeMissingFields(actMatches);
 		//cleaning null data
-		let comments = (actMatches[0]['comments'] == null) ? "" : actMatches[0]['comments'];
+	//	let comments = (actMatches[0]['comments'] == null) ? "" : actMatches[0]['comments'];
 
-		html += '<td>' + actMatches[0]['burial/status'] + '</td>'; //Status	
-		html += '<td>' + actMatches[0]['debut_reponse'] + '</td>'; //Début de la reponse
+		html += '<td>' + checkField(actMatches[0]['burial/status']) + '</td>'; //Status
+		html += '<td>' + checkField(actMatches[0]['debut_reponse']) + '</td>'; //Début de la reponse
 		html += '<td>' + '' + '</td>'; //Heure de la reponse	
-		html += '<td>' + actMatches[0]['burial/swap_taken'] + '</td>'; //Prélevement post-mortem?
-		html += '<td>' + actMatches[0]['burial/disinfected'] + '</td>'; //Desinfection du lieu
-		html += '<td>' + actMatches[0]['burial/gender'] + '</td>'; //Sexe du défunct
+		html += '<td>' + checkField(actMatches[0]['burial/swap_taken']) + '</td>'; //Prélevement post-mortem?
+		html += '<td>' + checkField(actMatches[0]['burial/disinfected']) + '</td>'; //Desinfection du lieu
+		html += '<td>' + checkField(actMatches[0]['burial/gender']) + '</td>'; //Sexe du défunct
 		html += '<td>' + '' + '</td>'; //Sexe calcul	
-		html += '<td>' + actMatches[0]['burial/age'] + '</td>'; //Age du défunct (ans)
+		html += '<td>' + checkField(actMatches[0]['burial/age']) + '</td>'; //Age du défunct (ans)
 		html += '<td>' + '' + '</td>'; //Age du défunct (mois)	
 		html += '<td>' + '' + '</td>'; //Groupe d'âge	
 		html += '<td>' + '' + '</td>'; //Fin de reponse	
-		html += '<td>' + comments + '</td>'; //Commentaire
-		html += '<td>' + actMatches[0]['burial/reason'] + '</td>'; //Raison
+		console.log(checkField(actMatches[0]['burial/reason']));
+		html += '<td>' + checkField(actMatches[0]['comments']) + '</td>'; //Commentaire
+		html += '<td>' + checkField(actMatches[0]['burial/reason']) + '</td>'; //Raison
 		html += '<td>' + '' + '</td>'; //Fiche	
 		html += '<td>' + 'Y' + '</td>'; //RegAlert
 		html += '<td>' + 'Y' + '</td>'; //RegAct
@@ -482,7 +483,7 @@ function calculateTimeFromDatetime(date){
 
 
 function checkField(field) {
-	if (field === undefined) {
+	if (field == null) {
 		return "";
 	} else {
 		return field;
