@@ -427,6 +427,7 @@ function createAltActRow(altRow,actData) {
 	return html;
 }
 
+
 function computeMissingFields(data) {
 
 	//Date of activity start
@@ -447,6 +448,7 @@ function computeMissingFields(data) {
 return data;
 }
 
+
 function calculateTimeFromDatetime(date){
 	function checkTime(i) {
 	  if (i < 10) {
@@ -457,7 +459,6 @@ function calculateTimeFromDatetime(date){
 
 	//Parsing time (the time below is assumed to be GMT+2) from string
 	//Removing timezone stamp at end of string - need to check this with SIMS
-		console.log(date);
 	if(date.indexOf('+')>0){
 		date = date.substring(0,date.indexOf('+')-4);
 	} else {
@@ -465,8 +466,8 @@ function calculateTimeFromDatetime(date){
 	let loc = parts.pop();
 	date = parts.join('-');
 	}
-	console.log(date.indexOf('+'));
-	console.log(date);
+
+
 	let newDate = new Date(date);
 //	let time = newDate.getTime();
 	let h = newDate.getHours();
