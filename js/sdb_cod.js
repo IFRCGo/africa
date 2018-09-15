@@ -411,7 +411,7 @@ function createAltActRow(altRow,actData) {
 		html += '<td>' + actMatches[0]['burial/disinfected'] + '</td>'; //Desinfection du lieu
 		html += '<td>' + actMatches[0]['burial/gender'] + '</td>'; //Sexe du défunct
 		html += '<td>' + '' + '</td>'; //Sexe calcul	
-		html += '<td>' + '' + '</td>'; //Age du défunct (ans)	
+		html += '<td>' + actMatches[0]['burial/age'] + '</td>'; //Age du défunct (ans)
 		html += '<td>' + '' + '</td>'; //Age du défunct (mois)	
 		html += '<td>' + '' + '</td>'; //Groupe d'âge	
 		html += '<td>' + '' + '</td>'; //Fin de reponse	
@@ -439,7 +439,7 @@ function computeMissingFields(data) {
 	        data[0]['debut_reponse'] = data[0]['activity_date'];
 	        break;
 			case 'yesterday':
-	        data[0]['debut_reponse'] = 'yesterday';
+	        data[0]['debut_reponse'] = yesterdayDate;
 					break;
 	    default:
 	        data[0]['debut_reponse'] = '01/01/1900';
