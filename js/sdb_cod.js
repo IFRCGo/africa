@@ -405,7 +405,7 @@ function createAltActRow(altRow,actData) {
 		//Note: 'checkField' replaces null/undefined with blank cell
 		html += '<td>' + checkField(actMatches[0]['burial/status']) + '</td>'; //Status
 		html += '<td>' + checkField(actMatches[0]['debut_reponse']) + '</td>'; //Début de la reponse
-		html += '<td>' + '' + '</td>'; //Heure de la reponse	
+		html += '<td>' + checkField(actMatches[0]['burial/time_of_departure']) + '</td>'; //Heure de la reponse
 		html += '<td>' + checkField(actMatches[0]['burial/swap_taken']) + '</td>'; //Prélevement post-mortem?
 		html += '<td>' + checkField(actMatches[0]['burial/disinfected']) + '</td>'; //Desinfection du lieu
 		html += '<td>' + checkField(actMatches[0]['burial/gender']) + '</td>'; //Sexe du défunct
