@@ -37,9 +37,9 @@ function createAlertActMatchTable(alertData, actData) {
 	html += '<th>' + 'Fin de reponse' + '</th>'; 
 	html += '<th>' + 'Commentaire' + '</th>'; 
 	html += '<th>' + 'Raison' + '</th>'; 
-	html += '<th>' + 'Fiche' + '</th>'; 
-	html += '<th>' + 'RegAlert' + '</th>'; 
-	html += '<th>' + 'RegAct' + '</th>'; 
+	//html += '<th>' + 'Fiche' + '</th>'; 
+	//html += '<th>' + 'RegAlert' + '</th>'; 
+	//html += '<th>' + 'RegAct' + '</th>'; 
 	html += '</tr>'
 
 	$('#tableAltActMatches').append(html);
@@ -416,9 +416,9 @@ function createAltActRow(altRow,actData) {
 		html += '<td>' + actMatches[0]['end'].substring(0,10) + ' ' + calculateTimeFromDatetime(actMatches[0]['end']) + '</td>'; //Fin de reponse	
 		html += '<td>' + checkField(actMatches[0]['comments']) + '</td>'; //Commentaire
 		html += '<td>' + checkField(actMatches[0]['burial/reason']) + '</td>'; //Raison
-		html += '<td>' + '' + '</td>'; //Fiche	
-		html += '<td>' + 'Y' + '</td>'; //RegAlert
-		html += '<td>' + 'Y' + '</td>'; //RegAct
+		//html += '<td>' + '' + '</td>'; //Fiche	
+		//html += '<td>' + 'Y' + '</td>'; //RegAlert
+		//html += '<td>' + 'Y' + '</td>'; //RegAct
 	}
 
 	html += '</tr>';
