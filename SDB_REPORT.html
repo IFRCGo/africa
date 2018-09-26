@@ -41,16 +41,16 @@
 		}
 		
 	}
-	#tableAltActMatches{
+	#tableSDB{
 		border-spacing: 0px;
 	}
-	#tableAltActMatches td, tr{
+	#tableSDB td, tr{
 		padding: 0px;
-    border: 1px solid lightgrey;
+    	border: 1px solid lightgrey;
 	}
-	#tableAltActMatches th{
+	#tableSDB th{
 	    background-color: #820202;
-			color: white;
+		color: white;
 	}
 	.error {
 		color: red;
@@ -61,12 +61,17 @@
 
 <body>
 
-<h2>Alert & Activity Data Table</h2>
+<h2>SDB/EDS Alert & Activity Data Table</h2>
+<div>
+	<table id="tableSDB" style="font-size: 10px"></table>
+</div>
+
+<!-- <h2>Alert & Activity Data Table</h2>
 <div>
 	<table id="tableAltActMatches" style="font-size: 10px"></table>
-</div>
+</div> -->
 	
-<h2>TODAY</h2>
+<!-- <h2>TODAY</h2>
 <div id="DayReport">
 	<div id="Alerts">
 		<h3>ALERTS</h3>
@@ -97,7 +102,7 @@
 		<table id="tableActYes">
 		</table>
 	</div>
-</div>
+</div> -->
 
 <script src="http://ifrcgo.org/assets/scripts/vendor/jquery.js"></script>
 <script src="http://ifrcgo.org/assets/scripts/vendor/jquery.dataTables.js"></script>
