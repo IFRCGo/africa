@@ -1,5 +1,107 @@
 "use strict";
 
+function createSDBTable(sdbData) {
+	var html = "";
+	var sdbHtml = "";
+
+	html += '<tr bgcolor="#cfdff9">';
+	html += '<th>' + 'Alert received' + '</th>'; 
+	html += '<th>' + 'Time of alert' + '</th>'; 
+	html += '<th>' + 'Zone Santé' + '</th>'; 
+	html += '<th>' + 'Aire de Santé' + '</th>'; 
+	html += '<th>' + 'Localité' + '</th>'; 	
+	html += '<th>' + 'Site de Collection' + '</th>'; 
+	html += '<th>' + 'Nom' + '</th>'; 
+	html += '<th>' + 'Résidence' + '</th>'; 
+	html += '<th>' + 'Résultat' + '</th>'; 
+	html += '<th>' + 'Status' + '</th>'; 
+	html += '<th>' + 'Début de la reponse' + '</th>'; 	
+	html += '<th>' + 'Heure de la reponse' + '</th>'; 
+	html += '<th>' + 'Prélevement post-mortem?' + '</th>'; 
+	html += '<th>' + 'Desinfection du lieu' + '</th>'; 
+	html += '<th>' + 'Sexe du défunct' + '</th>'; 
+	html += '<th>' + 'Sexe calcul' + '</th>'; 
+	html += '<th>' + 'Age du défunct (ans)' + '</th>'; 
+	html += '<th>' + 'Age du défunct (mois)' + '</th>'; 
+	html += '<th>' + 'Groupe d\'âge' + '</th>'; 
+	html += '<th>' + 'Fin de reponse' + '</th>'; 
+	html += '<th>' + 'Commentaire' + '</th>'; 
+	html += '<th>' + 'Raison' + '</th>'; 
+
+	$('#tableSDB').append(html);
+
+	sdbData.forEach(function(d,i){
+		sdbHtml = createSDBRow(d);
+		$('#tableSDB').append(sdbHtml);
+	})
+
+}
+
+function createSDBRow(row) {
+	//console.log('createSDBRow: ', row)
+	var html = "";
+
+	html += '<tr>';
+	html += '<td>' + getFirstValidField(['alert_new/datetime/date_alert','datetime/date_alert'], row) + '</td>'; //Alert received
+	html += '<td>' + getFirstValidTimeField(['alert_new/datetime/time_pre_alert','datetime/time_pre_alert'], row) + '</td>'; //Time of alert
+	html += '<td>' + checkField(row['group_location/collection_zone']) + '</td>'; //Zone Santé
+	html += '<td>' + checkField(row['group_location/collection_area']) + '</td>'; //Aire de Santé
+	html += '<td>' + checkField(row['group_location/location_village']) + '</td>'; 	//Localité'
+	html += '<td>' + checkField(row['group_location/collection_site'])  + '</td>'; //Site de Collection
+	html += '<td>' + '' + '</td>'; //Nom
+	html += '<td>' + '' + '</td>'; //Résidence
+	html += '<td>' + checkField(row['alert_new/group_response/action_taken']) + '</td>'; //Résultat
+	html += '<td>' + checkField(row['group_response/action_taken']) + '</td>'; //Status
+	html += '<td>' + '' + '</td>'; //Début de la reponse
+	html += '<td>' + '' + '</td>'; //Heure de la reponse
+	html += '<td>' + '' + '</td>'; //Prélevement post-mortem?
+	html += '<td>' + '' + '</td>'; //Desinfection du lieu
+	html += '<td>' + checkField(row['group_deceased/gender_of_deceased']) + '</td>'; //Sexe du défunct
+	html += '<td>' + getSexCalcul(checkField(row['group_deceased/gender_of_deceased'])) + '</td>'; //Sexe calcul
+	html += '<td>' + checkField(row['group_deceased/age_of_deceased']) + '</td>'; //Age du défunct (ans)
+	html += '<td>' + '' + '</td>'; //Age du défunct (mois)
+	html += '<td>' + getGroupAge(checkField(row['group_deceased/age_of_deceased']))  + '</td>'; //Groupe d\'âge
+	html += '<td>' + checkField(row['end']) + '</td>'; //Fin de reponse
+	html += '<td>' + '' + '</td>'; //Commentaire
+	html += '<td>' + '' + '</td>'; //Raison
+	html += '</tr>';
+
+	return html;
+}
+
+
+function checkField(field) {
+	if (field == null) {
+		return "";
+	} else {
+		return field;
+	}
+}
+
+function getFirstValidField(fields, row) {
+	//console.log('GETFIRSTVALIDFIELD')
+	var i = 0;
+	while (i<=fields.length-1) {
+		//console.log('field: ', fields[i], row[fields[i]]);
+		if (row[fields[i]]!=null) {
+			return row[fields[i]];
+		};
+		i++
+	};
+	return '';	
+}
+
+function getFirstValidTimeField(fields, row) {
+	var i = 0;
+	while (i<=fields.length-1) {
+		//console.log('field: ', fields[i], row[fields[i]]);
+		if (row[fields[i]]!=null) {
+			return row[fields[i]].substring(0,8);
+		};
+		i++
+	};
+	return '';	
+}
 
 function createAlertActMatchTable(alertData, actData) {
 	var html = "";
@@ -588,7 +690,26 @@ function rV(v) {
 
 // Get Alert & Activity data - simultaneous AJAX requests
 $(document).ready(function () {
-    var d1 = $.ajax({
+	var d0 = $.ajax({
+        type: 'GET',
+		url: 'https://kc.humanitarianresponse.info/api/v1/data/273933?format=jsonp',
+    	dataType: 'jsonp',
+    });
+
+    $.when(d0).then(function (a0) {
+        console.log('Ajax call succeedeed');
+        console.log(a0);
+        createSDBTable(a0.reverse());
+    }, function (jqXHR, textStatus, errorThrown) {
+        var x0 = d0;
+        if (x0.readyState != 4) {
+            x0.abort();
+        }
+        alert("Data request failed");
+        console.log('Ajax request failed');
+    });
+
+    /*var d1 = $.ajax({
         type: 'GET',
 		url: 'https://kc.humanitarianresponse.info/api/v1/data/264381?format=jsonp',
     	dataType: 'jsonp',
@@ -616,5 +737,5 @@ $(document).ready(function () {
         }
         alert("Data request failed");
         console.log('Ajax request failed');
-    });
+    });*/
 });
