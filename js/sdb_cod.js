@@ -84,106 +84,108 @@ function processSDBdata(sdbData) {
 
 		//for each subHeading (corresponds to each row defined in csfg_subHeadings.csv - i.e. all kobo fieldnames and calculated fields)
 		for (var h in subHeadings) {
-			console.log(h, subHeadings[h])
-
-			//1. CREATE A KEY (new_keyname) IN NEW DATA RECORD (temp) WHETHER OR NOT THERE IS DATA - accounts for if there are multiple possible fields or no fields
-			var new_keyname = ''; // = subHeadings[h].kobo_fieldname;
-			var kobo_fieldused = '';
-			var first_valid_field = [];
-			
-			//if there are 2 possible fields defined (i.e. kobo_fieldname has multiple inputs joined by '&') AND data_check value is 'selectFirstValid'
-			if ((subHeadings[h].kobo_fieldname.indexOf('&') != -1)  && (subHeadings[h].data_check.indexOf('selectFirstValid') != -1)) {
-				//then new_keyname is assigned to first in list of possible fieldnames (even if data comes from a diff new_keyname, as need to keep fieldnames consistent)
-				new_keyname = subHeadings[h].kobo_fieldname //.split('&')[0];
-				//value is the first valid (i.e. not null) FIELD irrespective of new_keyname given
-				first_valid_field = getFirstValidField(subHeadings[h].kobo_fieldname, record);  
-				//console.log('first_valid_field: ', first_valid_field);
-				if (!(first_valid_field.length == 0)) {
-					temp[new_keyname] = first_valid_field[0];
-					//record[new_keyname] = ''
-					record[new_keyname] = first_valid_field[0];  //add key to original dataset also with correct new_keyname
-					kobo_fieldused = first_valid_field[1];
-				} else {
-					//console.log('CHECK THIS ONE')
-					kobo_fieldused = 'NA';
-					temp[new_keyname] = '';
-				}	
-
-			//if there are no fields defined AND value is defined for 'calculate'
-			} else if ((subHeadings[h].kobo_fieldname == '') && (subHeadings[h].calculate != null)) {
-				kobo_fieldused = 'NA';
-				new_keyname = subHeadings[h].calculate;
-				if (new_keyname == 'age_group') {
-					//console.log('Calculating age group...')
-					temp[new_keyname] = getAgeGroup(temp['group_deceased/age_of_deceased']);
-				}
-
-			} else if (subHeadings[h].kobo_fieldname.indexOf('xxxxxxxx') != -1) {
-				kobo_fieldused = 'NA';
-				new_keyname = subHeadings[h].kobo_fieldname;
-				temp[new_keyname] = getTeamSpecs(new_keyname, record);
-
-			} else if (subHeadings[h].kobo_fieldname.substr(0,36)=='team_went/burial/circumstances_fail/') {  
-				//console.log(subHeadings[h].kobo_fieldname);
-				kobo_fieldused = 'NA';
-				new_keyname = subHeadings[h].kobo_fieldname;
-				temp[new_keyname] = getCircumstancesOfFailure(new_keyname, record);
-				/*if (circ != null) {
-					temp[new_keyname].push(circ);
-				};*/
+			//console.log(h, subHeadings[h])
+			//console.log(subHeadings[h].mainheading_prefix)
+			if (subHeadings[h].mainheading_prefix!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
+		
+				//1. CREATE A KEY (new_keyname) IN NEW DATA RECORD (temp) WHETHER OR NOT THERE IS DATA - accounts for if there are multiple possible fields or no fields
+				var new_keyname = ''; // = subHeadings[h].kobo_fieldname;
+				var kobo_fieldused = '';
+				var first_valid_field = [];
 				
-
-			//otherwise there is 1 corresponding field
-			} else {
-				try {
-					kobo_fieldused = subHeadings[h].kobo_fieldname;
-					//new_keyname = subHeadings[h].kobo_fieldname;
-					new_keyname = kobo_fieldused;
-					temp[new_keyname] = record[new_keyname];     		//copy original key and value over to temp object
-					//console.log(new_keyname, temp[new_keyname], typeof(temp[new_keyname]));
-				} catch(err) {
-			    	console.log('Error processing SDB data: ', err)
-			        return err
-			    }
-			}
-			temp[new_keyname] = checkField(temp[new_keyname]);
-			//console.log('new_keyname ', new_keyname, ': ', temp[new_keyname]);
-
-
-
-			//2. DEAL WITH DATA CHECKS
-
-			//console.log(subHeadings[h].data_check, subHeadings[h].data_check.indexOf('time'), '-------', subHeadings[h])
-			//if field defined as 'time' (but not datetime) then take first 8 characters (i.e. HH:MM:SS)
-			if ((subHeadings[h].data_check.indexOf('time') != -1) && (subHeadings[h].data_check.indexOf('datetime') == -1)) {
-				//console.log(subHeadings[h].kobo_fieldname, new_keyname,kobo_fieldused, record[kobo_fieldused]);
-				//console.log(subHeadings[h],new_keyname, kobo_fieldused)
-				if (kobo_fieldused == 'NA') {
-					if (subHeadings[h].kobo_fieldname.indexOf('xxxxxxxx')) {
-						temp[new_keyname] = temp[new_keyname].substr(0,8);
-						//console.log(new_keyname, temp[new_keyname], typeof(temp[new_keyname]))
+				//if there are 2 possible fields defined (i.e. kobo_fieldname has multiple inputs joined by '&') AND data_check value is 'selectFirstValid'
+				if ((subHeadings[h].kobo_fieldname.indexOf('&') != -1)  && (subHeadings[h].data_check.indexOf('selectFirstValid') != -1)) {
+					//then new_keyname is assigned to first in list of possible fieldnames (even if data comes from a diff new_keyname, as need to keep fieldnames consistent)
+					new_keyname = subHeadings[h].kobo_fieldname //.split('&')[0];
+					//value is the first valid (i.e. not null) FIELD irrespective of new_keyname given
+					first_valid_field = getFirstValidField(subHeadings[h].kobo_fieldname, record);  
+					//console.log('first_valid_field: ', first_valid_field);
+					if (!(first_valid_field.length == 0)) {
+						temp[new_keyname] = first_valid_field[0];
+						//record[new_keyname] = ''
+						record[new_keyname] = first_valid_field[0];  //add key to original dataset also with correct new_keyname
+						kobo_fieldused = first_valid_field[1];
 					} else {
-						temp[new_keyname] = 'CHECK';
+						//console.log('CHECK THIS ONE')
+						kobo_fieldused = 'NA';
+						temp[new_keyname] = '';
+					}	
+
+				//if there are no fields defined AND value is defined for 'calculate'
+				} else if ((subHeadings[h].kobo_fieldname == '') && (subHeadings[h].calculate != null)) {
+					kobo_fieldused = 'NA';
+					new_keyname = subHeadings[h].calculate;
+					if (new_keyname == 'age_group') {
+						//console.log('Calculating age group...')
+						temp[new_keyname] = getAgeGroup(temp['group_deceased/age_of_deceased']);
 					}
 
-				} else if (kobo_fieldused == '') {
-					temp[new_keyname] = 'CHECK BLANK FIELD';
-				} else {
-					//console.log(new_keyname, kobo_fieldused, record[kobo_fieldused])
-					temp[new_keyname] = record[kobo_fieldused].substr(0,8);
-					
-				}
-				
-			//if field defined as 'datetime'	
-			} else if (subHeadings[h].data_check.indexOf('datetime') != -1) {
-				
-				temp[new_keyname] = getDateTimeFromDatetime(temp[kobo_fieldused]);
-				//console.log(new_keyname, kobo_fieldused, temp[new_keyname], typeof(temp[new_keyname]))
+				} else if (subHeadings[h].kobo_fieldname.indexOf('xxxxxxxx') != -1) {
+					kobo_fieldused = 'NA';
+					new_keyname = subHeadings[h].kobo_fieldname;
+					temp[new_keyname] = getTeamSpecs(new_keyname, record);
 
-			} 
+				} else if (subHeadings[h].kobo_fieldname.substr(0,36)=='team_went/burial/circumstances_fail/') {  
+					//console.log(subHeadings[h].kobo_fieldname);
+					kobo_fieldused = 'NA';
+					new_keyname = subHeadings[h].kobo_fieldname;
+					temp[new_keyname] = getCircumstancesOfFailure(new_keyname, record);
+					/*if (circ != null) {
+						temp[new_keyname].push(circ);
+					};*/
+					
+
+				//otherwise there is 1 corresponding field
+				} else {
+					try {
+						kobo_fieldused = subHeadings[h].kobo_fieldname;
+						//new_keyname = subHeadings[h].kobo_fieldname;
+						new_keyname = kobo_fieldused;
+						temp[new_keyname] = record[new_keyname];     		//copy original key and value over to temp object
+						//console.log(new_keyname, temp[new_keyname], typeof(temp[new_keyname]));
+					} catch(err) {
+				    	console.log('Error processing SDB data: ', err)
+				        return err
+				    }
+				}
+				temp[new_keyname] = checkField(temp[new_keyname]);
+				//console.log('new_keyname ', new_keyname, ': ', temp[new_keyname]);
+
+
+
+				//2. DEAL WITH DATA CHECKS
+
+				//console.log(subHeadings[h].data_check, subHeadings[h].data_check.indexOf('time'), '-------', subHeadings[h])
+				//if field defined as 'time' (but not datetime) then take first 8 characters (i.e. HH:MM:SS)
+				if ((subHeadings[h].data_check.indexOf('time') != -1) && (subHeadings[h].data_check.indexOf('datetime') == -1)) {
+					//console.log(subHeadings[h].kobo_fieldname, new_keyname,kobo_fieldused, record[kobo_fieldused]);
+					//console.log(subHeadings[h],new_keyname, kobo_fieldused)
+					if (kobo_fieldused == 'NA') {
+						if (subHeadings[h].kobo_fieldname.indexOf('xxxxxxxx')) {
+							temp[new_keyname] = temp[new_keyname].substr(0,8);
+							//console.log(new_keyname, temp[new_keyname], typeof(temp[new_keyname]))
+						} else {
+							temp[new_keyname] = 'CHECK';
+						}
+
+					} else if (kobo_fieldused == '') {
+						temp[new_keyname] = 'CHECK BLANK FIELD';
+					} else {
+						//console.log(new_keyname, kobo_fieldused, record[kobo_fieldused])
+						temp[new_keyname] = record[kobo_fieldused].substr(0,8);
+						
+					}
+					
+				//if field defined as 'datetime'	
+				} else if (subHeadings[h].data_check.indexOf('datetime') != -1) {
+					
+					temp[new_keyname] = getDateTimeFromDatetime(temp[kobo_fieldused]);
+					//console.log(new_keyname, kobo_fieldused, temp[new_keyname], typeof(temp[new_keyname]))
+
+				} 
+			}
 
 		}
-		
 		//console.log('temp: ', temp);
 		processedData.push(temp);
 	})
