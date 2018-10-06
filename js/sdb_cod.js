@@ -84,7 +84,7 @@ function processSDBdata(sdbData) {
 
 		//for each subHeading (corresponds to each row defined in csfg_subHeadings.csv - i.e. all kobo fieldnames and calculated fields)
 		for (var h in subHeadings) {
-
+			console.log(h, subHeadings[h])
 
 			//1. CREATE A KEY (new_keyname) IN NEW DATA RECORD (temp) WHETHER OR NOT THERE IS DATA - accounts for if there are multiple possible fields or no fields
 			var new_keyname = ''; // = subHeadings[h].kobo_fieldname;
