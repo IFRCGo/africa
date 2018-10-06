@@ -1,5 +1,30 @@
 "use strict";
 
+//**************************************************************************************************//
+// BRC Maps Team - SIMS DRC Ebola response
+// Sept  2018
+//
+// NOTES:
+// 1. In cfg_subHeadings.csv:
+//    - order counts - i.e. calculate fields must come after the fields that they are based on
+//		 - perhaps all calculate fields should be at the bottom of the file?
+// 	  - for team specs - replace team characters with 'xxxxxxxx' in config file - this can then match
+//		 any teams defined
+//
+// STILL NEED TO ACCOUNT FOR FIELDS: 
+//    - burial_reason - limited choice?
+//    - burial_when_refusal - limited choice? 
+//	  - group response action_taken - limited choice? 
+//    - group response reason_later_cat - limited choice? 
+// STILL NEED TO CALCULATE FIELDS: 
+//    - epiweek number (excel col BX)
+//    - status (excel col BZ, based on resultat)
+//    - sex (excel col CC)
+//    - response time (excel col CJ)
+//
+//**************************************************************************************************//
+
+
 var mainHeadings, subHeadings;
 
 //Parses CSV files - creates array of objects
@@ -11,7 +36,7 @@ function processHeadings(heads) {
         var data = {}		
         var records = []	
         var lines =heads.split(/\r\n|\r|\n/)   //splits csv data at each new line
-        var columns = lines[0].split(',')  //creates columns by splitting first line of csv
+        var columns = lines[0].split(',')      //creates columns by splitting first line of csv
             
         for (var l=1; l<=lines.length-1; l++) {           
             var words = lines[l].split(',');  
@@ -39,66 +64,126 @@ function getKoboFieldnames() {
 	return fieldname_list;
 }; 
 
+
 function processSDBdata(sdbData) {
+	console.log('original data: ', sdbData)
 	var processedData = [];
 	var temp;
 	var datetime;
+	var circumstancesOfFailure, circ;
 	
 	var kobo_fieldnames = getKoboFieldnames();
 	//console.log('Kobo fieldnames: ', kobo_fieldnames);
 
+
+	//create new dataset from sdbData using kobo_fieldnames as keys
 	sdbData.forEach(function(record,i){
 		//console.log(record,i)
 		temp = {};
+		circumstancesOfFailure = [];
 
-		for (var r in record) {
-			//console.log(r, record[r])
-			if (kobo_fieldnames.indexOf(r)!=-1) {
-				temp[r] = checkField(record[r]);
+		//for each subHeading (corresponds to each row defined in csfg_subHeadings.csv - i.e. all kobo fieldnames and calculated fields)
+		for (var h in subHeadings) {
+
+
+			//1. CREATE A KEY (new_keyname) IN NEW DATA RECORD (temp) WHETHER OR NOT THERE IS DATA - accounts for if there are multiple possible fields or no fields
+			var new_keyname = ''; // = subHeadings[h].kobo_fieldname;
+			var kobo_fieldused = '';
+			var first_valid_field = [];
+			
+			//if there are 2 possible fields defined (i.e. kobo_fieldname has multiple inputs joined by '&') AND data_check value is 'selectFirstValid'
+			if ((subHeadings[h].kobo_fieldname.indexOf('&') != -1)  && (subHeadings[h].data_check.indexOf('selectFirstValid') != -1)) {
+				//then new_keyname is assigned to first in list of possible fieldnames (even if data comes from a diff new_keyname, as need to keep fieldnames consistent)
+				new_keyname = subHeadings[h].kobo_fieldname //.split('&')[0];
+				//value is the first valid (i.e. not null) FIELD irrespective of new_keyname given
+				first_valid_field = getFirstValidField(subHeadings[h].kobo_fieldname, record);  
+				//console.log('first_valid_field: ', first_valid_field);
+				if (!(first_valid_field.length == 0)) {
+					temp[new_keyname] = first_valid_field[0];
+					//record[new_keyname] = ''
+					record[new_keyname] = first_valid_field[0];  //add key to original dataset also with correct new_keyname
+					kobo_fieldused = first_valid_field[1];
+				} else {
+					//console.log('CHECK THIS ONE')
+					kobo_fieldused = 'NA';
+					temp[new_keyname] = '';
+				}	
+
+			//if there are no fields defined AND value is defined for 'calculate'
+			} else if ((subHeadings[h].kobo_fieldname == '') && (subHeadings[h].calculate != null)) {
+				kobo_fieldused = 'NA';
+				new_keyname = subHeadings[h].calculate;
+				if (new_keyname == 'age_group') {
+					//console.log('Calculating age group...')
+					temp[new_keyname] = getAgeGroup(temp['group_deceased/age_of_deceased']);
+				}
+
+			} else if (subHeadings[h].kobo_fieldname.indexOf('xxxxxxxx') != -1) {
+				kobo_fieldused = 'NA';
+				new_keyname = subHeadings[h].kobo_fieldname;
+				temp[new_keyname] = getTeamSpecs(new_keyname, record);
+
+			} else if (subHeadings[h].kobo_fieldname.substr(0,36)=='team_went/burial/circumstances_fail/') {  
+				//console.log(subHeadings[h].kobo_fieldname);
+				kobo_fieldused = 'NA';
+				new_keyname = subHeadings[h].kobo_fieldname;
+				temp[new_keyname] = getCircumstancesOfFailure(new_keyname, record);
+				/*if (circ != null) {
+					temp[new_keyname].push(circ);
+				};*/
+				
+
+			//otherwise there is 1 corresponding field
+			} else {
+				try {
+					kobo_fieldused = subHeadings[h].kobo_fieldname;
+					//new_keyname = subHeadings[h].kobo_fieldname;
+					new_keyname = kobo_fieldused;
+					temp[new_keyname] = record[new_keyname];     		//copy original key and value over to temp object
+					//console.log(new_keyname, temp[new_keyname], typeof(temp[new_keyname]));
+				} catch(err) {
+			    	console.log('Error processing SDB data: ', err)
+			        return err
+			    }
 			}
+			temp[new_keyname] = checkField(temp[new_keyname]);
+			//console.log('new_keyname ', new_keyname, ': ', temp[new_keyname]);
+
+
+
+			//2. DEAL WITH DATA CHECKS
+
+			//console.log(subHeadings[h].data_check, subHeadings[h].data_check.indexOf('time'), '-------', subHeadings[h])
+			//if field defined as 'time' (but not datetime) then take first 8 characters (i.e. HH:MM:SS)
+			if ((subHeadings[h].data_check.indexOf('time') != -1) && (subHeadings[h].data_check.indexOf('datetime') == -1)) {
+				//console.log(subHeadings[h].kobo_fieldname, new_keyname,kobo_fieldused, record[kobo_fieldused]);
+				//console.log(subHeadings[h],new_keyname, kobo_fieldused)
+				if (kobo_fieldused == 'NA') {
+					if (subHeadings[h].kobo_fieldname.indexOf('xxxxxxxx')) {
+						temp[new_keyname] = temp[new_keyname].substr(0,8);
+						//console.log(new_keyname, temp[new_keyname], typeof(temp[new_keyname]))
+					} else {
+						temp[new_keyname] = 'CHECK';
+					}
+
+				} else if (kobo_fieldused == '') {
+					temp[new_keyname] = 'CHECK BLANK FIELD';
+				} else {
+					//console.log(new_keyname, kobo_fieldused, record[kobo_fieldused])
+					temp[new_keyname] = record[kobo_fieldused].substr(0,8);
+					
+				}
+				
+			//if field defined as 'datetime'	
+			} else if (subHeadings[h].data_check.indexOf('datetime') != -1) {
+				
+				temp[new_keyname] = getDateTimeFromDatetime(temp[kobo_fieldused]);
+				//console.log(new_keyname, kobo_fieldused, temp[new_keyname], typeof(temp[new_keyname]))
+
+			} 
+
 		}
-		//STILL NEED TO ACCOUNT FOR: getFirstValidField, getGroupAge, getTeamSpecs, getCircumstancesOfFailure, calcTimePreAlert
-
-		/*temp['start'] = checkField(d['start']);		//datetime
-		temp['end'] = checkField(d['end']);			//datetime
-		temp['newalert_team'] = checkField(d['team']);
-		temp['newalert_type'] = checkField(d['type']);
-		temp['newalert_sdbtype'] = checkField(d['burial_activity']);
-		temp['newalert_datealert'] = getFirstValidField(['alert_new/datetime/date_alert','datetime/date_alert'], d);
-		temp['newalert_timeprealert'] = getFirstValidField(['alert_new/datetime/time_pre_alert','datetime/time_pre_alert'], d).substr(0,8);
-		temp['newalert_timeallinfo'] = getFirstValidField(['alert_new/datetime/time_all_info','datetime/time_all_info'], d).substr(0,8);	
-		temp['response_actiontaken'] = getFirstValidField(['alert_new/group_response/action_taken','group_response/action_taken'], d);
-		temp['response_reason_none'] = checkField(d['group_response/reason_later_cat']);
-		temp['deceased_name'] = checkField(d['group_deceased/name_of_deceased']);		
-		temp['deceased_gender'] = checkField(d['group_deceased/gender_of_deceased']);
-		temp['deceased_age'] = checkField(d['group_deceased/age_of_deceased']);
-		temp['deceased_agegroup'] = getGroupAge(temp['deceased_age']);
-
-		temp['loc_collectionsite'] = checkField(d['group_location/collection_site']);
-		temp['loc_etcname'] = checkField(d['group_location/etc_name']);
-		temp['loc_collectionzone'] = checkField(d['group_location/collection_zone']);
-		temp['loc_collectionarea'] = checkField(d['group_location/collection_area']);
-		temp['loc_collectionareaother'] = checkField(d['group_location/collection_area_other']);
-		temp['loc_village'] = checkField(d['group_location/location_village']);
-		temp['loc_typedisinfection'] = checkField(d['group_location/type_disinfection']);
-		temp['loc_numplacesdisinfected'] = checkField(d['group_location/houses_disinfected']);
-
-		var team_specs = getTeamSpecs(d);
-		temp['team_activitydate'] = team_specs[0];
-		temp['team_timedeparture'] = team_specs[1];
-		temp['team_timearrival'] = team_specs[2];
-		temp['team_swabtaken'] = team_specs[3];
-		temp['team_disinfected'] = team_specs[4];
-
-		temp['teamburial_status'] = checkField(d['team_went/burial/status']);
-		temp['teamburial_reason'] = checkField(d['team_went/burial/reason']);
-		temp['teamburial_whynotsuccess'] = checkField(d['team_went/burial/why_not_success']);
-		temp['teamburial_incidentwhen'] = checkField(d['team_went/burial/when_refusal']);
-		temp['teamburial_circumstancesfail'] = getCircumstancesOfFailure(d);
-		temp['teamburial_comments'] = checkField(d['team_went/comments']);
-
-		temp['comments'] = checkField(d['comments']);*/
-
+		
 		//console.log('temp: ', temp);
 		processedData.push(temp);
 	})
@@ -110,15 +195,15 @@ function createSummarySDBTable(sdbData) {
 	var html = "";
 	var sdbHtml = "";
 
+	//write table headings
 	html += '<tr bgcolor="#cfdff9">';
-
 	for (var i=0; i <= mainHeadings.length-1; i++) {
 		html += '<th>' + mainHeadings[i].dashboard_mainheading_title + '</th>'; 
 	}
 	html += '</tr>';
-
 	$('#tableSDB').append(html);
 
+	//write table rows
 	sdbData.forEach(function(d,i){
 		sdbHtml = createSummarySDBRow(d, i);
 		$('#tableSDB').append(sdbHtml);
@@ -129,42 +214,69 @@ function createSummarySDBTable(sdbData) {
 function createSummarySDBRow(row, count) {
 	//console.log('createSummarySDBRow: ', count, row)
 	var html = "";
-	if (count%2==0) {
-		var bgcolor = '#add8e6';  //lightblue
-	} else {
-		var bgcolor = '#ffffff';
-	}
+	var bgcolor;
 
-	var startDateTime = getDateTimeFromDatetime(checkField(row['start']));
-	var endDateTime = getDateTimeFromDatetime(checkField(row['end']));	
+	count%2==0? bgcolor = '#add8e6' : bgcolor = '#ffffff';  //alternate row colors
 	
 	html += '<tr bgcolor="' + bgcolor + '">';
-	//html += '<td>' + startDateTime[0] + '<br>' + startDateTime[1] + '</td>'; 
-	//html += '<td>' + endDateTime[0] + '<br>' + endDateTime[1] + '</td>'; 
-
 	for (var i=0; i <= mainHeadings.length-1; i++) {
 		html += '<td>' + getSubHeadingHtml(mainHeadings[i].mainheading_prefix, row) + '</td>'; 
-	};
-	
+	};	
 	html += '</tr>';
 
 	return html;
 }
 
-function getSubHeadingHtml(mainhead, row) {
+
+function getSubHeadingHtml(mainhead, record) {
+	//console.log('RECORD: ', mainhead, record)
 	var html = '';
-	//console.log(mainhead, row)
 
+	//loop through all subheadings
 	for (var i=0; i <= subHeadings.length-1; i++) {
+		//console.log(i, subHeadings[i])
+		
+		//if the subheading belongs to the current mainheading
 		if (subHeadings[i].mainheading_prefix == mainhead) {
-			//console.log('found match: ', mainhead, subHeadings[i].mainheading_prefix);
-
-			for (var r in row) {
+			
+			//loop through the all fields in the record
+			for (var r in record) {
+				//console.log('r: ', r)
 				if (subHeadings[i].kobo_fieldname == r) {
-
-					html += '<i>' + subHeadings[i]['dashboard_subheading_title'] + ': </i><b>' + row[r] + '</b><br>';
+					//console.log(typeof(record[r]), record[r])
+					if (subHeadings[i]['dashboard_subheading_title'] == 'Circumstances of failure') {
+						//console.log(typeof(record[r]), record[r]);
+						if ((record[r].yes.length==0) && (record[r].no.length==0) && (record[r].unknown.length==0) && (record[r].error.length==0)) {
+							html += '<i>' + subHeadings[i]['dashboard_subheading_title'] + ': </i><b> - </b><br>';
+						} else {
+							html += '<i>' + subHeadings[i]['dashboard_subheading_title'] + ': </i><br>';
+							if (record[r].yes.length!=0) {
+								html += '&nbsp&nbspYES: </span><b>' + record[r].yes + '</b><br>';
+							};
+							if (record[r].no.length!=0) {
+								html += '&nbsp&nbspNO: <b>' + record[r].no + '</b><br>';
+							};
+							if (record[r].unknown.length!=0) {
+								html += '&nbsp&nbspUNKNOWN: <b>' + record[r].unknown + '</b><br>';
+							};
+							if (record[r].error.length!=0) {
+								html += '&nbsp&nbspERROR: <b>' + record[r].error + '</b><br>';
+							};
+						}
+					} else if (subHeadings[i]['dashboard_subheading_title'] != '') {
+						html += '<i>' + subHeadings[i]['dashboard_subheading_title'] + ': </i><b>' + record[r] + '</b><br>';
+					} else if (record[r] instanceof Date) {
+						html += '<b>' + formatDate(record[r])[0] + '<br>' + formatDate(record[r])[1] + '</b><br>';
+					} else {
+						html += '<b>' + record[r] + '</b><br>';
+					}			
+				} else if (subHeadings[i].calculate == r) {
+					if (subHeadings[i]['dashboard_subheading_title'] != '') {
+						html += '<i>' + subHeadings[i]['dashboard_subheading_title'] + ': </i><b>' + record[r] + '</b><br>';
+					} else {
+						html += '<b>' + record[r] + '</b><br>';
+					}
 				}
-				
 			}
 		}
 
@@ -173,42 +285,175 @@ function getSubHeadingHtml(mainhead, row) {
 	return html;
 }
 
-function getTeamSpecs(row) {
-	var specs = [' - ',' - ',' - ',' - ',' - ']
-	for (var r in row) {
-		if (r.substr(0,29)=='team_went/burial/begin_group_') {
-			if (r.substr(r.length - 13)=='activity_date') {
-				specs[0] = row[r];
-			} else if (r.substr(r.length - 17)=='time_of_departure') {
-				specs[1] = row[r].substr(0,8);
-			} else if (r.substr(r.length - 15)=='time_of_arrival') {
-				specs[2] = row[r].substr(0,8);
-			} else if (r.substr(r.length - 10)=='swap_taken') {
-				specs[3] = row[r];
-			} else if (r.substr(r.length - 11)=='disinfected') {
-				specs[4] = row[r];
-			};
-			//console.log(r.substr(0,29))
-		}
+function formatDate(date) {
+	//console.log(date);
+	var months = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec"];
+
+	function checkTime(i) {
+	  if (i < 10) {
+	    i = "0" + i;
+	  }
+	  return i;
 	}
-	return specs;
+
+	//let time = date.getTime();
+	let h = date.getHours();
+	let m = date.getMinutes();
+	let s = date.getSeconds();
+	//add a zero in front of numbers<10
+	m = checkTime(m);
+	s = checkTime(s);
+	let time = h + ":" + m + ":" + s;
+	let newdate = date.getDate() + '-' + months[date.getMonth()] + '-' + date.getFullYear();
+	
+	return [newdate, time];
 }
 
 
-function getCircumstancesOfFailure(row) {
-	var circs = [];
+function getTeamSpecs(key, row) {
+	//console.log(key, row);
+	for (var r in row) {
+		if (key.substr(0,29)==r.substr(0,29)) {			//i.e. both =='team_went/burial/begin_group_'
+			//console.log('r: ', r.substr(r.length - 17), '   key: ', key.substr(key.length - 17))
+			if ((r.substr(r.length - 13)=='activity_date') && (key.substr(key.length - 13)=='activity_date')) {
+				//console.log('return ', row[r])
+				return row[r];
+			} else if ((r.substr(r.length - 17)=='time_of_departure') && (key.substr(key.length - 17)=='time_of_departure')) {
+				//console.log('return ', row[r])
+				return row[r].substr(0,8);
+			} else if ((r.substr(r.length - 15)=='time_of_arrival') && (key.substr(key.length - 15)=='time_of_arrival')) {
+				//console.log('return ', row[r])
+				return row[r].substr(0,8);
+			} else if ((r.substr(r.length - 10)=='swap_taken') && (key.substr(key.length - 10)=='swap_taken')) {
+				//console.log('return ', row[r])
+				return row[r];
+			} else if ((r.substr(r.length - 11)=='disinfected') && (key.substr(key.length - 11)=='disinfected')) {
+				//console.log('return ', row[r])
+				return row[r];
+			};
+		}
+	}
+	return ' - '; //specs;
+}
+
+
+function getCircumstancesOfFailure(key, row) {
+	var circs = {
+					'support_teams_present_yn': 'Support teams present',
+					'explanation_sdb_yn': 'Explanation of SDB process',
+					'protocol_reasons_sdb_yn': 'Understood protocol and reasons for SDB',
+					'agree_bury_deceased_yn': 'Agreed to bury deceased',
+					'nominated_witness_yn': 'Nominated witness',
+					'deceased_objects_yn': 'Deceased objects in coffin',
+					'agree_bury_location_yn': 'Agreed bury location',
+					'agree_burial_route_yn': 'Agreed burial route',
+					'agree_sdb_team_safe_yn': 'Agreed SDB team safe',
+					'agree_last_words_yn': 'Agreed last words',
+				};
+	var circ_results = {'yes': [], 'no': [], 'unknown':[], 'error': []};
 	for (var r in row) {
 		if (r.substr(0,36)=='team_went/burial/circumstances_fail/') {
-			console.log(row[r])
-			circs.push(row[r])
+			//console.log('getCircumstancesOfFailure: ', key, row)
+			//console.log(r.substr(r.length - 24), key.substr(key.length - 24))
+			
+			for (var c in circs) {
+				//console.log('c: ', c, circs[c])
+				if ((r.substr(r.length - c.length)==c)) {
+					switch (row[r]){
+						case 'yes': circ_results.yes.push(circs[c]); break;
+						case 'no': circ_results.no.push(circs[c]); break;
+						case 'unknown': circ_results.unknown.push(circs[c]); break;
+						default: circ_results.error.push(circs[c])
+					}
+				}
+
+			}
+			//console.log(row[r])
 		}
 	}
-	return circs;
+	//console.log(circ_results)
+	return circ_results;
 
 }
 
 
 
+function checkField(field) {
+	if ((field == null) || (field == '')) {
+		return " - ";
+	} else {
+		return field;
+	}
+}
+
+
+function getFirstValidField(fields, row) {
+	//console.log(fields, row);
+	var fields_list = fields.split('&');
+	//console.log(fields_list)
+	
+	var i = 0;
+	while (i<=fields_list.length-1) {
+		//console.log('field: ', fields_list[i], row[fields_list[i]]);
+		if (row[fields_list[i]]!=null) {
+			return [row[fields_list[i]],fields_list[i]];
+		};
+		i++
+	};
+	return [];	
+}
+
+
+function getSexCalcul(sex) {
+	switch (sex) {
+		case 'female': var val = 1; break;
+		case 'male': var val = -1; break;
+		default: var val = 0;
+	}
+	return val;
+}
+
+function getAgeGroup(age) {
+	var ageGroup = '';
+	switch (true) {
+		case age < 5: ageGroup = '00-04y'; break;
+		case age < 15: ageGroup = '05-14y'; break;
+		case age < 25: ageGroup = '15-24y'; break;
+		case age < 35: ageGroup = '25-34y'; break;
+		case age < 45: ageGroup = '35-44y'; break;
+		case age < 60: ageGroup = '45-59y'; break;
+		case age < 110: ageGroup = '60y+'; break;
+		default: ageGroup = 'inconnu';
+	}
+	return ageGroup;
+}
+
+function getDateTimeFromDatetime(datetime){
+	//console.log('datetime input: ', datetime)
+
+	/*var months = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec"];
+	
+	function checkTime(i) {
+	  if (i < 10) {
+	    i = "0" + i;
+	  }
+	  return i;
+	}*/
+
+	//Parsing time (the time below is assumed to be GMT+2) from string
+	//Removing timezone stamp at end of string - need to check this with SIMS
+	if(datetime.indexOf('+')>0){
+		datetime = datetime.substring(0,datetime.indexOf('+')-4);
+	} else {
+		let parts = datetime.split('-');
+		let loc = parts.pop();
+		datetime = parts.join('-');
+	}
+
+	let newDate = new Date(datetime);
+	
+	return newDate;
+}
 
 /*function createHorizontalSDBTable(sdbData) {
 	var html = "";
@@ -280,126 +525,8 @@ function createHorizontalSDBRow(row) {
 }*/
 
 
-function checkField(field) {
-	if (field == null) {
-		return " - ";
-	} else {
-		return field;
-	}
-}
 
 
-function getFirstValidField(fields, row) {
-	//console.log(fields, row)
-	var i = 0;
-	while (i<=fields.length-1) {
-		//console.log('field: ', fields[i], row[fields[i]]);
-		if (row[fields[i]]!=null) {
-			return row[fields[i]];
-		};
-		i++
-	};
-	return ' - ';	
-}
-
-
-function getSexCalcul(sex) {
-	switch (sex) {
-		case 'female': var val = 1; break;
-		case 'male': var val = -1; break;
-		default: var val = 0;
-	}
-	return val;
-}
-
-function getGroupAge(age) {
-	var ageGroup = '';
-	switch (true) {
-		case age < 5: ageGroup = '00-04y'; break;
-		case age < 15: ageGroup = '05-14y'; break;
-		case age < 25: ageGroup = '15-24y'; break;
-		case age < 35: ageGroup = '25-34y'; break;
-		case age < 45: ageGroup = '35-44y'; break;
-		case age < 60: ageGroup = '45-59y'; break;
-		case age < 110: ageGroup = '60y+'; break;
-		default: ageGroup = 'inconnu';
-	}
-	return ageGroup;
-}
-
-function getDateTimeFromDatetime(datetime){
-	//console.log(datetime)
-
-	var months = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec"];
-	
-	function checkTime(i) {
-	  if (i < 10) {
-	    i = "0" + i;
-	  }
-	  return i;
-	}
-
-	//Parsing time (the time below is assumed to be GMT+2) from string
-	//Removing timezone stamp at end of string - need to check this with SIMS
-	if(datetime.indexOf('+')>0){
-		datetime = datetime.substring(0,datetime.indexOf('+')-4);
-	} else {
-		let parts = datetime.split('-');
-		let loc = parts.pop();
-		datetime = parts.join('-');
-	}
-
-	let newDate = new Date(datetime);
-	//let time = newDate.getTime();
-	let h = newDate.getHours();
-	let m = newDate.getMinutes();
-	let s = newDate.getSeconds();
-	//add a zero in front of numbers<10
-	m = checkTime(m);
-	s = checkTime(s);
-	let time = h + ":" + m + ":" + s;
-	let date = newDate.getDate() + '-' + months[newDate.getMonth()] + '-' + newDate.getFullYear();
-	//console.log(date,time)
-	return [date, time];
-}
-
-
-/*function getToday() {
-	var todayDate = new Date();
-	var today = todayDate.getFullYear() + '-' + twoNum(todayDate.getMonth() + 1) + '-' + twoNum(todayDate.getDate());
-	return today;
-};
-
-function getYesterday() {
-	var yesterdayDate = new Date();
-	yesterdayDate.setDate(yesterdayDate.getDate() - 1);
-	var yesterday = yesterdayDate.getFullYear() + '-' + twoNum(yesterdayDate.getMonth() + 1) + '-' + twoNum(yesterdayDate.getDate());
-	return yesterday;
-};
-
-
-function getDayBefore(currentDay) {  //function accepts string in format YYYY-MM-DD and returns string of previous day in same format
-
-	var currentDate = new Date(parseInt(currentDay.substring(0,4)), parseInt(currentDay.substring(5,7))-1,parseInt(currentDay.substring(8,10)));
-
-	var dateBefore = new Date();
-	dateBefore.setDate(currentDate.getDate() - 1);
-	var dayBefore = "";
-	dayBefore = dateBefore.getFullYear() + '-' + twoNum(dateBefore.getMonth() + 1) + '-' + twoNum(dateBefore.getDate());
-
-	return dayBefore;
-};*/
-
-
-/*function twoNum (v) {
-	var newVal = '';
-	if (v<10) {
-		newVal = '0' + v.toString();
-	} else {
-		newVal = '' + v.toString();
-	}
-	return newVal;
-}*/
 
 /*function rV(v) {
 	var newVal = '';
