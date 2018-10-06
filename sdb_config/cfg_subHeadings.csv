@@ -1,13 +1,13 @@
-mainheading_prefix,kobo_fieldname,dashboard_subheading_title,calculation,data_check
-start,start,,,
-end,end,,,
+mainheading_prefix,kobo_fieldname,dashboard_subheading_title,calculate,data_check
+start,start,,,datetime
+end,end,,,datetime
 newalert,team,Team,,
 newalert,type,Type,,
 newalert,burial_activity,Burial Activity,,
-newalert,alert_new/datetime/date_alert&datetime/date_alert,Date of Alert,,getFirst
-newalert,alert_new/datetime/time_pre_alert&datetime/time_pre_alert,Time of Pre-Alert,,getFirst
-newalert,alert_new/datetime/time_all_info&datetime/time_all_info,Time All Info,,getFirst
-response,alert_new/group_response/action_taken&group_response/action_taken,Action Taken,,getFirst
+newalert,alert_new/datetime/date_alert&datetime/date_alert,Date of Alert,,selectFirstValid
+newalert,alert_new/datetime/time_pre_alert&datetime/time_pre_alert,Time of Pre-Alert,,selectFirstValid&time
+newalert,alert_new/datetime/time_all_info&datetime/time_all_info,Time All Info,,selectFirstValid&time
+response,alert_new/group_response/action_taken&group_response/action_taken,Action Taken,,selectFirstValid
 response,group_response/reason_later_cat,Reason No Response,,
 deceased,group_deceased/name_of_deceased,Name,,
 deceased,group_deceased/gender_of_deceased,Gender,,
@@ -21,9 +21,9 @@ location,group_location/collection_area_other,Collection Area (other),,
 location,group_location/location_village,Village/Health Centre,,
 location,group_location/type_disinfection,Place of disinfection,,
 location,group_location/houses_disinfected,Number of places disinfected,,
-team,team_went/burial/begin_group_xxxxxxxx/activity_date,Activity Date,,teamSpec
-team,team_went/burial/begin_group_xxxxxxxx/time_of_departure,Time of Departure,,teamSpec
-team,team_went/burial/begin_group_xxxxxxxx/time_of_arrival,Time of Arrival,,teamSpec
+team,team_went/burial/begin_group_xxxxxxxx/activity_date,Activity Date,,teamSpec&date
+team,team_went/burial/begin_group_xxxxxxxx/time_of_departure,Time of Departure,,teamSpec&time
+team,team_went/burial/begin_group_xxxxxxxx/time_of_arrival,Time of Arrival,,teamSpec&time
 team,team_went/burial/begin_group_xxxxxxxx/swap_taken,Swab Taken,,teamSpec
 team,team_went/burial/begin_group_xxxxxxxx/disinfected,Disinfected,,teamSpec
 teamburial,team_went/burial/status,Status,,
