@@ -21,6 +21,7 @@
 //    - status (excel col BZ, based on resultat)
 //    - sex (excel col CC)
 //    - response time (excel col CJ)
+// *** Order by Alert Start
 //
 //**************************************************************************************************//
 
@@ -64,8 +65,18 @@ function getKoboFieldnames() {
 	return fieldname_list;
 }; 
 
+//function to reverse sort array of objects by a given key
+function reverseSortByKey(array, key) {
+    return array.sort(function(a, b) {
+        var x = a[key]; 
+        var y = b[key];
+        //return ((x < y) ? -1 : ((x > y) ? 1 : 0));   //sort
+        return ((x > y) ? -1 : ((x < y) ? 1 : 0));   //reverse sort
+    });
+}
 
-function processSDBdata(sdbData) {
+
+function processKoboSDBdata(sdbData) {
 	console.log('original data: ', sdbData)
 	var processedData = [];
 	var temp;
@@ -74,7 +85,6 @@ function processSDBdata(sdbData) {
 	
 	var kobo_fieldnames = getKoboFieldnames();
 	//console.log('Kobo fieldnames: ', kobo_fieldnames);
-
 
 	//create new dataset from sdbData using kobo_fieldnames as keys
 	sdbData.forEach(function(record,i){
@@ -188,7 +198,11 @@ function processSDBdata(sdbData) {
 		}
 		//console.log('temp: ', temp);
 		processedData.push(temp);
-	})
+	});
+
+	//order data by date (once date is parsed)
+	processedData = reverseSortByKey(processedData, 'start');
+
 	console.log('processedData: ', processedData);
 	return processedData;
 }
@@ -596,7 +610,7 @@ $(document).ready(function () {
         console.log('main headings: ', mainHeadings);
         subHeadings = processHeadings(a3[0]);
         console.log('sub headings: ', subHeadings);
-        var data = processSDBdata(a1[0].reverse());
+        var data = processKoboSDBdata(a1[0].reverse());
         createSummarySDBTable(data);
 
     }, function (jqXHR, textStatus, errorThrown) {
