@@ -1,13 +1,92 @@
 function generateDash(data,geom){
+	updateTable(data);
 	updateKeyFigures(data);
 	createMap(data,geom);
+}
+
+function getAppealDocs(id){
+	var url = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&select-query01-01=%23meta%2Bid%3D' + id + '&filter02=cut&filter01=select&cut-include-tags02=%23meta%2Bdocumentname%2C%23date%2C%23meta%2Burl&force=on&url=https%3A//docs.google.com/spreadsheets/d/1gJ4N_PYBqtwVuJ10d8zXWxQle_i84vDx5dHNBomYWdU/edit%3Fusp%3Dsharing';
+
+	console.log(url);
+
+	$.ajax({
+		    type: 'GET',
+    		url: url,
+    		dataType: 'json',
+			success: function(result){
+				var html = ''
+				console.log(result);
+				result.forEach(function(row,i){
+					console.log(row);
+					if(i>0){
+						if(row[0].substring(0,1)=='/'){
+							row[0] = 'http://www.ifrc.org'+row[0];
+						}
+						html+='<p><a href="'+row[0]+'" target="blank">'+row[1]+'</a> ('+row[2]+')</p>'
+					}
+				});
+        		$("#"+id).html(html);
+    		}
+    	});
+}
+
+function updateTable(data){
+	if ( $.fn.dataTable.isDataTable( '#datatable' ) ) {
+    	table.destroy();
+	}
+	$('#data-table').html("");
+	var html = "";
+	data.forEach(function(d,i){
+		if(d['atype']==0){
+			//DREF
+			var url = 'http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+d['code']+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo='
+		} else {
+			//EA
+			var url = 'http://ifrcgo.org/appeals/'+d['code'].toLowerCase()
+		}
+		html += '<tr><td>';
+		html += getAppealType(d['atype']);
+		html += '</td><td>'+d['name']+'</td><td>';
+		html += getDisasterType(d['dtype']);
+		html += '</td><td>'+d['start_date'].substr(0,10)+'</td><td>'+d['end_date'].substr(0,10);
+		html +='</td><td>'+niceFormatNumber(d['num_beneficiaries'],false)+'</td><td>'+niceFormatNumber(d['amount_requested'],true)+'</td><td>'+niceFormatNumber(d['amount_funded'],true);
+		html += '</td><td id="coverage'+i+'"></td><td><a href="'+url+'" target="_blank">'+d['code']+'</a></td></tr>';
+	});
+	$('#tcontents').html(html);
+	data.forEach(function(d,i){
+		createPie('#coverage'+i,65,10,d['amount_funded']/d['amount_requested']);
+	});
+    table = $('#datatable').DataTable({
+    	"pageLength": 100,
+    	"bFilter": false,
+    	"aoColumnDefs" : [
+	 		{
+	   			'bSortable' : false,
+	   			'aTargets' : [ 'sorting_disabled' ]
+	 		}
+	 	],
+	 	"order": [[ 5, "desc" ]]
+ 	});
+ 	$('.details-controls').on('click',function () {
+ 		var appealID = $(this).attr('data-id');
+ 		var tr = $(this).closest('tr');
+        var row = table.row( tr );
+        if ( row.child.isShown() ) {
+            row.child.hide();
+            tr.removeClass('shown');
+        }
+        else {
+            row.child('<h4>Latest Documents</h4><div id="'+appealID+'"></div>').show();
+            getAppealDocs(appealID);
+            tr.addClass('shown');
+        }
+ 	});
 }
 
 function createMap(data,geom){
 
     var baselayer = L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
     var baselayer2 = L.tileLayer('https://data.humdata.org/mapbox-layer-tiles/{z}/{x}/{y}.png', {minZoom:4});
-	var region = "Africa";
 
 	map = L.map('map',{
 				center: [0,0],
@@ -141,6 +220,98 @@ function niceFormatNumber(num,round){
 	}
 }
 
+function getAppealType(type) {
+	var appealType;
+	switch(type) {
+		case 0:
+			appealType = 'DREF';
+			break;
+		default:
+			appealType = 'EA';
+	}
+	return appealType;
+}
+
+function getDisasterType(type) {
+	var disaster;
+	switch(type) {
+		case 1:
+			disaster = 'Epidemic';
+			break;
+		case 2:
+			disaster = 'Earthquake';
+			break;
+		case 4:
+			disaster = 'Cyclone';
+			break;
+		case 5:
+			disaster = 'Population Movement';
+			break;
+		case 6:
+			disaster = 'Complex Emergency';
+			break;
+		case 7:
+			disaster = 'Civil Unrest';
+			break;
+		case 8:
+			disaster = 'Volcanic Eruption';
+			break;
+		case 11:
+			disaster = 'Tsunami';
+			break;
+		case 12:
+			disaster = 'Flood';
+			break;
+		case 13:
+			disaster = 'Other';
+			break;
+		case 14:
+			disaster = 'Cold Wave';
+			break;
+		case 15:
+			disaster = 'Fire';
+			break;
+		case 19:
+			disaster = 'Heat Wave';
+			break;
+		case 20:
+			disaster = 'Drought';
+			break;
+		case 21:
+			disaster = 'Food Insecurity';
+			break;
+		case 23:
+			disaster = 'Storm Surge';
+			break;
+		case 24:
+			disaster = 'Landslide';
+			break;
+		case 27:
+			disaster = 'Pluvial/Flash Flood';
+			break;
+		case 54:
+			disaster = 'Transport Accident';
+			break;
+		case 57:
+			disaster = 'Chemical Emergency';
+			break;
+		case 62:
+			disaster = 'Insect Infestation';
+			break;
+		case 66:
+			disaster = 'Biological Emergency';
+			break;
+		case 67:
+			disaster = 'Radiological Emergency';
+			break;
+		case 68:
+			disaster = 'Transport Emergency';
+			break;
+		default:
+			disaster = 'other';
+	}
+	return disaster;
+}
 
 //global vars
 
@@ -160,6 +331,10 @@ if(mm<10) {
 }
 var date = yyyy + '-' + mm + '-' + dd;
 appealsGoUrl = appealsGoUrl.replace('999999',date);
+
+var downloadurl = 'https://prddsgocdnapi.azureedge.net/api/v2/appeal/?format=csv&end_date__gte=999999T00%3A00%3A00&region=0&status=0';
+var downloadurl = downloadurl.replace('999999',date);
+$('#download_link').html('<a href="'+downloadurl+'" target="_blank">Download Data</a>');
 
 var dataCall = $.ajax({
     type: 'GET',

@@ -30,11 +30,9 @@
     <link rel="apple-touch-icon" sizes="152x152" href="http://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="http://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-180x180.png">
     <link rel="shortcut icon" href="http://ifrcgo.org/assets/graphics/favicon/favicon.ico">
-    <link rel="icon" type="image/png" href="http://ifrcgo.org/assets/graphics/favicon/favicon-192x192.png" sizes="192x192">
-    <link rel="icon" type="image/png" href="http://ifrcgo.org/assets/graphics/favicon/favicon-160x160.png" sizes="160x160">
     <link rel="icon" type="image/png" href="http://ifrcgo.org/assets/graphics/favicon/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="http://ifrcgo.org/assets/graphics/favicon/favicon-16x16.png" sizes="16x16">
-    <link rel="icon" type="image/png" href="http://ifrcgo.org/assets/graphicsfavicon/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://ifrcgo.org/assets/graphics/favicon/favicon-32x32.png" sizes="32x32">
 
     <!-- Meta tags for social media -->
     <meta name="description" content="IFRC Africa Operations Room">
@@ -62,10 +60,6 @@
     <!-- Site-specific CSS -->
     <link rel="stylesheet" href="css/site.css" media="screen" type="text/css">
 	<link rel="stylesheet" href="css/inform.css" media="screen" type="text/css">
-	
-	<style type="text/css">
-		#map{height:582px;}
-	</style>
 
     <link type="application/atom+xml" rel="alternate" href="/feed.xml" title="IFRC Africa Operations Room" />
 </head>
@@ -81,7 +75,7 @@
 <!-- Start Top Bar -->
 <div class="top-bar medium-10">
     <div class="top-bar-left">
-        <a href="http://ifrcgo.org/"><img class="logo" src="http://ifrcgo.org/assets/logos/logo_test_Go.png"></a>
+        <a href="http://ifrcgo.org/"><img class="logo" src="http://ifrcgo.org/assets/logos/logo_test_Go.png" alt="IFRC GO"></a>
     </div>
     <div class="top-bar-right">
         <ul class="menu vertical medium-horizontal expanded" data-responsive-menu="drilldown medium-dropdown">
@@ -101,93 +95,75 @@
             <meta property="position" content="1" />
         </li>
         <li class=" active" property="itemListElement" typeof="ListItem">
-            <span id="breadcrumb-country" property="name">Profiles</span>
+            <span id="breadcrumb-country" property="name">Current DREFs and Appeals</span>
             <meta property="position" content="1" />
         </li>
     </ul>
 </nav>
-
-<section id="Overview">
+<section id="Title">
 	<div class="row">
-		<h1 id="page-title">National Society Profiles</h1>
+		<h1 id="page-title">Current DREFs and Appeals</h1>
 	</div>
 </section>
 
-<section id="Countries">
+<div class="row">
+  <div class="medium-8 column">
+    <div id="map"></div>
+  </div>
+  <div class="medium-4 column">
+    <div class="row">
+      <div class="medium-5 column">
+        <span id="totalcoverage" class="keyfigure"></span>
+      </div>
+      <div class="medium-7 column">
+        <div class="row">
+          <div class="medium-12 column">
+            <p class="keyfiguretitle text-left">Emergency Appeals</p><span id="totalea" class="keyfigure"></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="medium-12 column">
+            <p class="keyfiguretitle text-left">DREFs</p><span id="totaldref" class="keyfigure"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="medium-6 column">
+        <p class="keyfiguretitle text-left minheight">Total Appeals</p><span id="totalappeals" class="keyfigure">... loading ...</span>
+      </div>
+      <div class="medium-6 column">
+        <p class="keyfiguretitle text-left minheight">Targeted beneficiaries</p><span id="totalbens" class="keyfigure">... loading ...</span>
+      </div>
+    </div>
 	<div class="row">
-		<p>Select a National Society to get more information of that National Society and the country. </p>
-		<div class="medium-4 column">
-		
-			<div id="map"></div>
-
-		</div>
-		<div class="medium-4 column">
-			<div class="card">
-				<div class="card-section">
-					<ul>
-						<li><a href="./profile.html#AGO">Angola Red Cross</a></li>
-						<li><a href="./profile.html#BEN">Red Cross of Benin</a></li>
-						<li><a href="./profile.html#BWA">Botswana Red Cross Society</a></li>
-						<li><a href="./profile.html#BFA">Burkinabe Red Cross Society</a></li>
-						<li><a href="./profile.html#BDI">Burundi Red Cross</a></li>
-						<li><a href="./profile.html#CMR">Cameroon Red Cross Society</a></li>
-						<li><a href="./profile.html#CPV">Red Cross of Cape Verde</a></li>
-						<li><a href="./profile.html#CAF">Central African Red Cross Society</a></li>
-						<li><a href="./profile.html#TCD">Red Cross of Chad</a></li>
-						<li><a href="./profile.html#COM">The Comoros Red Crescent</a></li>
-						<li><a href="./profile.html#COD">Red Cross of the Democratic Republic of the Congo</a></li>
-						<li><a href="./profile.html#COG">Congolese Red Cross</a></li>
-						<li><a href="./profile.html#CIV">Red Cross Society of Côte d'Ivoire</a></li>
-						<li><a href="./profile.html#DJI">Red Crescent Society of Djibouti</a></li>
-						<li><a href="./profile.html#GNQ">Red Cross of Equatorial Guinea</a></li>
-						<li><a href="./profile.html#ERI">Red Cross Society of Eritrea</a></li>
-						<li><a href="./profile.html#ETH">Ethiopian Red Cross Society</a></li>
-						<li><a href="./profile.html#GAB">Gabonese Red Cross Society</a></li>
-						<li><a href="./profile.html#GMB">Gambia Red Cross Society</a></li>
-						<li><a href="./profile.html#GHA">Ghana Red Cross Society</a></li>
-						<li><a href="./profile.html#GIN">Red Cross Society of Guinea</a></li>
-						<li><a href="./profile.html#GNB">Red Cross Society of Guinea-Bissau</a></li>
-						<li><a href="./profile.html#KEN">Kenya Red Cross Society</a></li>
-						<li><a href="./profile.html#LSO">Lesotho Red Cross Society</a></li>
-					</ul>
-				</div><!-- Card section -->
-			</div><!-- Individual card -->
-		</div>
-		<div class="medium-4 column">
-			<div class="card">
-				<div class="card-section">
-					<ul>
-						<li><a href="./profile.html#LBR">Liberian Red Cross Society</a></li>
-						<li><a href="./profile.html#MDG">Madagasy Red Cross Society</a></li>
-						<li><a href="./profile.html#MWI">Malawi Red Cross Society</a></li>
-						<li><a href="./profile.html#MLI">Mali Red Cross</a></li>
-						<li><a href="./profile.html#MUS">Mauritius Red Cross Society</a></li>
-						<li><a href="./profile.html#MRT">Mauritanian Red Crescent</a></li>
-						<li><a href="./profile.html#MOZ">Mozambique Red Cross Society</a></li>
-						<li><a href="./profile.html#NAM">Namibia Red Cross</a></li>
-						<li><a href="./profile.html#NER">Red Cross Society of Niger</a></li>
-						<li><a href="./profile.html#NGA">Nigerian Red Cross Society</a></li>
-						<li><a href="./profile.html#RWA">Rwandan Red Cross</a></li>
-						<li><a href="./profile.html#STP">Sao Tome and Principe Red Cross</a></li>
-						<li><a href="./profile.html#SEN">Senegalese Red Cross Society</a></li>
-						<li><a href="./profile.html#SYC">Seychelles Red Cross Society</a></li>
-						<li><a href="./profile.html#SLE">Sierra Leone Red Cross Society</a></li>
-						<li><a href="./profile.html#SOM">Somali Red Crescent Society</a></li>
-						<li><a href="./profile.html#ZAF">South African Red Cross Society</a></li>
-						<li><a href="./profile.html#SSD">South Sudan Red Cross</a></li>
-						<li><a href="./profile.html#SDN">The Sudanese Red Crescent</a></li>
-						<li><a href="./profile.html#SWZ">Baphalali Swaziland Red Cross Society</a></li>
-						<li><a href="./profile.html#TZA">Tanzania Red Cross National Society</a></li>
-						<li><a href="./profile.html#TGO">Togolese Red Cross</a></li>
-						<li><a href="./profile.html#UGA">Uganda Red Cross Society</a></li>
-						<li><a href="./profile.html#ZMB">Zambia Red Cross Society</a></li>
-						<li><a href="./profile.html#ZWE">Zimbabwe Red Cross Society</a></li>
-					</ul>
-				</div><!-- Card section -->
-			</div><!-- Individual card -->
-		</div>
+		<p id="download_link" class="download_link"><a href="">Download Data</a></p>
 	</div>
-</section>	
+  </div>
+</div>
+<div class="row">
+  <div class="medium-12">
+    <table id="datatable" class="hover">
+      <thead>
+        <tr>
+          <th>Appeal Type</th>
+          <th>Name</th>
+          <th>Type</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Beneficiaries</th>
+          <th>Appeal Amount (CHF)</th>
+          <th>Funding (CHF)</th>
+          <th>Coverage</th>
+          <th>Appeal Code</th>
+        </tr>
+      </thead>
+      <tbody id="tcontents">
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
 
 <footer>
     <div class="row small-12 large-up-5">
@@ -206,12 +182,24 @@
     ga('send', 'pageview');
 </script>
 
-<script src="http://ifrcgo.org/assets/scripts/vendor/leaflet-src.js"></script>
-<script src="http://ifrcgo.org/assets/scripts/vendor/topojson.js"></script>
+<!-- inject:js -->
+    <script src="http://ifrcgo.org/assets/scripts/vendor/d3.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/index.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/jquery.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/leaflet-src.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/isotope.pkgd.min.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/papaparse.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/intro.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/jquery.dataTables.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/topojson.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/crossfilter.min.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/dc.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/c3.js"></script>
+<!-- endinject -->
 
-	<!-- Site-specific js -->
-<script src="./assets/africa.geojson"></script>
-<script src="./js/profile_overview.js" type="text/javascript"></script>
+
+<!-- Site-specific js -->
+<script src="./js/current_appeals.js" type="text/javascript"></script>
 
 </body>
 </html>
