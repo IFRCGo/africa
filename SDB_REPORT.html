@@ -56,53 +56,23 @@
 		color: red;
 	}
 
+	button {
+	    cursor: pointer;
+	    margin-top: 1rem;
+	}
+
 </style>
 </head>
 
 <body>
 
+
+<button onclick="export_data_to_csv();">Export data to CSV file</button>
 <h2>SDB/EDS Alert & Activity Data Table</h2>
 <div>
 	<table id="tableSDB" style="font-size: 10px"></table>
 </div>
 
-<!-- <h2>Alert & Activity Data Table</h2>
-<div>
-	<table id="tableAltActMatches" style="font-size: 10px"></table>
-</div> -->
-	
-<!-- <h2>TODAY</h2>
-<div id="DayReport">
-	<div id="Alerts">
-		<h3>ALERTS</h3>
-		<div id="statsAltDay" class="statsBox"></div>
-		<table id="tableAltDay">
-		</table>
-	</div>
-	<div id="Activities">
-		<h3>ACTIVITIES</h3>
-		<div id="statsActDay" class="statsBox"></div>
-		<table id='tableActDay'>
-		</table>
-	</div>
-</div>
-
-
-<h2><hr /><br />YESTERDAY</h2>
-<div id="DayReport">
-	<div id="Alerts">
-		<h3>ALERTS</h3>
-		<div id="statsAltYes" class="statsBox"></div>
-		<table id="tableAltYes">
-		</table>
-	</div>
-	<div id="Activities">
-		<h3>ACTIVITIES</h3>
-		<div id="statsActYes" class="statsBox"></div>
-		<table id="tableActYes">
-		</table>
-	</div>
-</div> -->
 
 <script src="http://ifrcgo.org/assets/scripts/vendor/jquery.js"></script>
 <script src="http://ifrcgo.org/assets/scripts/vendor/jquery.dataTables.js"></script>
