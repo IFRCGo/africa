@@ -4,10 +4,10 @@ end,end,,,datetime
 newalert,team,Team,,
 newalert,type,Type,,
 newalert,burial_activity,Burial Activity,,
-newalert,alert_new/datetime/date_alert&datetime/date_alert,Date of Alert,,selectFirstValid
-newalert,alert_new/datetime/time_pre_alert&datetime/time_pre_alert,Time of Pre-Alert,,selectFirstValid&time
-newalert,alert_new/datetime/time_all_info&datetime/time_all_info,Time All Info,,selectFirstValid&time
-response,alert_new/group_response/action_taken&group_response/action_taken,Action Taken,,selectFirstValid
+newalert,alert_new/datetime/date_alert&&datetime/date_alert,Date of Alert,,selectFirstValid
+newalert,alert_new/datetime/time_pre_alert&&datetime/time_pre_alert,Time of Pre-Alert,,selectFirstValid&time
+newalert,alert_new/datetime/time_all_info&&datetime/time_all_info,Time All Info,,selectFirstValid&time
+response,alert_new/group_response/action_taken&&group_response/action_taken,Action Taken,,selectFirstValid
 response,group_response/reason_later_cat,Reason No Response,,
 deceased,group_deceased/name_of_deceased,Name,,
 deceased,group_deceased/gender_of_deceased,Gender,,
@@ -27,9 +27,16 @@ team,team_went/burial/begin_group_xxxxxxxx/time_of_arrival,Time of Arrival,,team
 team,team_went/burial/begin_group_xxxxxxxx/swap_taken,Swab Taken,,teamSpec
 team,team_went/burial/begin_group_xxxxxxxx/disinfected,Disinfected,,teamSpec
 teamburial,team_went/burial/status,Status,,
-teamburial,team_went/burial/reason,Reason no response,,
+teamburial,team_went/burial/reason,Reason,,
 teamburial,team_went/burial/why_not_success,Why not successful,,
 teamburial,team_went/burial/when_refusal,When refusal/incident happenned,,
-teamburial,team_went/burial/circumstances_fail/,Circumstances of failure,,
+teamburial,team_went/burial/burial_location/burial_zone,Burial zone,,
+teamburial,team_went/burial/burial_location/burial_area,Burial area,,
+teamburial,team_went/burial/burial_location/burial_area_other,Burial area other,,
+teamburial,team_went/burial/burial_location/burial_place,Burial place,,
 teamburial,team_went/comments,Comments,,
 other,comments,Other Comments,,
+response,,Response Time,response_time,
+newalert,,Epiweek,epiweek_num,
+response,,Result,result_type,
+response,,Status,status_type,
