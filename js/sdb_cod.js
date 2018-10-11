@@ -769,32 +769,34 @@ function export_data_to_csv() {
         		console.log(data[i], getFirstValidField(excelHeadings[j].kobo_fieldname, data[i]))
         		row.push(getFirstValidField(excelHeadings[j].kobo_fieldname, data[i]));
         	} else {*/
-        	//console.log(excelHeadings[j].kobo_fieldname.substr(0,5));
-        	if (excelHeadings[j].kobo_fieldname.substr(0,5)=='calc-') {
-        		//console.log(excelHeadings[j].kobo_fieldname.substr(0,5), excelHeadings[j].kobo_fieldname.substr(5))
-        		if (excelHeadings[j].kobo_fieldname.substr(5)=='age_group') {
-        			row.push(getAgeGroup(data[i]['group_deceased/age_of_deceased']));
-        		} else if (excelHeadings[j].kobo_fieldname.substr(5)=='sex') {
-        			row.push(getSexCalcul(data[i]['group_deceased/gender_of_deceased']));
-        		} else if (excelHeadings[j].kobo_fieldname.substr(5)=='response_time') {
-        			var temp = getResponseTime(data[i]['alert_new/datetime/date_alert&&datetime/date_alert'], data[i]['alert_new/datetime/time_pre_alert&&datetime/time_pre_alert'], data[i]['team_went/burial/begin_group_xxxxxxxx/activity_date'],data[i]['team_went/burial/begin_group_xxxxxxxx/time_of_departure']);
-        			row.push(temp);
-        		} else if (excelHeadings[j].kobo_fieldname.substr(5)=='epiweek_num') {
-        			row.push(getEpiweekNum(data[i]['alert_new/datetime/date_alert&&datetime/date_alert']));
-        		} else if (excelHeadings[j].kobo_fieldname.substr(5)=='result_type') {
-        			row.push(getResultType(data[i]));
-        		} else if (excelHeadings[j].kobo_fieldname.substr(5)=='status_type') {
-        			row.push(getStatusType(data[i]['result_type']));
-        		}
-        	} else if (excelHeadings[j].excel_heading=='Début de la reponse') {
-        		row.push(starttime[0]);
-        	} else if (excelHeadings[j].excel_heading=='Heure de la reponse') {
-        		row.push(starttime[1]);
-        	} else if (excelHeadings[j].excel_heading=='Fin de reponse') {
-        		row.push(endtime[0]);
-        	} else {
-        		row.push(data[i][excelHeadings[j].kobo_fieldname])
-        	}
+        	if (excelHeadings[j].excel_heading!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
+		
+	        	if (excelHeadings[j].kobo_fieldname.substr(0,5)=='calc-') {
+	        		//console.log(excelHeadings[j].kobo_fieldname.substr(0,5), excelHeadings[j].kobo_fieldname.substr(5))
+	        		if (excelHeadings[j].kobo_fieldname.substr(5)=='age_group') {
+	        			row.push(getAgeGroup(data[i]['group_deceased/age_of_deceased']));
+	        		} else if (excelHeadings[j].kobo_fieldname.substr(5)=='sex') {
+	        			row.push(getSexCalcul(data[i]['group_deceased/gender_of_deceased']));
+	        		} else if (excelHeadings[j].kobo_fieldname.substr(5)=='response_time') {
+	        			var temp = getResponseTime(data[i]['alert_new/datetime/date_alert&&datetime/date_alert'], data[i]['alert_new/datetime/time_pre_alert&&datetime/time_pre_alert'], data[i]['team_went/burial/begin_group_xxxxxxxx/activity_date'],data[i]['team_went/burial/begin_group_xxxxxxxx/time_of_departure']);
+	        			row.push(temp);
+	        		} else if (excelHeadings[j].kobo_fieldname.substr(5)=='epiweek_num') {
+	        			row.push(getEpiweekNum(data[i]['alert_new/datetime/date_alert&&datetime/date_alert']));
+	        		} else if (excelHeadings[j].kobo_fieldname.substr(5)=='result_type') {
+	        			row.push(getResultType(data[i]));
+	        		} else if (excelHeadings[j].kobo_fieldname.substr(5)=='status_type') {
+	        			row.push(getStatusType(data[i]['result_type']));
+	        		}
+	        	} else if (excelHeadings[j].excel_heading=='Début de la reponse') {
+	        		row.push(starttime[0]);
+	        	} else if (excelHeadings[j].excel_heading=='Heure de la reponse') {
+	        		row.push(starttime[1]);
+	        	} else if (excelHeadings[j].excel_heading=='Fin de reponse') {
+	        		row.push(endtime[0]);
+	        	} else {
+	        		row.push(data[i][excelHeadings[j].kobo_fieldname])
+	        	}
+	        }
             
         }
         
