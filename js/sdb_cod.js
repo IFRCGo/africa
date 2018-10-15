@@ -332,9 +332,11 @@ function getSubHeadingHtml(mainhead, record) {
 					//if not all sub-questions are empty then output title
 					var yn_all_empty = true;
 					for (var k=0; k<=excelHeadings.length-1; k++) {
-						if (excelHeadings[k].processing_options.substr(0,4) == excelHeadings[i].processing_options.substr(0,4)) {
-							if (record[excelHeadings[k].kobo_fieldname] != blank) {
-								yn_all_empty = false;
+						if (excelHeadings[k].excel_heading!='') {  //because github adds blank row to end of csv
+							if (excelHeadings[k].processing_options.substr(0,4) == excelHeadings[i].processing_options.substr(0,4)) {
+								if (record[excelHeadings[k].kobo_fieldname] != blank) {
+									yn_all_empty = false;
+								}
 							}
 						}
 					}
