@@ -111,7 +111,7 @@ function processKoboSDBdata(sdbData) {
 		for (var h in excelHeadings) {
 			//console.log(h, excelHeadings[h])
 			//console.log(subHeadings[h].mainheading_prefix)
-			//if (excelHeadings[h].mainheading_prefix!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
+			if (excelHeadings[h].mainheading_prefix!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
 		
 				//1. CREATE A KEY (new_keyname) IN NEW DATA RECORD (temp) WHETHER OR NOT THERE IS DATA 
 				var new_keyname = ''; 
@@ -247,10 +247,7 @@ function processKoboSDBdata(sdbData) {
 
 				} 
 
-
-				
-
-			//}
+			}
 
 		}
 
