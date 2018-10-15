@@ -11,37 +11,15 @@
 	h2 {
 		clear: both;
 	}
-	#DayReport {
-		width: 100%;
-		
-	}
-	#Alerts {
-		width: 49%;
-		float: left;
-	}
-	#Activities {
-		width: 49%;
-		float: right;
-	}
-	.statsBox {
-		width: 100%; 
-		display: block;
-		background-color: lightgrey;
-		padding: 5px;
-		color: red;
-		font-weight: bold;
-		font-size: larger;
-	}
+
+	/* On screens that are 750px wide or less */
 	@media only screen and (max-width: 750px) {
-		#Alerts {
+		#tableSDB {
 			width: 100%;
-		}
-		#Activities {
-			width: 100%;
-		}
-		
+		}		
 	}
 	#tableSDB{
+		width: 100%;
 		border-spacing: 0px;
 	}
 	#tableSDB td, tr{
@@ -49,11 +27,9 @@
     	border: 1px solid lightgrey;
 	}
 	#tableSDB th{
+		min-width: 80px;
 	    background-color: #820202;
 		color: white;
-	}
-	.error {
-		color: red;
 	}
 
 	button {
