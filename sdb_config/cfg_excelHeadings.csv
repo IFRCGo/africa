@@ -1,90 +1,90 @@
-excel_heading,kobo_fieldname
-Équipe du formulaire,team
-Équipe autre,
-Type d'alerte,type
-Alert received,alert_new/datetime/date_alert&&datetime/date_alert
-Time of pre-alert,alert_new/datetime/time_pre_alert&&datetime/time_pre_alert
-Time all info received,alert_new/datetime/time_all_info&&datetime/time_all_info
-Action prise,alert_new/group_response/action_taken&&group_response/action_taken
-Raisons plus tard,
-Raison-Sécurité,
-Raison-Trop tard,
-Raison-No famille,
-Raison-No cercueil,
-Raison-Autre,
-Raison-Explications,
-Pourquoi-No action?,group_response/reason_later_cat
-Pourquoi-Hors zone CR,
-Pourquoi-Sécurité,
-Pourquoi-No accès,
-Pourquoi-No équipe,
-Pourquoi-Fausse alerte,
-Pourquoi-Autre,
-Pourquoi-Explications,
-Nom du defunt,group_deceased/name_of_deceased
-Sexe du défunct,group_deceased/gender_of_deceased
-Age du défunct (ans),group_deceased/age_of_deceased
-Site de Collection,group_location/collection_site
-Nom de l'Hopital,group_location/etc_name
-CTE autre,
-Zone Santé,group_location/collection_zone
-Aire de Santé,group_location/collection_area
-Aire, autre,group_location/collection_area_other
-Localité,group_location/location_village
-Lieu désinfection,group_location/type_disinfection
-Nb lieux désinfection,group_location/houses_disinfected
-Nom patient,
-Date EDS,team_went/burial/begin_group_xxxxxxxx/activity_date
-Heure départ équipe collection,team_went/burial/begin_group_xxxxxxxx/time_of_departure
-Heure arrival équipe collection,team_went/burial/begin_group_xxxxxxxx/time_of_arrival
-Résultat,calc-result_type
-Pourquoi échec,team_went/burial/reason
-Échec-Opposition communauté,
-Échec-Réticence famille,
-Échec-Corps enlevé,
-Échec-Menaces,
-Échec-Violences,
-Échec-Déjà enterré,
-Échec-Doutes Ebola,
-Échec-Autre,team_went/burial/why_not_success
-Quand incident?,team_went/burial/when_refusal
-Quand-Arrivée équipe,
-Quand-Avant habille EPI,
-Quand-Désinfection,
-Quand-Après sac,
-Quand-Transport corps,
-Quand-Pdt enterrement,
-Quand-Après enterrement,
-La famille a,
-Présence équipe EDS,team_went/burial/circumstances_fail/support_teams_present_yn
-Explication processus EDS,team_went/burial/circumstances_fail/explanation_sdb_yn
-Compris EDS,team_went/burial/circumstances_fail/protocol_reasons_sdb_yn
-Accepté EDS,team_went/burial/circumstances_fail/agree_bury_deceased_yn
-Nomination témoin EDS,team_went/burial/circumstances_fail/nominated_witness_yn
-Objets défunt,team_went/burial/circumstances_fail/deceased_objects_yn
-Accord lieu EDS,team_went/burial/circumstances_fail/agree_bury_location_yn
-Accord route EDS,team_went/burial/circumstances_fail/agree_burial_route_yn
-Garanties sécu équipe EDS,team_went/burial/circumstances_fail/agree_sdb_team_safe_yn
-Accord derniers mots,team_went/burial/circumstances_fail/agree_last_words_yn
-Explic. EDS,team_went/comments
-Prélevement post-mortem?,team_went/burial/begin_group_xxxxxxxx/swap_taken
-Desinfection du lieu,team_went/burial/begin_group_xxxxxxxx/disinfected
-EDS zone,team_went/burial/burial_location/burial_zone
-EDS aire,team_went/burial/burial_location/burial_area
-EDS aire autre,team_went/burial/burial_location/burial_area_other
-EDS localité,team_went/burial/burial_location/burial_place
-Commentaire (FR),comments
-EPI Week,calc-epiweek_num
-Résidence,
-Status,calc-status_type
-Début de la reponse,team_went/burial/begin_group_xxxxxxxx/activity_date
-Heure de la reponse,team_went/burial/begin_group_xxxxxxxx/time_of_departure
-Sexe calcul,calc-sex
-Age du défunct (mois),
-Groupe d'âge,calc-age_group
-Fin de reponse,end
-Comments (EN),
-Raison,
-Fiche,
-Response time,calc-response_time
-Team sending data,
+excel_heading,dashboard_category,kobo_fieldname,processing_options
+Équipe du formulaire,newalert,team,
+Équipe autre,newalert,,
+Type d'alerte,newalert,type,
+Alert received,newalert,alert_new/datetime/date_alert&&datetime/date_alert,selectFirstValid
+Time of pre-alert,newalert,alert_new/datetime/time_pre_alert&&datetime/time_pre_alert,selectFirstValid&time
+Time all info received,newalert,alert_new/datetime/time_all_info&&datetime/time_all_info,selectFirstValid&time
+Action prise,response,alert_new/group_response/action_taken&&group_response/action_taken,selectFirstValid
+Raisons plus tard,response,group_response/reason_later_cat,multiple_choice_1_title
+Raison-Sécurité,response,group_response/reason_later_cat&&security,multiple_choice_1_option
+Raison-Trop tard,response,group_response/reason_later_cat&&too_late,multiple_choice_1_option
+Raison-No famille,response,group_response/reason_later_cat&&no_family,multiple_choice_1_option
+Raison-No cercueil,response,group_response/reason_later_cat&&grave_coffin,multiple_choice_1_option
+Raison-Autre,response,group_response/reason_later_cat&&other,multiple_choice_1_option
+Raison-Explications,response,group_response/reason_not,
+Pourquoi-No action?,response,group_response/reason_later_not,multiple_choice_2_title
+Pourquoi-Hors zone CR,response,group_response/reason_later_not&&,multiple_choice_2_option
+Pourquoi-Sécurité,response,group_response/reason_later_not&&security,multiple_choice_2_option
+Pourquoi-No accès,response,group_response/reason_later_not&&,multiple_choice_2_option
+Pourquoi-No équipe,response,group_response/reason_later_not&&,multiple_choice_2_option
+Pourquoi-Fausse alerte,response,group_response/reason_later_not&&,multiple_choice_2_option
+Pourquoi-Autre,response,group_response/reason_later_not&&,multiple_choice_2_option
+Pourquoi-Explications,response,group_response/reason_later,
+Nom du defunt,deceased,group_deceased/name_of_deceased,
+Sexe du défunct,deceased,group_deceased/gender_of_deceased,
+Age du défunct (ans),deceased,group_deceased/age_of_deceased,
+Site de Collection,location,group_location/collection_site,
+Nom de l'Hopital,location,group_location/etc_name,
+CTE autre,location,,
+Zone Santé,location,group_location/collection_zone,
+Aire de Santé,location,group_location/collection_area,
+Aire autre,location,group_location/collection_area_other,
+Localité,location,group_location/location_village,
+Lieu désinfection,location,group_location/type_disinfection,
+Nb lieux désinfection,location,group_location/houses_disinfected,
+Nom patient,location,group_location/patient_name,
+Date EDS,team,team_went/burial/begin_group_xxxxxxxx/activity_date,teamSpec&date
+Heure départ équipe collection,team,team_went/burial/begin_group_xxxxxxxx/time_of_departure,teamSpec&time
+Heure arrival équipe collection,team,team_went/burial/begin_group_xxxxxxxx/time_of_arrival,teamSpec&time
+Résultat,response,,calc-result_type
+Pourquoi échec,teamburial,team_went/burial/reason,multiple_choice_3_title
+Échec-Opposition communauté,teamburial,team_went/burial/reason&&community_opposition,multiple_choice_3_option
+Échec-Réticence famille,teamburial,team_went/burial/reason&&family_opposition,multiple_choice_3_option
+Échec-Corps enlevé,teamburial,team_went/burial/reason&&body_not_found,multiple_choice_3_option
+Échec-Menaces,teamburial,team_went/burial/reason&&threats,multiple_choice_3_option
+Échec-Violences,teamburial,team_went/burial/reason&&violence,multiple_choice_3_option
+Échec-Déjà enterré,teamburial,team_went/burial/reason&&,multiple_choice_3_option
+Échec-Doutes Ebola,teamburial,team_went/burial/reason&&doutes_ebola,multiple_choice_3_option
+Échec-Autre,teamburial,team_went/burial/reason&&other,multiple_choice_3_option
+Quand incident?,teamburial,team_went/burial/when_refusal,multiple_choice_4_title
+Quand-Arrivée équipe,teamburial,team_went/burial/when_refusal&&on_arrival_or_before,multiple_choice_4_option
+Quand-Avant habille EPI,teamburial,team_went/burial/when_refusal&&before_PPE,multiple_choice_4_option
+Quand-Désinfection,teamburial,team_went/burial/when_refusal&&after_during_disinfection,multiple_choice_4_option
+Quand-Après sac,teamburial,team_went/burial/when_refusal&&after_body_bag,multiple_choice_4_option
+Quand-Transport corps,teamburial,team_went/burial/when_refusal&&during_transport,multiple_choice_4_option
+Quand-Pdt enterrement,teamburial,team_went/burial/when_refusal&&during_burial,multiple_choice_4_option
+Quand-Après enterrement,teamburial,team_went/burial/when_refusal&&after_burial,multiple_choice_4_option
+La famille a,teamburial,,yn_1_title
+Présence équipe EDS,teamburial,team_went/burial/circumstances_fail/support_teams_present_yn,yn_1
+Explication processus EDS,teamburial,team_went/burial/circumstances_fail/explanation_sdb_yn,yn_1
+Compris EDS,teamburial,team_went/burial/circumstances_fail/protocol_reasons_sdb_yn,yn_1
+Accepté EDS,teamburial,team_went/burial/circumstances_fail/agree_bury_deceased_yn,yn_1
+Nomination témoin EDS,teamburial,team_went/burial/circumstances_fail/nominated_witness_yn,yn_1
+Objets défunt,teamburial,team_went/burial/circumstances_fail/deceased_objects_yn,yn_1
+Accord lieu EDS,teamburial,team_went/burial/circumstances_fail/agree_bury_location_yn,yn_1
+Accord route EDS,teamburial,team_went/burial/circumstances_fail/agree_burial_route_yn,yn_1
+Garanties sécu équipe EDS,teamburial,team_went/burial/circumstances_fail/agree_sdb_team_safe_yn,yn_1
+Accord derniers mots,teamburial,team_went/burial/circumstances_fail/agree_last_words_yn,yn_1
+Explic. EDS,teamburial,team_went/burial/why_not_success,
+Prélevement post-mortem?,team,team_went/burial/begin_group_xxxxxxxx/swap_taken,teamSpec
+Desinfection du lieu,team,team_went/burial/begin_group_xxxxxxxx/disinfected,teamSpec
+EDS zone,teamburial,team_went/burial/burial_location/burial_zone,
+EDS aire,teamburial,team_went/burial/burial_location/burial_area,
+EDS aire autre,teamburial,team_went/burial/burial_location/burial_area_other,
+EDS localité,teamburial,team_went/burial/burial_location/burial_place,
+Commentaire (FR),other,team_went/comments&&comments,selectAllValid
+EPI Week,newalert,,calc-epiweek_num
+Résidence,other,,
+Status,response,,calc-status_type
+Début de la reponse,start,team_went/burial/begin_group_xxxxxxxx/activity_date,teamSpec&date
+Heure de la reponse,start,team_went/burial/begin_group_xxxxxxxx/time_of_departure,teamSpec&time
+Sexe calcul,deceased,,calc-sex
+Age du défunct (mois),deceased,,
+Groupe d'âge,deceased,,calc-age_group
+Fin de reponse,end,end,datetime
+Comments (EN),other,,
+Raison,other,,
+Fiche,other,,
+Response time,response,,calc-response_time
+Team sending data,other,,
