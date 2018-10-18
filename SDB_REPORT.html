@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>SDB Alerts and Activities</title>
+<link rel="stylesheet" href="http://ifrcgo.org/assets/styles/vendor/dc.css">
 <style>
 	body {
 		font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
@@ -11,37 +12,15 @@
 	h2 {
 		clear: both;
 	}
-	#DayReport {
-		width: 100%;
-		
-	}
-	#Alerts {
-		width: 49%;
-		float: left;
-	}
-	#Activities {
-		width: 49%;
-		float: right;
-	}
-	.statsBox {
-		width: 100%; 
-		display: block;
-		background-color: lightgrey;
-		padding: 5px;
-		color: red;
-		font-weight: bold;
-		font-size: larger;
-	}
+
+	/* On screens that are 750px wide or less */
 	@media only screen and (max-width: 750px) {
-		#Alerts {
+		#tableSDB {
 			width: 100%;
-		}
-		#Activities {
-			width: 100%;
-		}
-		
+		}		
 	}
 	#tableSDB{
+		width: 100%;
 		border-spacing: 0px;
 	}
 	#tableSDB td, tr{
@@ -49,65 +28,75 @@
     	border: 1px solid lightgrey;
 	}
 	#tableSDB th{
+		min-width: 80px;
 	    background-color: #820202;
 		color: white;
 	}
-	.error {
-		color: red;
+	.button_list {
+		margin-top: 5rem;
+	}
+	.button {
+	    cursor: pointer;
+	    display: block;
+	    width: 15rem;
+	    margin-top: 0.4rem;
+	    margin-left: 1rem;
+	    border-radius: 0.4rem;
+	    height: 1.5rem;
+	}
+	.button:hover {
+	    background-color: #6280bf;
+	    color: white;
+	}
+
+	#dc-team-chart {
+		margin-left: 4rem;
+		margin-bottom: 2rem;
+		margin-right: 8rem;
+	}
+	.dc-chart g.row text {
+	    fill: black;
+	}
+
+	.row {
+		width: 100%;
+		height: auto;
+	}
+
+	.instruction  {
+		font-weight: 500;
 	}
 
 </style>
 </head>
 
 <body>
+	<h2>SDB/EDS - Dashboard des Alertes et des Activités</h2>
 
-<h2>SDB/EDS Alert & Activity Data Table</h2>
-<div>
-	<table id="tableSDB" style="font-size: 10px"></table>
-</div>
+	    <div id='dc-team-chart'>
+	      	<p class='instruction'>Cliquez sur les équipes pour sélectionner les données:</p>
+	    </div>
 
-<!-- <h2>Alert & Activity Data Table</h2>
-<div>
-	<table id="tableAltActMatches" style="font-size: 10px"></table>
-</div> -->
-	
-<!-- <h2>TODAY</h2>
-<div id="DayReport">
-	<div id="Alerts">
-		<h3>ALERTS</h3>
-		<div id="statsAltDay" class="statsBox"></div>
-		<table id="tableAltDay">
-		</table>
+	<div class='button_list'>
+		<button class='button' onclick="export_data_to_csv('all_today');">Toutes données d'aujourd'hui - CSV</button>
+		<button class='button' onclick="export_data_to_csv('all_yesterday');">Toutes données d'hier - CSV</button>
+		<button class='button' onclick="export_data_to_csv('selected');">Toutes données sélectionnées - CSV</button>
 	</div>
-	<div id="Activities">
-		<h3>ACTIVITIES</h3>
-		<div id="statsActDay" class="statsBox"></div>
-		<table id='tableActDay'>
-		</table>
+
+	<h2>Tableau de données</h2>
+
+	<div>
+		<table id="tableSDB" style="font-size: 10px"></table>
 	</div>
-</div>
 
 
-<h2><hr /><br />YESTERDAY</h2>
-<div id="DayReport">
-	<div id="Alerts">
-		<h3>ALERTS</h3>
-		<div id="statsAltYes" class="statsBox"></div>
-		<table id="tableAltYes">
-		</table>
-	</div>
-	<div id="Activities">
-		<h3>ACTIVITIES</h3>
-		<div id="statsActYes" class="statsBox"></div>
-		<table id="tableActYes">
-		</table>
-	</div>
-</div> -->
+	<script src="http://ifrcgo.org/assets/scripts/vendor/jquery.js"></script>
+	<script src="http://ifrcgo.org/assets/scripts/vendor/jquery.dataTables.js"></script>
+	<script src="http://ifrcgo.org/assets/scripts/vendor/crossfilter.min.js"></script>
+	<script src="http://ifrcgo.org/assets/scripts/vendor/d3.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/dc.js"></script>
 
-<script src="http://ifrcgo.org/assets/scripts/vendor/jquery.js"></script>
-<script src="http://ifrcgo.org/assets/scripts/vendor/jquery.dataTables.js"></script>
-
-<script src="./js/sdb_cod.js" type="text/javascript"></script>
-	
+	<script src="./js/sdb_cod.js" type="text/javascript"></script>
+		
 </body>
 </html>

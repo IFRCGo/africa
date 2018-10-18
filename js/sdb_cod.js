@@ -2,31 +2,39 @@
 
 //**************************************************************************************************//
 // BRC Maps Team - SIMS DRC Ebola response
-// Sept  2018
+// Sept-Oct 2018
 //
 // NOTES:
-// 1. In cfg_subHeadings.csv:
+// 1. In cfg_excelHeadings.csv:
 //    - order counts - i.e. calculate fields must come after the fields that they are based on
 //		 - perhaps all calculate fields should be at the bottom of the file?
 // 	  - for team specs - replace team characters with 'xxxxxxxx' in config file - this can then match
 //		 any teams defined
 //
-// STILL NEED TO ACCOUNT FOR FIELDS: 
-//    - burial_reason - limited choice?
-//    - burial_when_refusal - limited choice? 
-//	  - group response action_taken - limited choice? 
-//    - group response reason_later_cat - limited choice? 
-// STILL NEED TO CALCULATE FIELDS: 
-//    - epiweek number (excel col BX)
-//    - status (excel col BZ, based on resultat)
-//    - sex (excel col CC)
-//    - response time (excel col CJ)
-// *** Order by Alert Start
-//
 //**************************************************************************************************//
 
 
-var mainHeadings, subHeadings;
+let excelHeadings, data, currentData;
+//let koboFields;
+
+let blank = ' ';
+
+let mainHeadings = {
+		'start': 'Alert Start',
+		'end': 'Alert End',
+		'newalert': 'Alert Details',
+		'response': 'Response',
+		'deceased': 'Deceased',
+		'location': 'Location',
+		'team': 'Team Details',
+		'teamburial': 'Team Burial Details',
+		'other': 'Other',
+};
+
+let spellChanges = {
+	'etc': 'CTE',
+}
+
 
 //Parses CSV files - creates array of objects
 //Splits text at each new line, splits each line at commas
@@ -56,17 +64,26 @@ function processHeadings(heads) {
     }
 }
 
-
-function getKoboFieldnames() {
+/*function getKoboFields(records) { 		//reads all fieldnames from kobo data
 	var fieldname_list = [];
-	for (var i=0; i<=subHeadings.length-1; i++) {
-		fieldname_list.push(subHeadings[i].kobo_fieldname);
+	for (var i=0; i<=records.length-1; i++) {
+		//console.log(records[i]);
+		for (var field in records[i]) {
+			if (fieldname_list.indexOf(field)==-1) {
+				fieldname_list.push(field);
+			}
+			
+		}
 	};
+	//console.log('kobo fields: ', fieldname_list);
 	return fieldname_list;
-}; 
+};*/ 
+
+/**/
 
 //function to reverse sort array of objects by a given key
 function reverseSortByKey(array, key) {
+	//console.log(array, key)
     return array.sort(function(a, b) {
         var x = a[key]; 
         var y = b[key];
@@ -83,73 +100,115 @@ function processKoboSDBdata(sdbData) {
 	var datetime;
 	var circumstancesOfFailure, circ;
 	
-	var kobo_fieldnames = getKoboFieldnames();
+	//var kobo_fieldnames = getKoboFieldnames();
 	//console.log('Kobo fieldnames: ', kobo_fieldnames);
 
 	//create new dataset from sdbData using kobo_fieldnames as keys
 	sdbData.forEach(function(record,i){
 		//console.log(record,i)
 		temp = {};
-		circumstancesOfFailure = [];
+		//circumstancesOfFailure = [];
 
-		//for each subHeading (corresponds to each row defined in csfg_subHeadings.csv - i.e. all kobo fieldnames and calculated fields)
-		for (var h in subHeadings) {
-			//console.log(h, subHeadings[h])
-			//console.log(subHeadings[h].mainheading_prefix)
-			if (subHeadings[h].mainheading_prefix!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
+
+		//FIRST ADD KOBO FIELDS NEEDED FOR PROCESSING ONLY, NOT FOR OUTPUT
+		temp['team_went/burial/status'] = record['team_went/burial/status'];
+
+		//for each excelHeading (corresponds to each row defined in cfg_excelHeadings.csv - i.e. all kobo fieldnames and calculated fields)
+		for (var h in excelHeadings) {
+			//console.log(h, excelHeadings[h])
+			if (excelHeadings[h].excel_heading!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
 		
-				//1. CREATE A KEY (new_keyname) IN NEW DATA RECORD (temp) WHETHER OR NOT THERE IS DATA - accounts for if there are multiple possible fields or no fields
-				var new_keyname = ''; // = subHeadings[h].kobo_fieldname;
+				//1. CREATE A KEY (new_keyname) IN NEW DATA RECORD (temp) WHETHER OR NOT THERE IS DATA 
+				var new_keyname = ''; 
 				var kobo_fieldused = '';
-				var first_valid_field = [];
 				
-				//if there are 2 possible fields defined (i.e. kobo_fieldname has multiple inputs joined by '&') AND data_check value is 'selectFirstValid'
-				if ((subHeadings[h].kobo_fieldname.indexOf('&') != -1)  && (subHeadings[h].data_check.indexOf('selectFirstValid') != -1)) {
+				//if multiple fields defined (i.e. kobo_fieldname has multiple inputs joined by '&&') AND should select first defined only (i.e. processing_options contains 'selectFirstValid')
+				if ((excelHeadings[h].kobo_fieldname.indexOf('&&') != -1)  && (excelHeadings[h].processing_options.indexOf('selectFirstValid') != -1)) {
+					var first_valid_field = [];
 					//then new_keyname is assigned to first in list of possible fieldnames (even if data comes from a diff new_keyname, as need to keep fieldnames consistent)
-					new_keyname = subHeadings[h].kobo_fieldname //.split('&')[0];
-					//value is the first valid (i.e. not null) FIELD irrespective of new_keyname given
-					first_valid_field = getFirstValidField(subHeadings[h].kobo_fieldname, record);  
-					//console.log('first_valid_field: ', first_valid_field);
-					if (!(first_valid_field.length == 0)) {
-						temp[new_keyname] = first_valid_field[0];
-						//record[new_keyname] = ''
-						record[new_keyname] = first_valid_field[0];  //add key to original dataset also with correct new_keyname
-						kobo_fieldused = first_valid_field[1];
-					} else {
+					new_keyname = excelHeadings[h].kobo_fieldname //.split('&&')[0];
+					first_valid_field = getFirstValidField(excelHeadings[h].kobo_fieldname, record);  //returns [value, keyname]
+					//console.log('first_valid_field: ', first_valid_field, excelHeadings[h].kobo_fieldname);
+					
+					if (first_valid_field.length == 0) {	    //if all fields were null
 						//console.log('CHECK THIS ONE')
 						kobo_fieldused = 'NA';
 						temp[new_keyname] = '';
+					} else {									//if a populated field was found
+						temp[new_keyname] = first_valid_field[0];
+						//record[new_keyname] = first_valid_field[0];  //add key to original dataset also with correct new_keyname
+						kobo_fieldused = first_valid_field[1];
 					}	
 
-				//if there are no fields defined AND value is defined for 'calculate'
-				} else if ((subHeadings[h].kobo_fieldname == '') && (subHeadings[h].calculate != null)) {
+				//if multiple fields defined (i.e. kobo_fieldname has multiple inputs joined by '&&') and want to include them all
+				} else if ((excelHeadings[h].kobo_fieldname.indexOf('&&') != -1) && (excelHeadings[h].processing_options.indexOf('selectAllValid') != -1)) {
+					var all_valid_fields = [];
+					new_keyname = excelHeadings[h].kobo_fieldname //.split('&&')[0];
+					kobo_fieldused = excelHeadings[h].kobo_fieldname
+					all_valid_fields = getAllValidFields(excelHeadings[h].kobo_fieldname, record);  //returns string of concatenated values
+					temp[new_keyname] = all_valid_fields;
+					//record[new_keyname] = all_valid_fields;
+
+
+				//if there are no fields defined AND processing_options contains 'calc-'
+				} else if ((excelHeadings[h].kobo_fieldname == '') && (excelHeadings[h].processing_options.indexOf('calc-') != -1)) {
 					kobo_fieldused = 'NA';
-					new_keyname = subHeadings[h].calculate;
-					if (new_keyname == 'age_group') {
-						//console.log('Calculating age group...')
-						temp[new_keyname] = getAgeGroup(temp['group_deceased/age_of_deceased']);
+					new_keyname = excelHeadings[h].processing_options;
+					switch (new_keyname.substr(5)) {	
+						case 'age_group': temp[new_keyname] = getAgeGroup(temp['group_deceased/age_of_deceased']); break;
+						case 'sex': temp[new_keyname] = getSexCalcul(temp['group_deceased/gender_of_deceased']); break;
+						case 'response_time': temp[new_keyname] = getResponseTime(temp['alert_new/datetime/date_alert&&datetime/date_alert'], temp['alert_new/datetime/time_pre_alert&&datetime/time_pre_alert'],temp['team_went/burial/begin_group_xxxxxxxx/activity_date'],temp['team_went/burial/begin_group_xxxxxxxx/time_of_departure']);
+							if (temp[new_keyname]==blank) temp[new_keyname]='Not available'; break;
+						case 'epiweek_num': temp[new_keyname] = getEpiweekNum(temp['alert_new/datetime/date_alert&&datetime/date_alert']); break;
+						case 'result_type': var result = getResultType(temp);
+												temp[new_keyname] = result; break;
+						case 'status_type': temp[new_keyname] = getStatusType(temp['calc-result_type']); break;
+						default: temp[new_keyname] = '';
 					}
 
-				} else if (subHeadings[h].kobo_fieldname.indexOf('xxxxxxxx') != -1) {
+				//if fieldname contains 'xxxxxxxx' to represent team code
+				} else if (excelHeadings[h].kobo_fieldname.indexOf('xxxxxxxx') != -1) {
 					kobo_fieldused = 'NA';
-					new_keyname = subHeadings[h].kobo_fieldname;
+					new_keyname = excelHeadings[h].kobo_fieldname;
 					temp[new_keyname] = getTeamSpecs(new_keyname, record);
+					//if (temp[new_keyname]==blank) console.log(new_keyname, record)
 
-				} else if (subHeadings[h].kobo_fieldname.substr(0,36)=='team_went/burial/circumstances_fail/') {  
-					//console.log(subHeadings[h].kobo_fieldname);
-					kobo_fieldused = 'NA';
-					new_keyname = subHeadings[h].kobo_fieldname;
-					temp[new_keyname] = getCircumstancesOfFailure(new_keyname, record);
-					/*if (circ != null) {
-						temp[new_keyname].push(circ);
-					};*/
+				//if fieldname corresponds to circumstances of failure 
+				} else if (excelHeadings[h].processing_options == 'yn') {  
+					//kobo_fieldused = 'NA';
+					new_keyname = excelHeadings[h].kobo_fieldname;
+					//temp[new_keyname] = getCircumstancesOfFailure(new_keyname, record);
+					temp[new_keyname] = record[new_keyname];
+
+				//if there are multiple choice options
+				} else if (excelHeadings[h].processing_options.substr(0,15) == 'multiple_choice') {	
+					//console.log(excelHeadings[h].processing_options)
+					if (excelHeadings[h].processing_options.substr(-5) == 'title') {
+						kobo_fieldused = excelHeadings[h].kobo_fieldname;
+						new_keyname = kobo_fieldused;
+						temp[new_keyname] = record[new_keyname];
+					} else if (excelHeadings[h].processing_options.substr(-6) == 'option') {
+						kobo_fieldused = excelHeadings[h].kobo_fieldname.split('&&');
+						new_keyname = excelHeadings[h].kobo_fieldname;
+						if (record.hasOwnProperty(kobo_fieldused[0])) {
+							//console.log(excelHeadings[h].kobo_fieldname, kobo_fieldused, record[kobo_fieldused[0]]);
+							if ((record[kobo_fieldused[0]].indexOf(kobo_fieldused[1]) == -1) || (kobo_fieldused[1]=='')) {
+								temp[new_keyname] = '0'; //'0' or 'no'?
+							} else {	
+								temp[new_keyname] = '1'; //'1' or 'yes'?
+								//console.log(excelHeadings[h].kobo_fieldname, kobo_fieldused, record[kobo_fieldused[0]],temp[new_keyname])
+							}
+						} else {
+							temp[new_keyname] = blank;
+						}					
+
+					}
 					
 
 				//otherwise there is 1 corresponding field
 				} else {
 					try {
-						kobo_fieldused = subHeadings[h].kobo_fieldname;
-						//new_keyname = subHeadings[h].kobo_fieldname;
+						kobo_fieldused = excelHeadings[h].kobo_fieldname;
 						new_keyname = kobo_fieldused;
 						temp[new_keyname] = record[new_keyname];     		//copy original key and value over to temp object
 						//console.log(new_keyname, temp[new_keyname], typeof(temp[new_keyname]));
@@ -158,20 +217,25 @@ function processKoboSDBdata(sdbData) {
 				        return err
 				    }
 				}
+
+				//replace spellings with spellChanges
+				if (spellChanges.hasOwnProperty(temp[new_keyname])) {
+					temp[new_keyname] = spellChanges[temp[new_keyname]];
+				}
+
+				//check all fields for null values
 				temp[new_keyname] = checkField(temp[new_keyname]);
-				//console.log('new_keyname ', new_keyname, ': ', temp[new_keyname]);
 
 
 
 				//2. DEAL WITH DATA CHECKS
 
-				//console.log(subHeadings[h].data_check, subHeadings[h].data_check.indexOf('time'), '-------', subHeadings[h])
-				//if field defined as 'time' (but not datetime) then take first 8 characters (i.e. HH:MM:SS)
-				if ((subHeadings[h].data_check.indexOf('time') != -1) && (subHeadings[h].data_check.indexOf('datetime') == -1)) {
-					//console.log(subHeadings[h].kobo_fieldname, new_keyname,kobo_fieldused, record[kobo_fieldused]);
-					//console.log(subHeadings[h],new_keyname, kobo_fieldused)
+				//if field defined as 'time' (but not 'datetime' and not 'calc-') then take first 8 characters (i.e. HH:MM:SS)
+				if ((excelHeadings[h].processing_options.indexOf('time') != -1) && (excelHeadings[h].processing_options.indexOf('datetime') == -1)  && (excelHeadings[h].processing_options.indexOf('calc-') == -1)) {
+					//console.log(excelHeadings[h].kobo_fieldname, new_keyname,kobo_fieldused, record[kobo_fieldused]);
+
 					if (kobo_fieldused == 'NA') {
-						if (subHeadings[h].kobo_fieldname.indexOf('xxxxxxxx')) {
+						if (excelHeadings[h].kobo_fieldname.indexOf('xxxxxxxx')) {
 							temp[new_keyname] = temp[new_keyname].substr(0,8);
 							//console.log(new_keyname, temp[new_keyname], typeof(temp[new_keyname]))
 						} else {
@@ -187,37 +251,43 @@ function processKoboSDBdata(sdbData) {
 					}
 					
 				//if field defined as 'datetime'	
-				} else if (subHeadings[h].data_check.indexOf('datetime') != -1) {
-					
+				} else if (excelHeadings[h].processing_options.indexOf('datetime') != -1) {					
 					temp[new_keyname] = getDateTimeFromDatetime(temp[kobo_fieldused]);
 					//console.log(new_keyname, kobo_fieldused, temp[new_keyname], typeof(temp[new_keyname]))
 
 				} 
+				
+
 			}
 
 		}
+
 		//console.log('temp: ', temp);
 		processedData.push(temp);
 	});
 
 	//order data by date (once date is parsed)
-	processedData = reverseSortByKey(processedData, 'start');
+	processedData = reverseSortByKey(processedData, 'alert_new/datetime/date_alert&&datetime/date_alert');
 
 	console.log('processedData: ', processedData);
 	return processedData;
 }
 
 function createSummarySDBTable(sdbData) {
+	//console.log("currentData: ", sdbData)
 	var html = "";
 	var sdbHtml = "";
+	$('#tableSDB').html('');
 
 	//write table headings
 	html += '<tr bgcolor="#cfdff9">';
-	for (var i=0; i <= mainHeadings.length-1; i++) {
-		html += '<th>' + mainHeadings[i].dashboard_mainheading_title + '</th>'; 
+	for (var mainHead in mainHeadings) {
+		html += '<th>' + mainHeadings[mainHead] + '</th>'; 
 	}
 	html += '</tr>';
 	$('#tableSDB').append(html);
+
+	sdbData = reverseSortByKey(sdbData, 'alert_new/datetime/date_alert&&datetime/date_alert');
 
 	//write table rows
 	sdbData.forEach(function(d,i){
@@ -235,9 +305,9 @@ function createSummarySDBRow(row, count) {
 	count%2==0? bgcolor = '#add8e6' : bgcolor = '#ffffff';  //alternate row colors
 	
 	html += '<tr bgcolor="' + bgcolor + '">';
-	for (var i=0; i <= mainHeadings.length-1; i++) {
-		html += '<td>' + getSubHeadingHtml(mainHeadings[i].mainheading_prefix, row) + '</td>'; 
-	};	
+	for (var mainHead in mainHeadings) {
+		html += '<td>' + getSubHeadingHtml(mainHead, row) + '</td>'; 
+	}
 	html += '</tr>';
 
 	return html;
@@ -248,52 +318,88 @@ function getSubHeadingHtml(mainhead, record) {
 	//console.log('RECORD: ', mainhead, record)
 	var html = '';
 
-	//loop through all subheadings
-	for (var i=0; i <= subHeadings.length-1; i++) {
-		//console.log(i, subHeadings[i])
-		
-		//if the subheading belongs to the current mainheading
-		if (subHeadings[i].mainheading_prefix == mainhead) {
-			
-			//loop through the all fields in the record
-			for (var r in record) {
-				//console.log('r: ', r)
-				if (subHeadings[i].kobo_fieldname == r) {
-					//console.log(typeof(record[r]), record[r])
-					if (subHeadings[i]['dashboard_subheading_title'] == 'Circumstances of failure') {
-						//console.log(typeof(record[r]), record[r]);
-						if ((record[r].yes.length==0) && (record[r].no.length==0) && (record[r].unknown.length==0) && (record[r].error.length==0)) {
-							html += '<i>' + subHeadings[i]['dashboard_subheading_title'] + ': </i><b> - </b><br>';
-						} else {
-							html += '<i>' + subHeadings[i]['dashboard_subheading_title'] + ': </i><br>';
-							if (record[r].yes.length!=0) {
-								html += '&nbsp&nbspYES: </span><b>' + record[r].yes + '</b><br>';
-							};
-							if (record[r].no.length!=0) {
-								html += '&nbsp&nbspNO: <b>' + record[r].no + '</b><br>';
-							};
-							if (record[r].unknown.length!=0) {
-								html += '&nbsp&nbspUNKNOWN: <b>' + record[r].unknown + '</b><br>';
-							};
-							if (record[r].error.length!=0) {
-								html += '&nbsp&nbspERROR: <b>' + record[r].error + '</b><br>';
-							};
-						}
-					} else if (subHeadings[i]['dashboard_subheading_title'] != '') {
-						html += '<i>' + subHeadings[i]['dashboard_subheading_title'] + ': </i><b>' + record[r] + '</b><br>';
-					} else if (record[r] instanceof Date) {
-						html += '<b>' + formatDate(record[r])[0] + '<br>' + formatDate(record[r])[1] + '</b><br>';
-					} else {
-						html += '<b>' + record[r] + '</b><br>';
-					}			
-				} else if (subHeadings[i].calculate == r) {
-					if (subHeadings[i]['dashboard_subheading_title'] != '') {
-						html += '<i>' + subHeadings[i]['dashboard_subheading_title'] + ': </i><b>' + record[r] + '</b><br>';
-					} else {
-						html += '<b>' + record[r] + '</b><br>';
+	//loop through all excelheadings
+	for (var i=0; i <= excelHeadings.length-1; i++) {
+		//console.log(i, excelHeadings[i])
+
+		if (excelHeadings[i].dashboard_category==mainhead) {  //if the excel heading is in the correct category, output it here
+
+			if (excelHeadings[i]['kobo_fieldname'] == 'team_went/burial/begin_group_xxxxxxxx/activity_date') {
+				//console.log('return ', record[r])
+				if (record[excelHeadings[i].kobo_fieldname] == blank) {
+					var date_output = 'Not available';
+				} else {
+					var date_output = formatDate(record[excelHeadings[i].kobo_fieldname],'screen');
+				}	
+				html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><br><b>' + date_output + '</b><br>';		
+
+
+			} else if (excelHeadings[i].processing_options.substr(0,15) == 'multiple_choice') {
+				if (record[excelHeadings[i].kobo_fieldname] != blank) {
+					//console.log('Mulitple choice: ', excelHeadings[i].excel_heading, record[excelHeadings[i].kobo_fieldname]);
+					if (excelHeadings[i].processing_options.substr(-5) == 'title') {
+						html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><br>';
+					} else if (excelHeadings[i].processing_options.substr(-6) == 'option') {
+						if (record[excelHeadings[i].kobo_fieldname] == 1) {
+							html += '&nbsp&nbsp<i><b>' + excelHeadings[i]['excel_heading'] + '</b></i><br>';
+						}	
 					}
 				}
+				
+			} else if (excelHeadings[i].processing_options.substr(0,2) == 'yn') {
+				//console.log('Yes No: ', excelHeadings[i].excel_heading);
+				if (excelHeadings[i].processing_options.substr(-5) == 'title') {
+					//if not all sub-questions are empty then output title
+					var yn_all_empty = true;
+					for (var k=0; k<=excelHeadings.length-1; k++) {
+						if (excelHeadings[k].excel_heading!='') {  //because github adds blank row to end of csv
+							if (excelHeadings[k].processing_options.substr(0,4) == excelHeadings[i].processing_options.substr(0,4)) {
+								if (record[excelHeadings[k].kobo_fieldname] != blank) {
+									yn_all_empty = false;
+								}
+							}
+						}
+					}
+					if (!(yn_all_empty)) {html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><br>'};
+					//html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><br>';
+				} else {
+					if (record[excelHeadings[i].kobo_fieldname] == 'yes') {
+						html += '&nbsp&nbsp<i>' + excelHeadings[i]['excel_heading'] + '</i> - Yes<br>';
+					} else if (record[excelHeadings[i].kobo_fieldname] == 'no') {
+						html += '&nbsp&nbsp<i>' + excelHeadings[i]['excel_heading'] + '</i> - No<br>';
+					} else if (record[excelHeadings[i].kobo_fieldname] == 'unknown') {
+						html += '&nbsp&nbsp<i>' + excelHeadings[i]['excel_heading'] + '</i> - Unknown<br>';
+					};
+				}
+
+
+
+			} else if (excelHeadings[i].kobo_fieldname == '') {
+				if (excelHeadings[i].processing_options.substr(0,5)=='calc-') {
+					//console.log(excelHeadings[i].processing_options, record[excelHeadings[i].processing_options])
+					html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><b>' + record[excelHeadings[i].processing_options] + '</b><br>';
+				} else {
+					//console.log('No data processed for: ', excelHeadings[i].excel_heading);
+				}
+
+			} else if (record.hasOwnProperty(excelHeadings[i].kobo_fieldname)) {
+				//console.log('YES has key ', excelHeadings[i].kobo_fieldname, ': ', record[excelHeadings[i].kobo_fieldname])
+				//if ((record[excelHeadings[i].kobo_fieldname] == blank) || (record[excelHeadings[i].kobo_fieldname] == '-')) {
+				if (record[excelHeadings[i].kobo_fieldname] == blank) {
+					//console.log('Not displayed to screen: ', excelHeadings[i].kobo_fieldname, excelHeadings[i].processing_options);
+				} else if (record[excelHeadings[i].kobo_fieldname] instanceof Date) {
+					//console.log(excelHeadings[i].kobo_fieldname)
+					html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><br><b>' + formatDateTime(record[excelHeadings[i].kobo_fieldname],"screen")[0] + '<br>' + formatDateTime(record[excelHeadings[i].kobo_fieldname],"screen")[1] + '</b><br>';
+
+				} else {
+					html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><b>' + record[excelHeadings[i].kobo_fieldname] + '</b><br>';
+				}
+				
+			} else {
+				//console.log('Not in table to screen: ', excelHeadings[i].kobo_fieldname)
 			}
+
+
 		}
 
 	}
@@ -301,9 +407,10 @@ function getSubHeadingHtml(mainhead, record) {
 	return html;
 }
 
-function formatDate(date) {
-	//console.log(date);
-	var months = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec"];
+function formatDateTime(date, format) {
+	//console.log(date, format);
+	let months = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec"];
+	let newdate;
 
 	function checkTime(i) {
 	  if (i < 10) {
@@ -320,36 +427,57 @@ function formatDate(date) {
 	m = checkTime(m);
 	s = checkTime(s);
 	let time = h + ":" + m + ":" + s;
-	let newdate = date.getDate() + '-' + months[date.getMonth()] + '-' + date.getFullYear();
 	
+	if (format=='csv') {
+		newdate = date.getDate() + '/' + (date.getMonth()+1) + '/' + date.getFullYear();
+	} else if (format=='screen') {
+		newdate = date.getDate() + '-' + months[date.getMonth()] + '-' + date.getFullYear();
+	};
+
 	return [newdate, time];
 }
 
+function formatDate(date, format) {
+	//console.log(date, format);
+	let months = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec"];
+	let date_parsed = new Date(parseInt(date.substr(0,4)), parseInt(date.substr(5,7)), parseInt(date.substr(8,10)));
+	let newdate;
 
-function getTeamSpecs(key, row) {
-	//console.log(key, row);
-	for (var r in row) {
-		if (key.substr(0,29)==r.substr(0,29)) {			//i.e. both =='team_went/burial/begin_group_'
-			//console.log('r: ', r.substr(r.length - 17), '   key: ', key.substr(key.length - 17))
+	if (format=='csv') {
+		newdate = date_parsed.getDate() + '/' + date_parsed.getMonth()-1 + '/' + date_parsed.getFullYear();
+		console.log('for csv: ', newdate)
+	} else if (format=='screen') {
+		newdate = date_parsed.getDate() + '-' + months[date_parsed.getMonth()-1] + '-' + date_parsed.getFullYear();
+	};
+
+	return newdate;
+}
+
+
+function getTeamSpecs(key, record) {
+	//console.log(key, record);
+	for (var r in record) {
+		if ((key.substr(0,29)=='team_went/burial/begin_group_') && (r.substr(0,29)=='team_went/burial/begin_group_')) {
 			if ((r.substr(r.length - 13)=='activity_date') && (key.substr(key.length - 13)=='activity_date')) {
-				//console.log('return ', row[r])
-				return row[r];
+				//console.log('return ', record[r])
+				return record[r];
 			} else if ((r.substr(r.length - 17)=='time_of_departure') && (key.substr(key.length - 17)=='time_of_departure')) {
-				//console.log('return ', row[r])
-				return row[r].substr(0,8);
+				//console.log('return ', record[r])
+				return record[r].substr(0,8);
 			} else if ((r.substr(r.length - 15)=='time_of_arrival') && (key.substr(key.length - 15)=='time_of_arrival')) {
-				//console.log('return ', row[r])
-				return row[r].substr(0,8);
+				//console.log('return ', record[r])
+				return record[r].substr(0,8);
 			} else if ((r.substr(r.length - 10)=='swap_taken') && (key.substr(key.length - 10)=='swap_taken')) {
-				//console.log('return ', row[r])
-				return row[r];
+				//console.log('return ', record[r])
+				return record[r];
 			} else if ((r.substr(r.length - 11)=='disinfected') && (key.substr(key.length - 11)=='disinfected')) {
-				//console.log('return ', row[r])
-				return row[r];
+				//console.log('return ', record[r])
+				return record[r];
 			};
 		}
 	}
-	return ' - '; //specs;
+	//console.log('get TeamSpecs blank ', key, record)
+	return blank; //specs;
 }
 
 
@@ -395,17 +523,32 @@ function getCircumstancesOfFailure(key, row) {
 
 
 function checkField(field) {
+	var output = field;
 	if ((field == null) || (field == '')) {
-		return " - ";
-	} else {
-		return field;
-	}
+		output = blank;
+	} else if (typeof field == 'string') {
+		/*var num_linebreaks = (field.match(/\n/g)||[]).length;
+		if (num_linebreaks>0) {
+			console.log(num_linebreaks, field);
+			output = field.replace(/[\n]+/g, '. ');
+			console.log(output)
+		};*/
+		output = field.replace(/[\n]+/g, '. ');  //remove carriage returns from string
+		if (field.indexOf(',')!=-1) {
+			//console.log(field);
+			output = '"'+field+'"';
+		} 
+
+	} 
+	return output;
 }
 
 
+//inputs list of optional fields to select from and row of data
+//outputs [value, key] relating to the first valid field from the list of optional fields
 function getFirstValidField(fields, row) {
-	//console.log(fields, row);
-	var fields_list = fields.split('&');
+	//console.log('in getFirstValidField: ', fields, row);
+	var fields_list = fields.split('&&');
 	//console.log(fields_list)
 	
 	var i = 0;
@@ -416,7 +559,33 @@ function getFirstValidField(fields, row) {
 		};
 		i++
 	};
+	//console.log(fields,row, row[fields_list[0]], row[fields_list[1]])
 	return [];	
+}
+
+//inputs list of all fields to select from and row of data
+//outputs string with all valid fields concatenated
+function getAllValidFields(fields, row) {
+	//console.log(fields, row);
+	var fields_list = fields.split('&&');
+	var all_valid = '';
+	//console.log(fields_list)
+	
+	var i = 0;
+	while (i<=fields_list.length-1) {
+		if (row[fields_list[i]]!=null) {
+			all_valid += row[fields_list[i]];
+		};
+		i++
+	};
+	
+	//check valididty of multiple fields:
+	//if (row[fields_list[0]]!=null) {console.log('field 0: ', row[fields_list[0]])}
+	//if (row[fields_list[1]]!=null) {console.log('field 1: ', row[fields_list[1]])}
+	//if ((row[fields_list[0]]!=null) || (row[fields_list[1]]!=null)) {console.log('Multiple valid fields: ', all_valid)}
+	
+	if (all_valid.length==0) {all_valid = blank};
+	return all_valid;
 }
 
 
@@ -431,7 +600,7 @@ function getSexCalcul(sex) {
 
 function getAgeGroup(age) {
 	var ageGroup = '';
-	switch (true) {
+	switch(true) {
 		case age < 5: ageGroup = '00-04y'; break;
 		case age < 15: ageGroup = '05-14y'; break;
 		case age < 25: ageGroup = '15-24y'; break;
@@ -444,17 +613,46 @@ function getAgeGroup(age) {
 	return ageGroup;
 }
 
+Date.prototype.isValid = function () {
+    // An invalid date object returns NaN for getTime(), and NaN is the only object not strictly equal to itself
+    return this.getTime() === this.getTime();
+}; 
+
+function msToTime(duration) {
+    var milliseconds = parseInt((duration%1000)/100)
+        , seconds = parseInt((duration/1000)%60)
+        , minutes = parseInt((duration/(1000*60))%60)
+        , hours = parseInt((duration/(1000*60*60))%24);
+
+    hours = (hours < 10) ? "0" + hours : hours;
+    minutes = (minutes < 10) ? "0" + minutes : minutes;
+    seconds = (seconds < 10) ? "0" + seconds : seconds;
+
+    return hours + ":" + minutes + ":" + seconds;
+}
+
+function getResponseTime(beg_date, beg_time, end_date, end_time) {
+	var beg = new Date(beg_date+'T'+beg_time);
+	var end = new Date(end_date+'T'+end_time);
+	//console.log(beg, end, beg.isValid(), end.isValid());
+
+	if (beg.isValid() && end.isValid()) {
+		var milliseconds = end - beg;
+		if (milliseconds >= 0) {
+			var rtime = msToTime(milliseconds);
+		} else {
+			var rtime = blank
+		}
+	} else {
+		var rtime = blank
+	}	
+	//console.log(rtime);
+	return rtime;
+}
+
+
 function getDateTimeFromDatetime(datetime){
 	//console.log('datetime input: ', datetime)
-
-	/*var months = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec"];
-	
-	function checkTime(i) {
-	  if (i < 10) {
-	    i = "0" + i;
-	  }
-	  return i;
-	}*/
 
 	//Parsing time (the time below is assumed to be GMT+2) from string
 	//Removing timezone stamp at end of string - need to check this with SIMS
@@ -467,118 +665,272 @@ function getDateTimeFromDatetime(datetime){
 	}
 
 	let newDate = new Date(datetime);
-	
+	//console.log('CHECK getDateTimeFromDatetime: ', datetime, ' => ', newDate);
 	return newDate;
 }
 
-/*function createHorizontalSDBTable(sdbData) {
-	var html = "";
-	var sdbHtml = "";
 
-	html += '<tr bgcolor="#cfdff9">';
-	html += '<th>' + 'Alert received' + '</th>'; 
-	html += '<th>' + 'Time of alert' + '</th>'; 
-	html += '<th>' + 'Zone Santé' + '</th>'; 
-	html += '<th>' + 'Aire de Santé' + '</th>'; 
-	html += '<th>' + 'Localité' + '</th>'; 	
-	html += '<th>' + 'Site de Collection' + '</th>'; 
-	html += '<th>' + 'Nom' + '</th>'; 
-	html += '<th>' + 'Résidence' + '</th>'; 
-	html += '<th>' + 'Résultat' + '</th>'; 
-	html += '<th>' + 'Status' + '</th>'; 
-	html += '<th>' + 'Début de la reponse' + '</th>'; 	
-	html += '<th>' + 'Heure de la reponse' + '</th>'; 
-	html += '<th>' + 'Prélevement post-mortem?' + '</th>'; 
-	html += '<th>' + 'Desinfection du lieu' + '</th>'; 
-	html += '<th>' + 'Sexe du défunct' + '</th>'; 
-	html += '<th>' + 'Sexe calcul' + '</th>'; 
-	html += '<th>' + 'Age du défunct (ans)' + '</th>'; 
-	html += '<th>' + 'Age du défunct (mois)' + '</th>'; 
-	html += '<th>' + 'Groupe d\'âge' + '</th>'; 
-	html += '<th>' + 'Fin de reponse' + '</th>'; 
-	html += '<th>' + 'Commentaire' + '</th>'; 
-	html += '<th>' + 'Raison' + '</th>'; 
+Date.prototype.addDays = function(days) {
+    var date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+}
 
-	$('#tableSDB').append(html);
+function getEpiweekNum(datestring) {
+	var date = new Date(datestring);
+	var week_beg = new Date(2018,7,5);  //Sun 5th Aug 2018
+	var weeknum = 0;
 
-	sdbData.forEach(function(d,i){
-		sdbHtml = createHorizontalSDBRow(d);
-		$('#tableSDB').append(sdbHtml);
-	})
+	//if input date is valid
+	if (date.isValid()) {
+		//while date is on or later than the beginning of the week
+		while (week_beg <= date) {
+			weeknum ++;		//increment week counter
+			if (date < week_beg.addDays(7)) {   //if date is within the next week
+				//console.log('return epiweek ', weeknum, date)
+				return weeknum;
+			}
+			week_beg.setDate(week_beg.getDate()+7);
+		}
 
-}*/
-/*
-function createHorizontalSDBRow(row) {
-	//console.log('createHorizontalSDBRow: ', row)
-	var html = "";
-
-	html += '<tr>';
-	html += '<td>' + getFirstValidField(['alert_new/datetime/date_alert','datetime/date_alert'], row) + '</td>'; //Alert received
-	html += '<td>' + getFirstValidField(['alert_new/datetime/time_pre_alert','datetime/time_pre_alert'], row).substring(0,8) + '</td>'; //Time of alert
-	html += '<td>' + checkField(row['group_location/collection_zone']) + '</td>'; //Zone Santé
-	html += '<td>' + checkField(row['group_location/collection_area']) + '</td>'; //Aire de Santé
-	html += '<td>' + checkField(row['group_location/location_village']) + '</td>'; 	//Localité'
-	html += '<td>' + checkField(row['group_location/collection_site'])  + '</td>'; //Site de Collection
-	html += '<td>' + '' + '</td>'; //Nom
-	html += '<td>' + '' + '</td>'; //Résidence
-	html += '<td>' + checkField(row['alert_new/group_response/action_taken']) + '</td>'; //Résultat
-	html += '<td>' + checkField(row['group_response/action_taken']) + '</td>'; //Status
-	html += '<td>' + '' + '</td>'; //Début de la reponse
-	html += '<td>' + '' + '</td>'; //Heure de la reponse
-	html += '<td>' + '' + '</td>'; //Prélevement post-mortem?
-	html += '<td>' + '' + '</td>'; //Desinfection du lieu
-	html += '<td>' + checkField(row['group_deceased/gender_of_deceased']) + '</td>'; //Sexe du défunct
-	html += '<td>' + getSexCalcul(checkField(row['group_deceased/gender_of_deceased'])) + '</td>'; //Sexe calcul
-	html += '<td>' + checkField(row['group_deceased/age_of_deceased']) + '</td>'; //Age du défunct (ans)
-	html += '<td>' + '' + '</td>'; //Age du défunct (mois)
-	html += '<td>' + getGroupAge(checkField(row['group_deceased/age_of_deceased']))  + '</td>'; //Groupe d\'âge
-	html += '<td>' + checkField(row['end']) + '</td>'; //Fin de reponse
-	html += '<td>' + '' + '</td>'; //Commentaire
-	html += '<td>' + '' + '</td>'; //Raison
-	html += '</tr>';
-
-	return html;
-}*/
-
-
-
-
-
-/*function rV(v) {
-	var newVal = '';
-	switch(v) {
-    case 'no':
-        newVal = '<span style=\'color=red;font-weight: bold;\'>&#10008;</span>';
-        break;
-    case 'yes':
-        newVal = '<span style=\'color=green;font-weight: bold;\'>&#10004;</span>';
-        break;
-	case 'responded':
-		newVal = 'Responding today';
-		break;
-	case 'planned':
-		newVal = 'Planned to respond tomorrow';
-		break;
-	case 'not_responded':
-		newVal = 'No plans to respond';
-		break;
-	case 'etc':
-		newVal = 'Ebola Treatment Centre (ETC)';
-		break;
-	case 'new':
-		newVal = 'Alert received today';
-		break;
-	case 'continue':
-		newVal = 'SDB started yesterday, continued today';
-		break;
-	case 'yesterday':
-		newVal = 'Alert received yesterday, SDB started today';
-		break;
-    default:
-		newVal = v;
 	}
-	return newVal;
-}*/
+	
+	return blank;
+}
+
+function getResultType(rec) {
+	//console.log(rec)
+	var result = 'X';
+
+	if (rec['type'] != 'disinfection') {
+		//console.log(rec['team_went/burial/status'])
+		if ((rec['team_went/burial/status'] == 'secured_buried') || (rec['team_went/burial/status'] == 'secured_negative_sample')) {
+			result = 'Succes';
+		} else if (rec['team_went/burial/status'] == 'other') {
+			if (rec['team_went/burial/reason'] != '') {
+				result = 'Échec';
+			} 
+		} else if ((rec['team_went/burial/status'] == '') || (rec['team_went/burial/status'] == blank)) {
+			if (rec['alert_new/group_response/action_taken&&group_response/action_taken']== 'sent_civil_protection') {
+				result = 'Alerte envoyée à la protection civile';
+			} else if (rec['alert_new/group_response/action_taken&&group_response/action_taken']== 'not_responded') {
+				result = 'Échec';
+			};
+		}
+	}
+	//Note: Cannot program the final logic dependant on the input of '1 day' because this has been manually input by someone
+
+	//LOGIC by Alex:
+	/* First, use field 'type' to filter out any disinfections as these don't go into the database
+	primary kobo field used is 'status'
+		- 'secured_buried' = Succes
+		- 'secured_negative_sample' = Succes
+		- 'other' = probably Échec, but i check the reason just to be sure
+	check 'reason' if populated (FYI this is a select multiple question, not free text)
+	if 'status' is blank I will check 'action_taken'
+		- 'sent_civil_protection' = Alerte envoyée à la protection civile
+		- 'not_responded' = Échec
+	finally, to check whether the burial activity (successfully or not) happened on the same day as the alert or not I use the calculated field in column CK 'Time between pre alert and leaving', looking only at those records that record '1 day' i will change
+		- 'Succes' = 'Alert d'hier complete'
+		- 'Échec' = 'Attendant pas complete'*/
+
+	//console.log('result: ', result)
+	return result;
+}
+
+
+function getStatusType(result) {
+	//console.log(result);
+	var status = '';
+
+	switch (result) {
+		case 'Succes': status = 'Successful'; break;
+		case 'Échec': status = 'Unsuccessful'; break;
+		case 'En attente': status = 'Pending'; break;
+		case 'Alerte d\'hier complétée': status = 'Successful'; break;
+		case 'Attendant pas complété': status = 'Unsuccessful'; break;
+		case 'Pas de réponse': status = 'Not Responded'; break;
+		case 'Alerte envoyée à la protection civile': status = 'Alert Sent to Protection Civile'; break;
+		default: status = 'Result type not recognised';
+	}
+	return status;
+}
+
+
+function sameDay(d1, d2) {
+  //console.log(d1, d2, typeof(d1), typeof(d2))
+  d1 = new Date(d1);
+  return d1.getFullYear() === d2.getFullYear() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getDate() === d2.getDate();
+}
+
+var yesterday = function(date1) {
+   var dt = new Date(date1);
+   return new Date((dt.setDate(dt.getDate()-1)));
+};
+
+
+function export_data_to_csv(option) {
+	//console.log(data, option)  //option = 'selected', 'all_today', 'all_yesterday'
+	var now = new Date();
+	var now_fname = now.getFullYear().toString()+(now.getMonth()+1).toString()+now.getDate().toString()+'_'+now.getHours().toString()+now.getMinutes().toString()+now.getSeconds().toString();
+	var filename;
+	var csv = [];
+	var row = [];
+	var has_rows = false;
+	const headings = excelHeadings.map(x => x['excel_heading']);
+	//console.log(headings);
+
+	switch(option) {
+		case 'selected': 		filename = 'SDB_data_selected__' + now_fname + '.csv'; break;
+		case 'all_today': 		filename = 'SDB_data_today__' + now_fname + '.csv'; break;
+		case 'all_yesterday': 	filename = 'SDB_data_yesterday__' + now_fname + '.csv'; break;
+		default: filename = 'SDB_data_' + now_fname + '.csv'; 
+	}
+	
+	csv.push(headings)
+
+
+	if (option == 'selected') {
+
+		//console.log('currentData: ', currentData)
+		currentData = reverseSortByKey(currentData, 'alert_new/datetime/date_alert&&datetime/date_alert');
+
+    	for (var i = 0; i <= currentData.length-1; i++) {
+    		//console.log(i, currentData[i])
+ 	
+    		row = []
+			var endtime = formatDateTime(currentData[i]['end'],'csv')[0];
+			
+	        for (var j = 0; j < excelHeadings.length; j++) {
+	        	
+	        	if (excelHeadings[j].excel_heading!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
+			
+		        	if (excelHeadings[j].processing_options.substr(0,5)=='calc-') {
+		        		//console.log(excelHeadings[j].processing_options, data[i][excelHeadings[j].processing_options]);
+		        		row.push(currentData[i][excelHeadings[j].processing_options]);
+		        	} else if (excelHeadings[j].excel_heading=='Fin de reponse') {
+		        		row.push(endtime);
+		        	} else {
+		        		row.push(currentData[i][excelHeadings[j].kobo_fieldname])
+		        	}
+		        }
+	            
+	        }
+	        has_rows = true;
+	        csv.push(row.join(","));	
+
+	    }
+
+	    if (!(has_rows)) {
+			csv.push(['No data has been ' + option])
+		}
+
+
+    } else {
+
+    	data = reverseSortByKey(data, 'alert_new/datetime/date_alert&&datetime/date_alert');
+
+    	for (var i = 0; i <= data.length-1; i++) {
+    		//console.log(i, data[i])
+
+    		if (((option == 'all_today') && (sameDay(data[i]['team_went/burial/begin_group_xxxxxxxx/activity_date'],now))) || ((option == 'all_yesterday') && (sameDay(data[i]['team_went/burial/begin_group_xxxxxxxx/activity_date'], yesterday(now))))) {
+
+				row = []
+				var endtime = formatDateTime(data[i]['end'],'csv')[0];
+				
+		        for (var j = 0; j < excelHeadings.length; j++) {
+		        	
+		        	if (excelHeadings[j].excel_heading!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
+				
+			        	if (excelHeadings[j].processing_options.substr(0,5)=='calc-') {
+			        		//console.log(excelHeadings[j].processing_options, data[i][excelHeadings[j].processing_options]);
+			        		row.push(data[i][excelHeadings[j].processing_options]);
+			        	} else if (excelHeadings[j].excel_heading=='Fin de reponse') {
+			        		row.push(endtime);
+			        	} else {
+			        		row.push(data[i][excelHeadings[j].kobo_fieldname])
+			        	}
+			        }
+		            
+		        }
+		        has_rows = true;
+		        csv.push(row.join(","));
+
+			}
+
+    	}
+
+    	if (!(has_rows)) {
+			csv.push(['No data available for ' + option])
+		}
+
+    }
+
+    // Download CSV
+    download_csv(csv.join("\n"), filename);
+}
+
+
+
+function download_csv(csv, filename) {
+    var csvFile;
+    var downloadLink;
+
+    csvFile = new Blob(["\uFEFF", csv], {type: "text/csv;charset=utf-8"});
+    downloadLink = document.createElement("a");   //download link
+    downloadLink.download = filename;
+    downloadLink.href = window.URL.createObjectURL(csvFile);  //create link to the file
+    downloadLink.style.display = "none";  //make sure link isn't displayed
+    document.body.appendChild(downloadLink);   //add link to DOM
+    downloadLink.click();
+}
+
+
+function createCharts(data) {
+	var cf = crossfilter(data);
+	var teamChart = dc.rowChart("#dc-team-chart");
+	var teamDim = cf.dimension(function (d) { return d['team'] });
+	var teamGroup = teamDim.group();
+
+	//row chart teams
+  	teamChart.width(300)
+	    .height(220)
+	    .margins({top: 5, left: 10, right: 10, bottom: 40})
+	    .dimension(teamDim)
+	    .group(teamGroup)
+	    .colors(d3.scale.category10())
+	    .label(function (d){
+	    	//console.log(d);
+	        return d.key;
+	    })
+	    .title(function(d){return d.key + ': '+ d.value;})
+	    .ordering(function(d) { return - d.value })
+	    .elasticX(true)
+	    .xAxis().ticks(4);
+
+	dc.renderAll();
+
+    teamChart.on("filtered", function (chart) {
+         //console.log(teamDim.top(Infinity));
+         currentData = teamDim.top(Infinity)
+         createSummarySDBTable(currentData);
+    })
+
+    //add x-axis title
+    teamChart.svg()
+        .append("text")
+        //.attr("class", "x-axis-label")
+        .attr("text-anchor", "middle")
+        .attr("x", teamChart.width()/2)
+        .attr("y", teamChart.height()-6)
+        .text('Number of Responses');
+	
+
+}
+
+
 
 
 // Get SDB/EDS data from KoBo, get headings data from CSV
@@ -591,40 +943,30 @@ $(document).ready(function () {
 
     var d2 = $.ajax({
         type: 'GET',
-		url: './sdb_config/cfg_mainHeadings.csv',
+		url: './sdb_config/cfg_excelHeadings.csv',
     	dataType: 'text'
     });
 
-    var d3 = $.ajax({
-        type: 'GET',
-		url: './sdb_config/cfg_subHeadings.csv',
-    	dataType: 'text'
-    });
-
-    $.when(d1, d2, d3).then(function (a1,a2,a3) {
+    $.when(d1, d2).then(function (a1,a2) {
         console.log('Ajax calls succeedeed');
         //console.log(a1[0],a2);
-        //createHorizontalSDBTable(a0.reverse());
-        
-        mainHeadings = processHeadings(a2[0]);
-        console.log('main headings: ', mainHeadings);
-        subHeadings = processHeadings(a3[0]);
-        console.log('sub headings: ', subHeadings);
-        var data = processKoboSDBdata(a1[0].reverse());
+        excelHeadings = processHeadings(a2[0]);
+        //console.log('excel headings: ', excelHeadings);
+        //koboFields = getKoboFields(a1[0]);
+        data = processKoboSDBdata(a1[0]);
+        currentData = data;
+        createCharts(data);
         createSummarySDBTable(data);
 
     }, function (jqXHR, textStatus, errorThrown) {
         var x1 = d1;
         var x2 = d2;
-        var x3 = d3;
+
         if (x1.readyState != 4) {
             x1.abort();
         };
         if (x2.readyState != 4) {
             x2.abort();
-        };
-        if (x3.readyState != 4) {
-            x3.abort();
         };
         alert("Data request failed");
         console.log('Ajax request failed');
