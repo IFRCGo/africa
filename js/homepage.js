@@ -3,6 +3,7 @@ function generateDash(data,geom){
 	createMap(data,geom);
 }
 
+
 function createMap(data,geom){
 
     var baselayer = L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
