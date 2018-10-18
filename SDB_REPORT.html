@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>SDB Alerts and Activities</title>
+<link rel="stylesheet" href="http://ifrcgo.org/assets/styles/vendor/dc.css">
 <style>
 	body {
 		font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
@@ -31,29 +32,71 @@
 	    background-color: #820202;
 		color: white;
 	}
-
-	button {
+	.button_list {
+		margin-top: 5rem;
+	}
+	.button {
 	    cursor: pointer;
-	    margin-top: 1rem;
+	    display: block;
+	    width: 15rem;
+	    margin-top: 0.4rem;
+	    margin-left: 1rem;
+	    border-radius: 0.4rem;
+	    height: 1.5rem;
+	}
+	.button:hover {
+	    background-color: #6280bf;
+	    color: white;
+	}
+
+	#dc-team-chart {
+		margin-left: 4rem;
+		margin-bottom: 2rem;
+		margin-right: 8rem;
+	}
+	.dc-chart g.row text {
+	    fill: black;
+	}
+
+	.row {
+		width: 100%;
+		height: auto;
+	}
+
+	.instruction  {
+		font-weight: 500;
 	}
 
 </style>
 </head>
 
 <body>
+	<h2>SDB/EDS - Dashboard des Alertes et des Activités</h2>
+
+	    <div id='dc-team-chart'>
+	      	<p class='instruction'>Cliquez sur les équipes pour sélectionner les données:</p>
+	    </div>
+
+	<div class='button_list'>
+		<button class='button' onclick="export_data_to_csv('all_today');">Toutes données d'aujourd'hui - CSV</button>
+		<button class='button' onclick="export_data_to_csv('all_yesterday');">Toutes données d'hier - CSV</button>
+		<button class='button' onclick="export_data_to_csv('selected');">Toutes données sélectionnées - CSV</button>
+	</div>
+
+	<h2>Tableau de données</h2>
+
+	<div>
+		<table id="tableSDB" style="font-size: 10px"></table>
+	</div>
 
 
-<button onclick="export_data_to_csv();">Export data to CSV file</button>
-<h2>SDB/EDS Alert & Activity Data Table</h2>
-<div>
-	<table id="tableSDB" style="font-size: 10px"></table>
-</div>
+	<script src="http://ifrcgo.org/assets/scripts/vendor/jquery.js"></script>
+	<script src="http://ifrcgo.org/assets/scripts/vendor/jquery.dataTables.js"></script>
+	<script src="http://ifrcgo.org/assets/scripts/vendor/crossfilter.min.js"></script>
+	<script src="http://ifrcgo.org/assets/scripts/vendor/d3.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/dc.js"></script>
 
-
-<script src="http://ifrcgo.org/assets/scripts/vendor/jquery.js"></script>
-<script src="http://ifrcgo.org/assets/scripts/vendor/jquery.dataTables.js"></script>
-
-<script src="./js/sdb_cod.js" type="text/javascript"></script>
-	
+	<script src="./js/sdb_cod.js" type="text/javascript"></script>
+		
 </body>
 </html>
