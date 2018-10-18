@@ -783,7 +783,7 @@ function export_data_to_csv(option) {
 	//console.log(headings);
 
 	switch(option) {
-		case 'selected': 		filename = 'SDB_data_selected__' + now_fname + '.csv'; break;
+		case 'selected': 		filename = 'SDB_data_all__' + now_fname + '.csv'; break;
 		case 'all_today': 		filename = 'SDB_data_today__' + now_fname + '.csv'; break;
 		case 'all_yesterday': 	filename = 'SDB_data_yesterday__' + now_fname + '.csv'; break;
 		default: filename = 'SDB_data_' + now_fname + '.csv'; 
