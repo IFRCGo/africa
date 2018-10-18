@@ -47,8 +47,7 @@ function updateTable(data){
 		}
 		html += '<tr><td>';
 		html += getAppealType(d['atype']);
-		html += '</td><td>'+d['name']+'</td><td>';
-		html += getDisasterType(d['dtype']);
+		html += '</td><td>'+d['name']+'</td><td>' + d['dtype']['name'];
 		html += '</td><td>'+d['start_date'].substr(0,10)+'</td><td>'+d['end_date'].substr(0,10);
 		html +='</td><td>'+niceFormatNumber(d['num_beneficiaries'],false)+'</td><td>'+niceFormatNumber(d['amount_requested'],true)+'</td><td>'+niceFormatNumber(d['amount_funded'],true);
 		html += '</td><td id="coverage'+i+'"></td><td><a href="'+url+'" target="_blank">'+d['code']+'</a></td></tr>';
@@ -244,87 +243,6 @@ function getAppealType(type) {
 			appealType = 'EA';
 	}
 	return appealType;
-}
-
-function getDisasterType(type) {
-	var disaster;
-	switch(type) {
-		case 1:
-			disaster = 'Epidemic';
-			break;
-		case 2:
-			disaster = 'Earthquake';
-			break;
-		case 4:
-			disaster = 'Cyclone';
-			break;
-		case 5:
-			disaster = 'Population Movement';
-			break;
-		case 6:
-			disaster = 'Complex Emergency';
-			break;
-		case 7:
-			disaster = 'Civil Unrest';
-			break;
-		case 8:
-			disaster = 'Volcanic Eruption';
-			break;
-		case 11:
-			disaster = 'Tsunami';
-			break;
-		case 12:
-			disaster = 'Flood';
-			break;
-		case 13:
-			disaster = 'Other';
-			break;
-		case 14:
-			disaster = 'Cold Wave';
-			break;
-		case 15:
-			disaster = 'Fire';
-			break;
-		case 19:
-			disaster = 'Heat Wave';
-			break;
-		case 20:
-			disaster = 'Drought';
-			break;
-		case 21:
-			disaster = 'Food Insecurity';
-			break;
-		case 23:
-			disaster = 'Storm Surge';
-			break;
-		case 24:
-			disaster = 'Landslide';
-			break;
-		case 27:
-			disaster = 'Pluvial/Flash Flood';
-			break;
-		case 54:
-			disaster = 'Transport Accident';
-			break;
-		case 57:
-			disaster = 'Chemical Emergency';
-			break;
-		case 62:
-			disaster = 'Insect Infestation';
-			break;
-		case 66:
-			disaster = 'Biological Emergency';
-			break;
-		case 67:
-			disaster = 'Radiological Emergency';
-			break;
-		case 68:
-			disaster = 'Transport Emergency';
-			break;
-		default:
-			disaster = 'other';
-	}
-	return disaster;
 }
 
 //global vars
