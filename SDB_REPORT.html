@@ -33,11 +33,11 @@
 		color: white;
 	}
 	.button_list {
-		margin-top: 5rem;
+		/*margin-top: 5rem;*/
 	}
 	.button {
 	    cursor: pointer;
-	    display: block;
+	    /*display: block;*/
 	    width: 15rem;
 	    margin-top: 0.4rem;
 	    margin-left: 1rem;
@@ -73,14 +73,14 @@
 <body>
 	<h2>SDB/EDS - Dashboard des Alertes et des Activités</h2>
 
-	    <div id='dc-team-chart'>
+	   <!--  <div id='dc-team-chart'>
 	      	<p class='instruction'>Cliquez sur les équipes pour sélectionner les données:</p>
-	    </div>
+	    </div> -->
 
 	<div class='button_list'>
 		<button class='button' onclick="export_data_to_csv('all_today');">Toutes données d'aujourd'hui - CSV</button>
 		<button class='button' onclick="export_data_to_csv('all_yesterday');">Toutes données d'hier - CSV</button>
-		<button class='button' onclick="export_data_to_csv('selected');">Toutes données sélectionnées - CSV</button>
+		<button class='button' onclick="export_data_to_csv('selected');">Toutes les données - CSV</button>
 	</div>
 
 	<h2>Tableau de données</h2>
