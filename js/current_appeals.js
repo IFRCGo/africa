@@ -99,7 +99,14 @@ function createMap(data,geom){
 		var fillOpacity = 0;
 		var cls = 'country'
 
-		if(data.map(function(e) { return e['country']['iso']; }).indexOf(feature.properties['ISO_A2'].toLowerCase())>-1){
+//		if(data.map(function(e) { return e['country']['iso']; }).indexOf(feature.properties['ISO_A2'].toLowerCase())>-1){
+		if(data.map(function(e) { 
+			var valISO = ""
+			if (e['country'] !== null) {
+				valISO = e['country']['iso']; 
+			}
+			return valISO; 
+		}).indexOf(feature.properties['ISO_A2'].toLowerCase())>-1){
 			color = '#D33F49';
 			fillOpacity = 0.7;
 			cls = 'appealcountry country appeal'+feature.properties['ISO_A2']
@@ -123,7 +130,13 @@ function createMap(data,geom){
     }).addTo(map);
     var bbox = [[90,180],[-90,-180]];
     map.overlay.eachLayer(function(l){
-    	if(data.map(function(e) { return e['country']['iso']; }).indexOf(l.feature.properties['ISO_A2'].toLowerCase())>-1){
+    	if(data.map(function(e) { 
+			var valISO = ""
+			if (e['country'] !== null) {
+				valISO = e['country']['iso']; 
+			}
+			return valISO; 
+		 }).indexOf(l.feature.properties['ISO_A2'].toLowerCase())>-1){
     		if(bbox[0][0]>l.feature.properties.bounds_calculated._southWest.lat){bbox[0][0]=l.feature.properties.bounds_calculated._southWest.lat};
     		if(bbox[0][1]>l.feature.properties.bounds_calculated._southWest.lng){bbox[0][1]=l.feature.properties.bounds_calculated._southWest.lng};
     		if(bbox[1][0]<l.feature.properties.bounds_calculated._northEast.lat){bbox[1][0]=l.feature.properties.bounds_calculated._northEast.lat};
@@ -334,7 +347,7 @@ appealsGoUrl = appealsGoUrl.replace('999999',date);
 
 var downloadurl = 'https://prddsgocdnapi.azureedge.net/api/v2/appeal/?format=csv&end_date__gte=999999T00%3A00%3A00&region=0&status=0';
 var downloadurl = downloadurl.replace('999999',date);
-$('#download_link').html('<a href="'+downloadurl+'" target="_blank">Download Data</a>');
+$('#download_link').html('<a href="'+downloadurl+'" download="current_appeals.csv">Download Data</a>');
 
 var dataCall = $.ajax({
     type: 'GET',
@@ -350,7 +363,6 @@ var geomCall = $.ajax({
 
 $.when(dataCall, geomCall).then(function(dataArgs, geomArgs){
 	var data = dataArgs[0].results;
-    console.log(data);
     var geom = topojson.feature(geomArgs[0],geomArgs[0].objects.geom);
     generateDash(data,geom)
 });
