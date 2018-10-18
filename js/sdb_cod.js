@@ -5,7 +5,7 @@
 // Sept-Oct 2018
 //
 // NOTES:
-// 1. In cfg_subHeadings.csv:
+// 1. In cfg_excelHeadings.csv:
 //    - order counts - i.e. calculate fields must come after the fields that they are based on
 //		 - perhaps all calculate fields should be at the bottom of the file?
 // 	  - for team specs - replace team characters with 'xxxxxxxx' in config file - this can then match
@@ -14,7 +14,8 @@
 //**************************************************************************************************//
 
 
-let koboFields, excelHeadings, data;
+let excelHeadings, data, currentData;
+//let koboFields;
 
 let blank = ' ';
 
@@ -29,6 +30,10 @@ let mainHeadings = {
 		'teamburial': 'Team Burial Details',
 		'other': 'Other',
 };
+
+let spellChanges = {
+	'etc': 'CTE',
+}
 
 
 //Parses CSV files - creates array of objects
@@ -59,7 +64,7 @@ function processHeadings(heads) {
     }
 }
 
-function getKoboFields(records) { 		//reads all fieldnames from kobo data
+/*function getKoboFields(records) { 		//reads all fieldnames from kobo data
 	var fieldname_list = [];
 	for (var i=0; i<=records.length-1; i++) {
 		//console.log(records[i]);
@@ -72,12 +77,13 @@ function getKoboFields(records) { 		//reads all fieldnames from kobo data
 	};
 	//console.log('kobo fields: ', fieldname_list);
 	return fieldname_list;
-}; 
+};*/ 
 
 /**/
 
 //function to reverse sort array of objects by a given key
 function reverseSortByKey(array, key) {
+	//console.log(array, key)
     return array.sort(function(a, b) {
         var x = a[key]; 
         var y = b[key];
@@ -107,10 +113,9 @@ function processKoboSDBdata(sdbData) {
 		//FIRST ADD KOBO FIELDS NEEDED FOR PROCESSING ONLY, NOT FOR OUTPUT
 		temp['team_went/burial/status'] = record['team_went/burial/status'];
 
-		//for each subHeading (corresponds to each row defined in cfg_subHeadings.csv - i.e. all kobo fieldnames and calculated fields)
+		//for each excelHeading (corresponds to each row defined in cfg_excelHeadings.csv - i.e. all kobo fieldnames and calculated fields)
 		for (var h in excelHeadings) {
 			//console.log(h, excelHeadings[h])
-			//console.log(subHeadings[h].mainheading_prefix)
 			if (excelHeadings[h].excel_heading!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
 		
 				//1. CREATE A KEY (new_keyname) IN NEW DATA RECORD (temp) WHETHER OR NOT THERE IS DATA 
@@ -123,7 +128,7 @@ function processKoboSDBdata(sdbData) {
 					//then new_keyname is assigned to first in list of possible fieldnames (even if data comes from a diff new_keyname, as need to keep fieldnames consistent)
 					new_keyname = excelHeadings[h].kobo_fieldname //.split('&&')[0];
 					first_valid_field = getFirstValidField(excelHeadings[h].kobo_fieldname, record);  //returns [value, keyname]
-					//console.log('first_valid_field: ', first_valid_field);
+					//console.log('first_valid_field: ', first_valid_field, excelHeadings[h].kobo_fieldname);
 					
 					if (first_valid_field.length == 0) {	    //if all fields were null
 						//console.log('CHECK THIS ONE')
@@ -152,7 +157,8 @@ function processKoboSDBdata(sdbData) {
 					switch (new_keyname.substr(5)) {	
 						case 'age_group': temp[new_keyname] = getAgeGroup(temp['group_deceased/age_of_deceased']); break;
 						case 'sex': temp[new_keyname] = getSexCalcul(temp['group_deceased/gender_of_deceased']); break;
-						case 'response_time': temp[new_keyname] = getResponseTime(temp['alert_new/datetime/date_alert&&datetime/date_alert'], temp['alert_new/datetime/time_pre_alert&&datetime/time_pre_alert'],temp['team_went/burial/begin_group_xxxxxxxx/activity_date'],temp['team_went/burial/begin_group_xxxxxxxx/time_of_departure']); break;
+						case 'response_time': temp[new_keyname] = getResponseTime(temp['alert_new/datetime/date_alert&&datetime/date_alert'], temp['alert_new/datetime/time_pre_alert&&datetime/time_pre_alert'],temp['team_went/burial/begin_group_xxxxxxxx/activity_date'],temp['team_went/burial/begin_group_xxxxxxxx/time_of_departure']);
+							if (temp[new_keyname]==blank) temp[new_keyname]='Not available'; break;
 						case 'epiweek_num': temp[new_keyname] = getEpiweekNum(temp['alert_new/datetime/date_alert&&datetime/date_alert']); break;
 						case 'result_type': var result = getResultType(temp);
 												temp[new_keyname] = result; break;
@@ -165,10 +171,10 @@ function processKoboSDBdata(sdbData) {
 					kobo_fieldused = 'NA';
 					new_keyname = excelHeadings[h].kobo_fieldname;
 					temp[new_keyname] = getTeamSpecs(new_keyname, record);
+					//if (temp[new_keyname]==blank) console.log(new_keyname, record)
 
 				//if fieldname corresponds to circumstances of failure 
 				} else if (excelHeadings[h].processing_options == 'yn') {  
-					//console.log(subHeadings[h].kobo_fieldname);
 					//kobo_fieldused = 'NA';
 					new_keyname = excelHeadings[h].kobo_fieldname;
 					//temp[new_keyname] = getCircumstancesOfFailure(new_keyname, record);
@@ -203,7 +209,6 @@ function processKoboSDBdata(sdbData) {
 				} else {
 					try {
 						kobo_fieldused = excelHeadings[h].kobo_fieldname;
-						//new_keyname = subHeadings[h].kobo_fieldname;
 						new_keyname = kobo_fieldused;
 						temp[new_keyname] = record[new_keyname];     		//copy original key and value over to temp object
 						//console.log(new_keyname, temp[new_keyname], typeof(temp[new_keyname]));
@@ -211,6 +216,11 @@ function processKoboSDBdata(sdbData) {
 				    	console.log('Error processing SDB data: ', err)
 				        return err
 				    }
+				}
+
+				//replace spellings with spellChanges
+				if (spellChanges.hasOwnProperty(temp[new_keyname])) {
+					temp[new_keyname] = spellChanges[temp[new_keyname]];
 				}
 
 				//check all fields for null values
@@ -246,6 +256,7 @@ function processKoboSDBdata(sdbData) {
 					//console.log(new_keyname, kobo_fieldused, temp[new_keyname], typeof(temp[new_keyname]))
 
 				} 
+				
 
 			}
 
@@ -263,8 +274,10 @@ function processKoboSDBdata(sdbData) {
 }
 
 function createSummarySDBTable(sdbData) {
+	//console.log("currentData: ", sdbData)
 	var html = "";
 	var sdbHtml = "";
+	$('#tableSDB').html('');
 
 	//write table headings
 	html += '<tr bgcolor="#cfdff9">';
@@ -273,6 +286,8 @@ function createSummarySDBTable(sdbData) {
 	}
 	html += '</tr>';
 	$('#tableSDB').append(html);
+
+	sdbData = reverseSortByKey(sdbData, 'alert_new/datetime/date_alert&&datetime/date_alert');
 
 	//write table rows
 	sdbData.forEach(function(d,i){
@@ -311,7 +326,12 @@ function getSubHeadingHtml(mainhead, record) {
 
 			if (excelHeadings[i]['kobo_fieldname'] == 'team_went/burial/begin_group_xxxxxxxx/activity_date') {
 				//console.log('return ', record[r])
-				html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><br><b>' + formatDate(record[excelHeadings[i].kobo_fieldname],'screen') + '</b><br>';
+				if (record[excelHeadings[i].kobo_fieldname] == blank) {
+					var date_output = 'Not available';
+				} else {
+					var date_output = formatDate(record[excelHeadings[i].kobo_fieldname],'screen');
+				}	
+				html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><br><b>' + date_output + '</b><br>';		
 
 
 			} else if (excelHeadings[i].processing_options.substr(0,15) == 'multiple_choice') {
@@ -456,6 +476,7 @@ function getTeamSpecs(key, record) {
 			};
 		}
 	}
+	//console.log('get TeamSpecs blank ', key, record)
 	return blank; //specs;
 }
 
@@ -538,6 +559,7 @@ function getFirstValidField(fields, row) {
 		};
 		i++
 	};
+	//console.log(fields,row, row[fields_list[0]], row[fields_list[1]])
 	return [];	
 }
 
@@ -643,9 +665,10 @@ function getDateTimeFromDatetime(datetime){
 	}
 
 	let newDate = new Date(datetime);
-	
+	//console.log('CHECK getDateTimeFromDatetime: ', datetime, ' => ', newDate);
 	return newDate;
 }
+
 
 Date.prototype.addDays = function(days) {
     var date = new Date(this.valueOf());
@@ -734,44 +757,116 @@ function getStatusType(result) {
 }
 
 
+function sameDay(d1, d2) {
+  //console.log(d1, d2, typeof(d1), typeof(d2))
+  d1 = new Date(d1);
+  return d1.getFullYear() === d2.getFullYear() &&
+    d1.getMonth() === d2.getMonth() &&
+    d1.getDate() === d2.getDate();
+}
 
-function export_data_to_csv() {
-	//console.log(data)
+var yesterday = function(date1) {
+   var dt = new Date(date1);
+   return new Date((dt.setDate(dt.getDate()-1)));
+};
+
+
+function export_data_to_csv(option) {
+	//console.log(data, option)  //option = 'selected', 'all_today', 'all_yesterday'
 	var now = new Date();
 	var now_fname = now.getFullYear().toString()+(now.getMonth()+1).toString()+now.getDate().toString()+'_'+now.getHours().toString()+now.getMinutes().toString()+now.getSeconds().toString();
-	var filename = 'SDB_data_' + now_fname + '.csv';
+	var filename;
 	var csv = [];
 	var row = [];
+	var has_rows = false;
 	const headings = excelHeadings.map(x => x['excel_heading']);
 	//console.log(headings);
 
-	data = reverseSortByKey(data, 'alert_new/datetime/date_alert&&datetime/date_alert');
-
-	csv.push(headings)
-	
-    for (var i = 0; i < data.length-1; i++) {
-    	//console.log(data[i])
-		row = []
-		var endtime = formatDateTime(data[i]['end'],'csv')[0];
-		
-        for (var j = 0; j < excelHeadings.length; j++) {
-        	
-        	if (excelHeadings[j].excel_heading!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
-		
-	        	if (excelHeadings[j].processing_options.substr(0,5)=='calc-') {
-	        		//console.log(excelHeadings[j].processing_options, data[i][excelHeadings[j].processing_options]);
-	        		row.push(data[i][excelHeadings[j].processing_options]);
-	        	} else if (excelHeadings[j].excel_heading=='Fin de reponse') {
-	        		row.push(endtime);
-	        	} else {
-	        		row.push(data[i][excelHeadings[j].kobo_fieldname])
-	        	}
-	        }
-            
-        }
-        
-		csv.push(row.join(","));		
+	switch(option) {
+		case 'selected': 		filename = 'SDB_data_selected__' + now_fname + '.csv'; break;
+		case 'all_today': 		filename = 'SDB_data_today__' + now_fname + '.csv'; break;
+		case 'all_yesterday': 	filename = 'SDB_data_yesterday__' + now_fname + '.csv'; break;
+		default: filename = 'SDB_data_' + now_fname + '.csv'; 
 	}
+	
+	csv.push(headings)
+
+
+	if (option == 'selected') {
+
+		//console.log('currentData: ', currentData)
+		currentData = reverseSortByKey(currentData, 'alert_new/datetime/date_alert&&datetime/date_alert');
+
+    	for (var i = 0; i <= currentData.length-1; i++) {
+    		//console.log(i, currentData[i])
+ 	
+    		row = []
+			var endtime = formatDateTime(currentData[i]['end'],'csv')[0];
+			
+	        for (var j = 0; j < excelHeadings.length; j++) {
+	        	
+	        	if (excelHeadings[j].excel_heading!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
+			
+		        	if (excelHeadings[j].processing_options.substr(0,5)=='calc-') {
+		        		//console.log(excelHeadings[j].processing_options, data[i][excelHeadings[j].processing_options]);
+		        		row.push(currentData[i][excelHeadings[j].processing_options]);
+		        	} else if (excelHeadings[j].excel_heading=='Fin de reponse') {
+		        		row.push(endtime);
+		        	} else {
+		        		row.push(currentData[i][excelHeadings[j].kobo_fieldname])
+		        	}
+		        }
+	            
+	        }
+	        has_rows = true;
+	        csv.push(row.join(","));	
+
+	    }
+
+	    if (!(has_rows)) {
+			csv.push(['No data has been ' + option])
+		}
+
+
+    } else {
+
+    	data = reverseSortByKey(data, 'alert_new/datetime/date_alert&&datetime/date_alert');
+
+    	for (var i = 0; i <= data.length-1; i++) {
+    		//console.log(i, data[i])
+
+    		if (((option == 'all_today') && (sameDay(data[i]['team_went/burial/begin_group_xxxxxxxx/activity_date'],now))) || ((option == 'all_yesterday') && (sameDay(data[i]['team_went/burial/begin_group_xxxxxxxx/activity_date'], yesterday(now))))) {
+
+				row = []
+				var endtime = formatDateTime(data[i]['end'],'csv')[0];
+				
+		        for (var j = 0; j < excelHeadings.length; j++) {
+		        	
+		        	if (excelHeadings[j].excel_heading!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
+				
+			        	if (excelHeadings[j].processing_options.substr(0,5)=='calc-') {
+			        		//console.log(excelHeadings[j].processing_options, data[i][excelHeadings[j].processing_options]);
+			        		row.push(data[i][excelHeadings[j].processing_options]);
+			        	} else if (excelHeadings[j].excel_heading=='Fin de reponse') {
+			        		row.push(endtime);
+			        	} else {
+			        		row.push(data[i][excelHeadings[j].kobo_fieldname])
+			        	}
+			        }
+		            
+		        }
+		        has_rows = true;
+		        csv.push(row.join(","));
+
+			}
+
+    	}
+
+    	if (!(has_rows)) {
+			csv.push(['No data available for ' + option])
+		}
+
+    }
 
     // Download CSV
     download_csv(csv.join("\n"), filename);
@@ -793,6 +888,50 @@ function download_csv(csv, filename) {
 }
 
 
+function createCharts(data) {
+	var cf = crossfilter(data);
+	var teamChart = dc.rowChart("#dc-team-chart");
+	var teamDim = cf.dimension(function (d) { return d['team'] });
+	var teamGroup = teamDim.group();
+
+	//row chart teams
+  	teamChart.width(300)
+	    .height(220)
+	    .margins({top: 5, left: 10, right: 10, bottom: 40})
+	    .dimension(teamDim)
+	    .group(teamGroup)
+	    .colors(d3.scale.category10())
+	    .label(function (d){
+	    	//console.log(d);
+	        return d.key;
+	    })
+	    .title(function(d){return d.key + ': '+ d.value;})
+	    .ordering(function(d) { return - d.value })
+	    .elasticX(true)
+	    .xAxis().ticks(4);
+
+	dc.renderAll();
+
+    teamChart.on("filtered", function (chart) {
+         //console.log(teamDim.top(Infinity));
+         currentData = teamDim.top(Infinity)
+         createSummarySDBTable(currentData);
+    })
+
+    //add x-axis title
+    teamChart.svg()
+        .append("text")
+        //.attr("class", "x-axis-label")
+        .attr("text-anchor", "middle")
+        .attr("x", teamChart.width()/2)
+        .attr("y", teamChart.height()-6)
+        .text('Number of Responses');
+	
+
+}
+
+
+
 
 // Get SDB/EDS data from KoBo, get headings data from CSV
 $(document).ready(function () {
@@ -802,55 +941,32 @@ $(document).ready(function () {
     	dataType: 'jsonp',
     });
 
-    /*var d2 = $.ajax({
-        type: 'GET',
-		url: './sdb_config/cfg_mainHeadings.csv',
-    	dataType: 'text'
-    });*/
-
-    /*var d3 = $.ajax({
-        type: 'GET',
-		url: './sdb_config/cfg_subHeadings.csv',
-    	dataType: 'text'
-    });*/
-
-    var d4 = $.ajax({
+    var d2 = $.ajax({
         type: 'GET',
 		url: './sdb_config/cfg_excelHeadings.csv',
     	dataType: 'text'
     });
 
-    $.when(d1, d4).then(function (a1,a4) {
+    $.when(d1, d2).then(function (a1,a2) {
         console.log('Ajax calls succeedeed');
         //console.log(a1[0],a2);
-        //createHorizontalSDBTable(a0.reverse());
-        
-        /*mainHeadings = processHeadings(a2[0]);
-        console.log('main headings: ', mainHeadings);*/
-        /*subHeadings = processHeadings(a3[0]);
-        console.log('sub headings: ', subHeadings);*/
-        excelHeadings = processHeadings(a4[0]);
-        console.log('excel headings: ', excelHeadings);
-        koboFields = getKoboFields(a1[0]);
+        excelHeadings = processHeadings(a2[0]);
+        //console.log('excel headings: ', excelHeadings);
+        //koboFields = getKoboFields(a1[0]);
         data = processKoboSDBdata(a1[0]);
+        currentData = data;
+        createCharts(data);
         createSummarySDBTable(data);
 
     }, function (jqXHR, textStatus, errorThrown) {
         var x1 = d1;
-        //var x2 = d2;
-        //var x3 = d3;
-        var x4 = d4;
+        var x2 = d2;
+
         if (x1.readyState != 4) {
             x1.abort();
         };
-        /*if (x2.readyState != 4) {
+        if (x2.readyState != 4) {
             x2.abort();
-        };*/
-        /*if (x3.readyState != 4) {
-            x3.abort();
-        };*/
-        if (x4.readyState != 4) {
-            x4.abort();
         };
         alert("Data request failed");
         console.log('Ajax request failed');
