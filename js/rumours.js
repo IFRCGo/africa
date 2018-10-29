@@ -193,7 +193,7 @@ function processRumourData(data) {
 
 		
 	}
-	exportData(unique_rumours);
+	//exportData(unique_rumours);
 	console.log('Unique rumours: ', unique_rumours.length, unique_rumours);
 	console.log('Number of rumours with multiple keywords: ', count_mult_keywords);
 	console.log('Keyword counts: ', keyword_counts);
