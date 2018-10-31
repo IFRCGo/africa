@@ -149,6 +149,12 @@ function getPNSname(hash) {
 		case 'ITA':
 			pnsName = 'Italian+Red+Cross';
 			break;
+		case 'QAT':
+			pnsName = 'Qatar+Red+Crescent+Society';
+			break;
+		case 'FRA':
+			pnsName = 'French+Red+Cross';
+			break;
 		default:
 			pnsName = 'unknown';
 	}
