@@ -771,26 +771,30 @@ var yesterday = function(date1) {
 };
 
 
-function export_data_to_csv(option) {
-	//console.log(data, option)  //option = 'selected', 'all_today', 'all_yesterday'
+function exportData(fileType,option) {
+	//console.log(fileType, option)  //option = 'selected', 'all_today', 'all_yesterday'
 	var now = new Date();
 	var now_fname = now.getFullYear().toString()+(now.getMonth()+1).toString()+now.getDate().toString()+'_'+now.getHours().toString()+now.getMinutes().toString()+now.getSeconds().toString();
 	var filename;
-	var csv = [];
+	var rows = [];
 	var row = [];
 	var has_rows = false;
 	const headings = excelHeadings.map(x => x['excel_heading']);
 	//console.log(headings);
 
 	switch(option) {
-		case 'selected': 		filename = 'SDB_data_all__' + now_fname + '.csv'; break;
-		case 'all_today': 		filename = 'SDB_data_today__' + now_fname + '.csv'; break;
-		case 'all_yesterday': 	filename = 'SDB_data_yesterday__' + now_fname + '.csv'; break;
-		default: filename = 'SDB_data_' + now_fname + '.csv'; 
+		case 'selected': 		filename = 'SDB_data_all__' + now_fname; break;
+		case 'all_today': 		filename = 'SDB_data_today__' + now_fname; break;
+		case 'all_yesterday': 	filename = 'SDB_data_yesterday__' + now_fname; break;
+		default: filename = 'SDB_data_' + now_fname + '.xls'; 
 	}
+	if (fileType=='csv') {
+		filename = filename + '.csv';
+    } else if (fileType=='xlsx') {
+    	filename = filename + '.xlsx';
+    }
 	
-	csv.push(headings)
-
+	rows.push(headings)
 
 	if (option == 'selected') {
 
@@ -819,12 +823,16 @@ function export_data_to_csv(option) {
 	            
 	        }
 	        has_rows = true;
-	        csv.push(row.join(","));	
+	        if (fileType=='csv') {
+				rows.push(row.join(","));
+		    } else if (fileType=='xlsx') {
+		    	rows.push(row);
+		    }
 
 	    }
 
 	    if (!(has_rows)) {
-			csv.push(['No data has been ' + option])
+			rows.push(['Aucune donnée n\'a été sélectionnée'])
 		}
 
 
@@ -856,20 +864,35 @@ function export_data_to_csv(option) {
 		            
 		        }
 		        has_rows = true;
-		        csv.push(row.join(","));
+		        if (fileType=='csv') {
+					rows.push(row.join(","));
+			    } else if (fileType=='xlsx') {
+			    	rows.push(row);
+			    }
 
 			}
 
     	}
 
     	if (!(has_rows)) {
-			csv.push(['No data available for ' + option])
+    		if (option=='all_today') {
+				rows.push(['Aucune donnée disponible pour aujourd\'hui'])
+			} else if (option=='all_yesterday') {
+				rows.push(['Aucune donnée disponible pour hier'])
+			}
 		}
 
     }
 
-    // Download CSV
-    download_csv(csv.join("\n"), filename);
+    if (fileType=='csv') {
+		download_csv(rows.join("\n"), filename);
+    } else if (fileType=='xlsx') {
+    	//console.log(rows,filename)
+    	download_xlsx(rows, filename);
+    	console.log('Downloaded: ', filename);
+    }
+	
+
 }
 
 
@@ -879,12 +902,34 @@ function download_csv(csv, filename) {
     var downloadLink;
 
     csvFile = new Blob(["\uFEFF", csv], {type: "text/csv;charset=utf-8"});
+    //csvFile = new Blob(["\uFEFF", csv], {type: "application/vnd.ms-excel;charset=utf-8"});
     downloadLink = document.createElement("a");   //download link
     downloadLink.download = filename;
     downloadLink.href = window.URL.createObjectURL(csvFile);  //create link to the file
     downloadLink.style.display = "none";  //make sure link isn't displayed
     document.body.appendChild(downloadLink);   //add link to DOM
     downloadLink.click();
+}
+
+
+
+function download_xlsx(rows, filename) {
+	var sheetName = 'Data';
+
+    var wb = XLSX.utils.book_new();
+    wb.SheetNames.push(sheetName);
+    var ws = XLSX.utils.aoa_to_sheet(rows);
+    wb.Sheets[sheetName] = ws;
+    var wbout = XLSX.write(wb, {bookType:'xlsx',  type: 'binary'});
+    function s2ab(s) {
+        var buf = new ArrayBuffer(s.length);
+        var view = new Uint8Array(buf);
+        for (var i=0; i<s.length; i++) view[i] = s.charCodeAt(i) & 0xFF;
+        return buf;        
+    }
+        
+    saveAs(new Blob([s2ab(wbout)],{type:"application/octet-stream"}), filename);
+       
 }
 
 
@@ -900,7 +945,8 @@ function createCharts(data) {
 	    .margins({top: 5, left: 10, right: 10, bottom: 40})
 	    .dimension(teamDim)
 	    .group(teamGroup)
-	    .colors(d3.scale.category10())
+	    .colors(['steelblue'])
+	    //.colors(d3.scaleOrdinal(d3.schemeCategory10))
 	    .label(function (d){
 	    	//console.log(d);
 	        return d.key;

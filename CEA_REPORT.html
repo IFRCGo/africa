@@ -11,25 +11,9 @@
 	h2 {
 		clear: both;
 	}
-	#DayReport {
-		width: 100%;
-		
-	}
 
-	.statsBox {
-		width: 100%; 
-		display: block;
-		background-color: lightgrey;
-		padding: 5px;
-		color: red;
-		font-weight: bold;
-		font-size: larger;
-	}
 	@media only screen and (max-width: 750px) {
-		#Alerts {
-			width: 100%;
-		}
-		#Activities {
+		#tableCEA {
 			width: 100%;
 		}
 		
@@ -39,14 +23,30 @@
 	}
 	#tableCEA td, tr{
 		padding: 0px;
-    border: 1px solid lightgrey;
+    	border: 1px solid lightgrey;
 	}
 	#tableCEA th{
 	    background-color: #820202;
-			color: white;
+		color: white;
 	}
 	.error {
 		color: red;
+	}
+	.button_list {
+		margin-top: 1rem;
+	}
+	.button {
+	    cursor: pointer;
+	    /*display: block;*/
+	    width: 15rem;
+	    margin-top: 0.4rem;
+	    margin-left: 1rem;
+	    border-radius: 0.4rem;
+	    height: 1.5rem;
+	}
+	.button:hover {
+	    background-color: #6280bf;
+	    color: white;
 	}
 
 </style>
@@ -54,16 +54,25 @@
 
 <body>
 
-<h2>CEA Data Table</h2>
+<div class='button_list'>
+	<button class='button' onclick="exportData('xlsx','all_week');">Toutes données de cette semaine - XLSX</button>
+	<button class='button' onclick="exportData('xlsx','selected');">Toutes les données - XLSX</button>
+</div>
+
+
+<h2>CEA - Tableau de données</h2>
 <div>
 	<table id="tableCEA" style="font-size: 10px"></table>
 </div>
 	
 
 <script src="http://ifrcgo.org/assets/scripts/vendor/jquery.js"></script>
-<script src="http://ifrcgo.org/assets/scripts/vendor/jquery.dataTables.js"></script>
+<!-- <script src="http://ifrcgo.org/assets/scripts/vendor/jquery.dataTables.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.0/xlsx.full.min.js"></script>
+<script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
 
 <script src="./js/cea_cod.js" type="text/javascript"></script>
 	
 </body>
 </html>
+
