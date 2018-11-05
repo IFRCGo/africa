@@ -19,6 +19,13 @@
 			width: 100%;
 		}		
 	}
+
+	#title {
+		font-size: 1.2rem;
+		font-weight: 600;
+		margin-bottom: 1.2rem;
+	}
+
 	#tableRumLink{
 		width: 100%;
 		border-spacing: 0px;
@@ -43,6 +50,11 @@
 		font-size:14px;
 		font-weight: 700;
 	}
+	td.total{
+		font-size:12px;
+		font-weight: 650;
+		background: #fff99d;
+	}
 	#tableRumLink td.diagonal{
 		background: #ebcdf8;
 		font-weight: 700;
@@ -62,21 +74,28 @@
 </head>
 
 <body>
-	<h2>Corrélation des mots clé</h2>
+	<!-- <h2>Ituri et Nord Kivu - Riposte MVE - Corrélation des mots clé de rumeurs (données au 26/10/2018)</h2> -->
+	<span id='title'></span>
 
 	<div>
 		<table id="tableRumLink" style="font-size: 10px"></table>
 	</div>
 
-	<h3>Nombre total d'occurrences de mots clés: </h3>
+	<!-- <h3>Nombre total d'occurrences de mots clés: </h3>
 	<div>
 		<table id="tableRumLinkSummary" style="font-size: 12px"></table>
 	</div>
-
+ -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.14.0/xlsx.full.min.js"></script>
 	<script src="https://fastcdn.org/FileSaver.js/1.1.20151003/FileSaver.min.js"></script>
-	<script src="http://ifrcgo.org/assets/scripts/vendor/jquery.js"></script>
 
+	<script src="http://ifrcgo.org/assets/scripts/vendor/jquery.js"></script>
+	<!-- <script src="http://ifrcgo.org/assets/scripts/vendor/jquery.dataTables.js"></script>
+	<script src="http://ifrcgo.org/assets/scripts/vendor/crossfilter.min.js"></script>
+	<script src="http://ifrcgo.org/assets/scripts/vendor/d3.js"></script>
+    <script src="http://ifrcgo.org/assets/scripts/vendor/dc.js"></script> -->
+
+    <script src="./js/data.js" type="text/javascript"></script>
 	<script src="./js/rumours.js" type="text/javascript"></script>
 		
 </body>
