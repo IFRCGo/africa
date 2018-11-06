@@ -38,19 +38,12 @@ function updateTable(data){
 	$('#data-table').html("");
 	var html = "";
 	data.forEach(function(d,i){
-		if(d['atype']==0){
-			//DREF
-			var url = 'http://www.ifrc.org/en/publications-and-reports/appeals/?ac='+d['code']+'&at=0&c=&co=&dt=1&f=&re=&t=&ti=&zo='
-		} else {
-			//EA
-			var url = 'http://ifrcgo.org/appeals/'+d['code'].toLowerCase()
-		}
 		html += '<tr><td>';
 		html += getAppealType(d['atype']);
 		html += '</td><td>'+d['name']+'</td><td>' + d['dtype']['name'];
 		html += '</td><td>'+d['start_date'].substr(0,10)+'</td><td>'+d['end_date'].substr(0,10);
 		html +='</td><td>'+niceFormatNumber(d['num_beneficiaries'],false)+'</td><td>'+niceFormatNumber(d['amount_requested'],true)+'</td><td>'+niceFormatNumber(d['amount_funded'],true);
-		html += '</td><td id="coverage'+i+'"></td><td><a href="'+url+'" target="_blank">'+d['code']+'</a></td></tr>';
+		html += '</td><td id="coverage'+i+'"></td><td><a href="https://go.ifrc.org/emergencies/'+d['event']+'" target="_blank">'+d['code']+'</a></td></tr>';
 	});
 	$('#tcontents').html(html);
 	data.forEach(function(d,i){
