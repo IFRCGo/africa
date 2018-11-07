@@ -579,7 +579,7 @@ $(document).ready(function () {
    
 
     //Get rumours data from googlesheet
-    var url = 'https://spreadsheets.google.com/feeds/list/12z67qIUnTdVd3hgVwJB0HfDnNTFWjdEJkqaJq4M8AQg/2/public/values?alt=json';
+    var url = 'https://spreadsheets.google.com/feeds/list/12z67qIUnTdVd3hgVwJB0HfDnNTFWjdEJkqaJq4M8AQg/3/public/values?alt=json';
     //note that /2/ after the worksheetID is for 2nd page in workbook ('Donnees')
     $.getJSON(url, function(gsdata) {
     	//console.log('Original googlesheet data: ', gsdata);
