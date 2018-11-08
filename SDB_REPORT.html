@@ -9,8 +9,12 @@
 		font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
 		font-size: 10pt;
 	}
-	h2 {
+	/*h2 {
 		clear: both;
+	}*/
+	#title {
+		font-size: 1.2rem;
+		font-weight: 700;
 	}
 
 	/* On screens that are 750px wide or less */
@@ -20,40 +24,101 @@
 		}		
 	}
 	#tableSDB{
+		table-layout: fixed;
+		padding-top: 0.5rem;
 		width: 100%;
-		border-spacing: 0px;
+		border-collapse: collapse;
+		/*border-spacing: 0px;*/
 	}
+	thead th:nth-child(1) {
+	  width: 8%;
+	}
+	thead th:nth-child(2) {
+	  width: 6%;
+	}
+	thead th:nth-child(3) {
+	  width: 16%;
+	}
+	thead th:nth-child(4) {
+	  width: 10%;
+	}
+	thead th:nth-child(5) {
+	  width: 10%;
+	}
+	thead th:nth-child(6) {
+	  width: 10%;
+	}
+	thead th:nth-child(7) {
+	  width: 15%;
+	}
+	thead th:nth-child(8) {
+	  width: 10%;
+	}
+	thead th:nth-child(9) {
+	  width: 15%;
+	}
+
+	th, td {
+	  padding: 2px;
+	}
+
 	#tableSDB td, tr{
-		padding: 0px;
+		/*padding: 0px;*/
     	border: 1px solid lightgrey;
 	}
 	#tableSDB th{
-		min-width: 80px;
+		/*min-width: 80px;*/
 	    background-color: #820202;
 		color: white;
 	}
 	.button_list {
-		/*margin-top: 1rem;*/
+		margin-left: 1rem;
+		display: inline-block;
+		float: right;
+		padding-bottom: 0.5rem;
+		padding-right: 1rem;
+		/*width: 25%;*/
 	}
 	.button {
 	    cursor: pointer;
-	    /*display: block;*/
+	    display: inline-block;
 	    width: 15rem;
-	    margin-top: 0.4rem;
+	    margin-top: 0.2rem;
 	    margin-left: 1rem;
 	    border-radius: 0.4rem;
-	    height: 1.5rem;
+	    height: 1.4rem;
+	    float: right;
 	}
 	.button:hover {
-	    background-color: #6280bf;
+	    background-color: #c51919; /*#6280bf;*/
 	    color: white;
 	}
 
 	#dc-team-chart {
-		margin-left: 4rem;
-		margin-bottom: 2rem;
-		margin-right: 8rem;
+		/*width: 50%;*/
+		float: left;
+		margin-left: 1rem;
 	}
+	#dc-date-chart {
+		float: left;
+		margin-left: 1rem;
+	}
+	#dc-result-chart {
+		float: left;
+		margin-left: 1rem;
+		margin-right: 0rem;
+		color: black;
+	}
+
+	.dc-chart .pie-slice {
+	    fill: black;
+	}
+	.dc-chart .pie-slice :hover { 
+	    stroke: #808080;
+	    stroke-width: 2;
+		fill-opacity: 0.8; 
+	}
+
 	.dc-chart g.row text {
 	    fill: black;
 	}
@@ -65,25 +130,45 @@
 	.instruction  {
 		font-weight: 500;
 	}
+	.bar{
+		width: 0.3rem;
+	}
+	.pie-tooltip {
+		position: absolute;
+		background-color: transparent;
+		margin-left: 53px;
+		margin-top: 73px;
+	}
+
 
 </style>
 </head>
 
 <body>
-	<h2>SDB/EDS - Dashboard des Alertes et des Activités</h2>
+	<span id=title>SDB/EDS - Dashboard des Alertes et des Activités</span> 
 
-    
-   <!--  <div id='dc-team-chart' class='row'>
-      	<p class='instruction'>Cliquez sur les équipes pour sélectionner les données:</p>
-    </div>
- -->
-	<div class='button_list'>
-		<button class='button' onclick="exportData('xlsx','all_today');">Toutes données d'aujourd'hui - XLSX</button>
-		<button class='button' onclick="exportData('xlsx','all_yesterday');">Toutes données d'hier - XLSX</button>
-		<button class='button' onclick="exportData('xlsx','selected');">Toutes les données - XLSX</button>
+	<div class="row">
+		<div id='dc-team-chart'>
+	      	<p class='instruction'>Cliquez pour sélectionner les équipes:</p>
+	    </div>
+	    <div id='dc-date-chart'>
+	    	<p class='instruction'>Cliquez et faites glisser pour sélectionner les dates d'<i>Alert Received</i>:</p>
+	    	<p id='dates_selected'></p>
+	    </div>
+	    <div id='dc-result-chart'>
+	    	<p class='instruction'>Cliquez pour sélectionner les résultat:</p>
+	    	<div class="pie-tooltip"></div>
+	    </div>
 	</div>
 
-	<h2>Tableau de données</h2>
+	<!-- <div class="row"> -->
+		<div class='button_list row'>
+			<!-- <button class='button' onclick="exportData('xlsx','all_today');">Toutes données d'aujourd'hui - XLSX</button>
+			<button class='button' onclick="exportData('xlsx','all_yesterday');">Toutes données d'hier - XLSX</button> -->
+			<button class='button' onclick="exportData('xlsx','dshbrd_view');">Export sélectionné (xlsx) - dashboard</button>
+			<button class='button' onclick="exportData('xlsx','tbl_view');">Export sélectionné (xlsx) - table</button>
+		</div>
+	<!-- </div> -->
 
 	<div>
 		<table id="tableSDB" style="font-size: 10px"></table>
