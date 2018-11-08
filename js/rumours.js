@@ -5,22 +5,21 @@
 // Oct 2018
 //
 // Task list:
-// Add 2 filtering dropdown lists with:
-// - Zone de santé (all if none is selected)
-// - Date (all if none is selected)
-// Check date formats at source 
-//
+// - make background color of cells depend on percentages?
 //**************************************************************************************************//
 
-//let data;
+//let all_data;
 //let all_fields = ['Aire de Santé','Histoire','Index de mot cle', 'Mot cle 1','NOMBRE DE FOIS','Numero','Semaine','Source','Type','Zone de Sante','date','mot cle 1'];
 
-
 let unique_keywords = []; 
-let keyword_matches = {"Ebola pas réel": "Ebola n'est pas réel"}
-let rumour_distances = [];  //array of [keyword1, keyword2, num_matches]
-let num_links = 0;
-let keyword_counts = {};
+//let keyword_matches = {"Ebola pas réel": "Ebola n'est pas réel"}
+let unique_zones = [];
+let unique_weeks = [];
+let unique_rumours = [];
+let rumour_distances;  //array of [keyword1, keyword2, num_matches]
+let num_links;
+let all_keyword_counts = {};
+let filt_keyword_counts = {};
 
 
 
@@ -62,6 +61,7 @@ function readRumourDataFromCSV(csv) {
 	        	if (capKeys.indexOf(data['mot_cle'].toUpperCase()) == -1) {   //if keyword not already in (capitalized) unique_keywords list 
 	        		unique_keywords.push(data['mot_cle']);
 	        	}
+
 				data = {};
 
 	        };
@@ -80,6 +80,8 @@ function readRumourDataFromGS(gsData) {
 	//console.log('googlesheet data: ', gsData);
 	var req_data = [];
 	var record = {};	
+	var all_zones = [];
+	var all_weeks = [];
 
     gsData.forEach(function (a) {
     	record = {};
@@ -89,25 +91,39 @@ function readRumourDataFromGS(gsData) {
 		record['zone'] = a.gsx$zonedesante.$t;
 		record['date'] = a.gsx$date.$t;
 		record['type'] = a.gsx$type.$t;
+		record['week'] = a.gsx$week.$t;
 
 		if ((record['type']=='Rumeur') && (record['mot_cle'] != "")) {	 //include record in data if its a rumour with a keyword (i.e. mot_cle not empty)
-        	if (record['mot_cle'] in keyword_matches) {
-        		//console.log("FOUND MATCH: ", record['mot_cle'])
+        	/*if (record['mot_cle'] in keyword_matches) {
+        		//console.log("Found match: ", record['mot_cle'])
         		record['mot_cle'] = keyword_matches[record['mot_cle']];
-        	}
+        	}*/
         	req_data.push(record);
         	//Check case:
         	let capKeys = unique_keywords.map(k => k.toUpperCase());
         	if (capKeys.indexOf(record['mot_cle'].toUpperCase()) == -1) {   //if keyword not already in (capitalized) unique_keywords list 
         		unique_keywords.push(record['mot_cle']);
-        	}
+        	};
+        	all_zones.push(record['zone']);
+        	all_weeks.push(record['week']);
         };
     });
 
+
+    unique_zones = all_zones.filter(onlyUnique).filter(z => z!='');
+    unique_weeks = all_weeks.filter(onlyUnique); //.map(w => parseInt(w));
+
     console.log('Unique keywords: ', unique_keywords);
 	//console.log('Data required by program: ', req_data);
+	console.log('Unique zones: ', unique_zones);
+	console.log('Unique weeks: ', unique_weeks);
 	return req_data;
     
+}
+
+
+function onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
 }
 
 
@@ -140,14 +156,13 @@ function setDateFormat(date_in) {
 function displayDate(date_in) {
 	let months = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec"];	
 	var date_out = date_in.getDate() + '-' + months[date_in.getMonth()] + '-' + date_in.getFullYear();
-	console.log('displayDate: ', date_out);
+	//console.log('displayDate: ', date_out);
 	return date_out;
 }
 
 
 function processRumourData(data) {
 	console.log('Process rumour data: ', data.length, ' records')
-	let unique_rumours = [];
 	let all_dates = [];
 	let temp; 
 	let rumour_match;
@@ -155,9 +170,9 @@ function processRumourData(data) {
 	var temp_date;
 
 	for (var word in unique_keywords) {
-		keyword_counts[unique_keywords[word]] = 0
+		all_keyword_counts[unique_keywords[word]] = 0
 	};
-	//console.log(keyword_counts);
+	//console.log(all_keyword_counts);
 	
 	//match rumours and create new dataset of unique rumours with multiple keywords
 	for (var i=0; i<=data.length-1; i++) {
@@ -167,13 +182,6 @@ function processRumourData(data) {
 		//ensure all dates consistent format
 		temp_date = setDateFormat(data[i]['date']);
 		data[i]['date'] = temp_date;
-
-		//check for keyword matches
-		/*if (data[i]['mot_cle'] in keyword_matches) {
-			console.log("FOUND MATCH: ", data[i]['mot_cle'])
-			data[i]['mot_cle'] = keyword_matches[data[i]['mot_cle']];
-		}*/
-
 
 		for (var j=0; j<=unique_rumours.length-1; j++) {  //loop through list of unique rumours
 
@@ -191,7 +199,7 @@ function processRumourData(data) {
 						console.log('! KEYWORD NOT IN LIST: ', data[i]['mot_cle']);
 					} else {
 						//console.log('xxx',i,j)
-						keyword_counts[data[i]['mot_cle']]++;
+						all_keyword_counts[data[i]['mot_cle']]++;
 					}
 					//console.log('Matched, new keyword ', i,j)
 				} else {								  //if it already contains keyword...
@@ -208,14 +216,16 @@ function processRumourData(data) {
 			temp['zone'] = data[i]['zone'];
 			temp['aire'] = data[i]['aire'];
 			temp['hist'] = data[i]['hist'];
+			temp['week'] = data[i]['week'];
 			temp['keywords'] = [];
 			temp['keywords'].push(data[i]['mot_cle']);
 			if ((unique_keywords.indexOf(data[i]['mot_cle'])) == -1) {
 				console.log('! KEYWORD NOT IN LIST: ', data[i]['mot_cle']);
 			} else {
 				//console.log('yyy',i,j)
-				keyword_counts[data[i]['mot_cle']]++;
+				all_keyword_counts[data[i]['mot_cle']]++;
 			};
+
 					
 			unique_rumours.push(temp);
 			//console.log(unique_rumours)
@@ -224,8 +234,8 @@ function processRumourData(data) {
 	}
 	//exportData(unique_rumours);
 	console.log('Unique rumours: ', unique_rumours.length, unique_rumours);
-	console.log('Number of rumours with multiple keywords: ', count_mult_keywords);
-	console.log('Keyword counts: ', keyword_counts);
+	//console.log('Number of rumours with multiple keywords: ', count_mult_keywords);
+	//console.log('Keyword counts: ', all_keyword_counts);
 
 
 	//get date extent  
@@ -256,61 +266,93 @@ function processRumourData(data) {
 		return [min_dt, max_dt];
 	}
 	var [min_date, max_date] = getDateExtents(all_dates);
-	console.log(' Date Extents: ');
-	console.log('     ', min_date);
-	console.log('     ', max_date);
+	console.log('Date Extents: ', displayDate(min_date),'-', displayDate(max_date));
 
 
 	//write title with dates
 	$('#title').html('Ituri et Nord Kivu - Riposte MVE - Corrélation des mots clé de rumeurs (données au '+ displayDate(max_date)+')');
 	
 
-	createRumourLinks(unique_rumours);
-	writeRumourLinksTable();
+	
+	createDropDownFilters();
 	//exportData(rumour_distances);
-	console.log('Rumour distances: ', rumour_distances);
+	updateRumourMatrix();
 
 }
 
+function updateRumourMatrix() {
+	//console.log('Unique_rumours: ', unique_rumours);
+	console.log('***********************************************');
+	console.log('SELECT ZONE, SELECT WEEK: ', $('#dropdown_zone').val(), $('#dropdown_week').val());
+	
+	var filtered_data = unique_rumours.filter(d =>	((($('#dropdown_zone').val()=='all') || ($('#dropdown_zone').val()==d['zone'])) && (($('#dropdown_week').val()=='all') || ($('#dropdown_week').val()==d['week']))) );
+	
+	//CHECK FILTERS:
+	/*for (var i=0; i<=unique_rumours.length-1; i++) {
+		if ((($('#dropdown_zone').val()=='all') || ($('#dropdown_zone').val()==unique_rumours[i]['zone'])) && (($('#dropdown_week').val()=='all') || ($('#dropdown_week').val()==unique_rumours[i]['week']))) {
+			console.log($('#dropdown_zone').val(), unique_rumours[i]['zone'], $('#dropdown_week').val(), unique_rumours[i]['week'])
+		}
+	}*/
 
-function createRumourLinks(unique_rumours) {
+	console.log('Filtered data: ', filtered_data)
+	createRumourLinksAndKeywordCounts(filtered_data);
+	writeRumourLinksTable(filtered_data);
+	//console.log('Rumour distances: ', rumour_distances);
+}
+
+
+function createRumourLinksAndKeywordCounts(filtered_data) {
 	let count0=0, count1=0, count2=0, countGtE3=0;
+	num_links = 0;
+	filt_keyword_counts = {};
+	rumour_distances = [];
 
-	for (var i=0; i<=unique_rumours.length-1; i++) {  //loop through list of unique rumours
-		if (unique_rumours[i].keywords.length == 0) {  //no keywords, do nothing
+
+	for (var i=0; i<=filtered_data.length-1; i++) {  //loop through list of unique rumours
+		if (filtered_data[i].keywords.length == 0) {  //no keywords, do nothing
 			count0++;
-		} else if (unique_rumours[i].keywords.length == 1) {
+		} else if (filtered_data[i].keywords.length == 1) {
 			count1++;
-			insertDistanceLink(unique_rumours[i].keywords[0], unique_rumours[i].keywords[0]);
-		} else if (unique_rumours[i].keywords.length == 2) {
+			countKeyword(filtered_data[i].keywords[0], filt_keyword_counts);
+			insertDistanceLink(filtered_data[i].keywords[0], filtered_data[i].keywords[0]);
+		} else if (filtered_data[i].keywords.length == 2) {
 			count2++;
-			insertDistanceLink(unique_rumours[i].keywords[0], unique_rumours[i].keywords[1]);
-		} else if (unique_rumours[i].keywords.length >= 3) {
-			for (var j=0; j<=unique_rumours[i].keywords.length-1; j++) {
-				for (var k=j+1; k<=unique_rumours[i].keywords.length-1; k++) {
-					insertDistanceLink(unique_rumours[i].keywords[j], unique_rumours[i].keywords[k]);
+			countKeyword(filtered_data[i].keywords[0], filt_keyword_counts);
+			if (filtered_data[i].keywords[0] != filtered_data[i].keywords[1]) {
+				countKeyword(filtered_data[i].keywords[1], filt_keyword_counts);
+			}
+			insertDistanceLink(filtered_data[i].keywords[0], filtered_data[i].keywords[1]);
+		} else if (filtered_data[i].keywords.length >= 3) {
+			for (var j=0; j<=filtered_data[i].keywords.length-1; j++) {
+				countKeyword(filtered_data[i].keywords[j], filt_keyword_counts);
+				for (var k=j+1; k<=filtered_data[i].keywords.length-1; k++) {
+					countKeyword(filtered_data[i].keywords[k], filt_keyword_counts);
+					insertDistanceLink(filtered_data[i].keywords[j], filtered_data[i].keywords[k]);
 				}
 			}
 			/* //e.g. where there are 3 keywords, should loop through:
-			insertDistanceLink(unique_rumours[i].keywords[0], unique_rumours[i].keywords[1]);
-			insertDistanceLink(unique_rumours[i].keywords[0], unique_rumours[i].keywords[2]);
-			insertDistanceLink(unique_rumours[i].keywords[1], unique_rumours[i].keywords[2]);*/
+			insertDistanceLink(filtered_data[i].keywords[0], filtered_data[i].keywords[1]);
+			insertDistanceLink(filtered_data[i].keywords[0], filtered_data[i].keywords[2]);
+			insertDistanceLink(filtered_data[i].keywords[1], filtered_data[i].keywords[2]);*/
 			countGtE3++;
 		} 
 
 	}
-	console.log('Counts of num keywords:');
+
+	//CHECK KEYWORD & LINK COUNTS
+	/*console.log('Counts of num keywords:');
 	console.log('    0: ', count0);
 	console.log('    1: ', count1);
 	console.log('    2: ', count2);
 	console.log('  >=3: ', countGtE3);
 
 	console.log('Total links inserted: ', num_links)
+	console.log('Keyword counts: ', filt_keyword_counts)*/
 
 }
 
 
-function insertDistanceLink (keyword1, keyword2) {
+function insertDistanceLink(keyword1, keyword2) {
 	let link_exists = false;
 
 	num_links++;
@@ -331,6 +373,54 @@ function insertDistanceLink (keyword1, keyword2) {
 }
 
 
+function countKeyword(keyword, all_keywords) {
+	if (all_keywords.hasOwnProperty(keyword)) {
+		all_keywords[keyword]++;
+	} else {
+		all_keywords[keyword] = 1;
+	}
+	return all_keywords;
+}
+
+
+
+function createDropDownFilters() {
+	
+	var x = document.getElementById("dropdown_zone");
+	var option = document.createElement("option");
+	option.value = 'all';
+	option.text = 'Toutes les zones';
+	x.add(option);
+	for (var i=0; i<=unique_zones.length-1; i++) {
+		var option = document.createElement("option");
+		option.value = unique_zones[i];
+		option.text = unique_zones[i];
+		x.add(option);
+	}
+
+	var x = document.getElementById("dropdown_week");
+	var option = document.createElement("option");
+	option.value = 'all';
+	option.text = 'Toutes les semaines';
+	x.add(option);
+	for (var i=0; i<=unique_weeks.length-1; i++) {
+		var option = document.createElement("option");
+		option.value = unique_weeks[i];
+		option.text = unique_weeks[i];
+		x.add(option);
+	}
+		
+}
+
+function selectZone() {
+	//console.log('selectZone, selectWeek: ', $('#dropdown_zone').val(), $('#dropdown_week').val());
+	updateRumourMatrix();
+}
+
+function selectWeek() {
+	//console.log('selectZone, selectWeek: ', $('#dropdown_zone').val(), $('#dropdown_week').val());
+	updateRumourMatrix();
+}
 
 function writeRumourLinksTable() {
 	//console.log(rumour_distances)
@@ -344,9 +434,10 @@ function writeRumourLinksTable() {
 	    return b[1] - a[1];
 	}
 
-	let rankings = Object.entries(keyword_counts);
+
+	let rankings = Object.entries(filt_keyword_counts);
 	rankings.sort(sortArray);
-	console.log('Rankings: ', rankings);
+	//console.log('Rankings: ', rankings);
 
 	//write table headings
 	html += '<tr bgcolor="#cfdff9">';
@@ -362,7 +453,12 @@ function writeRumourLinksTable() {
 		//console.log(i, rankings[i][0])
 		html += '<th>' + rankings[i][0] + '</th>'; 
 	}
-	html += '</tr><tr><td class="total">Total nombre d\'occurences</td>';
+	if (rankings.length==0) {
+		html += '</tr><tr><td class="total">Aucune occurrence de mot clé en ' + $('#dropdown_zone').val() + ' pendant la semaine ' + $('#dropdown_week').val() + '</td>';
+	} else {
+		html += '</tr><tr><td class="total">Total nombre d\'occurences</td>';
+	}
+	
 	for (var i in rankings) {
 		//console.log(i, rankings[i][0])
 		html += '<td class="center total">' + rankings[i][1] + '</td>'; 
@@ -386,7 +482,7 @@ function writeRumourLinksTable() {
 				if (((rumour_distances[j][0]==keywords_asc[i1]) && (rumour_distances[j][1]==keywords_desc[i2])) || ((rumour_distances[j][0]==keywords_desc[i2]) && (rumour_distances[j][1]==keywords_asc[i1]))) {
 					//console.log(rumour_distances[j], rev_unique_keywords[i1], unique_keywords[i2])
 
-					function getBgColor(val) {
+					function getBgColor(val) {   
 						switch(true) {
 						    case val==0: 
 						        return 'white';
