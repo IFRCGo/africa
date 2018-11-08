@@ -2,7 +2,7 @@
 
 //**************************************************************************************************//
 // BRC Maps Team - SIMS DRC Ebola response
-// Sept-Oct 2018
+// Sept-Nov 2018
 //
 // NOTES:
 // 1. In cfg_excelHeadings.csv:
@@ -99,6 +99,7 @@ function processKoboSDBdata(sdbData) {
 	var temp;
 	var datetime;
 	var circumstancesOfFailure, circ;
+
 	
 	//var kobo_fieldnames = getKoboFieldnames();
 	//console.log('Kobo fieldnames: ', kobo_fieldnames);
@@ -112,6 +113,26 @@ function processKoboSDBdata(sdbData) {
 
 		//FIRST ADD KOBO FIELDS NEEDED FOR PROCESSING ONLY, NOT FOR OUTPUT
 		temp['team_went/burial/status'] = record['team_went/burial/status'];
+
+		//CALCUALTE alert_received FIELD - USED BY DATE FILTERING CHART
+		let temp_alert_received = getFirstValidField('alert_new/datetime/date_alert&&datetime/date_alert&&start', record);
+		//console.log(temp_alert_received)
+		if (temp_alert_received.length > 0) {
+			/*if (temp_alert_received[1]=='start') {  //date type
+				temp['alert_received'] = new Date(parseInt(temp_alert_received[0].substr(0,4)), parseInt(temp_alert_received[0].substr(5,7))-1, parseInt(temp_alert_received[0].substr(8,10)));
+				
+				console.log(temp_alert_received, temp['alert_received'])
+				console.log(temp['alert_new/datetime/date_alert&&datetime/date_alert&&start'])
+				//temp['alert_new/datetime/date_alert&&datetime/date_alert&&start'] = temp['alert_received'];
+
+			} else {*/		//string type
+				temp['alert_received'] = new Date(parseInt(temp_alert_received[0].substr(0,4)), parseInt(temp_alert_received[0].substr(5,7))-1, parseInt(temp_alert_received[0].substr(8,10)));		
+			//}
+		} else {
+			//console.log('blank alert_received: ', temp['alert_received'], record)
+			temp['alert_received'] = '';
+		};
+		//console.log(temp['alert_received']);
 
 		//for each excelHeading (corresponds to each row defined in cfg_excelHeadings.csv - i.e. all kobo fieldnames and calculated fields)
 		for (var h in excelHeadings) {
@@ -157,10 +178,11 @@ function processKoboSDBdata(sdbData) {
 					switch (new_keyname.substr(5)) {	
 						case 'age_group': temp[new_keyname] = getAgeGroup(temp['group_deceased/age_of_deceased']); break;
 						case 'sex': temp[new_keyname] = getSexCalcul(temp['group_deceased/gender_of_deceased']); break;
-						case 'response_time': temp[new_keyname] = getResponseTime(temp['alert_new/datetime/date_alert&&datetime/date_alert'], temp['alert_new/datetime/time_pre_alert&&datetime/time_pre_alert'],temp['team_went/burial/begin_group_xxxxxxxx/activity_date'],temp['team_went/burial/begin_group_xxxxxxxx/time_of_departure']);
+						case 'response_time': temp[new_keyname] = getResponseTime(temp['alert_new/datetime/date_alert&&datetime/date_alert&&start'], temp['alert_new/datetime/time_pre_alert&&datetime/time_pre_alert'],temp['team_went/burial/begin_group_xxxxxxxx/activity_date'],temp['team_went/burial/begin_group_xxxxxxxx/time_of_departure']);
 							if (temp[new_keyname]==blank) temp[new_keyname]='Not available'; break;
-						case 'epiweek_num': temp[new_keyname] = getEpiweekNum(temp['alert_new/datetime/date_alert&&datetime/date_alert']); break;
+						case 'epiweek_num': temp[new_keyname] = getEpiweekNum(temp['alert_new/datetime/date_alert&&datetime/date_alert&&start']); break;
 						case 'result_type': var result = getResultType(temp);
+											//console.log(new_keyname, result)
 												temp[new_keyname] = result; break;
 						case 'status_type': temp[new_keyname] = getStatusType(temp['calc-result_type']); break;
 						default: temp[new_keyname] = '';
@@ -211,6 +233,9 @@ function processKoboSDBdata(sdbData) {
 						kobo_fieldused = excelHeadings[h].kobo_fieldname;
 						new_keyname = kobo_fieldused;
 						temp[new_keyname] = record[new_keyname];     		//copy original key and value over to temp object
+						if (new_keyname=='team') {
+							temp[new_keyname] = formatTeamNames(record[new_keyname]);   
+						}
 						//console.log(new_keyname, temp[new_keyname], typeof(temp[new_keyname]));
 					} catch(err) {
 				    	console.log('Error processing SDB data: ', err)
@@ -267,27 +292,33 @@ function processKoboSDBdata(sdbData) {
 	});
 
 	//order data by date (once date is parsed)
-	processedData = reverseSortByKey(processedData, 'alert_new/datetime/date_alert&&datetime/date_alert');
+	processedData = reverseSortByKey(processedData, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
 
 	console.log('processedData: ', processedData);
 	return processedData;
 }
+
+
+function formatTeamNames(str) {   //replace underscores with space, then capitalise each word
+   str = str.replace(/\_/g,' ');
+   return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+};
+
 
 function createSummarySDBTable(sdbData) {
 	//console.log("currentData: ", sdbData)
 	var html = "";
 	var sdbHtml = "";
 	$('#tableSDB').html('');
-
 	//write table headings
-	html += '<tr bgcolor="#cfdff9">';
+	html += '<thead bgcolor="#cfdff9">';
 	for (var mainHead in mainHeadings) {
 		html += '<th>' + mainHeadings[mainHead] + '</th>'; 
 	}
-	html += '</tr>';
+	html += '</thead>';
 	$('#tableSDB').append(html);
 
-	sdbData = reverseSortByKey(sdbData, 'alert_new/datetime/date_alert&&datetime/date_alert');
+	sdbData = reverseSortByKey(sdbData, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
 
 	//write table rows
 	sdbData.forEach(function(d,i){
@@ -326,12 +357,10 @@ function getSubHeadingHtml(mainhead, record) {
 
 			if (excelHeadings[i]['kobo_fieldname'] == 'team_went/burial/begin_group_xxxxxxxx/activity_date') {
 				//console.log('return ', record[r])
-				if (record[excelHeadings[i].kobo_fieldname] == blank) {
-					var date_output = 'Not available';
-				} else {
-					var date_output = formatDate(record[excelHeadings[i].kobo_fieldname],'screen');
-				}	
-				html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><br><b>' + date_output + '</b><br>';		
+				var date_output, if_new_line;
+				record[excelHeadings[i].kobo_fieldname] == blank? date_output = 'Not available' : date_output = formatDate(record[excelHeadings[i].kobo_fieldname],'screen');
+				excelHeadings[i].dashboard_category == 'start'? if_new_line = '<br>' : if_new_line = '';
+				html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i>' + if_new_line + '<b>' + date_output + '</b><br>';		
 
 
 			} else if (excelHeadings[i].processing_options.substr(0,15) == 'multiple_choice') {
@@ -385,13 +414,19 @@ function getSubHeadingHtml(mainhead, record) {
 			} else if (record.hasOwnProperty(excelHeadings[i].kobo_fieldname)) {
 				//console.log('YES has key ', excelHeadings[i].kobo_fieldname, ': ', record[excelHeadings[i].kobo_fieldname])
 				//if ((record[excelHeadings[i].kobo_fieldname] == blank) || (record[excelHeadings[i].kobo_fieldname] == '-')) {
+				
 				if (record[excelHeadings[i].kobo_fieldname] == blank) {
 					//console.log('Not displayed to screen: ', excelHeadings[i].kobo_fieldname, excelHeadings[i].processing_options);
+				} else if (excelHeadings[i].kobo_fieldname=='alert_new/datetime/date_alert&&datetime/date_alert&&start') {
+					//console.log(excelHeadings[i].kobo_fieldname, record[excelHeadings[i].kobo_fieldname], record['alert_received'])
+					html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><br><b>' + formatDateTime(record['alert_received'],"screen")[0] + '</b><br>';
+				
 				} else if (record[excelHeadings[i].kobo_fieldname] instanceof Date) {
 					//console.log(excelHeadings[i].kobo_fieldname)
 					html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><br><b>' + formatDateTime(record[excelHeadings[i].kobo_fieldname],"screen")[0] + '<br>' + formatDateTime(record[excelHeadings[i].kobo_fieldname],"screen")[1] + '</b><br>';
 
 				} else {
+					//console.log(excelHeadings[i].kobo_fieldname)
 					html += '<i>' + excelHeadings[i]['excel_heading'] + ': </i><b>' + record[excelHeadings[i].kobo_fieldname] + '</b><br>';
 				}
 				
@@ -440,14 +475,15 @@ function formatDateTime(date, format) {
 function formatDate(date, format) {
 	//console.log(date, format);
 	let months = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec"];
-	let date_parsed = new Date(parseInt(date.substr(0,4)), parseInt(date.substr(5,7)), parseInt(date.substr(8,10)));
+	let date_parsed = new Date(parseInt(date.substr(0,4)), parseInt(date.substr(5,7))-1, parseInt(date.substr(8,10)));
 	let newdate;
 
 	if (format=='csv') {
-		newdate = date_parsed.getDate() + '/' + date_parsed.getMonth()-1 + '/' + date_parsed.getFullYear();
-		console.log('for csv: ', newdate)
+		newdate = date_parsed.getDate() + '/' + date_parsed.getMonth() + '/' + date_parsed.getFullYear();
+		//console.log(date, newdate)
 	} else if (format=='screen') {
-		newdate = date_parsed.getDate() + '-' + months[date_parsed.getMonth()-1] + '-' + date_parsed.getFullYear();
+		newdate = date_parsed.getDate() + '-' + months[date_parsed.getMonth()] + '-' + date_parsed.getFullYear();
+		//console.log(date, newdate)
 	};
 
 	return newdate;
@@ -702,35 +738,63 @@ function getResultType(rec) {
 	//console.log(rec)
 	var result = 'X';
 
-	if (rec['type'] != 'disinfection') {
-		//console.log(rec['team_went/burial/status'])
-		if ((rec['team_went/burial/status'] == 'secured_buried') || (rec['team_went/burial/status'] == 'secured_negative_sample')) {
-			result = 'Succes';
-		} else if (rec['team_went/burial/status'] == 'other') {
-			if (rec['team_went/burial/reason'] != '') {
+	if (rec['type'] == 'disinfection') {
+		result = 'Désinfection seulement';
+
+	} else if (!(rec.hasOwnProperty('team_went/burial/status'))) {
+		result = 'Status field doesn\'t exist';
+		console.log('Status field doesn\'t exist');
+	} else {
+
+		if (['secured_buried', 'secured_negative_sample', 'Succes'].indexOf(rec['team_went/burial/status']) != -1 ){
+				result = 'Succes';
+
+		} else if ((rec['team_went/burial/status'] == 'Incomplet') || (rec['team_went/burial/status'] == 'pending')){
+			result = 'Incomplet';
+
+		} else if ((rec['team_went/burial/status'] == 'other') || (rec['team_went/burial/status'] == 'autre')) {
+			if (!(rec.hasOwnProperty('team_went/burial/reason'))) {
+				result = 'Other - reason field doesn\'t exist';   //happens frequently
+				//console.log('Other - reason field doesn\'t exist');
+			} else if ((rec['team_went/burial/reason'] == '') || (rec['team_went/burial/reason'] == blank)) {
+				result = 'Other - reason field blank'; 
+				//console.log('Other - reason field blank');
+			} else if (rec['team_went/burial/reason'] != '') {
+				//console.log(rec['team_went/burial/status'], rec['team_went/burial/reason'])
 				result = 'Échec';
-			} 
+			} else {
+				console.log('Shouldn\'t be an output here');
+			}
+			
 		} else if ((rec['team_went/burial/status'] == '') || (rec['team_went/burial/status'] == blank)) {
+			console.log('!!! BLANK');
 			if (rec['alert_new/group_response/action_taken&&group_response/action_taken']== 'sent_civil_protection') {
 				result = 'Alerte envoyée à la protection civile';
 			} else if (rec['alert_new/group_response/action_taken&&group_response/action_taken']== 'not_responded') {
 				result = 'Échec';
-			};
+			} else {
+				result = 'X'
+			}
+
+		} else {
+			result = 'Status field undefined';
+			//console.log('Status field undefined: ', rec['team_went/burial/status']);
 		}
-	}
+	} 
+
 	//Note: Cannot program the final logic dependant on the input of '1 day' because this has been manually input by someone
 
 	//LOGIC by Alex:
 	/* First, use field 'type' to filter out any disinfections as these don't go into the database
-	primary kobo field used is 'status'
+	Primary kobo field used is 'status'
 		- 'secured_buried' = Succes
 		- 'secured_negative_sample' = Succes
-		- 'other' = probably Échec, but i check the reason just to be sure
-	check 'reason' if populated (FYI this is a select multiple question, not free text)
-	if 'status' is blank I will check 'action_taken'
+		- 'other' = probably Échec, but check the reason just to be sure
+	Check 'reason' if populated (FYI this is a select multiple question, not free text)
+	If 'status' is blank I will check 'action_taken'
 		- 'sent_civil_protection' = Alerte envoyée à la protection civile
 		- 'not_responded' = Échec
-	finally, to check whether the burial activity (successfully or not) happened on the same day as the alert or not I use the calculated field in column CK 'Time between pre alert and leaving', looking only at those records that record '1 day' i will change
+	Finally, to check whether the burial activity (successfully or not) happened on the same day as the alert or not I use the calculated field in column CK 'Time between pre alert and leaving', looking only at those records that record '1 day' i will change
 		- 'Succes' = 'Alert d'hier complete'
 		- 'Échec' = 'Attendant pas complete'*/
 
@@ -779,14 +843,17 @@ function exportData(fileType,option) {
 	var rows = [];
 	var row = [];
 	var has_rows = false;
-	const headings = excelHeadings.map(x => x['excel_heading']);
+	
 	//console.log(headings);
 
 	switch(option) {
-		case 'selected': 		filename = 'SDB_data_all__' + now_fname; break;
+		/*case 'selected': 		filename = 'SDB_data_all__' + now_fname; break;
 		case 'all_today': 		filename = 'SDB_data_today__' + now_fname; break;
 		case 'all_yesterday': 	filename = 'SDB_data_yesterday__' + now_fname; break;
-		default: filename = 'SDB_data_' + now_fname + '.xls'; 
+		default: filename = 'SDB_data_' + now_fname + '.xls'; */
+		case 'dshbrd_view': 		filename = 'SDB_donnees_dshbrd__' + now_fname; break;
+		case 'tbl_view': 		filename = 'SDB_donnees_tbl__' + now_fname; break;
+		default: filename = 'SDB_donnees_' + now_fname + '.xls'; 
 	}
 	if (fileType=='csv') {
 		filename = filename + '.csv';
@@ -794,19 +861,23 @@ function exportData(fileType,option) {
     	filename = filename + '.xlsx';
     }
 	
-	rows.push(headings)
+	
 
-	if (option == 'selected') {
+	if (option == 'dshbrd_view') {
+
+		const headings = excelHeadings.map(x => x['excel_heading']);
+		rows.push(headings)
 
 		//console.log('currentData: ', currentData)
-		currentData = reverseSortByKey(currentData, 'alert_new/datetime/date_alert&&datetime/date_alert');
+		currentData = reverseSortByKey(currentData, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
 
     	for (var i = 0; i <= currentData.length-1; i++) {
     		//console.log(i, currentData[i])
  	
     		row = []
 			var endtime = formatDateTime(currentData[i]['end'],'csv')[0];
-			
+			var starttime = formatDateTime(currentData[i]['alert_received'],'csv')[0];
+				
 	        for (var j = 0; j < excelHeadings.length; j++) {
 	        	
 	        	if (excelHeadings[j].excel_heading!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
@@ -816,6 +887,8 @@ function exportData(fileType,option) {
 		        		row.push(currentData[i][excelHeadings[j].processing_options]);
 		        	} else if (excelHeadings[j].excel_heading=='Fin de reponse') {
 		        		row.push(endtime);
+		        	} else if (excelHeadings[j].excel_heading=='Alert received') {
+		        		row.push(starttime);
 		        	} else {
 		        		row.push(currentData[i][excelHeadings[j].kobo_fieldname])
 		        	}
@@ -836,9 +909,70 @@ function exportData(fileType,option) {
 		}
 
 
-    } else {
+    } else if (option == 'tbl_view') {
 
-    	data = reverseSortByKey(data, 'alert_new/datetime/date_alert&&datetime/date_alert');
+    	//tableToExcel('#tableSDB', 'testexport')
+    	//downloadTbl();
+
+    	//console.log('currentData: ', currentData)
+		currentData = reverseSortByKey(currentData, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
+
+
+		for (var mainHead in mainHeadings) {
+			row.push(mainHeadings[mainHead]); 
+		}
+		rows.push(row);
+
+    	for (var i = 0; i <= currentData.length-1; i++) {
+    		//console.log(i, currentData[i])
+ 	
+    		row = []
+			var endtime = formatDateTime(currentData[i]['end'],'csv')[0];
+			var starttime = formatDateTime(currentData[i]['alert_received'],'csv')[0];
+			
+			for (var mainHead in mainHeadings) {
+				var html_row = getSubHeadingHtml(mainHead, currentData[i]);
+				var row_str = html_row.replace(/<[^>]*>/g, "");
+				//row_str = 'xxx\r' + row_str;
+				row.push(row_str);
+			}
+			rows.push(row)
+
+	        /*for (var j = 0; j < excelHeadings.length; j++) {
+	        	
+	        	if (excelHeadings[j].excel_heading!='') {  //temporary hackfix - because github keeps adding blank row to end of csv
+			
+		        	if (excelHeadings[j].processing_options.substr(0,5)=='calc-') {
+		        		//console.log(excelHeadings[j].processing_options, data[i][excelHeadings[j].processing_options]);
+		        		row.push(currentData[i][excelHeadings[j].processing_options]);
+		        	} else if (excelHeadings[j].excel_heading=='Fin de reponse') {
+		        		row.push(endtime);
+		        	} else {
+		        		row.push(currentData[i][excelHeadings[j].kobo_fieldname])
+		        	}
+		        }
+	            
+	        }*/
+	        //row.push('XXX')
+	        has_rows = true;
+	        if (fileType=='csv') {
+				rows.push(row.join(","));
+		    } else if (fileType=='xlsx') {
+		    	rows.push(row);
+		    }
+
+	    }
+
+	   /* if (!(has_rows)) {
+			rows.push(['Aucune donnée n\'a été sélectionnée'])
+		}*/
+
+    }
+
+
+    /*else {
+
+    	data = reverseSortByKey(data, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
 
     	for (var i = 0; i <= data.length-1; i++) {
     		//console.log(i, data[i])
@@ -872,17 +1006,18 @@ function exportData(fileType,option) {
 
 			}
 
-    	}
+    	}*/
 
-    	if (!(has_rows)) {
-    		if (option=='all_today') {
+    	//if (!(has_rows)) {
+    		/*if (option=='all_today') {
 				rows.push(['Aucune donnée disponible pour aujourd\'hui'])
 			} else if (option=='all_yesterday') {
 				rows.push(['Aucune donnée disponible pour hier'])
-			}
-		}
+			}*/
+			//rows.push(['Aucune donnée disponible'])
+		//}
 
-    }
+    //}
 
     if (fileType=='csv') {
 		download_csv(rows.join("\n"), filename);
@@ -895,6 +1030,41 @@ function exportData(fileType,option) {
 
 }
 
+/*var tableToExcel = (function () {
+        var uri = 'data:application/vnd.ms-excel;base64,',
+            template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><xml><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>',
+            base64 = function (s) {
+                return window.btoa(unescape(encodeURIComponent(s)))
+            }, format = function (s, c) {
+                return s.replace(/{(\w+)}/g, function (m, p) {
+                    return c[p];
+                })
+            }
+        
+        return function (table, name, filename) {
+        	console.log(table, name, filename)
+            if (!table.nodeType) table = document.getElementById(table)
+            var ctx = {
+                worksheet: name || 'Worksheet',
+                table: table.innerHTML
+            }
+
+            document.getElementById("dlink").href = uri + base64(format(template, ctx));
+            document.getElementById("dlink").download = filename;
+            document.getElementById("dlink").traget = "_blank";
+            document.getElementById("dlink").click();
+
+        }
+    })();
+
+function downloadTbl(){
+    $(document).find('tfoot').remove();
+    //var name = document.getElementById("name").innerHTML;
+    var name = 'heidi'
+    tableToExcel('tableSDB', 'Sheet 1', name+'.xls')
+    //setTimeout("window.location.reload()",0.0000001);
+
+}*/
 
 
 function download_csv(csv, filename) {
@@ -932,17 +1102,46 @@ function download_xlsx(rows, filename) {
        
 }
 
+function deepCopyDate(date_in) {
+	return new Date(date_in.getFullYear(), date_in.getMonth(), date_in.getDate());
+}
+
 
 function createCharts(data) {
 	var cf = crossfilter(data);
 	var teamChart = dc.rowChart("#dc-team-chart");
 	var teamDim = cf.dimension(function (d) { return d['team'] });
 	var teamGroup = teamDim.group();
+	var dateChart = dc.compositeChart("#dc-date-chart");
+	var dateDim = cf.dimension(function (d) {if (d['alert_received']!='') {/*console.log(d['alert_received']);*/ return d['alert_received'] }});
+	var dateGroup = dateDim.group();
+	var dateExtent = d3.extent(data.map(x=>x['alert_received']));
+	var resultChart = dc.pieChart("#dc-result-chart");
+	var resultDim = cf.dimension(function (d) { return d['calc-result_type'] });
+	var resultGroup = resultDim.group();
+	
+	var dateExtent = d3.extent(data.reduce(function(result, d) {
+	    if (d['alert_received'] != "") {
+	      result.push(d['alert_received']);
+	    }
+	    return result;
+	}, []));
+	//console.log('dateExtent: ', dateExtent);
 
-	//row chart teams
-  	teamChart.width(300)
-	    .height(220)
-	    .margins({top: 5, left: 10, right: 10, bottom: 40})
+	var dateExtentPlus = []; 
+	dateExtentPlus[0] = deepCopyDate(dateExtent[0])
+	dateExtentPlus[1] = deepCopyDate(dateExtent[1])
+	//dateExtentPlus[0].setHours(dateExtentPlus[0].getHours());
+	dateExtentPlus[1].setHours(dateExtentPlus[1].getHours()+23);
+	//console.log('dateExtent: ', dateExtent);
+	//console.log('dateExtent+: ', dateExtentPlus);
+	$('#dates_selected').html('<i>' + formatDateTime(dateExtent[0],'screen')[0] + ' - ' + formatDateTime(dateExtent[1],'screen')[0] + '</i>')
+
+
+	//ROW CHART - TEAMS
+  	teamChart.width(260)
+	    .height(170)
+	    //.margins({top: 5, left: 10, right: 10, bottom: 40})
 	    .dimension(teamDim)
 	    .group(teamGroup)
 	    .colors(['steelblue'])
@@ -956,22 +1155,95 @@ function createCharts(data) {
 	    .elasticX(true)
 	    .xAxis().ticks(4);
 
+	dateChart
+		.width(360)
+	    .height(160)
+	    .x(d3.scaleTime().domain(dateExtentPlus))
+	    .yAxisLabel("Nombre de Réponses")
+	    .dimension(dateDim)
+	    .group(dateGroup)
+	    .compose([
+	        dc.barChart(dateChart)
+	            .dimension(dateDim)
+	            .group(dateGroup)
+	            .valueAccessor(function (d) {return d.value; })
+	            .ordinalColors(['#c58cc5'])
+	    ]);
+
+	resultChart
+	    .width(295)
+	    .height(160)
+	    .cx(62)
+	    .cy(80)
+	    .radius(60)
+	    .innerRadius(14)
+	    .ordinalColors(['#66c2a5','#fc8d62','#8da0cb','#e78ac3','#a6d854','#ffd92f','#e5c494','#b3b3b3'])
+	    .dimension(resultDim)
+	    .group(resultGroup) 
+	    .renderLabel(false)
+	    /*.label(function (d) {  
+	        var perc = Math.round((d.value/currentData.length)*100);
+	        console.log(d.value, currentData.length, perc + '%');
+	        return perc + '%';
+	    })*/
+	    .legend(dc.legend().x(130).y(45).itemHeight(13).gap(2))
+		.on('renderlet', function(chart) { 
+			chart.selectAll('g.pie-slice') 
+				.on('mouseover', function(d) { 
+					chart.select('.pie-tooltip').text(dc.utils.printSingleValue(Math.round((d.endAngle - d.startAngle) / (2*Math.PI) * 100)) + '%'); //d.data.value); 
+				}) 
+				.on('mouseout', function(d) { 
+					chart.select('.pie-tooltip').text(''); 
+				}); 
+		});
+
+
 	dc.renderAll();
 
-    teamChart.on("filtered", function (chart) {
-         //console.log(teamDim.top(Infinity));
-         currentData = teamDim.top(Infinity)
-         createSummarySDBTable(currentData);
-    })
-
-    //add x-axis title
     teamChart.svg()
         .append("text")
         //.attr("class", "x-axis-label")
         .attr("text-anchor", "middle")
-        .attr("x", teamChart.width()/2)
-        .attr("y", teamChart.height()-6)
-        .text('Number of Responses');
+        .attr("font-size", "12px")
+        .attr("x", 130)
+        .attr("y", 168)
+        .text('Nombre de Réponses');
+
+
+    teamChart.on("filtered", function (chart) {
+         currentData = teamDim.top(Infinity)
+         createSummarySDBTable(currentData);
+    })
+
+
+    dateChart.on("filtered", function (chart) {
+    	var filters = chart.filters();
+	    if (filters.length) {
+	        var range = filters[0];
+	        //console.log('filtered date range:', range[0], range[1]);
+	        let minDate = deepCopyDate(range[0]);
+	        if (!(sameDay(range[0],dateExtent[0]))) {  
+	        	//minDate.setHours(minDate.getHours()+24);
+	        	minDate.setDate(minDate.getDate()+1);
+	        };
+	        if (sameDay(minDate, range[1])) {
+	        	$('#dates_selected').html('<i>' + formatDateTime(minDate,'screen')[0] + '</i>');
+	        } else {
+	        	$('#dates_selected').html('<i>' + formatDateTime(minDate,'screen')[0] + ' - ' + formatDateTime(range[1],'screen')[0] + '</i>');
+	        }	        
+	    } else {
+	    	$('#dates_selected').html('<i>' + formatDateTime(dateExtent[0],'screen')[0] + ' - ' + formatDateTime(dateExtent[1],'screen')[0] + '</i>')
+	        //console.log('No filters (',dateExtent[0],dateExtent[1],')');
+	    };
+    	currentData = dateDim.top(Infinity);
+        createSummarySDBTable(currentData);
+    })
+
+
+    resultChart.on("filtered", function (chart) {
+    	currentData = resultDim.top(Infinity)
+        createSummarySDBTable(currentData);
+    })
 	
 
 }
