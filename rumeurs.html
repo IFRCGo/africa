@@ -30,7 +30,7 @@
 		width: 100%;
 		border-spacing: 0px;
 	}
-	#tableRumLink td, tr{
+	#tableRumLink td, tr {
 		padding: 0px;
     	border: 1px solid lightgrey;
     	height: 30px;
@@ -70,60 +70,9 @@
 		width: 100%;
 	}
 
-	/*the container must be positioned relative:*/
-	/*.custom-select {
-	  position: relative;
-	  font-family: Arial;
-	}*/
-	/*.custom-select select {
-	  display: none; /*hide original SELECT element:
-	}*/
-	/*.select-selected {
-	  background-color: DodgerBlue;
-	}*/
-	/*style the arrow inside the select element:*/
-	/*.select-selected:after {
-	  position: absolute;
-	  content: "";
-	  top: 14px;
-	  right: 10px;
-	  width: 0;
-	  height: 0;
-	  border: 6px solid transparent;
-	  border-color: #fff transparent transparent transparent;
-	}*/
-	/*point the arrow upwards when the select box is open (active):*/
-	/*.select-selected.select-arrow-active:after {
-	  border-color: transparent transparent #fff transparent;
-	  top: 7px;
-	}*/
-	/*style the items (options), including the selected item:*/
-	/*.select-items div,.select-selected {
-	  color: #ffffff;
-	  padding: 8px 16px;
-	  border: 1px solid transparent;
-	  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-	  cursor: pointer;
-	}*/
-	/*style items (options):*/
-	/*.select-items {
-	  position: absolute;
-	  background-color: DodgerBlue;
-	  top: 100%;
-	  left: 0;
-	  right: 0;
-	  z-index: 99;
-	}*/
-	/*hide the items when the select box is closed:*/
-	/*.select-hide {
-	  display: none;
-	}
-	.select-items div:hover, .same-as-selected {
-	  background-color: rgba(0, 0, 0, 0.1);
-	}*/
 	#dropdown_container {
-		margin-top: 0.4rem;
-		margin-bottom: 0.4rem;
+		margin-top: 0.2rem;
+		margin-bottom: 0.2rem;
 	}
 
 	select {
@@ -136,7 +85,7 @@
 	  outline: 0;
 	  color: #3d1658;
 	  border-color: black;
-	  padding: 0.65em 2.5em 0.55em 0.75em;
+	  padding: 0.4em 2.0em 0.4em 0.75em;
 	  border-radius: 3px;
 	  background: linear-gradient(black, black) no-repeat,
 	              linear-gradient(-135deg, rgba(255,255,255,0) 50%, lightgrey 50%) no-repeat,
@@ -151,25 +100,13 @@
 </head>
 
 <body>
-	<!-- <h2>Ituri et Nord Kivu - Riposte MVE - Corrélation des mots clé de rumeurs (données au 26/10/2018)</h2> -->
-	<div>
-		<span id='title'>Loading...</span>
-	</div>
 
 	<div id='dropdown_container' style='display:inline-block'>
-		<span style="color:grey; margin-left:5rem">Sélectionnez la zone et la semaine: </span>
+		<!-- <span style="color:grey; margin-left:5rem">Sélectionnez la zone et la semaine: </span> -->
+		<span id='title'>Loading...</span>
 		<select id='dropdown_zone' onchange='selectZone()'></select>
 		<select id='dropdown_week' onchange='selectWeek()'></select>
 	</div>
-
-	<!-- <div class="dropdown">
-	  <button class="dropbtn">Dropdown &nbsp &#9660</button>
-	  <div class="dropdown-content">
-	    <a href="#">Link 1</a>
-	    <a href="#">Link 2</a>
-	    <a href="#">Link 3</a>
-	  </div>
-	</div> -->
 
 	<div>
 		<table id="tableRumLink" style="font-size: 10px"></table>
