@@ -99,6 +99,7 @@ function readRumourDataFromGS(gsData) {
 		record['date'] = a.gsx$date.$t;
 		record['type'] = a.gsx$type.$t;
 		record['week'] = a.gsx$week.$t;
+		console.log(record['week'], typeof(record['week']));
 
 		//include record in data if correct type 
 		if ((type_constraint==false) || ((type_constraint==true) && (record['type']==type_value))) {
@@ -411,25 +412,33 @@ function countKeyword(keyword, all_keywords) {
 
 
 function createDropDownFilters() {
+
+	function sortByNum(a,b) {
+	    return parseInt(a) - parseInt(b);  //ascending integer
+	}
 	
+	unique_zones.sort();
 	var x = document.getElementById("dropdown_zone");
 	var option = document.createElement("option");
 	option.value = 'all';
 	option.text = 'Toutes les zones';
 	x.add(option);
 	for (var i=0; i<=unique_zones.length-1; i++) {
+		//console.log(unique_zones[i])
 		var option = document.createElement("option");
 		option.value = unique_zones[i];
 		option.text = unique_zones[i];
 		x.add(option);
 	}
 
+	unique_weeks.sort(sortByNum);
 	var x = document.getElementById("dropdown_week");
 	var option = document.createElement("option");
 	option.value = 'all';
 	option.text = 'Toutes les semaines';
 	x.add(option);
 	for (var i=0; i<=unique_weeks.length-1; i++) {
+		//console.log(unique_weeks[i])
 		var option = document.createElement("option");
 		option.value = unique_weeks[i];
 		option.text = unique_weeks[i];
