@@ -2,7 +2,7 @@
 
 //**************************************************************************************************//
 // BRC Maps Team - SIMS DRC Ebola response
-// Oct 2018
+// Oct-Nov 2018
 //
 // Task list:
 // - make background color of cells depend on percentages?
@@ -20,6 +20,8 @@ let rumour_distances;  //array of [keyword1, keyword2, num_matches]
 let num_links;
 let all_keyword_counts = {};
 let filt_keyword_counts = {};
+let type_constraint = false;
+//let type_value = 'Rumeur/croyance/observation';  //only required if type_constraint=true
 
 
 
@@ -52,17 +54,22 @@ function readRumourDataFromCSV(csv) {
                 //console.log(cell,data[columns[cell]])
             }
 
-            if ((data['type']=='Rumeur') && (data['mot_cle'] != "")) {	 //include record in data if its a rumour with a keyword (i.e. mot_cle not empty)
+            //include record in data if correct type 
+			if ((type_constraint==false) || ((type_constraint==true) && (record['type']==type_value))) {
 
-	        	records.push(data);
-            	
-            	//Check case:
-	        	let capKeys = unique_keywords.map(k => k.toUpperCase());
-	        	if (capKeys.indexOf(data['mot_cle'].toUpperCase()) == -1) {   //if keyword not already in (capitalized) unique_keywords list 
-	        		unique_keywords.push(data['mot_cle']);
-	        	}
+				if (record['mot_cle'] != ""){	 //include record in data if keyword (i.e. mot_cle) not empty
+		     
+		        	records.push(data);
+	            	
+	            	//Check case:
+		        	let capKeys = unique_keywords.map(k => k.toUpperCase());
+		        	if (capKeys.indexOf(data['mot_cle'].toUpperCase()) == -1) {   //if keyword not already in (capitalized) unique_keywords list 
+		        		unique_keywords.push(data['mot_cle']);
+		        	}
 
-				data = {};
+					data = {};
+
+				};
 
 	        };
    
@@ -77,7 +84,7 @@ function readRumourDataFromCSV(csv) {
 
 
 function readRumourDataFromGS(gsData) {
-	//console.log('googlesheet data: ', gsData);
+	console.log('googlesheet data: ', gsData);
 	var req_data = [];
 	var record = {};	
 	var all_zones = [];
@@ -93,20 +100,26 @@ function readRumourDataFromGS(gsData) {
 		record['type'] = a.gsx$type.$t;
 		record['week'] = a.gsx$week.$t;
 
-		if ((record['type']=='Rumeur') && (record['mot_cle'] != "")) {	 //include record in data if its a rumour with a keyword (i.e. mot_cle not empty)
-        	/*if (record['mot_cle'] in keyword_matches) {
-        		//console.log("Found match: ", record['mot_cle'])
-        		record['mot_cle'] = keyword_matches[record['mot_cle']];
-        	}*/
-        	req_data.push(record);
-        	//Check case:
-        	let capKeys = unique_keywords.map(k => k.toUpperCase());
-        	if (capKeys.indexOf(record['mot_cle'].toUpperCase()) == -1) {   //if keyword not already in (capitalized) unique_keywords list 
-        		unique_keywords.push(record['mot_cle']);
-        	};
-        	all_zones.push(record['zone']);
-        	all_weeks.push(record['week']);
-        };
+		//include record in data if correct type 
+		if ((type_constraint==false) || ((type_constraint==true) && (record['type']==type_value))) {
+
+			if (record['mot_cle'] != ""){	 //include record in data if keyword (i.e. mot_cle) not empty
+	        	/*if (record['mot_cle'] in keyword_matches) {
+	        		//console.log("Found match: ", record['mot_cle'])
+	        		record['mot_cle'] = keyword_matches[record['mot_cle']];
+	        	}*/
+	        	req_data.push(record);
+	        	//Check case:
+	        	let capKeys = unique_keywords.map(k => k.toUpperCase());
+	        	if (capKeys.indexOf(record['mot_cle'].toUpperCase()) == -1) {   //if keyword not already in (capitalized) unique_keywords list 
+	        		unique_keywords.push(record['mot_cle']);
+	        	};
+	        	all_zones.push(record['zone']);
+	        	all_weeks.push(record['week']);
+	        };
+
+	    };
+
     });
 
 
@@ -134,19 +147,23 @@ function setDateFormat(date_in) {
 
 	if (date_in.indexOf('-')!=-1) {  //e.g. 2018-30-10
 		var date_out = new Date(parseInt(date_in.split('-')[0]), parseInt(date_in.split('-')[2])-1, parseInt(date_in.split('-')[1]));	
-	} else if (date_in.indexOf('/')!=-1) { //e.g. 19/10/2018
+	/*
+	} else if (date_in.indexOf('/')!=-1) { //European format e.g. 19/10/2018
 		var date_out = new Date(parseInt(date_in.split('/')[2]), parseInt(date_in.split('/')[1])-1, parseInt(date_in.split('/')[0]));	
+	*/
+	} else if (date_in.indexOf('/')!=-1) { //US format e.g. 10/19/2018
+		var date_out = new Date(parseInt(date_in.split('/')[2]), parseInt(date_in.split('/')[0])-1, parseInt(date_in.split('/')[1]));	
 	} else {
 		console.log('DATE NOT FOUND: ', date_in);
 		var date_out = 'DATE NOT FOUND'
 	};
 
 	//CONSOLE LOG DATE ERRORS
-	/*if (((date_out.getMonth() <= 6) && (date_out.getFullYear()==2018)) || (date_out.getFullYear() < 2018)) {  //flag any date up to end of July 2018
+	if (((date_out.getMonth() <= 6) && (date_out.getFullYear()==2018)) || (date_out.getFullYear() < 2018)) {  //flag any date up to end of July 2018
 		console.log('DATE ERROR? - too early: ', date_in, date_out)
 	} else if (date_out > new Date()) {
 		console.log('DATE ERROR? - in the future: ', date_in, date_out)
-	}*/
+	}
 	//console.log('setDateFormat: ', date_in, date_out);
 
 	return date_out;
@@ -155,7 +172,12 @@ function setDateFormat(date_in) {
 
 function displayDate(date_in) {
 	let months = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec"];	
-	var date_out = date_in.getDate() + '-' + months[date_in.getMonth()] + '-' + date_in.getFullYear();
+	try {
+		var date_out = date_in.getDate() + '-' + months[date_in.getMonth()] + '-' + date_in.getFullYear();
+	} catch {
+		var date_out = '';
+	}
+	
 	//console.log('displayDate: ', date_out);
 	return date_out;
 }
@@ -270,7 +292,11 @@ function processRumourData(data) {
 
 
 	//write title with dates
-	$('#title').html('Ituri et Nord Kivu - Riposte MVE - Corrélation des mots clé de rumeurs (données au '+ displayDate(max_date)+')');
+	if (displayDate(max_date)=='') {
+		$('#title').html('Ituri et Nord Kivu - Riposte MVE - Corrélation des mots clé de rumeurs');
+	} else {
+		$('#title').html('Ituri et Nord Kivu - Riposte MVE - Corrélation des mots clé de rumeurs (données au '+ displayDate(max_date)+')');
+	}
 	
 
 	
@@ -453,7 +479,9 @@ function writeRumourLinksTable() {
 		//console.log(i, rankings[i][0])
 		html += '<th>' + rankings[i][0] + '</th>'; 
 	}
-	if (rankings.length==0) {
+	if ((unique_zones.length==0) && (unique_weeks==0)) {
+		html += '</tr><tr><td class="total">Pas de données disponibles</td>';
+	} else if (rankings.length==0) {
 		html += '</tr><tr><td class="total">Aucune occurrence de mot clé en ' + $('#dropdown_zone').val() + ' pendant la semaine ' + $('#dropdown_week').val() + '</td>';
 	} else {
 		html += '</tr><tr><td class="total">Total nombre d\'occurences</td>';
@@ -676,12 +704,12 @@ $(document).ready(function () {
 
     //Get rumours data from googlesheet
     var url = 'https://spreadsheets.google.com/feeds/list/12z67qIUnTdVd3hgVwJB0HfDnNTFWjdEJkqaJq4M8AQg/3/public/values?alt=json';
-    //note that /2/ after the worksheetID is for 2nd page in workbook ('Donnees')
+    //note that /3/ after the worksheetID is for 3rd page in workbook ('CEA-Rumeurs')
     $.getJSON(url, function(gsdata) {
-    	//console.log('Original googlesheet data: ', gsdata);
+    	console.log('Original googlesheet data: ', gsdata);
     	data = readRumourDataFromGS(gsdata.feed.entry);
+    	//console.log('data: ', data) 	
         processRumourData(data);
-
     });
 
 
