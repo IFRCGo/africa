@@ -148,12 +148,13 @@ function setDateFormat(date_in) {
 
 	if (date_in.indexOf('-')!=-1) {  //e.g. 2018-30-10
 		var date_out = new Date(parseInt(date_in.split('-')[0]), parseInt(date_in.split('-')[2])-1, parseInt(date_in.split('-')[1]));	
-	/*
+	
 	} else if (date_in.indexOf('/')!=-1) { //European format e.g. 19/10/2018
 		var date_out = new Date(parseInt(date_in.split('/')[2]), parseInt(date_in.split('/')[1])-1, parseInt(date_in.split('/')[0]));	
-	*/
+	/*
 	} else if (date_in.indexOf('/')!=-1) { //US format e.g. 10/19/2018
 		var date_out = new Date(parseInt(date_in.split('/')[2]), parseInt(date_in.split('/')[0])-1, parseInt(date_in.split('/')[1]));	
+	*/
 	} else {
 		console.log('DATE NOT FOUND: ', date_in);
 		var date_out = 'DATE NOT FOUND'
