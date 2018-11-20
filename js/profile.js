@@ -55,7 +55,7 @@ function niceFormatNumber(num,round){
 // Determine PacScoreCard value: Good, Medium, Bad
 function scorePac(val, check, correction, grace) {
 	var score = 'Bad';
-// year year-year  year/year  no  yes  ongoing  
+// year year-year  year/year  no  yes  ongoing
 
 	if (val == 'ongoing') {
 		score = 'Medium';
@@ -65,8 +65,8 @@ function scorePac(val, check, correction, grace) {
 		if (val == 'yes') {
 			score = 'Good';
 		}
-	}		
-	
+	}
+
 	if (check == 'period') {
 		var patt = /-/i;
 		if (patt.test(val)) {
@@ -75,7 +75,7 @@ function scorePac(val, check, correction, grace) {
 				val = concat('20',val);
 			}
 			check = 'year';
-		} 
+		}
 	}
 
 	if (check == 'year') {
@@ -107,7 +107,7 @@ function createAppealsTable(data){
     });
     // Send data to appeals or DREFs html tables
     $('#appealstable').append(html);
-    
+
 }
 
 function createGovernanceTable(url) {
@@ -140,7 +140,7 @@ function createGovernanceTable(url) {
 					htmlGov += '<tr><th>Date OCAC / BOCA conducted</th><td>OCAC: '+d['#date+ocac']+' - BOCA: '+d['#date+boca']+'</td></tr>';
 					htmlGov += '<tr><th>Last consolidated audit</th><td>'+d['#date+audit']+'</td></tr>';
 				}
-				
+
 				htmlPac += '<tr>';
 				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind1'],'yn',0)+'">Receiving government financial / in-kind support</td>';
 				htmlPac += '<td class="pacScore'+scorePac(d['#pac8+ind2'],'yn',0)+'">&lt;50% domestically generated income </td>';
@@ -163,7 +163,7 @@ function createGovernanceTable(url) {
 				htmlPac += '<td class="pacScore'+scorePac(d['#pac9+ind1'],'yn',0)+'"><strong>'+d['#pac9+ind1'].toUpperCase()+'</strong></td>';
 				htmlPac += '<td class="pacScore'+scorePac(d['#pac9+ind3'],'yn',0)+'"><strong>'+d['#pac9+ind3'].toUpperCase()+'</strong></td>';
 				htmlPac += '</tr>';
-				
+
 				// only show WASH data when this is available (read: NoTotalStaff is filled)
 				if (d['#capacity+total'].length>0) {
 					$('#NoWashStaff').html( fillKeyFigureCard('Total WASH Staff', d['#capacity+total']) );
@@ -193,8 +193,8 @@ function createGovernanceTable(url) {
 	})
 
     // Send data to appeals or DREFs html tables
-    
-	
+
+
 }
 
 // Generate tables for PNS projects
@@ -210,15 +210,68 @@ function createPNSsTable(url){
 			var data = hxlProxyToJSON(result);
 			console.log(data);
 
+      var dayNow = new Date();
+      var dayEnd = new Date();
+      var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      var pnsList = new Array();
+      var sectorList = new Array();
+
 		// Run through data and prep for tables
 			data.forEach(function(d,i){
+        pnsList.push(d['#org+partner']);
+        sectorList.push(d['#activity+sector']);
 
-				html += '<tr><td>'+d['#org+partner']+'</td><td>'+d['#activity+name']+'</td><td>'+d['#activity+sector']+'</td><td>'+d['#activity+budget']+'</td><td>'+d['#meta+funding']+'</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td></tr>';
+        if (isNaN(d['#date+end'].substr(0,1))) {
+          dayEnd.setFullYear(d['#date+end'].substr(4,4));
+          dayEnd.setMonth(months.indexOf(d['#date+end'].substr(0,3)));
+        }
+        if (dayNow > dayEnd) {
+				    html += '<tr class="PastProject"><td>'
+        } else {
+            html += '<tr class="ActiveProject"><td>'
+        }
+
+				html += d['#org+partner']+'</td><td>';
+        html += d['#activity+name']+'<br /><small>'+d['#activity+description']+'</small></td><td>';
+        if (d['#activity+alt+sector'].length > 0) {
+          // also add the secondary sector to the list of sectors.
+          sectorList.push(d['#activity+alt+sector']);
+          html += d['#activity+sector']+'<br /><small>and</small><br />'+d['#activity+alt+sector']+'</td><td>';
+        } else {
+          html += d['#activity+sector']+'</td><td>';
+        }
+        html += d['#activity+budget']+'</td><td>'+d['#meta+funding']+'</td><td>';
+        html += d['#date+start']+'</td><td>'+d['#date+end']+'</td></tr>';
 			});
+
 			// Send data to appeals or DREFs html tables
 			$('#pnstable').append(html);
+
+
+      fillPnsOverview(pnsList, '#pnsoverviewtable');
+      fillPnsOverview(sectorList, '#sectoroverviewtable');
+
 		}
 	})
+}
+
+function fillPnsOverview (arr, htmlId) {
+  html = '';
+  prevValue = '';
+  counter = 0;
+  arr.sort();
+  arr.forEach(function(value) {
+      if (prevValue!=value & counter>0) {
+        html += '<tr><td>'+prevValue+'</td><td>'+counter+'</td></tr>';
+        counter = 0;
+      }
+      counter++;
+      prevValue = value;
+  });
+  if (counter>0) {
+    html += '<tr><td>'+prevValue+'</td><td>'+counter+'</td></tr>';
+  }
+  $(htmlId).append(html);
 }
 
 // Fill the Key Figures
@@ -233,7 +286,7 @@ function loadFDRS(url){
                 data.forEach(function(d){
 
 					$('#NoVolunteers').html( fillKeyFigureCard( 'People volunteering their time', d['#volunteer']) );
-					
+
 					if (d['#volunteer+f'] == '' || d['#volunteer'] == '') {
 						$('#PercVolunteers').html( fillKeyFigureCard('Percentage of volunteers who are women', 'n/a' ) );
 					} else {
@@ -252,23 +305,23 @@ function loadFDRS(url){
 					$('#Income').html( fillKeyFigureCard('Income (in CHF)', d['#value+income']) );
 
 					$('#Expenditure').html( fillKeyFigureCard('Expenditure (in CHF)', d['#value+expenditure']) );
-					
+
 					var NSname = d['#org+name'];
 					var FDRSlink = 'http://data.ifrc.org/fdrs/societies/';
 					FDRSlink += NSname.replace( / /g, '-');
 					FDRSlink = FDRSlink.toLowerCase();
-					
+
 					$('#FDRSlink').prop( 'href', FDRSlink );
-					
+
 					$('#page-title').html( 'National Society Profile - ' + d['#org+name'] );
-					
+
 					$('#breadcrumb-country').html( d['#country+name'] );
 					if (d['#region+name'] == 'Africa') {
 						$('#breadcrumb-region').html( '<a href="/africa/profile_overview.html">Africa</a>' );
 					} else {
 						$('#breadcrumb-region').html( d['#region+name'] );
 					}
-					
+
                 });
             }
     });
@@ -279,7 +332,7 @@ function fillKeyFigureCard (title, value) {
 	if (value == '') {
 		value = 'n/a';
 	}
-	
+
 	var html = '<h4 class="keyfiguretitle text-center minheight">'+title+'</h4>';
 	html += '<p class="keyfigure text-center">'+ niceFormatNumber(value,false) +'</p>';
 	return html;
@@ -305,19 +358,19 @@ function loadINFORMindex(url) {
                 var data = hxlProxyToJSON(result);
                 console.log(data);
                 data.forEach(function(d){
-					
-					$('#hazard').html( fillRiskCard ( 'HAZARD &amp; EXPOSURE' , [ ['Overall',d['#index+hazard'],lvlHazard],  ['Natural',d['#index+natural'],lvlNatural] , ['Human',d['#index+human'],lvlHuman]], 'haz') ); 
 
-					$('#vulnerability').html( fillRiskCard ( 'VULNERABILITY' , [ ['Overall',d['#index+vulnarability'],lvlVulna],  ['Socio-Economic',d['#index+socioeconomic'],lvlSocEc] , ['Vulnerable Groups',d['#index+vulnarablegroups'],lvlVulGrp]], 'vul') ); 
-					
-					$('#lack_of_coping').html( fillRiskCard ( 'LACK OF COPING CAPACITY' , [ ['Overall',d['#index+lackcopingcapacity'],lvlCoping],  ['Institutional',d['#index+institutional'],lvlInstit] , ['Infrastructure',d['#index+infrastructure'],lvlInfra]], 'cap') ); 
+					$('#hazard').html( fillRiskCard ( 'HAZARD &amp; EXPOSURE' , [ ['Overall',d['#index+hazard'],lvlHazard],  ['Natural',d['#index+natural'],lvlNatural] , ['Human',d['#index+human'],lvlHuman]], 'haz') );
 
-					$('#INFORM_sum').html( fillRiskCard ( 'SUMMARY' , [ ['Inform Risk',d['#index+informrisk'],lvlRisk],  ['Risk Class',d['#index+class'],lvlClass] ], 'sum') ); 
-				
+					$('#vulnerability').html( fillRiskCard ( 'VULNERABILITY' , [ ['Overall',d['#index+vulnarability'],lvlVulna],  ['Socio-Economic',d['#index+socioeconomic'],lvlSocEc] , ['Vulnerable Groups',d['#index+vulnarablegroups'],lvlVulGrp]], 'vul') );
+
+					$('#lack_of_coping').html( fillRiskCard ( 'LACK OF COPING CAPACITY' , [ ['Overall',d['#index+lackcopingcapacity'],lvlCoping],  ['Institutional',d['#index+institutional'],lvlInstit] , ['Infrastructure',d['#index+infrastructure'],lvlInfra]], 'cap') );
+
+					$('#INFORM_sum').html( fillRiskCard ( 'SUMMARY' , [ ['Inform Risk',d['#index+informrisk'],lvlRisk],  ['Risk Class',d['#index+class'],lvlClass] ], 'sum') );
+
                 });
 
             }
-	
+
     });
 }
 
@@ -326,7 +379,7 @@ function fillRiskCard (title, data, csscat) {
 	var html = '<h4 class="keyfiguretitle text-center minheight">'+title+'</h4>';
 	data.forEach( function (v,i) {
 		html += '<h5 class="text-center minheight">'+v[0]+'</h5>';
-		html += '<p class="keyfigure text-center INF_'+ csscat 
+		html += '<p class="keyfigure text-center INF_'+ csscat
 		if (i>0) { html += '_sub'}
 		html += '_level'+determineLevel(v[1], v[2])+'">'+v[1]+'</p>';
 	});
@@ -345,7 +398,7 @@ function determineLevel(val, range) {
 				lvl = index+1;
 			}
 		}
-	});		
+	});
 	return lvl;
 }
 
@@ -405,13 +458,13 @@ function generateBranchMap(brMap, brNodes) {
 				layers: [baselayer,baselayer2]
 			});
 
-	// Add branch areas		
+	// Add branch areas
 	var layer_RedCrossBranches = new L.geoJson(brMap,{
 		style:styleMap
 	})
 	bounds = layer_RedCrossBranches.getBounds();
 	map.addLayer(layer_RedCrossBranches);
-	
+
 	var highlightLayer;
 	function highlightFeature(e) {
 		highlightLayer = e.target;
@@ -435,7 +488,7 @@ function generateBranchMap(brMap, brNodes) {
 			dashArray: '',
 			lineCap: 'butt',
 			lineJoin: 'miter',
-			weight: 1.0, 
+			weight: 1.0,
 			fill: true,
 			fillOpacity: 1,
 			fillColor: 'LIGHTGREY',
@@ -524,7 +577,7 @@ function makeMap(brMap, brNodes) {
 			dashArray: '',
 			lineCap: 'butt',
 			lineJoin: 'miter',
-			weight: 1.0, 
+			weight: 1.0,
 			fill: true,
 			fillOpacity: 0.7,
 			fillColor: '#D33F49',
@@ -537,7 +590,7 @@ function makeMap(brMap, brNodes) {
 	bounds = layer_RedCrossBranches.getBounds();
 	map.addLayer(layer_RedCrossBranches);
 	map.fitBounds(bounds);
-	
+
 	var highlightLayer;
 	function highlightFeature(e) {
 		highlightLayer = e.target;
@@ -651,7 +704,7 @@ var brNodesCall = $.ajax({
 	}
 });
 
-$.when(brMapCall, brNodesCall).always(function(mapArgs, nodesArgs){ 
+$.when(brMapCall, brNodesCall).always(function(mapArgs, nodesArgs){
 	makeMap(mapArgs,nodesArgs)
 });
 
@@ -663,7 +716,7 @@ console.log(hxlGovernanceURL);
 createGovernanceTable(hxlGovernanceURL);
 
 // Load the PNS data
-var hxlPNSCallURL = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23country%2Bcode%3DCOUNTRYCODE&filter02=sort&sort-tags02=%23project%2Bpartner%2C+%23data%2Bstart&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1SqZRFRsJSRXeyic3QUDWOqrwp5mDsUiOQIfeTRxKVEk%2Fedit%23gid%3D1941804323'
+var hxlPNSCallURL = 'https://proxy.hxlstandard.org/data.json?filter01=select&select-query01-01=%23meta%2Bcheck%3DY&filter02=sort&sort-tags02=%23date%2Bend&sort-reverse02=on&filter03=select&select-query03-01=%23country%2Bcode%3DCOUNTRYCODE&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1pkoD2RJmUoZSuNCXYF49eG3tTdYkHiTrSamQ4LuxgOQ%2Fedit%23gid%3D363150129';
 hxlPNSCallURL = hxlPNSCallURL.replace('COUNTRYCODE',hash);
 createPNSsTable(hxlPNSCallURL);
 
@@ -692,5 +745,3 @@ $.ajax({
         createAppealsTable(data);
     }
 });
-
-

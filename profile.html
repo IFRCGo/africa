@@ -118,7 +118,7 @@
 		</div>
 	</div>
 </section>
-	
+
 <section id="PacIndicators" style="height:0px; visibility:hidden; overflow:hidden">
 	<div class="row">
 		<h1>PAC Indicators</h1>
@@ -130,11 +130,11 @@
 </section>
 
 <hr />
-	
+
 <section id="FDRS">
 	<div class="row">
 		<h1>2016 Key Figures</h1>
-	
+
 		<div class="row small-up-2 medium-up-4">
 			<div class="column small-up-2 medium-up-4">
 				<div id="NoVolunteers" class="card no-border">
@@ -152,8 +152,8 @@
 				<div id="NoLocUnit" class="card no-border">
 				</div>
 			</div>
-		</div>	
-		
+		</div>
+
 		<div class="row small-up-2 medium-up-4">
 			<div class="column">
 				<div id="NoReachDR" class="card no-border">
@@ -175,14 +175,14 @@
 		<div class="medium-12 column">
 			<p class="text-right"><i>Go to <a id="FDRSlink" target="_blank" href="http://data.ifrc.org/fdrs/societies/">FDRS website</a> for more in-depth figures.</i></p>
 		</div>
-	</div>	
-</section>	
+	</div>
+</section>
 
 <section id="WASH_capacity">
 <hr />
 	<div class="row">
 		<h1>WASH capacity</h1>
-	
+
 		<div class="row small-up-2 medium-up-4">
 			<div class="column small-up-2 medium-up-4">
 				<div id="NoWashStaff" class="card no-border">
@@ -200,8 +200,8 @@
 				<div id="NoWashKit10" class="card no-border">
 				</div>
 			</div>
-		</div>	
-		
+		</div>
+
 		<div class="row small-up-2 medium-up-4">
 			<div class="column">
 				<div id="NoWashHQ" class="card no-border">
@@ -220,14 +220,33 @@
 				</div>
 			</div>
 		</div>
-	</div>	
-</section>	
+	</div>
+</section>
 
 <hr />
-	
+
 <section id="PNS">
-	<div class="row">
+	<div class="row small-up-2">
 		<h1>Partner National Societies</h1>
+    <div class="column">
+    <table id="pnsoverviewtable">
+      <tr class="bold">
+  			<td><strong>PNS</strong></td>
+  			<td><strong>No Projects</strong></td>
+  		</tr>
+    </table>
+    </div>
+    <div class="column">
+      <table id="sectoroverviewtable">
+        <tr class="bold">
+    			<td><strong>Sector</strong></td>
+    			<td><strong>No Projects</strong></td>
+    		</tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div id="pnsProjects">
 		<table id="pnstable">
 		<tr class="bold">
 			<td><strong>PNS</strong></td>
@@ -238,9 +257,12 @@
 			<td><strong>Start</strong></td>
 			<td><strong>End</strong></td>
 		</tr>
-        </table>
+    </table>
+  </div>
+  <input class="showButton" type="button" value="Show Projects" onclick="document.getElementById('pnsProjects').style.height = document.getElementById('pnsProjects').scrollHeight+'px';">
 	</div>
-</section>	
+
+</section>
 
 <hr />
 
@@ -248,7 +270,7 @@
 	<div class="row">
 		<h1>INFORM Risk Index</h1>
 		<div class="row small-up-2 medium-up-4">
-	
+
 			<div class="column">
 				<div id="hazard" class="card categorycard">
 					<p>Please wait while we're loading the data</p>
@@ -270,14 +292,14 @@
 				</div>
 			</div>
 		</div>
-	</div>	
+	</div>
 	<div class="row">
 		<div class="medium-12 row">
 			<p class="text-right"><i>Go to <a href="http://www.inform-index.org/">the INFORM website</a> for more info about the INFORM Risk Index.</i></p>
 		</div>
 	</div>
-</section>	
-	
+</section>
+
 <hr />
 
 <section id="Appeals">
@@ -296,7 +318,7 @@
                 </tr>
             </table>
 	</div>
-</section>	
+</section>
 
 
 <hr>

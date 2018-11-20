@@ -45,6 +45,27 @@ ol {
 	background-color: #D33F49;
 }
 
+#pnsProjects {
+  height: 0px;
+  overflow: hidden;
+  transition: height 1s;
+}
+#togglePNS:checked ~ #Title {
+  height: 250px;
+}
+
+input.showButton {
+  display: block;
+  padding: 0.5em;
+  text-align: center;
+  border: solid 1px;
+}
+
+tr.PastProject td {
+  font-style: italic;
+  font-size: smaller;
+}
+
 #eventstable i, #pasteventstable i {
 	font-size: small;
 }
