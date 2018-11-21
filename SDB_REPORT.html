@@ -9,9 +9,6 @@
 		font-family: "Gill Sans", "Gill Sans MT", "Myriad Pro", "DejaVu Sans Condensed", Helvetica, Arial, "sans-serif";
 		font-size: 10pt;
 	}
-	/*h2 {
-		clear: both;
-	}*/
 	#title {
 		font-size: 1.2rem;
 		font-weight: 700;
@@ -28,34 +25,36 @@
 		padding-top: 0.5rem;
 		width: 100%;
 		border-collapse: collapse;
-		/*border-spacing: 0px;*/
 	}
 	thead th:nth-child(1) {
-	  width: 8%;
+	  width: 7%;
 	}
 	thead th:nth-child(2) {
-	  width: 6%;
+	  width: 7%;
 	}
 	thead th:nth-child(3) {
-	  width: 16%;
+	  width: 7%;
 	}
 	thead th:nth-child(4) {
-	  width: 10%;
+	  width: 15%;
 	}
 	thead th:nth-child(5) {
-	  width: 10%;
+	  width: 9%;
 	}
 	thead th:nth-child(6) {
-	  width: 10%;
+	  width: 9%;
 	}
 	thead th:nth-child(7) {
-	  width: 15%;
+	  width: 13%;
 	}
 	thead th:nth-child(8) {
-	  width: 10%;
+	  width: 9%;
 	}
 	thead th:nth-child(9) {
-	  width: 15%;
+	  width: 13%;
+	}
+	thead th:nth-child(10) {
+	  width: 13%;
 	}
 
 	th, td {
@@ -63,11 +62,9 @@
 	}
 
 	#tableSDB td, tr{
-		/*padding: 0px;*/
     	border: 1px solid lightgrey;
 	}
 	#tableSDB th{
-		/*min-width: 80px;*/
 	    background-color: #820202;
 		color: white;
 	}
@@ -77,7 +74,6 @@
 		float: right;
 		padding-bottom: 0.5rem;
 		padding-right: 1rem;
-		/*width: 25%;*/
 	}
 	.button {
 	    cursor: pointer;
@@ -95,15 +91,35 @@
 	}
 
 	#dc-team-chart {
-		/*width: 50%;*/
+		width: 150px;
 		float: left;
 		margin-left: 1rem;
 	}
-	#dc-date-chart {
+	#dc-zone-chart {
+		width: 150px;
 		float: left;
-		margin-left: 1rem;
+		margin-left: 2rem;
+	}
+	#dc-zone-chart g.row text {
+        fill: black;
+        font-size: 10px;
+    }
+
+	#dc-date-chart {
+		width: 360px;
+		float: left;
+		margin-left: 3rem;
+	}
+	#dc-date-chart p {
+		margin-bottom: 0px;
+	}
+	#dc-date-chart span {
+		margin-left: 4rem;
+		font-weight: 600;
 	}
 	#dc-result-chart {
+		width: 180px;
+		height: 200px;
 		float: left;
 		margin-left: 1rem;
 		margin-right: 0rem;
@@ -151,9 +167,12 @@
 		<div id='dc-team-chart'>
 	      	<p class='instruction'>Cliquez pour sélectionner les équipes:</p>
 	    </div>
+	    <div id='dc-zone-chart'>
+	      	<p class='instruction'>Cliquez pour sélectionner la zone de santé:</p>
+	    </div>
 	    <div id='dc-date-chart'>
 	    	<p class='instruction'>Cliquez et faites glisser pour sélectionner les dates d'<i>Alert Received</i>:</p>
-	    	<p id='dates_selected'></p>
+	    	<span id='dates_selected'></span>
 	    </div>
 	    <div id='dc-result-chart'>
 	    	<p class='instruction'>Cliquez pour sélectionner les résultat:</p>
@@ -161,14 +180,12 @@
 	    </div>
 	</div>
 
-	<!-- <div class="row"> -->
-		<div class='button_list row'>
-			<!-- <button class='button' onclick="exportData('xlsx','all_today');">Toutes données d'aujourd'hui - XLSX</button>
-			<button class='button' onclick="exportData('xlsx','all_yesterday');">Toutes données d'hier - XLSX</button> -->
-			<button class='button' onclick="exportData('xlsx','dshbrd_view');">Export sélectionné (xlsx) - dashboard</button>
-			<button class='button' onclick="exportData('xlsx','tbl_view');">Export sélectionné (xlsx) - table</button>
-		</div>
-	<!-- </div> -->
+	<div class='button_list row'>
+		<!-- <button class='button' onclick="exportData('xlsx','all_today');">Toutes données d'aujourd'hui - XLSX</button>
+		<button class='button' onclick="exportData('xlsx','all_yesterday');">Toutes données d'hier - XLSX</button> -->
+		<button class='button' onclick="exportData('xlsx','dshbrd_view');">Export sélectionné (xlsx) - dashboard</button>
+		<button class='button' onclick="exportData('xlsx','tbl_view');">Export sélectionné (xlsx) - table</button>
+	</div>
 
 	<div>
 		<table id="tableSDB" style="font-size: 10px"></table>
