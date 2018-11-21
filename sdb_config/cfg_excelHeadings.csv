@@ -1,4 +1,5 @@
 excel_heading,dashboard_category,kobo_fieldname,processing_options
+Kobo submission,submission,_submission_time,
 Équipe du formulaire,newalert,team,
 Équipe autre,newalert,,
 Type d'alerte,newalert,type,
