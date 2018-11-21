@@ -8,7 +8,7 @@
 // 1. In cfg_excelHeadings.csv:
 //    - order counts - i.e. calculate fields must come after the fields that they are based on
 //		 - perhaps all calculate fields should be at the bottom of the file?
-// 	  - for team specs - replace team characters with 'xxxxxxxx' in config file - this can then match
+//    - for team specs - replace team characters with 'xxxxxxxx' in config file - this can then match
 //		 any teams defined
 //
 //**************************************************************************************************//
@@ -20,6 +20,7 @@ let excelHeadings, data, currentData;
 let blank = ' ';
 
 let mainHeadings = {
+	    'submission': 'Kobo Submission',
 		'start': 'Alert Start',
 		'end': 'Alert End',
 		'newalert': 'Alert Details',
@@ -35,6 +36,8 @@ let spellChanges = {
 	'etc': 'CTE',
 }
 
+
+let unique_zones_sante = [];
 
 //Parses CSV files - creates array of objects
 //Splits text at each new line, splits each line at commas
@@ -99,6 +102,7 @@ function processKoboSDBdata(sdbData) {
 	var temp;
 	var datetime;
 	var circumstancesOfFailure, circ;
+	var all_zones = [];
 
 	
 	//var kobo_fieldnames = getKoboFieldnames();
@@ -112,6 +116,8 @@ function processKoboSDBdata(sdbData) {
 
 
 		//FIRST ADD KOBO FIELDS NEEDED FOR PROCESSING ONLY, NOT FOR OUTPUT
+		temp['date_submitted'] = new Date(record['_submission_time'])
+		//console.log(record['_submission_time'], temp['date_submitted'])
 		temp['team_went/burial/status'] = record['team_went/burial/status'];
 
 		//CALCUALTE alert_received FIELD - USED BY DATE FILTERING CHART
@@ -286,16 +292,26 @@ function processKoboSDBdata(sdbData) {
 			}
 
 		}
-
+		all_zones.push(record['group_location/collection_zone']);
 		//console.log('temp: ', temp);
 		processedData.push(temp);
 	});
 
+	unique_zones_sante = all_zones.filter(onlyUnique).filter(z => ((z!='')&&(z!=undefined)) );
+	console.log('Unique zones sante: ', unique_zones_sante);
+
 	//order data by date (once date is parsed)
-	processedData = reverseSortByKey(processedData, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
+	//processedData = reverseSortByKey(processedData, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
+	processedData = reverseSortByKey(processedData, 'date_submitted');
+	//processedData = reverseSortByKey(processedData, 'alert_received');
 
 	console.log('processedData: ', processedData);
 	return processedData;
+}
+
+
+function onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
 }
 
 
@@ -318,7 +334,9 @@ function createSummarySDBTable(sdbData) {
 	html += '</thead>';
 	$('#tableSDB').append(html);
 
-	sdbData = reverseSortByKey(sdbData, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
+	//sdbData = reverseSortByKey(sdbData, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
+	sdbData = reverseSortByKey(sdbData, 'date_submitted');
+	//sdbData = reverseSortByKey(sdbData, 'alert_received');
 
 	//write table rows
 	sdbData.forEach(function(d,i){
@@ -355,7 +373,17 @@ function getSubHeadingHtml(mainhead, record) {
 
 		if (excelHeadings[i].dashboard_category==mainhead) {  //if the excel heading is in the correct category, output it here
 
-			if (excelHeadings[i]['kobo_fieldname'] == 'team_went/burial/begin_group_xxxxxxxx/activity_date') {
+			if (excelHeadings[i]['kobo_fieldname'] == '_submission_time') {
+				var submit_date_out;
+				if (record[excelHeadings[i]['kobo_fieldname']] == blank) {
+					html += '<b>Not available</b><br>';	
+					console.log('Alert! Submission date not available', record[excelHeadings[i]['kobo_fieldname']])
+				} else {
+					submit_date_out = formatDateTime(new Date(record[excelHeadings[i]['kobo_fieldname']]),'screen');
+					html += '<b>' + submit_date_out[0] + ' ' + submit_date_out[1] + '</b><br>';	
+				}	
+
+			} else if (excelHeadings[i]['kobo_fieldname'] == 'team_went/burial/begin_group_xxxxxxxx/activity_date') {
 				//console.log('return ', record[r])
 				var date_output, if_new_line;
 				record[excelHeadings[i].kobo_fieldname] == blank? date_output = 'Not available' : date_output = formatDate(record[excelHeadings[i].kobo_fieldname],'screen');
@@ -443,7 +471,6 @@ function getSubHeadingHtml(mainhead, record) {
 }
 
 function formatDateTime(date, format) {
-	//console.log(date, format);
 	let months = ["Jan", "Fev", "Mar", "Avr", "Mai", "Juin", "Juil", "Aout", "Sep", "Oct", "Nov", "Dec"];
 	let newdate;
 
@@ -742,8 +769,8 @@ function getResultType(rec) {
 		result = 'Désinfection seulement';
 
 	} else if (!(rec.hasOwnProperty('team_went/burial/status'))) {
-		result = 'Status field doesn\'t exist';
-		console.log('Status field doesn\'t exist');
+		result = 'No status field';
+		console.log('No status field');
 	} else {
 
 		if (['secured_buried', 'secured_negative_sample', 'Succes'].indexOf(rec['team_went/burial/status']) != -1 ){
@@ -754,8 +781,8 @@ function getResultType(rec) {
 
 		} else if ((rec['team_went/burial/status'] == 'other') || (rec['team_went/burial/status'] == 'autre')) {
 			if (!(rec.hasOwnProperty('team_went/burial/reason'))) {
-				result = 'Other - reason field doesn\'t exist';   //happens frequently
-				//console.log('Other - reason field doesn\'t exist');
+				result = 'Other - no reason field';   //happens frequently
+				//console.log('Other - no reason field');
 			} else if ((rec['team_went/burial/reason'] == '') || (rec['team_went/burial/reason'] == blank)) {
 				result = 'Other - reason field blank'; 
 				//console.log('Other - reason field blank');
@@ -869,7 +896,9 @@ function exportData(fileType,option) {
 		rows.push(headings)
 
 		//console.log('currentData: ', currentData)
-		currentData = reverseSortByKey(currentData, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
+		//currentData = reverseSortByKey(currentData, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
+		currentData = reverseSortByKey(currentData, 'date_submitted');
+		//currentData = reverseSortByKey(currentData, 'alert_received');
 
     	for (var i = 0; i <= currentData.length-1; i++) {
     		//console.log(i, currentData[i])
@@ -915,7 +944,9 @@ function exportData(fileType,option) {
     	//downloadTbl();
 
     	//console.log('currentData: ', currentData)
-		currentData = reverseSortByKey(currentData, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
+		//currentData = reverseSortByKey(currentData, 'alert_new/datetime/date_alert&&datetime/date_alert&&start');
+		currentData = reverseSortByKey(currentData, 'date_submitted');
+		//currentData = reverseSortByKey(currentData, 'alert_received');
 
 
 		for (var mainHead in mainHeadings) {
@@ -1112,6 +1143,16 @@ function createCharts(data) {
 	var teamChart = dc.rowChart("#dc-team-chart");
 	var teamDim = cf.dimension(function (d) { return d['team'] });
 	var teamGroup = teamDim.group();
+	var zoneChart = dc.rowChart("#dc-zone-chart");
+	var zoneDim = cf.dimension(function (d) {
+		if (['', ' '].includes(d['group_location/collection_zone'])) {
+			return 'Zone pas défini';
+		} else {
+			return d['group_location/collection_zone']
+		}; 
+	});
+	//var zoneDim = cf.dimension(function (d) {if (d['group_location/collection_zone']!=' ') {return d['group_location/collection_zone']} });
+	var zoneGroup = zoneDim.group();
 	var dateChart = dc.compositeChart("#dc-date-chart");
 	var dateDim = cf.dimension(function (d) {if (d['alert_received']!='') {/*console.log(d['alert_received']);*/ return d['alert_received'] }});
 	var dateGroup = dateDim.group();
@@ -1139,9 +1180,9 @@ function createCharts(data) {
 
 
 	//ROW CHART - TEAMS
-  	teamChart.width(260)
-	    .height(170)
-	    //.margins({top: 5, left: 10, right: 10, bottom: 40})
+  	teamChart.width(150)
+	    .height(200)
+	    .margins({top: 0, left: 2, right: 2, bottom: 40})
 	    .dimension(teamDim)
 	    .group(teamGroup)
 	    .colors(['steelblue'])
@@ -1155,9 +1196,28 @@ function createCharts(data) {
 	    .elasticX(true)
 	    .xAxis().ticks(4);
 
+	//ROW CHART - TEAMS
+  	zoneChart.width(150)
+	    .height(200)
+	    .margins({top: 0, left: 2, right: 0, bottom: 40})
+	    .dimension(zoneDim)
+	    .group(zoneGroup)
+	    .colors(['#a0c960'])
+	    //.colors(d3.scaleOrdinal(d3.schemeCategory10))
+	    .label(function (d){
+	    	//console.log(d);
+	        return d.key;
+	    })
+	    .title(function(d){return d.key + ': '+ d.value;})
+	    .ordering(function(d) { return - d.value })
+	    .elasticX(true)
+	    .xAxis().ticks(4);
+
+	//TIME SERIES CHART - with handles
 	dateChart
 		.width(360)
-	    .height(160)
+	    .height(200)
+	    .margins({top: 10, left: 30, right: 8, bottom: 30})
 	    .x(d3.scaleTime().domain(dateExtentPlus))
 	    .yAxisLabel("Nombre de Réponses")
 	    .dimension(dateDim)
@@ -1170,11 +1230,12 @@ function createCharts(data) {
 	            .ordinalColors(['#c58cc5'])
 	    ]);
 
+	//PIE CHART - RESULTS
 	resultChart
-	    .width(295)
-	    .height(160)
-	    .cx(62)
-	    .cy(80)
+	    .width(180)
+	    .height(200)
+	    .cx(80)
+	    .cy(60)
 	    .radius(60)
 	    .innerRadius(14)
 	    .ordinalColors(['#66c2a5','#fc8d62','#8da0cb','#e78ac3','#a6d854','#ffd92f','#e5c494','#b3b3b3'])
@@ -1186,7 +1247,8 @@ function createCharts(data) {
 	        console.log(d.value, currentData.length, perc + '%');
 	        return perc + '%';
 	    })*/
-	    .legend(dc.legend().x(130).y(45).itemHeight(13).gap(2))
+	    //.legend(dc.legend().x(130).y(45).itemHeight(13).gap(2))
+	    .legend(dc.legend().x(30).y(126).itemHeight(13).gap(2))
 		.on('renderlet', function(chart) { 
 			chart.selectAll('g.pie-slice') 
 				.on('mouseover', function(d) { 
@@ -1205,8 +1267,8 @@ function createCharts(data) {
         //.attr("class", "x-axis-label")
         .attr("text-anchor", "middle")
         .attr("font-size", "12px")
-        .attr("x", 130)
-        .attr("y", 168)
+        .attr("x", 70)
+        .attr("y", 196)
         .text('Nombre de Réponses');
 
 
@@ -1214,6 +1276,15 @@ function createCharts(data) {
          currentData = teamDim.top(Infinity)
          createSummarySDBTable(currentData);
     })
+
+    zoneChart.svg()
+        .append("text")
+        //.attr("class", "x-axis-label")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "12px")
+        .attr("x", 70)
+        .attr("y", 196)
+        .text('Nombre de Réponses');
 
 
     dateChart.on("filtered", function (chart) {
