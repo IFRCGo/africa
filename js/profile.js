@@ -683,8 +683,8 @@ if ( patt.test(hash) ) {
 
 
 // get the branch map data
-var branchmap = 'http://ifrcgo.org/africa/maps/' + hash + '_map.geojson';
-var branchnodes = 'http://ifrcgo.org/africa/maps/' + hash + '_nodes.geojson';
+var branchmap = 'https://ifrcgo.org/africa/maps/' + hash + '_map.geojson';
+var branchnodes = 'https://ifrcgo.org/africa/maps/' + hash + '_nodes.geojson';
 
 var brMapCall = $.ajax({
     type: 'GET',

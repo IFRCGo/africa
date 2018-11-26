@@ -24,9 +24,9 @@ function createMap(data,geom){
 		if(data.map(function(e) {
 			var valISO = ""
 			if (e['country'] !== null) {
-				valISO = e['country']['iso']; 
+				valISO = e['country']['iso'];
 			}
-			return valISO; 
+			return valISO;
 		}).indexOf(feature.properties['ISO_A2'].toLowerCase())>-1){
 			color = '#D33F49';
 			fillOpacity = 0.7;
@@ -51,12 +51,12 @@ function createMap(data,geom){
     }).addTo(map);
     var bbox = [[90,180],[-90,-180]];
     map.overlay.eachLayer(function(l){
-    	if(data.map(function(e) { 
+    	if(data.map(function(e) {
 			var valISO = ""
 			if (e['country'] !== null) {
-				valISO = e['country']['iso']; 
+				valISO = e['country']['iso'];
 			}
-			return valISO; 
+			return valISO;
 		 }).indexOf(l.feature.properties['ISO_A2'].toLowerCase())>-1){
     		if(bbox[0][0]>l.feature.properties.bounds_calculated._southWest.lat){bbox[0][0]=l.feature.properties.bounds_calculated._southWest.lat};
     		if(bbox[0][1]>l.feature.properties.bounds_calculated._southWest.lng){bbox[0][1]=l.feature.properties.bounds_calculated._southWest.lng};
@@ -160,7 +160,7 @@ function niceFormatNumber(num,round){
 var map = '';
 var table='';
 var appealsGoUrl = 'https://prddsgocdnapi.azureedge.net/api/v2/appeal/?format=json&end_date__gte=999999T00%3A00%3A00&region=0&status=0';
-var worldmap = 'http://ifrcgo.org/assets/map/worldmap.json';
+var worldmap = 'https://ifrcgo.org/assets/map/worldmap.json';
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1;

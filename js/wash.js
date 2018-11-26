@@ -171,7 +171,7 @@ function createTable(data) {
 
 var map = '';
 var washurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1aYeTU8SaEt8ryxiVEoKqE5jsiLsSnPoDICRoCpwom3A%2Fedit%23gid%3D261283785';
-var worldmap = 'http://ifrcgo.org/assets/map/worldmap.json';
+var worldmap = 'https://ifrcgo.org/assets/map/worldmap.json';
 
 var dataCall = $.ajax({
     type: 'GET',

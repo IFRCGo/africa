@@ -6,19 +6,19 @@
 	   color:'black',
 	   dashArray:3,
 	   fillOpacity:0.7
-	
-           }
-		   }	
 
-  
+           }
+		   }
+
+
  var map=L.map('map').setView([0,0],10);
- var country_url="http://ifrcgo.org/africa/profile.html#";
+ var country_url="https://ifrcgo.org/africa/profile.html#";
 /*   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 19,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
                 }).addTo(map); */
  L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
- var popup = L.popup(); 
+ var popup = L.popup();
 
 function showCountryProfile(e){
 		var code=e.target.feature.properties.ISO_A3;
@@ -40,7 +40,7 @@ var geojsonMarkerOptions = {
     opacity: 1,
     fillOpacity: 0.8
 };
- function onEachFeature(feature, layer) {          
+ function onEachFeature(feature, layer) {
            layer.on({
 				click: showCountryProfile,
 				mouseover: showName
@@ -48,14 +48,12 @@ var geojsonMarkerOptions = {
         }
 	var africaLayer= L.geoJson(africa,{
 				style:africaStyle,
-				
+
                 onEachFeature:onEachFeature,
-				
+
 				pointToLayer: function (feature, latlng) {
 					return L.circleMarker(latlng, geojsonMarkerOptions);
 				}
-	}).addTo(map); 
+	}).addTo(map);
 	map.fitBounds(africaLayer.getBounds());
 	map.zoomIn();
-	 
-

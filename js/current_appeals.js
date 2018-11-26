@@ -21,7 +21,7 @@ function getAppealDocs(id){
 					console.log(row);
 					if(i>0){
 						if(row[0].substring(0,1)=='/'){
-							row[0] = 'http://www.ifrc.org'+row[0];
+							row[0] = 'https://www.ifrc.org'+row[0];
 						}
 						html+='<p><a href="'+row[0]+'" target="blank">'+row[1]+'</a> ('+row[2]+')</p>'
 					}
@@ -93,12 +93,12 @@ function createMap(data,geom){
 		var cls = 'country'
 
 //		if(data.map(function(e) { return e['country']['iso']; }).indexOf(feature.properties['ISO_A2'].toLowerCase())>-1){
-		if(data.map(function(e) { 
+		if(data.map(function(e) {
 			var valISO = ""
 			if (e['country'] !== null) {
-				valISO = e['country']['iso']; 
+				valISO = e['country']['iso'];
 			}
-			return valISO; 
+			return valISO;
 		}).indexOf(feature.properties['ISO_A2'].toLowerCase())>-1){
 			color = '#D33F49';
 			fillOpacity = 0.7;
@@ -123,12 +123,12 @@ function createMap(data,geom){
     }).addTo(map);
     var bbox = [[90,180],[-90,-180]];
     map.overlay.eachLayer(function(l){
-    	if(data.map(function(e) { 
+    	if(data.map(function(e) {
 			var valISO = ""
 			if (e['country'] !== null) {
-				valISO = e['country']['iso']; 
+				valISO = e['country']['iso'];
 			}
-			return valISO; 
+			return valISO;
 		 }).indexOf(l.feature.properties['ISO_A2'].toLowerCase())>-1){
     		if(bbox[0][0]>l.feature.properties.bounds_calculated._southWest.lat){bbox[0][0]=l.feature.properties.bounds_calculated._southWest.lat};
     		if(bbox[0][1]>l.feature.properties.bounds_calculated._southWest.lng){bbox[0][1]=l.feature.properties.bounds_calculated._southWest.lng};
@@ -243,7 +243,7 @@ function getAppealType(type) {
 var map = '';
 var table='';
 var appealsGoUrl = 'https://prddsgocdnapi.azureedge.net/api/v2/appeal/?format=json&end_date__gte=999999T00%3A00%3A00&region=0&status=0';
-var worldmap = 'http://ifrcgo.org/assets/map/worldmap.json';
+var worldmap = 'https://ifrcgo.org/assets/map/worldmap.json';
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1;
