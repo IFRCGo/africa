@@ -1,13 +1,13 @@
-Country;Name;lat;lng;Staff;Volunteers;Branch
-COD;Kouilou;-4.142772;11.888931;0;542;Conseil départemental Kouilou
-COD;Pointe-Noire;-4.769171;11.866392;0;756;Conseil départemental Pointe-Noire
-COD;Sangha;1.46518;15.404701;0;427;Conseil départemental Sangha
-COD;Bouenza;-4.111494;13.729455;0;669;Conseil départemental Bouenza
-COD;Brazzaville;-4.26177;15.242418;2;6,585;Conseil départemental Brazzaville
-COD;Cuvette;-0.482651;15.893414;0;407;Conseil départemental Cuvette
-COD;Cuvette-ouest;-0.879976;14.816383;0;307;Conseil départemental Cuvette Ouest
-COD;Lekoumou;-3.167583;13.359782;0;527;Conseil départemental Lekoumou
-COD;Likouala;1.626709;18.05491;0;735;Conseil départemental Likouala
-COD;Niari;-3.185274;12.255064;0;625;Conseil départemental Niari
-COD;Plateaux;-2.067097;15.406693;0;378;Conseil départemental Plateaux
-COD;Pool;-3.771689;14.84349;0;822;Conseil départemental Pool
+ISO3;Branch;Location;lat;lng;Staff;Volunteers
+COD;Conseil départemental Kouilou;Conseil départemental Kouilou;Kouilou;-4.142772;11.888931;0;542
+COD;Conseil départemental Pointe-Noire;Pointe-Noire;-4.769171;11.866392;0;756
+COD;Conseil départemental Sangha;Sangha;1.46518;15.404701;0;427
+COD;Conseil départemental Bouenza;Bouenza;-4.111494;13.729455;0;669
+COD;Conseil départemental Brazzaville;Brazzaville;-4.26177;15.242418;2;6,585
+COD;Conseil départemental Cuvette;Cuvette;-0.482651;15.893414;0;407
+COD;Conseil départemental Cuvette Ouest;Cuvette-ouest;-0.879976;14.816383;0;307
+COD;Conseil départemental Lekoumou;Lekoumou;-3.167583;13.359782;0;527
+COD;Conseil départemental Likouala;Likouala;1.626709;18.05491;0;735
+COD;Conseil départemental Niari;Niari;-3.185274;12.255064;0;625
+COD;Conseil départemental Plateaux;Plateaux;-2.067097;15.406693;0;378
+COD;Conseil départemental Pool;Pool;-3.771689;14.84349;0;822
