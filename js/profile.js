@@ -122,7 +122,6 @@ function createGovernanceTable(url) {
 		dataType: 'json',
 		success: function(result){
 			var data = hxlProxyToJSON(result);
-			console.log(data);
 
 			// Run through data and prep for tables
 			data.forEach(function(d,i){
@@ -208,7 +207,6 @@ function createPNSsTable(url){
 		dataType: 'json',
 		success: function(result){
 			var data = hxlProxyToJSON(result);
-			console.log(data);
 
       var dayNow = new Date();
       var dayEnd = new Date();
@@ -282,7 +280,6 @@ function loadFDRS(url){
             dataType: 'json',
             success: function(result){
                 var data = hxlProxyToJSON(result);
-                console.log(data);
                 data.forEach(function(d){
 
 					$('#NoVolunteers').html( fillKeyFigureCard( 'People volunteering their time', d['#volunteer']) );
@@ -356,7 +353,6 @@ function loadINFORMindex(url) {
             dataType: 'json',
             success: function(result){
                 var data = hxlProxyToJSON(result);
-                console.log(data);
                 data.forEach(function(d){
 
 					$('#hazard').html( fillRiskCard ( 'HAZARD &amp; EXPOSURE' , [ ['Overall',d['#index+hazard'],lvlHazard],  ['Natural',d['#index+natural'],lvlNatural] , ['Human',d['#index+human'],lvlHuman]], 'haz') );
@@ -402,163 +398,6 @@ function determineLevel(val, range) {
 	return lvl;
 }
 
-function generateMap(geom, ISO3) {
-
-	var baselayer = L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
-	var baselayer2 = L.tileLayer('https://data.humdata.org/mapbox-layer-tiles/{z}/{x}/{y}.png', {minZoom:4});
-
-	map = L.map('map',{
-				center: [0,0],
-				zoom: 2,
-				layers: [baselayer,baselayer2]
-			});
-
-	map.overlay = L.geoJson(geom,{
-		onEachFeature:onEachFeature,
-		style:style
-	}).addTo(map);
-
-	function style(feature) {
-		var color = '#aaaaaa';
-		var fillOpacity = 0;
-		var weight =0
-		var cls = 'country'
-		if(feature.properties['ISO_A3']==ISO3){
-			color = '#D33F49';
-			fillOpacity = 0.7;
-			weight = 1
-		};
-
-		return {
-				'color': color,
-				'fillcolor': color,
-				'weight': weight,
-				'opacity': 0.7,
-				'fillOpacity':fillOpacity,
-				'className':cls
-			};
-	}
-    function onEachFeature(feature, layer){
-		if(feature.properties['ISO_A3']==ISO3){
-			var bounds = layer.getBounds();
-			map.fitBounds(bounds);
-		}
-	}
-
-}
-
-function generateBranchMap(brMap, brNodes) {
-	var baselayer = L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
-	var baselayer2 = L.tileLayer('https://data.humdata.org/mapbox-layer-tiles/{z}/{x}/{y}.png', {minZoom:4});
-	var bounds;
-
-	map = L.map('map',{
-				center: [0,0],
-				zoom: 2,
-				layers: [baselayer,baselayer2]
-			});
-
-	// Add branch areas
-	var layer_RedCrossBranches = new L.geoJson(brMap,{
-		style:styleMap
-	})
-	bounds = layer_RedCrossBranches.getBounds();
-	map.addLayer(layer_RedCrossBranches);
-
-	var highlightLayer;
-	function highlightFeature(e) {
-		highlightLayer = e.target;
-
-		if (e.target.feature.geometry.type === 'LineString') {
-		  highlightLayer.setStyle({
-			color: 'LIGHTGREY',
-		  });
-		} else {
-		  highlightLayer.setStyle({
-			fillColor: 'RED',
-			fillOpacity: 1
-		  });
-		}
-	}
-
-	function styleMap() {
-		return {
-			opacity: 1,
-			color: 'rgba(0,0,0,1.0)',
-			dashArray: '',
-			lineCap: 'butt',
-			lineJoin: 'miter',
-			weight: 1.0,
-			fill: true,
-			fillOpacity: 1,
-			fillColor: 'LIGHTGREY',
-		}
-	}
-	function styleNode() {
-		return {
-			radius: 4.0,
-			opacity: 1,
-			color: 'rgba(0,0,0,1.0)',
-			dashArray: '',
-			lineCap: 'butt',
-			lineJoin: 'miter',
-			weight: 1,
-			fill: true,
-			fillOpacity: 1,
-			fillColor: 'RED',
-		};
-	}
-	function popupNode(feature, layer) {
-		var popupContent = '<table>\
-				<tr>\
-					<th scope="row">Branch</th>\
-					<td>' + (feature.properties['Branch'] !== null ? feature.properties['Branch'] : '') + '</td>\
-				</tr>\
-				<tr>\
-					<th scope="row">Address</th>\
-					<td>' + (feature.properties['Address'] !== null ? feature.properties['Address'] : '') + '</td>\
-				</tr>\
-				<tr>\
-					<th scope="row">Staff</th>\
-					<td>' + (feature.properties['Staff'] !== null ? feature.properties['Staff'] : '') + '</td>\
-				</tr>\
-				<tr>\
-					<th scope="row">Volunteers</th>\
-					<td>' + (feature.properties['Volunteers'] !== null ? feature.properties['Volunteers'] : '') + '</td>\
-				</tr>\
-			</table>';
-		layer.bindPopup(popupContent, {maxHeight: 400, minWidth: 250, maxWidth: 500});
-
-		layer.on({
-			mouseout: function(e) {
-				for (i in e.target._eventParents) {
-					e.target._eventParents[i].resetStyle(e.target);
-				}
-				this.closePopup();
-			},
-			mouseover: function(e) {
-				highlightFeature;
-				this.openPopup();
-			},
-
-		});
-	}
-
-	var layer_RedCrossNodes = new L.geoJson(brNodes, {
-		onEachFeature: popupNode,
-		pointToLayer: function (feature, latlng) {
-			var context = {
-				feature: feature,
-				variables: {}
-			};
-			return L.circleMarker(latlng, styleNode(feature));
-		},
-	});
-	map.addLayer(layer_RedCrossNodes);
-
-	map.fitBounds(bounds);
-
-}
 function makeMap(brMap, brNodes) {
 	var baselayer = L.tileLayer('https://data.humdata.org/mapbox-base-tiles/{z}/{x}/{y}.png', {});
 	var baselayer2 = L.tileLayer('https://data.humdata.org/mapbox-layer-tiles/{z}/{x}/{y}.png', {minZoom:4});
@@ -622,22 +461,19 @@ function makeMap(brMap, brNodes) {
 		};
 	}
 	function popupNode(feature, layer) {
+
 		var popupContent = '<table>\
 				<tr>\
 					<th scope="row">Branch</th>\
-					<td>' + (feature.properties['Branch'] !== null ? feature.properties['Branch'] : '') + '</td>\
-				</tr>\
-				<tr>\
-					<th scope="row">Address</th>\
-					<td>' + (feature.properties['Address'] !== null ? feature.properties['Address'] : '') + '</td>\
+					<td>' + (feature.properties['branch'] !== null ? feature.properties['branch'] : '') + '</td>\
 				</tr>\
 				<tr>\
 					<th scope="row">Staff</th>\
-					<td>' + (feature.properties['Staff'] !== null ? feature.properties['Staff'] : '') + '</td>\
+					<td>' + (feature.properties['staff'] !== null ? feature.properties['staff'] : '') + '</td>\
 				</tr>\
 				<tr>\
 					<th scope="row">Volunteers</th>\
-					<td>' + (feature.properties['Volunteers'] !== null ? feature.properties['Volunteers'] : '') + '</td>\
+					<td>' + (feature.properties['volunteers'] !== null ? feature.properties['volunteers'] : '') + '</td>\
 				</tr>\
 			</table>';
 		layer.bindPopup(popupContent, {maxHeight: 400, minWidth: 250, maxWidth: 500});
@@ -657,7 +493,9 @@ function makeMap(brMap, brNodes) {
 		});
 	}
 
-	var layer_RedCrossNodes = new L.geoJson(brNodes, {
+	var layer_RedCrossNodes = new L.geoCsv(brNodes, {
+		firstLineTitles: true, 
+		fieldSeparator: ';',
 		onEachFeature: popupNode,
 		pointToLayer: function (feature, latlng) {
 			var context = {
@@ -665,7 +503,7 @@ function makeMap(brMap, brNodes) {
 				variables: {}
 			};
 			return L.circleMarker(latlng, styleNode(feature));
-		},
+		}
 	});
 	map.addLayer(layer_RedCrossNodes);
 
@@ -684,7 +522,7 @@ if ( patt.test(hash) ) {
 
 // get the branch map data
 var branchmap = 'https://ifrcgo.org/africa/maps/' + hash + '_map.geojson';
-var branchnodes = 'https://ifrcgo.org/africa/maps/' + hash + '_nodes.geojson';
+var branchnodes = 'https://ifrcgo.org/africa/maps/' + hash + '_nodes.csv';
 
 var brMapCall = $.ajax({
     type: 'GET',
@@ -698,21 +536,20 @@ var brMapCall = $.ajax({
 var brNodesCall = $.ajax({
     type: 'GET',
     url: branchnodes,
-    dataType: 'json',
+    dataType: 'text',
 	success:function(response){
 		booBranchNodes = true;
 	}
 });
 
 $.when(brMapCall, brNodesCall).always(function(mapArgs, nodesArgs){
-	makeMap(mapArgs,nodesArgs)
+	makeMap(mapArgs,nodesArgs[0])
 });
 
 
 //Load Governance data
 var hxlGovernanceURL = 'https://proxy.hxlstandard.org/data.json?filter01=merge&merge-url01=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1aYeTU8SaEt8ryxiVEoKqE5jsiLsSnPoDICRoCpwom3A%2Fedit%23gid%3D261283785&merge-keys01=%23country%2Bcode&merge-tags01=%23capacity%2Btotal%2C%23capacity%2Bhq%2C%23capacity%2Bbranch%2C%23capacity%2Bndrt%2C%23capacity%2Brdrt%2C%23capacity%2Bwashkit2%2C%23capacity%2Bwashkit5%2C%23capacity%2Bwashkit10&filter02=select&select-query02-01=%23country%2Bcode%3DCOUNTRYCODE&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1cL39UdUqbyF4llbtTUHes8N9jpjOzgC-rpoq0oIc6jk%2Fedit%23gid%3D0';
 hxlGovernanceURL = hxlGovernanceURL.replace('COUNTRYCODE',hash);
-console.log(hxlGovernanceURL);
 createGovernanceTable(hxlGovernanceURL);
 
 // Load the PNS data
