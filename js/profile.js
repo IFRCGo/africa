@@ -98,12 +98,12 @@ function createAppealsTable(data){
     // Run through data and prep for tables
     data.forEach(function(d,i){
 
-        if(d['#severity']==='Emergency'){
-            html += '<tr><td>'+d['#crisis+name']+'</td><td>'+d['#crisis+type']+'</td><td>Appeal</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td><td>'+niceFormatNumber(d['#targeted'])+'</td><td>'+niceFormatNumber(d['#meta+value'])+'</td><td>'+d['#meta+id']+'</td></tr>';
-        }
-        if(d['#severity']==='Minor Emergency'){
-            html += '<tr><td>'+d['#crisis+name']+'</td><td>'+d['#crisis+type']+'</td><td>DREF</td><td>'+d['#date+start']+'</td><td>'+d['#date+end']+'</td><td>'+niceFormatNumber(d['#targeted'])+'</td><td>'+niceFormatNumber(d['#meta+value'])+'</td><td>'+d['#meta+id']+'</td></tr>';
-        }
+		html += '<tr><td>'+d['name']+'</td><td>' + d['dtype']['name'];
+		html += '</td><td>'+getAppealType(d['atype']);
+		html += '</td><td>'+d['start_date'].substr(0,10)+'</td><td>'+d['end_date'].substr(0,10);
+		html += '</td><td>'+niceFormatNumber(d['num_beneficiaries'],true)+'</td><td>'+niceFormatNumber(d['amount_requested'],true);
+		html += '</td><td>'+d['code']+'</td></tr>';
+	
     });
     // Send data to appeals or DREFs html tables
     $('#appealstable').append(html);
@@ -510,6 +510,84 @@ function makeMap(brMap, brNodes) {
 
 }
 
+function getCountryNumber(ns) {
+	var natSocieties = [
+		['AGO',18],
+		['BEN',209],
+		['BWA',34],
+		['BFA',181],
+		['BDI',39],
+		['CMR',41],
+		['CPV',43],
+		['CAF',44],
+		['TCD',45],
+		['COM',186],
+		['COD',187],
+		['COG',184],
+		['CIV',182],
+		['DJI',57],
+		['GNQ',63],
+		['ERI',188],
+		['SWZ',163],
+		['ETH',65],
+		['GAB',69],
+		['GMB',70],
+		['GHA',73],
+		['GIN',77],
+		['GNB',183],
+		['KEN',93],
+		['LSO',102],
+		['LBR',103],
+		['MDG',109],
+		['MWI',110],
+		['MLI',112],
+		['MUS',115],
+		['MRT',114],
+		['MOZ',120],
+		['NAM',122],
+		['NER',127],
+		['NGA',128],
+		['RWA',143],
+		['STP',185],
+		['SEN',150],
+		['SYC',151],
+		['SLE',152],
+		['SOM',157],
+		['ZAF',158],
+		['SSD',290],
+		['SDN',161],
+		['TZA',189],
+		['TGO',170],
+		['UGA',176],
+		['ZMB',12],
+		['ZWE',13]
+	];
+	var countryNo = 0;
+	if (ns === undefined) {
+		countryNo = 0;
+	} else {
+		natSocieties.forEach(function(d,i){
+			if (ns.indexOf(d[0])>=0) {
+				countryNo = d[1];
+			}			
+		});
+	}
+	return countryNo; 
+}
+
+function getAppealType(type) {
+	var appealType;
+	switch(type) {
+		case 0:
+			appealType = 'DREF';
+			break;
+		default:
+			appealType = 'EA';
+	}
+	return appealType;
+}
+
+
 // Identify for which country / National Society
 var hash = decodeURIComponent(window.location.hash).substring(1);
 var patt = new RegExp("^[a-zA-Z]{3}$");
@@ -568,9 +646,8 @@ hxlINFORMCallURL = hxlINFORMCallURL.replace('COUNTRYCODE',hash);
 loadINFORMindex(hxlINFORMCallURL);
 
 // Identify URL for appeals and DREFs data
-var hxlAppealsCallURL = 'https://proxy.hxlstandard.org/data.json?filter01=merge&merge-url01=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1GugpfyzridvfezFcDsl6dNlpZDqI8TQJw-Jx52obny8%2Fedit%23gid%3D0&merge-keys01=%23country%2Bname&merge-tags01=%23country%2Bcode&filter02=clean&clean-date-format02=%23date&filter03=replace-map&replace-map-url03=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1hTE0U3V8x18homc5KxfA7IIrv1Y9F1oulhJt0Z4z3zo%2Fedit%23gid%3D0&filter04=select&select-query04-01=%23country%2Bcode%3DCOUNTRYCODE&filter05=sort&sort-tags05=%23date%2Bend&sort-reverse05=on&strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F19pBx2NpbgcLFeWoJGdCqECT2kw9O9_WmcZ3O41Sj4hU%2Fedit%23gid%3D0&sheet=1';
-
-hxlAppealsCallURL = hxlAppealsCallURL.replace('COUNTRYCODE',hash);
+var hxlAppealsCallURL = 'https://prddsgocdnapi.azureedge.net/api/v2/appeal/?country=COUNTRYCODE&format=json&ordering=-end_date&limit=500';
+hxlAppealsCallURL = hxlAppealsCallURL.replace('COUNTRYCODE',getCountryNumber(hash));
 
 // Get appeals and DREFs data
 $.ajax({
@@ -578,7 +655,6 @@ $.ajax({
     url: hxlAppealsCallURL,
     dataType: 'json',
     success:function(response){
-        var data = hxlProxyToJSON(response);
-        createAppealsTable(data);
+        createAppealsTable(response.results);
     }
 });
