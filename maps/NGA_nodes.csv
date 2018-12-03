@@ -1,36 +1,38 @@
 ISO3;Branch;Location;lat;lng;Staff;Volunteers
-NGA;Ebonyi;Ebonyi;6.2917;8.0255;no data;no data
-NGA;Kaduna;Kaduna;10.375;7.854;no data;no data
-NGA;Ogun;Ogun;7.102;3.407;no data;no data
-NGA;Ekiti;Ekiti;7.698;5.326;no data;no data
-NGA;Ondo;Ondo;6.962;5.256;no data;no data
-NGA;Delta;Delta;5.6430;6.0575;no data;no data
-NGA;Borno;Borno;11.211;13.203;no data;no data
-NGA;Bauch;Bauch;10.773;10.052;no data;no data
-NGA;Edo;Edo;6.756;5.954;no data;no data
-NGA;Kebbi;Kebbi;11.686;4.280;no data;no data
-NGA;Yobe;Yobe;12.039;11.699;no data;no data
-NGA;Jigawa;Jigawa;12.234;9.764;no data;no data
-NGA;Anambra;Anambra;6.3570;6.9638;no data;no data
-NGA;Gombe;Gombe;10.415;11.354;no data;no data
-NGA;Oyo;Oyo;8.177;3.714;no data;no data
-NGA;Kwara;Kwara;8.939;4.561;no data;no data
-NGA;Taraba;Taraba;8.015;10.898;no data;no data
-NGA;Plateau;Plateau;9.012;9.794;no data;no data
-NGA;Kano;Kano;11.833;8.555;no data;no data
-NGA;Katsina;Katsina;12.3315;7.7214;no data;no data
-NGA;Lagos;Lagos;6.558;3.772;no data;no data
-NGA;Kogi;Kogi;7.627;6.844;no data;no data
-NGA;Borno;Borno;11.352;13.297;no data;no data
-NGA;Benue;Benue;7.362;8.840;no data;no data
-NGA;Niger;Niger;9.850;5.948;no data;no data
-NGA;Osun;Osun;7.576;4.634;no data;no data
-NGA;Imo;Imo;5.574;7.173;no data;no data
-NGA;Rivers;Rivers;4.9995;6.8777;no data;no data
-NGA;Sokoto;Sokoto;13.041;5.343;no data;no data
-NGA;Abia;Abia;5.6334;7.5954;no data;no data
-NGA;Akwa ibon;Akwa ibon;4.9470;7.8944;no data;no data
-NGA;Bayelsa;Bayelsa;4.9544;6.0929;no data;no data
-NGA;Adanawa;Adanawa;9.354;12.536;no data;no data
-NGA;Enugu;Enugu;6.572;7.509;no data;no data
-NGA;Zamfara;Zamfara;12.210;6.136;no data;no data
+NGA;Abia Branch;Umahia;5.5320655;7.4941458;10;216
+NGA;Adamawa Branch;Yola;9.1910085;12.4975084;14;3507
+NGA;Akwa Ibom Branch;Uyo;5.0218092;7.9207496;2;508
+NGA;Awka;Anambra Branch;6.136518;6.797662;11;3020
+NGA;Bauchi Branch;Bauchi; 10.3157917;9.8181495;10;708
+NGA;Bayelsa Branch;Yenago;4.9239542;6.2685787;No data;83		
+NGA;Benue Branch;Makurdi;7.7330657;8.5255382;10;874
+NGA;Borno Branch;Maiduguri;11.84098;13.0615937;21;7836
+NGA;Cross River Branch;Calabar;4.9608541;8.3159582;3;788
+NGA;Delta Branch;Asaba;6.2149176;6.6873544;12;1136
+NGA;Ebonyi Branch;Abakaliki;8.1102;6.2746;No data;182		
+NGA;Edo Branch;Benin;6.3127019;5.6224372;No data;938	
+NGA;Ekiti Branch;Ado Ekiti;;7.6303004;5.1730983;5;296
+NGA;Enugu Branch;Enugu;6.4354571;7.4826216;10;604
+NGA;Abuja Branch;Abuja;9.057267;7.256386;3;2119
+NGA;Gombe Branch;Gombe;10.278311;11.1872024;10;741
+NGA;Imo Branch;Owerri;5.5175957;7.0174846;No data;242		
+NGA;Jigawa Branch;Dutse;11.771853;9.6241989;No data;119		
+NGA;Kaduna Branch;Kaduna;10.5456212;7.4320772;12;1860
+NGA;Kano Branch;Kano;11.9995281;8.5443943;8;N689
+NGA;Katsina Branch;Katsina;12.9874876;7.6237069;No data;217		
+NGA;Kebbi Branch;Birnin Kebbi;12.4761343;4.2534566;No data;223		
+NGA;Kogi Branch;Lokoja;7.8439207;6.7321603;No data;220		
+NGA;Kwara Branch;Ilorin;8.4874274;4.5660719;No data;372		
+NGA;Lagos Branch;Ikeja;;6.463077;3.389479;No data;6814		
+NGA;Nasarawa Branch;Lafia;9.6222894;6.5453945;9;366
+NGA;Niger Branch;Minna;9.6222894;6.5453945;10;632
+NGA;Ogun Branch;Abeokuta;7.1367873;3.3384713;2;488
+NGA;Ondo Branch;Akure;7.2379764;5.1832115;No data;627		
+NGA;Osun Branch;Osogbo;7.786443;4.5054882;No data;85		
+NGA;Oyo Branch;Ibadan;7.3948913;3.8783616;No data;804		
+NGA;Plateau Branch;Jos;9.9346508;8.8906829;9;756
+NGA;Rivers Branch;Port Harcourt;4.7545799;7.0826082;14;505
+NGA;Sokoto Branch;Sokoto;13.042397;5.279128;2;278
+NGA;Taraba Branch;Jalingo;8.900292;11.3488768;10;1009
+NGA;Yobe Branch;Damaturu;11.7392063;11.9512514;13;2584
+NGA;Zamfara Branch;Gusau;12.0314042;5.0118876;No data;431		
