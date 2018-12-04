@@ -52,7 +52,7 @@ function updateTable(data){
     table = $('#datatable').DataTable({
     	"pageLength": 100,
     	"bFilter": false,
-		"paging": false;
+		"paging": false,
     	"aoColumnDefs" : [
 	 		{
 	   			'bSortable' : false,
