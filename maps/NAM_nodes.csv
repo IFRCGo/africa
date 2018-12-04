@@ -1,2 +1,15 @@
 ISO3;Branch;Location;lat;lng;Staff;Volunteers
-
+NAM;Khomas Branch;Khomas;-22.629897;16.936807;2;545
+NAM;Omusati Branch;Omusati;-18.261081;14.859861;78;650				
+NAM;Oshikoto Branch;Oshikoto;-18.356974;17.155362;45;456				
+NAM;Kunene Branch;Kunene;-18.932960;13.567144;3;624				
+NAM;Kavango Branch;Kavango;-18.338324;19.582418;4;352				
+NAM;Ohangwena Branch;Ohangwena;-17.622224;16.811886;100;428				
+NAM;Otjozondjupa  Branch;Otjozondjupa;-20.440672;18.227162;1;344		
+NAM;Zambezi Branch;Zambezi;-17.858448;23.857084;65;601
+NAM;Omaheke Branch;Omaheke;-21.927708;19.353841;No data;No data
+NAM;Erongo Branch;Erongo;-21.851243;15.342045;No data;No data
+NAM;Hardap Branch;Hardap;-24.440730;17.467888;No data;No data
+NAM;!karas Branch;Ikaras;-27.068329;18.221956;No data;No data
+NAM;Oshana Branch;Oshana;-18.343065;15.773206;No data;No data
+				
