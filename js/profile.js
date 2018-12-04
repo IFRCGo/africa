@@ -129,15 +129,15 @@ function createGovernanceTable(url) {
 				if (d['#org+sg'].length>0) {
 					htmlGov += '<tr><th>President</th><td>'+d['#org+president']+'</td></tr>';
 					htmlGov += '<tr><th>Last and next election</th><td>'+d['#date+election+last']+' / '+d['#date+election+next']+'</td></tr>';
-					htmlGov += '<tr><th>No. of Governing Board members</th><td>'+d['#org+board']+'</td></tr>';
+					htmlGov += '<tr><th>Governing Board members</th><td>'+d['#org+board']+'</td></tr>';
 					htmlGov += '<tr><th>Stategic Plan period</th><td>'+d['#org+strategicplan']+'</td></tr>';
 					htmlGov += '<tr><th>Secretary General</th><td>'+d['#org+sg']+'</td></tr>';
 					htmlGov += '<tr><th>Programme Director</th><td>'+d['#org+director+programmes']+'</td></tr>';
-					htmlGov += '<tr><th>Latest Youth Policy</th><td>'+d['#date+policy+youth']+'</td></tr>';
-					htmlGov += '<tr><th>Latest Volunteer Policy</th><td>'+d['#date+policy+volunteer']+'</td></tr>';
-					htmlGov += '<tr><th>Latest Resource Mobilisation Policy</th><td>'+d['#date+policy+rm']+'</td></tr>';
-					htmlGov += '<tr><th>Date OCAC / BOCA conducted</th><td>OCAC: '+d['#date+ocac']+' - BOCA: '+d['#date+boca']+'</td></tr>';
-					htmlGov += '<tr><th>Last consolidated audit</th><td>'+d['#date+audit']+'</td></tr>';
+					htmlGov += '<tr><th>Youth Policy</th><td>'+d['#date+policy+youth']+'</td></tr>';
+					htmlGov += '<tr><th>Volunteer Policy</th><td>'+d['#date+policy+volunteer']+'</td></tr>';
+					htmlGov += '<tr><th>Resource Mob. Policy</th><td>'+d['#date+policy+rm']+'</td></tr>';
+					htmlGov += '<tr><th>OCAC / BOCA conducted</th><td>OCAC: '+d['#date+ocac']+' - BOCA: '+d['#date+boca']+'</td></tr>';
+					htmlGov += '<tr><th>Consolidated audit</th><td>'+d['#date+audit']+'</td></tr>';
 				}
 
 				htmlPac += '<tr>';
@@ -597,6 +597,8 @@ if ( patt.test(hash) ) {
 	hash = "KEN";
 }
 
+// Update the logo of the NS
+$('#nslogo').attr("src","./img/logo/"+hash+"_logo.png");
 
 // get the branch map data
 var branchmap = 'https://ifrcgo.org/africa/maps/' + hash + '_map.geojson';
