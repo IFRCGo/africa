@@ -28,6 +28,32 @@ function hxlProxyToJSON(input,headers){
     return output;
 }
 
+// Number formatting
+function niceFormatNumber(num,round){
+    if(isNaN(parseFloat(num))){
+        return num;
+    } else {
+        if(!round){
+            var format = d3.format("0,000");
+            return format(parseFloat(num));
+        } else {
+            var output = d3.format(".4s")(parseFloat(num));
+            if(output.slice(-1)=='k'){
+                output = Math.round(output.slice(0, -1) * 1000);
+                output = d3.format("0,000")(output);
+            } else if(output.slice(-1)=='M'){
+                output = d3.format(".1f")(output.slice(0, -1))+' million';
+            } else if (output.slice(-1) == 'G') {
+                output = output.slice(0, -1) + ' billion';
+            } else {
+                output = ''+d3.format(".3s")(parseFloat(num));
+            }
+            return output;
+        }
+    }
+}
+
+
 function createActivityTable(data) {
 	var table='';
 	data.forEach(function(d,i){
@@ -38,18 +64,25 @@ function createActivityTable(data) {
 			table += d[5];
 			table += '</small></td><td>';
 			table += d[6];
-			table += '</td><td>';
+			table += '</td><td>From: ';
 			table += d[8];
-			table += '<br />&nbsp;&nbsp;until<br />';
-			table += d[9];
+			table += '<br />Until: ';
+			if (d[9].trim().length>0) {
+				table += d[9];
+			} else {
+				table += 'unknown';
+			}
 			table += '</td><td>';
 			table += d[10];
 			table += '<br />';
 			table += d[11];
 			table += '</td><td>';
-			table += d[12];
-			table += '<br />';
 			table += d[14];
+			if (d[12].trim().length>0) {
+				table += '<br /><span style="font-style: italic;">('
+				table += niceFormatNumber(d[12],false);
+				table += ' CHF)</span>';
+			}
 			table += '</td><td>';
 			table += d[13];
 			table += '</td></tr>';
@@ -68,19 +101,23 @@ function createDelegateTable(data) {
 	data.forEach(function(d,i){
 		if (i>0) {
 			table += '<tr><td>';
-			table += d[6];
-			table += '</td><td>';
-			table += d[4];
+			table += d[7];
 			table += '</td><td>';
 			table += d[5];
 			table += '</td><td>';
-			table += d[7];
-			table += '<br />';
-			table += d[8];
+			table += d[6];
 			table += '</td><td>';
 			table += d[9];
-			table += '<br />&nbsp;&nbsp;until<br />';
+			table += '<br />';
 			table += d[10];
+			table += '</td><td>From: ';
+			table += d[11];
+			table += '<br />Until: ';
+			if (d[12].trim().length>0) {
+				table += d[12];
+			} else {
+				table += 'unknown';
+			}
 			table += '</td></tr>';
 		}
 	});
@@ -197,8 +234,6 @@ var delCall = $.ajax({
 });
 
 $.when(actCall, delCall).then(function(actArgs, delArgs){
-	console.log(actArgs);
-	console.log(delArgs);
     createActivityTable(actArgs[0]);
 	createDelegateTable(delArgs[0]);
 });
