@@ -136,6 +136,10 @@ function createGovernanceTable(url) {
 					htmlGov += '<tr><th>Youth Policy</th><td>'+d['#date+policy+youth']+'</td></tr>';
 					htmlGov += '<tr><th>Volunteer Policy</th><td>'+d['#date+policy+volunteer']+'</td></tr>';
 					htmlGov += '<tr><th>Resource Mob. Policy</th><td>'+d['#date+policy+rm']+'</td></tr>';
+					htmlGov += '<tr><th>Child Protection Policy</th><td>'+d['#date+cp+policy']+'</td></tr>';
+                                        htmlGov += '<tr><th>Gender Policy</th><td>'+d['#date+gender+policy']+'</td></tr>';
+                                        htmlGov += '<tr><th>Gender and Diversity Policy</th><td>'+d['#date+diversity+policy']+'</td></tr>';
+                                        htmlGov += '<tr><th>PSEA Policy</th><td>'+d['#date+policy+psea']+'</td></tr>';
 					htmlGov += '<tr><th>OCAC / BOCA conducted</th><td>OCAC: '+d['#date+ocac']+' - BOCA: '+d['#date+boca']+'</td></tr>';
 					htmlGov += '<tr><th>Consolidated audit</th><td>'+d['#date+audit']+'</td></tr>';
 				}
