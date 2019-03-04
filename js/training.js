@@ -76,7 +76,7 @@ function createEventRow(d, lang) {
 	}
 	html += '</td><td>' + getCountry(d.Country,lang) + '</td>';
 	html += '<td>' + getParticipants(d.ns_participating,lang) + '</td><td>' + d.Organizer + '</td>';
-	html += '<td>' + d.Funding '</td></tr>';
+	html += '<td>' + d.Funding + '</td></tr>';
 	return html;
 }
 
