@@ -305,7 +305,7 @@ button:hover, a:hover {
 .right {
   right: 0;
   background-color: #dc1e1e;
-  width: 40%;
+  width: 39.9%;
 }
 
 /* If you want the content centered horizontally and vertically */
@@ -325,7 +325,7 @@ button:hover, a:hover {
 }
 .img-circle {
   display: block;
-  width: 200px;
+  width: 140px;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid red;
@@ -358,4 +358,22 @@ button:hover, a:hover {
   color:#dc1e1e;
   font-size: 27px;
 
+}
+div.ex1 {
+  background-color: #3e3e3e12;
+  width: 590px;
+  height: 500px;
+  overflow: scroll;
+}
+div.ex2 {
+  background-color:#3e3e3e12;
+  width: 1200px;
+  height: 500px;
+  overflow: scroll;
+}
+div.ex3 {
+  background-color: white;
+  width: 1200px;
+  height: 360px;
+  overflow: scroll;
 }
