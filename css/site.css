@@ -363,17 +363,17 @@ div.ex1 {
   background-color: #3e3e3e12;
   width: 590px;
   height: 500px;
-  overflow: scroll;
+  overflow: auto;
 }
 div.ex2 {
   background-color:#3e3e3e12;
   width: 1200px;
   height: 500px;
-  overflow: scroll;
+  overflow: auto;
 }
 div.ex3 {
   background-color: white;
   width: 1200px;
   height: 360px;
-  overflow: scroll;
+  overflow: auto;
 }
