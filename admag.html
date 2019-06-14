@@ -1,7 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>IFRC Africa - Operations Room</title>
+
+    <link rel="canonical" href="/africa/">
+    <link rel="alternate" type="application/rss+xml" title="IFRC Africa - Operations Room" href="/feed.xml">
+
+    <!-- IFRC Go master stylesheet -->
+    <link rel="stylesheet" href="https://ifrcgo.org/assets/styles/main.css">
+
+    <link rel="author" type="text/plain" href="humans.txt" />
+
+    <!-- Google WebFont -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+
+    <!-- Favicon pack for Go -->
+    <link rel="apple-touch-icon" sizes="57x57" href="https://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="https://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://ifrcgo.org/assets/graphics/favicon/apple-touch-icon-180x180.png">
+    <link rel="shortcut icon" href="https://ifrcgo.org/assets/graphics/favicon/favicon.ico">
+    <link rel="icon" type="image/png" href="https://ifrcgo.org/assets/graphics/favicon/favicon-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="https://ifrcgo.org/assets/graphics/favicon/favicon-160x160.png" sizes="160x160">
+    <link rel="icon" type="image/png" href="https://ifrcgo.org/assets/graphics/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="https://ifrcgo.org/assets/graphics/favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="https://ifrcgo.org/assets/graphicsfavicon/favicon-32x32.png" sizes="32x32">
+
+    <!-- Meta tags for social media -->
+    <meta name="description" content="IFRC Africa Operations Room">
+    <meta itemprop="name" content="IFRC GO">
+    <meta itemprop="description" content="IFRC Africa Operations Room" >
+    <meta itemprop="image" content="" >
+    <meta name="twitter:card" content="product" >
+    <meta name="twitter:site" content="@publisher_handle" >
+    <meta name="twitter:title" content="GO Africa" >
+    <meta name="twitter:description" content="IFRC Africa Operations Room" >
+    <meta name="twitter:creator" content="@author_handle" >
+    <meta name="twitter:image" content="" >
+
+    <!-- bower:css -->
+    <!-- endbower -->
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="https://ifrcgo.org/assets/styles/vendor/leaflet.css">
+    <link rel="stylesheet" href="https://ifrcgo.org/assets/styles/vendor/introjs.css">
+    <link rel="stylesheet" href="https://ifrcgo.org/assets/styles/vendor/jquery.dataTables.css">
+    <link rel="stylesheet" href="https://ifrcgo.org/assets/styles/vendor/dc.css">
+    <link rel="stylesheet" href="https://ifrcgo.org/assets/styles/vendor/c3.css">
+    <!-- endinject -->
+
+    <!-- Site-specific CSS -->
+    <link rel="stylesheet" href="css/site.css" media="screen" type="text/css">
+	<link rel="stylesheet" href="css/inform.css" media="screen" type="text/css">
+
+	<style type="text/css">
+		#map{height:582px;}
+	</style>
+
+    <link type="application/atom+xml" rel="alternate" href="/feed.xml" title="IFRC Africa Operations Room" />
+
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-140892806-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -11,153 +80,103 @@
   gtag('config', 'UA-140892806-1');
 </script>
 
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>IFRC Africa Region - Operations Room</title>
-
-    <!-- Meta OG tags -->
-    <meta property="og:title" content="IFRC Africa Region - Operations Room"/>
-    <meta property="og:type" content="article">
-    <meta property="og:url" content="http://ifrc-africa.github.io/africa-portal">
-    <meta property="og:site_name" content="IFRC Africa Region - Operations Room">
-    <meta property="og:image" content="">
-
-    <!-- CSS Stylesheets -->
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.v3.min.css">
-    <link type="text/css" rel="stylesheet" href="css/ie10-viewport-bug-workaround.css">
-    <link rel="stylesheet" type="text/css" href="css/portal.css">
-    <link rel="stylesheet" type="text/css" href="css/social-icons.css">
-
-    <!-- Google Font Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto">
-
-    <!-- Fontawesome Icons -->
-    <script src="https://use.fontawesome.com/4dc60e70fb.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Google Analytics Script-->
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-        
-        ga('create', 'UA-92413959-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-
 </head>
+
 <body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">IFRC Africa Region</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">Operations Room</a></li>
-            <li><a href="https://fednet.ifrc.org/">FedNet</a></li>
-            <li><a href="https://www-secure.ifrc.org/DMISII/Pages/00_Home/login.aspx">DMIS</a></li>
-		  </ul>
-          <ul class="nav navbar-nav navbar-right hidden-md-down">
-            <li class="hidden-md-down"><a href="http://www.ifrc.org/"><img alt="IFRC Logo" height="18" src="img/IFRC_logo_en.svg"></a></li>
-          </ul>
-        </div><!-- /.nav-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
+<!--[if lt IE 10]>
+    <div id="nocando">
+        <h1>No can do!</h1>
+        <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    </div>
+<![endif]-->
 
-    <!-- Begin page content -->
-    <main class="container">
-      <div class="page-header">
-        <h1>Shared Leadership - ADMAG</h1>
-      </div>
+<!-- Start Top Bar -->
+<div class="top-bar medium-10">
+    <div class="top-bar-left">
+        <a href="https://ifrcgo.org/"><img class="logo" src="https://ifrcgo.org/assets/logos/logo_test_Go.png"></a>
+    </div>
+    <div class="top-bar-right">
+        <ul class="menu vertical medium-horizontal expanded" data-responsive-menu="drilldown medium-dropdown">
+            <li class="external"><a href="https://media.ifrc.org/ifrc/where-we-work/africa/" target="_blank" class="hvr-underline-reveal">IFRC Africa</a></li>
+            <li class="external"><a href="https://fednet.ifrc.org/CookieAuth.dll?GetLogon?curl=Z2F&reason=0&formdir=2" target="_blank" class="hvr-underline-reveal">FedNet</a></li>
+            <li class="external"><a href="https://go.ifrc.org" target="_blank" class="hvr-underline-reveal">GO (global)</a></li>
+        </ul>
+    </div>
+</div>
+<!-- End Top Bar -->
 
-	  <div style="width:100%">
-	  
-	  
-  
-	  <div style="width:100%">
-	  <p>&nbsp;</p>
-		<div style="float:left; width:25%; padding:0 10px">
-		  <h1>ToR<br />&nbsp;</h1>
-			<ul>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0c94668b82b0e4746a667e9fafd8f8e0f&authkey=AUf0x9cUwb8WAexq28ySAUw">Terms of Reference</a></li>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=03009a79e9139446ab96f19a6ca86158f&authkey=AXbYLk9yWx8zu4I6uKKi1Aw">Annual Plan 2017</a></li>
-			</ul>
-		  </div>
-		<div style="float:left; width:25%; padding:0 10px">
-		  <h1>HR Chart <br />Region</h1>
-			<ul>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=089092778ee7e4a608017de773da32e82&authkey=AedQxrJhhMMPfR313bY6Trg">Africa Region DCPRR </a></li>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=058dc9a6193eb45368b50ee68e6fe601c&authkey=Acc8Kgu4FT7mrNpmNsrOpNk">Addis Ababa IFRC Office </a></li>
-			</ul>
-	  </div>
-	  <div style="float:left; width:25%; padding:0 10px">
-		<h1>HR Chart Country Cluster</h1>
-			<ul>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0149629bd7abb402a8db7766652e9a83f&authkey=AfQp2orDijTEk1ZFQS4hlZs">West Coast CCST </a></li>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0d96a8fb91a7644d2b2a8619575247d10&authkey=ARysqQe6JxzCkDeAt2WyFIc">Sahel Plus CCST </a></li>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=05456d0d2b5ee4e7485a594480daa6199&authkey=AfFSHCyoic4SbOoWIEZFvOY">East Africa IOI CCST </a></li>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0458ab0b2cc7449bdb8852cecdeb63a0b&authkey=AWDSyQIXiSHxRd4KdLGyrfM">Central Africa CCST </a></li>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0d7352796652a49bbb80a541dd2bea8a6&authkey=AaWJR_N9qKxyQhAmdj7jQMA">Southern Africa CCST </a></li>
-			</ul>
-	  </div>
-	  <div style="float:right; width:25%; padding:0 10px">
-		<h1>HR Chart Country Office</h1>
-			<ul>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0ebc2c432474d47539979261f2bf9bd2a&authkey=AcDl1ae2q_pY9wFA7mtvVmM">CAR </a></li>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0825aa43b077549138e9ee1d62aad50a8&authkey=Afp_zdcE7nbMgSEN-oMMosk">Liberia </a></li>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=06d4db93980024fc9aec3142edd2aa75e&authkey=Acocl3hi_LBurc0IloPb8C8">Niger </a></li>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=049587c289edb4073b64eae2f89cfc9f5&authkey=AZrVZhdUyqLw8qsIS-0rUUU">Sierre Leone </a></li>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0c083f484d3624da0a29849902f8c1500&authkey=ATV-EDTKS1L_LSFFkWsv2PE">Somalia </a></li>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=03f35968efdcc46a989fdf95fb0d8167f&authkey=ATQi6aeL-osRoT8OueOWr6Y">South Sudan </a></li>
-				<li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=051a089e8c1294215bbdd125c29de3edf&authkey=AeKBZAxJh00rB2V2HMFmlH8">Sudan </a></li>
-			</ul>
-	  </div>
+<nav aria-label="You are here:" role="navigation" class="row">
+    <ul class="breadcrumbs" vocab="http://schema.org/" typeof="BreadcrumbList">
+        <li><a href="/africa">Africa Operations Room</a></li>
+        <li class=" active" property="itemListElement" typeof="ListItem">
+            <span id="breadcrumb-country" property="name">Africa Disaster Management Advisory Group</span>
+            <meta property="position" content="1" />
+        </li>
+    </ul>
 
-	  </div>
-	  
-	  
-     </main>
+      <div>
+    <h1>Purpose<br />&nbsp;</h1>
+  The Purpose of the ADMAG is to Strengthen Movement Coordination and Cooperation (SMCC) in supporting Disaster Risk Management (DRM) preparedness and response capacity of African National Societies,
+  contributing to the strengthening of community resilience by connecting the national, regional, and global levels of the Red Cross and Red Crescent Movement’s work in this field in Africa.
+    </div>
 
-    <footer class="footer">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-xs-8">
-            <p class="text-muted footerText">If you don't find what you're looking for, <a href="mailto:henk.hoff@ifrc.org?subject=Africa-Operations-Room-online-feedback">contact us</a> and we'll help you find it or work with you to develop something new.</p>          
-          </div>
-          <div id="social" class="col-xs-4">
-            <div class="center-block pull-right">
-                <a href="https://www.youtube.com/channel/UCZ8xf9ZrTOv7SeYK7U5eKVg"><i id="social-youtube" class="fa fa-youtube-square fa-3x social"></i></a>
-                <a href="https://twitter.com/IFRCAfrica"><i id="social-tw" class="fa fa-twitter-square fa-3x social"></i></a>
-                <a href="https://medium.com/@IFRC"><i id="social-medium" class="fa fa-medium fa-3x social"></i></a>
-                <a href="mailto:henk.hoff@ifrc.org"><i id="social-em" class="fa fa-envelope-square fa-3x social"></i></a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <!-- <div style="width:100%">
+   <p>&nbsp;</p>
+   <div style="float:left; width:25%; padding:0 10px">
+     <h1>Members<br />&nbsp;</h1>
+     <ul>
+       <li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0c94668b82b0e4746a667e9fafd8f8e0f&authkey=AUf0x9cUwb8WAexq28ySAUw">Terms of Reference</a></li>
+       <li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=03009a79e9139446ab96f19a6ca86158f&authkey=AXbYLk9yWx8zu4I6uKKi1Aw">Annual Plan 2017</a></li>
+     </ul>
+     </div> -->
+   <div style="float:left; width:25%; padding:0 10px">
+     <h1>2019 Proposal</h1>
+     <ul>
+       <li><a href="docs\ADMAG\Draft Proposal -ADMAG in 2019.pdf">Proposal </a></li>
+       <li><a href="docs\ADMAG\ADMAG  budget 2019-2020.xlsx">Budget </a></li>
+     </ul>
+   </div>
+   <!-- <div style="float:left; width:25%; padding:0 10px">
+   <h1>Plan and Activities</h1>
+     <ul>
+       <li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0149629bd7abb402a8db7766652e9a83f&authkey=AfQp2orDijTEk1ZFQS4hlZs">West Coast CCST </a></li>
+       <li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0d96a8fb91a7644d2b2a8619575247d10&authkey=ARysqQe6JxzCkDeAt2WyFIc">Sahel Plus CCST </a></li>
+       <li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=05456d0d2b5ee4e7485a594480daa6199&authkey=AfFSHCyoic4SbOoWIEZFvOY">East Africa IOI CCST </a></li>
+       <li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0458ab0b2cc7449bdb8852cecdeb63a0b&authkey=AWDSyQIXiSHxRd4KdLGyrfM">Central Africa CCST </a></li>
+       <li><a href="https://ifrcorg-my.sharepoint.com/personal/henk_hoff_ifrc_org/_layouts/15/guestaccess.aspx?docid=0d7352796652a49bbb80a541dd2bea8a6&authkey=AaWJR_N9qKxyQhAmdj7jQMA">Southern Africa CCST </a></li>
+     </ul>
+   </div> -->
+   <div style="float:right; width:25%; padding:0 10px">
+   <h1>Share and Learning</h1>
+     <ul>
+       <li><a href="https://ifrcorg.sharepoint.com/:w:/r/sites/DCPRR-AFRICA/_layouts/15/Doc.aspx?sourcedoc=%7B300192CC-89F4-45E7-ABDA-F97DACC9A175%7D&file=ADMAG%20-%202018%20MoM.docx&action=default&mobileredirect=true">
+         30 Nov – 1 Dec 2017, Nairobi Meeting Minutes </a></li>
+       <li><a href="https://ifrcorg.sharepoint.com/:w:/r/sites/DCPRR-AFRICA/_layouts/15/Doc.aspx?sourcedoc=%7B981529D9-90A1-40F9-A920-139CC6B484BD%7D&file=1%20page%20Building%20Safer%20and%20More%20Resilient%20communities%20in%20Africa.docx&action=default&mobileredirect=true">Building Safer and More Resilient communities in Africa (Draft.V.1)  </a></li>
+       <li><a href="https://ifrcorg.sharepoint.com/:w:/r/sites/DCPRR-AFRICA/_layouts/15/Doc.aspx?sourcedoc=%7BFC408B79-AA06-4541-A84C-F18FF9F6066D%7D&file=ADMAG%20-%202018%20Plan%20of%20Action%20-%20FINALISED.docx&action=default&mobileredirect=true">ADMAG Annual Action Plan 2018 </a></li>
+       <li><a href="https://ifrcorg.sharepoint.com/:w:/r/sites/DCPRR-AFRICA/_layouts/15/Doc.aspx?sourcedoc=%7BDF588BAD-0200-47F1-9B9D-C2277F5ACF64%7D&file=ADMAG%20F2F%20meeting%20agenda%20-%205-7%20September%202018.%20doc.docx&action=default&mobileredirect=true">ADMAG Meeting Agenda Nairobi, 5-7 September 2018 </a></li>
+       <li><a href="https://ifrcorg.sharepoint.com/sites/DCPRR-AFRICA/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FDCPRR-AFRICA%2FShared%20Documents%2FADMAG%2FADMAG%20F2F%20Meeting%20Report%20-%205-7%20September%202018%2Epdf&parent=%2Fsites%2FDCPRR-AFRICA%2FShared%20Documents%2FADMAG">Meeting Report (DRAFT as of 16.09.18) 3rd Face to Face Meeting 5-7 September 2018, Nairobi </a></li>
+       <li><a href="https://ifrcorg.sharepoint.com/sites/DCPRR-AFRICA/Shared%20Documents/Forms/AllItems.aspx?id=%2Fsites%2FDCPRR-AFRICA%2FShared%20Documents%2FADMAG%2FADMAG%20Meeting%2C%205-7%20September%2Ezip&parent=%2Fsites%2FDCPRR-AFRICA%2FShared%20Documents%2FADMAG">ADMAG Meeting Presentations, 5-7 September </a></li>
+      
+     </ul>
+   </div>
 
-    <!-- JavaScript Libraries -->
-    <script type="text/javascript" src="js/jquery.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+   </div>
+</nav>
+
+
+
+
+
+
+<footer>
+    <div class="row small-12 large-up-5">
+        <h6>The International Federation of Red Cross and Red Crescent Societies (IFRC) is the world's largest humanitarian organization, with 190 member National Societies. As part of the International Red Cross and Red Crescent Movement, our work is guided by seven fundamental principles; humanity, impartiality, neutrality, independence, voluntary service, unity and universality.</h6>
+    </div>
+</footer>
+
+
+
+
 
 </body>
 </html>
-
-
-
