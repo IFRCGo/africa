@@ -15,14 +15,16 @@
 }
 /* Since positioning the image, we need to help out the caption */
 .carousel-caption {
-  bottom: 3rem;
+  bottom: 2rem;
   z-index: 10;
+  width: 10%;
+  left:5%;
 }
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 27rem;
-  background-color: #777;
+  height: 25rem;
+  background-color: #775;
 }
 .carousel-item > img {
   position: relative;
@@ -31,8 +33,26 @@
   min-width: 100%;
   height: 25rem;
 }
+.img-circular{
+  display: block;
+  width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+}
 
-
+.text-block {
+  position: absolute;
+  top: 10%;
+  right: 50px;
+  color: rgba(255, 148, 142, 1);
+  text-shadow: 0px 0px 10px rgba(0,0,0,0.427451);
+  font-size: 75px;
+  font-weight: 700;
+  font-family: "RockwellNova-Bold",serif;
+  width: 35%;
+  font-style: normal;
+}
 /* MARKETING CONTENT
 -------------------------------------------------- */
 
