@@ -305,7 +305,7 @@ button:hover, a:hover {
 .right {
   right: 0;
   background-color: #dc1e1e;
-  width: 39.9%;
+  width: 44.9%;
 }
 
 /* If you want the content centered horizontally and vertically */
@@ -342,7 +342,7 @@ button:hover, a:hover {
 }
 .slideme{
     height: 100%;
-    width: 60%;
+    width: 55%;
   }
 .words{
   font-weight: bold;

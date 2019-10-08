@@ -23,15 +23,15 @@
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 25rem;
-  background-color: #775;
+  height: 45rem;
+  background-color: #white;
 }
 .carousel-item > img {
   position: relative;
   top: 0;
   left: 0;
-  min-width: 100%;
-  height: 25rem;
+  width: inherit;
+  height: 45rem;
 }
 .img-circular{
   display: block;
@@ -42,7 +42,7 @@
 }
 
 .text-block {
-  position: absolute;
+  position: fixed;
   top: 10%;
   right: 50px;
   color: rgba(255, 148, 142, 1);
@@ -57,9 +57,9 @@
 -------------------------------------------------- */
 
 /* Center align the text within the three columns below the carousel */
-.marketing .col-lg-4 {
-  margin-bottom: 1.5rem;
-  text-align: center;
+.marketing .col-lg-3 {
+  margin-bottom: 1.2rem;
+  text-align: left;
 }
 .marketing h2 {
   font-weight: 400;
@@ -67,6 +67,10 @@
 .marketing .col-lg-4 p {
   margin-right: .75rem;
   margin-left: .75rem;
+
+
+
+
 }
 
 
@@ -97,12 +101,15 @@
   }
 
   .featurette-heading {
-    font-size: 50px;
+    font-size: 21px;
+    font-style: bold;
+    color: #dc1e1e;
+
   }
 }
 
 @media (min-width: 62em) {
   .featurette-heading {
-    margin-top: 7rem;
+    margin-top: 1rem;
   }
 }
