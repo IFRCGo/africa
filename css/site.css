@@ -325,10 +325,10 @@ button:hover, a:hover {
 }
 .img-circle {
   display: block;
-  width: 140px;
+  width: 160px;
   margin-left: auto;
   margin-right: auto;
-  border: 1px solid lightgrey;
+  border: 2px solid lightgrey;
   border-radius: 50%;
 }
 .li-head{
