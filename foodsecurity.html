@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Africa Food Security</title>
+
+  <!-- Google WebFont -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+
+  <!-- Favicon pack for Go -->
+  <link rel="apple-touch-icon" sizes="57x57" href="./assets/graphics/favicon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="57x57" href="./assets/graphics/favicon/apple-touch-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="./assets/graphics/favicon/apple-touch-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="./assets/graphics/favicon/apple-touch-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="./assets/graphics/favicon/apple-touch-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="./assets/graphics/favicon/apple-touch-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="./assets/graphics/favicon/apple-touch-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./assets/graphics/favicon/apple-touch-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="./assets/graphics/favicon/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./assets/graphics/favicon/apple-touch-icon-180x180.png">
+  <link rel="shortcut icon" href="./assets/graphics/favicon/favicon.ico">
+  <link rel="icon" type="image/png" href="./assets/graphics/favicon/favicon-96x96.png" sizes="96x96">
+  <link rel="icon" type="image/png" href="./assets/graphics/favicon/favicon-16x16.png" sizes="16x16">
+  <link rel="icon" type="image/png" href="./assets/graphics/favicon/favicon-32x32.png" sizes="32x32">
+
+  <!-- Meta tags -->
+  <meta name="description" content="IFRC Africa Operations Room">
+  <meta name="twitter:site" content="@IFRCAfrica" >
+  <meta name="twitter:title" content="IFRC Africa" >
+  <meta name="twitter:description" content="IFRC Africa Operations Room" >
+
+  <!-- IFRC Go master stylesheet -->
+  <link rel="stylesheet" href="./assets/styles/main.css">
+  <!-- vendor stylesheets -->
+  <link rel="stylesheet" href="./css/leaflet.css">
+  <link rel="stylesheet" href="./assets/styles/vendor/introjs.css">
+  <link rel="stylesheet" href="./assets/styles/vendor/jquery.dataTables.css">
+  <link rel="stylesheet" href="./assets/styles/vendor/dc.css">
+  <link rel="stylesheet" href="./assets/styles/vendor/c3.css">
+
+  <link rel="stylesheet" href="./css/site.css" media="screen" type="text/css">
+  
+  <style>
+    .documenttitle {
+    	margin-top:20px;
+    }
+    .card-section ul {
+    	font-size: 14px;
+    	list-style-type:disc; 
+    	list-style-position:outside;
+    	margin-left: 15px;
+    }
+  </style>
+  
+</head>
+
+
+<body>
+  <!--[if lt IE 10]>
+  <div id="nocando">
+  <h1>No can do!</h1>
+  <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+</div>
+<![endif]-->
+<!-- Start Top Bar -->
+<div class="top-bar medium-10">
+  <div class="top-bar-left">
+    <a href="https://go.ifrc.org/"><img class="logo" src="./assets/logos/logo_test_Go.png"></a>
+  </div>
+  <div class="top-bar-right">
+
+    <ul class="menu vertical medium-horizontal expanded" data-responsive-menu="drilldown medium-dropdown">
+
+      <li><a href="https://ifrcgo.org/appeals/mdr60003/" class="hvr-underline-reveal">Regional Food Crisis</a></li>
+
+      <li><a href="https://ifrcgo.org/appeals/mdret016/" class="hvr-underline-reveal">Ethiopia</a></li>
+
+      <li><a href="https://ifrcgo.org/appeals/mdrso005/" class="hvr-underline-reveal">Somalia</a></li>
+
+      <li><a href="https://ifrcgo.org/appeals/mdrke039/" class="hvr-underline-reveal">Kenya</a></li>
+
+      <li class="external"><a href="https://ifrc.org" class="hvr-underline-reveal">IFRC.org</a></li>
+
+      <li class="external"><a href="https://fednet.ifrc.org/CookieAuth.dll?GetLogon?curl=Z2F&reason=0&formdir=2" class="hvr-underline-reveal">FedNet</a></li>
+
+      <li class="external"><a href="https://www-secure.ifrc.org/DMISII/Pages/00_Home/login.aspx" class="hvr-underline-reveal">DMIS</a></li>
+    </ul>
+  </div>
+</div>
+<!-- End Top Bar -->
+
+
+
+
+
+
+<nav aria-label="You are here:" role="navigation" class="row">
+
+  <ul class="breadcrumbs" vocab="http://schema.org/" typeof="BreadcrumbList">
+    <li><a href=/>Home</a></li>
+	<li class="active" property="itemListElement" typeof="ListItem">
+		<span property="name"><a href="/africa">Africa</a></span>
+		<meta property="position" content="1" />
+	</li>
+    <li class="active" property="itemListElement" typeof="ListItem">
+      <span property="name">Africa Food Security</span>
+      <meta property="position" content="1" />
+    </li>
+
+
+
+  </ol>
+
+</nav>
+
+<div class="row medium-12 column">
+  <h1>Africa Food Security</h1>
+  <div class="small-12 medium-6 large-6 column">
+  <a href="https://media.ifrc.org/ifrc/what-we-do/disaster-and-crisis-management/hunger-in-africa/" target="_blank"><img src="./img-foodsecurity/fighting_famine_comms.png" alt="Go to the comms page for more articles and videos" /></a>
+  </div>
+
+    <div class="small-12 medium-6 large-3 column">
+      <h3>Main causes</h3>
+      	<ul style="list-style-type: none; ">
+      		<li><img src="./img-foodsecurity/drought.png">&nbsp;&nbsp;Severe drought due to El Nino and La Nina</li>
+      		<li><img src="./img-foodsecurity/conflict.png">&nbsp;&nbsp;Conflicts and violence</li>
+      	</ul>
+    </div>
+
+    <div class="small-12 medium-6 large-3 column">
+    	<h3>Main areas of response</h3>
+      	<ul style="list-style-type: none; ">
+      		<li><img src="./img-foodsecurity/health.png">&nbsp;&nbsp;Health</li>
+      		<li><img src="./img-foodsecurity/wash.png">&nbsp;&nbsp;WASH</li>
+      		<li><img src="./img-foodsecurity/livelihoods.png">&nbsp;&nbsp;Food Security and Livelihoods</li>
+      	</ul>
+  	</div>
+
+  <div class="small-12 medium-12 large-6 small-collapse column">
+  <h3>Response Pages</h3>
+
+  <div class="small-4 medium-2 large-2 column">
+    <a href="https://ifrcgo.org/appeals/mdret016/" title="Go to the Ethiopia page">
+      <div class="card" style="border: none;">
+        <img src="./img-foodsecurity/ethiopia.png">
+        <div class="card-section" style="padding: .2rem;">
+          <p>Ethiopia</p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="small-4 medium-2 large-2 column">
+    <a href="https://ifrcgo.org/appeals/mdrke039/" title="Go to the Kenya page">
+      <div class="card" style="border: none;">
+        <img src="./img-foodsecurity/kenya.png">
+        <div class="card-section" style="padding: .2rem;">
+          <p>Kenya</p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="small-4 medium-2 large-2 column">
+    <a href="https://ifrcgo.org/appeals/mdrso005/" title="Go to the Somalia page">
+      <div class="card" style="border: none;">
+        <img src="./img-foodsecurity/somalia.png">
+        <div class="card-section" style="padding: .2rem;">
+          <p>Somalia</p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+  <div class="small-4 medium-2 large-2 column">
+    <a href="https://ifrcgo.org/appeals/nigeria_food_insecurity_2017/" title="Go to the Nigeria page">
+      <div class="card" style="border: none;">
+        <img src="./img-foodsecurity/nigeria.png">
+        <div class="card-section" style="padding: .2rem;">
+          <p>Nigeria</p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+
+  <div class="small-4 medium-2 large-2 column end">
+    <a href="https://ifrcgo.org/appeals/mdr60003/" title="Go to the Regional Coordination page">
+      <div class="card" style="border: none;">
+        <img src="./img-foodsecurity/africa.png">
+        <div class="card-section" style="padding: .2rem;">
+          <p>Regional Coordination</p>
+        </div>
+      </div>
+    </a>
+  </div>
+
+
+	</div>
+
+
+</div>
+
+<hr>
+<div class="row">
+    <div id="overview" class="medium-12 column">
+      <h1>Regional food insecurity in context</h1>
+
+      <div class="row small-up-2 medium-up-3">
+        <div class="column">
+            <div class="card">
+              <img src="./img-foodsecurity/Regional_risks.jpg">
+              <div class="card-section">
+                <h2>Situation reports</h2>
+                <p>Our regional situation reports provide an overview of the operational contexts, updates on progress and achievements, as well as planning and key events.</p>
+				 <ul>
+				 <li><a href="./img-foodsecurity/Africa-Food-Crisis-SitRep1.pdf">Sitrep 1</a>,  <a href="./img-foodsecurity/Africa-Food-Crisis-SitRep2.pdf">Sitrep 2</a>,  <a href="./img-foodsecurity/Africa-Food-Crisis-SitRep3.pdf">Sitrep 3</a>,  <a href="./img-foodsecurity/Africa-Food-Crisis-SitRep4.pdf">Sitrep 4</a></li>
+			     <li><a href="./img-foodsecurity/Africa-Food-Crisis-SitRep5.pdf">Sitrep 5</a>,  <a href="./img-foodsecurity/Africa-Food-Crisis-SitRep6.pdf">Sitrep 6</a>,  <a href="./img-foodsecurity/Africa-Food-Crisis-SitRep7.pdf">Sitrep 7</a>,  <a href="./img-foodsecurity/Africa-Food-Crisis-SitRep8.pdf">Sitrep 8</a></li>
+				 <li><a href="./img-foodsecurity/Africa-Food-Crisis-SitRep9.pdf">Sitrep 9</a>,  <a href="./img-foodsecurity/Africa-Food-Crisis-SitRep10.pdf">Sitrep 10</a>,  <a href="./img-foodsecurity/Africa-Food-Crisis-SitRep11.pdf">Sitrep 11</a>,  <a href="./img-foodsecurity/Africa-Food-Crisis-SitRep12.pdf">Sitrep 12</a></li>
+				 <li><a href="./img-foodsecurity/Africa-Food-Crisis-SitRep13.pdf">Sitrep 13</a>,  <a href="./img-foodsecurity/Africa-Food-Crisis-SitRep14.pdf">Sitrep 14</a>,  <a href="./img-foodsecurity/Africa-Food-Crisis-SitRep15.pdf">Sitrep 15</a></li>
+				</ul>
+			  </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+              <img src="./img-foodsecurity/Coordination.jpg">
+              <div class="card-section">
+                <h2>Who is doing What, Where</h2>
+                <p>An overview of the presence by sector and location within the food crisis operations (as of March 2018).</p>
+				<ul>
+				 <li><a href="./img-foodsecurity/20180328_4W_Africa_Food_Crisis_Somalia.pdf">Somalia - ongoing activities map (March 2018)</a></li>
+				 <li><a href="./img-foodsecurity/20180328_Somaliland_Sector_by_District_Infographic.pdf">Somalia - activity matrix (March 2018)</a></li>
+				 <li><a href="./img-foodsecurity/20180330_Health_Clinics_and_Sectoral_Activities_Map.pdf">Somalia - clinics and sectors map (March 2018)</a></li>
+				 <li><a href="./img-foodsecurity/20180328_Somalia_Health_Clinics_Map.pdf">Somalia - health clinics map (March 2018)</a></li>
+				 <li><a href="./img-foodsecurity/171201_4W_Africa_Food_Crisis_Ethiopia_December.pdf">Ethiopia - ongoing activities map (December 2017)</a></li>
+				 <li><a href="./img-foodsecurity/171201_4W_Africa_Food_Crisis_Ethiopia_2017_Full.pdf">Ethiopia - all activities in 2017 map</a></li>
+				 <li><a href="./img-foodsecurity/171205_4W_Africa_Food_Crisis_Kenya_December.pdf">Kenya - ongoing activities map (December 2017)</a></li>
+				 <li><a href="./img-foodsecurity/171205_4W_Africa_Food_Crisis_Kenya_2017_Full.pdf">Kenya - all activities in 2017 map</a></li>
+				 <li><a href="./img-foodsecurity/171215_4W_Africa_Food_Crisis_Nigeria_December.pdf">Nigeria - ongoing activities map (December 2017)</a></li>
+				</ul>
+              </div>
+            </div>
+          </div>
+        <div class="column">
+            <div class="card">
+              <img src="./img-foodsecurity/Read_more.jpg">
+              <div class="card-section">
+                <h2>Risk watch: situational analysis</h2>
+                <p>Causes to food insecurity are multiple, overlap and lead to the development of complex and multi-sectoral crises. Read our secondary data analysis:</p>
+              <ul>
+				 <li><a href="./img-foodsecurity/20180320_Food_security_map_Somaliland.pdf">Somaliland Food Insecurity Outlook Livelihood Zones (February - June 2018)</a></li>
+				 <li><a href="./img-foodsecurity/SDR-Regional-Food-Crisis-15.01.2018.pdf">Regional Food Crisis Africa (January 2018)</a></li>
+				 <li><a href="./img-foodsecurity/SDR-Mauritania-18.01.2018.pdf">Mauritania Food Insecurity (January 2018) </a></li>
+				 <li><a href="./img-foodsecurity/SDR-South-Sudan-22.01.2018.pdf">South Sudan Food Insecurity (January 2018)</a></li>
+				 <li><a href="./img-foodsecurity/SDR-Horn-of-Africa-26.01.2018.pdf">Somalia Food Insecurity (January 2018)</a></li>
+				 <li>Critical events and outlook calendars <a href="./img-foodsecurity/171130_Eastern_Africa_Region_Critical _Events_and_Outlook_Calendar.pdf">Eastern</a>,  <a href="./img-foodsecurity/171130_Western_Africa_Region_Critical _Events_and_Outlook_Calendar.pdf">Western</a>, and <a href="./img-foodsecurity/171130_Southern_Africa_Region_Critical _Events_and_Outlook_Calendar.pdf">Southern</a> Africa (December 2017)</li>
+			  </ul>
+			  </div>
+            </div>
+
+        </div>
+	</div>
+</div> 
+</div> 
+
+<hr>
+
+<div id="overview" class="row medium-12 column">
+ 
+  <div class="small-12 medium-6 large-4 column">
+    <h2>Food Security Outlook East Africa</h2>
+	Near Term: May 2018<br />
+	<a href="./img-foodsecurity/east-africaCurrent_ML1.png" target="_blank"><img src="./img-foodsecurity/east-africaCurrent_ML1.png"></a><br /><br />
+	Medium Term: June - September 2018<br />
+	<a href="./img-foodsecurity/east-africaCurrent_ML2.png" target="_blank"><img src="./img-foodsecurity/east-africaCurrent_ML2.png"></a>
+  </div>
+  
+  <div class="small-12 medium-6 large-4 column">
+    <h2>Food Security Outlook West Africa</h2>
+	Near Term: May 2018<br />
+	<a href="./img-foodsecurity/west-africaCurrent_ML1.png" target="_blank"><img src="./img-foodsecurity/west-africaCurrent_ML1.png"></a><br /><br />
+	Medium Term: June - September 2018<br />
+	<a href="./img-foodsecurity/west-africaCurrent_ML2.png" target="_blank"><img src="./img-foodsecurity/west-africaCurrent_ML2.png"></a>
+  </div>
+
+  <div class="small-12 medium-6 large-4 column">
+    <h2>Food Security Outlook Southern Africa</h2>
+	Near Term: May 2018<br />
+	<a href="./img-foodsecurity/southern-africaCurrent_ML1.png" target="_blank"><img src="./img-foodsecurity/southern-africaCurrent_ML1.png"></a><br /><br />
+	Medium Term: June - September 2018<br />
+	<a href="./img-foodsecurity/southern-africaCurrent_ML2.png" target="_blank"><img src="./img-foodsecurity/southern-africaCurrent_ML2.png"></a>
+  </div>
+  
+  
+</div>
+
+<hr>
+<div class="row">
+    <div id="keyfigures" class="medium-12 column"></div>
+</div>
+
+<hr />
+<div class="row">
+    <div id="overview" class="medium-12 column">
+      <h1>Appeals Overview</h1>
+
+      <div class="row small-up-2 medium-up-3">
+		<div class="column">
+            <div class="card">
+            <img src="./img-foodsecurity/Africa-responding-to-food-crisis.JPG">
+              <div class="card-section">
+                <h2>Africa Region</h2>
+                <p>Since the end of 2016, the African continent is facing an unprecedented rise in food insecurity. Millions of people are in urgent need of humanitarian assistance, particularly where consecutively poor rainfall, rising food prices and insecurity continues to worsen the situation. Many countries are facing emergency levels of food insecurity, which has had devastating impacts to millions who’s livelihoods depend on their crops and livestock. Famine could be imminent in South Sudan, Somalia and Nigeria where conditions are quickly deteriorating in early 2018.</p>
+			     <ul>
+				 <li><a href="./img-foodsecurity/201801-RegionalOnePager.pdf">Africa - Responding to food crisis (January 2018)</a></li>
+				 <li><a href="./img-foodsecurity/20171106-SitrepTheResponseInPhotos.pdf">Africa - Response in photos (October 2017)</a></li> 
+			     </ul>
+			  </div>
+            </div>
+          </a>
+        </div>
+      <div class="column">
+        <div class="card">
+            <img src="./img-foodsecurity/Ethiopia-responding-to-food-drought.JPG">
+              <div class="card-section">
+                <h2>Ethiopia</h2>
+                <p>Ethiopia faces a serious food crisis after consecutive rain failures in 2015, combined with erratic El Niño weather conditions. Lack of rain has impacted access to water and adequate grazing land, resulting in death of livestock; abnormal migration; severe food and milk shortages and rising malnutrition, especially among children under five and pregnant and lactating mothers. Drought has further exacerbated vulnerabilities to disease outbreaks, including acute watery diarrhoea/ cholera.</p>
+				<ul>     
+					 <li><a href="./img-foodsecurity/20180118_EthiopiaOnePager.pdf">Ethiopia - Responding to food crisis (January 2018)</a></li>
+					 <li><a href="./img-foodsecurity/20170602_Ethiopia-Appeal.pdf">Ethiopia - Appeal overview (June 2017)</a></li>    
+			  </ul>
+			  </div>
+        </div>
+      </div>
+        </a>
+        <div class="column">
+            <div class="card">
+              <img src="./img-foodsecurity/Kenya-responding-to-food-insecurity.JPG">
+              <div class="card-section">
+                <h2>Kenya</h2>
+                <p>Drought has swept across Kenya’s coastal and semiarid regions in the north and north-east following two consecutive failed seasonal rains in 2016 and 2017. Farmers struggle to plant enough crops and feed their livestock and food prices have swelled, which puts further constraints on vulnerable families’ access to food. Malnutrition rates in some areas have reached crisis levels, especially among children under five and expectant mothers, putting them at further risk of disease.</p>
+				 <ul> 	
+					<li><a href="./img-foodsecurity/2018-01_KenyaOnePager.pdf">Kenya - Responding to food insecurity (January 2018)</a></li>
+					<li><a href="./img-foodsecurity/IFRC-Kenya Appeal-A4-EN-LR.pdf">Kenya - Appeal overview (June 2017)</a></li>
+				 </ul> 
+			  </div>
+            </div>
+          </a>
+        </div>
+</div>
+</div>  
+ 
+<div class="row">
+    <div id="overview" class="medium-12 column">
+	
+	  <div class="row small-up-2 medium-up-3">
+        <div class="column">
+            <div class="card">
+              <img src="./img-foodsecurity/Nigeria-responding-to-a-complex-emergency.JPG">
+              <div class="card-section">
+                <h2>Nigeria</h2>
+                <p>Northeast Nigeria faces one of the most severe humanitarian crises in the world today. The armed conflict has left an estimated 8.5 million people in need of humanitarian assistance in the worst-affected states: Borno, Adamawa and Yobe. Populations are suffering the cumulative impact of years of conflict and violence and now food and water shortages, following two consecutive seasons of poor rain fall.</p>
+                <ul> 	
+				<li><a href="./img-foodsecurity/201711_Nigeria-OnePageSummary.pdf">Nigeria - Responding to a complex emergency (November 2017)</a></li>
+				</ul> 
+			  </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+              <img src="./img-foodsecurity/Somalia-responding-to-food-insecurity.JPG">
+              <div class="card-section">
+                <h2>Somalia</h2>
+                <p>Food insecurity has reached crisis and emergency levels across Somalia. Years of consecutively poor rainfall has left 6.2 million people in need of emergency food and livelihood support – this is well over half of the population. The situation is expected to deteriorate further as we enter the dry season. Levels of acute food insecurity and malnutrition will remain high in Somalia through to the end of the year, including 388,000 children under five who are acutely malnourished.</p>
+				<ul> 	
+				<li><a href="./img-foodsecurity/201711_SomaliaOnePageSummary.pdf">Somalia - Responding to food insecurity (October 2017)</a></li>
+				</ul>
+			  </div>
+            </div>
+          </div>
+        </a>
+        <div class="column">
+            <div class="card">
+              <img src="./img-foodsecurity/South-Sudan-responding-to-food-insecurity.JPG">
+              <div class="card-section">
+                <h2>South Sudan</h2>
+                <p>Since the onset of the conflict in 2013 and subsequent devolution into a complex emergency in the years since, an unprecedented number of people are in need of food; health care; water and sanitation; and protection. War has not only resulted in large-scale loss of lives but also 1.9 million internally displaced people. This has put a major strain on communities hosting displaced families and caused an extreme disruption to livelihoods. Six million  people are severely food insecure - more than half of the country’s population.</p>
+				<ul> 	
+				<li><a href="./img-foodsecurity/201710_SouthSudan-OnePageSummary.pdf">South Sudan - Responding to food insecurity (October 2017)</a></li>
+				<li><a href="./img-foodsecurity/201712_SouthSudanOnePage-MovementResponsePlan.pdf">South Sudan - Movement response plan</a></li>
+				</ul>
+			  </div>
+            </div>
+          </a>
+        </div>
+</div>
+</div>
+</div>
+</div>
+
+<hr>
+<div class="row">
+    <div id="overview" class="medium-12 column">
+      <h1>Experiences, examples and good practices</h1>
+
+      <div class="row small-up-2 medium-up-3">
+        <div class="column">
+            <div class="card">
+              <div class="card-section">
+                <h2>Information management missions</h2>
+                <p>We have supported various contexts in order to integrate information management approaches and activities more systematically into the emergency operation. Access here mission reports, TORs, training sessions etc (IFRC only).</p>
+				 <ul>
+				 <li><a href="https://ifrcorg.sharepoint.com/sites/201703-aro-drought/Shared%20Documents/Forms/AllItems.aspx?RootFolder=%2Fsites%2F201703-aro-drought%2FShared%20Documents%2FSO-Somalia%2FSO-IM%2FIM%20Somaliland%20mission%20March%202018&FolderCTID=0x012000CF7AABB5B375B64EB33169E2F37459C9">Somaliland IM support mission March 2018</a></li>
+				 <li><a href="https://ifrcorg.sharepoint.com/sites/201703-aro-drought/Shared%20Documents/Forms/AllItems.aspx?RootFolder=%2Fsites%2F201703-aro-drought%2FShared%20Documents%2FNI-Nigeria%2FIM%20mission%20Nigeria%20February%202018&FolderCTID=0x012000CF7AABB5B375B64EB33169E2F37459C9">Nigeria IM support mission February 2018</a></li>
+				</ul>
+			  </div>
+            </div>
+        </div>
+        <div class="column">
+            <div class="card">
+              <div class="card-section">
+                <h2>Tools and guidance</h2>
+                <p>An overview of (examples of﴿ data collection tools, guidance and templates for food security data collection and analysis to facilitate the collection of experiences, examples and good practices (IFRC only).</p>
+				<ul>
+				 <li><a href="https://ifrcorg.sharepoint.com/sites/201703-aro-drought/Shared%20Documents/Forms/AllItems.aspx?RootFolder=%2Fsites%2F201703-aro-drought%2FShared%20Documents%2FFood%20security%20toolkit&FolderCTID=0x012000CF7AABB5B375B64EB33169E2F37459C9">Food Security tools and guidance</a></li>
+				</ul>
+              </div>
+            </div>
+          </div>
+        <div class="column">
+            <div class="card">
+              <div class="card-section">
+                <h2>Read more</h2>
+                <p>Examples of food security data collection and analysis products of various organizations.</p>
+              <ul>
+				 <li><a href="https://docs.wfp.org/api/documents/WFP-0000069227/download/?_ga=2.7395122.1435196880.1523979394-1512485448.1510760350">FSIN - Global report on food crises 2018</a></li>
+				 <li><a href="https://www.acaps.org/sites/acaps/files/products/files/20180226_acaps_thematic_report_food_insecurity_final.pdf">ACAPS - Thematic report on food insecurity (February 2018)</a></li>
+				 <li><a href="http://www.fews.net/">FEWSNET - Food security outlook 2018</a></li>
+			  </ul>
+			  </div>
+            </div>
+
+        </div>
+	</div>
+</div> 
+</div> 	
+</div> 
+        <p></p>
+        <table id="appealstable">
+          <tr><td>Appeal</td><td>Start Date</td><td>End Date</td><td style="text-align:right">Targeted</td><td style="text-align:right">Budget</td><td style="text-align:right">Funding</td><td>Coverage</td><td>Appeal Code</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <p>&nbsp;</p>
+    <!--
+    <div class="row">
+    <div id="" class="medium-12 column"><h2>Global Tools Deployed</h2></div>
+  </div>
+  <div class="row">
+  <div id="" class="medium-12 column"><h2>Operational Teams in Place</h2></div>
+</div>
+-->
+<div class="row">
+  <div id="documents" class="medium-12 column"><h1>Documents</h1></div>
+</div>
+<!-- 		  <div style="float:left; width:25%; padding:0 10px">
+<h1>Security</h1>
+<p align="center">For the latest security alerts, <br /> go to the <br /><a href="https://s.ifrcgo.org/security_alerts/" target="_blank" style="font-weight: bold; font-size:150%; color:red;">Security Alert Dashboard</a>. <br />(login required)<br />&nbsp;</p>
+</div>
+-->
+
+
+<footer>
+  <div class="row small-12 large-up-5">
+    <h6>The International Federation of Red Cross and Red Crescent Societies (IFRC) is the world's largest humanitarian organization, with 190 member National Societies. As part of the International Red Cross and Red Crescent Movement, our work is guided by seven fundamental principles; humanity, impartiality, neutrality, independence, voluntary service, unity and universality.</h6>
+  </div>
+</footer>
+
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-84297335-1', 'auto');
+ga('send', 'pageview');
+</script>
+
+<!-- vendor js -->
+<script src="./assets/scripts/vendor/d3.js"></script>
+<script src="./assets/scripts/vendor/index.js"></script>
+<script src="./js/jquery.min.js"></script>
+<script src="./js/leaflet.js"></script>
+<script src="./assets/scripts/vendor/isotope.pkgd.min.js"></script>
+<script src="./assets/scripts/vendor/papaparse.js"></script>
+<script src="./assets/scripts/vendor/intro.js"></script>
+<script src="./assets/scripts/vendor/jquery.dataTables.js"></script>
+<script src="./js/topojson.v1.min.js"></script>
+<script src="./assets/scripts/vendor/crossfilter.min.js"></script>
+<script src="./assets/scripts/vendor/dc.js"></script>
+<script src="./assets/scripts/vendor/c3.js"></script>
+
+<script>
+var worldmap = './maps/worldmap.json';
+</script>
+
+<!-- <script src="/assets/scripts/main.min.js"></script> -->
+
+
+
+<script src='./js/foodsecurity.js' type="text/javascript"></script>
+
+
+
+</body>
+
+</html>

@@ -223,7 +223,7 @@ function getAppealType(type) {
 var map = '';
 var table='';
 var appealsGoUrl = 'https://prddsgocdnapi.azureedge.net/api/v2/appeal/?dtype=1&end_date__gte=999999T00%3A00%3A00&format=json&region=0';
-var worldmap = 'https://ifrcgo.org/assets/map/worldmap.json';
+var worldmap = './maps/worldmap.json';
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1;

@@ -171,7 +171,7 @@ function createTable(data) {
 
 var map = '';
 var washurl = 'https://proxy.hxlstandard.org/data.json?strip-headers=on&url=https%3A%2F%2Fdocs.google.com%2Fspreadsheets%2Fd%2F1aYeTU8SaEt8ryxiVEoKqE5jsiLsSnPoDICRoCpwom3A%2Fedit%23gid%3D261283785';
-var worldmap = 'https://ifrcgo.org/africa/maps/worldmap.json';
+var worldmap = './maps/worldmap.json';
 
 var dataCall = $.ajax({
     type: 'GET',
@@ -189,6 +189,6 @@ $.when(dataCall, geomCall).then(function(dataArgs, geomArgs){
     var data = hxlProxyToJSON(dataArgs[0]);
     console.log(data);
     var geom = topojson.feature(geomArgs[0],geomArgs[0].objects.geom);
-    // $('#loadingmodal').modal('hide');
+    $('#map-loading').remove();
     generateDash(data,geom);
 });

@@ -605,8 +605,8 @@ if ( patt.test(hash) ) {
 $('#nslogo').attr("src","./img/logo/"+hash+"_logo.png");
 
 // get the branch map data
-var branchmap = 'https://ifrcgo.org/africa/maps/' + hash + '_map.geojson';
-var branchnodes = 'https://ifrcgo.org/africa/maps/' + hash + '_nodes.csv';
+var branchmap = './maps/' + hash + '_map.geojson';
+var branchnodes = './maps/' + hash + '_nodes.csv';
 
 var brMapCall = $.ajax({
     type: 'GET',

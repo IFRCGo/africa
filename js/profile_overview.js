@@ -12,7 +12,7 @@
 
 
  var map=L.map('map').setView([0,0],10);
- var country_url="https://ifrcgo.org/africa/profile.html#";
+ var country_url="./profile.html#";
 /*   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     maxZoom: 19,
                     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
