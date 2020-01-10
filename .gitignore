@@ -1,0 +1,6 @@
+# System files
+.project
+.DS_Store
+.sass-cache
+.bundle
+bundle
