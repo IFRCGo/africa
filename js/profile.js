@@ -103,7 +103,7 @@ function createAppealsTable(data){
 		html += '</td><td>'+d['start_date'].substr(0,10)+'</td><td>'+d['end_date'].substr(0,10);
 		html += '</td><td>'+niceFormatNumber(d['num_beneficiaries'],true)+'</td><td>'+niceFormatNumber(d['amount_requested'],true);
 		html += '</td><td>'+d['code']+'</td></tr>';
-	
+
     });
     // Send data to appeals or DREFs html tables
     $('#appealstable').append(html);
@@ -137,9 +137,9 @@ function createGovernanceTable(url) {
 					htmlGov += '<tr><th>Volunteer Policy</th><td>'+d['#date+policy+volunteer']+'</td></tr>';
 					htmlGov += '<tr><th>Resource Mob. Policy</th><td>'+d['#date+policy+rm']+'</td></tr>';
 					htmlGov += '<tr><th>Child Protection Policy</th><td>'+d['#date+cp+policy']+'</td></tr>';
-                                        htmlGov += '<tr><th>Gender Policy</th><td>'+d['#date+gender+policy']+'</td></tr>';
-                                        htmlGov += '<tr><th>Gender and Diversity Policy</th><td>'+d['#date+diversity+policy']+'</td></tr>';
-                                        htmlGov += '<tr><th>PSEA Policy</th><td>'+d['#date+policy+psea']+'</td></tr>';
+          htmlGov += '<tr><th>Gender Policy</th><td>'+d['#date+gender+policy']+'</td></tr>';
+          htmlGov += '<tr><th>Gender and Diversity Policy</th><td>'+d['#date+diversity+policy']+'</td></tr>';
+          htmlGov += '<tr><th>PSEA Policy</th><td>'+d['#date+policy+psea']+'</td></tr>';
 					htmlGov += '<tr><th>OCAC / BOCA conducted</th><td>OCAC: '+d['#date+ocac']+' - BOCA: '+d['#date+boca']+'</td></tr>';
 					htmlGov += '<tr><th>Consolidated audit</th><td>'+d['#date+audit']+'</td></tr>';
 				}
@@ -498,7 +498,7 @@ function makeMap(brMap, brNodes) {
 	}
 
 	var layer_RedCrossNodes = new L.geoCsv(brNodes, {
-		firstLineTitles: true, 
+		firstLineTitles: true,
 		fieldSeparator: ';',
 		onEachFeature: popupNode,
 		pointToLayer: function (feature, latlng) {
@@ -573,10 +573,10 @@ function getCountryNumber(ns) {
 		natSocieties.forEach(function(d,i){
 			if (ns.indexOf(d[0])>=0) {
 				countryNo = d[1];
-			}			
+			}
 		});
 	}
-	return countryNo; 
+	return countryNo;
 }
 
 function getAppealType(type) {
