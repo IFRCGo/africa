@@ -391,8 +391,8 @@ div.ex3 {
 }
 
 .slider {
-  width: 100%;
-  max-width: 1200px;
+  width: 1100px;
+  max-width: 1100px;
   padding: inherit;
   margin: auto;
   height: 600px;
