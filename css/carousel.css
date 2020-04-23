@@ -42,7 +42,7 @@
 }
 
 .text-block {
-  position: fixed;
+  position: absolute;
   top: 10%;
   right: 60px;
   color: rgba(255, 148, 142, 1);
