@@ -292,7 +292,7 @@ button:hover, a:hover {
 .split {
   height: 100%;
   width: 40%;
-  position: fixed;
+  position: absolute;
   z-index: 1;
   top: 0;
   overflow-x: hidden;
@@ -375,6 +375,12 @@ div.ex3 {
   background-color: white;
   width: 1200px;
   height: 360px;
+  overflow: auto;
+}
+div.ex4 {
+  background-color: white;
+  width: 1200px;
+  height: 700px;
   overflow: auto;
 }
 /* slider*/
