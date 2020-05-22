@@ -118,68 +118,88 @@
 <section id="Emergencies">
 	<div class="row">
 	<h1>Emergency Operations</h1>
-	  <div class="medium-6 column">
+	  <div class="medium-8 column">
 		<div id="map"><img id="map-loading" src="./img/loading.gif"></div>
 	  </div>
-	  <div class="medium-4 column">
+	  <div class="medium-3 column">
 		<div class="row">
-		  <div class="medium-6 column">
-			<p class="keyfiguretitle"><font color = "#dc1e1e">Funding</font></p><span id="totalcoverage" class="keyfigure"></span>
-		  </div>
-		  <div class="medium-6 column">
-			<div class="row">
-			  <div class="medium-12 column">
-				<p class="keyfiguretitle text-left"><font color = "#dc1e1e">Emergency Appeals</font></p><span id="totalea" class="keyfigure"></span>
-			  </div>
-			</div>
-			<div class="row">
-			  <div class="medium-12 column">
-				<p class="keyfiguretitle text-left"><font color = "#dc1e1e">DREFs</font></p><span id="totaldref" class="keyfigure"></span>
-			  </div>
-			</div>
-		  </div>
-		</div>
-		<div class="row">
-		  <div class="medium-6 column">
-			<p class="keyfiguretitle text-left minheight"><font color = "#dc1e1e">Total Appeals</font></p><span id="totalappeals" class="keyfigure"></span>
-		  </div>
-		  <div class="medium-6 column">
-			<p class="keyfiguretitle text-left minheight"><font color = "#dc1e1e">Targeted beneficiaries</font></p><span id="totalbens" class="keyfigure"></span>
-		  </div>
-		</div>
-	  </div>
-	  <div class="medium-2 column">
-		<div class="row">
-			<h2>More Information</h2>
 			<a href="./currentappeals.html" class="button ifrcCorporateRed expanded">Current emergency operations</a>
 			<a href="./all_appeals.html" class="button ifrcCorporateRed expanded">Historic emergency operations</a>
 			<a href="./foodsecurity.html" target="_blank" class="button ifrcCorporateRed expanded">Food Security in Africa</a>
 			<a href="./profile_overview.html" class="button ifrcCorporateRed expanded">National Society Profiles</a>
 
 			  <!-- DRR Mapping dropdown -->
-      <div class="dropdown">
+      <div class="dropdown" style="width: 300px">
         <button class="dropbtn">Disaster Risk Reduction Mapping </button>
         <div class="dropdown-content">
             <a href="https://public.tableau.com/profile/ifrc.r.v#!/vizhome/drrmappingstory_0/DRRmapping2017" target="_blank" class="button ifrcCorporateRed expanded"> 2017 Mapping </a>
-	     <a href="https://public.tableau.com/profile/ch.choe#!/vizhome/IFRC2018AfricaClimate-SmartDRRMapping/Dashboard1?publish=yes" target="_blank"  class="button ifrcCorporateRed expanded"> 2018 Mapping </a>
-                </div>
-                </div>
+            <a href="https://public.tableau.com/profile/ch.choe#!/vizhome/IFRC2018AfricaClimate-SmartDRRMapping/Dashboard1?publish=yes" target="_blank"  class="button ifrcCorporateRed expanded"> 2018 Mapping </a>
+        </div>
+      </div>
 		</div>
 	  </div>
 	</div>
 </section>
+<hr />
+<section>
+  <div class="row">
+    <div class="card_column">
+      <div class="ea_card">
+        <div class="">
+          <img src="img/funding-coverage.svg" alt="">
+        </div>
+        <p class="keyfiguretitle" style="text-align: center; font-family: serif;font-size: 11px; ">FUNDING</p><span id="totalcoverage" class="keyfigure"></span>
+
+      </div>
+    </div>
+    <div class="card_column">
+      <div class="ea_card">
+        <div class="">
+          <img src="img/funding-requirements.svg" alt="">
+        </div>
+        <p class="keyfiguretitle text-left minheight" style="text-align: center; font-family: serif;font-size: 11px; ">TOTAL APPEAL</p><span id="totalappeals" class="keyfigure"></span>
+
+      </div>
+    </div>
+    <div class="card_column">
+      <div class="ea_card">
+        <div class="">
+          <img src="img/logo-appeals.svg" alt="">
+        </div>
+        <p class="keyfiguretitle text-left" style="text-align: center; font-family: serif;font-size: 11px; "></p><span id="totalea" class="keyfigure"></span>
+      </div>
+    </div>
+
+    <div class="card_column">
+      <div class="ea_card">
+        <div class="">
+          <img src="img/logo-dref.svg" alt="">
+        </div>
+        <p class="keyfiguretitle text-left"></p><span id="totaldref" class="keyfigure"></span>
+      </div>
+    </div>
+
+    <div class="card_column">
+      <div class="ea_card">
+        <div class="">
+          <img src="img/targeted-population.svg" alt="">
+        </div>
+        <p class="keyfiguretitle text-left minheight" style="text-align: center; font-family: serif;font-size: 11px; ">TARGETED POPULATION</p><span id="totalbens" class="keyfigure"></span>
+      </div>
+    </div>
+  </div>
+</section>
 <hr>
 <section>
   <div class="row">
-  <h1>Country Operations Plans</h1>
+  <h1>Country Operation Plans</h1>
   <div id="overview" class="medium-12 column">
     <div class="row small-up-2 medium-up-3">
      <iframe width="1200" height="700" src="https://app.powerbi.com/view?r=eyJrIjoiNTQxZWU1YTQtYmQ1Yy00MDc4LTk0ZDctMmZhNTU5YTAyZDYxIiwidCI6ImEyYjUzYmU1LTczNGUtNGU2Yy1hYjBkLWQxODRmNjBmZDkxNyIsImMiOjh9" frameborder="0" allowFullScreen="true"></iframe>
     </div>
   </div>
 </section>
-<hr />
-
+<hr>
 <section id="SupportServices">
     <div class="row">
 		<h1>Operational Support</h1>
@@ -237,6 +257,7 @@
         </div>
     </div>
     <hr>
+
 	<div class="row">
 		<h1>Organizational Support</h1>
 		<div id="overview" class="medium-12 column">
@@ -299,10 +320,10 @@
 				<div class="card-section">
             <h2> <font color = "#dc1e1e">Lake Chad Basin Initiative</font></h2>
             <p class="justify">Millions of people in the Lake Chad Basin Region face challenges related to compromised livelihoods and food and nutrition insecurity;
-					insecurity; population movement; deteriorating socio-economic indicators and high population growth rates, among others.
-					UNICEF estimates that over one million children have been forced out of school due to armed conflicts in the region.
-					IFRC proposes to build a common approach to address the current humanitarian crisis in this region.</p>
-                    <p class="justify">There is a critical need to respond to the immediate needs of households while concurrently building longer term resilience to break the cycle of vulnerability and stabilize livelihoods to reduce the risk of households slipping back to emergency state.</p>
+					     insecurity; population movement; deteriorating socio-economic indicators and high population growth rates, among others.
+				     	 UNICEF estimates that over one million children have been forced out of school due to armed conflicts in the region.
+				     	 IFRC proposes to build a common approach to address the current humanitarian crisis in this region.</p>
+            <p class="justify">There is a critical need to respond to the immediate needs of households while concurrently building longer term resilience to break the cycle of vulnerability and stabilize livelihoods to reduce the risk of households slipping back to emergency state.</p>
 					<ol type="a">
 						<li>Convening, co-ordinating, and mobilizing;</li>
 						<li>Localization of aid;</li>
@@ -316,11 +337,9 @@
 			<div class="card">
 				<img src="./img/sa_resilience.jpg">
 				<div class="card-section">
-
 					<h2> <font color = "#dc1e1e">Southern Africa</font></h2>
-
-                    <p class="justify">Many of the vulnerabilities that exist in Southern Africa arise from prolonged exposure to deep-rooted inadequate capacities to cope with shocks resulting from natural disasters, poverty, conflict and political unrest.<br />
-					To break a cycle of crisis-response, high risk areas across Southern Africa will be supported to become more resilient to natural disasters through a four-pillar programming approach focused on:
+          <p class="justify">Many of the vulnerabilities that exist in Southern Africa arise from prolonged exposure to deep-rooted inadequate capacities to cope with shocks resulting from natural disasters, poverty, conflict and political unrest.<br />
+				  	To break a cycle of crisis-response, high risk areas across Southern Africa will be supported to become more resilient to natural disasters through a four-pillar programming approach focused on:
 					</p>
 					<ol type="a">
 						<li>community and household long term preparedness and resilience; </li>
@@ -335,10 +354,8 @@
 			<div class="card">
 				<img src="./img/climate_change.jpg">
 				<div class="card-section">
-
 					<h2> <font color = "#dc1e1e">Climate Change</font></h2>
-
-                    <p class="justify">According to the <a href="http://www.ipcc.ch/report/ar5/syr/" target="_blank">report from the Intergovernmental Panel on Climate Change (AR5)</a>, Africa is one of the most vulnerable continents to climate change due to its high exposure to climate stress and low adaptive capacity (e.g., poor infrastructure, limited access to markets, high illiteracy rates).<br />
+          <p class="justify">According to the <a href="http://www.ipcc.ch/report/ar5/syr/" target="_blank">report from the Intergovernmental Panel on Climate Change (AR5)</a>, Africa is one of the most vulnerable continents to climate change due to its high exposure to climate stress and low adaptive capacity (e.g., poor infrastructure, limited access to markets, high illiteracy rates).<br />
 					Many of the projected impacts of climate change are amplifications of natural climate variability, which already pose significant challenges to vulnerable communities.<br />
 					This is true for Tanzania and Malawi, the two African countries selected for the <a href="http://www.wmo.int/gfcs/Norway_2" target="_blank">Global Framework for Climate Services (GFCS) Adaptation Programme in Africa</a> that was implemented from 2014 to 2017.<br />
 					For these countries, climate change impacts are anticipated to be felt through increased frequency and severity of extreme events; therefore, better managing the risks associated with climate variability provides an immediate opportunity to adapt to future climate change.
@@ -351,16 +368,10 @@
 		</div>
 	</div>
 </section>
-
-
-
 <div class="row">
     <!-- Areas of Focus figures pulled in from linked Google sheet (see site.js) -->
     <div id="aof" class="medium-12 column"></div>
-
-
 </div>
-
 <hr>
 
 

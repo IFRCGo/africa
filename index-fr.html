@@ -114,50 +114,23 @@
 <section id="Emergencies">
 	<div class="row">
 	<h1>Opérations d'urgence</h1>
-	  <div class="medium-6 column">
+	  <div class="medium-8 column">
 		<div id="map"><img id="map-loading" src="./img/loading.gif"></div>
 	  </div>
-	  <div class="medium-4 column">
+
+	  <div class="medium-3 column">
 		<div class="row">
-		  <div class="medium-6 column">
-			<p class="keyfiguretitle"><font color = "#dc1e1e">Financement</font></p><span id="totalcoverage" class="keyfigure"></span>
-		  </div>
-		  <div class="medium-6 column">
-			<div class="row">
-			  <div class="medium-12 column">
-				<p class="keyfiguretitle text-left"><font color = "#dc1e1e">Appels d'urgence</font></p><span id="totalea" class="keyfigure"></span>
-			  </div>
-			</div>
-			<div class="row">
-			  <div class="medium-12 column">
-				<p class="keyfiguretitle text-left"><font color = "#dc1e1e">DREFs</font></p><span id="totaldref" class="keyfigure"></span>
-			  </div>
-			</div>
-		  </div>
-		</div>
-		<div class="row">
-		  <div class="medium-6 column">
-			<p class="keyfiguretitle text-left minheight"><font color = "#dc1e1e">Total des Appels</font></p><span id="totalappeals" class="keyfigure"></span>
-		  </div>
-		  <div class="medium-6 column">
-			<p class="keyfiguretitle text-left minheight"><font color = "#dc1e1e">Bénéficiaires Ciblés</font></p><span id="totalbens" class="keyfigure"></span>
-		  </div>
-		</div>
-	  </div>
-	  <div class="medium-2 column">
-		<div class="row">
-			<h2>Plus d'informations</h2>
 			<a href="./currentappeals.html" class="button ifrcCorporateRed expanded">Les Interventions D'urgence en Cours</a>
 			<a href="./all_appeals.html" class="button ifrcCorporateRed expanded">Opérations D'urgence Historiques</a>
 			<a href="https://ifrcgo.org/foodsecurity/" target="_blank" class="button ifrcCorporateRed expanded">La Sécurité Alimentaire en Afrique</a>
 			<a href="./profile_overview.html" class="button ifrcCorporateRed expanded">Profils des Sociétés Nationales</a>
 
 			  <!-- DRR Mapping dropdown -->
-      <div class="dropdown">
+      <div class="dropdown" style="width: 300px">
         <button class="dropbtn">Cartographie de la Réduction des Risques de Catastrophe</button>
         <div class="dropdown-content">
-                         <a href="https://public.tableau.com/profile/ifrc.r.v#!/vizhome/drrmappingstory_0/DRRmapping2017" target="_blank" class="button ifrcCorporateRed expanded"> 2017 </a>
-			<a href="https://public.tableau.com/profile/ch.choe#!/vizhome/IFRC2018Climate-SmartDRRMapping/Dashboard-Glob?publish=yes" target="_blank"  class="button ifrcCorporateRed expanded"> 2018</a>
+            <a href="https://public.tableau.com/profile/ifrc.r.v#!/vizhome/drrmappingstory_0/DRRmapping2017" target="_blank" class="button ifrcCorporateRed expanded"> 2017 </a>
+		      	<a href="https://public.tableau.com/profile/ch.choe#!/vizhome/IFRC2018Climate-SmartDRRMapping/Dashboard-Glob?publish=yes" target="_blank"  class="button ifrcCorporateRed expanded"> 2018</a>
     </div>
     </div>
 		</div>
@@ -167,6 +140,55 @@
 <hr/>
 <section>
   <div class="row">
+    <div class="card_column">
+      <div class="ea_card">
+        <div class="">
+          <img src="img/funding-coverage.svg" alt="">
+        </div>
+        <p class="keyfiguretitle" style="text-align: center; font-family: serif;font-size: 11px; ">FINANCEMENT</p><span id="totalcoverage" class="keyfigure"></span>
+
+      </div>
+    </div>
+    <div class="card_column">
+      <div class="ea_card">
+        <div class="">
+          <img src="img/funding-requirements.svg" alt="">
+        </div>
+        <p class="keyfiguretitle text-left minheight" style="text-align: center; font-family: serif;font-size: 11px; "> APPELS D`URGENCE</p><span id="totalappeals" class="keyfigure"></span>
+
+      </div>
+    </div>
+    <div class="card_column">
+      <div class="ea_card">
+        <div class="">
+          <img src="img/logo-appeals.svg" alt="">
+        </div>
+        <p class="keyfiguretitle text-left" style="text-align: center; font-family: serif;font-size: 11px; "></p><span id="totalea" class="keyfigure"></span>
+      </div>
+    </div>
+
+    <div class="card_column">
+      <div class="ea_card">
+        <div class="">
+          <img src="img/logo-dref.svg" alt="">
+        </div>
+        <p class="keyfiguretitle text-left"></p><span id="totaldref" class="keyfigure"></span>
+      </div>
+    </div>
+
+    <div class="card_column">
+      <div class="ea_card">
+        <div class="">
+          <img src="img/targeted-population.svg" alt="">
+        </div>
+        <p class="keyfiguretitle text-left minheight" style="text-align: center; font-family: serif;font-size: 11px; ">POPULATION CIBLE</p><span id="totalbens" class="keyfigure"></span>
+      </div>
+    </div>
+  </div>
+</section>
+<hr>
+<section>
+  <div class="row">
   <h1>Plan d'opérations par pays</h1>
   <div id="overview" class="medium-12 column">
     <div class="row small-up-2 medium-up-3">
@@ -174,7 +196,8 @@
     </div>
   </div>
 </section>
-<hr />
+
+<hr>
 <section id="SupportServices">
     <div class="row">
 		<h1>Appui Opérationnel</h1>
