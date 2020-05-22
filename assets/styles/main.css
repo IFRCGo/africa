@@ -7009,8 +7009,11 @@ p {
 }
 
 .keyfigure {
-  font-size: 1.6em;
+  font-size: 2em;
   font-weight: 200;
+  position: relative;
+  float: inherit;
+
 }
 
 .top-bar,
