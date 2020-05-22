@@ -331,6 +331,11 @@ button:hover, a:hover {
   border: 2px solid lightgrey;
   border-radius: 50%;
 }
+.svg-circle {
+  display: block;
+  width: 100px;
+  border: 2px solid lightgrey;
+}
 .li-head{
   color: #3e3e3e;
   font-size: 18px;
@@ -464,4 +469,19 @@ div.ex4 {
   margin: auto;
   height:  auto;
   position: relative;
+}
+.ea_card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+  height: 140px;
+
+
+}
+.card_column{
+  float: left;
+  width: 240px;
+  padding: 0 10px;
+  display: block;
 }
