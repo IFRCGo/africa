@@ -92,7 +92,7 @@ function updateKeyFigures(data){
 	$('#totalea').html(totalappeal);
 	$('#totaldref').html(totalDREF);
 	$('#totalcoverage').html('');
-	createPie('#totalcoverage',60,0,totalfunding/totalappeals);
+	createPie('#totalcoverage',120,15,totalfunding/totalappeals);
 }
 
 function createPie(id,width,inner,percent){
