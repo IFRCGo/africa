@@ -475,13 +475,13 @@ div.ex4 {
   padding: 16px;
   text-align: center;
   background-color: #f1f1f1;
-  height: 140px;
+  height: 130px;
 
 
 }
 .card_column{
   float: left;
-  width: 240px;
+  width: 400px;
   padding: 0 10px;
   display: block;
 }
