@@ -470,18 +470,22 @@ div.ex4 {
   height:  auto;
   position: relative;
 }
-.ea_card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 16px;
-  text-align: center;
-  background-color: #f1f1f1;
-  height: 130px;
+
+
+  .ea_card {
+    box-shadow: 0 4px 8px 0 #8e8e8e;
+    padding: 21px;
+    text-align: center;
+    background-color: #f1f1f1;
+    height: 90px;
+
 
 
 }
 .card_column{
   float: left;
-  width: 400px;
+  width: 300px;
   padding: 0 10px;
-  display: block;
+  display: relative;
+
 }
