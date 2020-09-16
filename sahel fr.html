@@ -84,11 +84,57 @@
    left: 0;
    bottom: 0;
    width: 100%;
-   height: 13%;
+   height: 15%;
    background-color: rgb(245, 51, 53);
    opacity: 0.8;
    color: white;
    text-align: left;
+}
+.netcard {
+  box-shadow:0px 0px 10px rgba(0,0,0,0.427451);
+  max-width: 250px;
+  height: 250px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  align-items: center;
+  color: #f53335;
+  border-radius: 5%;
+
+
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #fefefe;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+.vl {
+  border-right: 1px solid grey;
+  height: 900px;
+}
+.flex-container {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.flex-container > div {
+  background:#e0e0e0;
+  width: 340px;
+  margin: 10px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
 }
   </style>
   </head>
@@ -123,42 +169,35 @@
     <section class="slider_dl">
       <div id="myCarousel" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
-
-        <div class="carousel-item active">
-          <img  class="slideme" src=".\img\Sahel\Photo kaké 2 new 2.png"  alt="Avatar woman">
+        <div class="carousel-item active" style="height:40rem">
+          <img   src=".\img\Sahel\Photo kaké 2 new 2.png" alt="Avatar woman">
           <div >
             <h1 class="text-block">Sahel+</h1>
           </div>
         </div>
-        <div class="carousel-item" >
-          <img  class="slideme" src=".\img\Sahel\niger migrants santé 2.jpg"   alt="Avatar woman">
+        <div class="carousel-item" style="height:40rem">
+          <img   src=".\img\Sahel\niger migrants santé 2.jpg"    alt="Avatar woman">
           <div>
             <h1 class="text-block">Sahel+</h1>
           </div>
 
         </div>
-        <div class="carousel-item" >
-          <img  class="slideme" src=".\img\Sahel\kaké 1 new 2.jpg"   alt="Avatar woman">
+        <div class="carousel-item" style="height:40rem">
+          <img src=".\img\Sahel\migrants niger on truck.png"   alt="Avatar woman">
           <div>
             <h1 class="text-block">Sahel+</h1>
           </div>
         </div>
-        <div class="carousel-item">
-          <img  class="slideme" src=".\img\Sahel\migrants niger on truck.png"   alt="Avatar woman">
-          <div>
-            <h1 class="text-block">Sahel+</h1>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img  class="slideme" src=".\img\Sahel\parknts niger on truck.png"   alt="Avatar woman">
+        <div class="carousel-item" style="height:40rem">
+          <img src=".\img\Sahel\parknts niger on truck.png"   alt="Avatar woman">
           <div>
             <h1 class="text-block">Sahel+</h1>
           </div>
         </div>
       </div>
       <div class="img_footer">
-        <h2>Welcome | Sahel+ | Digital Platform</h2>
-        <p> <font color = "white">Le groupe Sahel+ est un réseau de dix sociétés nationales qui vise à faciliter leur coordination autour des thématiques d’intérêt commune. Le réseau comprend les sociétés nationales du Burkina Faso, Cape Verde, Gambie, Guinée Bissau, Guinée Conakry, Mali, Mauritanie, Niger, Sénégal et Tchad. Le réseau inclut aussi la FICR, le CICR, et les sociétés nationales partenaires</font> </p>
+        <h2><b>Welcome | Sahel+ | Digital Platform</b></h2>
+         <p style="font-size:1rem;"> <font color = "white">Il s'agit d'un réseau de dix Sociétés nationales qui se coordonnent sur des questions d'intérêt mutuel. Le réseau comprend les Sociétés nationales du Burkina Faso, du Cap-Vert, de la Gambie, de la Guinée-Bissau, de la Guinée Conakry, du Mali, de la Mauritanie, du Niger, du Sénégal et du Tchad. Le réseau comprend également la FICR, le CICR et les Sociétés nationales partenaires</font> </p>
      </div>
       <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -173,78 +212,155 @@
       <hr>
     </div>
     <section id="News & Training"  >
-    <div class="row">
-        <div class="medium-6 column">
-          <h3><font color = "#dc1e1e">Plateforme Résilience</font></h3>
-          <hr>
-         <div class="">
-         <div class="" style="background:white">
-           <p >La <font color = "#dc1e1e"><u><i><b>Plateforme Résilience, </b></i></u></font>    et ses 3 groupes techniques (Abri, SAME, Migration), a été validée pendant l’Assemblée Générale de 2019 du Groupe Sahel+ avec pour objectif d’offrir un cadre pour promouvoir la coordination, le partenariat, et la coopération au sein du Mouvement de la Croix-Rouge et du Croissant-Rouge au Sahel, et avec des partenaires externes.</p>
-         </div>
-           <img src=".\img\Sahel\sahel +.png" alt="" width="95%">
-        </div>
-       </div>
-       <div class="medium-6 column">
-        <h3><font color = "#dc1e1e">Groupe Technique Migration</font></h3>
-        <hr>
-        <div class=" ">
-        <div class="">
-          <p>
-            <font color = "#dc1e1e"><u><i> <b>Le groupe technique migration </b></i></u></font> migration (initialement créé en 2017 comme réseau migration Sahel+) réunit le points focaux migration des différents membres du Sahel+. Le groupe visa à :
-            <p><b>•</b> Développer et renforcer les capacités de réponse du Mouvement de la Croix-Rouge et du Croissant-Rouge dans la région du Sahel aux besoins des migrants, y compris en ce qui concerne leur intégration sociale.</p>
-            <p><b>•</b>Développer et renforcer les capacités de réponse du Mouvement de la Croix-Rouge et du Croissant-Rouge dans la région du Sahel aux besoins des migrants, y compris en ce qui concerne leur intégration sociale.</p>
-            <p><b>•</b> Développer des activités de plaidoyer et de programmes intégrés visant à améliorer la situation des migrants et des personnes déplacées dans la région du Sahel et de l‘Afrique de l’Ouest</p>
-            <p><b>•</b> Engager un dialogue avec les gouvernements, plateformes régionales et les partenariats externes, ainsi qu’avec les cercles académiques.</p><br></p>
-        </div>
-       </div>
-      </div>
-    </div>
-    </section>
-    <hr>
-    <section id="News & Training"  >
-      <div class="row medium-12">
-        <h3><font color = "#dc1e1e"> Du Programme AMiRA</font></h3>
-      </div>
-      <hr>
-    <div class="row">
-         <div class="medium-12 column">
-          <div class="medium-6 column">
-            <div class="">
-              <div class="" style="background:white ">
-              <p ><font color = "#dc1e1e"><b></b>Avec le soutien du Programme AMiRA</font> <br>Le programme AMiRA (Action for Migrants : Route Based Assistance – en français : Action pour les Migrants le long de la Route : Assistance humanitaire), financé par la DFID, vise à assister les migrants en transit vulnérables, les migrants de retour et les communautés d’accueil vulnérables.</p>
-              <p>Au Sahel, ce programme est mis en œuvre par la Croix-Rouge Britannique avec la FICR et les Sociétés nationales partenaires et hôtes de la Croix-Rouge (CR burkinabé, CR danoise, CR espagnole, CR guinéenne, CR malienne et CR nigérienne), le long des principales routes migratoires de la région.</p>
-              <p>Dans le cadre de ce programme, la FICR vise à renforcer les capacités, la vision stratégique et le positionnement des Sociétés nationales concernées quant aux thématiques migratoires, y compris à travers des activités de diplomatie humanitaire et l’établissement de partenariats avec les différents acteurs et parties prenantes sur la scène migratoire.</p>
-             </div>
-            </div>
-           </div>
-           <div class="medium-6 column">
-             <div class="">
-               <div class="" style="background:white">
-                 <p><font color = "#dc1e1e"><b></b>IFRC Role in AMiRA (Sahel)</font> <br> </p>
-               <img src=".\img\Sahel\amira.PNG" alt="" width="90%">
-             </div>
-           </div>
+    <div class="row" >
+      <div class="medium-3 column" >
+       <div class= >
+         <div class="ex5">
+           <div class="card-section">
+             <ul class="vl">
 
+         <div class="row featurette">
+             <div class="col-md-12 ">
+               <a href="https://www.croixrouge-mali.org/"><img src="./img/logo/MLI_logo.jpg"  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40"   alt=""></a>
+              <p> <a href="https://www.croixrouge-mali.org/">Mali Red Cross</a></p>
+             </div>
            </div>
-        </div>
+           <div class="row featurette">
+           <div class="col-md-12 ">
+             <a href="https://www.croixrougebf.org/"><img src="./img/logo/BFA_logo.png"  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40"   alt=""></a>
+            <p> <a href="https://www.croixrougebf.org/">Burkinabe Red Cross</a></p>
+           </div>
+         </div>
+         <div class="row featurette">
+         <div class="col-md-12 ">
+           <a href="https://web.facebook.com/GambiaRedCross/?_rdc=1&_rdr"><img src="./img/logo/GMB_logo.png"  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40"  alt=""></a>
+          <p> <a href="https://web.facebook.com/GambiaRedCross/?_rdc=1&_rdr">Gambia Red Cross</b></a></p>
+         </div>
        </div>
+       <div class="row featurette">
+       <div class="col-md-12 ">
+         <a href="https://web.facebook.com/croixrougeguinee/?_rdc=1&_rdr"><img src="./img/logo/GIN_logo.png"  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40"   alt=""></a>
+        <p> <a href="https://web.facebook.com/croixrougeguinee/?_rdc=1&_rdr">Red Cross of Guinea</a></p>
        </div>
-       </section>
-    <hr>
-    <div class="row medium-12 ">
-        <h3><font color = "#dc1e1e">Événements et formations</font></h3>
-    </div>
-    <section id="Events and Training">
-      <div class="row">
-      <div class="medium-12 column" "container">
-        <div class="card">
-          <div class="card-section">
-            <p class="psize"><font color = "#dc1e1e" style=" font-size: 18px;"></font> <b># </b> </p>
-          </div>
-        </div>
+     </div>
+   <div class="row featurette">
+   <div class="col-md-12 ">
+     <a href="https://web.facebook.com/Croix-Rouge-nigérienne-Page-246545196009395"><img src="./img/logo/NER_logo.jpg"  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40"   alt=""></a>
+    <p> <a href="https://web.facebook.com/Croix-Rouge-nigérienne-Page-246545196009395">Red Cross of Nige</a></p>
+   </div>
+  </div>
+  <div class="row featurette">
+  <div class="col-md-12 ">
+    <a href="https://web.facebook.com/CroixRougeSN"><img src="./img/logo/SEN_logo.png"  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40"  alt=""></a>
+  <p> <a href="https://web.facebook.com/CroixRougeSN">Senegalese Red Cross</a></p>
+  </div>
+  </div>
+  <div class="row featurette">
+  <div class="col-md-12 ">
+    <a href="https://web.facebook.com/croissantrouge.mauritanien.3"><img src="./img/logo/MRT_logo.png"  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40"  alt=""></a>
+  <p>  <a href="https://web.facebook.com/croissantrouge.mauritanien.3">Mauritania Red Cross</a></p>
+  </div>
+  </div>
+  <div class="row featurette">
+  <div class="col-md-12 ">
+    <a href="https://web.facebook.com/cruzvermelha.guinebissau"><img src="./img/logo/GNB_logo.png"  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40"  alt=""></a>
+    <p> <a href="https://web.facebook.com/cruzvermelha.guinebissau"><p>Red Cross of Guinea Bissau</a></p>
+  </div>
+  </div>
+  <div class="row featurette">
+  <div class="col-md-12 ">
+  <a href="http://www.cruzvermelha.org.cv/"><img src="./img/logo/CIV_logo.jpg"  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40"  alt=""></a>
+   <p> <a href="http://www.cruzvermelha.org.cv/">Red Cross of Cape Verde</a></p>
+  </div>
+  </div>
+  <div class="row featurette">
+  <div class="col-md-12 ">
+    <a href="https://ifrcgo.org/africa/profile.html#TCD"><img src="./img/logo/TCD_logo.jpg"  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="40" height="40"  alt=""></a>
+    <p> <a href="https://ifrcgo.org/africa/profile.html#TCD">Red Cross of Chad </a></p>
+  </div>
+  </div>
+  </ul>
+      </div>
       </div>
      </div>
+  </div>
+  <div class="medium-9 column">
+    <h3><font color = "#dc1e1e">Du Programme AMiRA</font></h3>
+  <hr>
+          <div class="medium-6 column">
+          <p >Le programme AMiRA (Action for Migrants : Route Based Assistance – en français : Action pour les Migrants le long de la Route : Assistance humanitaire), financé par la DFID, vise à assister les migrants en transit vulnérables, les migrants de retour et les communautés d’accueil vulnérables.
+          </p><p>Au Sahel, ce programme est mis en œuvre par la Croix-Rouge Britannique avec la FICR et les Sociétés nationales partenaires et hôtes de la Croix-Rouge (CR burkinabé, CR danoise, CR espagnole, CR guinéenne, CR malienne et CR nigérienne), le long des principales routes migratoires de la région.
+          </p><p>Dans le cadre de ce programme, la FICR vise à renforcer les capacités, la vision stratégique et le positionnement des Sociétés nationales concernées quant aux thématiques migratoires, y compris à travers des activités de diplomatie humanitaire et l’établissement de partenariats avec les différents acteurs et parties prenantes sur la scène migratoire.</p>
+         </div>
+         <div class="medium-6 column" >
+           <img src=".\img\Sahel\sahel +.png" alt="" >
+         </div>
+         <hr>
+      <div class="">
+         <div class="medium-12 column">
+           <h3><font color = "#dc1e1e">IFRC Role in AMiRA (Sahel)</font></h3>
+          <div class="medium-6 column">
+            <img src=".\img\Sahel\amira.PNG" alt=""   align="center">
+          </div>
+          <div class="medium-6 column">
+            <div class="flex-container">
+              <div> <b>Réunion de partenariat</b></div>
+              <div><b>Atelier sur la migration</b></div>
+              <div><b>Renforcement des capacités</b></div>
+              <div><b>Projet de recherche</b></div>
+              <div><b>Stratégies de migration</b></div>
+            </div>
+           </div>
+        </div>
+        </div>
+   </div>
+  </div>
+
+  </section>
+    <hr>
+    <section id="News & Training"  >
+    <div class="row"  >
+      <div class="medium-6 column">
+          <h3><font color = "#dc1e1e">Événements et formations</font></h3>
+    <hr>
+    <div class="card" style="background:#e0e0e0" >
+      <div class="card-section">
+        <p ><font color = "#dc1e1e" style=" font-size: 18px;">October 2020  :</font>  Nous devons faire mieux : Note d'information pour l'amélioration des lois et règlements visant à protéger les enfants en cas de catastrophe.</p>
+        <p ><font color = "#dc1e1e" style=" font-size: 18px;">October 2020 :</font>Webinaire des parties prenantes, recherche sur les perceptions des migrants et l'accès aux services au Sahel, dans le cadre de COVID-19.</p>
+        <p ><font color = "#dc1e1e" style=" font-size: 18px;">September 2020 :</font>Global Migration Task Force (événement en ligne).</p>
+         <p ><font color = "#dc1e1e" style=" font-size: 18px;">20 July 2020 :</font>Lancement d'une recherche sur les perceptions des migrants et leur accès aux services au Sahel, dans le cadre de COVID-19.</p>
+         <p ><font color = "#dc1e1e" style=" font-size: 18px;">11 July 2020 :</font> Webinaire régional sur la traite des personnes et COVID-19. </p>
+         <p ><font color = "#dc1e1e" style=" font-size: 18px;">12 June 2020 :</font>Sahel + webinaire sur l'inclusion des migrants dans la réponse aux catastrophes. </p>
+         <p ><font color = "#dc1e1e" style=" font-size: 18px;">April 2020 :</font>Sahel + Guide sur l'inclusion des migrants dans la réponse COVID-19. </p>
+         <p ><font color = "#dc1e1e" style=" font-size: 18px;">February 2020 :</font>Première ébauche du guide d'approche par itinéraire. </p>
+         <p ><font color = "#dc1e1e" style=" font-size: 18px;">19 January 2020 :</font>Quito (Équateur), Forum mondial sur la migration et le développement (FMMD). </p>
+
+      </div>
+    </div>
+       </div>
+
+      <div class="medium-6 column" >
+        <h3 style="text-align:center"><font color = "#dc1e1e">Plate-forme de résilience</font></h3>
+        <hr>
+        <div class="row"  >
+             <p >The 2019 Sahel+ General Assembly established a <font color = "#dc1e1e"><u><i><b>Plate-forme de résilience</b></i></u></font>    avec 3 groupes techniques (abris, sécurité alimentaire et migration), dans le but de promouvoir la coordination, le partenariat et la coopération au sein du Mouvement RCRC au Sahel et avec les partenaires extérieurs.</p>
+           <div class="netcard" style="background:white">
+          <img src=".\img\Sahel\shelter.svg" alt="shelter" style="width:25%">
+          <h3>Shelter</h3>
+          <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+          <button style="background:#8e8e8e">Join</button>
+          </div>
+          <div class="netcard" style="background:white">
+          <img src=".\img\Sahel\migration.svg" alt="migration" style="width:25%">
+            <h3>Migration</h3>
+            <p>Some text about the jeans. Super slim and comfy lorem ipsum lorem jeansum. Lorem jeamsun denim lorem jeansum.</p>
+            <button style="background:#8e8e8e">Join</button>
+          </div>
+      </div>
+      </div>
+    </div>
     </section>
+
 	<!--End Pattern HTML-->
   <hr>
   <!-- WThe DAPS Framework content. -->
@@ -259,8 +375,8 @@
              <div class="card">
                <div class="ex3">
                  <div class="card-section">
-                   <li><a href="./img/Sahel/IFRC_StrategyOnMigration_FR_20171215_LR.pdf" target="_blank">IFRC Strategy On Migration</a></li>
-                		<li><a href="./img/Sahel/Methodology migration strategy V5 final.pdf" target="_blank">Méthodologie Stratégie de migration</a></li>
+                   <li><a href="./img/Sahel/IFRC_StrategyOnMigration_FR_20171215_LR.pdf" target="_blank">Stratégie mondialede la Fédération internationale relative à la migration - FR</a></li>
+                		<li><a href="./img/Sahel/Methodology migration strategy V5 final.pdf" target="_blank">Developing a Migration Strategy for Red Cross and Red Crescent National Societies - EN</a></li>
                     <li><a href="./img/Sahel/Sahel+_Guide pour Migration et Déplacements_COVID19 v.2.0 - EN.pdf" target="_blank">Sahel+_Guide sur les migrations et les déplacements_COVID19.</a></li>
                     <li><a href="./img/Sahel/IFRC - disaster displacement - Abuja Nov 2019.pdf" target="_blank">SIFRC Disaster Displacement - Abuja Nov 2019</a></li>
                     <li><a href="./img/Sahel/IFRC-AMiRA presentation.pdf" target="_blank">Présentation de la FICR-AMiRA</a></li>
@@ -288,20 +404,7 @@
           </div>
        </div>
       </section>
-      <div class="row medium-12 ">
-          <h3><font color = "#dc1e1e">Groupes de travail sur le Sahel</font></h3>
-      </div>
-      <section id="Events and Training">
-        <div class="row">
-        <div class="medium-12 column" "container">
-          <div class="card">
-            <div class="card-section">
-              <p class="psize"><font color = "#dc1e1e" style=" font-size: 18px;"></font> <b>#</b> </p>
-            </div>
-          </div>
-        </div>
-       </div>
-      </section>
+  
       <!-- /END THE FEATURETTES -->
 
 
