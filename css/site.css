@@ -389,7 +389,6 @@ div.ex4 {
   overflow: auto;
 }
 div.ex5 {
-  background-color: white;
   width: auto;
   height: 945px;
   overflow: auto;
@@ -494,4 +493,12 @@ div.ex5 {
   padding: 0 10px;
   display: relative;
 
+}
+.technical_group {
+  column-width:200px;
+  column-gap: 40px;
+  column-rule: 4px double #ff00ff;
+}
+.list_lenght {
+  width: 100%;
 }
