@@ -1,0 +1,498 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>IFRC Africa - Operations Room</title>
+
+    <!-- Google WebFont -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Favicon pack for Go -->
+    <link rel="apple-touch-icon" sizes="57x57" href="./assets/graphics/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="./assets/graphics/favicon/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./assets/graphics/favicon/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./assets/graphics/favicon/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./assets/graphics/favicon/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./assets/graphics/favicon/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./assets/graphics/favicon/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./assets/graphics/favicon/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./assets/graphics/favicon/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/graphics/favicon/apple-touch-icon-180x180.png">
+    <link rel="shortcut icon" href="./assets/graphics/favicon/favicon.ico">
+    <link rel="icon" type="image/png" href="./assets/graphics/favicon/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="./assets/graphics/favicon/favicon-16x16.png" sizes="16x16">
+    <link rel="icon" type="image/png" href="./assets/graphics/favicon/favicon-32x32.png" sizes="32x32">
+
+    <!-- Meta tags -->
+    <meta name="description" content="IFRC Africa Operations Room">
+    <meta name="twitter:site" content="@IFRCAfrica" >
+    <meta name="twitter:title" content="IFRC Africa" >
+    <meta name="twitter:description" content="IFRC Africa Operations Room" >
+
+    <!-- IFRC Go master stylesheet -->
+    <link rel="stylesheet" href="./assets/styles/main.css">
+    <!-- vendor stylesheets -->
+    <link rel="stylesheet" href="./assets/styles/vendor/introjs.css">
+    <link rel="stylesheet" href="./assets/styles/vendor/jquery.dataTables.css">
+    <link rel="stylesheet" href="./assets/styles/vendor/dc.css">
+    <link rel="stylesheet" href="./assets/styles/vendor/c3.css">
+
+
+    <!-- Site-specific CSS -->
+    <link rel="stylesheet" href="./css/site.css" media="screen" type="text/css">
+  	<link rel="stylesheet" href="./css/inform.css" media="screen" type="text/css">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./css/carousel.css" rel="stylesheet">
+
+
+    <!-- Dropdown button styling -->
+      <style>
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  /* Style The Dropdown Button */
+  .dropbtn {
+    background-color: #D33F49;
+    color: #fefefe;
+    padding: 16px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+  }
+
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    min-width: 160px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    padding: 12px 16px;
+    z-index: 1;
+    }
+
+  .dropdown:hover .dropdown-content {
+    display: block;
+
+  }
+  .img_footer {
+   position: absolute;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: rgb(245, 51, 53);
+   opacity: 0.8;
+   color: white;
+   text-align: left;
+}
+.netcard {
+  box-shadow:0px 0px 10px rgba(0,0,0,0.427451);
+  max-width: 250px;
+  height: 250px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+  align-items: center;
+  color: #f53335;
+  border-radius: 5%;
+
+
+}
+
+.card button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #fefefe;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.card button:hover {
+  opacity: 0.7;
+}
+.vl {
+  border-right: 0.5px solid grey;
+}
+.flex-container {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.flex-container > div {
+  background:#e0e0e0;
+  width: 340px;
+  margin: 10px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+}
+  </style>
+  </head>
+  <body>
+    <div class="top-bar medium-10">
+        <div class="top-bar-left">
+            <a href="https://go.ifrc.org/"><img class="logo" src="./assets/logos/logo_test_Go.png"></a>
+        </div>
+        <div class="top-bar-right">
+            <ul class="menu vertical medium-horizontal expanded" data-responsive-menu="drilldown medium-dropdown">
+                <li class="external"><a href="https://media.ifrc.org/ifrc/where-we-work/africa/" target="_blank" class="hvr-underline-reveal">IFRC Africa</a></li>
+                <li class="external"><a href="https://fednet.ifrc.org/" target="_blank" class="hvr-underline-reveal">FedNet</a></li>
+                <li class="external"><a href="https://go.ifrc.org" target="_blank" class="hvr-underline-reveal">GO (global)</a></li>
+                <div class="dropdown">
+                  <button class="dropbtn">Change Language</button>
+                  <div class="dropdown-content">
+               <li>  <a href="./migration fr.html"> French </a> </li>
+            </ul>
+        </div>
+    </div>
+    <!-- End Top Bar -->
+
+    <nav aria-label="You are here:" role="navigation" class="row">
+        <ul class="breadcrumbs" vocab="http://schema.org/" typeof="BreadcrumbList">
+           <li><a href="/africa">Africa Operations Room</a></li>
+           <li class=" active" property="itemListElement" typeof="ListItem">
+                <span property="name">Sahel Digital Platform</span>
+                <meta property="position" content="1" />
+            </li>
+        </ul>
+    </nav>
+    <hr>
+    <section class="slider_dl">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" >
+          <img src=".\img\Sahel\Pic_se_migrant-1 16-9.jpg"   alt="Avatar woman">
+          <div >
+            <h1 class="text-block">Migration</h1>
+          </div>
+        </div>
+        <div class="carousel-item" >
+          <img src=".\img\Sahel\migrants niger on truck.png"   alt="Avatar woman">
+          <div>
+            <h1 class="text-block">Migration</h1>
+          </div>
+        </div>
+      </div>
+     </div>
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <div class="img_footer">
+      <h2><b>Welcome | Migration Technical Group | Sahel+</b></h2>
+       <p style="font-size:1rem;"> <font color = "white">The Migration Technical Group brings together migration focal points and migration coordinators of the Sahel+ Resilience Platform members.</font> </p>
+
+       </div>
+   </section>
+
+      <hr>
+  <section id="News & Training"  >
+<section class="row">
+  <div class="medium-12 column">
+          <div class="medium-5 column">
+          <p >The Sahel+ Migration Technical Group’s mission is to offer a <b>framework </b>for reflexion, research, sharing of experiences, skills, information and lessons learnt, and for cooperation on migration issues, between Sahel+ members, and other RC/RC Movement stakeholders.</p>
+          <p>By doing so, the group’s main objective is to contribute to the <b>reduction of the vulnerabilities of migrants and displaced persons</b> in the Sahel region, improve their conditions, access to services and socio-economic integration in view of building the resilience of all concerned persons and communities.</p>
+          <p>The Sahel+ Migration Technical Group also seeks to engage with other stakeholders and speak with one voice in regional and global platforms. Our members have presented their common perspective on migration and displacement during <a href="https://disasterdisplacement.org/webinar-cross-border-human-mobility-and-human-rights-in-the-context-of-disasters-climate-change-environmental-degradation"> webinar on cross-border mobility and climate change</a> on the side of the 45th session of the Human Rights Council (on 24 September 2020),  at the <a href="https://future-rcrc.com/climate-red-virtual-summit/">Red Cross and Red Crescent Virtual Climate Summit</a>  (from 9-10 September 2020), at the <a href="https://www.gfmd.org/meetings/ecuador2019">Global Forum on Migration and Development</a>  in Quito, Ecuador (from 19-24 January 2020), and at the first <a href="https://www.unhcr.org/global-refugee-forum.html">Global Refugee Forum</a>  held in Geneva (from 16-18 December 2019).</p>
+          <p>The group also has representatives in the RC/RC Movement’s Global Migration Task Force.</p>
+
+         </div>
+         <div class="medium-7 column" >
+           <div class="card-section" style="background:#e0e0d1">
+             <li>
+                 <div class="li-text">
+                   <p class="psize"><font color = "#dc1e1e"><b>Main Events</b> </font></p>
+                 </div>
+             </li>
+           </div>
+             <div class="card-section" style="background:#f2f2f2">
+               <li>
+                   <div class="li-text">
+                     <p ><font color = "#dc1e1e" style=" font-size: 15px;"> <b>4-Dec 2020:</b> </font> Training webinar n.4 on internally displaced persons, with the ICRC and the IFRC</p>
+                     <p ><font color = "#dc1e1e" style=" font-size: 15px;"><b>Oct-Dec 2020:</b></font> National workshops to present the 2021 Migration Technical Group’s action plan.</p>
+                     <p ><font color = "#dc1e1e" style=" font-size: 15px"><b>23-26 Nov 2020: </b> </font> AMiRA final learning webinars .</p>
+                     <p ><font color = "#dc1e1e" style=" font-size: 15px"><b>6-Nov 2020:</b> </font> Training webinar n.3 on the new IFRC global migration structure and planning </p>
+                     <p ><font color = "#dc1e1e" style=" font-size: 15px"><b>26-28 Oct 2020:</b> </font> Training webinar n.3 on the new IFRC global migration structure and planning </p>
+                     <p ><font color = "#dc1e1e" style=" font-size: 15px"><b>28 Sept 2020:</b>  </font> Training webinar n.2 on RFL and migration </p>
+                     <p ><font color = "#dc1e1e" style=" font-size: 15px"><b>12 June 2020: </b> </font>Training webinar n.1 on including migrants in disaster responses </p>
+                     <p ><font color = "#dc1e1e" style=" font-size: 15px"><b>3-5 Sept. 2019:</b>  </font>Kick-off workshop of Sahel+ Migration Technical Group. </p>
+                     <p ><font color = "#dc1e1e" style=" font-size: 15px"><b>12 Jul. 2019:</b>  </font>Regional workshop on protection in the context of migration.</p>
+                   </div>
+               </li>
+             </div>
+         </div>
+   </div>
+</section>
+<hr>
+<section id="Technical Groups">
+<div class="row">
+    <h3><font color = "#dc1e1e"><b></b>Regional Perspective on Migration </font></h3>
+
+</div>
+<hr>
+  <section class="row">
+    <div class="medium-12 column">
+
+            <div class="medium-6 column">
+
+            <p ><b>An intra-regional phenomenon.</b> The Sahel region has a long history of population’s movements. Seasonal, pendular and circular migrations are an essential part of local resilience strategies. Intra-regional migrants with a valid travel document can benefit from the freedom of movement framework established by the Economic Community of West African States. However, access to essential services within the region is particularly challenging for migrants, due to significant administrative, financial, socio-cultural and language-related barriers, as well as risks of discrimination.</p>
+            <p><b>Dangerous routes through deserts and seas.</b> The Sahel is at the crossroads of migration routes to and from North Africa and Europe, extending through the Sahara Desert, the Mediterranean Sea and the Atlantic Ocean. Migrants moving along these routes face significant protection risks, including loss of family contact, human trafficking, gender-based violence, detention and forced deportations. Many are unable to continue their journey or return home, and may find themselves in need of long-term support. Those who return, on their own will or by force, face significant reintegration challenges. A significant proportion of migrants within the region is represented by unaccompanied and separated children, and the number of women and girls embarking in these dangerous journeys is on the rise. </p>
+            <p><b>Double impact of conflict and climate change.</b> Disasters such as floods and droughts, as well as the effects of climate change and environmental degradation, continue to exacerbate vulnerabilities across the region, and contribute to induce migratory movements and internal displacement. Moreover, the region is grappling with conflict and violence, particularly around the Lake Chad Basin, in Northern Mali and in parts of Burkina Faso, triggering internal and cross-border displacement. The areas that are worst affected by violence, and those experiencing the most severe impacts of climate change, largely overlap – with serious consequences on the vulnerabilities of migrants, displaced persons and host communities.</p>
+            <p> <font color = "#dc1e1e"><b>80 - 85%</b></font> of migratory flows are intra-regional</p>
+
+           </div>
+
+           <div class="medium-6 column">
+               <iframe title="Membres du groupe Sahel +" aria-label="Map"  src="https://datawrapper.dwcdn.net/1qrCb/2/" scrolling="no" frameborder="0" style="border: none;" width="600" height="600"></iframe>
+
+        </div>
+     </div>
+</section>
+<hr>
+<section id="News & Training"  >
+
+<div class="row"  >
+   <div class="medium-4 column" >
+
+       <div class="card">
+         <div class="card-section" >
+           <li>
+               <div class="li-img">
+                 <img src=".\img/Sahel/migration.png" alt="Image Alt Text" align="center"/>
+               </div>
+               <div class="li-text">
+                 <p>Movements to cities, coastal areas and fertile lands</p>
+
+               </div>
+           </li>
+         </div>
+       </div>
+    </div>
+    <div class="medium-4 column" >
+
+        <div class="card">
+          <div class="card-section" >
+            <li>
+                <div class="li-img">
+                  <img src=".\img/Sahel/shelter.png" alt="Image Alt Text" align="center"/>
+                </div>
+                <div class="li-text">
+                  <p>The majority of refugees from the region are hosted in 5 neighbouring countries: Burkina Faso, Chad, Mali, Mauritania and Niger</p>
+
+                </div>
+            </li>
+          </div>
+        </div>
+     </div>
+     <div class="medium-4 column" >
+
+         <div class="card">
+           <div class="card-section" >
+             <li>
+                 <div class="li-img">
+                   <img src=".\img/Sahel/temperature.png" alt="Image Alt Text" align="center"/>
+                 </div>
+                 <div class="li-text">
+                   <p> Average of<font color = "#dc1e1e"> <b>+1° </b></font>  temperature increase in the Sahel region between 1970 and 2006</p>
+                 </div>
+             </li>
+           </div>
+         </div>
+      </div>
+</div>
+</section>
+
+  <hr>
+  <div class="row medium-12 column">
+      <h3><font color = "#dc1e1e">Our approach </font></h3x>
+
+      <!-- Text from IFRC Europe website -->
+  </div>
+<hr>
+<section id="Countries">
+  <div class="row">
+    <div class="medium-6 column">
+      <div class="card" style="height:410px">
+        <div class="card-section">
+          <p >Our approach to migration is based on needs, informed by rights and bound to the Movement’s Fundamental Principles, as mandated by the IFRC Policy on Migration (2009) and the IFRC Global Strategy on Migration (2018-2022).</p>
+          <li></li>
+          <p>As the Sahel+ Migration Technical Group, we mobilise members through their Migration Focal Points in order to:
+            <ul>
+              <li><p>•	Provide a platform for information exchange, harmonisation of approaches, and for establishing partnerships;</p></li>
+              <li><p>•	Support research activities, sharing of lessons learnt, and our members’ strategic vision on migration;</p></li>
+              <li><p>• Build the capacities of our members and of Migration Focal Points</p></li>
+              <li> <p>•	Support the advocacy initiatives of our member National Societies and allow them to speak with one voice with relevant regional and global interlocutors;</p></li>
+              <li><p>•	Seek synergies and coordination among National Societies in different countries located on the same migration route or concerned with cross-border displacement</p>.</li>
+          </ul>
+
+        </div><!-- Card section -->
+      </div><!-- Individual card -->
+    </div>
+    <div class="medium-6 column">
+      <div class="card" style="height:410px">
+        <div class="card-section">
+          <p >Following the <a href="https://media.ifrc.org/ifrc/what-we-do/migration-and-displacement/">RC/RC Movement’s approach in matters of migration</a>, we also aim to include migrants in national responses and seek strong coordination along migratory routes, both internally and with external partners.</p>
+          <p>As the Sahel+ Migration Technical Group, we mobilise members through their Migration Focal Points in order to:
+          <p>Through IFRC guidance, we seek to promote a route-based approach, building on our extensive network of local branches and volunteers to ensure that no vulnerable migrant is left behind. This approach is understood as being grounded in the analysis of the vulnerabilities of different categories of migrants, at key points along migratory routes and at all stages of their journeys</p>
+          <p><a href="https://media.ifrc.org/ifrc/document/humanitarian-service-points/">Humanitarian service points </a>are an important part of what we do to assist and protect migrants. A humanitarian service point is a neutral space along migratory routes that provides a welcoming and safe environment for migrants to access essential services that might otherwise be inaccessible.</p>
+
+        </div><!-- Card section -->
+      </div><!-- Individual card -->
+    </div>
+  </div>
+</section>
+<hr>
+
+<hr>
+<section id="News & Training"  >
+
+<div class="row"   >
+
+    <div class="medium-7 column" >
+      <div class="row medium-12 column">
+          <h3><font color = "#dc1e1e"> Sahel+ National Societies and RC/RC Movement Partners Activities</font></h3x>
+
+      </div>
+          <div class="card-section" >
+            <li>
+                <div class="li-text">
+                  <p> <b><font color = "#dc1e1e">  <u><b>AMiRA (2018-2021)</b></u> </font> </b></p>
+                  <p>The DFID-funded programme Action for Migrants: Route-based Assistance (AMiRA) has built the capacities of National Societies in Burkina Faso, Guinea, Mali and Niger (as well as Sudan and Egypt outside the Sahel region) to assist and protect transit migrants and returnees, whatever their status, through humanitarian service points positioned along the main migration routes. The programme, implemented with the support of the British Red Cross, the Danish Red Cross, the Spanish Red Cross, the IFRC and INTRAC, has been successful at establishing the trust of migrants and local communities, and adapting to a degrading security </p>
+
+                </div>
+            </li>
+            <div class="row">
+               <div class="medium-4 column" style="background:#dc1e1e">
+                      <p> <font color = "white"> More than 80,000 instances of support provided to migrants</font></p>
+               </div>
+               <div class="medium-4 column" style="background:#d9d9d9">
+                      <p><font color = "black">Humanitarian service points and outreach services established at key points along migration routes</font></p>
+                </div>
+                <div class="medium-4 column" style="background:#000099">
+                       <p><font color = "white">90% migrants trust RC/RC National Societies and humanitarian service points</font></p>
+                 </div>
+
+            </div>
+            <p> <b><font color = "#dc1e1e">  <u><b>Assisting and protecting transit migrants in Agadez</b></u> </font> </b></p>
+            <p>A multi-year regional programme funded by the EUTF. The programme has been implementing a route-based migration approach with National Societies in Burkina Faso, the Gambia, Mali, Niger and Senegal, supported by the Spanish Red Cross and the Danish Red Cross. </p>
+            <p> <b><font color = "#dc1e1e">  <u><b>The integration of migrants in disaster response. </b></u> </font> </b></p>
+            <p>We follow global and regional guidelines to ensure that vulnerable migrants and third-country nationals, whatever their status, are integrated as direct and indirect beneficiaries of our activities. For example, during the COVID-19 pandemic, National Societies in the Sahel have been reaching stranded migrants, migrants at border crossings, returnees, as well as refugees and IDPs. This has been achieved by addressing the primary and secondary impacts of COVID-19 through a broad range of activities, including Risk Communication and Community Engagement (RCCE) initiatives, the installation of WASH facilities at border points, COVID-19 screening in migrant communities, healthcare provision, psychosocial support, livelihood support, social cohesion activities and RFL services. </p>
+            <p> <b><font color = "#dc1e1e">  <u><b>Assisting and protecting the most vulnerable migrants in West Africa (2020-2023). </b></u> </font> </b></p>
+            <p>A multi-year regional programme funded by the EUTF. The programme has been implementing a route-based migration approach with National Societies in Burkina Faso, the Gambia, Mali, Niger and Senegal, supported by the Spanish Red Cross and the Danish Red Cross. </p>
+            <p> <b><font color = "#dc1e1e">  <u><b>Assisting and protecting transit migrants in Agadez</b></u> </font> </b></p>
+            <p>A multi-year regional programme funded by the EUTF. The programme has been implementing a route-based migration approach with National Societies in Burkina Faso, the Gambia, Mali, Niger and Senegal, supported by the Spanish Red Cross and the Danish Red Cross. </p>
+
+
+        </div>
+     </div>
+
+     <div class="medium-5 column" >
+       <div class="row medium-12 column">
+           <h3><font color = "#dc1e1e"> Global Resources</font></h3x>
+       </div>
+       <hr>
+       <div class="card" >
+         <div class="card-section" >
+           <div class="li-text">
+             <p> <b><font color = "#dc1e1e">  <u><b>Red Cross and Red Crescent Policies </b></u> </font> </b></p>
+           </div>
+           <ul>
+           <ol>Restoring Family Links: Strategy for the International Red Cross and Red Crescent Movement (2020–2025  : <a href="https://rcrcconference.org/app/uploads/2019/12/CD19-R6_Adopted_-RFL-Strategy-with-annex_en_clean.pdf" target="_blank">EN</a>, <a href="https://rcrcconference.org/app/uploads/2019/07/CD19-Draft-New-RFL-Strategy-21_02_19_rev-clean-04_fr.pdf">FR</a> </ol>
+           <ol>RC/RC Movement Statement on Migrants and our Common Humanity (2019) : <a href="https://rcrcconference.org/app/uploads/2019/12/CD-19-R8_Adopted_Movement-Declaration-on-Migration_EN_clean.pdf" target="_blank">EN</a>, <a href="https://rcrcconference.org/app/uploads/2019/12/190032_fr-CD-19-R8_Movement-Declaration-on-Migration_ADOPTED_fr.pdf" target="_blank">FR</a> </ol>
+           <ol>IFRC, Strengthening IFRC Responses to Internal Displacement in Disasters: Challenges and Opportunities (2019) : <a href="https://media.ifrc.org/ifrc/wp-content/uploads/sites/5/2019/11/IDP-Summary-Report-Final-LR.pdf" target="_blank">EN</a> </ol>
+           <ol>CoD, Resolution ‘Strengthening implementation of the Movement Policy on Internal Displacement: Ten years on’ (2019)  <a href="https://rcrcconference.org/app/uploads/2019/12/CD19_R7-Adopted-IDP-resolution-FINAL-_clean.pdf" target="_blank">EN</a>, <a href="https://rcrcconference.org/app/uploads/2019/12/CD19_R7-Adopted-IDP-resolution_FR.pdf" target="_blank">FR</a>  </ol>
+           <ol>CoD, Resolution ‘Call for Action on the Humanitarian Needs of Vulnerable Migrants’ (2017: <a href="http://rcrcconference.org/wp-content/uploads/2017/08/CD-17-R3_clean.pdf" target="_blank">EN</a>, <a href="https://rcrcconference.org/app/uploads/2017/08/S_170920_009-CoD17_R3-Migration-official-resolution_ADOPTED_FR.pdf">FR</a>  </ol>
+           <ol>IFRC, Strategy on Migration (2018-2022) : <a href="https://media.ifrc.org/ifrc/wp-content/uploads/sites/5/2017/12/IFRC_StrategyOnMigration_EN_20171222.pdf" target="_blank">EN</a>, <a href="https://media.ifrc.org/ifrc/wp-content/uploads/sites/5/2019/10/IFRC_StrategyOnMigration_FR_20171215_LR.pdf" target="_blank">FR</a>  </ol>
+           <ol>IFRC, Policy on Migration (2009 :<a href="https://media.ifrc.org/ifrc/document/migration-policy/" target="_blank">EN</a>, <a href="https://media.ifrc.org/ifrc/document/politique-relative-la-migration/?lang=fr">FR</a> </ol>
+           <ol>RC/RC Movement Policy on Internal Displacement (2009) :<a href="https://shop.icrc.org/politique-du-mouvement-relative-au-deplacement-interne-resolution-5-du-conseil-des-delegues-2009.html?___store=fr" target="_blank">EN</a>, <a href="https://shop.icrc.org/politique-du-mouvement-relative-au-deplacement-interne-resolution-5-du-conseil-des-delegues-2009.html?___store=fr">FR</a> </ol>
+          </ul>
+         </div>
+       </div>
+       <hr>
+       <div class="card" >
+         <div class="card-section" >
+           <div class="li-text">
+             <p> <b><font color = "#dc1e1e">  <u><b>Reports and Guidelines</b></u> </font> </b></p>
+           </div>
+           <ul>
+           <ol>IFRC, HSP Toolkit (2020)  <a href="#" target="_blank">Coming soon</a> </ol>
+           <ol>IFRC, The Route-based Approach (2020)   <a href="#" target="_blank">Coming soon</a> </ol>
+           <ol>IFRC, COVID-19 Impact on Trafficking in Persons (2020)  : <a href="https://media.ifrc.org/ifrc/document/covid-19-impact-trafficking-persons-factsheet/" target="_blank">EN</a>, <a href="https://trafficking-response.org/wp-content/uploads/2020/05/IFRC-Covid-19-TiP-PGI-Factsheet-French_CS-002-1.pdf">FR</a> </ol>
+           <ol>IFRC, Least Protected Most Affected (2020)   : <a href="https://media.ifrc.org/ifrc/wp-content/uploads/sites/5/2020/09/IFRC-report-COVID19-migrants-least-protected-most-affected.pdf" target="_blank">EN</a> </ol>
+           <ol>IFRC, Strengthening IFRC Responses to Internal Displacement in Disasters: Challenges and Opportunities (2019) : <a href="https://media.ifrc.org/ifrc/wp-content/uploads/sites/5/2019/11/IDP-Summary-Report-Final-LR.pdf" target="_blank">EN</a> </ol>
+           <ol>IFRC, A New Walled Order (2018) : <a href="https://media.ifrc.org/ifrc/document/new-walled-order-barriers-basic-services-turn-migration-humanitarian-crisis/" target="_blank">EN</a>, <a href="https://media.ifrc.org/ifrc/wp-content/uploads/sites/5/2020/06/New-Walled-Order-FR-FINAL.pdf" target="_blank">FR</a>  </ol>
+           <ol>IFRC, Alone and unsafe (2018)  : <a href="https://media.ifrc.org/ifrc/document/alone-unsafe-children-migration-sexual-gender-based-violence/" target="_blank">EN</a>  </ol>
+           <ol>IFRC, Guide on Developing a Migration Strategy for RC/RC National Societies (2018)  : <a href="https://ifrcgo.org/africa/img/Sahel/Methodology migration strategy V5 final.pdf" target="_blank">EN</a>, <a href="https://ifrcgo.org/africa/img/Sahel/Méthodologie développement stratégie migration (FR).pdf" target="_blank">FR</a>  </ol>
+           <ol>IFRC, One Humanity: Safety and Dignity for Migrants (2016)  : <a href="http://www.ifrc.org/Global/Documents/Secretariat/201609/One humanity-Safety and dignity for migrants (final).pdf" target="_blank">EN</a> </ol>
+
+          </ul>
+         </div>
+       </div>
+       <hr>
+       <div class="card" >
+         <div class="card-section" >
+           <div class="li-text">
+             <p> <b><font color = "#dc1e1e">  <u><b>Regional Resources</b></u> </font> </b></p>
+           </div>
+           <ul>
+           <ol>British Red Cross, Pocket guide on trafficking in persons, AMiRA (2020) : <a href="https://drive.google.com/file/d/1l8BYMYeW9QC19H3XUyMgq1hPyTVzu_mI/view?usp=sharing" target="_blank">EN</a>,  <a href="https://drive.google.com/file/d/1OhcZZ9pMIQ5pHN23rqQ0-ZGzIFHtcHHL/view?usp=sharing">FR</a> </ol>
+           <ol>IFRC, Route Based migration approach & Humanitarian Service Points in the Sahel - the AMiRA programme (2020) : <a href="https://ifrcgo.org/africa/img/Sahel/IFRC-AMiRA presentation.pdf" target="_blank">EN</a> </ol>
+           <ol>British Red Cross, Reaching the ‘invisible’: Vulnerabilities and accessibility along migratory routes (2020) : <a href="https://drive.google.com/file/d/1jbtHbmKOdk6qGREmr0FblOpXxqx8x5nE/view" target="_blank">FR</a> </ol>
+           <ol>Danish Red Cross, Guide de poche ‘Comment orienter efficacement les bénéficiaires’ (2020)  : <a href="https://drive.google.com/file/d/1VTPBS3NmEyJEdeEXlL2mXuFoNY9b6oNl/view?usp=sharing" target="_blank">FR</a> </ol>
+           <ol>IFRC, Including migrants in disaster responses (2020)   : <a href="https://drive.google.com/file/d/19K9saJtBfpD3T89b6xSWxQY5bVw30nxB/view?usp=sharing" target="_blank">FR</a> </ol>
+           <ol>IFRC, Including migrants and IDPs in prevention and response activities related to the COVID-19 pandemic (2020   : <a href="https://drive.google.com/open?id=1Hnno8KhY08ejE8fh-WwH_3Pc8irQOHK6" target="_blank">EN</a>, <a href="https://drive.google.com/open?id=1voJvynJAsfIDbQXc6Y4U0FPLsKKAPCj6" target="_blank">FR</a>  </ol>
+         </ul>
+         </div>
+       </div>
+</div>
+</section>
+  <!-- WThe DAPS Framework content. -->
+
+      <!-- /END THE FEATURETTES -->
+
+
+      <!-- FOOTER -->
+      <footer>
+          <div class="row small-12 large-up-5">
+              <h6>The International Federation of Red Cross and Red Crescent Societies (IFRC) is the world's largest humanitarian organization, with 190 member National Societies. As part of the International Red Cross and Red Crescent Movement, our work is guided by seven fundamental principles; humanity, impartiality, neutrality, independence, voluntary service, unity and universality.</h6>
+          </div>
+      </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-84297335-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <!-- vendor js -->
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+
+    <script>
+      $('#myCarousel').carousel()
+    </script>
+
+
+  </body>
+</html>
