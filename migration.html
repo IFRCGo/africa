@@ -136,6 +136,17 @@
   line-height: 40px;
   font-size: 16px;
 }
+.button_li {
+  background-color: lightgrey; /* Green */
+  border: none;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
   </style>
   </head>
   <body>
@@ -159,13 +170,10 @@
 
     <nav aria-label="You are here:" role="navigation" class="row">
         <ul class="breadcrumbs" vocab="http://schema.org/" typeof="BreadcrumbList">
-           <li><a href="/africa">Africa Operations Room</a></li>
-           <li><a href="sahel.html ">Sahel Digital Platform</a></li>
-
-           <li class=" active" property="itemListElement" typeof="ListItem">
-                <span property="name">Migration</span>
-                <meta property="position" content="1" />
-            </li>
+           <li><button class="button_li "> <a href="/africa"> <font color = "#dc1e1e" style=" font-size: 11px;"> AFRICA OPERATIONS ROOM </font> </a></button></li>
+        </ul>
+        <ul class="breadcrumbs" vocab="http://schema.org/" typeof="BreadcrumbList">
+          <li><button class="button_li "> <a href="sahel.html"> <font color = "#dc1e1e" style=" font-size: 11px;"> SAHEL DIGITAL PLATFORM</font> </a></button></li>
         </ul>
     </nav>
     <hr>
