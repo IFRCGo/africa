@@ -76,6 +76,21 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
+  .redirect-overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.9);
+    z-index: 2;
+  }
+  .redirect-text {
+    text-align: center;
+    margin-top: 50vh;
+  }
 </style>
 </head>
 
@@ -86,6 +101,9 @@
         <p>You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     </div>
 <![endif]-->
+<div class="redirect-overlay">
+    <h1 class="redirect-text">Redirecting to GO - Africa page...</h1>
+</div>
 
 <!-- Start Top Bar -->
 <div class="top-bar medium-10">
