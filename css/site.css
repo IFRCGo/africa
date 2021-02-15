@@ -356,24 +356,24 @@ button:hover, a:hover {
 
 }
 .psize{
-  font-size: 17px;
-  color: #3e3e3e;
+  font-size: 15px;
+  color: white;
 }
 .dap{
   color:#dc1e1e;
-  font-size: 27px;
+  font-size: 20px;
 
 }
 div.ex1 {
   background-color: #3e3e3e12;
   width: 590px;
-  height: 500px;
+  height: 400px;
   overflow: auto;
 }
 div.ex2 {
   background-color:#3e3e3e12;
   width: 1200px;
-  height: 500px;
+  height: 700px;
   overflow: auto;
 }
 div.ex3 {
@@ -502,3 +502,11 @@ div.ex5 {
 .list_lenght {
   width: 100%;
 }
+.fold__title {
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    margin-bottom: 0;
+    font-size: 1.0rem;
+   line-height: 1rem;
+    }
