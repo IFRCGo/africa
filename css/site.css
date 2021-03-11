@@ -469,11 +469,11 @@ div.ex5 {
   left: 0
 } */
 .slider_dl {
-  width: 90%;
-  padding: inherit;
+  width: 85%;
   margin: auto;
-  height:  auto;
   position: relative;
+  height: inherit;
+
 }
 
 
@@ -509,4 +509,12 @@ div.ex5 {
     margin-bottom: 0;
     font-size: 1.0rem;
    line-height: 1rem;
+    }
+
+  .prep_card {
+        box-shadow: 0 4px 8px 0 #8e8e8e;
+        padding: 21px;
+        text-align: center;
+        background-color: #f1f1f1;
+        height: 90px;
     }
