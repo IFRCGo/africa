@@ -393,6 +393,10 @@ div.ex5 {
   height: 945px;
   overflow: auto;
 }
+div.ex6{
+  background-color: #3e3e3e12;
+  width: 800px;
+}
 /* slider*/
 * {
   -webkit-box-sizing: border-box;
