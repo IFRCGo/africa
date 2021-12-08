@@ -57,12 +57,12 @@ function scorePac(val, check, correction, grace) {
 	var score = 'Bad';
 // year year-year  year/year  no  yes  ongoing
 
-	if (val == 'ongoing') {
+	if (val == 'ONGOING') {
 		score = 'Medium';
 	}
 
 	if (check == 'yn') {
-		if (val == 'yes') {
+		if (val == 'YES') {
 			score = 'Good';
 		}
 	}
