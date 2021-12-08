@@ -129,6 +129,7 @@ function createGovernanceTable(url) {
 				if (d['#org+sg'].length>0) {
 					htmlGov += '<tr><th>President</th><td>'+d['#org+president']+'</td></tr>';
 					htmlGov += '<tr><th>Last and next election</th><td>'+d['#date+election+last']+' / '+d['#date+election+next']+'</td></tr>';
+					htmlGov += '<tr><th>ANS General Assembly or AGM</th><td>'+d['#date+agm+next']+'</td></tr>';
 					htmlGov += '<tr><th>Governing Board members</th><td>'+d['#org+board']+'</td></tr>';
 					htmlGov += '<tr><th>Stategic Plan period</th><td>'+d['#org+strategicplan']+'</td></tr>';
 					htmlGov += '<tr><th>Secretary General</th><td>'+d['#org+sg']+'</td></tr>';
@@ -137,9 +138,9 @@ function createGovernanceTable(url) {
 					htmlGov += '<tr><th>Volunteer Policy</th><td>'+d['#date+policy+volunteer']+'</td></tr>';
 					htmlGov += '<tr><th>Resource Mob. Policy</th><td>'+d['#date+policy+rm']+'</td></tr>';
 					htmlGov += '<tr><th>Child Protection Policy</th><td>'+d['#date+cp+policy']+'</td></tr>';
-          htmlGov += '<tr><th>Gender Policy</th><td>'+d['#date+gender+policy']+'</td></tr>';
-          htmlGov += '<tr><th>Gender and Diversity Policy</th><td>'+d['#date+diversity+policy']+'</td></tr>';
-          htmlGov += '<tr><th>PSEA Policy</th><td>'+d['#date+policy+psea']+'</td></tr>';
+                                        htmlGov += '<tr><th>Gender Policy</th><td>'+d['#date+gender+policy']+'</td></tr>';
+                                        htmlGov += '<tr><th>Gender and Diversity Policy</th><td>'+d['#date+diversity+policy']+'</td></tr>';
+                                        htmlGov += '<tr><th>PSEA Policy</th><td>'+d['#date+policy+psea']+'</td></tr>';
 					htmlGov += '<tr><th>OCAC / BOCA conducted</th><td>OCAC: '+d['#date+ocac']+' - BOCA: '+d['#date+boca']+'</td></tr>';
 					htmlGov += '<tr><th>Consolidated audit</th><td>'+d['#date+audit']+'</td></tr>';
 				}
