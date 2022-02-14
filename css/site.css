@@ -395,7 +395,7 @@ div.ex5 {
 }
 div.ex6{
   background-color: #3e3e3e12;
-  width: 800px;
+  width: 900px;
 }
 /* slider*/
 * {
@@ -522,3 +522,7 @@ div.ex6{
         background-color: #f1f1f1;
         height: 90px;
     }
+    .ol_li {
+      list-style: square;
+
+      }
