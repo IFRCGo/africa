@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Services &#8211; concideas.com</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description></description>
+	<lastBuildDate>Tue, 07 Nov 2023 13:42:49 +0000</lastBuildDate>
+	<language>en-GB</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.2</generator>
+
+<image>
+	<url>./../../../wp-content/uploads/2023/11/cropped-logo_test_Go-2-e1699357733444-32x32.png</url>
+	<title>Services &#8211; concideas.com</title>
+	<link>./../../../index.html</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>The integration of migrants in disaster response.</title>
+		<link>./../../../portfolios/the_integration_of_migrants_in_disaster_response/index.html?utm_source=rss#038;utm_medium=rss&#038;utm_campaign=the_integration_of_migrants_in_disaster_response</link>
+		
+		<dc:creator><![CDATA[concideas.com]]></dc:creator>
+		<pubDate>Fri, 13 Nov 2020 06:07:40 +0000</pubDate>
+				<guid isPermaLink="false">https://surielementor.com/efinance/portfolios/mo-insurance-copy/</guid>
+
+					<description><![CDATA[We follow global and regional guidelines to ensure that vulnerable migrants and third-country nationals, whatever their status, are integrated as direct and indirect beneficiaries of our activities. For example, during the COVID-19 pandemic, National Societies in the Sahel have been reaching stranded migrants, migrants at border crossings, returnees, as well as [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>We follow global and regional guidelines to ensure that vulnerable migrants and third-country nationals, whatever their status, are integrated as direct and indirect beneficiaries of our activities. For example, during the COVID-19 pandemic, National Societies in the Sahel have been reaching stranded migrants, migrants at border crossings, returnees, as well as refugees and IDPs. This has been achieved by addressing the primary and secondary impacts of COVID-19 through a broad range of activities, including Risk Communication and Community Engagement (RCCE) initiatives, the installation of WASH facilities at border points, COVID-19 screening in migrant communities, healthcare provision, psychosocial support, livelihood support, provision of hygiene kits, social cohesion activities and RFL services.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

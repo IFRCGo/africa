@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Research &#8211; concideas.com</title>
+	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
+	<link>./../../../index.html</link>
+	<description></description>
+	<lastBuildDate>Fri, 22 Dec 2023 08:06:34 +0000</lastBuildDate>
+	<language>en-GB</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=6.6.2</generator>
+
+<image>
+	<url>./../../../wp-content/uploads/2023/11/cropped-logo_test_Go-2-e1699357733444-32x32.png</url>
+	<title>Research &#8211; concideas.com</title>
+	<link>./../../../index.html</link>
+	<width>32</width>
+	<height>32</height>
+</image> 
+	<item>
+		<title>AMiRA (2018-2021)</title>
+		<link>./../../../portfolios/amira_2018-2021/index.html?utm_source=rss#038;utm_medium=rss&#038;utm_campaign=amira_2018-2021</link>
+		
+		<dc:creator><![CDATA[concideas.com]]></dc:creator>
+		<pubDate>Mon, 13 Nov 2023 06:08:35 +0000</pubDate>
+				<guid isPermaLink="false">https://surielementor.com/efinance/portfolios/money-market-copy/</guid>
+
+					<description><![CDATA[The programme “Action for Migrants: Route-based Assistance (AMiRA)”, funded by the FCDO (formerly DFID) has built the capacities of National Societies in Burkina Faso, Guinea, Mali and Niger (as well as Sudan and Egypt outside the Sahel region) to assist and protect transit migrants and returnees, whatever their status, through humanitarian [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>The programme “Action for Migrants: Route-based Assistance (AMiRA)”, funded by the FCDO (formerly DFID) has built the capacities of National Societies in Burkina Faso, Guinea, Mali and Niger (as well as Sudan and Egypt outside the Sahel region) to assist and protect transit migrants and returnees, whatever their status, through humanitarian service points positioned along the main migration routes. The programme, implemented with the support of the British Red Cross, the Danish Red Cross, the Spanish Red Cross, the IFRC and INTRAC, has been successful at establishing the trust of migrants and local communities, and adapting to a degrading security.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>
