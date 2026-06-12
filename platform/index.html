@@ -11,7 +11,7 @@
 <header id="topbar">
   <div id="title-block">
     <h1>SUDAN CRISIS <span>Population Movement Tracker</span></h1>
-    <div id="subtitle">The story of displacement since 15 April 2023, told by <b id="doc-count">…</b> UNHCR situation documents</div>
+    <div id="subtitle">The story of displacement since 15 April 2023, told by <b id="doc-count">…</b> UNHCR situation documents · Last report: <span id="last-updated">…</span></div>
   </div>
   <div id="stat-cards">
     <div class="stat" id="stat-displaced"><div class="stat-value">–</div><div class="stat-label">Total forcibly displaced</div></div>
@@ -24,24 +24,18 @@
 <div id="layout">
   <aside id="sidebar">
     <section class="panel" id="layers-panel">
-      <h2>Story layers</h2>
-      <label class="layer-toggle"><input type="checkbox" id="toggle-flows" checked>
-        <span class="swatch" style="background:#ff7043"></span>Movement routes &amp; direction</label>
-      <label class="layer-toggle"><input type="checkbox" id="toggle-returns" checked>
-        <span class="swatch" style="background:#4caf50"></span>Return movements</label>
-      <label class="layer-toggle"><input type="checkbox" id="toggle-events" checked>
-        <span class="swatch" style="background:#ffd54f"></span>Key events</label>
+      <h2>Layer control</h2>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-flows" checked>
+        <span class="swatch arrow-swatch" style="color:#e53935">→</span>Movement out of Sudan</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-returns" checked>
+        <span class="swatch arrow-swatch" style="color:#43a047">→</span>Movement back into Sudan</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-events" checked>
+        <span class="swatch dot-swatch" style="background:#ffd54f"></span>Key events</label>
     </section>
 
     <section class="panel" id="themes-panel">
       <h2>What the documents tell us</h2>
-      <div class="dim-toggles">
-        <label class="dim" data-dim="hazard"><input type="checkbox" value="hazard"><span>⚠ Hazards</span></label>
-        <label class="dim" data-dim="vulnerability"><input type="checkbox" value="vulnerability"><span>🛡 Vulnerabilities</span></label>
-        <label class="dim" data-dim="coping"><input type="checkbox" value="coping"><span>🤝 Coping mechanisms</span></label>
-        <label class="dim" data-dim="need"><input type="checkbox" value="need"><span>📦 Needs</span></label>
-        <label class="dim" data-dim="movement_pattern"><input type="checkbox" value="movement_pattern"><span>🧭 Movement patterns</span></label>
-      </div>
+      <div id="dim-groups"></div>
       <div id="theme-detail"></div>
     </section>
 
@@ -54,17 +48,47 @@
   <main id="map-wrap">
     <div id="map"></div>
     <div id="event-banner" class="hidden"></div>
+    <div id="map-legend">
+      <span class="leg"><span class="leg-arrow" style="color:#e53935">›››</span> Out of Sudan</span>
+      <span class="leg"><span class="leg-arrow" style="color:#43a047">›››</span> Into Sudan / returns</span>
+      <span class="leg"><span class="leg-dot" style="background:#ffd54f"></span> Key event</span>
+      <span class="leg"><span class="leg-dot" style="background:#ef5350"></span> Hazards</span>
+      <span class="leg"><span class="leg-dot" style="background:#ab47bc"></span> Vulnerabilities</span>
+      <span class="leg"><span class="leg-dot" style="background:#26a69a"></span> Coping</span>
+      <span class="leg"><span class="leg-dot" style="background:#42a5f5"></span> Needs</span>
+      <span class="leg"><span class="leg-dot" style="background:#ffa726"></span> Movement patterns</span>
+    </div>
   </main>
+
+  <aside id="rightbar">
+    <section class="panel" id="insights-panel">
+      <h2>Key insights</h2>
+      <div id="insight-list"></div>
+    </section>
+    <section class="panel" id="voices-panel">
+      <h2>Voices from the reports</h2>
+      <div id="voices"></div>
+    </section>
+    <section class="panel" id="triggers-panel">
+      <h2>Top reported hazards</h2>
+      <div id="triggers"></div>
+    </section>
+  </aside>
 </div>
 
 <footer id="timebar">
   <button id="play-btn" title="Play / pause the story">▶</button>
   <div id="slider-wrap">
-    <canvas id="sparkline" height="38"></canvas>
+    <canvas id="sparkline" height="48"></canvas>
     <input type="range" id="time-slider" min="0" max="100" value="0" step="1">
     <div id="slider-ticks"></div>
   </div>
-  <div id="current-date">15 Apr 2023</div>
+  <div id="trend-legend">
+    <div id="current-date">15 Apr 2023</div>
+    <div class="tl"><span style="color:#ff7043">━</span> displaced</div>
+    <div class="tl"><span style="color:#e53935">━</span> cross-border</div>
+    <div class="tl"><span style="color:#43a047">━</span> returns</div>
+  </div>
 </footer>
 
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>

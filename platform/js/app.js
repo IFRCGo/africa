@@ -14,8 +14,9 @@ const ANCHORS = {
   "Libya": [23.32, 24.18], "Uganda": [32.4, 1.2], "Eritrea": [36.66, 15.11],
   "Sudan": [29.5, 14.5], "Regional": [29.5, 19.5],
 };
-const FLOW_COLORS = { cross_border: "#ff7043", return: "#4caf50" };
-const INFLUX_COLOR = "#29b6f6";
+// binary colour rule: red = movement out of Sudan, green = movement back into Sudan
+const COLOR_OUT = "#e53935";
+const COLOR_IN = "#43a047";
 const DIM_META = {
   hazard: { label: "Hazards", color: "#ef5350" },
   vulnerability: { label: "Vulnerabilities", color: "#ab47bc" },
@@ -29,7 +30,7 @@ const state = {
   endDate: null,
   current: START,
   playing: false,
-  activeDims: new Set(),
+  activeTags: new Set(),   // "dimension|tag" keys toggled on
   showFlows: true, showReturns: true, showEvents: true,
 };
 
@@ -69,6 +70,7 @@ async function loadData() {
   names.forEach((n, i) => (state.data[n] = res[i]));
   state.endDate = Date.parse(state.data.meta.date_max);
   $("#doc-count").textContent = state.data.meta.documents.toLocaleString();
+  $("#last-updated").textContent = fmtDate(state.endDate);
 }
 
 /* ------------------------------------------------------------------ map */
@@ -97,8 +99,25 @@ function addLayers() {
     paint: {
       "line-color": ["get", "color"],
       "line-width": ["get", "width"],
-      "line-opacity": 0.85,
-      "line-dasharray": [0.1, 1.6],
+      "line-opacity": 0.8,
+    },
+  });
+  // chevrons repeated along the line, auto-rotated to the direction of travel
+  map.addLayer({
+    id: "flow-arrows", type: "symbol", source: "flows",
+    layout: {
+      "symbol-placement": "line",
+      "symbol-spacing": 60,
+      "text-field": ">",
+      "text-size": ["get", "arrowSize"],
+      "text-font": ["Open Sans Bold"],
+      "text-keep-upright": false,
+      "text-allow-overlap": true,
+      "text-rotation-alignment": "map",
+    },
+    paint: {
+      "text-color": ["get", "color"],
+      "text-halo-color": "#0e1116", "text-halo-width": 1.2,
     },
   });
   map.addLayer({
@@ -159,22 +178,9 @@ function addLayers() {
       .setHTML(`<b>${p.name}</b><br>${p.kind}<br><b style="color:${p.color}">${p.labelFull}</b> people (cumulative)`)
       .addTo(map);
   });
-
-  animateDashes();
 }
 
 const empty = () => ({ type: "FeatureCollection", features: [] });
-
-/* animated dash offset gives the arcs a sense of direction */
-let dashStep = 0;
-const DASH_SEQ = [[0.1, 1.6], [0.45, 1.6, 0.1, 1.15], [0.8, 1.6, 0.1, 0.8], [1.15, 1.6, 0.1, 0.45]];
-function animateDashes() {
-  setInterval(() => {
-    if (!map.getLayer("flow-lines")) return;
-    dashStep = (dashStep + 1) % DASH_SEQ.length;
-    map.setPaintProperty("flow-lines", "line-dasharray", DASH_SEQ[dashStep]);
-  }, 180);
-}
 
 /* ------------------------------------------------------------------ render */
 function corridorName(id) {
@@ -185,21 +191,24 @@ function renderFlows() {
   const t = state.current;
   const lines = [], labels = [];
   for (const [cid, c] of Object.entries(state.data.flows)) {
-    const isReturn = c.flow_type === "return";
-    if (isReturn && !state.showReturns) continue;
-    if (!isReturn && !state.showFlows) continue;
+    const isInflux = cid.endsWith("influx");
+    const intoSudan = c.flow_type === "return" || isInflux;   // green family
+    if (intoSudan && !state.showReturns) continue;
+    if (!intoSudan && !state.showFlows) continue;
     const v = seriesAt(c.series, t);
     if (!v) continue;
-    const color = cid.endsWith("influx") ? INFLUX_COLOR : FLOW_COLORS[c.flow_type];
+    const color = intoSudan ? COLOR_IN : COLOR_OUT;
     const o = [c.origin.lon, c.origin.lat], d = [c.destination.lon, c.destination.lat];
-    const width = Math.max(1.5, Math.min(13, Math.sqrt(v) / 90));
-    const pts = arc(o, d, isReturn ? -0.22 : 0.18);
+    const width = Math.max(1, Math.min(5.5, Math.sqrt(v) / 200));
+    const bend = !intoSudan ? 0.18 : isInflux ? -0.34 : -0.22;
+    const pts = arc(o, d, bend);
     lines.push({
       type: "Feature", geometry: { type: "LineString", coordinates: pts },
       properties: {
         color, width,
+        arrowSize: Math.round(8 + width * 2.4),
         name: corridorName(cid),
-        kind: isReturn ? "Return movement" : cid.endsWith("influx") ? "Influx into Sudan" : "Cross-border displacement",
+        kind: isInflux ? "Influx into Sudan" : intoSudan ? "Return movement" : "Cross-border displacement",
         labelFull: v.toLocaleString(),
       },
     });
@@ -245,20 +254,30 @@ function renderEvents() {
   } else el.classList.add("hidden");
 }
 
+// small per-dimension offsets so bubbles of different dimensions don't fully overlap
+const DIM_OFFSET = { hazard: [0, 0], vulnerability: [0.55, 0.35], coping: [-0.55, 0.35],
+                     need: [0.55, -0.35], movement_pattern: [-0.55, -0.35] };
+
 function renderThemes() {
   const mk = monthKey(state.current);
+  const byDimCountry = {};   // dim -> country -> count, for the active tags only
+  for (const key of state.activeTags) {
+    const [dim, tag] = key.split("|");
+    const tagData = (state.data.tags[dim] || {})[tag];
+    if (!tagData) continue;
+    for (const row of tagData.monthly) {
+      if (row.month !== mk || !ANCHORS[row.country]) continue;
+      byDimCountry[dim] = byDimCountry[dim] || {};
+      byDimCountry[dim][row.country] = (byDimCountry[dim][row.country] || 0) + row.count;
+    }
+  }
   const feats = [];
-  for (const dim of state.activeDims) {
-    const tags = state.data.tags[dim] || {};
-    const byCountry = {};
-    for (const tagData of Object.values(tags))
-      for (const row of tagData.monthly)
-        if (row.month === mk && ANCHORS[row.country])
-          byCountry[row.country] = (byCountry[row.country] || 0) + row.count;
-    for (const [country, count] of Object.entries(byCountry)) {
+  for (const [dim, countries] of Object.entries(byDimCountry)) {
+    const [ox, oy] = DIM_OFFSET[dim] || [0, 0];
+    for (const [country, count] of Object.entries(countries)) {
       const [lon, lat] = ANCHORS[country];
       feats.push({
-        type: "Feature", geometry: { type: "Point", coordinates: [lon, lat] },
+        type: "Feature", geometry: { type: "Point", coordinates: [lon + ox, lat + oy] },
         properties: {
           radius: Math.max(6, Math.min(34, 5 + Math.sqrt(count) * 3.2)),
           color: DIM_META[dim].color,
@@ -273,22 +292,28 @@ function renderThemes() {
 function renderThemePanel(mk) {
   const el = $("#theme-detail");
   el.innerHTML = "";
-  for (const dim of state.activeDims) {
-    const tags = state.data.tags[dim] || {};
-    const totals = [];
-    for (const [tag, tagData] of Object.entries(tags)) {
+  const byDim = {};
+  for (const key of state.activeTags) {
+    const [dim, tag] = key.split("|");
+    (byDim[dim] = byDim[dim] || []).push(tag);
+  }
+  for (const [dim, tags] of Object.entries(byDim)) {
+    const rows = [];
+    for (const tag of tags) {
+      const tagData = (state.data.tags[dim] || {})[tag];
+      if (!tagData) continue;
       const n = tagData.monthly.filter((r) => r.month === mk).reduce((a, r) => a + r.count, 0);
-      if (n) totals.push([tag, n, tagData.snippets[mk]]);
+      rows.push([tag, n, tagData.snippets[mk]]);
     }
-    totals.sort((a, b) => b[1] - a[1]);
-    if (!totals.length) continue;
+    rows.sort((a, b) => b[1] - a[1]);
+    if (!rows.length) continue;
     const g = document.createElement("div");
     g.className = "theme-group";
     g.innerHTML = `<h3 style="color:${DIM_META[dim].color}">${DIM_META[dim].label} — ${new Date(state.current).toLocaleDateString("en-GB", { month: "long", year: "numeric" })}</h3>`;
-    for (const [tag, n, snippet] of totals.slice(0, 8)) {
+    for (const [tag, n, snippet] of rows) {
       const row = document.createElement("div");
       row.className = "tag-row";
-      row.innerHTML = `<span>${tag.replace(/_/g, " ")}</span><span class="cnt">${n} mention${n > 1 ? "s" : ""}</span>`;
+      row.innerHTML = `<span>${tag.replace(/_/g, " ")}</span><span class="cnt">${n ? n + " mention" + (n > 1 ? "s" : "") : "no reports"}</span>`;
       g.appendChild(row);
       if (snippet) {
         const sn = document.createElement("div");
@@ -300,21 +325,100 @@ function renderThemePanel(mk) {
     }
     el.appendChild(g);
   }
-  if (state.activeDims.size && !el.children.length)
+  if (state.activeTags.size && !el.children.length)
     el.innerHTML = `<div style="font-size:12px;color:var(--muted)">No tagged reporting for this month.</div>`;
 }
 
 function renderStats() {
   const h = state.data.headline, t = state.current;
-  const set = (sel, metric) => {
+  const set = (sel, metric, risingIsGood) => {
     const s = h[metric];
     const v = s ? seriesAt(s.series, t) : null;
-    $(sel + " .stat-value").textContent = v ? fmtNum(v) : "–";
+    const prev = s ? seriesAt(s.series, t - 30 * DAY) : null;
+    let trend = "";
+    if (v && prev && Math.abs(v - prev) > v * 0.005) {
+      const up = v > prev;
+      const good = up === risingIsGood;
+      trend = `<span class="trend" style="color:${good ? "#43a047" : "#ef5350"}">${up ? "▲" : "▼"}</span>`;
+    }
+    $(sel + " .stat-value").innerHTML = (v ? fmtNum(v) : "–") + trend;
   };
-  set("#stat-displaced", "total_displaced");
-  set("#stat-idps", "idps");
-  set("#stat-crossborder", "cumulative_arrivals");
-  set("#stat-returns", "returns_to_sudan_total");
+  set("#stat-displaced", "total_displaced", false);
+  set("#stat-idps", "idps", false);
+  set("#stat-crossborder", "cumulative_arrivals", false);
+  set("#stat-returns", "returns_to_sudan_total", true);
+}
+
+/* ---------------- right panel: insights, voices, triggers ---------------- */
+function monthTagTotals(dim, mk) {
+  const out = [];
+  for (const [tag, tagData] of Object.entries(state.data.tags[dim] || {})) {
+    const n = tagData.monthly.filter((r) => r.month === mk).reduce((a, r) => a + r.count, 0);
+    if (n) out.push([tag, n, tagData.snippets[mk]]);
+  }
+  return out.sort((a, b) => b[1] - a[1]);
+}
+
+function renderInsights() {
+  const t = state.current, el = $("#insight-list");
+  const items = [];
+  // fastest-growing outflow corridor over the last 90 days
+  let best = null;
+  for (const [cid, c] of Object.entries(state.data.flows)) {
+    if (c.flow_type !== "cross_border" || cid.endsWith("influx")) continue;
+    const now = seriesAt(c.series, t), prev = seriesAt(c.series, t - 90 * DAY);
+    if (now && prev && now > prev && (!best || now - prev > best.delta))
+      best = { cid, delta: now - prev, now };
+  }
+  if (best)
+    items.push({ ico: "🔺", html: `Largest recent outflow: <b>${corridorName(best.cid)}</b> grew by <b>${fmtNum(best.delta)}</b> people in the last 3 months (now ${fmtNum(best.now)}).` });
+  // returns trend
+  const rs = state.data.headline.returns_to_sudan_total;
+  const rNow = rs && seriesAt(rs.series, t), rPrev = rs && seriesAt(rs.series, t - 90 * DAY);
+  if (rNow && rPrev && rNow > rPrev)
+    items.push({ ico: "🟢", good: true, html: `Returns to Sudan rising: <b>+${fmtNum(rNow - rPrev)}</b> in 3 months, <b>${fmtNum(rNow)}</b> in total.` });
+  // IDP direction
+  const is = state.data.headline.idps;
+  const iNow = is && seriesAt(is.series, t), iPrev = is && seriesAt(is.series, t - 90 * DAY);
+  if (iNow && iPrev && Math.abs(iNow - iPrev) > iNow * 0.02)
+    items.push({ ico: iNow > iPrev ? "⚠" : "↩", good: iNow < iPrev,
+      html: `Internal displacement ${iNow > iPrev ? "rising" : "falling"}: <b>${fmtNum(iNow)}</b> IDPs (${iNow > iPrev ? "+" : "−"}${fmtNum(Math.abs(iNow - iPrev))} since ${fmtDate(t - 90 * DAY)}).` });
+  // dominant hazard + need this month
+  const mk = monthKey(t);
+  const hz = monthTagTotals("hazard", mk)[0];
+  if (hz) items.push({ ico: "🔥", html: `Most-reported hazard this month: <b>${hz[0].replace(/_/g, " ")}</b> (${hz[1]} mentions).` });
+  const nd = monthTagTotals("need", mk)[0];
+  if (nd) items.push({ ico: "📦", html: `Top need in the reporting: <b>${nd[0].replace(/_/g, " ")}</b> (${nd[1]} mentions).` });
+
+  el.innerHTML = items.length
+    ? items.map((i) => `<div class="insight ${i.good ? "good" : ""}"><span class="ico">${i.ico}</span><span>${i.html}</span></div>`).join("")
+    : `<div style="font-size:12px;color:var(--muted)">Drag the timeline forward to see insights build up.</div>`;
+}
+
+function renderVoices() {
+  const mk = monthKey(state.current), el = $("#voices");
+  const picks = [];
+  for (const dim of Object.keys(DIM_META)) {
+    for (const [tag, n, snippet] of monthTagTotals(dim, mk)) {
+      if (snippet) { picks.push({ dim, tag, snippet }); break; }
+    }
+    if (picks.length >= 3) break;
+  }
+  el.innerHTML = picks.length
+    ? picks.map((p) => `<div class="voice" style="border-color:${DIM_META[p.dim].color}">“…${p.snippet}…”
+        <div class="v-meta">${DIM_META[p.dim].label} · ${p.tag.replace(/_/g, " ")} · ${new Date(state.current).toLocaleDateString("en-GB", { month: "long", year: "numeric" })}</div></div>`).join("")
+    : `<div style="font-size:12px;color:var(--muted)">No narrative reporting captured for this month.</div>`;
+}
+
+function renderTriggers() {
+  const mk = monthKey(state.current), el = $("#triggers");
+  const rows = monthTagTotals("hazard", mk).slice(0, 6);
+  const max = rows.length ? rows[0][1] : 1;
+  el.innerHTML = rows.length
+    ? rows.map(([tag, n]) => `<div class="trigger-row">
+        <div class="t-label"><span>${tag.replace(/_/g, " ")}</span><span class="t-n">${n}</span></div>
+        <div class="trigger-bar"><div style="width:${Math.round((n / max) * 100)}%"></div></div></div>`).join("")
+    : `<div style="font-size:12px;color:var(--muted)">No hazards reported this month.</div>`;
 }
 
 function renderEventList() {
@@ -340,6 +444,9 @@ function renderAll() {
   renderThemes();
   renderStats();
   renderEventList();
+  renderInsights();
+  renderVoices();
+  renderTriggers();
   $("#current-date").textContent = fmtDate(state.current);
 }
 
@@ -347,25 +454,35 @@ function renderAll() {
 function drawSparkline() {
   const canvas = $("#sparkline");
   const w = (canvas.width = canvas.offsetWidth * devicePixelRatio);
-  const hpx = (canvas.height = 38 * devicePixelRatio);
+  const hpx = (canvas.height = 48 * devicePixelRatio);
   const ctx = canvas.getContext("2d");
-  const s = state.data.headline.total_displaced?.series || [];
-  if (s.length < 2) return;
   const span = state.endDate - START;
-  const vmax = Math.max(...s.map((p) => p.value));
-  ctx.strokeStyle = "#ff7043"; ctx.lineWidth = 2 * devicePixelRatio;
-  ctx.beginPath();
-  s.forEach((p, i) => {
-    const x = ((Date.parse(p.date) - START) / span) * w;
-    const y = hpx - (p.value / vmax) * (hpx - 6) - 3;
-    i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
-  });
-  ctx.stroke();
-  // events as ticks
+  // all series share one scale so relative magnitudes stay honest
+  const SERIES = [
+    ["total_displaced", "#ff7043"],
+    ["cumulative_arrivals", "#e53935"],
+    ["returns_to_sudan_total", "#43a047"],
+  ];
+  const vmax = Math.max(...SERIES.flatMap(([m]) =>
+    (state.data.headline[m]?.series || []).map((p) => p.value)), 1);
+  for (const [metric, color] of SERIES) {
+    const s = state.data.headline[metric]?.series || [];
+    if (s.length < 2) continue;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.6 * devicePixelRatio;
+    ctx.beginPath();
+    s.forEach((p, i) => {
+      const x = ((Date.parse(p.date) - START) / span) * w;
+      const y = hpx - (p.value / vmax) * (hpx - 8) - 4;
+      i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+    });
+    ctx.stroke();
+  }
+  // defining events as ticks along the bottom
   ctx.fillStyle = "rgba(255,213,79,.8)";
   for (const ev of state.data.events.filter((e) => e.source === "curated" && e.severity >= 4)) {
     const x = ((Date.parse(ev.date) - START) / span) * w;
-    ctx.fillRect(x, hpx - 5 * devicePixelRatio, 1.5 * devicePixelRatio, 5 * devicePixelRatio);
+    ctx.fillRect(x, hpx - 6 * devicePixelRatio, 1.5 * devicePixelRatio, 6 * devicePixelRatio);
   }
 }
 
@@ -414,11 +531,46 @@ function initControls() {
   $("#toggle-flows").addEventListener("change", (e) => { state.showFlows = e.target.checked; renderFlows(); });
   $("#toggle-returns").addEventListener("change", (e) => { state.showReturns = e.target.checked; renderFlows(); });
   $("#toggle-events").addEventListener("change", (e) => { state.showEvents = e.target.checked; renderEvents(); });
-  document.querySelectorAll(".dim input").forEach((cb) =>
-    cb.addEventListener("change", () => {
-      cb.checked ? state.activeDims.add(cb.value) : state.activeDims.delete(cb.value);
-      renderThemes();
-    }));
+}
+
+/* build one expandable group per dimension, with a checkbox per specific tag */
+function initThemeControls() {
+  const wrap = $("#dim-groups");
+  for (const [dim, meta] of Object.entries(DIM_META)) {
+    const tags = Object.keys(state.data.tags[dim] || {}).sort();
+    if (!tags.length) continue;
+    const g = document.createElement("div");
+    g.className = "dim-group";
+    const header = document.createElement("button");
+    header.className = "dim-header";
+    header.innerHTML = `<span class="caret">▸</span>
+      <span class="dim-dot" style="background:${meta.color}"></span>${meta.label}
+      <span class="dim-count">${tags.length}</span>`;
+    const body = document.createElement("div");
+    body.className = "dim-body";
+    for (const tag of tags) {
+      const key = `${dim}|${tag}`;
+      const label = document.createElement("label");
+      label.className = "tag-check";
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.addEventListener("change", () => {
+        cb.checked ? state.activeTags.add(key) : state.activeTags.delete(key);
+        renderThemes();
+      });
+      label.appendChild(cb);
+      label.insertAdjacentHTML("beforeend",
+        `<span class="dot" style="background:${meta.color}"></span>${tag.replace(/_/g, " ")}`);
+      body.appendChild(label);
+    }
+    header.addEventListener("click", () => {
+      g.classList.toggle("open");
+      header.querySelector(".caret").textContent = g.classList.contains("open") ? "▾" : "▸";
+    });
+    g.appendChild(header);
+    g.appendChild(body);
+    wrap.appendChild(g);
+  }
 }
 
 /* ------------------------------------------------------------------ boot */
@@ -427,6 +579,7 @@ function initControls() {
   addLayers();
   initTimeline();
   initControls();
+  initThemeControls();
   drawSparkline();
   window.addEventListener("resize", drawSparkline);
   // open the story at the beginning
