@@ -71,17 +71,18 @@ python -m http.server 8080
 
 ## Deploying to GitHub Pages
 
+A Pages workflow (`.github/workflows/pages.yml`) publishes the `platform/`
+folder on every push. One-time setup:
+
 ```powershell
 cd "PoP MVT Tracker"
-git init ; git add . ; git commit -m "Sudan PoP MVT tracker"
 gh repo create sudan-pop-mvt-tracker --public --source . --push
-gh api -X POST repos/{owner}/sudan-pop-mvt-tracker/pages -f build_type=workflow `
-   -f "source[branch]=main" -f "source[path]=/platform"
 ```
 
-or simply enable **Settings → Pages → Deploy from branch → `/platform` folder**
-in the repository UI. Everything under `platform/` is self-contained
-(MapLibre GL is loaded from a CDN; the basemap is the free CARTO dark style).
+then in the repository UI: **Settings → Pages → Source: GitHub Actions**
+(or `gh api -X POST repos/{owner}/sudan-pop-mvt-tracker/pages -f build_type=workflow`).
+Everything under `platform/` is self-contained (MapLibre GL is loaded from a
+CDN; the basemap is the free CARTO dark style).
 
 ## Data model (database/schema.sql)
 
