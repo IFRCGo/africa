@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudan Crisis — Population Movement Tracker</title>
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<link href="css/app.css" rel="stylesheet">
+</head>
+<body>
+<header id="topbar">
+  <div id="title-block">
+    <h1>SUDAN CRISIS <span>Population Movement Tracker</span></h1>
+    <div id="subtitle">The story of displacement since 15 April 2023, told by <b id="doc-count">…</b> UNHCR situation documents</div>
+  </div>
+  <div id="stat-cards">
+    <div class="stat" id="stat-displaced"><div class="stat-value">–</div><div class="stat-label">Total forcibly displaced</div></div>
+    <div class="stat" id="stat-idps"><div class="stat-value">–</div><div class="stat-label">IDPs inside Sudan</div></div>
+    <div class="stat" id="stat-crossborder"><div class="stat-value">–</div><div class="stat-label">Fled to neighbouring countries</div></div>
+    <div class="stat stat-return" id="stat-returns"><div class="stat-value">–</div><div class="stat-label">Returns to Sudan</div></div>
+  </div>
+</header>
+
+<div id="layout">
+  <aside id="sidebar">
+    <section class="panel" id="layers-panel">
+      <h2>Story layers</h2>
+      <label class="layer-toggle"><input type="checkbox" id="toggle-flows" checked>
+        <span class="swatch" style="background:#ff7043"></span>Movement routes &amp; direction</label>
+      <label class="layer-toggle"><input type="checkbox" id="toggle-returns" checked>
+        <span class="swatch" style="background:#4caf50"></span>Return movements</label>
+      <label class="layer-toggle"><input type="checkbox" id="toggle-events" checked>
+        <span class="swatch" style="background:#ffd54f"></span>Key events</label>
+    </section>
+
+    <section class="panel" id="themes-panel">
+      <h2>What the documents tell us</h2>
+      <div class="dim-toggles">
+        <label class="dim" data-dim="hazard"><input type="checkbox" value="hazard"><span>⚠ Hazards</span></label>
+        <label class="dim" data-dim="vulnerability"><input type="checkbox" value="vulnerability"><span>🛡 Vulnerabilities</span></label>
+        <label class="dim" data-dim="coping"><input type="checkbox" value="coping"><span>🤝 Coping mechanisms</span></label>
+        <label class="dim" data-dim="need"><input type="checkbox" value="need"><span>📦 Needs</span></label>
+        <label class="dim" data-dim="movement_pattern"><input type="checkbox" value="movement_pattern"><span>🧭 Movement patterns</span></label>
+      </div>
+      <div id="theme-detail"></div>
+    </section>
+
+    <section class="panel" id="events-panel">
+      <h2>Timeline of events</h2>
+      <div id="event-list"></div>
+    </section>
+  </aside>
+
+  <main id="map-wrap">
+    <div id="map"></div>
+    <div id="event-banner" class="hidden"></div>
+  </main>
+</div>
+
+<footer id="timebar">
+  <button id="play-btn" title="Play / pause the story">▶</button>
+  <div id="slider-wrap">
+    <canvas id="sparkline" height="38"></canvas>
+    <input type="range" id="time-slider" min="0" max="100" value="0" step="1">
+    <div id="slider-ticks"></div>
+  </div>
+  <div id="current-date">15 Apr 2023</div>
+</footer>
+
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
