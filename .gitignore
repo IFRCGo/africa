@@ -7,6 +7,7 @@ __pycache__/
 # "env.example" (no leading dot), which contains placeholders only.
 .env
 .env.*
+.env.example
 # Same file before it is renamed to .env, and any stray copy of it.
 credentials
 
