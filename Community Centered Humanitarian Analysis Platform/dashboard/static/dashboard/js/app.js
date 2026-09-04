@@ -8,7 +8,7 @@
  *
  * WHERE THE DATA COMES FROM
  * Nothing is calculated here. The Django pipeline writes ready-made files into
- * dashboard/data/ (see Community Centered Humanitarian Analysis Platform/pipeline/steps/s05_export.py, s06 and s07),
+ * dashboard/data/ (see data_pipeline/steps/s05_export.py, s06 and s07),
  * and this file only fetches them and draws them.
  *
  * HOW IT IS ORGANISED - read the sections in this order:
@@ -35,27 +35,54 @@ const DAY = 86400000;                       // milliseconds in one day
 const START = Date.parse("2023-04-15");     // the day the war began
 
 // One representative point per country, used to place the theme bubbles.
-// These mirror the "country_anchor" entries in pipeline/gazetteer.json.
+// These mirror the "country_anchor" entries in data_pipeline/gazetteer.json.
 const ANCHORS = {
   "Chad": [21.3, 13.6], "Egypt": [31.8, 24.5], "South Sudan": [32.8, 11.2],
   "Ethiopia": [36.5, 12.5], "Central African Republic": [22.9, 10.35],
   "Libya": [23.32, 24.18], "Uganda": [32.4, 1.2], "Eritrea": [36.66, 15.11],
   "Sudan": [29.5, 14.5], "Regional": [29.5, 19.5],
 };
+// ---------------------------------------------------------------- colours
+// Colour is defined ONCE, in the :root block of app.css. This reads those
+// same custom properties back out, so the stylesheet stays the only place a
+// colour is written down and the map, the legend and the CSS can never drift
+// apart. (The stylesheet is a <link> in <head> and this script runs at the
+// end of <body>, so the values are always resolved by the time we ask.)
+const CSS_VARS = getComputedStyle(document.documentElement);
+function paletteColor(name, fallback) {
+  const value = CSS_VARS.getPropertyValue(name).trim();
+  if (value) return value;
+  // Only reachable if someone deletes a token from app.css; a visible wrong
+  // colour is easier to debug than an invisible layer MapLibre refused.
+  console.warn(`[dashboard] missing CSS colour token ${name}; using ${fallback}`);
+  return fallback;
+}
+
 // The single colour rule of the whole map:
-//   red   = people moving OUT of Sudan
-//   green = people moving back INTO Sudan
-const COLOR_OUT = "#e53935";
-const COLOR_IN = "#43a047";
+//   orange = people moving OUT of Sudan   (IFRC "Migration and identity")
+//   green  = people moving back INTO Sudan (IFRC "Climate and environment")
+const COLOR_OUT = paletteColor("--out", "#ff8200");
+const COLOR_IN = paletteColor("--return", "#009775");
+// Key events and the brand accent, both from the IFRC reds.
+const COLOR_EVENT = paletteColor("--event", "#011e41");
+const COLOR_ACCENT = paletteColor("--accent", "#ee2435");
+const COLOR_INK = paletteColor("--text", "#011e41");
+const COLOR_MUTED = paletteColor("--muted", "#6c757d");
+const WHITE = paletteColor("--ifrc-white", "#ffffff");
+// Sudanese refugees counted in the host countries.
+const COLOR_IDP_LOCALITY = paletteColor("--idp-locality", "#ffb25b");
+const COLOR_IDP_STATE = paletteColor("--idp-state", "#958dbe");
+const COLOR_IN_HOST = paletteColor("--refugees", "#8dcde2");
 
 // The five theme groups, their display names and their colours. These match
-// the "dimension" values the pipeline writes into tags.json.
+// the "dimension" values the pipeline writes into tags.json, and each one is
+// given the IFRC thematic palette that means the same thing.
 const DIM_META = {
-  hazard: { label: "Hazards", color: "#ef5350" },
-  vulnerability: { label: "Vulnerabilities", color: "#ab47bc" },
-  coping: { label: "Coping mechanisms", color: "#26a69a" },
-  need: { label: "Needs", color: "#42a5f5" },
-  movement_pattern: { label: "Movement patterns", color: "#ffa726" },
+  hazard: { label: "Hazards", color: paletteColor("--dim-hazard", "#d22730") },
+  vulnerability: { label: "Vulnerabilities", color: paletteColor("--dim-vulnerability", "#6b3a90") },
+  coping: { label: "Coping mechanisms", color: paletteColor("--dim-coping", "#009775") },
+  need: { label: "Needs", color: paletteColor("--dim-need", "#1874a0") },
+  movement_pattern: { label: "Movement patterns", color: paletteColor("--dim-movement", "#ff8200") },
 };
 
 // EVERYTHING the page currently shows is described by this one object.
@@ -185,7 +212,7 @@ function addLayers() {
   map.addLayer({
     id: "ipc-famine", type: "line", source: "ipc",
     filter: ["==", ["get", "fam"], true],
-    paint: { "line-color": "#ff1744", "line-width": 1.8 },
+    paint: { "line-color": COLOR_ACCENT, "line-width": 1.8 },
   });
 
   // ---- boundary context: state lines, country outlines, IFRC Areas of Interest ----
@@ -201,7 +228,7 @@ function addLayers() {
   });
   map.addLayer({
     id: "aoi-line", type: "line", source: "aoi",
-    paint: { "line-color": "#e8a200", "line-width": 2.4 },
+    paint: { "line-color": COLOR_EVENT, "line-width": 2.4 },
   });
   map.addSource("admin0lines", { type: "geojson", data: state.data.admin0 || empty() });
   map.addLayer({
@@ -238,7 +265,7 @@ function addLayers() {
     },
     paint: {
       "text-color": ["get", "color"],
-      "text-halo-color": "#ffffff", "text-halo-width": 1.4,
+      "text-halo-color": WHITE, "text-halo-width": 1.4,
     },
   });
   map.addLayer({
@@ -252,7 +279,7 @@ function addLayers() {
     },
     paint: {
       "text-color": ["get", "color"],
-      "text-halo-color": "#ffffff", "text-halo-width": 1.8,
+      "text-halo-color": WHITE, "text-halo-width": 1.8,
     },
   });
   map.addLayer({
@@ -269,15 +296,15 @@ function addLayers() {
     id: "event-glow", type: "circle", source: "events",
     paint: {
       "circle-radius": ["*", ["get", "size"], 2.1],
-      "circle-color": "#f5a623", "circle-opacity": 0.22, "circle-blur": 0.6,
+      "circle-color": COLOR_EVENT, "circle-opacity": 0.22, "circle-blur": 0.6,
     },
   });
   map.addLayer({
     id: "event-dots", type: "circle", source: "events",
     paint: {
       "circle-radius": ["get", "size"],
-      "circle-color": ["case", ["==", ["get", "source"], "curated"], "#f5a623", "#78909c"],
-      "circle-stroke-color": "#ffffff", "circle-stroke-width": 1.4,
+      "circle-color": ["case", ["==", ["get", "source"], "curated"], COLOR_EVENT, "#78909c"],
+      "circle-stroke-color": WHITE, "circle-stroke-width": 1.4,
       "circle-opacity": ["get", "opacity"],
     },
   });
@@ -286,7 +313,7 @@ function addLayers() {
     const p = e.features[0].properties;
     new maplibregl.Popup({ closeButton: false })
       .setLngLat(e.lngLat)
-      .setHTML(`<b style="color:#c77700">${fmtDate(Date.parse(p.date))}</b><br><b>${p.title}</b><br>${p.description || ""}`)
+      .setHTML(`<b style="color:${COLOR_EVENT}">${fmtDate(Date.parse(p.date))}</b><br><b>${p.title}</b><br>${p.description || ""}`)
       .addTo(map);
   });
   map.on("mouseenter", "event-dots", () => (map.getCanvas().style.cursor = "pointer"));
@@ -306,8 +333,8 @@ function addLayers() {
     id: "idp-circles", type: "circle", source: "idp",
     paint: {
       "circle-radius": ["get", "radius"],
-      "circle-color": "#ff5252", "circle-opacity": 0.4,
-      "circle-stroke-color": "#ff8a80", "circle-stroke-width": 1,
+      "circle-color": COLOR_IDP_LOCALITY, "circle-opacity": 0.5,
+      "circle-stroke-color": COLOR_IDP_LOCALITY, "circle-stroke-width": 1,
     },
   });
 
@@ -317,8 +344,8 @@ function addLayers() {
     id: "idp-state-circles", type: "circle", source: "idp-states",
     paint: {
       "circle-radius": ["get", "radius"],
-      "circle-color": "#ff8f00", "circle-opacity": 0.3,
-      "circle-stroke-color": "#ffb300", "circle-stroke-width": 1.4,
+      "circle-color": COLOR_IDP_STATE, "circle-opacity": 0.4,
+      "circle-stroke-color": COLOR_IDP_STATE, "circle-stroke-width": 1.4,
     },
   });
 
@@ -328,8 +355,8 @@ function addLayers() {
     id: "ref-country", type: "circle", source: "refcountry",
     paint: {
       "circle-radius": ["get", "radius"],
-      "circle-color": "#26c6da", "circle-opacity": 0.22,
-      "circle-stroke-color": "#26c6da", "circle-stroke-width": 1.4,
+      "circle-color": COLOR_IN_HOST, "circle-opacity": 0.22,
+      "circle-stroke-color": COLOR_IN_HOST, "circle-stroke-width": 1.4,
     },
   });
   map.addSource("refcamps", { type: "geojson", data: empty() });
@@ -337,7 +364,7 @@ function addLayers() {
     id: "ref-camps", type: "circle", source: "refcamps",
     paint: {
       "circle-radius": ["get", "radius"],
-      "circle-color": "#26c6da", "circle-opacity": 0.85,
+      "circle-color": COLOR_IN_HOST, "circle-opacity": 0.85,
       "circle-stroke-color": "#0e1116", "circle-stroke-width": 1.2,
     },
   });
@@ -348,8 +375,8 @@ function addLayers() {
     id: "crossing-dots", type: "circle", source: "crossings",
     paint: {
       "circle-radius": ["case", ["get", "active"], 7, 4.5],
-      "circle-color": ["case", ["get", "active"], "#f5a623", "#ffffff"],
-      "circle-stroke-color": "#222", "circle-stroke-width": 1.4,
+      "circle-color": ["case", ["get", "active"], COLOR_EVENT, WHITE],
+      "circle-stroke-color": COLOR_INK, "circle-stroke-width": 1.4,
     },
   });
   map.addLayer({
@@ -358,25 +385,25 @@ function addLayers() {
       "text-field": ["get", "name"], "text-size": 10, "text-font": ["Open Sans Bold"],
       "text-offset": [0, 1.1], "text-anchor": "top", "text-optional": true,
     },
-    paint: { "text-color": "#333333", "text-halo-color": "#ffffff", "text-halo-width": 1.6 },
+    paint: { "text-color": COLOR_INK, "text-halo-color": WHITE, "text-halo-width": 1.6 },
   });
 
-  popup("idp-circles", (p) => `<b>${p.name}</b> <span style="color:#9aa">(${p.state})</span><br>
-    <b style="color:#ff8a80">${p.valFull}</b> IDPs · ${p.dateLabel}<br><span style="color:#9aa">IOM-DTM via HDX</span>`);
-  popup("idp-state-circles", (p) => `<b>${p.name}</b> <span style="color:#9aa">(Sudan — state level)</span><br>
-    <b style="color:#ffb300">${p.valFull}</b> IDPs · ${p.dateLabel}<br><span style="color:#9aa">IOM-DTM / UNHCR (Sudan IDPs.xlsx)</span>`);
-  popup("ref-country", (p) => `<b style="color:#26c6da">${p.country}</b><br>
-    <b>${p.valFull}</b> Sudanese refugees · ${p.dateLabel}<br><span style="color:#9aa">UNHCR${p.note ? " · " + p.note : ""}</span>`);
-  popup("ref-camps", (p) => `<b style="color:#26c6da">${p.name}</b><br>${p.type} · ${p.country}<br>
-    Opened ${p.opened}<br><span style="color:#9aa">Location curated (UNHCR RRP); magnitude shown by country total</span>`);
+  popup("idp-circles", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.state})</span><br>
+    <b style="color:${COLOR_IDP_LOCALITY}">${p.valFull}</b> IDPs · ${p.dateLabel}<br><span style="color:${COLOR_MUTED}">IOM-DTM via HDX</span>`);
+  popup("idp-state-circles", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(Sudan — state level)</span><br>
+    <b style="color:${COLOR_IDP_STATE}">${p.valFull}</b> IDPs · ${p.dateLabel}<br><span style="color:${COLOR_MUTED}">IOM-DTM / UNHCR (Sudan IDPs.xlsx)</span>`);
+  popup("ref-country", (p) => `<b style="color:${COLOR_IN_HOST}">${p.country}</b><br>
+    <b>${p.valFull}</b> Sudanese refugees · ${p.dateLabel}<br><span style="color:${COLOR_MUTED}">UNHCR${p.note ? " · " + p.note : ""}</span>`);
+  popup("ref-camps", (p) => `<b style="color:${COLOR_IN_HOST}">${p.name}</b><br>${p.type} · ${p.country}<br>
+    Opened ${p.opened}<br><span style="color:${COLOR_MUTED}">Location curated (UNHCR RRP); magnitude shown by country total</span>`);
   popup("crossing-dots", (p) => `<b>${p.name}</b><br>Crossing to ${p.country}<br>
-    ${p.active ? `<b style="color:#c77700">Active corridor</b> — ${p.flowLabel} people moved (cumulative)` : "No recorded movement at this date"}`);
-  popup("ipc-fill", (p) => `<b>${p.area}</b><br>IPC <b>Phase ${p.ph}</b>${p.fam ? ` · <b style="color:#ff1744">Famine (P5)</b>` : ""}<br>
-    <b>${Math.round(p.p3 * 100)}%</b> in Phase 3+ (Crisis or worse)<br><span style="color:#9aa">IPC analysis via IPC MCP</span>`);
-  popup("aoi-fill", (p) => `<b>${p.name}</b> <span style="color:#888">(${p.ipc_country || ""})</span><br>
-    <b style="color:#b07c00">IFRC Area of Interest</b><br>
+    ${p.active ? `<b style="color:${COLOR_EVENT}">Active corridor</b> — ${p.flowLabel} people moved (cumulative)` : "No recorded movement at this date"}`);
+  popup("ipc-fill", (p) => `<b>${p.area}</b><br>IPC <b>Phase ${p.ph}</b>${p.fam ? ` · <b style="color:${COLOR_ACCENT}">Famine (P5)</b>` : ""}<br>
+    <b>${Math.round(p.p3 * 100)}%</b> in Phase 3+ (Crisis or worse)<br><span style="color:${COLOR_MUTED}">IPC analysis via IPC MCP</span>`);
+  popup("aoi-fill", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.ipc_country || ""})</span><br>
+    <b style="color:${COLOR_EVENT}">IFRC Area of Interest</b><br>
     ${p.ipc_phase ? `IPC <b>Phase ${p.ipc_phase}</b> — <b>${Math.round((p.ipc_p3 || 0) * 100)}%</b> in Phase 3+
-      <span style="color:#888">(${p.ipc_n_phase3plus}/${p.ipc_n_areas} sub-areas)</span>` : `<span style="color:#888">No current IPC analysis</span>`}`);
+      <span style="color:${COLOR_MUTED}">(${p.ipc_n_phase3plus}/${p.ipc_n_areas} sub-areas)</span>` : `<span style="color:${COLOR_MUTED}">No current IPC analysis</span>`}`);
 }
 
 /* Attach a click-for-details bubble to a layer, and turn the mouse pointer
@@ -573,7 +600,7 @@ function renderStats() {
     if (v && prev && Math.abs(v - prev) > v * 0.005) {
       const up = v > prev;
       const good = up === risingIsGood;
-      trend = `<span class="trend" style="color:${good ? "#43a047" : "#ef5350"}">${up ? "▲" : "▼"}</span>`;
+      trend = `<span class="trend" style="color:${good ? COLOR_IN : COLOR_EVENT}">${up ? "▲" : "▼"}</span>`;
     }
     $(sel + " .stat-value").innerHTML = (v ? fmtNum(v) : "–") + trend;
   };
@@ -864,9 +891,9 @@ function drawSparkline() {
   const span = state.endDate - START;
   // all series share one scale so relative magnitudes stay honest
   const SERIES = [
-    ["total_displaced", "#ff7043"],
-    ["cumulative_arrivals", "#e53935"],
-    ["returns_to_sudan_total", "#43a047"],
+    ["total_displaced", COLOR_OUT],
+    ["cumulative_arrivals", COLOR_ACCENT],
+    ["returns_to_sudan_total", COLOR_IN],
   ];
   const vmax = Math.max(...SERIES.flatMap(([m]) =>
     (state.data.headline[m]?.series || []).map((p) => p.value)), 1);

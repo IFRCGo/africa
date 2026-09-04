@@ -6,23 +6,96 @@
    as the page itself: colours first, then header, layout, map, timeline and
    the two side panels.
 
-   The block below defines the colour palette as CSS "custom properties" -
-   named colours you set once and reuse everywhere as var(--name). To restyle
-   the whole dashboard for another operation, change these values and nothing
-   else. The names are used throughout the rest of the file.
+   The block below is the ONE place colour is defined for this dashboard.
+   Everything else in this file, in app.js and in index.html refers back to
+   it as var(--name), so a rebrand is an edit to this block and nothing else.
+   (app.js reads these same properties at start-up - see readPalette() there.)
+
+   It has three layers, in order:
+     1. the IFRC brand palette, exactly as published on brand.ifrc.org
+     2. data-mark steps, where a brand colour was too dark or too pale to
+        read as a mark and needed a lighter step of the same hue
+     3. semantic roles - what this dashboard uses each colour FOR
    ========================================================================= */
 :root {
-  --bg: #f5f5f5;
-  --panel: #ffffff;
-  --panel2: #ffffff;
+  /* --- 1. IFRC brand palette, verbatim ---------------------------------
+     Source: brand.ifrc.org, "Colour" - the six published groups. Do not
+     edit these to restyle; change the semantic roles in section 3 instead. */
+
+  /* Primary brand colours */
+  --ifrc-red:            #ee2435;
+  --ifrc-dark-blue:      #011e41;
+  --ifrc-black:          #000000;
+  --ifrc-white:          #ffffff;
+  /* Climate and environment */
+  --ifrc-green-dark:     #009775;
+  --ifrc-green-medium:   #00ab84;
+  --ifrc-green-light:    #47d7ac;
+  /* Health and wellbeing */
+  --ifrc-blue-dark:      #0f3a50;
+  --ifrc-blue-medium:    #8dcde2;
+  --ifrc-blue-light:     #ccf5fc;
+  /* Migration and identity */
+  --ifrc-orange-medium:  #ff8200;
+  --ifrc-orange-light:   #ffb25b;
+  /* Values, power and inclusion */
+  --ifrc-purple-dark:    #2e1a47;
+  --ifrc-purple-medium:  #512d6d;
+  --ifrc-purple-light:   #958dbe;
+  /* Disasters and crises */
+  --ifrc-red-dark:       #d22730;
+
+  /* --- 2. data-mark steps ----------------------------------------------
+     The five narrative dimensions, each given the IFRC thematic palette that
+     means the same thing. These five are drawn on the map at the same time,
+     so they were checked as a set against all pairs, for normal colour vision
+     and for the three kinds of colour blindness (protan/deutan/tritan).
+
+     Three are the brand colour unchanged. Two needed a lighter step of the
+     same hue: IFRC's purple and blue are both deep and, at their published
+     lightness, indistinguishable to a deuteranope (deltaE 3.0 - effectively
+     the same colour). Lifting them apart brings that to 8.0, the accepted
+     floor when identity is ALSO carried by something other than colour -
+     which it is here: every swatch in the legend and the sidebar is labelled
+     in text, and every map bubble has a popup naming its dimension. Keep the
+     labels if you change these. */
+  --dim-hazard:        #d22730;   /* Disasters and crises   - brand, unchanged */
+  --dim-vulnerability: #6b3a90;   /* Values/power/inclusion - #512d6d lifted */
+  --dim-coping:        #009775;   /* Climate and environment- brand, unchanged */
+  --dim-need:          #1874a0;   /* Health and wellbeing   - #0f3a50 lifted */
+  --dim-movement:      #ff8200;   /* Migration and identity - brand, unchanged */
+
+  /* --- 3. semantic roles -----------------------------------------------
+     What this dashboard uses each colour for. Restyle here. */
+  --bg: #f5f5f5;                        /* the page behind the panels */
+  --panel: var(--ifrc-white);
+  --panel2: var(--ifrc-white);
   --border: #e0e0e0;
-  --text: #333333;
-  --muted: #6c757d;
-  --accent: #cc0000;     /* IFRC red - headings, highlights, the header bar */
-  --return: #2e9e4f;     /* green - movement back into Sudan */
-  --event: #e8a200;      /* amber - key events */
-  --influx: #1e88e5;     /* blue  - the 2025 influx from South Sudan */
-  --header: #cc0000;
+  --text: var(--ifrc-dark-blue);        /* body text - 16.6:1 on white */
+  --muted: #6c757d;                     /* secondary text  - 4.7:1 on white */
+  --accent: var(--ifrc-red);            /* headings, highlights, major events */
+  --header: var(--ifrc-red);            /* the top bar */
+  --out: var(--ifrc-orange-medium);     /* movement out of Sudan */
+  --return: var(--ifrc-green-dark);     /* movement back into Sudan */
+  /* Key events are a separate layer, not a sixth dimension, so what matters
+     is that they are distinct from all five above. The disasters red would be
+     the obvious choice and is exactly wrong: it IS --dim-hazard, deltaE 0.0.
+     IFRC dark blue is 18.8 away from the nearest dimension and is itself a
+     primary brand colour. */
+  --event: var(--ifrc-dark-blue);       /* key events */
+  /* The MCP data layers get their own colours. They are dots in the same
+     legend as the five dimensions, so they must be separable from those five,
+     from the key-event navy and from each other - every pair above deltaE 8.
+     (Influx arrows deliberately have no token of their own: they are movement
+     INTO Sudan and share --return with the other return flows.) */
+  --idp-locality: var(--ifrc-orange-light);   /* IDP admin2 - Migration family */
+  --idp-state:    var(--ifrc-purple-light);   /* IDP admin1 - the coarser aggregate */
+  --refugees:     var(--ifrc-blue-medium);    /* host-country totals and camps */
+  --on-header: var(--ifrc-white);       /* text sitting on the header bar */
+  /* Panels on the header bar are DARKENED, not lightened: white 10px text
+     needs 4.5:1, and lightening the red drops it to 3.6:1. */
+  --header-panel: rgba(0,0,0,.15);
+  --header-panel-edge: rgba(255,255,255,.38);
   --hover: rgba(0,0,0,.045);
   --hover2: rgba(0,0,0,.07);
 }
@@ -45,26 +118,26 @@ h1, h2, h3, .panel h2, .stat-value, #current-date, .theme-group h3 {
 /* ---------- header: IFRC red bar with the four headline figures -------- */
 #topbar {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 18px; background: var(--header); color: #fff;
+  padding: 10px 18px; background: var(--header); color: var(--on-header);
   box-shadow: 0 2px 6px rgba(0,0,0,.18);
   gap: 16px; flex-wrap: wrap; z-index: 1000;
 }
 #title-block { display: flex; align-items: center; gap: 16px; }
 #ifrc-logo { height: 38px !important; width: auto !important; max-height: 38px; max-width: 200px; display: block; flex-shrink: 0; }
-#title-block h1 { font-size: 19px; letter-spacing: 1px; color: #fff; }
-#title-block h1 span { color: rgba(255,255,255,.85); font-weight: 400; }
+#title-block h1 { font-size: 19px; letter-spacing: 1px; color: var(--on-header); }
+#title-block h1 span { color: rgba(255,255,255,.88); font-weight: 400; }
 #page-footer {
   font-size: 11.5px; color: var(--muted, rgba(255,255,255,.6)); text-align: center;
   padding: 7px 18px; background: var(--panel); border-top: 1px solid var(--border);
 }
 #stat-cards { display: flex; gap: 10px; flex-wrap: wrap; }
 .stat {
-  background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); border-radius: 20px;
+  background: var(--header-panel); border: 1px solid var(--header-panel-edge); border-radius: 20px;
   padding: 5px 16px; min-width: 124px; text-align: center;
 }
-.stat-value { font-size: 20px; font-weight: 800; color: #fff; font-variant-numeric: tabular-nums; }
-.stat-return .stat-value { color: #fff; }
-.stat-label { font-size: 10px; color: rgba(255,255,255,.82); text-transform: uppercase; letter-spacing: .4px; }
+.stat-value { font-size: 20px; font-weight: 800; color: var(--on-header); font-variant-numeric: tabular-nums; }
+.stat-return .stat-value { color: var(--on-header); }
+.stat-label { font-size: 10px; color: var(--on-header); text-transform: uppercase; letter-spacing: .4px; }
 
 /* ---------- layout: left sidebar | map | right sidebar ----------------
    #layout is a flex row. The two sidebars have a fixed width and the map
@@ -81,7 +154,7 @@ h1, h2, h3, .panel h2, .stat-value, #current-date, .theme-group h3 {
 .panel { background: var(--panel2); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
 .panel h2 {
   font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
-  color: #999; margin-bottom: 10px; font-weight: 700;
+  color: var(--muted); margin-bottom: 10px; font-weight: 700;
 }
 
 /* The layer switches. The real checkbox is hidden and a small sliding pill
@@ -94,10 +167,10 @@ input.switch {
 }
 input.switch::after {
   content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px;
-  border-radius: 50%; background: #fff; transition: left .18s; box-shadow: 0 1px 2px rgba(0,0,0,.25);
+  border-radius: 50%; background: var(--ifrc-white); transition: left .18s; box-shadow: 0 1px 2px rgba(0,0,0,.25);
 }
 input.switch:checked { background: var(--return); }
-input.switch:checked::after { left: 18px; background: #fff; }
+input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 .swatch { display: inline-block; }
 .arrow-swatch { font-weight: 800; font-size: 15px; line-height: 1; }
 .dot-swatch { width: 10px; height: 10px; border-radius: 50%; }
@@ -118,7 +191,7 @@ input.switch:checked::after { left: 18px; background: #fff; }
 .dim-group.open .dim-body { display: block; }
 .tag-check {
   display: flex; align-items: center; gap: 7px; font-size: 12px; padding: 3px 4px;
-  border-radius: 4px; cursor: pointer; color: #555;
+  border-radius: 4px; cursor: pointer; color: var(--text);
 }
 .tag-check:hover { background: var(--hover); }
 .tag-check input { accent-color: var(--accent); }
@@ -148,7 +221,7 @@ input.switch:checked::after { left: 18px; background: #fff; }
 .event-item.major { border-left-color: var(--accent); }
 .event-item .ev-date { font-size: 10px; color: var(--muted); }
 .event-item .ev-title { font-size: 12px; line-height: 1.35; }
-.event-item.extracted .ev-title { color: #666; font-style: italic; }
+.event-item.extracted .ev-title { color: var(--muted); font-style: italic; }
 
 /* ---------- the map, its event banner and its popups ------------------- */
 #map-wrap { flex: 1; position: relative; min-width: 0; }
@@ -159,14 +232,14 @@ input.switch:checked::after { left: 18px; background: #fff; }
   border-radius: 10px; padding: 10px 16px; font-size: 13px; z-index: 5; color: var(--text);
   box-shadow: 0 4px 20px rgba(0,0,0,.18);
 }
-#event-banner .eb-date { color: #b07c00; font-size: 11px; font-weight: 700; }
+#event-banner .eb-date { color: var(--event); font-size: 11px; font-weight: 700; }
 #event-banner.hidden { display: none; }
 .maplibregl-popup-content {
-  background: #fff !important; color: var(--text) !important;
+  background: var(--ifrc-white) !important; color: var(--text) !important;
   border: 1px solid var(--border); border-radius: 8px !important; font-size: 12px;
   max-width: 300px; box-shadow: 0 4px 16px rgba(0,0,0,.18);
 }
-.maplibregl-popup-tip { border-top-color: #fff !important; border-bottom-color: #fff !important; }
+.maplibregl-popup-tip { border-top-color: var(--ifrc-white) !important; border-bottom-color: var(--ifrc-white) !important; }
 
 /* ---------- the timeline: play button, slider and trend chart ---------- */
 #timebar {
@@ -204,21 +277,21 @@ input.switch:checked::after { left: 18px; background: #fff; }
 .insight.good b { color: var(--return); }
 .voice {
   border-left: 3px solid var(--border); padding: 6px 10px; margin-bottom: 8px;
-  font-size: 12px; font-style: italic; color: #555; line-height: 1.45;
+  font-size: 12px; font-style: italic; color: var(--muted); line-height: 1.45;
 }
 .voice .v-meta { font-style: normal; font-size: 10.5px; color: var(--muted); margin-top: 3px; }
 .trigger-row { margin-bottom: 7px; }
 .trigger-row .t-label { display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 3px; }
 .trigger-row .t-label .t-n { color: var(--muted); }
 .trigger-bar { height: 6px; border-radius: 3px; background: rgba(0,0,0,.08); overflow: hidden; }
-.trigger-bar > div { height: 100%; border-radius: 3px; background: #e53935; }
+.trigger-bar > div { height: 100%; border-radius: 3px; background: var(--out); }
 
 /* ---------- the legend box in the corner of the map ------------------- */
 #map-legend {
   position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
   display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
   background: rgba(255,255,255,.94); border: 1px solid var(--border); border-radius: 8px;
-  padding: 6px 14px; font-size: 11px; color: #555; z-index: 4; max-width: 90%;
+  padding: 6px 14px; font-size: 11px; color: var(--muted); z-index: 4; max-width: 90%;
   box-shadow: 0 2px 10px rgba(0,0,0,.12);
 }
 .leg { display: flex; align-items: center; gap: 5px; }

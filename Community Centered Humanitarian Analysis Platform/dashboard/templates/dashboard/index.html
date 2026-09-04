@@ -67,26 +67,26 @@
     <section class="panel" id="layers-panel">
       <h2>Layer control</h2>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-flows" checked>
-        <span class="swatch arrow-swatch" style="color:#e53935">→</span>Movement out of Sudan</label>
+        <span class="swatch arrow-swatch" style="color:var(--out)">→</span>Movement out of Sudan</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-returns" checked>
-        <span class="swatch arrow-swatch" style="color:#43a047">→</span>Movement back into Sudan</label>
+        <span class="swatch arrow-swatch" style="color:var(--return)">→</span>Movement back into Sudan</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-events" checked>
-        <span class="swatch dot-swatch" style="background:#ffd54f"></span>Key events</label>
+        <span class="swatch dot-swatch" style="background:var(--event)"></span>Key events</label>
       <!-- Below this line the layers come from external humanitarian
            open-data servers rather than from the UNHCR reports. -->
       <div class="layer-sep">MCP data layers</div>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-idp">
-        <span class="swatch dot-swatch" style="background:#ff5252"></span>IDP localities admin2 (IOM-DTM)</label>
+        <span class="swatch dot-swatch" style="background:var(--idp-locality)"></span>IDP localities admin2 (IOM-DTM)</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-idp-states">
-        <span class="swatch dot-swatch" style="background:#ff8f00"></span>IDP by state — Sudan admin1</label>
+        <span class="swatch dot-swatch" style="background:var(--idp-state)"></span>IDP by state — Sudan admin1</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-refugees">
-        <span class="swatch dot-swatch" style="background:#26c6da"></span>Refugee totals by country (UNHCR)</label>
+        <span class="swatch dot-swatch" style="background:var(--refugees)"></span>Refugee totals by country (UNHCR)</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-foodsec">
         <span class="swatch" style="background:linear-gradient(90deg,#fae61e,#e67800,#c80000,#640000)"></span>Food insecurity — IPC phase, by area (IPC)</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-crossings" checked>
-        <span class="swatch dot-swatch" style="background:#ffffff;border:1px solid #888"></span>Border crossings</label>
+        <span class="swatch dot-swatch" style="background:var(--ifrc-white);border:1px solid var(--muted)"></span>Border crossings</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-aoi">
-        <span class="swatch" style="background:rgba(232,162,0,.35);border:2px solid #e8a200"></span>IFRC Areas of Interest (IPC)</label>
+        <span class="swatch" style="background:rgba(210,39,48,.28);border:2px solid var(--event)"></span>IFRC Areas of Interest (IPC)</label>
     </section>
 
     <section class="panel" id="seasonal-panel">
@@ -116,25 +116,25 @@
          Keep its colours in step with COLOR_OUT / COLOR_IN / DIM_META
          at the top of app.js. -->
     <div id="map-legend">
-      <span class="leg"><span class="leg-arrow" style="color:#e53935">›››</span> Out of Sudan</span>
-      <span class="leg"><span class="leg-arrow" style="color:#43a047">›››</span> Into Sudan / returns</span>
-      <span class="leg"><span class="leg-dot" style="background:#ffd54f"></span> Key event</span>
-      <span class="leg"><span class="leg-dot" style="background:#ef5350"></span> Hazards</span>
-      <span class="leg"><span class="leg-dot" style="background:#ab47bc"></span> Vulnerabilities</span>
-      <span class="leg"><span class="leg-dot" style="background:#26a69a"></span> Coping</span>
-      <span class="leg"><span class="leg-dot" style="background:#42a5f5"></span> Needs</span>
-      <span class="leg"><span class="leg-dot" style="background:#ffa726"></span> Movement patterns</span>
-      <span class="leg"><span class="leg-dot" style="background:#ff5252"></span> IDP locality / admin2</span>
-      <span class="leg"><span class="leg-dot" style="background:#ff8f00"></span> IDP state / admin1</span>
-      <span class="leg"><span class="leg-dot" style="background:#26c6da"></span> Refugee total / camp</span>
-      <span class="leg"><span class="leg-dot" style="background:#ffffff;border:1px solid #888"></span> Border crossing</span>
-      <span class="leg"><span class="leg-dot" style="background:transparent;border:2px solid #e8a200;border-radius:2px"></span> IFRC Area of Interest</span>
+      <span class="leg"><span class="leg-arrow" style="color:var(--out)">›››</span> Out of Sudan</span>
+      <span class="leg"><span class="leg-arrow" style="color:var(--return)">›››</span> Into Sudan / returns</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--event)"></span> Key event</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--dim-hazard)"></span> Hazards</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--dim-vulnerability)"></span> Vulnerabilities</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--dim-coping)"></span> Coping</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--dim-need)"></span> Needs</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--dim-movement)"></span> Movement patterns</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--idp-locality)"></span> IDP locality / admin2</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--idp-state)"></span> IDP state / admin1</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--refugees)"></span> Refugee total / camp</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--ifrc-white);border:1px solid var(--muted)"></span> Border crossing</span>
+      <span class="leg"><span class="leg-dot" style="background:transparent;border:2px solid var(--event);border-radius:2px"></span> IFRC Area of Interest</span>
       <span class="leg leg-ipc">IPC:
         <span class="ipc-sw" style="background:#fae61e"></span>2
         <span class="ipc-sw" style="background:#e67800"></span>3
         <span class="ipc-sw" style="background:#c80000"></span>4
         <span class="ipc-sw" style="background:#640000"></span>5
-        <span class="ipc-sw" style="border:2px solid #ff1744;background:transparent"></span>famine</span>
+        <span class="ipc-sw" style="border:2px solid var(--accent);background:transparent"></span>famine</span>
     </div>
   </main>
 
@@ -170,9 +170,9 @@
   </div>
   <div id="trend-legend">
     <div id="current-date">15 Apr 2023</div>
-    <div class="tl"><span style="color:#ff7043">━</span> displaced</div>
-    <div class="tl"><span style="color:#e53935">━</span> cross-border</div>
-    <div class="tl"><span style="color:#43a047">━</span> returns</div>
+    <div class="tl"><span style="color:var(--out)">━</span> displaced</div>
+    <div class="tl"><span style="color:var(--out)">━</span> cross-border</div>
+    <div class="tl"><span style="color:var(--return)">━</span> returns</div>
   </div>
 </footer>
 

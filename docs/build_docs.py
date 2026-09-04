@@ -25,7 +25,7 @@ OUT_PATH = (
     / "Community_Centered_Humanitarian_Analysis_Documentation.docx"
 )
 
-IFRC_RED = RGBColor(0xCC, 0x00, 0x00)
+IFRC_RED = RGBColor(0xEE, 0x24, 0x35)      # the brand red, brand.ifrc.org
 GREY = RGBColor(0x60, 0x60, 0x60)
 
 
