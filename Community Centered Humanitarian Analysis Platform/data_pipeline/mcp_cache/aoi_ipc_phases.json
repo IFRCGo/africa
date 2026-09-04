@@ -1,0 +1,114 @@
+{
+ "kiryandongo": {
+  "ipc_phase": null,
+  "ipc_color": "#bdbdbd",
+  "ipc_p3": null,
+  "ipc_n_areas": 0,
+  "ipc_n_phase3plus": 0,
+  "ipc_country": "UG"
+ },
+ "amhara": {
+  "ipc_phase": 3,
+  "ipc_color": "#E67800",
+  "ipc_p3": 0.55,
+  "ipc_n_areas": 21,
+  "ipc_n_phase3plus": 18,
+  "ipc_country": "ET"
+ },
+ "beneshangul gumu": {
+  "ipc_phase": null,
+  "ipc_color": "#bdbdbd",
+  "ipc_p3": null,
+  "ipc_n_areas": 0,
+  "ipc_n_phase3plus": 0,
+  "ipc_country": "ET"
+ },
+ "vakaga": {
+  "ipc_phase": null,
+  "ipc_color": "#bdbdbd",
+  "ipc_p3": null,
+  "ipc_n_areas": 0,
+  "ipc_n_phase3plus": 0,
+  "ipc_country": "CF"
+ },
+ "northern bahr el ghazal": {
+  "ipc_phase": 4,
+  "ipc_color": "#C80000",
+  "ipc_p3": 1.3,
+  "ipc_n_areas": 10,
+  "ipc_n_phase3plus": 10,
+  "ipc_country": "SS"
+ },
+ "unity": {
+  "ipc_phase": 4,
+  "ipc_color": "#C80000",
+  "ipc_p3": 1.5,
+  "ipc_n_areas": 18,
+  "ipc_n_phase3plus": 18,
+  "ipc_country": "SS"
+ },
+ "upper nile": {
+  "ipc_phase": 4,
+  "ipc_color": "#C80000",
+  "ipc_p3": 1.6,
+  "ipc_n_areas": 23,
+  "ipc_n_phase3plus": 23,
+  "ipc_country": "SS"
+ },
+ "western bahr el ghazal": {
+  "ipc_phase": 3,
+  "ipc_color": "#E67800",
+  "ipc_p3": 1,
+  "ipc_n_areas": 6,
+  "ipc_n_phase3plus": 6,
+  "ipc_country": "SS"
+ },
+ "abyei pca": {
+  "ipc_phase": null,
+  "ipc_color": "#bdbdbd",
+  "ipc_p3": null,
+  "ipc_n_areas": 0,
+  "ipc_n_phase3plus": 0,
+  "ipc_country": "SD"
+ },
+ "wadi fira": {
+  "ipc_phase": 3,
+  "ipc_color": "#E67800",
+  "ipc_p3": 0.26,
+  "ipc_n_areas": 4,
+  "ipc_n_phase3plus": 3,
+  "ipc_country": "TD"
+ },
+ "sila": {
+  "ipc_phase": 3,
+  "ipc_color": "#E67800",
+  "ipc_p3": 0.29,
+  "ipc_n_areas": 2,
+  "ipc_n_phase3plus": 1,
+  "ipc_country": "TD"
+ },
+ "ouadda": {
+  "ipc_phase": 3,
+  "ipc_color": "#E67800",
+  "ipc_p3": 0.25,
+  "ipc_n_areas": 3,
+  "ipc_n_phase3plus": 2,
+  "ipc_country": "TD"
+ },
+ "ennedi est": {
+  "ipc_phase": 3,
+  "ipc_color": "#E67800",
+  "ipc_p3": 0.23,
+  "ipc_n_areas": 2,
+  "ipc_n_phase3plus": 2,
+  "ipc_country": "TD"
+ },
+ "aswan governorate": {
+  "ipc_phase": null,
+  "ipc_color": "#bdbdbd",
+  "ipc_p3": null,
+  "ipc_n_areas": 0,
+  "ipc_n_phase3plus": 0,
+  "ipc_country": "EG"
+ }
+}

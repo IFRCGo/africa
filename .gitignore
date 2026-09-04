@@ -1,4 +1,15 @@
+# Python
 __pycache__/
 *.pyc
-database/*.db-wal
-database/*.db-shm
+
+# Secrets. NOTHING matching .env is ever committed - not .env, and not any
+# .env.something variant, however it is named. The published template is
+# "env.example" (no leading dot), which contains placeholders only.
+.env
+.env.*
+# Same file before it is renamed to .env, and any stray copy of it.
+credentials
+
+# Django
+Community Centered Humanitarian Analysis Platform/staticfiles/
+

@@ -1,0 +1,49 @@
+/* Styling for the updater page at /updater/.
+   Loaded by updater/templates/updater/index.html with {% static %};
+   the dashboard has the matching pair under dashboard/static/dashboard/. */
+/* IFRC house colours: red header, light grey page, white cards. */
+:root { --red:#cc0000; --ink:#333; --muted:#6c757d; --border:#e0e0e0; --ok:#2e9e4f; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:'Open Sans',Arial,sans-serif; color:var(--ink); background:#f5f5f5; }
+header { background:var(--red); color:#fff; padding:12px 20px; display:flex; align-items:center; gap:16px; }
+header img { height:34px; }
+header h1 { font-family:'Montserrat',sans-serif; font-size:17px; letter-spacing:.5px; margin:0; font-weight:700; }
+header h1 span { font-weight:400; opacity:.85; }
+main { max-width:1100px; margin:22px auto; padding:0 18px; }
+.card { background:#fff; border:1px solid var(--border); border-radius:10px; padding:20px 22px; margin-bottom:18px; box-shadow:0 1px 4px rgba(0,0,0,.05); }
+/* The big number showing how many new PDFs are waiting. */
+.count { font-family:'Montserrat',sans-serif; font-size:40px; font-weight:800; color:var(--red); line-height:1; }
+.count.zero { color:var(--muted); }
+.sub { color:var(--muted); font-size:13px; margin-top:4px; }
+.files { margin-top:12px; max-height:150px; overflow:auto; font-size:12.5px; color:#555; border-top:1px dashed var(--border); padding-top:10px; }
+.files div { padding:2px 0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.row { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-top:6px; }
+button { font-family:'Montserrat',sans-serif; font-weight:700; font-size:14px; border:none; border-radius:22px; padding:11px 26px; cursor:pointer; }
+#btn-update { background:var(--red); color:#fff; }
+#btn-update:disabled { background:#bbb; cursor:not-allowed; }
+#btn-refresh { background:#eee; color:#333; }
+a.btn { display:inline-block; text-decoration:none; background:var(--ok); color:#fff; font-family:'Montserrat',sans-serif; font-weight:700; font-size:14px; border-radius:22px; padding:11px 26px; }
+/* The progress bar: an empty grey track with a coloured bar inside it. */
+.barwrap { height:22px; background:#eee; border-radius:12px; overflow:hidden; margin:14px 0 6px; }
+#bar { height:100%; width:0%; background:linear-gradient(90deg,#cc0000,#ff5252); transition:width .4s ease; }
+#bar.done { background:linear-gradient(90deg,#2e9e4f,#5ec97f); }
+#bar.err { background:linear-gradient(90deg,#b00,#e53935); }
+#pct { font-family:'Montserrat',sans-serif; font-weight:700; font-size:13px; }
+#phase { color:var(--muted); font-size:13px; }
+#log { display:none; margin-top:12px; background:#1e1e1e; color:#d4d4d4; font-family:'Consolas',monospace; font-size:12px; padding:10px 12px; border-radius:8px; height:170px; overflow:auto; white-space:pre-wrap; }
+h2 { font-family:'Montserrat',sans-serif; font-size:15px; margin:0 0 10px; }
+.note { font-size:12.5px; color:#555; background:#fff7f7; border:1px solid #f3d6d6; border-radius:8px; padding:9px 12px; margin:0 0 14px; line-height:1.5; }
+#btn-rebuild { background:#1e88e5; color:#fff; }
+#btn-rebuild:disabled { background:#bbb; cursor:not-allowed; }
+table#ext-table { width:100%; border-collapse:collapse; font-size:13px; margin-bottom:12px; }
+#ext-table td { padding:7px 8px; border-bottom:1px solid var(--border); vertical-align:top; }
+#ext-table .lyr { font-weight:600; }
+#ext-table .src { color:var(--muted); font-size:11.5px; }
+#ext-table .fresh { white-space:nowrap; text-align:right; color:#444; }
+#ext-table .fresh b { font-family:'Montserrat',sans-serif; }
+.tag { display:inline-block; font-size:10.5px; padding:1px 7px; border-radius:10px; background:#eef2f7; color:#3a6; margin-left:6px; }
+.tag.mcp { background:#e7f1fb; color:#1565c0; }
+.links { font-size:12.5px; color:var(--muted); }
+.links a { color:#1565c0; }
+iframe { width:100%; height:560px; border:1px solid var(--border); border-radius:10px; background:#fff; }
+.hidden { display:none; }

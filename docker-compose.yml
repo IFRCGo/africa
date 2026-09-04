@@ -1,0 +1,137 @@
+# ---------------------------------------------------------------------------
+# The whole application, described in one file.
+#
+# Three containers ("services") run together:
+#
+#   db       PostgreSQL 16  - stores everything
+#   web      Django         - dashboard, updater, admin, API, and the pipeline
+#   pgadmin  pgAdmin 4      - a web interface for browsing the database
+#
+# Start everything:   docker compose up -d --build
+# Watch the logs:     docker compose logs -f web
+# Stop everything:    docker compose down
+#
+# All passwords and ports come from the .env file next to this one. The
+# ${NAME:-default} syntax means "use NAME from .env, or this default if unset".
+# ---------------------------------------------------------------------------
+# The Docker project name. Everything Docker creates is prefixed with it: the
+# containers (communitycenteredhumanitariananalysis-db-1 and friends), the
+# network, and - the part that matters - the two named volumes holding the
+# database and pgAdmin's settings.
+#
+# It is written out rather than left to Compose because Compose would otherwise
+# invent it from the folder name, and a future folder rename would then point at
+# different volumes and the database would look empty. The value below is
+# exactly what Compose derives from the folder "Community Centered Humanitarian
+# Analysis" (lower-cased, spaces removed), so the two agree either way.
+#
+# This IS the name your data is stored under. Changing it starts a new, empty
+# database, so only change it together with a volume migration.
+name: communitycenteredhumanitariananalysis
+
+services:
+
+  # ------------------------------------------------------------------ database
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-sudan_neighbouring_pop_movement}
+      POSTGRES_USER: ${POSTGRES_USER:-sudan}
+      # ":?" means Compose refuses to start if this is unset or empty. There is
+      # deliberately no default: a default password in a public repository is
+      # not a password. Copy env.example to .env and set one.
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env (copy it from env.example)}
+    volumes:
+      # A named volume, NOT a folder on your disk. This repository lives in a
+      # OneDrive-synced folder, and letting OneDrive sync live database files
+      # corrupts them. Docker keeps this volume safely outside that folder.
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      # Exposed so you can also connect with psql, DBeaver or Power BI.
+      - "${POSTGRES_HOST_PORT:-5432}:5432"
+    healthcheck:
+      # "Is the database actually ready?" - the web container waits for a yes.
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-sudan} -d ${POSTGRES_DB:-sudan_neighbouring_pop_movement}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  # ------------------------------------------------------------------ Django
+  web:
+    build: "./Community Centered Humanitarian Analysis Platform"
+    environment:
+      # Database connection. Inside Docker the host is always the "db" service.
+      POSTGRES_DB: ${POSTGRES_DB:-sudan_neighbouring_pop_movement}
+      POSTGRES_USER: ${POSTGRES_USER:-sudan}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env (copy it from env.example)}
+      # "db" is the PostgreSQL container below. Point POSTGRES_HOST at your own
+      # server in .env and this app uses that instead - nothing else changes.
+      POSTGRES_HOST: ${POSTGRES_HOST:-db}
+      POSTGRES_PORT: ${POSTGRES_PORT:-5432}
+
+      # Django behaviour.
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:-dev-only-insecure-key-change-me}
+      DJANGO_DEBUG: ${DJANGO_DEBUG:-1}
+      DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-*}
+      DJANGO_CSRF_TRUSTED_ORIGINS: ${DJANGO_CSRF_TRUSTED_ORIGINS:-}
+      DASHBOARD_URL: ${DASHBOARD_URL:-/}
+      TZ: ${TZ:-UTC}
+
+      # Optional /admin/ login, created on first start when a password is set.
+      DJANGO_SUPERUSER_USERNAME: ${DJANGO_SUPERUSER_USERNAME:-admin}
+      DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL:-admin@example.org}
+      DJANGO_SUPERUSER_PASSWORD: ${DJANGO_SUPERUSER_PASSWORD:-}
+
+      # Where the data lives inside the container (see the volumes below).
+      # Only the source PDFs and the Excel sit outside the app, under /work.
+      # Everything the dashboard serves is inside Django itself, under /app.
+      SOURCE_ROOT: ${SOURCE_ROOT:-/work}
+      DASHBOARD_DATA_DIR: ${DASHBOARD_DATA_DIR:-/app/dashboard/data}
+      MCP_CACHE_DIR: ${MCP_CACHE_DIR:-/app/data_pipeline/mcp_cache}
+      POP_MOVEMENT_XLSX: ${POP_MOVEMENT_XLSX:-/work/neighbouring countries Pop movement data.xlsx}
+    volumes:
+      # 1. The parent "SUDAN Ops" folder, READ-ONLY: the pipeline reads the
+      #    source PDFs and the Excel from here and writes nothing back. The
+      #    dashboard files it produces now live inside the app, in mount 2.
+      - "..:/work:ro"
+      # 2. The Django project - code, templates, static files and the
+      #    dashboard's data/ folder. Edits on your machine take effect without
+      #    rebuilding the image, and the pipeline's output lands here.
+      - "./Community Centered Humanitarian Analysis Platform:/app"
+      # 3. The docs folder, writable, so the Word manual can be rebuilt from
+      #    inside the container:  docker compose exec web python /docs/build_docs.py
+      #    (mount 1 is read-only, so the manual cannot be written through /work.)
+      - "./docs:/docs"
+    ports:
+      - "${WEB_HOST_PORT:-2026}:8000"
+    depends_on:
+      db:
+        condition: service_healthy   # wait until the healthcheck above passes
+    restart: unless-stopped
+
+  # ------------------------------------------------------------------ pgAdmin
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@example.org}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-pgadmin}
+      # Skip the "master password" prompt - the login above is enough locally.
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+      # Pre-registers the population movement server, so it is already in the
+      # sidebar when you log in. You still type the database password once.
+      - ./docker/pgadmin_servers.json:/pgadmin4/servers.json:ro
+    ports:
+      - "${PGADMIN_HOST_PORT:-5050}:80"
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+# Named volumes: Docker manages these, and they survive "docker compose down".
+# Removing them (and all data) takes "docker compose down -v".
+volumes:
+  pgdata:
+  pgadmin_data:

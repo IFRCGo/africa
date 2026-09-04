@@ -1,0 +1,6 @@
+# Files that should never be copied into the image.
+__pycache__/
+*.pyc
+staticfiles/
+.env
+*.sqlite3

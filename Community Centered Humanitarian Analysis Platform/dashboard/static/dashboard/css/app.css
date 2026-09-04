@@ -1,0 +1,265 @@
+/* =========================================================================
+   Styling for the Sudan & Neighbouring countries dashboard.
+   =========================================================================
+
+   Everything visual lives in this one file. It is organised in the same order
+   as the page itself: colours first, then header, layout, map, timeline and
+   the two side panels.
+
+   The block below defines the colour palette as CSS "custom properties" -
+   named colours you set once and reuse everywhere as var(--name). To restyle
+   the whole dashboard for another operation, change these values and nothing
+   else. The names are used throughout the rest of the file.
+   ========================================================================= */
+:root {
+  --bg: #f5f5f5;
+  --panel: #ffffff;
+  --panel2: #ffffff;
+  --border: #e0e0e0;
+  --text: #333333;
+  --muted: #6c757d;
+  --accent: #cc0000;     /* IFRC red - headings, highlights, the header bar */
+  --return: #2e9e4f;     /* green - movement back into Sudan */
+  --event: #e8a200;      /* amber - key events */
+  --influx: #1e88e5;     /* blue  - the 2025 influx from South Sudan */
+  --header: #cc0000;
+  --hover: rgba(0,0,0,.045);
+  --hover2: rgba(0,0,0,.07);
+}
+/* A "reset": browsers add their own spacing to headings, lists and so on.
+   Clearing it first means the rules below start from a blank slate. */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+/* The whole page is one vertical column: header, then the three-column
+   layout, then the timeline. overflow:hidden stops the page itself from
+   scrolling - each panel scrolls on its own instead. */
+body {
+  font-family: "Open Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--bg); color: var(--text);
+  display: flex; flex-direction: column; overflow: hidden;
+}
+h1, h2, h3, .panel h2, .stat-value, #current-date, .theme-group h3 {
+  font-family: "Montserrat", "Open Sans", Arial, sans-serif;
+}
+
+/* ---------- header: IFRC red bar with the four headline figures -------- */
+#topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 18px; background: var(--header); color: #fff;
+  box-shadow: 0 2px 6px rgba(0,0,0,.18);
+  gap: 16px; flex-wrap: wrap; z-index: 1000;
+}
+#title-block { display: flex; align-items: center; gap: 16px; }
+#ifrc-logo { height: 38px !important; width: auto !important; max-height: 38px; max-width: 200px; display: block; flex-shrink: 0; }
+#title-block h1 { font-size: 19px; letter-spacing: 1px; color: #fff; }
+#title-block h1 span { color: rgba(255,255,255,.85); font-weight: 400; }
+#page-footer {
+  font-size: 11.5px; color: var(--muted, rgba(255,255,255,.6)); text-align: center;
+  padding: 7px 18px; background: var(--panel); border-top: 1px solid var(--border);
+}
+#stat-cards { display: flex; gap: 10px; flex-wrap: wrap; }
+.stat {
+  background: rgba(255,255,255,.16); border: 1px solid rgba(255,255,255,.35); border-radius: 20px;
+  padding: 5px 16px; min-width: 124px; text-align: center;
+}
+.stat-value { font-size: 20px; font-weight: 800; color: #fff; font-variant-numeric: tabular-nums; }
+.stat-return .stat-value { color: #fff; }
+.stat-label { font-size: 10px; color: rgba(255,255,255,.82); text-transform: uppercase; letter-spacing: .4px; }
+
+/* ---------- layout: left sidebar | map | right sidebar ----------------
+   #layout is a flex row. The two sidebars have a fixed width and the map
+   takes whatever is left (flex: 1). min-height/min-width: 0 are the small
+   incantations that let a flex child scroll instead of stretching forever.
+   ---------------------------------------------------------------------- */
+#layout { flex: 1; display: flex; min-height: 0; }
+#sidebar {
+  width: 320px; min-width: 320px; background: var(--panel);
+  border-right: 1px solid var(--border); overflow-y: auto; padding: 12px;
+  display: flex; flex-direction: column; gap: 12px;
+  box-shadow: 2px 0 6px rgba(0,0,0,.05);
+}
+.panel { background: var(--panel2); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+.panel h2 {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 1px;
+  color: #999; margin-bottom: 10px; font-weight: 700;
+}
+
+/* The layer switches. The real checkbox is hidden and a small sliding pill
+   is drawn in its place, which is why there are so many rules here. */
+.layer-toggle { display: flex; align-items: center; gap: 9px; font-size: 13px; padding: 5px 0; cursor: pointer; }
+input.switch {
+  appearance: none; width: 34px; height: 18px; border-radius: 10px;
+  background: #cfd6df; position: relative; cursor: pointer; flex-shrink: 0;
+  transition: background .18s;
+}
+input.switch::after {
+  content: ""; position: absolute; top: 2px; left: 2px; width: 14px; height: 14px;
+  border-radius: 50%; background: #fff; transition: left .18s; box-shadow: 0 1px 2px rgba(0,0,0,.25);
+}
+input.switch:checked { background: var(--return); }
+input.switch:checked::after { left: 18px; background: #fff; }
+.swatch { display: inline-block; }
+.arrow-swatch { font-weight: 800; font-size: 15px; line-height: 1; }
+.dot-swatch { width: 10px; height: 10px; border-radius: 50%; }
+
+/* The theme toggles. A group opens when JavaScript adds the class "open" to
+   it, and the rule ".dim-group.open .dim-body" below is what reveals it. */
+.dim-group { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 6px; overflow: hidden; }
+.dim-header {
+  display: flex; align-items: center; gap: 8px; width: 100%; text-align: left;
+  background: var(--hover); border: none; color: var(--text);
+  font-size: 12.5px; padding: 7px 10px; cursor: pointer;
+}
+.dim-header:hover { background: var(--hover2); }
+.dim-header .caret { color: var(--muted); width: 10px; }
+.dim-dot { width: 9px; height: 9px; border-radius: 50%; }
+.dim-count { margin-left: auto; color: var(--muted); font-size: 10.5px; }
+.dim-body { display: none; padding: 4px 8px 8px; }
+.dim-group.open .dim-body { display: block; }
+.tag-check {
+  display: flex; align-items: center; gap: 7px; font-size: 12px; padding: 3px 4px;
+  border-radius: 4px; cursor: pointer; color: #555;
+}
+.tag-check:hover { background: var(--hover); }
+.tag-check input { accent-color: var(--accent); }
+.tag-check .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+#theme-detail { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+.theme-group h3 { font-size: 12px; color: var(--accent); margin: 6px 0 4px; }
+.tag-row {
+  display: flex; justify-content: space-between; gap: 8px; font-size: 12px;
+  padding: 3px 6px; border-radius: 4px; cursor: pointer;
+}
+.tag-row:hover { background: var(--hover); }
+.tag-row .cnt { color: var(--muted); font-variant-numeric: tabular-nums; }
+.tag-snippet {
+  font-size: 11px; color: var(--muted); border-left: 2px solid var(--accent);
+  padding: 4px 8px; margin: 2px 0 6px; font-style: italic; display: none;
+}
+.tag-snippet.open { display: block; }
+
+/* The timeline list. Events extracted automatically are shown in grey
+   italics so a reader can tell them apart from hand-checked milestones. */
+#event-list { display: flex; flex-direction: column; gap: 6px; max-height: 320px; overflow-y: auto; }
+.event-item {
+  border-left: 3px solid var(--event); padding: 5px 9px; background: var(--hover);
+  border-radius: 0 6px 6px 0; cursor: pointer; transition: background .15s;
+}
+.event-item:hover { background: var(--hover2); }
+.event-item.major { border-left-color: var(--accent); }
+.event-item .ev-date { font-size: 10px; color: var(--muted); }
+.event-item .ev-title { font-size: 12px; line-height: 1.35; }
+.event-item.extracted .ev-title { color: #666; font-style: italic; }
+
+/* ---------- the map, its event banner and its popups ------------------- */
+#map-wrap { flex: 1; position: relative; min-width: 0; }
+#map { position: absolute; inset: 0; }
+#event-banner {
+  position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+  max-width: 620px; background: rgba(255,255,255,.97); border: 1px solid var(--event);
+  border-radius: 10px; padding: 10px 16px; font-size: 13px; z-index: 5; color: var(--text);
+  box-shadow: 0 4px 20px rgba(0,0,0,.18);
+}
+#event-banner .eb-date { color: #b07c00; font-size: 11px; font-weight: 700; }
+#event-banner.hidden { display: none; }
+.maplibregl-popup-content {
+  background: #fff !important; color: var(--text) !important;
+  border: 1px solid var(--border); border-radius: 8px !important; font-size: 12px;
+  max-width: 300px; box-shadow: 0 4px 16px rgba(0,0,0,.18);
+}
+.maplibregl-popup-tip { border-top-color: #fff !important; border-bottom-color: #fff !important; }
+
+/* ---------- the timeline: play button, slider and trend chart ---------- */
+#timebar {
+  display: flex; align-items: center; gap: 14px; padding: 10px 18px 14px;
+  background: var(--panel); border-top: 1px solid var(--border);
+}
+#play-btn {
+  width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--accent);
+  background: transparent; color: var(--accent); font-size: 16px; cursor: pointer;
+  flex-shrink: 0; transition: all .15s;
+}
+#play-btn:hover { background: var(--accent); color: #fff; }
+#slider-wrap { flex: 1; position: relative; }
+#sparkline { width: 100%; display: block; opacity: .95; }
+#time-slider { width: 100%; accent-color: var(--accent); cursor: pointer; margin-top: 2px; }
+#slider-ticks { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 1px; }
+#current-date {
+  min-width: 110px; text-align: center; font-size: 15px; font-weight: 700;
+  color: var(--accent); font-variant-numeric: tabular-nums;
+}
+
+/* ---------- right panel: insights, quotes and hazard bars -------------- */
+#rightbar {
+  width: 290px; min-width: 290px; background: var(--panel);
+  border-left: 1px solid var(--border); overflow-y: auto; padding: 12px;
+  display: flex; flex-direction: column; gap: 12px;
+  box-shadow: -2px 0 6px rgba(0,0,0,.05);
+}
+.insight {
+  display: flex; gap: 9px; font-size: 12.5px; line-height: 1.45;
+  padding: 8px 9px; background: var(--hover); border-radius: 8px; margin-bottom: 6px;
+}
+.insight .ico { font-size: 15px; }
+.insight b { color: var(--accent); }
+.insight.good b { color: var(--return); }
+.voice {
+  border-left: 3px solid var(--border); padding: 6px 10px; margin-bottom: 8px;
+  font-size: 12px; font-style: italic; color: #555; line-height: 1.45;
+}
+.voice .v-meta { font-style: normal; font-size: 10.5px; color: var(--muted); margin-top: 3px; }
+.trigger-row { margin-bottom: 7px; }
+.trigger-row .t-label { display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 3px; }
+.trigger-row .t-label .t-n { color: var(--muted); }
+.trigger-bar { height: 6px; border-radius: 3px; background: rgba(0,0,0,.08); overflow: hidden; }
+.trigger-bar > div { height: 100%; border-radius: 3px; background: #e53935; }
+
+/* ---------- the legend box in the corner of the map ------------------- */
+#map-legend {
+  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+  background: rgba(255,255,255,.94); border: 1px solid var(--border); border-radius: 8px;
+  padding: 6px 14px; font-size: 11px; color: #555; z-index: 4; max-width: 90%;
+  box-shadow: 0 2px 10px rgba(0,0,0,.12);
+}
+.leg { display: flex; align-items: center; gap: 5px; }
+.leg-arrow { font-weight: 800; letter-spacing: -1px; }
+.leg-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+
+/* ---------- the small colour key beside the timeline ------------------ */
+#trend-legend { display: flex; flex-direction: column; gap: 1px; min-width: 116px; }
+#trend-legend .tl { font-size: 10px; color: var(--muted); }
+#current-date { min-width: 0; text-align: left; margin-bottom: 2px; }
+
+/* stat trend arrows */
+.stat-value .trend { font-size: 12px; margin-left: 4px; vertical-align: 2px; }
+
+/* responsive */
+@media (max-width: 1280px) { #rightbar { display: none; } }
+@media (max-width: 900px) {
+  #sidebar { display: none; }
+  #stat-cards .stat { min-width: 100px; }
+}
+
+/* --- MCP data layers: toggles, seasonal calendar --- */
+.swatch { width: 16px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.dot-swatch { width: 10px; height: 10px; border-radius: 50%; }
+.layer-sep {
+  font-size: 9.5px; text-transform: uppercase; letter-spacing: 1px;
+  color: var(--muted); margin: 10px 0 4px; padding-top: 8px; border-top: 1px solid var(--border);
+}
+.src-tag {
+  font-size: 8.5px; background: #f0f0f0; color: var(--muted);
+  border: 1px solid var(--border); border-radius: 4px; padding: 1px 5px; margin-left: 6px;
+  letter-spacing: .5px; vertical-align: middle;
+}
+#seasonal-cal { display: flex; flex-direction: column; gap: 2px; }
+.cal-row { display: grid; grid-template-columns: 96px repeat(12, 1fr); gap: 2px; align-items: center; }
+.cal-label { font-size: 10px; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cal-cell { height: 12px; border-radius: 2px; background: #ececec; font-size: 8px; color: var(--muted);
+  text-align: center; line-height: 12px; }
+.cal-head .cal-cell { background: transparent; }
+.cal-now { outline: 1.5px solid var(--accent); outline-offset: -1px; }
+
+/* IPC legend swatches */
+.leg-ipc { display: flex; align-items: center; gap: 4px; }
+.ipc-sw { display: inline-block; width: 11px; height: 11px; border-radius: 2px; margin-left: 2px; }

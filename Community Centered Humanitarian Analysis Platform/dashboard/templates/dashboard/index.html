@@ -1,0 +1,185 @@
+{% load static %}<!DOCTYPE html>
+<!--
+  =========================================================================
+  Community Centered Humanitarian Analysis - the dashboard page
+  =========================================================================
+
+  This file is only the SKELETON of the page. It contains no data at all:
+  every number, dot and line you see is put here by js/app.js after it
+  downloads the files in data/.
+
+  How to read it:
+    * Each element with an id (for example id="map" or id="event-list") is a
+      slot that app.js fills in. Search app.js for that same id to find the
+      code behind it.
+    * The page is laid out in five parts, in this order:
+        header  id="topbar"    IFRC logo, title, and the four big numbers
+        aside   id="sidebar"   left column: layer switches, calendar, themes
+        main    id="map-wrap"  the map itself, its banner and its legend
+        aside   id="rightbar"  right column: insights, quotes, hazards
+        footer  id="timebar"   the timeline slider and play button
+
+  This page is a Django template, served by dashboard/views.py at "/".
+  The stylesheet and script are collected by Django's staticfiles app from
+  dashboard/static/dashboard/, so they are addressed with the "static" template
+  tag rather than by a relative path. The data/ files are served separately by
+  dashboard.views.data_file, which reads them straight off disk so the pipeline
+  can rewrite them without a restart.
+
+  Note: Django parses template tags inside HTML comments as well, so a literal
+  tag must never be written in this block.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudan &amp; Neighbouring Countries</title>
+<!-- MapLibre GL: the free, open-source map library that draws the map. -->
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Our own styling. All colours and layout rules live in this one file. -->
+<link href="{% static 'dashboard/css/app.css' %}" rel="stylesheet">
+</head>
+<body>
+<!-- ===================== TOP BAR: title + headline figures ============= -->
+<!-- The four "-" placeholders are replaced by renderStats() in app.js every
+     time the timeline moves. -->
+<header id="topbar">
+  <div id="title-block">
+    <img id="ifrc-logo" src="https://www.ifrc.org/themes/custom/ifrc_theme/dist/images/Logo-Horizontal-RGB.svg" alt="IFRC Logo">
+    <h1>Sudan &amp; Neighbouring countries <span>- Community Centered Humanitarian Analysis</span></h1>
+  </div>
+  <div id="stat-cards">
+    <div class="stat" id="stat-displaced"><div class="stat-value">–</div><div class="stat-label">Total forcibly displaced</div></div>
+    <div class="stat" id="stat-idps"><div class="stat-value">–</div><div class="stat-label">IDPs inside Sudan</div></div>
+    <div class="stat" id="stat-crossborder"><div class="stat-value">–</div><div class="stat-label">Fled to neighbouring countries</div></div>
+    <div class="stat stat-return" id="stat-returns"><div class="stat-value">–</div><div class="stat-label">Returns to Sudan</div></div>
+  </div>
+</header>
+
+<div id="layout">
+  <!-- ===================== LEFT SIDEBAR ============================== -->
+  <aside id="sidebar">
+    <!-- Every checkbox here switches one map layer on or off. Its id is
+         matched to a handler in initControls() in app.js. -->
+    <section class="panel" id="layers-panel">
+      <h2>Layer control</h2>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-flows" checked>
+        <span class="swatch arrow-swatch" style="color:#e53935">→</span>Movement out of Sudan</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-returns" checked>
+        <span class="swatch arrow-swatch" style="color:#43a047">→</span>Movement back into Sudan</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-events" checked>
+        <span class="swatch dot-swatch" style="background:#ffd54f"></span>Key events</label>
+      <!-- Below this line the layers come from external humanitarian
+           open-data servers rather than from the UNHCR reports. -->
+      <div class="layer-sep">MCP data layers</div>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-idp">
+        <span class="swatch dot-swatch" style="background:#ff5252"></span>IDP localities admin2 (IOM-DTM)</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-idp-states">
+        <span class="swatch dot-swatch" style="background:#ff8f00"></span>IDP by state — Sudan admin1</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-refugees">
+        <span class="swatch dot-swatch" style="background:#26c6da"></span>Refugee totals by country (UNHCR)</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-foodsec">
+        <span class="swatch" style="background:linear-gradient(90deg,#fae61e,#e67800,#c80000,#640000)"></span>Food insecurity — IPC phase, by area (IPC)</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-crossings" checked>
+        <span class="swatch dot-swatch" style="background:#ffffff;border:1px solid #888"></span>Border crossings</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-aoi">
+        <span class="swatch" style="background:rgba(232,162,0,.35);border:2px solid #e8a200"></span>IFRC Areas of Interest (IPC)</label>
+    </section>
+
+    <section class="panel" id="seasonal-panel">
+      <h2>Seasonal calendar <span class="src-tag">FEWS NET</span></h2>
+      <div id="seasonal-cal"></div>
+    </section>
+
+    <!-- The theme toggles are NOT written out here: initThemeControls() in
+         app.js builds them from tags.json, so new tags appear by themselves. -->
+    <section class="panel" id="themes-panel">
+      <h2>What the documents tell us</h2>
+      <div id="dim-groups"></div>
+      <div id="theme-detail"></div>
+    </section>
+
+    <section class="panel" id="events-panel">
+      <h2>Timeline of events</h2>
+      <div id="event-list"></div>
+    </section>
+  </aside>
+
+  <!-- ===================== THE MAP ================================== -->
+  <main id="map-wrap">
+    <div id="map"></div>
+    <div id="event-banner" class="hidden"></div>
+    <!-- The legend is written by hand here because it never changes.
+         Keep its colours in step with COLOR_OUT / COLOR_IN / DIM_META
+         at the top of app.js. -->
+    <div id="map-legend">
+      <span class="leg"><span class="leg-arrow" style="color:#e53935">›››</span> Out of Sudan</span>
+      <span class="leg"><span class="leg-arrow" style="color:#43a047">›››</span> Into Sudan / returns</span>
+      <span class="leg"><span class="leg-dot" style="background:#ffd54f"></span> Key event</span>
+      <span class="leg"><span class="leg-dot" style="background:#ef5350"></span> Hazards</span>
+      <span class="leg"><span class="leg-dot" style="background:#ab47bc"></span> Vulnerabilities</span>
+      <span class="leg"><span class="leg-dot" style="background:#26a69a"></span> Coping</span>
+      <span class="leg"><span class="leg-dot" style="background:#42a5f5"></span> Needs</span>
+      <span class="leg"><span class="leg-dot" style="background:#ffa726"></span> Movement patterns</span>
+      <span class="leg"><span class="leg-dot" style="background:#ff5252"></span> IDP locality / admin2</span>
+      <span class="leg"><span class="leg-dot" style="background:#ff8f00"></span> IDP state / admin1</span>
+      <span class="leg"><span class="leg-dot" style="background:#26c6da"></span> Refugee total / camp</span>
+      <span class="leg"><span class="leg-dot" style="background:#ffffff;border:1px solid #888"></span> Border crossing</span>
+      <span class="leg"><span class="leg-dot" style="background:transparent;border:2px solid #e8a200;border-radius:2px"></span> IFRC Area of Interest</span>
+      <span class="leg leg-ipc">IPC:
+        <span class="ipc-sw" style="background:#fae61e"></span>2
+        <span class="ipc-sw" style="background:#e67800"></span>3
+        <span class="ipc-sw" style="background:#c80000"></span>4
+        <span class="ipc-sw" style="background:#640000"></span>5
+        <span class="ipc-sw" style="border:2px solid #ff1744;background:transparent"></span>famine</span>
+    </div>
+  </main>
+
+  <!-- ===================== RIGHT SIDEBAR ============================= -->
+  <!-- Three panels of automatically written commentary about the month the
+       timeline is currently showing. -->
+  <aside id="rightbar">
+    <section class="panel" id="insights-panel">
+      <h2>Key insights</h2>
+      <div id="insight-list"></div>
+    </section>
+    <section class="panel" id="voices-panel">
+      <h2>Voices from the reports</h2>
+      <div id="voices"></div>
+    </section>
+    <section class="panel" id="triggers-panel">
+      <h2>Top reported hazards</h2>
+      <div id="triggers"></div>
+    </section>
+  </aside>
+</div>
+
+<!-- ===================== THE TIMELINE ================================= -->
+<!-- Dragging the slider is the main way to use this dashboard: it sets the
+     date, and everything above redraws for that date. The canvas behind it
+     holds the small trend chart. -->
+<footer id="timebar">
+  <button id="play-btn" title="Play / pause the story">▶</button>
+  <div id="slider-wrap">
+    <canvas id="sparkline" height="48"></canvas>
+    <input type="range" id="time-slider" min="0" max="100" value="0" step="1">
+    <div id="slider-ticks"></div>
+  </div>
+  <div id="trend-legend">
+    <div id="current-date">15 Apr 2023</div>
+    <div class="tl"><span style="color:#ff7043">━</span> displaced</div>
+    <div class="tl"><span style="color:#e53935">━</span> cross-border</div>
+    <div class="tl"><span style="color:#43a047">━</span> returns</div>
+  </div>
+</footer>
+
+<footer id="page-footer">The story of displacement since 15 April 2023, told by <b id="doc-count">…</b> UNHCR situation documents · Last report: <span id="last-updated">…</span></footer>
+
+<!-- Load the map library first, then our code, which needs it. -->
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="{% static 'dashboard/js/app.js' %}"></script>
+</body>
+</html>
