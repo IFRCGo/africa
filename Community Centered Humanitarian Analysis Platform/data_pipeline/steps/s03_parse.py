@@ -19,6 +19,7 @@ you can re-tune a parser and re-run without re-reading a single PDF.
 """
 import math
 import re
+import unicodedata
 
 import fitz
 
@@ -26,6 +27,8 @@ from django.db import transaction
 from django.db.models import Max
 
 from data_pipeline.common import (
+    DASHBOARD_DATA,
+    MCP_CACHE,
     SOURCE_ROOT,
     load_gazetteer,
     load_taxonomy,
@@ -442,36 +445,336 @@ def parse_narrative(sink, doc_id, report_date, country_focus, text):
     return n
 
 
+# =========================================================================
+# WHICH COUNTRY IS THIS PASSAGE ABOUT?
+# =========================================================================
+# The country used to be read off the filename, once per document. That is
+# right for a Chad situation report and badly wrong for a regional appeal: a
+# 60-page Refugee Response Plan covering six countries filed every theme in it
+# under "Regional", and half of all the evidence in the dashboard ended up in
+# that bucket - invisible the moment a reader filtered to a country.
+#
+# THE RULE: file a passage under the country the people are IN, not the one
+# they came FROM. "Sudanese refugees arriving in Chad from Darfur" is about
+# Chad: that is where those people now are. Darfur is named to explain the
+# arrival, not to claim the sentence.
+#
+# It is applied in three steps, strongest evidence first:
+#   1. the sentence names a country as a destination  -> that country
+#   2. the sentence names a country at all            -> the nearest one
+#   3. the sentence names nowhere, but the PAGE is clearly one country's
+#      chapter                                        -> that country
+# and only if all three fail does the document's own label stand.
+#
+# Country-specific reports keep their filename label either way. They are
+# already right, and re-reading them makes things worse: phrases like "unable
+# to return to Sudan" in an Egypt report would hand Egypt's caseload to Sudan.
+
+# Place names are strong evidence of location. Demonyms are weak: "Sudanese"
+# describes people, who may be anywhere, so it is only consulted when no place
+# is named at all.
+_PLACES = {
+    # South Sudan is listed first, and Sudan excludes it by lookbehind, so
+    # "South Sudan" can never be read as a mention of Sudan.
+    "South Sudan": [r"South\s*Sudan\b", r"\bSSD\b"],
+    "Sudan": [r"(?<!South )Sudan\b", r"\bSDN\b"],
+    "Chad": [r"Chad\b", r"\bTCD\b"],
+    "Egypt": [r"Egypt\b", r"\bEGY\b"],
+    "Ethiopia": [r"Ethiopia\b", r"\bETH\b"],
+    "Libya": [r"Libya\b", r"\bLBY\b"],
+    "Uganda": [r"Uganda\b", r"\bUGA\b"],
+    "Central African Republic": [r"Central African Republic", r"\bCAR\b", r"\bCAF\b"],
+    "Eritrea": [r"Eritrea\b"],
+}
+_DEMONYMS = {
+    "South Sudan": [r"South\s*Sudanese"], "Sudan": [r"(?<!South )Sudanese"],
+    "Chad": [r"Chadian"], "Egypt": [r"Egyptian"], "Ethiopia": [r"Ethiopian"],
+    "Libya": [r"Libyan"], "Uganda": [r"Ugandan"], "Eritrea": [r"Eritrean"],
+    "Central African Republic": [r"Central African"],
+}
+# Every settlement in the gazetteer counts as a mention of its country, so
+# "Adre" reads as Chad and "El Fasher" as Sudan. Short names are skipped: a
+# three-letter town would match inside other words too often to be safe.
+for _loc in GAZ["locations"]:
+    if _loc["country"] in _PLACES:
+        for _nm in [_loc["name"]] + (_loc.get("aliases") or "").split(","):
+            _nm = _nm.strip()
+            if len(_nm) > 4:
+                _PLACES[_loc["country"]].append(re.escape(_nm) + r"\b")
+
+
+def _named_group_rx(table):
+    """One regex that finds any of these countries and says which it found."""
+    return re.compile("|".join(
+        f"(?P<{c.replace(' ', '_')}>{'|'.join(p)})" for c, p in table.items()), re.I)
+
+
+PLACE_RX = _named_group_rx(_PLACES)
+DEMONYM_RX = _named_group_rx(_DEMONYMS)
+
+# Words that put people somewhere. Note there is deliberately no bare "to":
+# "return to Sudan" and "back to Sudan" describe where people are NOT.
+HERE_RX = re.compile(
+    r"\b(in|into|inside|within|at|arriv\w+ (?:in|at)|host(?:ed|ing)? (?:in|by)|"
+    r"fled (?:to|into)|fleeing (?:to|into)|cross(?:ed|ing)? into|enter(?:ed|ing)?|"
+    r"settled in|sheltering in|present in|reception in)\s+$", re.I)
+# Words that mark an origin, or a place people are heading back to. Neither
+# ever claims the sentence.
+THERE_RX = re.compile(
+    r"\b(from|out of|leaving|fleeing|origin\w*|return\w* to|back to|"
+    r"repatriat\w+ to|home to|towards?)\s+$", re.I)
+
+# How far to look for the sentence boundary before giving up and using a plain
+# window. Long enough for a real sentence, short enough that a page of tabular
+# text with no full stops cannot drag in half the page.
+SENTENCE_REACH = 300
+
+
+def _sentence_bounds(text, start, end):
+    """The sentence the keyword sits in."""
+    lo, hi = max(0, start - SENTENCE_REACH), min(len(text), end + SENTENCE_REACH)
+    left, right = text.rfind(". ", lo, start), text.find(". ", end, hi)
+    return (left + 2 if left != -1 else lo), (right if right != -1 else hi)
+
+
+def _mentions(rx, window, at):
+    """Every country named in this window, as (kind, distance, country).
+
+    `kind` is "here" if a destination word introduces it, "there" if an origin
+    word does, "plain" otherwise. `distance` is how far it sits from the
+    keyword that was matched, so the nearest can win.
+    """
+    out = []
+    for m in rx.finditer(window):
+        country = next(k for k, v in m.groupdict().items() if v).replace("_", " ")
+        before = window[max(0, m.start() - 22):m.start()]
+        kind = ("there" if THERE_RX.search(before)
+                else "here" if HERE_RX.search(before) else "plain")
+        out.append((kind, abs(m.start() - at), country))
+    return out
+
+
+def page_country(text):
+    """The country a whole PAGE is about, when one clearly dominates it.
+
+    Regional appeals are laid out as one chapter per country, so a page naming
+    Chad twenty times and nowhere else twice is a Chad page. Both tests matter:
+    the 60% share stops a page that merely mentions somewhere in passing, and
+    the floor of three stops a single stray word deciding a whole page.
+    Returns None when the page is genuinely mixed - which is what "Regional"
+    is supposed to mean.
+    """
+    seen = {}
+    total = 0
+    for m in PLACE_RX.finditer(text):
+        c = next(k for k, v in m.groupdict().items() if v).replace("_", " ")
+        seen[c] = seen.get(c, 0) + 1
+        total += 1
+    if not seen:
+        return None
+    top, n = max(seen.items(), key=lambda kv: kv[1])
+    return top if n >= 3 and n / total >= 0.6 else None
+
+
+def attribute_country(text, start, end, page_focus, fallback):
+    """Which country is the passage around text[start:end] about?"""
+    lo, hi = _sentence_bounds(text, start, end)
+    window, at = text[lo:hi], start - lo
+    # Places first, demonyms only if the sentence names no place at all.
+    for rx in (PLACE_RX, DEMONYM_RX):
+        hits = _mentions(rx, window, at)
+        for want in ("here", "plain"):          # destination beats bare mention
+            candidates = [h for h in hits if h[0] == want]
+            if candidates:
+                return min(candidates, key=lambda h: h[1])[2]
+    # The sentence names nowhere: let the page's own chapter speak for it.
+    return page_focus or fallback
+
+
+# =========================================================================
+# WHERE INSIDE THE COUNTRY?
+# =========================================================================
+# Knowing a theme belongs to Sudan lets the map colour Sudan. Knowing it
+# belongs to Northern State lets the map highlight Northern State, which is
+# what a reader actually wants to see. This resolves the second question.
+#
+# It only answers where the report says so. Measured over the whole corpus,
+# about 30% of tagged sentences name a place; the rest are genuinely
+# country-level statements ("shelter needs remain acute across Chad") and are
+# left without an area rather than guessed at.
+#
+# The names come from the polygons the map can actually draw, so a match here
+# always has something to highlight:
+#   boundaries/admin1.geojson   133 states across the eight countries
+#   mcp_cache/sdn_adm2.geojson  189 Sudanese localities - the finest level we
+#                               hold, which is why "El Bauga" works in Sudan
+#   boundaries/aoi.geojson      the IFRC Areas of Interest, which cover places
+#                               like Kiryandongo that are not an ADM1 anywhere
+
+def _norm_place(s):
+    """Fold a place name to something two spellings of it can both reach."""
+    s = unicodedata.normalize("NFKD", s)
+    s = "".join(c for c in s if not unicodedata.combining(c))     # Ouaddaï -> Ouaddai
+    s = re.sub(r"[^a-z0-9 ]", " ", s.lower())
+    return re.sub(r"\s+", " ", s).strip()
+
+
+# Words a report drops or adds freely: "Aswan" and "Aswan Governorate" are the
+# same place, and so are "Northern" and "Northern State".
+_PLACE_SUFFIXES = re.compile(
+    r"\s+(governorate|governate|province|region|state|pca|locality|district)$")
+
+# Spellings no amount of folding will reconcile, because the two sources chose
+# different transliterations. Report spelling -> the polygon's own name.
+_PLACE_ALIASES = {
+    "benishangul gumuz": "Beneshangul Gumu",
+    "benishangul gumz": "Beneshangul Gumu",
+    "beneshangul gumuz": "Beneshangul Gumu",
+    "al jazirah": "Gezira",
+    "aj jazirah": "Gezira",
+    "jazirah": "Gezira",
+    "gezira": "Gezira",
+}
+
+# normalised name -> (area_id, canonical name, country)
+PLACE_LOOKUP = {}
+
+
+def _add_place(name, area_id, country):
+    for key in {_norm_place(name), _PLACE_SUFFIXES.sub("", _norm_place(name))}:
+        # Four characters is the floor: shorter names match inside other words
+        # far too often to be trusted ("Car", "Sila" as a syllable, and so on).
+        if len(key) >= 4:
+            PLACE_LOOKUP.setdefault(key, (area_id, name, country))
+
+
+def _load_places():
+    """Build the lookup from the polygon files, biggest unit last so that a
+    locality wins over the state that contains it when both are named."""
+    import json as _json
+
+    adm1_path = DASHBOARD_DATA / "boundaries" / "areas.geojson"
+    aoi_path = DASHBOARD_DATA / "boundaries" / "aoi.geojson"
+    adm2_path = MCP_CACHE / "sdn_adm2.geojson"
+
+    if adm2_path.exists():
+        for f in _json.loads(adm2_path.read_text(encoding="utf-8"))["features"]:
+            nm = f["properties"].get("shapeName")
+            if nm:
+                _add_place(nm, f"SDN-ADM2:{nm}", "Sudan")
+    if aoi_path.exists():
+        for f in _json.loads(aoi_path.read_text(encoding="utf-8"))["features"]:
+            nm = f["properties"].get("name") or f["properties"].get("shapeName")
+            if nm:
+                _add_place(nm, f"AOI:{nm}", None)
+    if adm1_path.exists():
+        for f in _json.loads(adm1_path.read_text(encoding="utf-8"))["features"]:
+            p = f["properties"]
+            _add_place(p["name"], p["id"], p["country"])
+    # Towns, camps and crossings stand for the state they sit in: a report
+    # naming El Fasher is telling us about North Darfur.
+    for loc in GAZ["locations"]:
+        if loc["kind"] == "country_anchor" or not loc.get("admin1"):
+            continue
+        parent = PLACE_LOOKUP.get(_norm_place(loc["admin1"]))
+        if parent:
+            for nm in [loc["name"]] + (loc.get("aliases") or "").split(","):
+                if nm.strip():
+                    _add_place(nm.strip(), parent[0], parent[2])
+    # Finally the irreconcilable spellings, pointed at whatever they resolve to.
+    for spelling, canonical in _PLACE_ALIASES.items():
+        target = PLACE_LOOKUP.get(_norm_place(canonical))
+        if target:
+            PLACE_LOOKUP.setdefault(spelling, target)
+
+
+_load_places()
+
+# One regex for every known place, longest first so "North Darfur" is matched
+# whole rather than as "Darfur".
+PLACE_NAME_RX = (
+    re.compile(r"\b(" + "|".join(re.escape(p) for p in
+                                 sorted(PLACE_LOOKUP, key=len, reverse=True)) + r")\b", re.I)
+    if PLACE_LOOKUP else None)
+
+
+def attribute_area(text, start, end, country):
+    """Which state or locality is this passage about? (area_id, name) or None.
+
+    The place must belong to the country the passage was already attributed to.
+    Without that check a sentence comparing Chad with Sudan could highlight the
+    wrong side of the border - and a highlight on the wrong country is worse
+    than no highlight at all.
+    """
+    if not PLACE_NAME_RX:
+        return None, None
+    lo, hi = _sentence_bounds(text, start, end)
+    window, at = text[lo:hi], start - lo
+    best = None
+    for m in PLACE_NAME_RX.finditer(window):
+        entry = PLACE_LOOKUP.get(_norm_place(m.group(1)))
+        if not entry:
+            continue
+        area_id, canonical, place_country = entry
+        if place_country and country and place_country != country:
+            continue
+        d = abs(m.start() - at)
+        if best is None or d < best[0]:
+            best = (d, area_id, m.group(1))
+    return (best[1], best[2]) if best else (None, None)
+
+
 # ------------------------------------------------------------ taxonomy tagging
 # Compile every keyword pattern once, grouped by dimension and tag.
 TAX_COMPILED = {
     dim: {tag: [re.compile(p, re.I) for p in pats] for tag, pats in tags.items()}
     for dim, tags in TAX.items() if not dim.startswith("_")
 }
-# Two example sentences per tag per document is enough evidence; more would
-# balloon the table without telling the reader anything new.
+# Two example sentences per tag is enough evidence; more would balloon the
+# table without telling the reader anything new. The cap is per COUNTRY, not
+# per document: a regional appeal covering six countries has six countries'
+# worth of evidence in it, and capping it per document threw five of them away.
 MAX_SNIPPETS_PER_TAG = 2
 
 
-def tag_document(sink, doc_id, report_date, country_focus, text):
-    """Record which themes a document mentions, with a sample sentence each."""
+def tag_document(sink, doc_id, report_date, country_focus, pages):
+    """Record which themes a document mentions, with a sample sentence each.
+
+    Takes the pages separately rather than one stitched string, so that a
+    country named at the top of page 12 cannot claim a sentence on page 13 -
+    which matters because regional reports are laid out country by country.
+    """
     n = 0
-    for dim, tags in TAX_COMPILED.items():
-        for tag, patterns in tags.items():
-            hits = 0
-            for rx in patterns:
-                for m in rx.finditer(text):
-                    snippet = text[max(0, m.start() - 80):m.end() + 120].replace("\n", " ").strip()
-                    sink.add_tag(
-                        document_id=doc_id, report_date=report_date, dimension=dim,
-                        tag=tag, country=country_focus, snippet=snippet[:280],
-                    )
-                    n += 1
-                    hits += 1
-                    if hits >= MAX_SNIPPETS_PER_TAG:
-                        break
-                if hits >= MAX_SNIPPETS_PER_TAG:
-                    break
+    # A country-specific report keeps its own label; only the regional ones,
+    # which cover many countries at once, are read for their contents.
+    reattribute = country_focus == "Regional"
+    for text in pages:
+        if not text:
+            continue
+        focus = page_country(text) if reattribute else None
+        seen = {}
+        for dim, tags in TAX_COMPILED.items():
+            for tag, patterns in tags.items():
+                for rx in patterns:
+                    for m in rx.finditer(text):
+                        country = (attribute_country(text, m.start(), m.end(),
+                                                     focus, country_focus)
+                                   if reattribute else country_focus)
+                        area_id, area_name = attribute_area(text, m.start(), m.end(), country)
+                        # The cap counts each AREA separately: flooding reported
+                        # in three states is three findings, not one repeated.
+                        key = (dim, tag, country, area_id)
+                        if seen.get(key, 0) >= MAX_SNIPPETS_PER_TAG:
+                            continue
+                        seen[key] = seen.get(key, 0) + 1
+                        snippet = text[max(0, m.start() - 80):m.end() + 120]
+                        sink.add_tag(
+                            document_id=doc_id, report_date=report_date, dimension=dim,
+                            tag=tag, country=country,
+                            area_id=area_id, area_name=area_name,
+                            snippet=snippet.replace("\n", " ").strip()[:280],
+                        )
+                        n += 1
     return n
 
 
@@ -557,9 +860,11 @@ def run():
         "id", "rel_path", "family", "country_focus", "report_date"
     )
     for doc_id, rel, family, country, report_date in documents:
-        # Stitch the pages of this document back into one string.
-        pages = (DocumentText.objects.filter(document_id=doc_id)
-                 .order_by("page").values_list("text", flat=True))
+        # Both forms are needed: the figure parsers read the document as one
+        # continuous string, while tagging works page by page so that country
+        # attribution cannot run across a chapter boundary.
+        pages = list(DocumentText.objects.filter(document_id=doc_id)
+                     .order_by("page").values_list("text", flat=True))
         text = "\n".join(p for p in pages if p)
 
         if family == "weekly_mapping":
@@ -570,7 +875,7 @@ def run():
         if text:
             if family in NARRATIVE_FAMILIES:
                 counts["figures"] += parse_narrative(sink, doc_id, report_date, country, text)
-            counts["tags"] += tag_document(sink, doc_id, report_date, country, text)
+            counts["tags"] += tag_document(sink, doc_id, report_date, country, pages)
 
     # Write everything in one transaction, then build the corridors from it.
     with transaction.atomic():

@@ -9,15 +9,19 @@
   downloads the files in data/.
 
   How to read it:
-    * Each element with an id (for example id="map" or id="event-list") is a
-      slot that app.js fills in. Search app.js for that same id to find the
+    * Each element with an id (for example id="map-a" or id="event-list") is
+      a slot that app.js fills in. Search app.js for that same id to find the
       code behind it.
     * The page is laid out in five parts, in this order:
         header  id="topbar"    IFRC logo, title, and the four big numbers
-        aside   id="sidebar"   left column: layer switches, calendar, themes
-        main    id="map-wrap"  the map itself, its banner and its legend
+        aside   id="sidebar"   left column: country filter, layers, themes
+        main    id="map-wrap"  the map panes, the banner and the legend
         aside   id="rightbar"  right column: insights, quotes, hazards
         footer  id="timebar"   the timeline slider and play button
+
+    * There are TWO map panes, id="map-a" and id="map-b". Only the first is
+      used until someone selects exactly two countries in the country filter,
+      at which point the map splits and shows one country in each.
 
   This page is a Django template, served by dashboard/views.py at "/".
   The stylesheet and script are collected by Django's staticfiles app from
@@ -62,6 +66,21 @@
 <div id="layout">
   <!-- ===================== LEFT SIDEBAR ============================== -->
   <aside id="sidebar">
+    <!-- The country filter, first in the sidebar because it governs
+         everything below it. initCountryFilter() in app.js puts a searchable
+         multi-select into #country-filter and the chips for what is chosen
+         into #country-chips. Choosing countries filters EVERY panel on the
+         page, not only the map, and moves the map: one country zooms to it,
+         two split the map in half, three or more zoom out to fit them all. -->
+    <section class="panel" id="country-panel">
+      <h2>Country filter</h2>
+      <div id="filter-bar">
+        <div id="country-filter"></div>
+        <div id="country-chips"></div>
+        <div id="filter-mode"></div>
+      </div>
+    </section>
+
     <!-- Every checkbox here switches one map layer on or off. Its id is
          matched to a handler in initControls() in app.js. -->
     <section class="panel" id="layers-panel">
@@ -74,11 +93,11 @@
         <span class="swatch dot-swatch" style="background:var(--event)"></span>Key events</label>
       <!-- Below this line the layers come from external humanitarian
            open-data servers rather than from the UNHCR reports. -->
-      <div class="layer-sep">MCP data layers</div>
+      <div class="layer-sep">Data Layers</div>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-idp">
-        <span class="swatch dot-swatch" style="background:var(--idp-locality)"></span>IDP localities admin2 (IOM-DTM)</label>
+        <span class="swatch dot-swatch" style="background:var(--idp-locality)"></span>IDP by admin2 localities (IOM-DTM)</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-idp-states">
-        <span class="swatch dot-swatch" style="background:var(--idp-state)"></span>IDP by state — Sudan admin1</label>
+        <span class="swatch dot-swatch" style="background:var(--idp-state)"></span>IDP by admin1 State (IOM-DTM)</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-refugees">
         <span class="swatch dot-swatch" style="background:var(--refugees)"></span>Refugee totals by country (UNHCR)</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-foodsec">
@@ -86,7 +105,7 @@
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-crossings" checked>
         <span class="swatch dot-swatch" style="background:var(--ifrc-white);border:1px solid var(--muted)"></span>Border crossings</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-aoi">
-        <span class="swatch" style="background:rgba(210,39,48,.28);border:2px solid var(--event)"></span>IFRC Areas of Interest (IPC)</label>
+        <span class="swatch" style="background:rgba(210,39,48,.28);border:2px solid var(--event)"></span>IFRC Areas of Operation (IPC)</label>
     </section>
 
     <section class="panel" id="seasonal-panel">
@@ -94,8 +113,10 @@
       <div id="seasonal-cal"></div>
     </section>
 
-    <!-- The theme toggles are NOT written out here: initThemeControls() in
-         app.js builds them from tags.json, so new tags appear by themselves. -->
+    <!-- The theme filters are NOT written out here: initThemeControls() in
+         app.js builds one searchable dropdown per dimension from tags.json, so
+         new tags appear by themselves. Inside a dropdown, ticking a box adds a
+         tag and clicking a tag's name selects only that one. -->
     <section class="panel" id="themes-panel">
       <h2>What the documents tell us</h2>
       <div id="dim-groups"></div>
@@ -109,8 +130,16 @@
   </aside>
 
   <!-- ===================== THE MAP ================================== -->
+  <!-- Two map panes, not one. The second is empty and hidden until the user
+       picks exactly two countries in the filter; #map-wrap then gains the
+       class "split" and the panes sit side by side, one country in each.
+       app.js builds the second map the first time it is needed and keeps both
+       fed with identical data - only their viewports differ. -->
   <main id="map-wrap">
-    <div id="map"></div>
+    <div id="map-panes">
+      <div class="map-pane"><div class="map-canvas" id="map-a"></div><div class="pane-label" id="map-a-label"></div></div>
+      <div class="map-pane" id="pane-b"><div class="map-canvas" id="map-b"></div><div class="pane-label" id="map-b-label"></div></div>
+    </div>
     <div id="event-banner" class="hidden"></div>
     <!-- The legend is written by hand here because it never changes.
          Keep its colours in step with COLOR_OUT / COLOR_IN / DIM_META
@@ -119,11 +148,16 @@
       <span class="leg"><span class="leg-arrow" style="color:var(--out)">›››</span> Out of Sudan</span>
       <span class="leg"><span class="leg-arrow" style="color:var(--return)">›››</span> Into Sudan / returns</span>
       <span class="leg"><span class="leg-dot" style="background:var(--event)"></span> Key event</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--dim-hazard)"></span> Hazards</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--dim-vulnerability)"></span> Vulnerabilities</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--dim-coping)"></span> Coping</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--dim-need)"></span> Needs</span>
-      <span class="leg"><span class="leg-dot" style="background:var(--dim-movement)"></span> Movement patterns</span>
+      <!-- The five pillars are bands drawn around the area they were reported
+           in, nested so several can share one area without hiding each other.
+           An area wearing three bands has three pillars converging on it. -->
+      <span class="leg"><span class="leg-band" style="border-color:var(--dim-hazard)"></span> Hazards</span>
+      <span class="leg"><span class="leg-band" style="border-color:var(--dim-vulnerability)"></span> Vulnerabilities</span>
+      <span class="leg"><span class="leg-band" style="border-color:var(--dim-coping)"></span> Coping</span>
+      <span class="leg"><span class="leg-band" style="border-color:var(--dim-need)"></span> Needs</span>
+      <span class="leg"><span class="leg-band" style="border-color:var(--dim-movement)"></span> Movement patterns</span>
+      <span class="leg"><span class="leg-tint"></span> Reported, but no place named</span>
+      <span class="leg"><span class="leg-water"></span> River / lake beside flood or water reporting</span>
       <span class="leg"><span class="leg-dot" style="background:var(--idp-locality)"></span> IDP locality / admin2</span>
       <span class="leg"><span class="leg-dot" style="background:var(--idp-state)"></span> IDP state / admin1</span>
       <span class="leg"><span class="leg-dot" style="background:var(--refugees)"></span> Refugee total / camp</span>
@@ -143,11 +177,19 @@
        timeline is currently showing. -->
   <aside id="rightbar">
     <section class="panel" id="insights-panel">
-      <h2>Key insights</h2>
+      <h2>Trends</h2>
       <div id="insight-list"></div>
     </section>
+    <!-- Community Insights. With the search box empty this shows the quotes
+         for the month the timeline is on; type in it and app.js searches every
+         quote in the archive instead, because any one month holds only a
+         handful. Clicking a result moves the timeline to that month. -->
     <section class="panel" id="voices-panel">
-      <h2>Voices from the reports</h2>
+      <h2>Community Insights <span id="voice-count" class="panel-count"></span></h2>
+      <div class="panel-search">
+        <input type="search" id="voice-search" placeholder="Search all community quotes…"
+               aria-label="Search community insights">
+      </div>
       <div id="voices"></div>
     </section>
     <section class="panel" id="triggers-panel">

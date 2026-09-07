@@ -91,6 +91,9 @@
   --idp-locality: var(--ifrc-orange-light);   /* IDP admin2 - Migration family */
   --idp-state:    var(--ifrc-purple-light);   /* IDP admin1 - the coarser aggregate */
   --refugees:     var(--ifrc-blue-medium);    /* host-country totals and camps */
+  /* Rivers and lakes. Not a brand colour: it has to read as water, and it has
+     to stay separate from --refugees, which is the other blue on this map. */
+  --water:        #1f9ad6;
   --on-header: var(--ifrc-white);       /* text sitting on the header bar */
   /* Panels on the header bar are DARKENED, not lightened: white 10px text
      needs 4.5:1, and lightening the red drops it to 3.6:1. */
@@ -131,6 +134,11 @@ h1, h2, h3, .panel h2, .stat-value, #current-date, .theme-group h3 {
   padding: 7px 18px; background: var(--panel); border-top: 1px solid var(--border);
 }
 #stat-cards { display: flex; gap: 10px; flex-wrap: wrap; }
+/* A filtered card is not the published headline figure, so it says so. */
+.stat-filtered { border-style: dashed; }
+.stat-filtered .stat-label::after {
+  content: " (filtered)"; opacity: .75; font-style: italic; text-transform: none;
+}
 .stat {
   background: var(--header-panel); border: 1px solid var(--header-panel-edge); border-radius: 20px;
   padding: 5px 16px; min-width: 124px; text-align: center;
@@ -175,27 +183,107 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 .arrow-swatch { font-weight: 800; font-size: 15px; line-height: 1; }
 .dot-swatch { width: 10px; height: 10px; border-radius: 50%; }
 
-/* The theme toggles. A group opens when JavaScript adds the class "open" to
-   it, and the rule ".dim-group.open .dim-body" below is what reveals it. */
-.dim-group { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 6px; overflow: hidden; }
-.dim-header {
-  display: flex; align-items: center; gap: 8px; width: 100%; text-align: left;
-  background: var(--hover); border: none; color: var(--text);
-  font-size: 12.5px; padding: 7px 10px; cursor: pointer;
+/* ---------- the country filter, first panel in the sidebar --------------
+   It governs every other panel, so it sits above the layer switches. The
+   dropdown itself is the shared component below; only the chips and the
+   one-line description of what the map is doing are specific to it. */
+#filter-bar { display: flex; flex-direction: column; gap: 8px; }
+#country-filter .dd { margin-bottom: 0; }
+
+/* The chips: one per selected country, each removable, plus a Clear all. */
+#country-chips { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+#country-chips:empty { display: none; }
+.chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: var(--accent); color: var(--ifrc-white);
+  border: none; border-radius: 12px; cursor: pointer;
+  font-family: inherit; font-size: 10.5px; font-weight: 700;
+  letter-spacing: .3px; padding: 3px 9px;
 }
-.dim-header:hover { background: var(--hover2); }
-.dim-header .caret { color: var(--muted); width: 10px; }
-.dim-dot { width: 9px; height: 9px; border-radius: 50%; }
-.dim-count { margin-left: auto; color: var(--muted); font-size: 10.5px; }
-.dim-body { display: none; padding: 4px 8px 8px; }
-.dim-group.open .dim-body { display: block; }
-.tag-check {
-  display: flex; align-items: center; gap: 7px; font-size: 12px; padding: 3px 4px;
-  border-radius: 4px; cursor: pointer; color: var(--text);
+.chip span { font-size: 13px; line-height: 1; opacity: .7; }
+.chip:hover span { opacity: 1; }
+.chip-clear { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+.chip-clear:hover { background: var(--hover); color: var(--text); }
+
+/* Says in words what the map is doing: "Split view: Chad | Egypt". */
+#filter-mode {
+  font-size: 10px; text-transform: uppercase; letter-spacing: .5px;
+  color: var(--muted); line-height: 1.4;
 }
-.tag-check:hover { background: var(--hover); }
-.tag-check input { accent-color: var(--accent); }
-.tag-check .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+/* The dropdown panel must be allowed to hang outside this panel's box. */
+#country-panel { overflow: visible; }
+
+/* ---------- the dropdown filter -----------------------------------------
+   ONE component, used six times: the country filter in the header and the
+   five theme dimensions in the sidebar. app.js builds the markup
+   (makeDropdown); everything below is only how it looks.
+
+   The panel is absolutely positioned and revealed by the class "open", which
+   app.js puts on .dd. Its parent must therefore not clip it - see the
+   overflow rules on #themes-panel and #filter-bar further down.
+   ------------------------------------------------------------------------ */
+.dd { position: relative; margin-bottom: 6px; }
+.dd-trigger {
+  display: flex; align-items: center; gap: 7px; width: 100%; text-align: left;
+  background: var(--panel2); border: 1px solid var(--border); border-radius: 8px;
+  color: var(--text); font-family: inherit; font-size: 12.5px;
+  padding: 7px 10px; cursor: pointer; transition: border-color .15s, background .15s;
+}
+.dd-trigger:hover { background: var(--hover); }
+.dd.open > .dd-trigger { border-color: var(--accent); background: var(--hover); }
+.dd.has-selection > .dd-trigger { border-color: var(--accent); }
+.dd-label { white-space: nowrap; }
+.dd-value {
+  margin-left: auto; color: var(--muted); font-size: 11px;
+  max-width: 130px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+}
+.dd-value.on { color: var(--accent); font-weight: 700; }
+.dd-caret { color: var(--muted); font-size: 10px; flex-shrink: 0; }
+.dd.open .dd-caret { transform: rotate(180deg); }
+.dd-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+
+.dd-panel {
+  display: none; position: absolute; z-index: 1200; top: calc(100% + 4px); left: 0;
+  width: 100%; min-width: 232px; background: var(--panel);
+  border: 1px solid var(--border); border-radius: 8px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.18); overflow: hidden;
+}
+.dd.open .dd-panel { display: block; }
+.dd-search { padding: 8px 8px 6px; border-bottom: 1px solid var(--border); }
+.dd-search input, .panel-search input {
+  width: 100%; box-sizing: border-box; font-family: inherit; font-size: 12px;
+  padding: 6px 9px; border: 1px solid var(--border); border-radius: 6px;
+  background: var(--panel2); color: var(--text);
+}
+.dd-search input:focus, .panel-search input:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.dd-actions {
+  display: flex; align-items: center; gap: 8px; padding: 6px 8px;
+  border-bottom: 1px solid var(--border);
+}
+.dd-actions button {
+  font-family: inherit; font-size: 10.5px; text-transform: uppercase; letter-spacing: .4px;
+  background: none; border: none; color: var(--accent); cursor: pointer; padding: 2px;
+  font-weight: 700;
+}
+.dd-actions button:hover { text-decoration: underline; }
+.dd-shown { margin-left: auto; font-size: 10px; color: var(--muted); }
+.dd-list { max-height: 240px; overflow-y: auto; padding: 4px; }
+.dd-opt {
+  display: flex; align-items: center; gap: 8px; font-size: 12px;
+  padding: 5px 6px; border-radius: 5px; color: var(--text);
+}
+.dd-opt:hover { background: var(--hover); }
+.dd-opt.on { background: var(--hover2); }
+.dd-opt .dd-cb { accent-color: var(--accent); cursor: pointer; flex-shrink: 0; margin: 0; }
+/* Clicking the NAME picks only this one; clicking the box adds or removes it. */
+.dd-opt .dd-text { flex: 1; cursor: pointer; }
+.dd-opt .dd-text:hover { text-decoration: underline; text-decoration-style: dotted; }
+.dd-empty { font-size: 11.5px; color: var(--muted); padding: 10px 8px; }
+
+/* The theme dropdowns' panels must be allowed to hang outside their panel. */
+#themes-panel { overflow: visible; }
+#dim-groups { position: relative; }
+
 #theme-detail { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
 .theme-group h3 { font-size: 12px; color: var(--accent); margin: 6px 0 4px; }
 .tag-row {
@@ -225,7 +313,28 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 
 /* ---------- the map, its event banner and its popups ------------------- */
 #map-wrap { flex: 1; position: relative; min-width: 0; }
-#map { position: absolute; inset: 0; }
+/* One pane normally. When app.js adds "split" to #map-wrap the second pane
+   appears and the two share the width, each with the country name written
+   across its top. The gap is a hairline of page background, which reads as a
+   divider without needing a border on either map. */
+#map-panes { position: absolute; inset: 0; display: flex; gap: 0; }
+.map-pane { position: relative; flex: 1; min-width: 0; }
+.map-canvas { position: absolute; inset: 0; }
+#pane-b { display: none; }
+#map-wrap.split #pane-b { display: block; }
+#map-wrap.split #map-panes { gap: 2px; background: var(--border); }
+.pane-label {
+  display: none; position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+  z-index: 5; background: var(--header); color: var(--on-header);
+  font-family: "Montserrat", "Open Sans", Arial, sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  padding: 4px 14px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,.25);
+  pointer-events: none; white-space: nowrap;
+}
+#map-wrap.split .pane-label { display: block; }
+/* Panning is switched off in split view, so the grab hand would be a lie. */
+.pan-locked .maplibregl-canvas-container.maplibregl-interactive,
+.pan-locked .maplibregl-canvas-container.maplibregl-interactive:active { cursor: default; }
 #event-banner {
   position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
   max-width: 620px; background: rgba(255,255,255,.97); border: 1px solid var(--event);
@@ -240,6 +349,11 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
   max-width: 300px; box-shadow: 0 4px 16px rgba(0,0,0,.18);
 }
 .maplibregl-popup-tip { border-top-color: var(--ifrc-white) !important; border-bottom-color: var(--ifrc-white) !important; }
+/* The hovering detail bubble must not take the pointer: if it did, moving onto
+   it would count as leaving the shape underneath and the bubble would flicker
+   in and out. It is read-only, so it never needs to be clicked. */
+.hover-popup { pointer-events: none; }
+.hover-popup .maplibregl-popup-content { box-shadow: 0 4px 14px rgba(0,0,0,.22); }
 
 /* ---------- the timeline: play button, slider and trend chart ---------- */
 #timebar {
@@ -280,6 +394,18 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
   font-size: 12px; font-style: italic; color: var(--muted); line-height: 1.45;
 }
 .voice .v-meta { font-style: normal; font-size: 10.5px; color: var(--muted); margin-top: 3px; }
+/* A search result is clickable - it takes the timeline to that month. */
+.voice-hit { cursor: pointer; transition: background .15s; }
+.voice-hit:hover { background: var(--hover); }
+.voice mark { background: rgba(255,130,0,.3); color: inherit; border-radius: 2px; padding: 0 1px; }
+.voices-empty { font-size: 12px; color: var(--muted); }
+
+/* Search boxes that sit inside a panel heading, and the small grey count
+   beside a heading that says how many results a search found. */
+.panel-search { margin-bottom: 8px; }
+.panel-count { float: right; font-size: 10px; color: var(--muted); font-weight: 400; text-transform: none; letter-spacing: 0; }
+/* Shown when a panel has nothing to say under the current filter. */
+.panel-note { font-size: 11.5px; color: var(--muted); line-height: 1.45; }
 .trigger-row { margin-bottom: 7px; }
 .trigger-row .t-label { display: flex; justify-content: space-between; font-size: 11.5px; margin-bottom: 3px; }
 .trigger-row .t-label .t-n { color: var(--muted); }
@@ -297,6 +423,12 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 .leg { display: flex; align-items: center; gap: 5px; }
 .leg-arrow { font-weight: 800; letter-spacing: -1px; }
 .leg-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+/* A pillar is drawn as a band around an area, so its key is a ring not a dot. */
+.leg-band { width: 11px; height: 11px; border: 2px solid; border-radius: 2px; display: inline-block; }
+.leg-tint { width: 11px; height: 11px; border-radius: 2px; display: inline-block;
+            background: rgba(1,30,65,.18); }
+.leg-water { width: 14px; height: 3px; border-radius: 2px; display: inline-block;
+             background: var(--water); box-shadow: 0 0 4px var(--water); }
 
 /* ---------- the small colour key beside the timeline ------------------ */
 #trend-legend { display: flex; flex-direction: column; gap: 1px; min-width: 116px; }
@@ -311,6 +443,8 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 @media (max-width: 900px) {
   #sidebar { display: none; }
   #stat-cards .stat { min-width: 100px; }
+  /* Two maps side by side need width there is not any of, so stack them. */
+  #map-wrap.split #map-panes { flex-direction: column; }
 }
 
 /* --- MCP data layers: toggles, seasonal calendar --- */

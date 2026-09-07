@@ -154,21 +154,41 @@ def run():
     # suitable one we meet, so without a fixed order the example would change
     # from one run to the next even though the data had not changed.
     tag_rows = (NarrativeTag.objects.exclude(report_date=None).order_by("id")
-                .values_list("dimension", "tag", "country", "report_date", "snippet"))
-    for dimension, tag, country, report_date, snippet in tag_rows.iterator(chunk_size=5000):
+                .values_list("dimension", "tag", "country", "report_date", "snippet",
+                             "area_id", "area_name"))
+    area_names = {}
+    rows = tag_rows.iterator(chunk_size=5000)
+    for dimension, tag, country, report_date, snippet, area_id, area_name in rows:
         month = report_date.strftime("%Y-%m")
-        counts[(dimension, tag, country, month)] += 1
-        key = (dimension, tag, month)
-        # Keep the first reasonably long sentence as the example for that month.
+        # area_id is None for the majority of rows, where the report named no
+        # place. Those still count for the country; they simply cannot be put
+        # on a particular polygon.
+        counts[(dimension, tag, country, month, area_id)] += 1
+        if area_id and area_name:
+            area_names.setdefault(area_id, area_name)
+        # Keep the first reasonably long sentence as the example for that
+        # month AND that country. The country belongs in the key because the
+        # dashboard can be filtered to one country, and a quote from the Chad
+        # reporting must not be shown as evidence about Egypt.
+        key = (dimension, tag, month, country)
         if key not in snippets and snippet and len(snippet) > 60:
             snippets[key] = snippet
 
     tags_out = defaultdict(lambda: defaultdict(lambda: {"monthly": [], "snippets": {}}))
-    for (dimension, tag, country, month), n in sorted(counts.items()):
-        tags_out[dimension][tag]["monthly"].append({"month": month, "country": country, "count": n})
-    for (dimension, tag, month), snippet in snippets.items():
-        tags_out[dimension][tag]["snippets"][month] = snippet
+    for (dimension, tag, country, month, area_id), n in sorted(
+            counts.items(), key=lambda kv: tuple("" if x is None else x for x in kv[0])):
+        row = {"month": month, "country": country, "count": n}
+        if area_id:
+            row["area"] = area_id
+        tags_out[dimension][tag]["monthly"].append(row)
+    # snippets is written as {month: {country: sentence}}. The dashboard also
+    # still reads the older {month: sentence} shape, so an existing tags.json
+    # keeps working until this step is next run.
+    for (dimension, tag, month, country), snippet in snippets.items():
+        tags_out[dimension][tag]["snippets"].setdefault(month, {})[country] = snippet
     dump("tags.json", {dim: dict(tags) for dim, tags in tags_out.items()})
+    # What each area id was called in the reports, for the map's labels.
+    dump("tag_areas.json", area_names)
 
     # ---- documents catalogue ---------------------------------------------
     documents = [

@@ -1,7 +1,7 @@
 # Python
 __pycache__/
 *.pyc
-
+.gitignore
 # Secrets. NOTHING matching .env is ever committed - not .env, and not any
 # .env.something variant, however it is named. The published template is
 # "env.example" (no leading dot), which contains placeholders only.
@@ -13,4 +13,4 @@ credentials
 
 # Django
 Community Centered Humanitarian Analysis Platform/staticfiles/
-
+Community_Centered_Humanitarian_Analysis_Documentation.docx

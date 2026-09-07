@@ -183,6 +183,18 @@ class NarrativeTag(models.Model):
     )
     tag = models.TextField(null=True, blank=True, help_text="Normalised tag, e.g. flooding, food")
     country = models.TextField(null=True, blank=True)
+    # WHERE INSIDE THE COUNTRY, when the report says. About a third of tagged
+    # sentences name a state, a locality or a town; those are the ones the map
+    # can highlight. The rest stay country-level and are left null.
+    area_id = models.TextField(
+        null=True, blank=True,
+        help_text="Polygon this belongs to, e.g. 'SDN:Northern'. Matches "
+                  "boundaries/admin1.geojson properties.id. Null when the "
+                  "report named no place.",
+    )
+    area_name = models.TextField(
+        null=True, blank=True, help_text="The place as the report wrote it, e.g. 'El Bauga'",
+    )
     snippet = models.TextField(null=True, blank=True)
 
     class Meta:
