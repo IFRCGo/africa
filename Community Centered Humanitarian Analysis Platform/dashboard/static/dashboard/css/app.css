@@ -349,11 +349,57 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
   max-width: 300px; box-shadow: 0 4px 16px rgba(0,0,0,.18);
 }
 .maplibregl-popup-tip { border-top-color: var(--ifrc-white) !important; border-bottom-color: var(--ifrc-white) !important; }
-/* The hovering detail bubble must not take the pointer: if it did, moving onto
-   it would count as leaving the shape underneath and the bubble would flicker
-   in and out. It is read-only, so it never needs to be clicked. */
+/* ---------- the combined detail bubble ----------------------------------
+   One bubble carries a section per layer under the cursor. While it merely
+   follows the mouse it must NOT take the pointer: moving onto it would count
+   as leaving the shape underneath, and it would flicker in and out.
+
+   Clicking pins it. A pinned bubble is a thing you read rather than a thing
+   that follows you, so it takes the pointer back, gains a close button and
+   scrolls - which is the whole point when five layers overlap. */
 .hover-popup { pointer-events: none; }
-.hover-popup .maplibregl-popup-content { box-shadow: 0 4px 14px rgba(0,0,0,.22); }
+.hover-popup .maplibregl-popup-content {
+  box-shadow: 0 4px 14px rgba(0,0,0,.22);
+  max-height: 46vh; overflow: hidden; padding: 10px 12px;
+}
+.hover-popup.pinned { pointer-events: auto; }
+.hover-popup.pinned .maplibregl-popup-content {
+  overflow-y: auto; box-shadow: 0 10px 28px rgba(0,0,0,.3);
+  border: 1px solid var(--accent); padding-top: 22px;
+}
+.pp-close {
+  position: absolute; top: 4px; right: 6px; z-index: 2;
+  background: none; border: none; cursor: pointer;
+  font-size: 17px; line-height: 1; color: var(--muted); padding: 2px 5px;
+}
+.pp-close:hover { color: var(--accent); }
+/* How many layers are stacked here - shown only when there is more than one. */
+.pp-count {
+  font-size: 9.5px; text-transform: uppercase; letter-spacing: .6px;
+  color: var(--muted); margin-bottom: 6px;
+}
+.pp-sec + .pp-sec { border-top: 1px solid var(--border); margin-top: 8px; padding-top: 8px; }
+.pp-title {
+  font-size: 9.5px; text-transform: uppercase; letter-spacing: .6px;
+  color: var(--muted); font-weight: 700; margin-bottom: 3px;
+}
+.pp-head { margin-bottom: 5px; }
+.pp-sub { display: block; font-size: 10.5px; color: var(--muted); font-weight: 400; }
+/* One block per pillar, edged in that pillar's colour so the bubble and the
+   bands on the map are colour-matched. */
+.pp-dim { border-left: 3px solid; padding: 2px 0 2px 7px; margin: 6px 0; }
+.pp-dim-h { font-size: 11px; font-weight: 700; display: flex; justify-content: space-between; gap: 8px; }
+.pp-row { display: flex; justify-content: space-between; gap: 10px; font-size: 11.5px; padding: 1px 0; }
+.pp-n { color: var(--muted); font-variant-numeric: tabular-nums; font-weight: 400; }
+.pp-quote { font-size: 10.5px; font-style: italic; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+.pp-water { font-size: 10.5px; color: var(--water); margin-top: 6px; }
+/* Says plainly what the numbers are, so a mention count is never read as a
+   population figure. */
+.pp-note { font-size: 9.5px; color: var(--muted); margin-top: 7px; line-height: 1.4; }
+.pp-hint {
+  font-size: 9px; text-transform: uppercase; letter-spacing: .5px;
+  color: var(--muted); margin-top: 7px; text-align: right; opacity: .8;
+}
 
 /* ---------- the timeline: play button, slider and trend chart ---------- */
 #timebar {

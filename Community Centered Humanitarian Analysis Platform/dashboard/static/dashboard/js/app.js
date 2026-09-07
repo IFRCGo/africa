@@ -700,9 +700,9 @@ function addLayers(m) {
 
   // Events and corridors read on hover like every other layer.
   popup(m, "event-dots", (p) =>
-    `<b style="color:${COLOR_EVENT}">${fmtDate(Date.parse(p.date))}</b><br><b>${p.title}</b><br>${p.description || ""}`);
+    `<b style="color:${COLOR_EVENT}">${fmtDate(Date.parse(p.date))}</b><br><b>${p.title}</b><br>${p.description || ""}`, "Key event");
   popup(m, "flow-lines", (p) =>
-    `<b>${p.name}</b><br>${p.kind}<br><b style="color:${p.color}">${p.labelFull}</b> people (cumulative)`);
+    `<b>${p.name}</b><br>${p.kind}<br><b style="color:${p.color}">${p.labelFull}</b> people (cumulative)`, "Movement corridor");
 
   // ---- IDP localities (IOM-DTM, admin2) ----
   m.addSource("idp", { type: "geojson", data: empty() });
@@ -766,33 +766,64 @@ function addLayers(m) {
   });
 
   popup(m, "idp-circles", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.state})</span><br>
-    <b style="color:${COLOR_IDP_LOCALITY}">${p.valFull}</b> IDPs · ${p.dateLabel}<br><span style="color:${COLOR_MUTED}">IOM-DTM via HDX</span>`);
+    <b style="color:${COLOR_IDP_LOCALITY}">${p.valFull}</b> IDPs · ${p.dateLabel}<br><span style="color:${COLOR_MUTED}">IOM-DTM via HDX</span>`, "IDPs — locality");
   popup(m, "idp-state-circles", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(Sudan — state level)</span><br>
-    <b style="color:${COLOR_IDP_STATE}">${p.valFull}</b> IDPs · ${p.dateLabel}<br><span style="color:${COLOR_MUTED}">IOM-DTM / UNHCR (Sudan IDPs.xlsx)</span>`);
+    <b style="color:${COLOR_IDP_STATE}">${p.valFull}</b> IDPs · ${p.dateLabel}<br><span style="color:${COLOR_MUTED}">IOM-DTM / UNHCR (Sudan IDPs.xlsx)</span>`, "IDPs — state");
   popup(m, "ref-country", (p) => `<b style="color:${COLOR_IN_HOST}">${p.country}</b><br>
-    <b>${p.valFull}</b> Sudanese refugees · ${p.dateLabel}<br><span style="color:${COLOR_MUTED}">UNHCR${p.note ? " · " + p.note : ""}</span>`);
+    <b>${p.valFull}</b> Sudanese refugees · ${p.dateLabel}<br><span style="color:${COLOR_MUTED}">UNHCR${p.note ? " · " + p.note : ""}</span>`, "Refugees — country total");
   popup(m, "ref-camps", (p) => `<b style="color:${COLOR_IN_HOST}">${p.name}</b><br>${p.type} · ${p.country}<br>
-    Opened ${p.opened}<br><span style="color:${COLOR_MUTED}">Location curated (UNHCR RRP); magnitude shown by country total</span>`);
+    Opened ${p.opened}<br><span style="color:${COLOR_MUTED}">Location curated (UNHCR RRP); magnitude shown by country total</span>`, "Refugee site");
+  /* The highlighted area. Returns null when nothing was reported here, so
+     hovering an unhighlighted state stays silent rather than showing an empty
+     box - every one of the 336 polygons is in this layer, only some are lit. */
   popup(m, "area-wash", (p) => {
-    const dims = DIM_ORDER
-      .map((d) => [d, m.getFeatureState({ source: "areas", id: p.id })[`w_${d}`]])
-      .filter(([, w]) => w);
-    return `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.country || "IFRC area of interest"})</span><br>
-      ${dims.map(([d]) => `<span style="color:${DIM_META[d].color}">&#9632;</span> ${DIM_META[d].label}`).join("<br>") ||
-        `<span style="color:${COLOR_MUTED}">no reporting this month</span>`}
-      ${(p.water || []).length ? `<br><span style="color:${COLOR_MUTED}">near ${(p.water || []).slice(0, 3).join(", ")}</span>` : ""}`;
-  });
+    const detail = (state.areaDetail || {})[p.id];
+    if (!detail) return null;
+    const month = monthLabel(state.areaMonth || monthKey(state.current));
+    let html = `<div class="pp-head"><b>${escapeHTML(p.name)}</b>
+      <span class="pp-sub">${escapeHTML(p.country || "IFRC area of interest")}${
+        p.level === "adm2" ? " · locality" : p.level === "adm1" ? " · state" : ""} · ${month}</span></div>`;
+    for (const dim of DIM_ORDER) {
+      const tags = detail[dim];
+      if (!tags) continue;
+      const rows = Object.entries(tags).sort((a, b) => b[1] - a[1]);
+      const total = rows.reduce((a, r) => a + r[1], 0);
+      html += `<div class="pp-dim" style="border-color:${DIM_META[dim].color}">
+        <div class="pp-dim-h" style="color:${DIM_META[dim].color}">${DIM_META[dim].label}
+          <span class="pp-n">${total} mention${total > 1 ? "s" : ""}</span></div>` +
+        rows.map(([tag, n]) =>
+          `<div class="pp-row"><span>${escapeHTML(tag.replace(/_/g, " "))}</span><span class="pp-n">${n}</span></div>`).join("");
+      // A sentence from the reporting behind the biggest tag, so the number is
+      // never the only thing offered as evidence.
+      const td = (state.data.tags[dim] || {})[rows[0][0]];
+      const quote = td && snippetFor(td, state.areaMonth || monthKey(state.current));
+      if (quote) html += `<div class="pp-quote">“…${escapeHTML(quote.slice(0, 180))}…”</div>`;
+      html += `</div>`;
+    }
+    if ((p.water || []).length)
+      html += `<div class="pp-water">Water nearby: ${escapeHTML((p.water || []).slice(0, 4).join(", "))}</div>`;
+    html += `<div class="pp-note">Counts are mentions in the reporting for this month,
+      not people affected — the source documents do not give a per-hazard caseload.
+      Switch on the IDP or IPC layers for population figures.</div>`;
+    return html;
+  }, "Community reporting");
   popup(m, "water-core", (p) =>
-    `<b style="color:${COLOR_WATER}">${p.name}</b><br><span style="color:${COLOR_MUTED}">${p.kind}</span>`);
+    `<b style="color:${COLOR_WATER}">${escapeHTML(p.name)}</b>
+     <span class="pp-sub">${p.kind}</span>`, "Water");
 
   popup(m, "crossing-dots", (p) => `<b>${p.name}</b><br>Crossing to ${p.country}<br>
-    ${p.active ? `<b style="color:${COLOR_EVENT}">Active corridor</b> — ${p.flowLabel} people moved (cumulative)` : "No recorded movement at this date"}`);
+    ${p.active ? `<b style="color:${COLOR_EVENT}">Active corridor</b> — ${p.flowLabel} people moved (cumulative)` : "No recorded movement at this date"}`, "Border crossing");
   popup(m, "ipc-fill", (p) => `<b>${p.area}</b><br>IPC <b>Phase ${p.ph}</b>${p.fam ? ` · <b style="color:${COLOR_ACCENT}">Famine (P5)</b>` : ""}<br>
-    <b>${Math.round(p.p3 * 100)}%</b> in Phase 3+ (Crisis or worse)<br><span style="color:${COLOR_MUTED}">IPC analysis via IPC MCP</span>`);
+    <b>${Math.round(p.p3 * 100)}%</b> in Phase 3+ (Crisis or worse)<br><span style="color:${COLOR_MUTED}">IPC analysis via IPC MCP</span>`, "Food security (IPC)");
   popup(m, "aoi-fill", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.ipc_country || ""})</span><br>
     <b style="color:${COLOR_EVENT}">IFRC Area of Interest</b><br>
     ${p.ipc_phase ? `IPC <b>Phase ${p.ipc_phase}</b> — <b>${Math.round((p.ipc_p3 || 0) * 100)}%</b> in Phase 3+
-      <span style="color:${COLOR_MUTED}">(${p.ipc_n_phase3plus}/${p.ipc_n_areas} sub-areas)</span>` : `<span style="color:${COLOR_MUTED}">No current IPC analysis</span>`}`);
+      <span style="color:${COLOR_MUTED}">(${p.ipc_n_phase3plus}/${p.ipc_n_areas} sub-areas)</span>` : `<span style="color:${COLOR_MUTED}">No current IPC analysis</span>`}`, "IFRC area of interest");
+
+  // Every layer has now said what it would show. From here the registry is
+  // closed, and one handler per map serves all of them from a single bubble.
+  popupSpecsBuilt = true;
+  bindPopups(m);
 }
 
 /* ONE hovering bubble per map, reused by every layer.
@@ -807,30 +838,111 @@ function hoverBubble(m) {
       closeOnClick: false,
       offset: 12,               // clear of the cursor, so it cannot flicker
       className: "hover-popup",
-      maxWidth: "280px",
+      maxWidth: "330px",
     }));
   return hoverBubbles.get(m);
 }
 
-/* Show a layer's details on HOVER, and turn the mouse pointer into a hand over
-   it. `html` builds the bubble text from the properties of whatever feature is
-   under the cursor.
+/* ===================== ONE BUBBLE, NOT FIVE =============================
+ * The layers on this map deliberately sit on top of each other: a state can
+ * carry a hazard band, a vulnerability band, an IPC phase, IDP figures and a
+ * river, all at the same point. Giving each its own popup meant five bubbles
+ * stacked on one another, four of them unreadable.
+ *
+ * So nothing binds its own popup. Each layer REGISTERS what it would say, and
+ * one handler per map asks "what is under the cursor?" and writes a single
+ * bubble with a section for each answer, in the order below.
+ *
+ * Hovering shows it. Clicking PINS it: the bubble stops following the mouse,
+ * gains a close button and becomes scrollable, so a tall stack of sections can
+ * actually be read. Clicking the map again, or the close button, releases it.
+ * ======================================================================== */
+const POPUP_SPECS = [];     // { layer, title, html } in the order they appear
+let popupSpecsBuilt = false;
 
-   It listens on mousemove rather than mouseenter so the bubble follows the
-   cursor along a line or across a large area, instead of staying pinned where
-   the shape was first entered. The bubble itself ignores the mouse (see
-   .hover-popup in app.css); without that it would sit under the cursor, take
-   the pointer off the shape, fire mouseleave, and flicker. */
-function popup(m, layer, html) {
-  m.on("mousemove", layer, (e) => {
-    if (!e.features || !e.features.length) return;
-    m.getCanvas().style.cursor = "pointer";
-    hoverBubble(m).setLngLat(e.lngLat).setHTML(html(e.features[0].properties)).addTo(m);
-  });
-  m.on("mouseleave", layer, () => {
-    m.getCanvas().style.cursor = "";
-    hoverBubble(m).remove();
-  });
+/* Register what a layer says when the cursor is over it. `html` builds the
+   section body from the feature's properties; `title` heads the section when
+   several are shown at once. */
+function popup(m, layer, html, title) {
+  if (!popupSpecsBuilt) POPUP_SPECS.push({ layer, html, title });
+}
+
+// Which map, if any, currently has its bubble pinned open.
+let pinnedOn = null;
+
+/* Everything under the cursor, as ready-to-show sections. */
+function sectionsAt(m, point) {
+  const ids = POPUP_SPECS.map((s) => s.layer).filter((id) => m.getLayer(id));
+  let feats = [];
+  try {
+    feats = m.queryRenderedFeatures(point, { layers: ids });
+  } catch (err) {
+    return [];                                   // style still loading
+  }
+  const out = [], seen = new Set();
+  for (const spec of POPUP_SPECS) {              // fixed order, not hit order
+    for (const f of feats) {
+      if (f.layer.id !== spec.layer) continue;
+      // One section per feature, not per overlapping copy of it.
+      const key = spec.layer + "|" + (f.id != null ? f.id : JSON.stringify(f.properties));
+      if (seen.has(key)) continue;
+      seen.add(key);
+      const body = spec.html(f.properties, f, m);
+      if (body) out.push({ title: spec.title, body });
+    }
+  }
+  return out;
+}
+
+function showCombined(m, e) {
+  const sections = sectionsAt(m, e.point);
+  const bubble = hoverBubble(m);
+  if (!sections.length) { bubble.remove(); m.getCanvas().style.cursor = ""; return; }
+  m.getCanvas().style.cursor = "pointer";
+  const many = sections.length > 1;
+  bubble
+    .setLngLat(e.lngLat)
+    .setHTML(
+      (many ? `<div class="pp-count">${sections.length} layers here</div>` : "") +
+      sections.map((s) => `<div class="pp-sec">${
+        many && s.title ? `<div class="pp-title">${s.title}</div>` : ""}${s.body}</div>`).join("") +
+      `<div class="pp-hint">click to pin${many ? " and scroll" : ""}</div>`)
+    .addTo(m);
+}
+
+/* Pin the bubble where it is, so it can be read and scrolled. */
+function pinBubble(m, e) {
+  const sections = sectionsAt(m, e.point);
+  if (!sections.length) { unpin(); return; }
+  unpin();
+  pinnedOn = m;
+  const bubble = hoverBubble(m);
+  bubble.setLngLat(e.lngLat).setHTML(
+    `<button type="button" class="pp-close" aria-label="Close">×</button>` +
+    (sections.length > 1 ? `<div class="pp-count">${sections.length} layers here</div>` : "") +
+    sections.map((s) => `<div class="pp-sec">${
+      s.title ? `<div class="pp-title">${s.title}</div>` : ""}${s.body}</div>`).join("")
+  ).addTo(m);
+  const el = bubble.getElement();
+  el.classList.add("pinned");
+  const close = el.querySelector(".pp-close");
+  if (close) close.addEventListener("click", unpin);
+}
+
+function unpin() {
+  if (!pinnedOn) return;
+  const bubble = hoverBubble(pinnedOn);
+  const el = bubble.getElement();
+  if (el) el.classList.remove("pinned");
+  bubble.remove();
+  pinnedOn = null;
+}
+
+/* One set of handlers per map, replacing the per-layer ones. */
+function bindPopups(m) {
+  m.on("mousemove", (e) => { if (!pinnedOn) showCombined(m, e); });
+  m.on("mouseout", () => { if (!pinnedOn) hoverBubble(m).remove(); });
+  m.on("click", (e) => (pinnedOn ? unpin() : pinBubble(m, e)));
 }
 
 // "Draw nothing" - used to clear a layer that is switched off.
@@ -979,6 +1091,11 @@ function renderThemes() {
   const byArea = {};        // area id -> dim -> count
   const unlocated = {};     // country -> count of reporting that named no area
   const waterNames = new Set();
+  /* What the popup will say about each area: not just which pillars are on it
+     but WHICH TAGS, how many mentions each, and a sentence from the reporting.
+     Worked out here because this is the one place that already walks the rows;
+     the popup then only has to look it up. */
+  const detail = {};
 
   for (const key of state.activeTags) {
     const [dim, tag] = key.split("|");
@@ -990,6 +1107,9 @@ function renderThemes() {
       if (row.area) {
         (byArea[row.area] = byArea[row.area] || {})[dim] =
           (byArea[row.area][dim] || 0) + row.count;
+        const d = (detail[row.area] = detail[row.area] || {});
+        const dd = (d[dim] = d[dim] || {});
+        dd[tag] = (dd[tag] || 0) + row.count;
         // Only a water-related tag lights the water beside its area.
         if (isWaterTag && state.data.areaById) {
           for (const w of (state.data.areaById[row.area] || {}).water || []) waterNames.add(w);
@@ -1019,6 +1139,8 @@ function renderThemes() {
     areaStates[areaId] = st;
   }
   setStates("areas", areaStates);
+  state.areaDetail = detail;
+  state.areaMonth = mk;
 
   // ---- the national wash for reporting that named no place ---------------
   const countryStates = {};
