@@ -588,8 +588,19 @@ function addLayers(m) {
 
      One source holds all 336 polygons and is set once. What each pillar shows
      on it is carried by FEATURE STATE rather than by five copies of the
-     geometry - see renderThemes(). */
-  m.addSource("areas", { type: "geojson", data: empty(), promoteId: "id" });
+     geometry - see renderThemes().
+
+     SEEDED FROM WHAT IS ALREADY LOADED, and this is not optional. Every other
+     layer here is filled by a render function, so a map built later fills
+     itself on the next redraw. This one is filled ONCE, by loadAreas(), which
+     hands the geometry only to the maps that exist the moment its download
+     finishes. The second half of the split view is built later than that - the
+     first time two countries are picked - so starting it empty left it empty
+     for good: renderThemes() then wrote feature states onto features that were
+     not there, and the right-hand half could never highlight anything. */
+  m.addSource("areas", {
+    type: "geojson", data: state.data.areas || empty(), promoteId: "id",
+  });
   // A faint wash under the bands, so a highlighted area reads as filled in
   // rather than merely outlined. It takes the leading pillar's colour.
   m.addLayer({

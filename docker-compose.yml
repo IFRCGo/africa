@@ -33,7 +33,19 @@ services:
 
   # ------------------------------------------------------------------ database
   db:
-    image: postgres:16-alpine
+    # PostGIS rather than plain PostgreSQL, because the boundary library stores
+    # real geometry: QGIS, DBeaver and Power BI open admin_areas as a map layer,
+    # and the database can answer spatial questions itself ("which district
+    # contains this point?") instead of the answer being computed in Python.
+    #
+    # This image IS postgres:16 with the PostGIS extension added. The on-disk
+    # layout is identical, so the pgdata volume below carries over untouched -
+    # no dump-and-restore was needed to adopt it.
+    #
+    # Going back to postgres:16-alpine is NOT just a tag change once geometry
+    # columns exist: they depend on the extension, and a plain server cannot
+    # read them. See the rollback section of the boundary library spec.
+    image: postgis/postgis:16-3.4-alpine
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-sudan_neighbouring_pop_movement}
       POSTGRES_USER: ${POSTGRES_USER:-sudan}
