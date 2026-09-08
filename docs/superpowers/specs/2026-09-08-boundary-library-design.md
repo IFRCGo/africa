@@ -358,3 +358,121 @@ Rollback depends on how far things got:
 - **After phase 2**: restore the `pg_dump` into a fresh `postgres:16` volume. Swapping the
   tag back is not sufficient — the geometry columns in `admin_areas` and `map_features`
   depend on the extension, and a plain PostgreSQL server cannot read them.
+
+---
+
+# Addendum, 2026-09-08: Humanitarian Service Points
+
+Added after the design above was approved. It depends on the boundary library, which is why
+it lives here rather than in a spec of its own.
+
+## A1. What the source data actually is
+
+`Chad Maps\Humanitarian_Service_Points_Mapping_-_all_versions_-_labels_-_2026-09-08-11-46-14.xlsx`
+is a Kobo export of **six submissions, one per country** (Chad, Uganda, South Sudan,
+Ethiopia, Sudan, Egypt), across 1,051 columns.
+
+**There are no HSP coordinates in this file, and no per-site rows.** What it records is:
+
+- which of **11 services** the National Society offers (a multi-select, one binary column
+  per service)
+- **which ADM1 regions and which ADM2 districts** those services are offered in (again as
+  binary columns, one per region and district)
+- whether the same services are offered at every HSP in the country (five countries: yes)
+
+South Sudan answered "no", so it carries a repeat group of **3 named locations** — Renk
+(Upper Nile), Aweil North (Northern Bahr el Ghazal), Fashoda (Upper Nile) — each with its
+own service list. Its `selected_districts` column holds real OCHA p-codes
+(`SS0711 SS0503 SS0702`), which join straight to `admin_areas`.
+
+The `max_hsps` column is **not** a count of service points: its values (70, 135, 78, 92,
+189, 367) are the number of ADM2 choices in each country's form roster.
+
+**Consequence for the map.** The HSP layer is a *district* layer, not a point layer. Symbols
+are drawn at the point-on-surface of each ADM2 district where a service is offered, which is
+the finest truthful placement this data supports. A symbol therefore means "this service is
+offered in this district", not "there is a service point at this spot".
+
+## A2. Tables
+
+**`hsp_submissions`** — one row per country submission: `country`, `iso3`, `same_services`,
+`hsp_count`, `kobo_uuid`, `submitted_at`, `form_version`, `source_file`, `ingested_at`.
+
+**`hsp_service_areas`** — one row per (submission × district × service), the shape the map
+reads: `submission` FK, `iso3`, `service` (the 11-value vocabulary), `pcode`,
+`admin_area` FK → `admin_areas`, `level`, `location_name`, `match_method`
+(`pcode` | `name` | `unmatched`).
+
+District labels are matched to p-codes through `admin_areas` under the §10 guards, with the
+country already known. South Sudan's rows match by p-code directly. `match_method` records
+which route was taken, so a name-matched row can be told from a certain one, and
+`unmatched` rows are reported by the audit rather than silently dropped.
+
+## A3. Service → symbol, verified against the legend
+
+Read from the LEGEND block of `Chad Maps\Generated Maps\Final PDFs\HSPs.pdf` (Aug 2026) and
+matched **visually**, symbol by symbol, against rendered SVGs — not guessed from filenames,
+several of which are misleading (DRM's symbol is filed under `Emergency-Medical-Services`,
+and NSD's under `Independence`).
+
+| Legend | Service in the form | Icon in `Dropbox\icons\Colour\svg` |
+|---|---|---|
+| HEALTH | Health | `IFRC-icons-colour_Health.svg` |
+| WASH | Water, Sanitation & Hygiene | `IFRC-icons-colour_Water-and-sanitation-WASH.svg` |
+| CASH VOUCHER ASSISTANCE | Cash & Voucher Assistance | `IFRC-icons-colour_Cash-programme.svg` |
+| CEA | Community Engagement & Accountability | `IFRC-icons-colour_Participation 2.svg` |
+| DRM | Disaster Risk Management | `IFRC-icons-colour_Emergency-Medical-Services.svg` |
+| FSL | Food Security & Livelihoods | `IFRC-icons-colour_Food-and-water .svg` |
+| MIGRATION & PROTECTION | Migration | `IFRC-icons-colour_Migration.svg` |
+| PGI | Protection, Gender & Inclusion | `IFRC-icons-colour_Inclusion 2.svg` |
+| SHELTER | Shelter | `IFRC-icons-colour_Shelter2.svg` |
+| NSD | National Society Development | `IFRC-icons-colour_Independence.svg` |
+
+The form's eleventh service, **Other (specify)**, has no legend symbol and no country
+selected it. It is stored, and drawn with a neutral dot if it ever appears.
+
+The icons carry their styling in a `<style>` block of CSS classes. Anything that rasterises
+them — including MapLibre — ignores that block and renders solid black shapes, so the build
+step **inlines the class declarations as presentation attributes** before use. This is not
+cosmetic: without it every symbol on the map is a black blob.
+
+## A4. Serving the symbols
+
+A management command, `manage.py build_hsp_icons`, copies the ten SVGs into
+`dashboard/static/dashboard/icons/`, inlining their styles and normalising the viewBox. The
+map loads each as a MapLibre image at 2× for retina. The icons are vendored into the repo
+rather than read from Dropbox at runtime: a map that breaks when a Dropbox folder moves is
+not a map anyone can rely on.
+
+## A5. The toggle
+
+One control, **Humanitarian Service Points**, alongside the existing pillar toggles, with
+the ten services as individually tickable rows carrying their own symbols — so "show me
+where health is offered" is one click.
+
+- Symbols are placed at each district's point-on-surface, spread on a small ring where
+  several services land on the same district, and collapse to a single count badge below a
+  zoom threshold.
+- The district polygon gets a light outline when any of its services is ticked, which is why
+  this waits on the boundary library.
+- Clicking a symbol gives district, country, the full service list, and the submission date.
+- The layer obeys the country filter and the split view like every other layer.
+- `admin0.geojson` already carries an unused `hasHSPs` flag; it is replaced by the real
+  count from `hsp_service_areas`.
+
+## A6. Verification
+
+- Unit tests: the Kobo wide-to-long reshape (11 service columns × N district columns into
+  one row per district-service), and the legend mapping table's completeness.
+- `check_boundaries` gains: every `hsp_service_areas` row resolves to an `admin_areas` row,
+  and every service in the data has a symbol file present.
+- In the browser: toggle HSPs with Sudan selected — symbols appear in Kassala, Northern,
+  Red Sea, River Nile, West Darfur and White Nile, the six states the Sudan submission
+  named, and nowhere else.
+
+## A7. Open question, not blocking
+
+If a per-site HSP list with coordinates exists elsewhere, the point layer it would allow is
+strictly better than district symbols. The tables above take it without redesign: a site row
+is an `hsp_service_areas` row with its own geometry instead of an `admin_area` link. Until
+such a file is provided, district placement is what the data supports.
