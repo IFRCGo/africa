@@ -112,6 +112,9 @@ const WHITE = paletteColor("--ifrc-white", "#ffffff");
 const COLOR_IDP_LOCALITY = paletteColor("--idp-locality", "#ffb25b");
 const COLOR_IDP_STATE = paletteColor("--idp-state", "#958dbe");
 const COLOR_IN_HOST = paletteColor("--refugees", "#8dcde2");
+// Humanitarian service points. Deliberately not one of the pillar colours:
+// a service is a response, not a finding about a place.
+const COLOR_HSP = paletteColor("--hsp", "#6b3a90");
 
 // The five theme groups, their display names and their colours. These match
 // the "dimension" values the pipeline writes into tags.json, and each one is
@@ -153,15 +156,16 @@ const state = {
   voiceSearch: "",         // text typed into the Community Insights search box
   // Which layers are switched on. These match the checkboxes in index.html.
   showFlows: true, showReturns: true, showEvents: true,
-  showIDP: false, showIDPStates: false, showRefugees: false, showFoodsec: false, showCrossings: true, showAOI: false,
+  showIDP: false, showIDPStates: false, showRefugees: false, showFoodsec: false,
+  showCrossings: true, showAOI: false, showHSP: false,
 };
 
 /* ========================= 2. HELPERS =================================== */
 
 /* IPC republishes its food-security map a few times a year. This finds the
    most recent published version that existed on the timeline date `t`. */
-function ipcPeriodAt(t) {
-  const dates = (state.data.ipc && state.data.ipc._meta.dates) || [];
+function ipcPeriodAt(t, payload) {
+  const dates = (payload && payload._meta && payload._meta.dates) || [];
   let d = null;
   for (const dt of dates) { if (Date.parse(dt) <= t) d = dt; }
   return d;
@@ -417,21 +421,6 @@ function loadAreas() {
   return areasLoading;
 }
 
-/* The IPC food-security file is downloaded lazily, the first time someone
-   switches that layer on, so its areas are located then rather than at
-   start-up. Each area is placed by the centre of its bounding box, which is
-   accurate enough for "which country is this in?" and far cheaper than a true
-   centroid over several thousand polygons. */
-function deriveIPCCountries() {
-  for (const fc of Object.values(state.data.ipc.periods)) {
-    for (const f of fc.features) {
-      if (f.properties.country !== undefined) continue;
-      const [w, s, e, n] = geomBBox(f.geometry);
-      f.properties.country = countryAt((w + e) / 2, (s + n) / 2);
-    }
-  }
-}
-
 /* Keep only the areas in the selected countries. Returns the collection
    unchanged when no filter is on, so the common case copies nothing. */
 function filterFC(fc) {
@@ -451,12 +440,14 @@ async function loadData() {
   const res = await Promise.all(names.map((n) => fetch(`data/${n}.json`).then((r) => r.json())));
   names.forEach((n, i) => (state.data[n] = res[i]));
   // boundary context layers (country outlines, state lines, IFRC Areas of Interest + IPC)
-  const [admin0, admin1, aoi] = await Promise.all([
+  const [admin0, admin1, aoi, hsps] = await Promise.all([
     fetch("data/boundaries/admin0.geojson").then((r) => r.json()),
     fetch("data/boundaries/admin1_lines.geojson").then((r) => r.json()),
     fetch("data/aoi_ipc.geojson").then((r) => r.json()),
+    fetch("data/hsps.geojson").then((r) => (r.ok ? r.json() : null)).catch(() => null),
   ]);
   state.data.admin0 = admin0; state.data.admin1 = admin1; state.data.aoi = aoi;
+  state.data.hsps = hsps;
   // ipc_areas_fs.geojson (~2 MB) is lazy-loaded on first food-security toggle
   state.endDate = Date.parse(state.data.meta.date_max);
   // Work out which country every row belongs to, once, before anything draws.
@@ -819,6 +810,20 @@ function addLayers(m) {
     },
   });
 
+  // ---- humanitarian service points ----
+  // Drawn as a ring whose size grows with the number of services offered, so a
+  // district doing eight things reads as busier than one doing one.
+  m.addSource("hsps", { type: "geojson", data: empty() });
+  m.addLayer({
+    id: "hsp-dots", type: "circle", source: "hsps",
+    paint: {
+      "circle-radius": ["interpolate", ["linear"], ["get", "n_services"], 1, 5, 11, 12],
+      "circle-color": COLOR_HSP,
+      "circle-opacity": 0.75,
+      "circle-stroke-color": WHITE, "circle-stroke-width": 1.6,
+    },
+  });
+
   // ---- border crossings ----
   m.addSource("crossings", { type: "geojson", data: empty() });
   m.addLayer({
@@ -887,11 +892,20 @@ function addLayers(m) {
   popup(m, "crossing-dots", (p) => `<b>${p.name}</b><br>Crossing to ${p.country}<br>
     ${p.active ? `<b style="color:${COLOR_EVENT}">Active corridor</b> — ${p.flowLabel} people moved (cumulative)` : "No recorded movement at this date"}`, "Border crossing");
   popup(m, "ipc-fill", (p) => `<b>${p.area}</b><br>IPC <b>Phase ${p.ph}</b>${p.fam ? ` · <b style="color:${COLOR_ACCENT}">Famine (P5)</b>` : ""}<br>
-    <b>${Math.round(p.p3 * 100)}%</b> in Phase 3+ (Crisis or worse)<br><span style="color:${COLOR_MUTED}">IPC analysis via IPC MCP</span>`, "Food security (IPC)");
+    ${p.p3 != null ? `<b>${Math.round(p.p3 * 100)}%</b> in Phase 3+ (Crisis or worse)<br>` : ""}
+    ${sourceLine(p.src)}`, "Food security");
+  popup(m, "hsp-dots", (p) => {
+    const services = (typeof p.services === "string" ? JSON.parse(p.services) : p.services) || [];
+    return `<b>${escapeHTML(p.place)}</b> <span style="color:${COLOR_MUTED}">(${escapeHTML(p.country || "")})</span><br>
+      <b>${p.n_services}</b> service${p.n_services === 1 ? "" : "s"} offered in this district<br>
+      <span style="color:${COLOR_MUTED}">${services.map(escapeHTML).join(" · ")}</span><br>
+      <span style="color:${COLOR_MUTED}">District-level: the source publishes no site coordinates.</span><br>
+      ${sourceLine("kobo", "reported " + (p.date_reported || ""))}`;
+  }, "Humanitarian service points");
   popup(m, "aoi-fill", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.ipc_country || ""})</span><br>
     <b style="color:${COLOR_EVENT}">IFRC Area of Interest</b><br>
     ${p.ipc_phase ? `IPC <b>Phase ${p.ipc_phase}</b> — <b>${Math.round((p.ipc_p3 || 0) * 100)}%</b> in Phase 3+
-      <span style="color:${COLOR_MUTED}">(${p.ipc_n_phase3plus}/${p.ipc_n_areas} sub-areas)</span>` : `<span style="color:${COLOR_MUTED}">No current IPC analysis</span>`}`, "IFRC area of interest");
+      <span style="color:${COLOR_MUTED}">(${p.ipc_n_phase3plus}/${p.ipc_n_areas} sub-areas)</span><br>${sourceLine("ipc")}` : `<span style="color:${COLOR_MUTED}">No current IPC analysis</span>`}`, "IFRC area of interest");
 
   // Every layer has now said what it would show. From here the registry is
   // closed, and one handler per map serves all of them from a single bubble.
@@ -1652,10 +1666,49 @@ function lastDateOnOrBefore(series, t) {
 }
 
 /* IPC food-insecurity map: show the analysis that was current on this date. */
+/* Food insecurity, for every country in scope rather than Sudan alone.
+
+   Each country is a separate file and keeps its own analysis calendar - IPC
+   redraws its units per round and no two countries publish on the same date - so
+   the period in effect is worked out PER COUNTRY at the current timeline date and
+   the results are concatenated. Showing one global period would blank every
+   country that had not published in that particular month. */
 function renderFoodsec() {
-  if (!state.showFoodsec || !state.data.ipc) { setSource("ipc", empty()); return; }
-  const d = ipcPeriodAt(state.current);
-  setSource("ipc", d ? filterFC(state.data.ipc.periods[d]) : empty());
+  if (!state.showFoodsec) { setSource("ipc", empty()); return; }
+  const scope = scopeCountries();
+  let feats = [];
+  for (const [iso3, payload] of Object.entries(state.data.ipcByCountry || {})) {
+    const country = ISO3_TO_COUNTRY[iso3];
+    if (scope.size && country && !scope.has(country)) continue;
+    const d = ipcPeriodAt(state.current, payload);
+    if (d && payload.periods[d]) feats = feats.concat(payload.periods[d].features);
+  }
+  setSource("ipc", { type: "FeatureCollection", features: feats });
+}
+
+/* Fetch the food-security file for each country in scope that is not loaded
+   yet. One file per country, on demand: together they are far larger than any
+   one of them, and a reader looking at Chad has no use for Sudan's polygons. */
+async function loadFoodsecForScope() {
+  state.data.ipcByCountry = state.data.ipcByCountry || {};
+  const scope = scopeCountries();
+  const wanted = COUNTRIES
+    .filter((c) => !scope.size || scope.has(c))
+    .map((c) => COUNTRY_TO_ISO3[c])
+    .filter((iso) => iso && IPC_COUNTRIES.includes(iso) && !(iso in state.data.ipcByCountry));
+  if (!wanted.length) return;
+  const loaded = await Promise.all(wanted.map((iso) =>
+    fetch(`data/ipc_fs/${iso}.geojson`)
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null)));
+  wanted.forEach((iso, i) => {
+    if (!loaded[i]) return;
+    // Stamp the country name each area belongs to, once, from the file it came
+    // in - no bounding-box guessing needed now that the data carries its iso3.
+    for (const fc of Object.values(loaded[i].periods))
+      for (const f of fc.features) f.properties.country = ISO3_TO_COUNTRY[iso];
+    state.data.ipcByCountry[iso] = loaded[i];
+  });
 }
 
 /* One bubble per locality (admin2) inside Sudan, sized by its IDP count. This
@@ -1766,8 +1819,50 @@ function renderCrossings() {
 }
 
 /* The 14 IFRC Areas of Interest, coloured by their current IPC phase. */
+/* Service points for the countries in scope. */
+function renderHSP() {
+  if (!state.showHSP || !state.data.hsps) { setSource("hsps", empty()); return; }
+  setSource("hsps", filterFC(state.data.hsps));
+}
+
 function renderAOI() {
   setSource("aoi", state.showAOI ? filterFC(state.data.aoi) : empty());
+}
+
+/* iso3 -> the country name the rest of the dashboard uses. */
+const ISO3_TO_COUNTRY = Object.fromEntries(
+  Object.entries(COUNTRY_TO_ISO3).map(([name, iso]) => [iso, name]));
+
+/* Which countries have a food-security file to fetch. Egypt and Libya have no
+   classification from any source, and Ethiopia's phases come from FEWS NET,
+   which publishes unit codes rather than polygons - so none of the three has a
+   map layer, and asking for one would 404 on every toggle. */
+const IPC_COUNTRIES = ["SDN", "TCD", "CAF", "SSD"];
+
+/* WHO PUBLISHED A NUMBER, AND WHERE TO GO AND READ IT.
+
+   A popup used to say "via IPC MCP". MCP is how this project fetches the data,
+   which is a fact about our plumbing and of no interest to a reader deciding
+   whether to trust a phase classification. What matters is who assessed it, so
+   each source is named and linked to its own site. */
+const SOURCES = {
+  ipc:     { name: "IPC",      url: "https://www.ipcinfo.org/" },
+  ch:      { name: "Cadre Harmonisé", url: "https://www.ipcinfo.org/ch/" },
+  fewsnet: { name: "FEWS NET", url: "https://fews.net/" },
+  hdx:     { name: "IOM DTM via HDX", url: "https://data.humdata.org/" },
+  unhcr:   { name: "UNHCR",    url: "https://data.unhcr.org/" },
+  excel:   { name: "IFRC operational reporting", url: "" },
+  kobo:    { name: "IFRC HSP Mapping", url: "" },
+  curated: { name: "Curated by the operation", url: "" },
+};
+
+/* One line of attribution: the publisher's name, linked where it has a site. */
+function sourceLine(key, extra) {
+  const src = SOURCES[key] || { name: key || "unknown", url: "" };
+  const label = src.url
+    ? `<a href="${src.url}" target="_blank" rel="noopener">${escapeHTML(src.name)}</a>`
+    : escapeHTML(src.name);
+  return `<span class="pp-src">${label}${extra ? " · " + escapeHTML(extra) : ""}</span>`;
 }
 
 const CAL_MONTHS = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
@@ -1826,6 +1921,7 @@ function drawMapLayers() {
   renderFoodsec();
   renderFlows();
   renderCrossings();
+  renderHSP();
   renderIDP();
   renderIDPStates();
   renderRefugees();
@@ -1890,6 +1986,10 @@ function applyFilters({ refit = true } = {}) {
   renderAll();
   drawSparkline();
   if (refit) fitToSelection();
+  // Widening the country filter can bring a country into scope whose
+  // food-security file has never been fetched. Load it, then redraw that one
+  // layer - the rest of the page has already been drawn from what it had.
+  if (state.showFoodsec) loadFoodsecForScope().then(renderFoodsec);
 }
 
 /* The mini line chart under the timeline. All three series share one vertical
@@ -1998,13 +2098,15 @@ function initControls() {
   layer("#toggle-aoi", "showAOI");
   // Food security is the exception: its file is about 2 MB, so it is only
   // downloaded the first time someone asks for it.
+  $("#toggle-hsps").addEventListener("change", (e) => {
+    state.showHSP = e.target.checked;
+    renderMapLayers();
+  });
   $("#toggle-foodsec").addEventListener("change", async (e) => {
     state.showFoodsec = e.target.checked;
-    if (state.showFoodsec && !state.data.ipc) {
+    if (state.showFoodsec) {
       e.target.disabled = true;
-      state.data.ipc = await fetch("data/ipc_areas_fs.geojson").then((r) => r.json());
-      // work out which country each area sits in, once, now that we have them
-      deriveIPCCountries();
+      await loadFoodsecForScope();
       e.target.disabled = false;
     }
     renderMapLayers();

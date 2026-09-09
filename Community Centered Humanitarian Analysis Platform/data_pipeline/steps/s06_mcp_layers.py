@@ -15,6 +15,7 @@ Outputs into dashboard/data/:
   refugee_camps.json      host-country refugee totals + camp markers (UNHCR + Excel)
   ipc_areas_fs.geojson    Sudan's IPC snapshots over time            (IPC)
   ipc_fs/<ISO3>.geojson   the same, per country, for the rest        (IPC/CH)
+  hsps.geojson            humanitarian service points, by district   (Kobo)
   seasonal.json           seasonal calendars, now one per country    (FEWS NET)
   aoi_ipc.geojson         IFRC Areas of Interest + their IPC phase
 
@@ -31,7 +32,8 @@ from django.db import connection
 
 from data_pipeline.common import DASHBOARD_DATA
 from external_data.models import (BorderCrossing, FoodSecurityArea,
-                                  MovementPattern, SeasonalCalendar)
+                                  HumanitarianServicePoint, MovementPattern,
+                                  SeasonalCalendar)
 
 
 def dump(name, obj):
@@ -352,6 +354,147 @@ def build_aoi():
           f"(computed by spatial join, not from a cache)")
 
 
+# ============================================================ service points
+def build_hsps():
+    """Humanitarian Service Points - one marker per district offering a service.
+
+    A MARKER HERE IS A DISTRICT, NOT A BUILDING. The Kobo export holds no site
+    coordinates: it records which services a National Society offers and which
+    districts it offers them in. The position is the district's point-on-surface,
+    resolved when the export was loaded, so a marker means "this service is
+    offered somewhere in this district". The popup says so too - it would be very
+    easy for a reader to take these for addresses.
+
+    The newest export wins. Older ones stay in the table so a later reader can see
+    what changed, but the map shows the current picture.
+    """
+    latest = (HumanitarianServicePoint.objects
+              .order_by("-date_reported").values_list("date_reported", flat=True).first())
+    if latest is None:
+        print("    (no service points loaded - skipping)")
+        return
+
+    rows = (HumanitarianServicePoint.objects
+            .filter(date_reported=latest)
+            .exclude(lat=None)
+            .order_by("iso3", "location_name", "service"))
+
+    # One marker per place, carrying every service offered there: a district with
+    # eight services should be one dot to click, not eight stacked on each other.
+    places = {}
+    for r in rows:
+        key = (r.iso3, r.location_name)
+        p = places.setdefault(key, {
+            "country": r.country, "iso3": r.iso3, "place": r.location_name,
+            "pcode": r.admin_pcode, "lon": r.lon, "lat": r.lat,
+            "scope": r.scope, "services": [],
+        })
+        if r.service not in p["services"]:
+            p["services"].append(r.service)
+
+    feats = [{
+        "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [p["lon"], p["lat"]]},
+        "properties": {**{k: v for k, v in p.items() if k not in ("lon", "lat")},
+                       "n_services": len(p["services"]),
+                       "date_reported": latest.isoformat()},
+    } for p in places.values()]
+
+    dump("hsps.geojson", {
+        "type": "FeatureCollection",
+        "_meta": {
+            "source": "IFRC Humanitarian Service Point Mapping (Kobo), held in the "
+                      "humanitarian_service_points table.",
+            "date_reported": latest.isoformat(),
+            "note": "District-level, not point-level: the source publishes no site "
+                    "coordinates. A marker is the district's point-on-surface.",
+        },
+        "features": feats,
+    })
+    print(f"    {len(feats)} districts offering services, reported {latest}")
+
+
+# ============================================================ theme areas
+def build_theme_areas():
+    """The polygons the five pillars are drawn on, keyed by p-code.
+
+    THIS IS THE LAYER THE HIGHLIGHTING LIVES ON, and it was silently broken. The
+    corpus was re-parsed against the boundary library, so narrative_tags.area_id
+    became an OCHA p-code - "SD16", "ET0604". But boundaries/areas.geojson was
+    still the older file built by build_map_context, whose feature ids look like
+    "SDN-ADM2:Abassiya". app.js writes one feature-state per area id onto that
+    source, so every write landed on a feature that did not exist: no bands, no
+    fills, and only the country-level wash - which is keyed on country name -
+    still showing. That is exactly "I only see the country dimming".
+
+    Building it here from admin_areas fixes the mismatch at its root, and gets two
+    things free: the polygons are the office's own boundaries rather than borrowed
+    ones, and every area the corpus can name is present, at whatever level it was
+    matched - a locality highlights as a locality.
+    """
+    from data_track.models import NarrativeTag
+
+    pcodes = sorted(set(NarrativeTag.objects
+                        .exclude(area_id=None).exclude(area_id="")
+                        .values_list("area_id", flat=True)))
+    if not pcodes:
+        print("    (no tagged areas - skipping theme areas)")
+        return
+
+    # Named water bodies, so a flooding tag can light the river beside the area.
+    water_path = DASHBOARD_DATA / "water.geojson"
+    boxes = []
+    if water_path.exists():
+        water = json.loads(water_path.read_text(encoding="utf-8"))
+        for f in water["features"]:
+            name = (f["properties"] or {}).get("name")
+            if not name:
+                continue
+            xs, ys = [], []
+            def walk(c):
+                if isinstance(c[0], (int, float)):
+                    xs.append(c[0]); ys.append(c[1])
+                else:
+                    for x in c:
+                        walk(x)
+            walk(f["geometry"]["coordinates"])
+            boxes.append((name, min(xs), min(ys), max(xs), max(ys)))
+    MARGIN = 0.6
+
+    with connection.cursor() as cur:
+        cur.execute("""
+            SELECT pcode, name, country_name, iso3, level,
+                   bbox_w, bbox_s, bbox_e, bbox_n,
+                   ST_AsGeoJSON(geom_web, 5)
+              FROM admin_areas
+             WHERE pcode = ANY(%s) AND geom_web IS NOT NULL
+             ORDER BY level DESC, pcode
+        """, [pcodes])
+        rows = cur.fetchall()
+
+    seen, feats = set(), []
+    for pcode, name, country, iso3, level, w, s, e, n, geometry in rows:
+        # Finest first, so where two publishers hold the same p-code the deeper
+        # polygon wins - the same "most precise wins" rule the old file used.
+        if pcode in seen:
+            continue
+        seen.add(pcode)
+        near = [nm for nm, ww, ws, we, wn in boxes
+                if w is not None and we >= w - MARGIN and ww <= e + MARGIN
+                and wn >= s - MARGIN and ws <= n + MARGIN]
+        feats.append({
+            "type": "Feature",
+            "geometry": json.loads(geometry),
+            "properties": {"id": pcode, "name": name, "country": country,
+                           "iso3": iso3, "level": level, "water": near},
+        })
+
+    dump("boundaries/areas.geojson", {"type": "FeatureCollection", "features": feats})
+    missing = len(pcodes) - len(feats)
+    print(f"    {len(feats)} theme areas keyed by p-code"
+          + (f" ({missing} referenced but without geometry)" if missing else ""))
+
+
 def run():
     """Rebuild every external layer from the database."""
     DASHBOARD_DATA.mkdir(parents=True, exist_ok=True)
@@ -362,3 +505,5 @@ def run():
     build_foodsec()
     build_seasonal()
     build_aoi()
+    build_hsps()
+    build_theme_areas()

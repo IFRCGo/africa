@@ -91,6 +91,7 @@
   --idp-locality: var(--ifrc-orange-light);   /* IDP admin2 - Migration family */
   --idp-state:    var(--ifrc-purple-light);   /* IDP admin1 - the coarser aggregate */
   --refugees:     var(--ifrc-blue-medium);    /* host-country totals and camps */
+  --hsp:          #7b4ea3;                    /* humanitarian service points */
   /* Rivers and lakes. Not a brand colour: it has to read as water, and it has
      to stay separate from --refugees, which is the other blue on this map. */
   --water:        #1f9ad6;
