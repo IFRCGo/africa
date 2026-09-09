@@ -23,6 +23,9 @@ urlpatterns = [
     # The dashboard is the front page, so it is listed first.
     path("", include("dashboard.urls")),
     path("updater/", include("updater.urls")),
+    # Listed before data_track's "api/" so that /api/boundaries/... is matched
+    # here rather than falling through to the report API.
+    path("api/boundaries/", include("boundaries.urls")),
     path("api/", include("data_track.urls")),
     path("admin/", admin.site.urls),
 ]
