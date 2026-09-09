@@ -90,6 +90,13 @@ services:
       DASHBOARD_URL: ${DASHBOARD_URL:-/}
       TZ: ${TZ:-UTC}
 
+      # The basemap drawn under the dashboard: the shared IFRC GO style on
+      # Mapbox. Both defaults are the public values published by GO itself
+      # (https://go-wiki.ifrc.org/en/user_guide/Maps), so this works untouched;
+      # set them in .env only to point at a different style or a rotated token.
+      MAPBOX_STYLE_URL: ${MAPBOX_STYLE_URL:-}
+      MAPBOX_ACCESS_TOKEN: ${MAPBOX_ACCESS_TOKEN:-}
+
       # Optional /admin/ login, created on first start when a password is set.
       DJANGO_SUPERUSER_USERNAME: ${DJANGO_SUPERUSER_USERNAME:-admin}
       DJANGO_SUPERUSER_EMAIL: ${DJANGO_SUPERUSER_EMAIL:-admin@example.org}

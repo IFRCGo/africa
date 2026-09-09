@@ -32,8 +32,16 @@ mimetypes.add_type("application/geo+json", ".geojson")
 
 
 def index(request):
-    """Return the dashboard page itself."""
-    return render(request, "dashboard/index.html")
+    """Return the dashboard page itself.
+
+    The two basemap values are handed to the template rather than hard-coded in
+    app.js so the IFRC GO style or its Mapbox token can be changed from .env
+    alone. Both are public values; see MAPBOX_* in config/settings.py.
+    """
+    return render(request, "dashboard/index.html", {
+        "mapbox_style_url": settings.MAPBOX_STYLE_URL,
+        "mapbox_access_token": settings.MAPBOX_ACCESS_TOKEN,
+    })
 
 
 def data_file(request, path: str):

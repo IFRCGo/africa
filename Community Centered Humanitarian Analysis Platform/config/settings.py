@@ -233,6 +233,29 @@ DASHBOARD_URL = os.environ.get("DASHBOARD_URL", "/")
 # The crisis clock starts the day fighting broke out in Khartoum.
 CRISIS_START = "2023-04-15"
 
+# --------------------------------------------------------------------------
+# The basemap the dashboard draws under everything else.
+#
+# This is the official IFRC GO basemap, hosted by Mapbox and shared across the
+# GO platform, so our map looks like every other IFRC map. Documented at
+# https://go-wiki.ifrc.org/en/user_guide/Maps
+#
+# The token is a PUBLIC Mapbox token ("pk." prefix): it is meant to be sent to
+# the browser, exactly as go.ifrc.org sends it. It sits here rather than in the
+# JavaScript only so it can be rotated from .env without editing code.
+# "or" rather than a get() default on purpose: docker-compose passes these
+# through as ${MAPBOX_STYLE_URL:-}, so an unset value arrives as an EMPTY
+# string, not as a missing name. get(name, default) would hand the map "" and
+# it would never load. Same shape as env_path() above.
+MAPBOX_STYLE_URL = (
+    os.environ.get("MAPBOX_STYLE_URL")
+    or "mapbox://styles/go-ifrc/ckrfe16ru4c8718phmckdfjh0"
+)
+MAPBOX_ACCESS_TOKEN = os.environ.get("MAPBOX_ACCESS_TOKEN") or (
+    "pk.eyJ1IjoiZ28taWZyYyIsImEiOiJjbWNkN2w1YjUwNmt4MmpxemZkYmRubDJjIn0"
+    ".riUripexhLbliR3Q1Z99rA"
+)
+
 # Send log lines to the container console so "docker compose logs" shows them.
 LOGGING = {
     "version": 1,

@@ -486,14 +486,67 @@ const maps = [];         // every live map, in the order they were created
 // fitBounds() would silently clamp and never frame Libya properly.
 const REGION_BOUNDS = [[8.0, -3.0], [56.0, 34.5]];
 
-/* Create one map: a light CARTO Positron basemap, locked to the Sudan and
-   neighbours region so a user cannot accidentally pan away to Europe.
-   Resolves once the style has loaded, because layers cannot be added before
-   then. */
+/* ---- Talking to Mapbox --------------------------------------------------
+
+   The basemap under everything else is the official IFRC GO basemap
+   ("LIVE - GO - IFRC Basemap v1"), hosted by Mapbox and shared with go.ifrc.org
+   so our map reads as an IFRC map. It is named in config/settings.py and
+   reaches us through window.BASEMAP, set by the template.
+
+   There is one wrinkle. Mapbox styles address their own pieces with a private
+   "mapbox://" scheme instead of ordinary web addresses:
+
+       style   mapbox://styles/go-ifrc/ckrfe16ru4c8718phmckdfjh0
+       sprite  mapbox://sprites/go-ifrc/ckrfe16ru4c.../e0kzxuqku4v...
+       fonts   mapbox://fonts/mapbox/{fontstack}/{range}.pbf
+       source  mapbox://go-ifrc.go-districts-1,go-ifrc.go-countries,...
+
+   Mapbox's own library understands that scheme. MapLibre - the free library we
+   draw with - deliberately does not, so left alone it would ask the browser for
+   "mapbox://..." and get nothing back: a blank grey map.
+
+   MapLibre hands EVERY address it is about to fetch to transformRequest first,
+   which is where mapboxUrl() below steps in and rewrites the four shapes above
+   into the real https addresses, adding the access token. Tiles themselves need
+   no rewriting: the tile list Mapbox sends back already carries the token. */
+const MAPBOX_API = "https://api.mapbox.com";
+
+/* Rewrite one "mapbox://" address into the https one it stands for. Anything
+   that is not a mapbox:// address (our own GeoJSON, the tile requests) comes
+   back untouched. */
+function mapboxUrl(url, token) {
+  if (!url.startsWith("mapbox://")) return url;
+  const rest = url.slice("mapbox://".length);
+  const sign = (u) => `${MAPBOX_API}${u}${u.includes("?") ? "&" : "?"}access_token=${token}`;
+
+  // mapbox://styles/go-ifrc/ckrfe...  ->  /styles/v1/go-ifrc/ckrfe...
+  if (rest.startsWith("styles/")) return sign(`/styles/v1/${rest.slice(7)}`);
+
+  // mapbox://fonts/mapbox/Poppins Regular/0-255.pbf  ->  /fonts/v1/mapbox/...
+  if (rest.startsWith("fonts/")) return sign(`/fonts/v1/${rest.slice(6)}`);
+
+  /* mapbox://sprites/go-ifrc/ckrfe.../e0kz...  ->  /styles/v1/.../sprite
+     MapLibre appends "@2x" and ".png" or ".json" before we ever see it, and
+     those must end up AFTER the word "sprite", not after the style id - which
+     is the part that is easy to get wrong. */
+  if (rest.startsWith("sprites/")) {
+    const m = rest.slice(8).match(/^(.+?)(@[0-9]+x)?\.(png|json)$/);
+    if (m) return sign(`/styles/v1/${m[1]}/sprite${m[2] || ""}.${m[3]}`);
+  }
+
+  // Anything else is a list of tileset ids; ask for its tile catalogue.
+  return sign(`/v4/${rest}.json?secure`);
+}
+
+/* Create one map on the IFRC GO basemap, locked to the Sudan and neighbours
+   region so a user cannot accidentally pan away to Europe. Resolves once the
+   style has loaded, because layers cannot be added before then. */
 function initMap(containerId) {
+  const basemap = window.BASEMAP || {};
   const m = new maplibregl.Map({
     container: containerId,
-    style: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+    style: basemap.style,
+    transformRequest: (url) => ({ url: mapboxUrl(url, basemap.token) }),
     center: [29.5, 15.2],
     zoom: 4.35,
     minZoom: 3,

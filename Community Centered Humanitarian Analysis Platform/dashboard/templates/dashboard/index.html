@@ -220,6 +220,16 @@
 
 <footer id="page-footer">The story of displacement since 15 April 2023, told by <b id="doc-count">…</b> UNHCR situation documents · Last report: <span id="last-updated">…</span></footer>
 
+<!-- Which basemap to draw under everything else. Set in config/settings.py
+     (MAPBOX_STYLE_URL / MAPBOX_ACCESS_TOKEN) so it can be changed from .env
+     without touching app.js. The token is a public "pk." Mapbox token, the
+     same one go.ifrc.org sends to every visitor. -->
+<script>
+  window.BASEMAP = {
+    style: "{{ mapbox_style_url|escapejs }}",
+    token: "{{ mapbox_access_token|escapejs }}",
+  };
+</script>
 <!-- Load the map library first, then our code, which needs it. -->
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="{% static 'dashboard/js/app.js' %}"></script>
