@@ -25,9 +25,9 @@ class FoodSecurityLoaderTests(TestCase):
                      "--iso3", "TCD", **kwargs)
 
     def test_areas_without_a_phase_are_skipped(self):
-        """Three features in the fixture; one has no overall_phase."""
+        """Four features in the fixture; one has no overall_phase."""
         self._load()
-        self.assertEqual(FoodSecurityArea.objects.count(), 2)
+        self.assertEqual(FoodSecurityArea.objects.count(), 3)
         self.assertFalse(
             FoodSecurityArea.objects.filter(area_id="unanalysed-test").exists()
         )
@@ -70,7 +70,7 @@ class FoodSecurityLoaderTests(TestCase):
                 "SELECT COUNT(*) FROM food_security "
                 "WHERE geom IS NOT NULL AND geom_web IS NOT NULL"
             )
-            self.assertEqual(cur.fetchone()[0], 2)
+            self.assertEqual(cur.fetchone()[0], 3)
             cur.execute(
                 "SELECT bool_and(ST_NPoints(geom) >= ST_NPoints(geom_web)) FROM food_security"
             )
@@ -79,7 +79,7 @@ class FoodSecurityLoaderTests(TestCase):
     def test_loading_twice_changes_nothing(self):
         self._load()
         self._load()
-        self.assertEqual(FoodSecurityArea.objects.count(), 2)
+        self.assertEqual(FoodSecurityArea.objects.count(), 3)
 
     def test_the_analysis_id_is_remembered_for_identity_diffing(self):
         """IPC has no date filter, so known_ids is how we know what to skip."""
@@ -87,3 +87,50 @@ class FoodSecurityLoaderTests(TestCase):
         sync = SourceSync.objects.get(source="ch", dataset="food_security", iso3="TCD")
         self.assertIn("87143417", sync.known_ids)
         self.assertEqual(sync.high_water_date, date(2026, 2, 1))
+
+
+class PointGeometryTests(TestCase):
+    """IPC publishes camps and urban areas as POINTS, not polygons.
+
+    The geometry columns were first typed MultiPolygon, and the loader extracted
+    the polygonal part of every shape. A Point has none, so 70 real areas were
+    dropped without a word - among them Zamzam IDP Camp, where famine was declared.
+    The columns are now `geometry(Geometry, 4326)` and a point is stored as a point.
+    """
+
+    def _load(self):
+        call_command("load_external", "food_security", str(FIXTURES / FIXTURE),
+                     "--iso3", "TCD")
+
+    def test_a_point_area_is_stored_not_discarded(self):
+        self._load()
+        self.assertTrue(
+            FoodSecurityArea.objects.filter(area_id="camp-point-test").exists()
+        )
+
+    def test_the_point_keeps_its_geometry(self):
+        self._load()
+        with connection.cursor() as cur:
+            cur.execute(
+                "SELECT GeometryType(geom), GeometryType(geom_web) "
+                "FROM food_security WHERE area_id = 'camp-point-test'"
+            )
+            geom, web = cur.fetchone()
+        self.assertEqual(geom, "POINT")
+        self.assertEqual(web, "POINT")
+
+    def test_polygons_are_still_repaired_and_simplified(self):
+        """Widening the column must not stop the polygon path doing its work."""
+        self._load()
+        with connection.cursor() as cur:
+            cur.execute(
+                "SELECT bool_and(ST_NPoints(geom) >= ST_NPoints(geom_web)) "
+                "FROM food_security WHERE GeometryType(geom) <> 'POINT'"
+            )
+            self.assertTrue(cur.fetchone()[0])
+
+    def test_a_famine_point_reports_famine(self):
+        self._load()
+        camp = FoodSecurityArea.objects.get(area_id="camp-point-test")
+        self.assertEqual(camp.phase, 5)
+        self.assertTrue(camp.famine)

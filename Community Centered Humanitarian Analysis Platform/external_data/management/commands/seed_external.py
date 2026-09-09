@@ -24,9 +24,66 @@ from datetime import date
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from data_pipeline.steps.s06_mcp_layers import CROSSINGS, REF_COUNTRIES, SEASONAL
 from external_data.models import (BorderCrossing, MovementPattern, SeasonalCalendar,
                                   SourceSync)
+
+# ---------------------------------------------------------------------------
+# THE THREE DICTIONARIES, MOVED HERE FROM s06_mcp_layers.py.
+#
+# In the pipeline step they were data pretending to be code: every run rebuilt
+# the dashboard from Python literals no source could be checked against. Seeding
+# is the only thing that still reads them, so they live with it. After this
+# command has run once the database is where they are maintained, and s06 reads
+# the tables.
+# ---------------------------------------------------------------------------
+
+CROSSINGS = [
+    {"name": "El Geneina – Adré", "country": "Chad", "lon": 22.20, "lat": 13.47,
+     "corridor": "sudan-chad", "return_corridor": "chad-sudan-return"},
+    {"name": "Tiné", "country": "Chad", "lon": 22.30, "lat": 14.94,
+     "corridor": "sudan-chad", "return_corridor": "chad-sudan-return"},
+    {"name": "Um Dukhun – Am Dafok", "country": "Central African Republic", "lon": 23.45, "lat": 11.00,
+     "corridor": "sudan-car", "return_corridor": None},
+    {"name": "Wadi Halfa – Argeen / Ashkeet", "country": "Egypt", "lon": 31.55, "lat": 21.95,
+     "corridor": "sudan-egypt", "return_corridor": "egypt-sudan-return"},
+    {"name": "Qustul – Ashkeet", "country": "Egypt", "lon": 31.50, "lat": 22.00,
+     "corridor": "sudan-egypt", "return_corridor": "egypt-sudan-return"},
+    {"name": "Sudan–Libya desert route (Dongola–Kufra)", "country": "Libya", "lon": 24.40, "lat": 20.30,
+     "corridor": "sudan-libya", "return_corridor": "libya-sudan-return"},
+    {"name": "Joda – Renk", "country": "South Sudan", "lon": 32.41, "lat": 11.90,
+     "corridor": "sudan-south_sudan", "return_corridor": "south_sudan-sudan-return"},
+    {"name": "Gallabat – Metema", "country": "Ethiopia", "lon": 36.16, "lat": 12.97,
+     "corridor": "sudan-ethiopia", "return_corridor": None},
+    {"name": "Hamdayet", "country": "Ethiopia", "lon": 36.35, "lat": 14.30,
+     "corridor": "sudan-ethiopia", "return_corridor": None},
+]
+
+REF_COUNTRIES = {
+    "Chad":        {"2022": 403846, "2023": 923323, "2024": 1109357, "anchor": [21.9, 13.9]},
+    "South Sudan": {"2022": 290740, "2023": 359581, "2024": 487652,  "anchor": [32.9, 10.5]},
+    "Egypt":       {"2022": 25476,  "2023": 26213,  "2024": 27696,   "anchor": [31.0, 24.0],
+                    "note": "UNHCR-registered only; actual Sudanese presence far larger (gov. est. >1M)"},
+    "Ethiopia":    {"2022": 48020,  "2023": 77424,  "2024": 90442,   "anchor": [36.5, 12.6]},
+    "Central African Republic": {"2022": 478, "2023": 21816, "2024": 29932, "anchor": [22.8, 9.5]},
+    "Libya":       {"2022": 1133,   "2023": 975,    "2024": 199388,  "anchor": [23.3, 24.2]},
+    "Uganda":      {"2022": 2871,   "2023": 14971,  "2024": 65367,   "anchor": [32.4, 2.5]},
+}
+
+SEASONAL = {
+    "source": "FEWS NET seasonal calendar for Sudan (get_seasons API).",
+    "items": [
+        {"label": "Lean / hunger season", "months": [5, 6, 7, 8, 9, 10], "color": "#e67e22",
+         "note": "FEWS NET nutrition lean season (May–Oct)"},
+        {"label": "Rainy / growing season", "months": [6, 7, 8, 9, 10], "color": "#3498db",
+         "note": "Main agricultural season (cultivation)"},
+        {"label": "Main (rainfed) harvest", "months": [11, 12, 1], "color": "#27ae60",
+         "note": "Traditional & mechanized rainfed harvest (Nov–Jan)"},
+        {"label": "Irrigated harvest", "months": [3], "color": "#9ccc65",
+         "note": "Irrigated harvest (March)"},
+        {"label": "Post-harvest / dry season", "months": [1, 2, 3, 4], "color": "#c9a14a",
+         "note": "Dry post-harvest period (Jan–Apr)"},
+    ],
+}
 
 # The crossings name the far-side country; these are its ISO3 codes.
 COUNTRY_TO_ISO3 = {

@@ -130,22 +130,33 @@ def _write_geometry(loader, rows, geometries):
     adds them. ST_Multi wraps a plain Polygon so the MultiPolygon column accepts it,
     and ST_MakeValid repairs the self-intersections publishers' polygons carry.
 
-    ST_CollectionExtract(..., 3) is on BOTH columns, and it has to be. Repairing a
-    degenerate polygon - a sliver, a zero-area ring - does not always give you a
-    polygon back: ST_MakeValid returns whatever survives, which for some of IPC's
-    areas is a MultiPoint or a GeometryCollection, and the column rejects it with
-    "Geometry type (MultiPoint) does not match column type (MultiPolygon)".
-    Extracting dimension 3 keeps the polygonal parts and discards the rest, which
-    for a food-security area is the only part that means anything anyway.
+    A POINT AND A BROKEN POLYGON LOOK ALIKE AFTER REPAIR, AND MUST NOT BE TREATED
+    ALIKE. ST_MakeValid on a degenerate polygon - a sliver, a zero-area ring -
+    returns whatever survives, sometimes a MultiPoint; extracting dimension 3 is
+    what discards that rubbish. But IPC genuinely publishes some analysis units as
+    Points - camps and urban areas, Zamzam IDP Camp among them - and running the
+    same extraction over those deletes real data.
+
+    So the shape is inspected first: a point stays a point, and only polygonal
+    input is repaired and polygon-extracted. The columns are typed
+    `geometry(Geometry, 4326)` to hold both, as map_features already is.
     """
     where = " AND ".join(f"{f} = %s" for f in loader.unique_fields)
     sql = f"""
         UPDATE {loader.model._meta.db_table}
-           SET geom = ST_Multi(ST_CollectionExtract(
-                   ST_MakeValid(ST_GeomFromGeoJSON(%s)), 3)),
-               geom_web = ST_Multi(ST_CollectionExtract(ST_MakeValid(
-                   ST_SimplifyPreserveTopology(
-                       ST_MakeValid(ST_GeomFromGeoJSON(%s)), %s)), 3))
+           SET geom = CASE
+                   WHEN GeometryType(ST_GeomFromGeoJSON(%s)) IN ('POINT', 'MULTIPOINT')
+                   THEN ST_GeomFromGeoJSON(%s)
+                   ELSE ST_Multi(ST_CollectionExtract(
+                            ST_MakeValid(ST_GeomFromGeoJSON(%s)), 3))
+               END,
+               geom_web = CASE
+                   WHEN GeometryType(ST_GeomFromGeoJSON(%s)) IN ('POINT', 'MULTIPOINT')
+                   THEN ST_GeomFromGeoJSON(%s)
+                   ELSE ST_Multi(ST_CollectionExtract(ST_MakeValid(
+                            ST_SimplifyPreserveTopology(
+                                ST_MakeValid(ST_GeomFromGeoJSON(%s)), %s)), 3))
+               END
          WHERE {where}
     """
     with connection.cursor() as cur:
@@ -153,4 +164,7 @@ def _write_geometry(loader, rows, geometries):
             if geom is None:
                 continue
             gj = json.dumps(geom)
-            cur.execute(sql, [gj, gj, 0.002] + [row[f] for f in loader.unique_fields])
+            # gj appears five times in the CASE expressions above, then the
+            # simplification tolerance, then the natural key.
+            cur.execute(sql, [gj, gj, gj, gj, gj, gj, 0.002]
+                        + [row[f] for f in loader.unique_fields])
