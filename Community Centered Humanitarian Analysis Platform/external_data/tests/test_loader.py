@@ -78,3 +78,46 @@ class EmptyPayloadTests(TestCase):
                          str(FIXTURES / "empty.json"), "--iso3", "TCD")
         self.assertEqual(SourceSync.objects.count(), 0)
         self.assertEqual(SeasonalCalendar.objects.count(), 0)
+
+
+class SudanSeasonalTests(TestCase):
+    """The regression that changed the de-duplication rule.
+
+    Sudan's real payload has twelve records under two definitions, and they are NOT
+    copies of each other. Three crop seasons - traditional rainfed, mechanized
+    rainfed, irrigated - exist only under SD2014A0. The first rule written here kept
+    just the plain "SD" fnid and would have deleted all three while appearing to
+    remove duplicates. These are the bands the dashboard has drawn since it was
+    built.
+    """
+
+    def _load(self):
+        call_command("load_external", "seasonal_calendar",
+                     str(FIXTURES / "fewsnet_seasons_SDN.json"), "--iso3", "SDN")
+
+    def test_seasons_unique_to_a_versioned_definition_are_kept(self):
+        self._load()
+        labels = set(SeasonalCalendar.objects.values_list("label", flat=True))
+        self.assertIn("Traditional rainfed harvest", labels)
+        self.assertIn("Mechanized rainfed harvest", labels)
+        self.assertIn("Irrigated harvest", labels)
+
+    def test_seasons_repeated_across_definitions_are_stored_once(self):
+        self._load()
+        self.assertEqual(
+            SeasonalCalendar.objects.filter(label="Lean", purpose="NutritionIndicator").count(), 1
+        )
+        # 12 records in, 9 distinct seasons out: three nutrition seasons are
+        # repeated under both definitions and collapse.
+        self.assertEqual(SeasonalCalendar.objects.count(), 9)
+
+    def test_the_lean_season_matches_what_the_dashboard_has_always_shown(self):
+        """May-October, the same span as the hand-typed dict it replaces."""
+        self._load()
+        lean = SeasonalCalendar.objects.get(label="Lean", purpose="NutritionIndicator")
+        self.assertEqual((lean.start_month, lean.end_month), (5, 10))
+
+    def test_the_current_definition_wins_where_both_carry_a_season(self):
+        self._load()
+        lean = SeasonalCalendar.objects.get(label="Lean", purpose="NutritionIndicator")
+        self.assertEqual(lean.source_ref, "SD")

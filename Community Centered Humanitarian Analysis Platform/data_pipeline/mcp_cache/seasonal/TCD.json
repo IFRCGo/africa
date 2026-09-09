@@ -1,0 +1,309 @@
+{
+ "count": 15,
+ "next": null,
+ "previous": null,
+ "results": [
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Main harvest",
+   "purpose": "CropProductionIndicator",
+   "season_type": "Harvest",
+   "start_month": 10,
+   "end_month": 12,
+   "alignment": "Start",
+   "description": "October-December",
+   "order": 1,
+   "aliases": [
+    "récolte principale",
+    "récolte pluviale",
+    "rainfed harvest"
+   ],
+   "fnid": "TD",
+   "geographicunit": 8015
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Cold off-season harvest",
+   "purpose": "CropProductionIndicator",
+   "season_type": "Harvest",
+   "start_month": 11,
+   "end_month": 2,
+   "alignment": "End",
+   "description": "November-February",
+   "order": 2,
+   "aliases": [
+    "récolte de contre-saison froide"
+   ],
+   "fnid": "TD",
+   "geographicunit": 8015
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Hot off-season harvest",
+   "purpose": "CropProductionIndicator",
+   "season_type": "Harvest",
+   "start_month": 3,
+   "end_month": 6,
+   "alignment": "Start",
+   "description": "March-June",
+   "order": 3,
+   "aliases": [
+    "récolte de contre-saison chaude"
+   ],
+   "fnid": "TD",
+   "geographicunit": 8015
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Lean",
+   "purpose": "NutritionIndicator",
+   "season_type": "Lean",
+   "start_month": 4,
+   "end_month": 9,
+   "alignment": "Start",
+   "description": "April-September",
+   "order": 1,
+   "aliases": [
+    "soudure"
+   ],
+   "fnid": "TD",
+   "geographicunit": 8015
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Harvest",
+   "purpose": "NutritionIndicator",
+   "season_type": "Harvest",
+   "start_month": 10,
+   "end_month": 12,
+   "alignment": "Start",
+   "description": "October-December",
+   "order": 2,
+   "aliases": [
+    "récolte"
+   ],
+   "fnid": "TD",
+   "geographicunit": 8015
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Post-harvest",
+   "purpose": "NutritionIndicator",
+   "season_type": "Dry",
+   "start_month": 1,
+   "end_month": 3,
+   "alignment": "Start",
+   "description": "January-March",
+   "order": 3,
+   "aliases": [
+    "post-récolte"
+   ],
+   "fnid": "TD",
+   "geographicunit": 8015
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Lean",
+   "purpose": "NutritionIndicator",
+   "season_type": "Lean",
+   "start_month": 4,
+   "end_month": 9,
+   "alignment": "Start",
+   "description": "April-September",
+   "order": 1,
+   "aliases": [
+    "soudure"
+   ],
+   "fnid": "TD1960A0",
+   "geographicunit": 2856
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Harvest",
+   "purpose": "NutritionIndicator",
+   "season_type": "Harvest",
+   "start_month": 10,
+   "end_month": 12,
+   "alignment": "Start",
+   "description": "October-December",
+   "order": 2,
+   "aliases": [
+    "récolte"
+   ],
+   "fnid": "TD1960A0",
+   "geographicunit": 2856
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Post-harvest",
+   "purpose": "NutritionIndicator",
+   "season_type": "Dry",
+   "start_month": 1,
+   "end_month": 3,
+   "alignment": "Start",
+   "description": "January-March",
+   "order": 3,
+   "aliases": [
+    "post-récolte"
+   ],
+   "fnid": "TD1960A0",
+   "geographicunit": 2856
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Lean",
+   "purpose": "NutritionIndicator",
+   "season_type": "Lean",
+   "start_month": 4,
+   "end_month": 9,
+   "alignment": "Start",
+   "description": "April-September",
+   "order": 1,
+   "aliases": [
+    "soudure"
+   ],
+   "fnid": "TD2008A0",
+   "geographicunit": 2941
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Harvest",
+   "purpose": "NutritionIndicator",
+   "season_type": "Harvest",
+   "start_month": 10,
+   "end_month": 12,
+   "alignment": "Start",
+   "description": "October-December",
+   "order": 2,
+   "aliases": [
+    "récolte"
+   ],
+   "fnid": "TD2008A0",
+   "geographicunit": 2941
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Post-harvest",
+   "purpose": "NutritionIndicator",
+   "season_type": "Dry",
+   "start_month": 1,
+   "end_month": 3,
+   "alignment": "Start",
+   "description": "January-March",
+   "order": 3,
+   "aliases": [
+    "post-récolte"
+   ],
+   "fnid": "TD2008A0",
+   "geographicunit": 2941
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Lean",
+   "purpose": "NutritionIndicator",
+   "season_type": "Lean",
+   "start_month": 4,
+   "end_month": 9,
+   "alignment": "Start",
+   "description": "April-September",
+   "order": 1,
+   "aliases": [
+    "soudure"
+   ],
+   "fnid": "TD2012A0",
+   "geographicunit": 2790
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Harvest",
+   "purpose": "NutritionIndicator",
+   "season_type": "Harvest",
+   "start_month": 10,
+   "end_month": 12,
+   "alignment": "Start",
+   "description": "October-December",
+   "order": 2,
+   "aliases": [
+    "récolte"
+   ],
+   "fnid": "TD2012A0",
+   "geographicunit": 2790
+  },
+  {
+   "country": "Chad",
+   "geographicunit_name": "Chad",
+   "geographicunit_full_name": "Chad",
+   "unit_type": "Admin 0",
+   "country_code": "TD",
+   "name": "Post-harvest",
+   "purpose": "NutritionIndicator",
+   "season_type": "Dry",
+   "start_month": 1,
+   "end_month": 3,
+   "alignment": "Start",
+   "description": "January-March",
+   "order": 3,
+   "aliases": [
+    "post-récolte"
+   ],
+   "fnid": "TD2012A0",
+   "geographicunit": 2790
+  }
+ ]
+}

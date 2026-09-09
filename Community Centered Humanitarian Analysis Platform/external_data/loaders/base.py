@@ -129,11 +129,20 @@ def _write_geometry(loader, rows, geometries):
     Raw SQL because these columns are invisible to Django - see the migration that
     adds them. ST_Multi wraps a plain Polygon so the MultiPolygon column accepts it,
     and ST_MakeValid repairs the self-intersections publishers' polygons carry.
+
+    ST_CollectionExtract(..., 3) is on BOTH columns, and it has to be. Repairing a
+    degenerate polygon - a sliver, a zero-area ring - does not always give you a
+    polygon back: ST_MakeValid returns whatever survives, which for some of IPC's
+    areas is a MultiPoint or a GeometryCollection, and the column rejects it with
+    "Geometry type (MultiPoint) does not match column type (MultiPolygon)".
+    Extracting dimension 3 keeps the polygonal parts and discards the rest, which
+    for a food-security area is the only part that means anything anyway.
     """
     where = " AND ".join(f"{f} = %s" for f in loader.unique_fields)
     sql = f"""
         UPDATE {loader.model._meta.db_table}
-           SET geom = ST_Multi(ST_MakeValid(ST_GeomFromGeoJSON(%s))),
+           SET geom = ST_Multi(ST_CollectionExtract(
+                   ST_MakeValid(ST_GeomFromGeoJSON(%s)), 3)),
                geom_web = ST_Multi(ST_CollectionExtract(ST_MakeValid(
                    ST_SimplifyPreserveTopology(
                        ST_MakeValid(ST_GeomFromGeoJSON(%s)), %s)), 3))
