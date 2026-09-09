@@ -80,3 +80,55 @@ class SourceSync(models.Model):
     def __str__(self):
         where = self.iso3 or "global"
         return f"{self.source}/{self.dataset} {where} {self.variant}".strip()
+
+
+class SeasonalCalendar(models.Model):
+    """When the lean season bites, when the harvest comes in - per country.
+
+    NO COLOUR COLUMN, deliberately. The dashboard's calendar strip needs one, but
+    FEWS NET does not publish colours, so a colour column would be null for every
+    real row. Colour is derived at build time from `season_type`, which has the
+    happy side effect that a lean season is the same colour in every country.
+    """
+
+    iso3 = models.CharField(max_length=3, db_index=True)
+    country_name = models.TextField()
+    admin_pcode = models.TextField(
+        null=True, blank=True,
+        help_text="Null for a national calendar. ACAPS publishes at admin-1.",
+    )
+    source = models.TextField(help_text="fewsnet / acaps / curated")
+    source_ref = models.TextField(
+        null=True, blank=True, help_text="FEWS NET fnid, or the ACAPS record id"
+    )
+    label = models.TextField(help_text="'Lean', 'Main harvest', 'Post-harvest'")
+    season_type = models.TextField(
+        null=True, blank=True, help_text="Lean / Harvest / Dry / Rainy"
+    )
+    purpose = models.TextField(
+        null=True, blank=True, help_text="NutritionIndicator / CropProductionIndicator"
+    )
+    # A season that runs November to February has end_month < start_month. That is
+    # the source telling the truth about the calendar, not an error to correct.
+    start_month = models.IntegerField()
+    end_month = models.IntegerField()
+    alignment = models.TextField(null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
+    aliases = models.JSONField(
+        default=list, blank=True, help_text="Multilingual synonyms - 'soudure' for lean"
+    )
+    display_order = models.IntegerField(default=0)
+
+    class Meta:
+        db_table = "seasonal_calendar"
+        ordering = ["iso3", "purpose", "display_order"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["source", "iso3", "admin_pcode", "purpose", "label"],
+                name="uniq_seasonal_band",
+                nulls_distinct=False,
+            ),
+        ]
+
+    def __str__(self):
+        return f"{self.iso3} {self.label} ({self.start_month}-{self.end_month})"
