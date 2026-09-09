@@ -114,6 +114,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",    # collects CSS/JS for serving
     "data_track",                    # the seven database tables + the JSON API
     "boundaries",                    # the map itself: admin areas and features
+    "external_data",                 # IPC, FEWS NET, DTM, UNHCR + their freshness
     "data_pipeline",                 # the ETL steps, as manage.py commands
     "dashboard",                     # serves the MapLibre dashboard
     "updater",                       # the one-click "Update now" page
