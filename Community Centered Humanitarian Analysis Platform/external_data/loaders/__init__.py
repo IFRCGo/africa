@@ -10,4 +10,5 @@ def register(cls):
 
 # Importing the modules is what populates LOADERS. Kept at the bottom because each
 # module imports `register` from this one.
-from external_data.loaders import food_security, movement, seasonal  # noqa: E402,F401
+from external_data.loaders import (fewsnet_phases, food_security,  # noqa: E402,F401
+                                   movement, seasonal)
