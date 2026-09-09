@@ -30,10 +30,11 @@ def _as_date(value):
 class _MovementLoader(Loader):
     model = MovementPattern
     unique_fields = [
-        "source", "metric", "iso3", "admin_pcode", "date", "population_group",
+        "source", "metric", "iso3", "admin_pcode", "place_name", "date",
+        "population_group",
     ]
     update_fields = [
-        "admin_level", "place_name", "value", "unit", "source_dataset",
+        "admin_level", "value", "unit", "source_dataset",
         "reference_period_start", "reference_period_end", "lat", "lon",
     ]
 

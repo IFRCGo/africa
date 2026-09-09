@@ -248,8 +248,14 @@ class MovementPattern(models.Model):
         db_table = "movement_patterns"
         ordering = ["iso3", "metric", "date"]
         constraints = [
+            # place_name is in the key, and that is not decoration. Sudan's admin1
+            # IDP rows carry no p-code, so without it every state sharing a date
+            # collided and all but one were silently overwritten - 234 rows
+            # collapsing to 6. An observation is identified by WHERE it is, and
+            # when a p-code is absent the name is the only "where" there is.
             models.UniqueConstraint(
-                fields=["source", "metric", "iso3", "admin_pcode", "date", "population_group"],
+                fields=["source", "metric", "iso3", "admin_pcode", "place_name",
+                        "date", "population_group"],
                 name="uniq_movement_observation",
                 nulls_distinct=False,
             ),

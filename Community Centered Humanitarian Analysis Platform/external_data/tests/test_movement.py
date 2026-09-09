@@ -84,3 +84,32 @@ class IdpLoaderTests(TestCase):
         self._load("hdx_idps_SDN_admin2_early.json")
         sync.refresh_from_db()
         self.assertEqual(sync.high_water_date, date(2025, 12, 31))
+
+
+class PlaceIdentityTests(TestCase):
+    """The regression guard for the bug that ate 228 of 234 rows.
+
+    Sudan's admin1 IDP rows carry no p-code. With place_name outside the natural
+    key, every state sharing a date collided and all but one were overwritten - and
+    silently, because an upsert reports success either way. The workbook looked like
+    it held six observations instead of two hundred and thirty-four.
+    """
+
+    def test_two_places_on_one_date_without_pcodes_are_two_rows(self):
+        for state in ("North Darfur", "South Darfur"):
+            MovementPattern.objects.create(
+                date=date(2026, 7, 31), iso3="SDN", admin_pcode=None, admin_level=1,
+                place_name=state, metric="idps", population_group="idps",
+                value=1000, source="excel", source_dataset="Sudan IDPs.xlsx",
+            )
+        self.assertEqual(MovementPattern.objects.count(), 2)
+
+    def test_the_same_place_and_date_is_still_one_row(self):
+        for value in (1000, 2000):
+            MovementPattern.objects.update_or_create(
+                date=date(2026, 7, 31), iso3="SDN", admin_pcode=None, admin_level=1,
+                place_name="North Darfur", metric="idps", population_group="idps",
+                source="excel", defaults={"value": value},
+            )
+        self.assertEqual(MovementPattern.objects.count(), 1)
+        self.assertEqual(MovementPattern.objects.get().value, 2000)
