@@ -297,3 +297,81 @@ class BorderCrossing(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.country})"
+
+
+class HumanitarianServicePoint(models.Model):
+    """Which service a National Society offers, in which district, as reported.
+
+    WHAT THIS TABLE IS NOT. Despite the name the form carries, the Kobo export
+    holds no service-point coordinates and no per-site rows: it is six submissions,
+    one per country, recording which of eleven services the National Society offers
+    and which districts it offers them in. A row here therefore means "this service
+    is offered somewhere in this district", NOT "there is a service point at this
+    spot". The lat/lon below is the district's own point-on-surface, taken from the
+    boundary library, and is a label position rather than an address.
+
+    That is the finest truthful placement the source supports, and saying so here
+    is cheaper than someone later reading these dots as building locations.
+
+    South Sudan is the one country that answered "no" to "same services at every
+    HSP", so it carries three named locations with their own service lists; those
+    rows have scope='named-location'. The other five are country-wide.
+
+    DATE_REPORTED IS THE EXPORT DATE, and there is no better one. The export
+    carries no submission timestamp at all - Kobo's _submission__submission_time
+    column is present but empty for every row - so the date comes from the export
+    filename. It still does the job it is here for: load a later export and its
+    rows sit beside these under a new date, so what changed is a query rather than
+    a memory.
+    """
+
+    date_reported = models.DateField(
+        db_index=True, help_text="Export date. See the note above: no submission date exists."
+    )
+    country = models.TextField()
+    iso3 = models.CharField(max_length=3, db_index=True)
+
+    service = models.TextField(db_index=True, help_text="One of the form's eleven services")
+    scope = models.TextField(
+        default="country-wide", help_text="country-wide / named-location"
+    )
+
+    # Where. admin_pcode joins admin_areas on (iso3, level, pcode).
+    location_name = models.TextField(help_text="The district as the form labelled it")
+    admin_pcode = models.TextField(null=True, blank=True)
+    admin_level = models.IntegerField(null=True, blank=True)
+    match_method = models.TextField(
+        default="unmatched", help_text="pcode / name / unmatched - how the district was placed"
+    )
+    # Copied from the matched polygon so a map can be drawn from this table alone,
+    # with no join and no second source.
+    lat = models.FloatField(null=True, blank=True)
+    lon = models.FloatField(null=True, blank=True)
+
+    # Submission-level context, repeated on each row so one query answers everything.
+    same_services_everywhere = models.BooleanField(null=True, blank=True)
+    hsp_count = models.IntegerField(
+        null=True, blank=True, help_text="As reported. NOT max_hsps, which is a form roster size."
+    )
+    kobo_uuid = models.TextField(null=True, blank=True)
+    source_file = models.TextField(null=True, blank=True)
+
+    class Meta:
+        db_table = "humanitarian_service_points"
+        ordering = ["date_reported", "iso3", "location_name", "service"]
+        constraints = [
+            # date_reported is IN the key, which is the point: a later export adds
+            # rows beside these rather than overwriting them, so the table keeps a
+            # history and "did this change?" is answerable.
+            models.UniqueConstraint(
+                fields=["date_reported", "iso3", "service", "location_name"],
+                name="uniq_hsp_service_place_date",
+                nulls_distinct=False,
+            ),
+        ]
+        indexes = [
+            models.Index(fields=["iso3", "service"], name="idx_hsp_country_service"),
+        ]
+
+    def __str__(self):
+        return f"{self.service} - {self.location_name} ({self.iso3}, {self.date_reported})"

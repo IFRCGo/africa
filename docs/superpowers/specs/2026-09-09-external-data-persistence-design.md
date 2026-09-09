@@ -447,3 +447,56 @@ without re-pulling from a single MCP server.
   gained columns in `0002` and `0003` and will again, so **any future migration touching
   `narrative_tags` must drop the view first and recreate it after**. Written here because
   the failure surfaces months later, in someone else's unrelated migration.
+
+---
+
+# Addendum, 2026-09-09: Humanitarian Service Points
+
+Added at the user's request, after tasks 1-7. One table, `humanitarian_service_points`,
+named as the user named it.
+
+## H1. What the source actually is, and why the name is misleading
+
+`Humanitarian_Service_Points_Mapping_-_all_versions_-_labels_-_2026-09-08-11-46-14.xlsx`
+is a Kobo export of **six submissions, one per country**, across 1,051 columns. Verified
+directly, not taken from the earlier addendum:
+
+- **No coordinates.** The only columns matching /lat|lon/ are district names —
+  Shal**lat**in, **Lon**gochuk, Amo**lat**ar, Nabi**lat**uk.
+- **No per-site rows.** Eleven binary service columns, 931 binary district columns.
+- **No submission date.** Kobo's `_submission__submission_time` column exists on the
+  `location` sheet and is empty for every row.
+
+So a row means **"this service is offered somewhere in this district"**, not "there is a
+service point at this spot". The model docstring says so, because the table's own name
+invites the opposite reading.
+
+## H2. Shape
+
+139 rows from this export: 134 country-wide (each country's ticked services × its ticked
+districts) plus 5 from South Sudan, the only country that answered "no" to same-services
+and therefore carries three named locations with their own service lists.
+
+The districts each country ticked are few and deliberate — Chad only **Assoungha**, Uganda
+only **Kiryandongo**, Ethiopia only **Central Gondar** — which are the Sudan-crisis
+operational areas, not a data-entry failure.
+
+## H3. `date_reported`, and what it can and cannot mean
+
+It is the **export timestamp from the filename**, because the source carries no submission
+date at all. It still serves its purpose: `date_reported` is part of the natural key, so
+loading a later export puts its rows beside these rather than over them, and "did this
+district stop offering health?" becomes a query. A filename with no timestamp and no
+`--date` is a hard error — silently dating an import "today" would falsify the history the
+column exists to keep.
+
+## H4. Drawn from this table alone
+
+Each district resolves against `admin_areas` (p-code first for South Sudan, which publishes
+real p-codes; then name; then alternate spellings) and the matched polygon's
+point-on-surface is **copied onto the row**. 129 of 139 rows carry coordinates, so the map
+layer is one query against one table with no join — which is the point of putting it here.
+
+The 10 unplaced rows are Egypt's **Qustul** and **Arkeen** across five services. Both are
+border crossing points rather than ADM2 districts, so they have no polygon to match; they
+are reported by name on every load rather than dropped.
