@@ -43,15 +43,26 @@ class Command(BaseCommand):
         self.stdout.write(self.style.SUCCESS("every check passed"))
 
     # ------------------------------------------------------------- reporting
+    # Place names in this library are in Arabic, French and Amharic as well as
+    # English, and a Windows console is usually cp1252. Every line is therefore
+    # forced through the console's own encoding first: an audit that throws
+    # UnicodeEncodeError while describing a problem has hidden the problem.
+    def _safe(self, text):
+        enc = getattr(self.stdout, "encoding", None) or "utf-8"
+        try:
+            return str(text).encode(enc, errors="replace").decode(enc, errors="replace")
+        except (LookupError, UnicodeError):
+            return str(text).encode("ascii", errors="replace").decode("ascii")
+
     def ok(self, label, detail=""):
-        self.stdout.write(f"  {self.style.SUCCESS('OK  ')} {label:44s} {detail}")
+        self.stdout.write(self._safe(f"  {self.style.SUCCESS('OK  ')} {label:44s} {detail}"))
 
     def bad(self, label, detail=""):
         self.failures += 1
-        self.stdout.write(f"  {self.style.ERROR('FAIL')} {label:44s} {detail}")
+        self.stdout.write(self._safe(f"  {self.style.ERROR('FAIL')} {label:44s} {detail}"))
 
     def note(self, label, detail=""):
-        self.stdout.write(f"  {self.style.WARNING('note')} {label:44s} {detail}")
+        self.stdout.write(self._safe(f"  {self.style.WARNING('note')} {label:44s} {detail}"))
 
     # ---------------------------------------------------------------- checks
     def check_sources(self):
@@ -104,10 +115,26 @@ class Command(BaseCommand):
                     f"{AdminArea.objects.filter(kind='aoi').count()} AOIs included")
 
     def check_containment(self):
-        """Each polygon sits inside the country it claims to belong to."""
+        """Each polygon lies within the country it claims to belong to.
+
+        The test is INTERSECTION with the country outline, not whether the
+        polygon's interior point falls inside it. Two normal things fail the
+        stricter test and are not errors:
+
+          - a water polygon. Egypt's ADM3 includes Lake Nasser, and Egypt's
+            national outline is a LAND outline with the lake cut out of it, so
+            the lake touches its country without being inside it.
+          - a disputed area. Abyei is excluded from both Sudan's and South
+            Sudan's outlines by both publishers, on purpose.
+
+        A polygon that does not touch its country at all is the real error this
+        exists to catch - a whole file filed under the wrong country - and that
+        still fails.
+        """
         with connection.cursor() as cur:
             cur.execute("""
-                SELECT a.iso3, a.level, a.name
+                SELECT a.iso3, a.level, a.name,
+                       ST_Intersects(c.geom, a.geom) AS touches
                 FROM admin_areas a
                 JOIN admin_areas c ON c.kind = 'admin' AND c.level = 0 AND c.iso3 = a.iso3
                 WHERE a.level > 0 AND a.geom IS NOT NULL
@@ -115,25 +142,42 @@ class Command(BaseCommand):
                 LIMIT 40
             """)
             stray = cur.fetchall()
-        expected = [s for s in stray if any(d.lower() in (s[2] or "").lower() for d in DISPUTED)]
-        real = [s for s in stray if s not in expected]
-        if real:
-            self.bad("polygons sit inside their own country",
-                     f"{len(real)} outside: " + ", ".join(f"{r[0]} {r[2]}" for r in real[:4]))
+        elsewhere = [s for s in stray if not s[3]]
+        edge_cases = [s for s in stray if s[3]]
+        if elsewhere:
+            self.bad("polygons lie within their own country",
+                     f"{len(elsewhere)} do not touch it: "
+                     + ", ".join(f"{r[0]} ADM{r[1]} {r[2]}" for r in elsewhere[:4]))
         else:
-            self.ok("polygons sit inside their own country",
-                    f"{len(expected)} disputed area(s) excepted" if expected else "")
+            detail = ""
+            if edge_cases:
+                named = ", ".join(f"{r[0]} {r[2]}" for r in edge_cases[:3])
+                detail = f"{len(edge_cases)} on the boundary (water/disputed): {named}"
+            self.ok("polygons lie within their own country", detail)
 
     def check_parents(self):
-        """Every parent p-code names a polygon that exists."""
+        """Every parent p-code names a polygon that exists.
+
+        One exception is real and is in the sources, not in the loading: South
+        Sudan's ADM2 file puts Abyei Region under the parent SS00, and its own
+        ADM1 file contains only the ten states, deliberately leaving Abyei out
+        because its status is disputed. The parent is genuinely absent from the
+        data, so it is reported rather than treated as a load error.
+        """
         with connection.cursor() as cur:
             cur.execute("""
-                SELECT count(*) FROM admin_areas c
+                SELECT c.iso3, c.pcode, c.name, c.parent_pcode FROM admin_areas c
                 WHERE c.parent_pcode IS NOT NULL AND NOT EXISTS (
                     SELECT 1 FROM admin_areas p
                     WHERE p.pcode = c.parent_pcode AND p.iso3 = c.iso3)
             """)
-            orphans = cur.fetchone()[0]
+            missing = cur.fetchall()
+            disputed = [m for m in missing
+                        if any(d.lower() in (m[2] or "").lower() for d in DISPUTED)]
+            orphans = len(missing) - len(disputed)
+            if disputed:
+                self.note("parents absent from the source",
+                          ", ".join(f"{m[0]} {m[2]} (wants {m[3]})" for m in disputed[:3]))
             cur.execute("""
                 SELECT count(*) FROM admin_areas
                 WHERE kind = 'admin' AND level > 0 AND parent_pcode IS NULL
