@@ -201,3 +201,62 @@ class FoodSecurityArea(models.Model):
 
     def __str__(self):
         return f"{self.iso3} {self.area_title} phase {self.phase} ({self.period_date})"
+
+
+class MovementPattern(models.Model):
+    """Displacement figures as the agencies themselves publish them.
+
+    THIS IS NOT data_track.PopulationFigure, and the distinction is deliberate.
+    That table holds numbers read out of UNHCR PDFs, each with the sentence that
+    produced it. This one holds the same KINDS of quantity from the agencies' own
+    APIs and from the office's Excel workbooks. They overlap and they disagree,
+    because a situation report and an IOM-DTM round count different things on
+    different dates.
+
+    They stay apart. An analyst who wants both writes a UNION and chooses what that
+    means. One merged table would produce plausible, wrong totals that nobody could
+    trace back - the exact failure this project's evidence trail exists to prevent.
+    """
+
+    date = models.DateField(db_index=True)
+    iso3 = models.CharField(max_length=3, db_index=True)
+    admin_pcode = models.TextField(
+        null=True, blank=True, help_text="Null for a national total. Joins admin_areas.pcode."
+    )
+    admin_level = models.IntegerField(null=True, blank=True)
+    place_name = models.TextField(null=True, blank=True)
+
+    metric = models.TextField(
+        db_index=True, help_text="idps / refugees / returnees / asylum_seekers"
+    )
+    population_group = models.TextField(null=True, blank=True)
+    value = models.BigIntegerField()
+    unit = models.TextField(default="individuals", help_text="individuals / households")
+
+    source = models.TextField(help_text="hdx / unhcr / excel")
+    source_dataset = models.TextField(
+        null=True, blank=True, help_text="iom-dtm / get_refugees / the workbook name"
+    )
+    # DTM reports a period, not an instant. Keeping both ends means a later reader
+    # can tell a fortnight's round from a single day's count.
+    reference_period_start = models.DateField(null=True, blank=True)
+    reference_period_end = models.DateField(null=True, blank=True)
+    lat = models.FloatField(null=True, blank=True)
+    lon = models.FloatField(null=True, blank=True)
+
+    class Meta:
+        db_table = "movement_patterns"
+        ordering = ["iso3", "metric", "date"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["source", "metric", "iso3", "admin_pcode", "date", "population_group"],
+                name="uniq_movement_observation",
+                nulls_distinct=False,
+            ),
+        ]
+        indexes = [
+            models.Index(fields=["metric", "iso3", "date"], name="idx_movement_series"),
+        ]
+
+    def __str__(self):
+        return f"{self.date} {self.iso3} {self.metric} {self.value:,}"
