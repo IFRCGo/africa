@@ -1,5 +1,11 @@
 # External Data Persistence Implementation Plan
 
+> **Status: tasks 1-10 and 12 are implemented and verified.** Task 8b
+> (the community_insights view) was deferred at the user's request, to be
+> handled separately; /api/community-insights/ reads narrative_tags
+> directly in the meantime. Task 11 (the updater page onto source_sync,
+> and the MAINTENANCE.md rewrite) is outstanding.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
 **Goal:** Persist everything the MCP servers and Excel workbooks supply into subject-named PostgreSQL tables, with watermarks that let a refresh pull only what is missing or newer.

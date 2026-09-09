@@ -1,7 +1,7 @@
 # External data in the database: subject tables, watermarks and incremental pulls
 
 **Date:** 2026-09-09
-**Status:** approved design, not yet implemented
+**Status:** implemented (tasks 1-10, 12; task 11 outstanding)
 **Scope:** sub-project A of four. B (multi-country seasonal + food security), C
 (drag-to-resize sidebars) and D (frontend onto the boundary API, with GO SharePoint
 ADM1/ADM2 and zoom-progressive outlines) each get their own spec and are **out of scope
