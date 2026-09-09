@@ -42,11 +42,17 @@ class Loader:
     update_fields = []    # everything else, overwritten on conflict
     tool = ""             # the MCP tool this payload came from, for the record
 
-    def parse(self, payload, iso3):
-        """Return a list of dicts, one per model row. Pure - no database access."""
+    def parse(self, payload, iso3, context=None):
+        """Return a list of dicts, one per model row. Pure - no database access.
+
+        `context` carries what the payload itself does not. IPC's GeoJSON, for
+        instance, names its analysis but not the period that analysis describes -
+        that lives in the filename the pull was saved under - so the command passes
+        it in rather than the parser guessing a date.
+        """
         raise NotImplementedError
 
-    def sync_key(self, iso3):
+    def sync_key(self, iso3, context=None):
         """Which source_sync row this load belongs to.
 
         The call's ARGUMENTS ARE NEVER PART OF THIS. start_date lives in params, so
@@ -65,9 +71,9 @@ class Loader:
 
 
 @transaction.atomic
-def load(loader, payload, iso3, dry_run=False):
+def load(loader, payload, iso3, dry_run=False, context=None):
     """Parse, upsert, then write the watermark - all or nothing."""
-    rows = loader.parse(payload, iso3)
+    rows = loader.parse(payload, iso3, context or {})
     if not rows:
         # Deliberately an exception. Recording an empty pull as a successful one
         # would advance the watermark past data we do not have, and every later
@@ -96,7 +102,7 @@ def load(loader, payload, iso3, dry_run=False):
     if any(g is not None for g in geometries):
         _write_geometry(loader, rows, geometries)
 
-    key = loader.sync_key(iso3)
+    key = loader.sync_key(iso3, context or {})
     sync, _ = SourceSync.objects.get_or_create(**key)
     sync.tool = loader.tool
     sync.last_pulled_at = datetime.now(timezone.utc)

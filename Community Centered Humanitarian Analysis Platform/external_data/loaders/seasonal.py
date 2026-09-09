@@ -33,7 +33,7 @@ class SeasonalLoader(Loader):
         "alignment", "description", "aliases", "display_order",
     ]
 
-    def parse(self, payload, iso3):
+    def parse(self, payload, iso3, context=None):
         iso2 = ISO3_TO_ISO2.get(iso3)
         results = payload.get("results", []) if isinstance(payload, dict) else payload
         rows = []

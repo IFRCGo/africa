@@ -11,6 +11,8 @@ The cache file is staging, not truth. Keeping it on disk means any load can be
 replayed without going back to a single MCP server.
 """
 import json
+import re
+from datetime import date
 from pathlib import Path
 
 from django.core.management.base import BaseCommand, CommandError
@@ -27,6 +29,12 @@ class Command(BaseCommand):
         parser.add_argument("path", help="Path to the recorded JSON payload")
         parser.add_argument("--iso3", default=None, help="Country the payload is for")
         parser.add_argument(
+            "--period", default=None,
+            help="YYYY-MM the analysis describes. IPC payloads do not carry it; "
+                 "without this it is read from the filename (ipc_area_YYYY-MM...).",
+        )
+        parser.add_argument("--title", default="", help="Analysis title, for the record")
+        parser.add_argument(
             "--dry-run", action="store_true", dest="dry_run",
             help="Report what would change and write nothing.",
         )
@@ -42,8 +50,13 @@ class Command(BaseCommand):
             raise CommandError(f"{path} is not valid JSON: {exc}") from exc
 
         loader = LOADERS[options["dataset"]]()
+        context = {
+            "period_date": _period_date(options["period"], path),
+            "analysis_title": options["title"],
+        }
         try:
-            result = load(loader, payload, options["iso3"], dry_run=options["dry_run"])
+            result = load(loader, payload, options["iso3"],
+                          dry_run=options["dry_run"], context=context)
         except EmptyPayload as exc:
             raise CommandError(str(exc)) from exc
 
@@ -51,3 +64,14 @@ class Command(BaseCommand):
         self.stdout.write(f"{verb} {result.written} rows to {loader.model._meta.db_table}")
         if result.high_water_date:
             self.stdout.write(f"  data now held to {result.high_water_date}")
+
+
+def _period_date(explicit, path):
+    """The first day of the period, from --period or from the filename.
+
+    Returns None rather than guessing today's date: a wrong period silently files
+    an analysis under the wrong month, which is worse than a load that stops.
+    """
+    text = explicit or path.name
+    m = re.search(r"(\d{4})-(\d{2})", text)
+    return date(int(m[1]), int(m[2]), 1) if m else None

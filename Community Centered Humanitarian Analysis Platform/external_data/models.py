@@ -132,3 +132,72 @@ class SeasonalCalendar(models.Model):
 
     def __str__(self):
         return f"{self.iso3} {self.label} ({self.start_month}-{self.end_month})"
+
+
+class FoodSecurityArea(models.Model):
+    """One IPC or Cadre Harmonise analysis unit, at one phase, in one period.
+
+    IPC ANALYSIS UNITS ARE NOT ADMIN UNITS. IPC redraws them each round, which is
+    why the existing ipc_areas_fs.geojson holds a complete snapshot per period
+    rather than a series per area. The geometry is stored as IPC published it, and
+    `admin_pcode` is a convenience join filled in where a polygon confidently
+    matches one in admin_areas, left null otherwise. Nothing depends on it.
+
+    `source` separates products that must never be conflated: 'ipc' is an official
+    IPC analysis, 'ch' a Cadre Harmonise one (the same five-phase scale, used across
+    the Sahel - Chad's analyses are these), and 'fewsnet' is FEWS NET's own
+    IPC-compatible assessment, which is a different organisation's judgement about
+    the same places.
+    """
+
+    source = models.TextField(db_index=True, help_text="ipc / ch / fewsnet")
+    analysis_id = models.TextField(db_index=True, help_text="IPC's anl_id")
+    analysis_title = models.TextField(null=True, blank=True)
+    condition = models.CharField(
+        max_length=1, null=True, blank=True, help_text="A acute, C chronic"
+    )
+    iso3 = models.CharField(max_length=3, db_index=True)
+    period_date = models.DateField(db_index=True, help_text="First day of the period described")
+    period_type = models.TextField(
+        default="current", help_text="current / projection / second_projection"
+    )
+    area_id = models.TextField(help_text="IPC's aar_id")
+    area_title = models.TextField(null=True, blank=True)
+    admin_pcode = models.TextField(null=True, blank=True)
+
+    phase = models.IntegerField(null=True, blank=True, help_text="Overall IPC phase 1-5")
+    phase3_pct = models.FloatField(null=True, blank=True)
+    phase4_pct = models.FloatField(null=True, blank=True)
+    phase5_pct = models.FloatField(null=True, blank=True)
+    phase3plus_pct = models.FloatField(null=True, blank=True, help_text="Phases 3+4+5")
+    phase5_population = models.BigIntegerField(null=True, blank=True)
+    total_population = models.BigIntegerField(null=True, blank=True)
+    # IPC's own phase colour, kept so the map never invents one.
+    colour = models.TextField(null=True, blank=True)
+
+    # geom / geom_web  geometry(MultiPolygon, 4326) - added in the raw SQL migration
+
+    class Meta:
+        db_table = "food_security"
+        ordering = ["iso3", "period_date", "area_title"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["source", "analysis_id", "period_type", "area_id"],
+                name="uniq_food_security_area",
+                nulls_distinct=False,
+            ),
+        ]
+        indexes = [
+            models.Index(fields=["iso3", "period_date"], name="idx_fs_country_period"),
+        ]
+
+    @property
+    def famine(self):
+        """Phase 5 present - what the dashboard's 'fam' flag has always meant."""
+        return bool(
+            (self.phase5_population or 0) > 0
+            or (self.phase is not None and self.phase >= 5)
+        )
+
+    def __str__(self):
+        return f"{self.iso3} {self.area_title} phase {self.phase} ({self.period_date})"
