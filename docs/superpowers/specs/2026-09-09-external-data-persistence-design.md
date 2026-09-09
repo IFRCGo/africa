@@ -91,15 +91,23 @@ The table that makes goal 2 real. One row per thing that can be pulled.
 | `dataset` | text | `seasonal_calendar` / `food_security` / `idps` / `refugees` |
 | `iso3` | char(3), null | null for a global pull |
 | `tool` | text | the MCP tool called, e.g. `get_areas_by_analysis` |
-| `params` | JSONB | the exact arguments used, so a pull is reproducible |
-| `params_key` | text | stable digest of `params`, for the unique constraint |
+| `variant` | text | which slice of the dataset this row tracks, e.g. `admin2-overview` vs `admin1` |
+| `params` | JSONB | the last call actually made, for reproducibility — **not** part of identity |
 | `last_pulled_at` | timestamptz | |
 | `high_water_date` | date, null | latest **data** date held — not the pull date |
 | `known_ids` | JSONB | identities already held (e.g. IPC analysis ids). §6.2 |
 | `row_count` | integer | rows currently in the subject table from this pull |
 | `notes` | text, null | e.g. "source publishes annually, latest 2024" |
 
-Unique on `(source, dataset, iso3, params_key)`.
+Unique on `(source, dataset, iso3, variant)`.
+
+**Identity must not include the call's arguments, and this is load-bearing.** The obvious
+design — digest `params` into the unique key — destroys the mechanism it exists to serve:
+`start_date` is itself one of the arguments, so every incremental pull would hash
+differently, create a fresh row, and leave §6.1 with no accumulated watermark to read. The
+row identifies *a thing that can be pulled*, not *a pull*. `variant` distinguishes genuinely
+different slices (IDPs at admin1 and at admin2 are two rows); date windows, page offsets and
+result limits are never part of identity.
 
 `high_water_date` and `last_pulled_at` are deliberately different columns. A pull that
 returns nothing new still advances `last_pulled_at` and must not advance
@@ -124,6 +132,13 @@ data. The 2026-07-06 refresh found HDX IDP data topping out at 2025-12-31, IPC S
 | `display_order` | integer | the source's own ordering |
 
 Unique on `(source, iso3, admin_pcode, purpose, label)`.
+
+**No colour column, and that is deliberate.** The current `SEASONAL` dict carries a hex
+colour per band and `renderSeasonal` reads `it.color` — but FEWS NET returns none, so a
+colour column would be null for every real row and the calendar would render grey. Colour is
+presentation, derived at build time from `season_type` (lean, harvest, dry, rainy) so that
+the same kind of season is the same colour in every country. `build_seasonal` owns that
+mapping.
 
 **De-duplication is required at load.** FEWS NET returns the same season once per historical
 geographic-unit version: Chad's `get_seasons` gives 15 rows for roughly 6 distinct seasons,
@@ -175,11 +190,23 @@ Long format, one row per place per date per metric — the shape trend analysis 
 | `population_group` | text, null | |
 | `value` | bigint | |
 | `unit` | text | `individuals` / `households` |
-| `source`, `source_dataset` | text | `hdx` + `iom-dtm`; `unhcr` + `get_refugees` |
+| `source`, `source_dataset` | text | `hdx` + `iom-dtm`; `unhcr` + `get_refugees`; `excel` + the workbook name |
 | `reference_period_start`, `reference_period_end` | date, null | DTM reports periods, not instants |
 | `lat`, `lon` | float, null | for sources that carry a point rather than a p-code |
 
 Unique on `(source, metric, iso3, admin_pcode, date, population_group)`.
+
+**Excel is a first-class source here, not an afterthought.** `s07_xlsx.py` reads two
+workbooks an analyst maintains by hand beside the PDFs — `neighbouring countries Pop
+movement data.xlsx` and `Sudan IDPs.xlsx` — and they carry the *freshest* movement data the
+project holds: a 2026 biweekly refugee series, against UNHCR's annual figures that stop at
+2024, plus Sudan's admin1 IDP snapshots that no MCP layer produces at all. Both load into
+`movement_patterns` with `source='excel'` and the workbook in `source_dataset`, and both get
+`source_sync` rows keyed on file `sha1` and modification time rather than a date watermark.
+
+This is the case the user's phrase "Movement Patterns … IDPs, Refugees" most directly names,
+and leaving it in a spreadsheet would have left the newest numbers outside the database the
+whole design exists to fill.
 
 ### 5.5 What this table is **not**
 
@@ -245,6 +272,12 @@ So food-security pulls are **strictly one country at a time**, and identity diff
 keeps that sequential work from being repeated. FEWS NET seasons are diffed the same way;
 they change rarely and re-pull only on demand.
 
+**Analyses before 2023-01 are not pulled.** Chad alone has twelve analyses back to 2020, and
+at 8–15 MB each, strictly sequential, pulling every one for four countries is hours of work
+for data the dashboard cannot show: the timeline starts at `CRISIS_START`, 15 April 2023.
+The cap is a decision, not an oversight, and it is recorded in `source_sync.notes` so a
+later reader can tell a deliberate floor from a failed pull.
+
 ### 6.3 What the assistant is told to do
 
 `python manage.py external_status` prints the same information `/api/sync/` serves: per
@@ -307,12 +340,20 @@ renders, and what tells an analyst which pull to ask the assistant for.
 
 The `/api/` index is extended to list them, so the API stays self-describing in a browser.
 
-## 10. `s06_mcp_layers.py` reads the database
+## 10. `s06_mcp_layers.py` and `s07_xlsx.py` read the database
 
 The step keeps its name, its outputs and its place in the pipeline. Each `build_*` function
 swaps its `json.loads((CACHE / ...).read_text())` for an ORM query. `build_seasonal` gains a
 country loop and writes `{iso3: {...}}` instead of a bare Sudan object — the only output
 whose *shape* changes, and it changes now so sub-project B is a frontend change alone.
+
+**`s07_xlsx.py` moves with it, and must.** s07 runs after s06 and *rewrites*
+`refugee_camps.json`, merging its 2026 biweekly Excel series into the file s06 just
+produced; it also writes `idp_states.json`, which s06 never touches. If s06 alone were
+moved onto the database, step 7 would silently overwrite it on the very next pipeline run
+and the work would appear to revert for no visible reason. So s07 also loads into
+`movement_patterns` (§5.4) and rebuilds its two outputs from there, and the two steps stop
+writing the same file from different sources.
 
 `data_pipeline/steps/_build_aoi_ipc.py` is fixed in this pass. It currently reads IPC pulls
 from `TOOLRES`, a hardcoded path pinned to a Claude session from June, so it silently reads
@@ -342,9 +383,16 @@ done.
    moves once and `row_count` reflects the union, not the sum. Automated test.
 5. **FEWS NET de-duplication.** Load the real Chad `get_seasons` payload (15 rows); assert 6
    rows stored, none with a versioned `fnid`. Automated test.
-6. **`s06` output is unchanged.** Capture `dashboard/data/*.json` before the change, run the
-   pipeline after, diff. Only `seasonal.json` may differ, and only by gaining its country
-   key. This is the check that proves nothing on screen broke.
+6. **`s06`/`s07` output is equivalent — checked semantically, not by diff.** A byte diff
+   cannot pass and must not be the gate: PostGIS `ST_Simplify` does not round coordinates
+   the way `_simplify` does, p-code centroids from `admin_areas` are not the name-matched
+   geoBoundaries centroids `build_idp_localities` uses today, and `seasonal.json` changes
+   substantively because Sudan's hand-typed bands are replaced by the real FEWS NET pull
+   (§8). Setting an impossible gate here would guarantee somebody skips it. Instead, assert
+   on the rebuilt files: the same number of IPC periods and the same feature count per
+   period; the same phase for every area title present in both; the same locality names and
+   values in `idp_localities.json`; the same country totals in `refugee_camps.json`
+   including the 2026 Excel series; and `idp_states.json` unchanged in state count.
 7. **Real refresh round-trip.** `external_status` → pull only what it names → load →
    `external_status` again shows the new high-water mark. Run against Chad, which has
    genuinely new data.
@@ -357,10 +405,11 @@ done.
 1. App skeleton, models, migrations (including geometry columns and the view).
 2. `source_sync` + `external_status` command — the bookkeeping before anything writes.
 3. Loader framework + the seasonal parser (smallest real source), with its tests.
-4. Remaining parsers: food security, movement patterns.
+4. Remaining parsers: food security, movement patterns (MCP sources and the two Excel
+   workbooks).
 5. `seed_external`, then delete the three dictionaries.
 6. Pull Chad, South Sudan, Ethiopia and CAR — one country at a time for IPC.
-7. `s06` reads the database; verification item 6.
+7. `s06` and `s07` read the database; verification item 6.
 8. API endpoints; updater page onto `source_sync`.
 9. `MAINTENANCE.md` §4 rewritten around `external_status`.
 
@@ -392,3 +441,9 @@ without re-pulling from a single MCP server.
   refresh instead of looking broken.
 - **New settings, if any, use `get(X) or default`** — an empty string in `.env` must fall
   through to the default, which `get(X, default)` does not do.
+- **The `community_insights` view constrains future migrations.** Its migration must declare
+  a dependency on `data_track`'s latest migration or a fresh `migrate` fails on ordering. And
+  PostgreSQL refuses to drop or alter a column a view references: `narrative_tags` already
+  gained columns in `0002` and `0003` and will again, so **any future migration touching
+  `narrative_tags` must drop the view first and recreate it after**. Written here because
+  the failure surfaces months later, in someone else's unrelated migration.
