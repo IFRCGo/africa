@@ -52,6 +52,15 @@ const ANCHORS = {
 const COUNTRIES = ["Sudan", "Central African Republic", "Chad", "Egypt",
                    "Ethiopia", "Libya", "South Sudan", "Uganda"];
 
+/* The seasonal calendar and the food-security files are keyed by ISO3, because
+   that is how the database stores them. This turns the dropdown's country name
+   into that key. */
+const COUNTRY_TO_ISO3 = {
+  "Sudan": "SDN", "Chad": "TCD", "Egypt": "EGY", "Ethiopia": "ETH",
+  "Libya": "LBY", "South Sudan": "SSD", "Uganda": "UGA",
+  "Central African Republic": "CAF", "Eritrea": "ERI",
+};
+
 /* Corridor ids in flows.json are built from country slugs - "sudan-chad",
    "chad-sudan-return", "south_sudan-sudan-influx". This turns a slug back into
    the country name the rest of the dashboard uses. */
@@ -1767,28 +1776,48 @@ const CAL_MONTHS = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
    the timeline is currently in highlighted. */
 function renderSeasonal() {
   const el = $("#seasonal-cal");
-  if (!el || !state.data.seasonal) return;
-  // FEWS NET publishes this calendar for Sudan, so it says nothing about a
-  // selection that leaves Sudan out. Better to say so than to show Sudan's
-  // rainy season under a heading that reads "Chad".
-  if (!countryOn(SUDAN_ONLY)) {
-    el.innerHTML = `<div class="panel-note">The seasonal calendar is published for Sudan only.
-      Add Sudan to the country filter to see it.</div>`;
-    return;
-  }
+  const data = state.data.seasonal && state.data.seasonal.countries;
+  if (!el || !data) return;
+
+  // Whichever countries are selected, in the dropdown's own order. An empty
+  // filter means no filter, so every country we hold a calendar for is shown.
+  const scope = scopeCountries();
+  const wanted = COUNTRIES.filter((c) => (scope.size === 0 || scope.has(c)) && COUNTRY_TO_ISO3[c]);
+
   const cur = new Date(state.current).getMonth();   // 0-11
-  let html = `<div class="cal-row cal-head"><span class="cal-label"></span>`;
-  for (let m = 0; m < 12; m++)
-    html += `<span class="cal-cell ${m === cur ? "cal-now" : ""}">${CAL_MONTHS[m]}</span>`;
-  html += `</div>`;
-  for (const it of state.data.seasonal.items) {
-    html += `<div class="cal-row"><span class="cal-label" title="${it.note || ""}">${it.label}</span>`;
-    for (let m = 1; m <= 12; m++) {
-      const on = it.months.includes(m);
-      html += `<span class="cal-cell ${m - 1 === cur ? "cal-now" : ""}"${on ? ` style="background:${it.color}"` : ""}></span>`;
-    }
+  let html = "";
+  let shown = 0;
+  const absent = [];
+
+  for (const country of wanted) {
+    const entry = data[COUNTRY_TO_ISO3[country]];
+    // A country FEWS NET does not cover is named rather than skipped: Egypt has
+    // crop seasons but no lean season, and Libya has a single placeholder band.
+    // Silence would read as "we did not look".
+    if (!entry || !entry.items || !entry.items.length) { absent.push(country); continue; }
+
+    shown++;
+    html += `<div class="cal-country">${country}</div>`;
+    html += `<div class="cal-row cal-head"><span class="cal-label"></span>`;
+    for (let m = 0; m < 12; m++)
+      html += `<span class="cal-cell ${m === cur ? "cal-now" : ""}">${CAL_MONTHS[m]}</span>`;
     html += `</div>`;
+    for (const it of entry.items) {
+      const title = escapeHTML(it.note || "");
+      html += `<div class="cal-row"><span class="cal-label" title="${title}">${escapeHTML(it.label)}</span>`;
+      for (let m = 1; m <= 12; m++) {
+        const on = it.months.includes(m);
+        html += `<span class="cal-cell ${m - 1 === cur ? "cal-now" : ""}"${on ? ` style="background:${it.color}"` : ""}></span>`;
+      }
+      html += `</div>`;
+    }
   }
+
+  if (absent.length)
+    html += `<div class="panel-note">No FEWS NET calendar published for
+      ${absent.map(escapeHTML).join(", ")}.</div>`;
+  if (!shown && !absent.length)
+    html += `<div class="panel-note">No seasonal calendar for this selection.</div>`;
   el.innerHTML = html;
 }
 
