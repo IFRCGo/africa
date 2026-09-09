@@ -25,27 +25,10 @@ REPO_DIR = BASE_DIR.parent
 
 
 def env_path(name: str, default: Path) -> Path:
-    """Read a folder path from an environment variable, or use the default.
-
-    Inside Docker the folders live under /work; on a laptop they sit next to
-    the repository. Using environment variables means the same code works in
-    both places without editing anything.
-    """
     value = os.environ.get(name)
     return Path(value) if value else default
 
-
-# Where the source PDFs live. They are NOT in the repository: they sit in the
-# parent "SUDAN Ops" folder, in two collections (see SOURCE_COLLECTIONS below).
 SOURCE_ROOT = env_path("SOURCE_ROOT", REPO_DIR.parent)
-
-# The dashboard is part of this Django project, not a folder beside it:
-#   dashboard/templates/dashboard/index.html   the page
-#   dashboard/static/dashboard/css|js          stylesheet and script
-#   dashboard/data/                            the files below
-# Only the data folder needs a setting, because data_pipeline writes into it and
-# a view reads back out of it. Templates and static files are found by Django's
-# own app loaders and need no path here.
 DASHBOARD_DATA_DIR = env_path("DASHBOARD_DATA_DIR", BASE_DIR / "dashboard" / "data")
 
 # Raw pulls from the humanitarian MCP servers (HDX, IPC, FEWS NET, UNHCR).
@@ -62,6 +45,42 @@ SOURCE_COLLECTIONS = {
 # Excel workbook (kept beside the PDFs) used by data_pipeline step 7.
 POP_MOVEMENT_XLSX = env_path(
     "POP_MOVEMENT_XLSX", SOURCE_ROOT / "neighbouring countries Pop movement data.xlsx"
+)
+
+# --------------------------------------------------------------------------
+# The boundary library's source files.
+#
+# These are read ONCE, by "manage.py load_boundaries", and then live in the
+# database. Nothing at runtime touches these folders: a dashboard that stops
+# drawing borders because a shared drive was reorganised is not a dashboard
+# anyone can rely on.
+#
+# Inside Docker they arrive as two read-only mounts (see docker-compose.yml).
+# The defaults below are the paths on the machine this was built on, so the
+# loader also runs directly from a laptop with no environment set.
+# --------------------------------------------------------------------------
+BOUNDARY_ADMIN_DIR = env_path(
+    "BOUNDARY_ADMIN_DIR",
+    Path(r"C:\Users\Admin\OneDrive - IFRC\Sudan Crisis - Chad 2026\Chad Maps\Countries Maps"),
+)
+BOUNDARY_LAYERS_DIR = env_path(
+    "BOUNDARY_LAYERS_DIR",
+    Path(r"C:\Users\Admin\OneDrive - IFRC\Nigeria Malnutrition 2025"
+         r"\HDCC Africa-1 Disaster Preparedness and Response - 08. IM"
+         r"\01. Maps\QGIS_Template_2024\layers"),
+)
+# The IFRC icon set, used to build the Humanitarian Service Point symbols.
+# The PNGs rather than the SVGs: the SVGs carry their colour in a stylesheet
+# block that map renderers ignore, and would draw as black silhouettes.
+BOUNDARY_ICONS_DIR = env_path(
+    "BOUNDARY_ICONS_DIR", Path(r"C:\Users\Admin\Dropbox\icons\Colour\png")
+)
+# The Kobo export behind the Humanitarian Service Points layer.
+HSP_XLSX = env_path(
+    "HSP_XLSX",
+    Path(r"C:\Users\Admin\OneDrive - IFRC\Sudan Crisis - Chad 2026\Chad Maps"
+         r"\Humanitarian_Service_Points_Mapping_-_all_versions_-_labels"
+         r"_-_2026-09-08-11-46-14.xlsx"),
 )
 
 # --------------------------------------------------------------------------
@@ -94,6 +113,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",    # collects CSS/JS for serving
     "data_track",                    # the seven database tables + the JSON API
+    "boundaries",                    # the map itself: admin areas and features
     "data_pipeline",                 # the ETL steps, as manage.py commands
     "dashboard",                     # serves the MapLibre dashboard
     "updater",                       # the one-click "Update now" page

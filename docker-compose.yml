@@ -102,6 +102,14 @@ services:
       DASHBOARD_DATA_DIR: ${DASHBOARD_DATA_DIR:-/app/dashboard/data}
       MCP_CACHE_DIR: ${MCP_CACHE_DIR:-/app/data_pipeline/mcp_cache}
       POP_MOVEMENT_XLSX: ${POP_MOVEMENT_XLSX:-/work/neighbouring countries Pop movement data.xlsx}
+
+      # Where the boundary library reads its source files from, inside the
+      # container. These match mounts 4-6 below. They are read once, by
+      # "manage.py load_boundaries"; nothing at runtime opens them.
+      BOUNDARY_ADMIN_DIR: ${BOUNDARY_ADMIN_DIR:-/boundary-src/chad-maps/Countries Maps}
+      BOUNDARY_LAYERS_DIR: ${BOUNDARY_LAYERS_DIR:-/boundary-src/layers}
+      BOUNDARY_ICONS_DIR: ${BOUNDARY_ICONS_DIR:-/boundary-src/icons}
+      HSP_XLSX: ${HSP_XLSX:-/boundary-src/chad-maps/Humanitarian_Service_Points_Mapping_-_all_versions_-_labels_-_2026-09-08-11-46-14.xlsx}
     volumes:
       # 1. The parent "SUDAN Ops" folder, READ-ONLY: the pipeline reads the
       #    source PDFs and the Excel from here and writes nothing back. The
@@ -115,6 +123,20 @@ services:
       #    inside the container:  docker compose exec web python /docs/build_docs.py
       #    (mount 1 is read-only, so the manual cannot be written through /work.)
       - "./docs:/docs"
+      # 4-6. The boundary library's sources, READ-ONLY. They sit outside the
+      #      "SUDAN Ops" folder that mount 1 covers - two of them on entirely
+      #      different shares - so they need mounts of their own. They are read
+      #      once, by "manage.py load_boundaries", and never at runtime.
+      #
+      #      Override any of these in .env if the folders move; the container
+      #      paths they land on stay the same, so nothing else changes.
+      #      Four "..", not five: this file sits in PoP MVT Tracker, and four
+      #      levels up is "Sudan Crisis - Chad 2026", where Chad Maps lives.
+      - "${BOUNDARY_SRC_CHAD_MAPS:-../../../../Chad Maps}:/boundary-src/chad-maps:ro"
+      - "${BOUNDARY_SRC_LAYERS:-../../../../../Nigeria Malnutrition 2025/HDCC Africa-1 Disaster Preparedness and Response - 08. IM/01. Maps/QGIS_Template_2024/layers}:/boundary-src/layers:ro"
+      #      Absolute, because the icons are on a different drive root again and
+      #      Compose does not expand "~" inside a volume path.
+      - "${BOUNDARY_SRC_ICONS:-C:/Users/Admin/Dropbox/icons/Colour/png}:/boundary-src/icons:ro"
     ports:
       - "${WEB_HOST_PORT:-2026}:8000"
     depends_on:

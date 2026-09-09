@@ -53,6 +53,23 @@ def _clean(v):
     return s or None
 
 
+def _name_with_fallback(rec, prefix, alts):
+    """The place's name, falling back to another language when there is no English.
+
+    Egypt's ADM3 file is the reason this exists: all 5,716 of its villages have
+    an EMPTY adm3_name and carry their name only in adm3_name1, in Arabic. A
+    loader that insists on the English column files every Egyptian village under
+    no name at all and silently loads nothing.
+
+    So: use the primary name when there is one, and otherwise the first
+    alternate the file does carry. A name in Arabic is a name.
+    """
+    primary = _clean(rec.get(f"{prefix}_name")) or _clean(rec.get(f"{prefix}Name"))
+    if primary:
+        return primary
+    return alts[0]["name"] if alts else None
+
+
 def _alts(rec, prefix, lang):
     """The alternate-language spellings a source carries, as [{name, lang}].
 
@@ -72,12 +89,13 @@ def itos_lower(rec, level):
     """OCHA ITOS: adm2_name / adm2_pcode, with adm0..admN all present."""
     p = f"adm{level}"
     lang = _clean(rec.get("lang"))
+    alts = _alts(rec, p, lang)
     return {
-        "name": _clean(rec.get(f"{p}_name")),
+        "name": _name_with_fallback(rec, p, alts),
         "pcode": _clean(rec.get(f"{p}_pcode")) or _clean(rec.get("adm0_pcode")),
         "parent_pcode": _clean(rec.get(f"adm{level - 1}_pcode")) if level else None,
         "ref_name": _clean(rec.get(f"{p}_ref_n")),
-        "name_alt": _alts(rec, p, lang),
+        "name_alt": alts,
         "ancestors": [_clean(rec.get(f"adm{i}_name")) for i in range(level)],
         "area_sqkm": rec.get("area_sqkm"),
         "valid_on": rec.get("valid_on"),
@@ -108,16 +126,17 @@ def ocha_upper(rec, level):
 def caf_camel(rec, level):
     """CAR (SIGCAF / REACH): admin2Name / admin2Pcod - camel case, truncated."""
     p = f"admin{level}"
+    alts = [
+        {"name": v, "lang": "fr"}
+        for v in (_clean(rec.get(f"{p}AltN")), _clean(rec.get(f"{p}Al_1")))
+        if v
+    ]
     return {
-        "name": _clean(rec.get(f"{p}Name")),
+        "name": _name_with_fallback(rec, p, alts),
         "pcode": _clean(rec.get(f"{p}Pcod")),
         "parent_pcode": _clean(rec.get(f"admin{level - 1}Pcod")) if level else None,
         "ref_name": _clean(rec.get(f"{p}RefN")),
-        "name_alt": [
-            {"name": v, "lang": "fr"}
-            for v in (_clean(rec.get(f"{p}AltN")), _clean(rec.get(f"{p}Al_1")))
-            if v
-        ],
+        "name_alt": alts,
         "ancestors": [_clean(rec.get(f"admin{i}Name")) for i in range(level)],
         "area_sqkm": None,
         "valid_on": None,
@@ -231,18 +250,29 @@ ADMIN_SOURCES = [
      "ssd_admbnda_adm3_imwg_nbs_20230829", "SSD", "South Sudan", 3, "ocha_upper", "IMWG / NBS"),
 ]
 
-# What the §5.1 table of the spec says each file should contain. The audit
-# compares the database against this, so a half-read file is caught rather than
-# quietly producing a map with holes in it.
+# How many PLACES each file holds, which is not always how many records it
+# holds. The audit compares the database against this, so a half-read file is
+# caught rather than quietly producing a map with holes in it.
+#
+# Three reasons a count here is below the raw record count, all of them real
+# properties of the sources rather than losses:
+#   - one place stored as several polygon records, merged on its p-code
+#     (Uganda ADM3: 5 extra parts; CAR ADM2/3/4: 1, 1 and 4)
+#   - records the publisher left unnamed and un-coded (CAR ADM4: 26)
 EXPECTED_COUNTS = {
     ("SDN", 0): 1, ("SDN", 1): 19, ("SDN", 2): 189, ("SDN", 3): 237,
     ("TCD", 0): 1, ("TCD", 1): 23, ("TCD", 2): 70,
     ("ETH", 0): 1, ("ETH", 1): 13, ("ETH", 2): 92, ("ETH", 3): 1082,
     ("EGY", 0): 1, ("EGY", 1): 27, ("EGY", 2): 365, ("EGY", 3): 5716,
     ("LBY", 0): 1, ("LBY", 1): 3, ("LBY", 2): 22,
-    ("UGA", 0): 1, ("UGA", 1): 4, ("UGA", 2): 135, ("UGA", 3): 208, ("UGA", 4): 1520,
+    ("UGA", 0): 1, ("UGA", 1): 4, ("UGA", 2): 135, ("UGA", 3): 203, ("UGA", 4): 1520,
     ("ERI", 0): 1, ("ERI", 1): 6, ("ERI", 2): 58,
-    ("CAF", 0): 1, ("CAF", 1): 17, ("CAF", 2): 73, ("CAF", 3): 176, ("CAF", 4): 202,
+    ("CAF", 0): 1, ("CAF", 1): 17, ("CAF", 2): 72, ("CAF", 3): 175,
+    # 176 of CAR's 202 ADM4 records, not 202: the other 26 are sub-units of
+    # Bangui's arrondissements that the source itself leaves unnamed, with the
+    # p-code "0". An unnamed polygon cannot be matched to anything or labelled,
+    # so it is skipped and counted rather than loaded as an anonymous shape.
+    ("CAF", 4): 172,
     ("SSD", 0): 1, ("SSD", 1): 10, ("SSD", 2): 79, ("SSD", 3): 512,
 }
 
@@ -293,20 +323,46 @@ def read_encoding(base_path):
     return "cp1252"
 
 
-def check_wgs84(base_path):
-    """Refuse anything that is not in plain latitude and longitude.
+# The projected coordinate systems the office's files actually use, and their
+# EPSG codes. A .prj names its projection but does not carry the code, so the
+# name is matched here and PostGIS does the reprojection on insert.
+#
+# Deliberately a short, explicit list. Anything not on it is refused rather than
+# assumed, because a wrong guess here lands a layer in the wrong hemisphere and
+# nothing downstream would notice.
+PROJECTED_SRIDS = {
+    # OCHA capitals and ICRC border lines - the usual web-map projection.
+    "Web_Mercator": 3857,
+    "Pseudo-Mercator": 3857,
+    # Ethiopia's UNHCR refugee camps, on the Ethiopian national grid.
+    "Adindan_UTM_Zone_37N": 20137,
+}
+
+
+def detect_srid(base_path):
+    """Which coordinate system is this file in? Returns an EPSG code.
 
     Everything downstream - the browser, the containment tests, the p-code
-    joins - assumes degrees on WGS84. A projected file would load without
-    complaint and put the country somewhere off the coast of Africa, so this is
-    a hard stop rather than a warning.
+    joins - works in degrees on WGS84 (EPSG:4326). Two of the office's layers
+    are not: the OCHA capitals and the ICRC border lines are in Web Mercator
+    (EPSG:3857), whose coordinates are metres in the millions. Loading those as
+    if they were degrees would put them somewhere past the edge of the world.
+
+    So rather than refuse them, we return their real code and let PostGIS
+    reproject on the way in. Anything we do not recognise IS refused: a silent
+    projection mistake is invisible until someone notices a country in the sea.
     """
     prj_path = base_path + ".prj"
     if not os.path.exists(prj_path):
         raise ValueError(f"{base_path}: no .prj, so the projection cannot be confirmed")
     prj = open(prj_path, encoding="ascii", errors="replace").read()
-    if "WGS_1984" not in prj and "WGS 84" not in prj:
-        raise ValueError(f"{base_path}: not WGS84 - refusing to load\n  {prj[:120]}")
     if "PROJCS" in prj:
-        raise ValueError(f"{base_path}: projected coordinates, expected degrees")
-    return prj.strip()
+        for marker, srid in PROJECTED_SRIDS.items():
+            if marker in prj:
+                return srid
+        raise ValueError(
+            f"{base_path}: projected in a system this loader does not know.\n  {prj[:160]}\n"
+            f"  Add it to PROJECTED_SRIDS once you have confirmed its EPSG code.")
+    if "WGS_1984" in prj or "WGS 84" in prj:
+        return 4326
+    raise ValueError(f"{base_path}: not WGS84 - refusing to load\n  {prj[:160]}")

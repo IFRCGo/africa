@@ -9,3 +9,5 @@ whitenoise==6.6.0        # lets Django serve CSS/JS itself (no separate nginx ne
 PyMuPDF==1.24.10         # reads text out of the UNHCR PDF reports (pipeline step 2/3)
 openpyxl==3.1.5          # reads the Excel layers (pipeline step 7)
 python-docx==1.1.2       # builds the Word documentation file (docs/build_docs.py)
+pyshp==2.3.1             # reads the OCHA/GADM shapefiles into the boundary library
+shapely==2.0.4           # repairs and measures those polygons before they are stored
