@@ -195,6 +195,14 @@ class NarrativeTag(models.Model):
     area_name = models.TextField(
         null=True, blank=True, help_text="The place as the report wrote it, e.g. 'El Bauga'",
     )
+    # How far down the matcher got. A country's states are level 1, its
+    # districts level 2, and so on. Worth recording because it says how precise
+    # a highlight is: "somewhere in North Darfur" and "in El Fasher locality"
+    # are different findings, and only this column tells them apart afterwards.
+    area_level = models.IntegerField(
+        null=True, blank=True,
+        help_text="Admin level of area_id: 0 country, 1 state, 2 district, ...",
+    )
     snippet = models.TextField(null=True, blank=True)
 
     class Meta:

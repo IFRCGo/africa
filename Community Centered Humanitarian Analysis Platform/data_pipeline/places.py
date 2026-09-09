@@ -59,7 +59,12 @@ STOPWORDS = {
 
 # How short a name may be, by level. Deeper levels have shorter, more numerous
 # and more word-like names, so they have to clear a higher bar.
-MIN_LENGTH = {0: 4, 1: 4, 2: 4, 3: 6, 4: 6}
+#
+# Three at ADM0/ADM1 exists for exactly one place: Chad's Lac province, the
+# only country or region in the whole library with a name that short. A floor of
+# four silently lost the Lake Chad basin, which is not a corner of this crisis
+# anyone can afford to drop.
+MIN_LENGTH = {0: 3, 1: 3, 2: 4, 3: 6, 4: 6}
 
 # The longest place name, in words, that will be looked for. "Northern Bahr el
 # Ghazal" is four; nothing in the library that matters is longer.
@@ -127,7 +132,18 @@ class Gazetteer:
 
     @staticmethod
     def _acceptable(key, level):
-        if not key or key in STOPWORDS:
+        if not key:
+            return False
+        # THE STOPLIST APPLIES BELOW ADM1 ONLY.
+        # Several countries genuinely name a whole region with an ordinary word:
+        # Unity is a South Sudanese state, Central a Ugandan region. Blocking
+        # those outright loses real reporting, and the country rule already
+        # stops "central Sudan" reaching Uganda's Central region - a sentence
+        # can only match a place in the country it was attributed to.
+        # Below ADM1 the same words are everywhere (Uganda has fifteen "Central
+        # Division" parishes), where they mean nothing and match prose, so there
+        # the stoplist stands.
+        if key in STOPWORDS and (level is None or level >= 2):
             return False
         # An Arabic or Amharic name is never an English word, so the length rule
         # (which exists to stop short Latin names matching prose) does not apply.
@@ -160,6 +176,12 @@ class Gazetteer:
         # the one appearing earliest in a chain.
         best = min(common, key=lambda p: min(c.index(p) for c in chains if p in c))
         name, level, iso3 = self.meta[best]
+        # If the only thing they share is the country, there is no area to
+        # highlight. Say so. Returning the ADM0 would paint the whole country as
+        # a named place, which is not what the report said and is exactly what
+        # the country-level wash already shows for reporting that names nowhere.
+        if not level:
+            return None
         return (best, level, iso3, name, "admin")
 
     def lookup(self, phrase, country_iso3):
@@ -169,6 +191,13 @@ class Gazetteer:
             return None
         if country_iso3:
             entries = [e for e in entries if e[2] == country_iso3]
+        # NAMING THE COUNTRY IS NOT NAMING A PLACE.
+        # "Needs remain acute across Sudan" is country-level reporting, and the
+        # dashboard already shows that as a wash over the whole country. Letting
+        # it match Sudan's ADM0 polygon instead would draw the entire country as
+        # though a report had pinned something to it, which is both wrong and
+        # far louder on the map than the finding deserves.
+        entries = [e for e in entries if e[1] != 0]
         if not entries:
             return None
         if len(entries) == 1:

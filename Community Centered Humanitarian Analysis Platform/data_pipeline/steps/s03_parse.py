@@ -26,6 +26,7 @@ import fitz
 from django.db import transaction
 from django.db.models import Max
 
+from data_pipeline import places
 from data_pipeline.common import (
     DASHBOARD_DATA,
     MCP_CACHE,
@@ -86,11 +87,20 @@ def anchor_for_country(country):
 
 
 class Collector:
-    """Collects rows in memory, then writes them all at once.
+    """Collects rows in memory and writes them out in batches.
 
-    Saving 200,000 rows one at a time would take hours. Collecting them in a
-    list and calling bulk_create at the end takes seconds.
+    Saving 200,000 rows one at a time would take hours; bulk_create takes
+    seconds. But holding all of them until the end means the whole corpus -
+    every tag object, with its snippet - sits in memory at once, and on a
+    machine that is already short of it the parse gets killed two thirds of the
+    way through, having cleared the tables it was about to refill.
+
+    So rows are flushed every FLUSH_EVERY. Peak memory becomes a batch rather
+    than a corpus, and the speed is unchanged: the same number of rows go over
+    the same number of round trips either way.
     """
+
+    FLUSH_EVERY = 5000
 
     def __init__(self):
         self.figures = []
@@ -98,13 +108,27 @@ class Collector:
 
     def add_figure(self, **fields):
         self.figures.append(PopulationFigure(**fields))
+        if len(self.figures) >= self.FLUSH_EVERY:
+            self._flush_figures()
 
     def add_tag(self, **fields):
         self.tags.append(NarrativeTag(**fields))
+        if len(self.tags) >= self.FLUSH_EVERY:
+            self._flush_tags()
+
+    def _flush_figures(self):
+        if self.figures:
+            PopulationFigure.objects.bulk_create(self.figures, batch_size=1000)
+            self.figures = []
+
+    def _flush_tags(self):
+        if self.tags:
+            NarrativeTag.objects.bulk_create(self.tags, batch_size=1000)
+            self.tags = []
 
     def save(self):
-        PopulationFigure.objects.bulk_create(self.figures, batch_size=1000)
-        NarrativeTag.objects.bulk_create(self.tags, batch_size=1000)
+        self._flush_figures()
+        self._flush_tags()
 
 
 # ------------------------------------------------------------ positional helpers
@@ -611,117 +635,33 @@ def attribute_country(text, start, end, page_focus, fallback):
 #   boundaries/aoi.geojson      the IFRC Areas of Interest, which cover places
 #                               like Kiryandongo that are not an ADM1 anywhere
 
-def _norm_place(s):
-    """Fold a place name to something two spellings of it can both reach."""
-    s = unicodedata.normalize("NFKD", s)
-    s = "".join(c for c in s if not unicodedata.combining(c))     # Ouaddaï -> Ouaddai
-    s = re.sub(r"[^a-z0-9 ]", " ", s.lower())
-    return re.sub(r"\s+", " ", s).strip()
-
-
-# Words a report drops or adds freely: "Aswan" and "Aswan Governorate" are the
-# same place, and so are "Northern" and "Northern State".
-_PLACE_SUFFIXES = re.compile(
-    r"\s+(governorate|governate|province|region|state|pca|locality|district)$")
-
-# Spellings no amount of folding will reconcile, because the two sources chose
-# different transliterations. Report spelling -> the polygon's own name.
-_PLACE_ALIASES = {
-    "benishangul gumuz": "Beneshangul Gumu",
-    "benishangul gumz": "Beneshangul Gumu",
-    "beneshangul gumuz": "Beneshangul Gumu",
-    "al jazirah": "Gezira",
-    "aj jazirah": "Gezira",
-    "jazirah": "Gezira",
-    "gezira": "Gezira",
+# The country a report was attributed to, as the ISO3 code the library uses.
+COUNTRY_ISO3 = {
+    "Sudan": "SDN", "Chad": "TCD", "Ethiopia": "ETH", "Egypt": "EGY",
+    "South Sudan": "SSD", "Libya": "LBY", "Uganda": "UGA",
+    "Central African Republic": "CAF", "Eritrea": "ERI",
 }
-
-# normalised name -> (area_id, canonical name, country)
-PLACE_LOOKUP = {}
-
-
-def _add_place(name, area_id, country):
-    for key in {_norm_place(name), _PLACE_SUFFIXES.sub("", _norm_place(name))}:
-        # Four characters is the floor: shorter names match inside other words
-        # far too often to be trusted ("Car", "Sila" as a syllable, and so on).
-        if len(key) >= 4:
-            PLACE_LOOKUP.setdefault(key, (area_id, name, country))
-
-
-def _load_places():
-    """Build the lookup from the polygon files, biggest unit last so that a
-    locality wins over the state that contains it when both are named."""
-    import json as _json
-
-    adm1_path = DASHBOARD_DATA / "boundaries" / "areas.geojson"
-    aoi_path = DASHBOARD_DATA / "boundaries" / "aoi.geojson"
-    adm2_path = MCP_CACHE / "sdn_adm2.geojson"
-
-    if adm2_path.exists():
-        for f in _json.loads(adm2_path.read_text(encoding="utf-8"))["features"]:
-            nm = f["properties"].get("shapeName")
-            if nm:
-                _add_place(nm, f"SDN-ADM2:{nm}", "Sudan")
-    if aoi_path.exists():
-        for f in _json.loads(aoi_path.read_text(encoding="utf-8"))["features"]:
-            nm = f["properties"].get("name") or f["properties"].get("shapeName")
-            if nm:
-                _add_place(nm, f"AOI:{nm}", None)
-    if adm1_path.exists():
-        for f in _json.loads(adm1_path.read_text(encoding="utf-8"))["features"]:
-            p = f["properties"]
-            _add_place(p["name"], p["id"], p["country"])
-    # Towns, camps and crossings stand for the state they sit in: a report
-    # naming El Fasher is telling us about North Darfur.
-    for loc in GAZ["locations"]:
-        if loc["kind"] == "country_anchor" or not loc.get("admin1"):
-            continue
-        parent = PLACE_LOOKUP.get(_norm_place(loc["admin1"]))
-        if parent:
-            for nm in [loc["name"]] + (loc.get("aliases") or "").split(","):
-                if nm.strip():
-                    _add_place(nm.strip(), parent[0], parent[2])
-    # Finally the irreconcilable spellings, pointed at whatever they resolve to.
-    for spelling, canonical in _PLACE_ALIASES.items():
-        target = PLACE_LOOKUP.get(_norm_place(canonical))
-        if target:
-            PLACE_LOOKUP.setdefault(spelling, target)
-
-
-_load_places()
-
-# One regex for every known place, longest first so "North Darfur" is matched
-# whole rather than as "Darfur".
-PLACE_NAME_RX = (
-    re.compile(r"\b(" + "|".join(re.escape(p) for p in
-                                 sorted(PLACE_LOOKUP, key=len, reverse=True)) + r")\b", re.I)
-    if PLACE_LOOKUP else None)
 
 
 def attribute_area(text, start, end, country):
-    """Which state or locality is this passage about? (area_id, name) or None.
+    """Which area is this passage about? (area p-code, name as written, level).
 
-    The place must belong to the country the passage was already attributed to.
-    Without that check a sentence comparing Chad with Sudan could highlight the
-    wrong side of the border - and a highlight on the wrong country is worse
-    than no highlight at all.
+    The work is done by data_pipeline/places.py, against the boundary library
+    in the database. Everything this adds is the window: only the SENTENCE the
+    tagged phrase sits in is searched, and the place nearest the phrase wins.
+    Reading the whole page instead would let a country named at the top claim a
+    sentence at the bottom, which is the mistake this window exists to prevent -
+    and it would also make the re-parse many times slower.
+
+    Returns (None, None, None) when the report named no place it can pin down.
+    That is the honest answer for about two thirds of tagged sentences, and it
+    is far better than a guess: the dashboard shades the country instead.
     """
-    if not PLACE_NAME_RX:
-        return None, None
+    iso3 = COUNTRY_ISO3.get(country)
+    if not iso3:
+        return None, None, None
     lo, hi = _sentence_bounds(text, start, end)
-    window, at = text[lo:hi], start - lo
-    best = None
-    for m in PLACE_NAME_RX.finditer(window):
-        entry = PLACE_LOOKUP.get(_norm_place(m.group(1)))
-        if not entry:
-            continue
-        area_id, canonical, place_country = entry
-        if place_country and country and place_country != country:
-            continue
-        d = abs(m.start() - at)
-        if best is None or d < best[0]:
-            best = (d, area_id, m.group(1))
-    return (best[1], best[2]) if best else (None, None)
+    return places.gazetteer().find(text[lo:hi], iso3, focus=start - lo)
 
 
 # ------------------------------------------------------------ taxonomy tagging
@@ -760,7 +700,8 @@ def tag_document(sink, doc_id, report_date, country_focus, pages):
                         country = (attribute_country(text, m.start(), m.end(),
                                                      focus, country_focus)
                                    if reattribute else country_focus)
-                        area_id, area_name = attribute_area(text, m.start(), m.end(), country)
+                        area_id, area_name, area_level = attribute_area(
+                            text, m.start(), m.end(), country)
                         # The cap counts each AREA separately: flooding reported
                         # in three states is three findings, not one repeated.
                         key = (dim, tag, country, area_id)
@@ -771,7 +712,7 @@ def tag_document(sink, doc_id, report_date, country_focus, pages):
                         sink.add_tag(
                             document_id=doc_id, report_date=report_date, dimension=dim,
                             tag=tag, country=country,
-                            area_id=area_id, area_name=area_name,
+                            area_id=area_id, area_name=area_name, area_level=area_level,
                             snippet=snippet.replace("\n", " ").strip()[:280],
                         )
                         n += 1

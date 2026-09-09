@@ -155,17 +155,17 @@ def run():
     # from one run to the next even though the data had not changed.
     tag_rows = (NarrativeTag.objects.exclude(report_date=None).order_by("id")
                 .values_list("dimension", "tag", "country", "report_date", "snippet",
-                             "area_id", "area_name"))
+                             "area_id", "area_name", "area_level"))
     area_names = {}
     rows = tag_rows.iterator(chunk_size=5000)
-    for dimension, tag, country, report_date, snippet, area_id, area_name in rows:
+    for dimension, tag, country, report_date, snippet, area_id, area_name, area_level in rows:
         month = report_date.strftime("%Y-%m")
         # area_id is None for the majority of rows, where the report named no
         # place. Those still count for the country; they simply cannot be put
         # on a particular polygon.
         counts[(dimension, tag, country, month, area_id)] += 1
         if area_id and area_name:
-            area_names.setdefault(area_id, area_name)
+            area_names.setdefault(area_id, {"name": area_name, "level": area_level})
         # Keep the first reasonably long sentence as the example for that
         # month AND that country. The country belongs in the key because the
         # dashboard can be filtered to one country, and a quote from the Chad
@@ -187,7 +187,21 @@ def run():
     for (dimension, tag, month, country), snippet in snippets.items():
         tags_out[dimension][tag]["snippets"].setdefault(month, {})[country] = snippet
     dump("tags.json", {dim: dict(tags) for dim, tags in tags_out.items()})
-    # What each area id was called in the reports, for the map's labels.
+    # What each area p-code was called in the reports, plus which country it is
+    # in and how deep it sits. The country is here so that the map can refuse to
+    # draw an area in the wrong half of a two-country view without having to
+    # fetch its geometry first - a second guard on the fault that put Sudanese
+    # reporting on an Ethiopian region.
+    from boundaries.models import AdminArea
+    known = {a["pcode"]: a for a in AdminArea.objects.filter(
+        pcode__in=list(area_names)).values("pcode", "iso3", "country_name", "name", "level")}
+    for pcode, info in area_names.items():
+        lib = known.get(pcode)
+        if lib:
+            info["iso3"] = lib["iso3"]
+            info["country"] = lib["country_name"]
+            info["official"] = lib["name"]
+            info["level"] = lib["level"]
     dump("tag_areas.json", area_names)
 
     # ---- documents catalogue ---------------------------------------------
