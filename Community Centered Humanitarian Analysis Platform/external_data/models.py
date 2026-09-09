@@ -266,3 +266,34 @@ class MovementPattern(models.Model):
 
     def __str__(self):
         return f"{self.date} {self.iso3} {self.metric} {self.value:,}"
+
+
+class BorderCrossing(models.Model):
+    """The crossings people actually move through, tagged to movement corridors.
+
+    Curated, and permanently so: no humanitarian API publishes "the crossings that
+    matter for this operation", because that judgement is the operation's own. The
+    coordinates come from UNHCR and OCHA operational geography and the corridor tags
+    match the ids in flows.json, which is what lets the map light a crossing only
+    when population actually moved along it.
+    """
+
+    name = models.TextField(unique=True)
+    country = models.TextField(help_text="The country on the far side of the crossing")
+    iso3 = models.CharField(max_length=3, db_index=True)
+    lon = models.FloatField()
+    lat = models.FloatField()
+    corridor = models.TextField(
+        null=True, blank=True, help_text="Outbound corridor id, e.g. sudan-chad"
+    )
+    # Null, not empty: several crossings have no observed return movement at all,
+    # and that absence is a finding rather than a missing value.
+    return_corridor = models.TextField(null=True, blank=True)
+    source = models.TextField(default="curated")
+
+    class Meta:
+        db_table = "border_crossings"
+        ordering = ["country", "name"]
+
+    def __str__(self):
+        return f"{self.name} ({self.country})"
