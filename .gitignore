@@ -14,3 +14,7 @@ credentials
 # Django
 Community Centered Humanitarian Analysis Platform/staticfiles/
 Community_Centered_Humanitarian_Analysis_Documentation.docx
+
+# Subagent-driven-development scratch: ledgers, briefs, review packages.
+# Recreated per plan run; the git history is the real record.
+.superpowers/
