@@ -346,11 +346,13 @@ function boundsFor(names) {
     w = Math.min(w, shape.bbox[0]); s = Math.min(s, shape.bbox[1]);
     e = Math.max(e, shape.bbox[2]); n = Math.max(n, shape.bbox[3]);
   }
-  if (w > e) return REGION_BOUNDS;   // nothing recognised - show the region
+  if (w > e) return HOME_BOUNDS;     // nothing recognised - show the region
   const pad = 0.6;
+  // Clamp to the LOCK, not to home: fitting to a box the map may not pan to
+  // would leave MapLibre quietly framing something else.
   return [
-    [Math.max(REGION_BOUNDS[0][0], w - pad), Math.max(REGION_BOUNDS[0][1], s - pad)],
-    [Math.min(REGION_BOUNDS[1][0], e + pad), Math.min(REGION_BOUNDS[1][1], n + pad)],
+    [Math.max(PAN_BOUNDS[0][0], w - pad), Math.max(PAN_BOUNDS[0][1], s - pad)],
+    [Math.min(PAN_BOUNDS[1][0], e + pad), Math.min(PAN_BOUNDS[1][1], n + pad)],
   ];
 }
 
@@ -566,10 +568,26 @@ let map;                 // the primary map (always maps[0])
 let mapB = null;         // the right-hand map; built lazily, only if ever needed
 const maps = [];         // every live map, in the order they were created
 
-// Zoom lock to the Sudan + neighbours region. The top edge is 34.5°N rather
-// than the region's 32°N because Libya reaches 33.18°N: with a lower cap,
-// fitBounds() would silently clamp and never frame Libya properly.
-const REGION_BOUNDS = [[8.0, -3.0], [56.0, 34.5]];
+/* TWO DIFFERENT BOXES, and they used to be one - which is why panning out to
+   the rest of Africa was impossible without also changing where the map opens.
+
+   PAN_BOUNDS is the LOCK: how far a user may pan and zoom out. It is now the
+   whole continent, so neighbouring and coastal countries can be looked at in
+   context. The edges take in the islands as well as the mainland - Cape Verde
+   reaches 25.4°W and Mauritius 57.8°E, so a mainland-only box (17.5°W to
+   51.4°E) would clip them off - with a degree of slack so the outermost
+   coastlines are not pinned against the edge of the viewport.
+
+   HOME_BOUNDS is the VIEW: where the map points with no country selected. That
+   stays the operational region, because opening on the whole continent would
+   push Sudan down to a thumbnail and bury the detail this dashboard exists to
+   show. Widening the lock is not the same as changing the subject.
+
+   HOME_BOUNDS's top edge is 34.5°N rather than the region's 32°N because Libya
+   reaches 33.18°N: with a lower cap, fitBounds() would silently clamp and never
+   frame Libya properly. */
+const PAN_BOUNDS  = [[-26.0, -37.0], [64.0, 39.0]];
+const HOME_BOUNDS = [[8.0, -3.0], [56.0, 34.5]];
 
 /* ---- Talking to Mapbox --------------------------------------------------
 
@@ -623,9 +641,10 @@ function mapboxUrl(url, token) {
   return sign(`/v4/${rest}.json?secure`);
 }
 
-/* Create one map on the IFRC GO basemap, locked to the Sudan and neighbours
-   region so a user cannot accidentally pan away to Europe. Resolves once the
-   style has loaded, because layers cannot be added before then. */
+/* Create one map on the IFRC GO basemap, locked to Africa so a user cannot
+   accidentally pan away to Europe, but opening on the operational region.
+   Resolves once the style has loaded, because layers cannot be added before
+   then. */
 function initMap(containerId) {
   const basemap = window.BASEMAP || {};
   const m = new maplibregl.Map({
@@ -634,8 +653,10 @@ function initMap(containerId) {
     transformRequest: (url) => ({ url: mapboxUrl(url, basemap.token) }),
     center: [29.5, 15.2],
     zoom: 4.35,
-    minZoom: 3,
-    maxBounds: REGION_BOUNDS,
+    // 2.5, not 3: at zoom 3 a short viewport cannot fit Africa's 76 degrees of
+    // latitude, so the new lock would be unreachable from inside the old floor.
+    minZoom: 2.5,
+    maxBounds: PAN_BOUNDS,
     attributionControl: { compact: true },
   });
   m.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
@@ -2522,7 +2543,7 @@ async function fitToSelection() {
     fitMap(maps[0], boundsFor([sel[0]]));
     fitMap(mapB, boundsFor([sel[1]]));
   } else {
-    fitMap(maps[0], sel.length ? boundsFor(sel) : REGION_BOUNDS);
+    fitMap(maps[0], sel.length ? boundsFor(sel) : HOME_BOUNDS);
   }
 }
 
