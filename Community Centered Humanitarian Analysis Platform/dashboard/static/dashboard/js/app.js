@@ -70,13 +70,6 @@ const SLUG_TO_COUNTRY = {
   south_sudan: "South Sudan", car: "Central African Republic",
 };
 
-/* The IFRC Areas of Interest carry a two-letter country code instead of a
-   name (aoi_ipc.geojson, "ipc_country"). */
-const ISO2_TO_COUNTRY = {
-  SD: "Sudan", TD: "Chad", EG: "Egypt", LY: "Libya", ET: "Ethiopia",
-  UG: "Uganda", SS: "South Sudan", CF: "Central African Republic",
-};
-
 /* These datasets describe the inside of Sudan only, so they have nothing to
    show when Sudan is filtered out. Named here so the reason is written down
    once rather than repeated as a magic string in five render functions. */
@@ -116,21 +109,31 @@ const COLOR_IN_HOST = paletteColor("--refugees", "#8dcde2");
 // a service is a response, not a finding about a place.
 const COLOR_HSP = paletteColor("--hsp", "#6b3a90");
 
-// The five theme groups, their display names and their colours. These match
-// the "dimension" values the pipeline writes into tags.json, and each one is
-// given the IFRC thematic palette that means the same thing.
+/* The four theme groups, their display names and their colours. These match
+   the "dimension" values the pipeline writes into tags.json, and each one is
+   given the IFRC thematic palette that means the same thing.
+
+   THIS OBJECT IS THE SWITCH. Every panel that shows narrative reporting - the
+   theme dropdowns, the map pillars, the area popups, Community Insights, the
+   theme detail list - walks DIM_META or DIM_ORDER, so a dimension that is not
+   named here does not appear anywhere on the page.
+
+   movement_pattern used to be the fifth. It was reporting ABOUT movement,
+   counted in mentions, sitting beside a map and a headline row that carry the
+   movement itself, counted in people - and the two never agreed. The mention
+   counts stay in tags.json; the dashboard now says what it knows about
+   movement with the Movement trends graph, which plots people. */
 const DIM_META = {
   hazard: { label: "Hazards", color: paletteColor("--dim-hazard", "#d22730") },
   vulnerability: { label: "Vulnerabilities", color: paletteColor("--dim-vulnerability", "#6b3a90") },
   coping: { label: "Coping mechanisms", color: paletteColor("--dim-coping", "#009775") },
   need: { label: "Needs", color: paletteColor("--dim-need", "#1874a0") },
-  movement_pattern: { label: "Movement patterns", color: paletteColor("--dim-movement", "#ff8200") },
 };
 
 /* The order the pillar bands are nested in, outermost first. Hazards are
    outside because they are the thing that happens TO a place; the pillars that
    describe the people there sit within it. */
-const DIM_ORDER = ["hazard", "vulnerability", "coping", "need", "movement_pattern"];
+const DIM_ORDER = ["hazard", "vulnerability", "coping", "need"];
 const COLOR_WATER = paletteColor("--water", "#1f9ad6");
 
 /* Which tags make the water worth pointing at. Flooding and water/sanitation
@@ -152,6 +155,9 @@ const state = {
      one place. */
   countries: new Set(),
   voiceSearch: "",         // text typed into the Community Insights search box
+  /* The three lines of the Movement trends graph, worked out once per FILTER
+     change rather than per timeline move - see computeTrendSeries(). */
+  trend: { series: [], vmax: 1 },
   // Which layers are switched on. These match the checkboxes in index.html.
   showFlows: true, showReturns: true, showEvents: true,
   showIDP: false, showIDPStates: false, showRefugees: false, showFoodsec: false,
@@ -391,9 +397,13 @@ function deriveCountries() {
   for (const ev of state.data.events)
     ev.country = countryAt(ev.lon, ev.lat) || "Regional";
 
-  // the IFRC Areas of Interest carry a two-letter code
+  /* The Areas of Operation name their country by ISO3 ("TCD", "SDN"), which is
+     what build_aoi writes and what admin_areas stores. This was reading them
+     through a two-letter table, so EVERY area resolved to null - and because
+     filterFC() keeps a feature only when its .country is in scope, picking any
+     country at all emptied the layer completely. */
   for (const f of (state.data.aoi || { features: [] }).features)
-    f.properties.country = ISO2_TO_COUNTRY[f.properties.ipc_country] || null;
+    f.properties.country = ISO3_TO_COUNTRY[f.properties.ipc_country] || null;
 }
 
 /* The polygons the pillars are drawn on, and the rivers beside them, come to
@@ -445,6 +455,16 @@ const SIDEBAR_LIMITS = {
   rightbar: { varName: "--rightbar-w", min: 240, max: 640, def: 290, edge: "left" },
 };
 
+/* How much smaller than life the page is being drawn - app.css sets zoom on
+   <body> from --ui-scale so the dashboard opens at the size it was designed at
+   (see the --ui-scale block there). Measured, not read from the property, and
+   the same measurement MapLibre makes for its own pointer maths: the rendered
+   width against the laid-out width. Returns 1 when nothing is scaled. */
+function uiScale() {
+  const b = document.body;
+  return b.getBoundingClientRect().width / b.offsetWidth || 1;
+}
+
 function initSidebarResize() {
   for (const [id, cfg] of Object.entries(SIDEBAR_LIMITS)) {
     const el = document.getElementById(id);
@@ -464,7 +484,13 @@ function initSidebarResize() {
     const onMove = (ev) => {
       // The left sidebar grows as the pointer moves right; the right one grows
       // as it moves left, so the delta is signed by which edge is being pulled.
-      const delta = cfg.edge === "right" ? ev.clientX - startX : startX - ev.clientX;
+      // Divided by uiScale() because the pointer is reported in real screen
+      // pixels while the width we set is a laid-out one - without it the edge
+      // moves only 80% as far as the cursor and the grip slides out from under
+      // the hand. Measured rather than read from --ui-scale so it is 1, and
+      // this a no-op, if the page is ever drawn at its natural size again.
+      const raw = cfg.edge === "right" ? ev.clientX - startX : startX - ev.clientX;
+      const delta = raw / uiScale();
       const w = Math.round(Math.min(cfg.max, Math.max(cfg.min, startW + delta)));
       document.documentElement.style.setProperty(cfg.varName, `${w}px`);
     };
@@ -524,7 +550,7 @@ async function loadData() {
                  "crossings", "idp_localities", "idp_states", "refugee_camps", "seasonal"];
   const res = await Promise.all(names.map((n) => fetch(`data/${n}.json`).then((r) => r.json())));
   names.forEach((n, i) => (state.data[n] = res[i]));
-  // boundary context layers (country outlines, state lines, IFRC Areas of Interest + IPC)
+  // boundary context layers (country outlines, state lines, IFRC Areas of Operation + IPC)
   const [admin0, admin1, aoi, hsps] = await Promise.all([
     fetch("data/boundaries/admin0.geojson").then((r) => r.json()),
     fetch("data/boundaries/admin1_lines.geojson").then((r) => r.json()),
@@ -694,25 +720,32 @@ function addLayers(m) {
     paint: { "line-color": COLOR_ACCENT, "line-width": 1.8 },
   });
 
-  // ---- boundary context: state lines, country outlines, IFRC Areas of Interest ----
+  // ---- boundary context: state lines, country outlines, IFRC Areas of Operation ----
   m.addSource("admin1lines", { type: "geojson", data: state.data.admin1 || empty() });
   m.addLayer({
     id: "admin1-line", type: "line", source: "admin1lines",
     paint: { "line-color": "#bfc4cb", "line-width": 0.6, "line-dasharray": [2, 2] },
   });
   m.addSource("aoi", { type: "geojson", data: empty() });
+  /* OUTLINE ONLY. This fill is deliberately invisible and is deliberately still
+     here: it is the click target for the area popup (a line layer only catches
+     clicks within a couple of pixels of the edge, so without it the popup would
+     be unreachable everywhere except on the boundary itself). The IPC phase it
+     used to be shaded by is still read - and still named, in the popup - it is
+     just no longer painted, because a per-phase fill made the Areas of
+     Operation look like fourteen different kinds of thing. */
   m.addLayer({
     id: "aoi-fill", type: "fill", source: "aoi",
-    paint: { "fill-color": ["get", "ipc_color"], "fill-opacity": 0.5 },
+    paint: { "fill-color": "rgba(0,0,0,0)", "fill-opacity": 0 },
   });
   m.addLayer({
     id: "aoi-line", type: "line", source: "aoi",
-    paint: { "line-color": COLOR_EVENT, "line-width": 2.4 },
+    paint: { "line-color": COLOR_EVENT, "line-width": 1.2 },
   });
   /* The national wash. About two-thirds of tagged reporting names no place
      ("shelter needs remain acute across Chad"), and that reporting is real. It
      shades the whole country in NEUTRAL GREY, darker where there is more of
-     it. Grey deliberately: the five pillar colours belong to the bands, so a
+     it. Grey deliberately: the pillar colours belong to the bands, so a
      colour on this map always names one pillar and the grey always means
      "reported, but not to a place". */
   m.addSource("admin0fill", { type: "geojson", data: state.data.admin0 || empty(),
@@ -741,7 +774,7 @@ function addLayers(m) {
      is the whole lesson of this layer's history.
 
      WHAT MADE IT LOOK BLOBBY WAS NEVER THE GEOMETRY. The pillars used to draw
-     five line bands inset from the boundary with line-offset, one step further
+     line bands inset from the boundary with line-offset, one step further
      per pillar. line-offset is measured in PIXELS, and at the zoom where a
      Sudanese state fills the screen one pixel is two to five kilometres - so an
      offset of 3.5 to 14px pushed the outline ten to seventy kilometres off the
@@ -751,7 +784,7 @@ function addLayers(m) {
      Simplification runs at 550m, a fifth of a pixel at that zoom, and cannot
      bulge anything.
 
-     SO CONVERGENCE MOVED OFF THE EDGE. The five pillars are still meant to be
+     SO CONVERGENCE MOVED OFF THE EDGE. The pillars are still meant to be
      read together, but an area now shows the HIGHEST-PRECEDENCE pillar reported
      on it and says the rest in its popup, which lists every pillar with its
      tags and counts. Trying to say "three pillars converge here" in the outline
@@ -759,7 +792,7 @@ function addLayers(m) {
      was at all.
 
      One source holds all 336 polygons and is set once. What each pillar shows
-     on it is carried by FEATURE STATE rather than by five copies of the
+     on it is carried by FEATURE STATE rather than by four copies of the
      geometry - see renderThemes().
 
      SEEDED FROM WHAT IS ALREADY LOADED, and this is not optional. Every other
@@ -946,10 +979,16 @@ function addLayers(m) {
   m.addSource("crossings", { type: "geojson", data: empty() });
   m.addLayer({
     id: "crossing-dots", type: "circle", source: "crossings",
+    /* THE SAME DOT THE TOGGLE SHOWS: white, one thin muted ring, 10px across -
+       .dot-swatch in app.css to the pixel. A crossing used to swell to a red
+       disc on dates when people moved through it, which meant the legend's dot
+       and the map's dot were two different marks and neither one was "a border
+       crossing". Whether a corridor is moving today is now said in the popup,
+       where it can be said in people rather than in radius. */
     paint: {
-      "circle-radius": ["case", ["get", "active"], 7, 4.5],
-      "circle-color": ["case", ["get", "active"], COLOR_EVENT, WHITE],
-      "circle-stroke-color": COLOR_INK, "circle-stroke-width": 1.4,
+      "circle-radius": 5,
+      "circle-color": WHITE,
+      "circle-stroke-color": COLOR_MUTED, "circle-stroke-width": 1,
     },
   });
   m.addLayer({
@@ -1020,10 +1059,18 @@ function addLayers(m) {
       <span style="color:${COLOR_MUTED}">District-level: the source publishes no site coordinates.</span><br>
       ${sourceLine("kobo", "reported " + (p.date_reported || ""))}`;
   }, "Humanitarian service points");
-  popup(m, "aoi-fill", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.ipc_country || ""})</span><br>
-    <b style="color:${COLOR_EVENT}">IFRC Area of Interest</b><br>
-    ${p.ipc_phase ? `IPC <b>Phase ${p.ipc_phase}</b> — <b>${Math.round((p.ipc_p3 || 0) * 100)}%</b> in Phase 3+
-      <span style="color:${COLOR_MUTED}">(${p.ipc_n_phase3plus}/${p.ipc_n_areas} sub-areas)</span><br>${sourceLine("ipc")}` : `<span style="color:${COLOR_MUTED}">No current IPC analysis</span>`}`, "IFRC area of interest");
+  /* WHERE IFRC WORKS, AND NOTHING ELSE. This bubble used to go on to report the
+     worst IPC phase inside the area and the share of its sub-areas in Phase 3+.
+     That is a food-security finding; the IPC layer two rows up in the layer
+     control exists to say it, says it per area rather than per operation, and
+     says it in IPC's own colours. Repeating it here made an IFRC operational
+     boundary read as an IPC classification of its own - the same confusion the
+     per-phase fill on this layer used to cause before it was taken off.
+
+     The joined phase is still computed and still in the file (see
+     s06_mcp_layers.build_aoi); it is simply not this layer's to tell. */
+  popup(m, "aoi-fill", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.country || ""})</span><br>
+    <b style="color:${COLOR_EVENT}">IFRC Area of Operation</b>`, "IFRC area of operation");
 
   // Every layer has now said what it would show. From here the registry is
   // closed, and one handler per map serves all of them from a single bubble.
@@ -1051,7 +1098,7 @@ function hoverBubble(m) {
 /* ===================== ONE BUBBLE, NOT FIVE =============================
  * The layers on this map deliberately sit on top of each other: a state can
  * carry a hazard band, a vulnerability band, an IPC phase, IDP figures and a
- * river, all at the same point. Giving each its own popup meant five bubbles
+ * river, all at the same point. Giving each its own popup meant several bubbles
  * stacked on one another, four of them unreadable.
  *
  * So nothing binds its own popup. Each layer REGISTERS what it would say, and
@@ -1257,7 +1304,7 @@ function renderEventBanner() {
 
 // small per-dimension offsets so bubbles of different dimensions don't fully overlap
 const DIM_OFFSET = { hazard: [0, 0], vulnerability: [0.55, 0.35], coping: [-0.55, 0.35],
-                     need: [0.55, -0.35], movement_pattern: [-0.55, -0.35] };
+                     need: [0.55, -0.35] };
 
 /* Theme bubbles: for every tag the user ticked, how many times was it
    mentioned in this month of reporting, per country? A bigger bubble means
@@ -1599,7 +1646,13 @@ function monthTagTotals(dim, mk) {
 
 /* Plain-English findings for the current date, worked out on the spot: the
    fastest-growing outflow, the direction of returns and of internal
-   displacement, and the most-reported hazard and need this month. */
+   displacement.
+
+   All three are POPULATION FIGURES, read from the same series the headline row
+   and the Movement trends graph read. The panel used to end with the month's
+   most-reported hazard and top need, which are mention counts from the
+   documents - a different unit answering a different question, and already
+   answered better by Top reported hazards and by the theme panel. */
 function renderInsights() {
   const t = state.current, el = $("#insight-list");
   const items = [];
@@ -1623,13 +1676,6 @@ function renderInsights() {
   if (iNow && iPrev && Math.abs(iNow - iPrev) > iNow * 0.02)
     items.push({ ico: iNow > iPrev ? "⚠" : "↩", good: iNow < iPrev,
       html: `Internal displacement ${iNow > iPrev ? "rising" : "falling"}: <b>${fmtNum(iNow)}</b> IDPs (${iNow > iPrev ? "+" : "−"}${fmtNum(Math.abs(iNow - iPrev))} since ${fmtDate(t - 90 * DAY)}).` });
-  // dominant hazard + need this month
-  const mk = monthKey(t);
-  const hz = monthTagTotals("hazard", mk)[0];
-  if (hz) items.push({ ico: "🔥", html: `Most-reported hazard this month: <b>${hz[0].replace(/_/g, " ")}</b> (${hz[1]} mentions).` });
-  const nd = monthTagTotals("need", mk)[0];
-  if (nd) items.push({ ico: "📦", html: `Top need in the reporting: <b>${nd[0].replace(/_/g, " ")}</b> (${nd[1]} mentions).` });
-
   el.innerHTML = items.length
     ? items.map((i) => `<div class="insight ${i.good ? "good" : ""}"><span class="ico">${i.ico}</span><span>${i.html}</span></div>`).join("")
     : `<div class="panel-note">${filtered()
@@ -1731,12 +1777,28 @@ function highlight(text, q) {
   return safe.replace(re, (m) => `<mark>${m}</mark>`);
 }
 
+/* THE ONE WAY THE TIMELINE MOVES. Four things ask for a different date - the
+   slider, the play loop, a month link in the insights panel, and a click on the
+   Movement trends graph - and every one of them has to do the same three
+   things: set the date, put the slider where the date is, and redraw. Written
+   out four times it is four chances for the slider to end up saying one date
+   while the map shows another, so it is written once.
+
+   Days, not milliseconds: the slider's resolution is a day, so a date that is
+   not on a day boundary would set a slider position that rounds back to a
+   different date - and the next drag would jump. */
+function setCurrentDate(t) {
+  const days = Math.round((clamp(t, START, state.endDate) - START) / DAY);
+  state.current = START + days * DAY;
+  $("#time-slider").value = days;
+  renderAll();
+}
+
+function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
+
 /* Move the timeline to the first day of a month and redraw everything. */
 function goToMonth(mk) {
-  const t = Math.min(Math.max(Date.parse(mk + "-01"), START), state.endDate);
-  state.current = t;
-  $("#time-slider").value = Math.round((t - START) / DAY);
-  renderAll();
+  setCurrentDate(Date.parse(mk + "-01"));
 }
 
 /* A small bar chart of the six most-mentioned hazards this month. */
@@ -1940,7 +2002,8 @@ function renderCrossings() {
   setSource("crossings", { type: "FeatureCollection", features: feats });
 }
 
-/* The 14 IFRC Areas of Interest, coloured by their current IPC phase. */
+/* The 14 IFRC Areas of Operation, drawn as a uniform outline. The IPC phase
+   joined onto them is deliberately neither drawn nor named - see aoi-fill. */
 /* Service points for the countries in scope. */
 function renderHSP() {
   if (!state.showHSP || !state.data.hsps) { setSource("hsps", empty()); return; }
@@ -2131,7 +2194,7 @@ function drawMapLayers() {
   renderRefugees();
   renderEvents();
   renderThemes();
-  /* The Areas of Interest used to be drawn only when their checkbox moved,
+  /* The Areas of Operation used to be drawn only when their checkbox moved,
      because they do not change with the date. They do change with the country
      filter and with the split, so they are redrawn with everything else. */
   renderAOI();
@@ -2176,19 +2239,22 @@ function renderAll() {
   renderTriggers();
   renderSeasonal();
   renderDocCount();
+  drawMovementTrends();
+  renderTrendLegend();
   $("#current-date").textContent = fmtDate(state.current);
 }
 
 /* Everything renderAll() does, plus the things that only change when a FILTER
-   changes rather than when the date does: the trend chart under the timeline
-   and, if asked, the map viewport.
+   changes rather than when the date does: the points behind the Movement
+   trends graph and, if asked, the map viewport.
 
    Fitting the map is deliberately not part of renderAll(): renderAll runs
    about eight times a second while the timeline is playing, and re-fitting the
-   camera at that rate would make the map unusable. */
+   camera at that rate would make the map unusable. Rebuilding the trend series
+   is kept out of it for the same reason - see computeTrendSeries(). */
 function applyFilters({ refit = true } = {}) {
+  computeTrendSeries();
   renderAll();
-  drawSparkline();
   if (refit) fitToSelection();
   // Widening the country filter can bring a country into scope whose
   // food-security file has never been fetched. Load it, then redraw that one
@@ -2196,42 +2262,265 @@ function applyFilters({ refit = true } = {}) {
   if (state.showFoodsec) loadFoodsecForScope().then(renderFoodsec);
 }
 
-/* The mini line chart under the timeline. All three series share one vertical
-   scale, so their relative sizes stay honest. Drawn with the plain HTML canvas
-   API - no charting library involved. */
-function drawSparkline() {
-  const canvas = $("#sparkline");
-  const w = (canvas.width = canvas.offsetWidth * devicePixelRatio);
-  const hpx = (canvas.height = 48 * devicePixelRatio);
+/* ---------------- the Movement trends graph ----------------------------
+ *
+ * Three population series on one pair of axes: everyone displaced, everyone
+ * who crossed a border out of Sudan, and everyone who has gone back.
+ *
+ * It used to be a 48px sparkline drawn BEHIND the timeline slider, where it
+ * was a texture rather than a chart - no scale, no year marks, no way to read
+ * a value off it, and a slider thumb sitting on top of the lines. It is now a
+ * panel of its own on the right, which leaves the timeline as just a timeline.
+ *
+ * ONE VERTICAL SCALE for all three. They are all counts of people, so plotting
+ * them against a shared axis is the only way their relative size stays honest;
+ * a second axis would let the smallest series be drawn as tall as the biggest.
+ * ------------------------------------------------------------------------ */
+
+/* The three lines, in the order they are drawn and listed. Colours are the
+   ones the map already uses for the same idea: orange leaving, green
+   returning. Checked as a set for colour blindness - the closest pair is
+   10.4 apart - but the orange is pale against white, so identity is carried
+   by the labelled key below the graph as well as by the colour. */
+const TREND_SERIES = [
+  { metric: "total_displaced", color: COLOR_OUT, label: "Total displaced" },
+  { metric: "cumulative_arrivals", color: COLOR_ACCENT, label: "Fled across a border" },
+  { metric: "returns_to_sudan_total", color: COLOR_IN, label: "Returns to Sudan" },
+];
+
+/* Work out the points and cache them on state.
+
+   Kept apart from the drawing because statSeries() is cheap unfiltered and
+   expensive under a filter - it rebuilds a series by asking statAt() for every
+   date any corridor reported on. The graph is redrawn on every timeline move,
+   about eight times a second while the story plays; the points behind it only
+   change when a FILTER changes, so that is when this runs. */
+function computeTrendSeries() {
+  const series = TREND_SERIES.map((s) => ({ ...s, points: statSeries(s.metric) }));
+  state.trend = {
+    series,
+    vmax: Math.max(...series.flatMap((s) => s.points.map((p) => p.value)), 1),
+  };
+}
+
+/* Round a maximum up to something a person would say out loud, so the top of
+   the scale reads "13M" rather than "12,994,517".
+
+   TWO significant figures, not one. A ladder of round numbers - 1, 2, 5, 10 -
+   would push a peak of 13M up to a scale of 15M and spend a fifth of the
+   panel's height on empty air, which is a lot of height in a panel this size.
+   Rounding to the second digit costs nothing in readability and keeps the
+   lines as tall as they can be. */
+function niceMax(v) {
+  const mag = Math.pow(10, Math.floor(Math.log10(v)) - 1);
+  return Math.ceil(v / mag) * mag;
+}
+
+/* THE PLOT BOX, in CSS pixels, and the one place its shape is written down.
+   The drawing multiplies these by the device pixel ratio; the click handler
+   uses them as they are, because a click arrives in CSS pixels. Both have to
+   agree about where the box starts and ends, or clicking the graph would set a
+   date other than the one under the cursor - so neither gets its own copy.
+
+   The gutters are what pay for the axes. Left holds the tick figures and the
+   rotated axis title; bottom holds the year marks and "Date". The 132px of plot
+   between them is exactly the height the lines had when the panel was 132px
+   tall and had no axes at all: the labels were added to the canvas, not taken
+   out of the chart. */
+const TREND_CSS_H = 176;
+const TREND_PAD = { t: 10, r: 4, b: 34, l: 46 };
+const TREND_TICKS = 4;                     // gridlines above zero
+
+/* Where the plot box sits across a canvas of this width. */
+function trendBox(canvas) {
+  return { x0: TREND_PAD.l, x1: canvas.offsetWidth - TREND_PAD.r };
+}
+
+/* A click's x, in CSS pixels, back into the date standing at it - xAt() run
+   backwards. Clamped, so a click in either gutter takes the nearer end of the
+   timeline rather than a date off the end of the war. */
+function dateAtTrendX(canvas, cssX) {
+  const { x0, x1 } = trendBox(canvas);
+  const f = clamp((cssX - x0) / Math.max(x1 - x0, 1), 0, 1);
+  return START + f * (state.endDate - START);
+}
+
+/* Draw the graph from the cache. Plain canvas - no charting library.
+
+   Styled the way seaborn draws a whitegrid: soft gridlines in both directions,
+   figures on both axes, a named axis on each, and no top or right spine. The
+   panel used to carry a single number - the top of the scale - floating
+   unlabelled above the lines, which gave the shape a ceiling but no way to read
+   a value at any other height. */
+function drawMovementTrends() {
+  const canvas = $("#movement-trends");
+  if (!canvas || !canvas.offsetWidth || !state.endDate) return;
+  const dpr = devicePixelRatio || 1;
+  const w = (canvas.width = canvas.offsetWidth * dpr);
+  const h = (canvas.height = TREND_CSS_H * dpr);
+  canvas.style.height = TREND_CSS_H + "px";
   const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, w, h);
+
+  const box = trendBox(canvas);
+  const x0 = box.x0 * dpr, x1 = box.x1 * dpr;
+  const y0 = TREND_PAD.t * dpr, y1 = h - TREND_PAD.b * dpr;
   const span = state.endDate - START;
-  // all series share one scale so relative magnitudes stay honest
-  const SERIES = [
-    ["total_displaced", COLOR_OUT],
-    ["cumulative_arrivals", COLOR_ACCENT],
-    ["returns_to_sudan_total", COLOR_IN],
-  ];
-  const drawn = SERIES.map(([metric, color]) => [statSeries(metric), color]);
-  const vmax = Math.max(...drawn.flatMap(([s]) => s.map((p) => p.value)), 1);
-  for (const [s, color] of drawn) {
-    if (s.length < 2) continue;
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 1.6 * devicePixelRatio;
+  const vmax = niceMax(state.trend.vmax);
+  const xAt = (t) => x0 + ((t - START) / span) * (x1 - x0);
+  const yAt = (v) => y1 - (v / vmax) * (y1 - y0);
+
+  ctx.font = `${9.5 * dpr}px "Open Sans", Arial, sans-serif`;
+  ctx.textBaseline = "alphabetic";
+
+  const GRID = "rgba(1,30,65,.10)";
+  const SPINE = "rgba(1,30,65,.28)";
+
+  // ---- horizontal gridlines, and the figure each one stands for ---------
+  ctx.lineWidth = 1 * dpr;
+  for (let i = 0; i <= TREND_TICKS; i++) {
+    const v = (vmax / TREND_TICKS) * i;
+    const y = Math.round(yAt(v)) + 0.5;
+    if (i > 0) {                           // zero is the spine, drawn below
+      ctx.strokeStyle = GRID;
+      ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke();
+    }
+    ctx.fillStyle = COLOR_MUTED;
+    ctx.textAlign = "right";
+    ctx.fillText(v ? fmtNum(v) : "0", x0 - 6 * dpr, y + 3.4 * dpr);
+  }
+
+  // ---- year marks: gridline above, figure below -------------------------
+  /* The axis starts on 15 April 2023, so the loop below - which wants 1 January
+     - can never label the origin, and with real axes an unlabelled end reads as
+     a gap. So 2023 is written on the spine itself, left-aligned to stay inside
+     the box, and with no gridline of its own because the spine is already the
+     line it would draw. */
+  ctx.fillStyle = COLOR_MUTED;
+  ctx.textAlign = "left";
+  ctx.fillText("2023", x0, y1 + 14 * dpr);
+
+  const lastYear = new Date(state.endDate).getFullYear();
+  for (let y = 2024; y <= lastYear; y++) {
+    const t = Date.parse(`${y}-01-01`);
+    if (t < START || t > state.endDate) continue;
+    const x = Math.round(xAt(t)) + 0.5;
+    ctx.strokeStyle = GRID;
+    ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y1); ctx.stroke();
+    ctx.fillStyle = COLOR_MUTED;
+    ctx.textAlign = "center";
+    ctx.fillText(String(y), x, y1 + 14 * dpr);
+  }
+
+  // ---- the spines. Left and bottom only, seaborn-despined ---------------
+  ctx.strokeStyle = SPINE;
+  ctx.beginPath();
+  ctx.moveTo(Math.round(x0) + 0.5, y0);
+  ctx.lineTo(Math.round(x0) + 0.5, Math.round(y1) + 0.5);
+  ctx.lineTo(x1, Math.round(y1) + 0.5);
+  ctx.stroke();
+
+  // ---- what each axis is counting ---------------------------------------
+  ctx.fillStyle = COLOR_MUTED;
+  ctx.textAlign = "center";
+  ctx.fillText("Date", (x0 + x1) / 2, h - 4 * dpr);
+  ctx.save();                              // the y title reads bottom-to-top
+  ctx.translate(11 * dpr, (y0 + y1) / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText("People", 0, 0);
+  ctx.restore();
+
+  // ---- the defining events, as ticks standing on the zero line ----------
+  ctx.fillStyle = "rgba(200,110,0,.8)";
+  for (const ev of (state.data.events || []).filter((e) =>
+    e.source === "curated" && e.severity >= 4 && (e.country === "Regional" || countryOn(e.country)))) {
+    const t = Date.parse(ev.date);
+    if (t < START || t > state.endDate) continue;
+    ctx.fillRect(Math.round(xAt(t)), y1 - 5 * dpr, 1.5 * dpr, 5 * dpr);
+  }
+
+  // ---- where the timeline is standing -----------------------------------
+  // The graph no longer sits under the slider, so it has to say for itself
+  // which date the rest of the page is showing. Drawn under the lines.
+  const xNow = Math.round(xAt(state.current)) + 0.5;
+  ctx.strokeStyle = "rgba(1,30,65,.45)";
+  ctx.lineWidth = 1 * dpr;
+  ctx.setLineDash([3 * dpr, 3 * dpr]);
+  ctx.beginPath(); ctx.moveTo(xNow, y0 - 4 * dpr); ctx.lineTo(xNow, y1); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // ---- the three lines ---------------------------------------------------
+  for (const s of state.trend.series) {
+    if (s.points.length < 2) continue;
+    ctx.strokeStyle = s.color;
+    ctx.lineWidth = 2 * dpr;
+    ctx.lineJoin = "round";
     ctx.beginPath();
-    s.forEach((p, i) => {
-      const x = ((Date.parse(p.date) - START) / span) * w;
-      const y = hpx - (p.value / vmax) * (hpx - 8) - 4;
+    s.points.forEach((p, i) => {
+      const x = xAt(Date.parse(p.date)), y = yAt(p.value);
       i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
     });
     ctx.stroke();
   }
-  // defining events as ticks along the bottom
-  ctx.fillStyle = "rgba(200,110,0,.85)";
-  for (const ev of state.data.events.filter((e) =>
-    e.source === "curated" && e.severity >= 4 && (e.country === "Regional" || countryOn(e.country)))) {
-    const x = ((Date.parse(ev.date) - START) / span) * w;
-    ctx.fillRect(x, hpx - 6 * devicePixelRatio, 1.5 * devicePixelRatio, 6 * devicePixelRatio);
+
+  // ---- a dot on each line at the current date ----------------------------
+  // This is what ties a line to its row in the key underneath, which carries
+  // the figure. The white ring keeps two dots apart where the lines cross.
+  for (const s of state.trend.series) {
+    const v = statAt(s.metric, state.current);
+    if (!v) continue;
+    ctx.beginPath();
+    ctx.arc(xNow, yAt(v), 3.2 * dpr, 0, Math.PI * 2);
+    ctx.fillStyle = s.color;
+    ctx.fill();
+    ctx.lineWidth = 1.6 * dpr;
+    ctx.strokeStyle = WHITE;
+    ctx.stroke();
   }
+}
+
+/* CLICKING THE GRAPH MOVES THE WHOLE DASHBOARD. The graph draws the war end to
+   end while every other panel shows a single date, so it is the one place a
+   reader can SEE the moment they want - the bend where returns start, the step
+   where a corridor opened - and until now the only way to get to that moment
+   was to hunt for it with the slider.
+
+   The story is stopped first. A click during playback would otherwise be
+   overwritten by the play timer 120ms later, which reads as the click having
+   done nothing at all. */
+function initTrendsClick() {
+  const canvas = $("#movement-trends");
+  if (!canvas) return;
+  canvas.addEventListener("click", (e) => {
+    if (!state.endDate) return;
+    stopPlaying();
+    // Worked out from the cursor and the canvas's own box rather than taken
+    // from e.offsetX, because the page is drawn smaller than it is laid out
+    // (see uiScale) and offsetX is reported at the size it is DRAWN, while
+    // dateAtTrendX measures against offsetWidth, which is the size it is laid
+    // out at. Straight from offsetX the click landed a fifth of the war early.
+    const box = canvas.getBoundingClientRect();
+    const scale = box.width / canvas.offsetWidth || 1;
+    setCurrentDate(dateAtTrendX(canvas, (e.clientX - box.left) / scale));
+  });
+}
+
+/* The key under the graph: one row per line, each carrying its figure for the
+   date the timeline is on. The figures are the point of it. Colour alone would
+   leave the orange series - the palest of the three against white - identified
+   by something a reader may not be able to see, and would leave the graph a
+   shape with no numbers anywhere on it. */
+function renderTrendLegend() {
+  const el = $("#trend-key");
+  if (!el) return;
+  el.innerHTML = state.trend.series.map((s) => {
+    const v = statAt(s.metric, state.current);
+    return `<div class="tk-row">
+      <span class="tk-line" style="background:${s.color}"></span>
+      <span class="tk-label">${s.label}</span>
+      <span class="tk-val">${v ? fmtNum(v) : "–"}</span>
+    </div>`;
+  }).join("");
 }
 
 /* ========================= 6. TIMELINE ================================= */
@@ -2244,8 +2533,7 @@ function initTimeline() {
   const days = Math.round((state.endDate - START) / DAY);
   slider.max = days;
   slider.addEventListener("input", () => {
-    state.current = START + Number(slider.value) * DAY;
-    renderAll();
+    setCurrentDate(START + Number(slider.value) * DAY);
   });
 
   // year ticks
@@ -2258,24 +2546,31 @@ function initTimeline() {
   }
 
   const play = $("#play-btn");
-  let timer = null;
   play.addEventListener("click", () => {
-    state.playing = !state.playing;
-    play.textContent = state.playing ? "❚❚" : "▶";
-    if (state.playing) {
-      if (Number(slider.value) >= days) slider.value = 0;
-      timer = setInterval(() => {
-        const v = Number(slider.value) + 4;
-        if (v >= days) {
-          slider.value = days;
-          state.playing = false; play.textContent = "▶";
-          clearInterval(timer);
-        } else slider.value = v;
-        state.current = START + Number(slider.value) * DAY;
-        renderAll();
-      }, 120);
-    } else clearInterval(timer);
+    if (state.playing) { stopPlaying(); return; }
+    state.playing = true;
+    play.textContent = "❚❚";
+    if (Number(slider.value) >= days) slider.value = 0;
+    playTimer = setInterval(() => {
+      const v = Number(slider.value) + 4;
+      if (v >= days) { slider.value = days; stopPlaying(); }
+      else slider.value = v;
+      setCurrentDate(START + Number(slider.value) * DAY);
+    }, 120);
   });
+}
+
+/* The play loop's handle, lifted out of initTimeline() so that anything which
+   moves the timeline by hand can stop the story first. Without that, clicking
+   the trends graph mid-play sets a date the timer overwrites 120ms later, and
+   the click reads as broken. */
+let playTimer = null;
+function stopPlaying() {
+  clearInterval(playTimer);
+  playTimer = null;
+  state.playing = false;
+  const play = $("#play-btn");
+  if (play) play.textContent = "▶";
 }
 
 /* ========================= 7. CONTROLS ================================= */
@@ -2321,7 +2616,7 @@ function initControls() {
 
 /* ---------------------------------------------------------------- dropdown
  * ONE searchable multi-select, built six times: once for the country filter
- * and once for each of the five narrative dimensions. Everything about how a
+ * and once for each of the four narrative dimensions. Everything about how a
  * filter control behaves is decided here, so all six behave identically.
  *
  * The two ways to choose, as asked for:
@@ -2480,7 +2775,7 @@ function initThemeControls() {
   for (const [dim, meta] of Object.entries(DIM_META)) {
     const tags = Object.keys(state.data.tags[dim] || {}).sort();
     if (!tags.length) continue;
-    /* activeTags is one flat set of "dimension|tag" keys shared by all five
+    /* activeTags is one flat set of "dimension|tag" keys shared by all four
        dropdowns, so each one is given a small view onto just its own slice of
        it. Select-all and Clear then act on that dimension alone. */
     const view = {
@@ -2623,11 +2918,13 @@ async function fitToSelection() {
   initThemeControls();
   initSidebarResize();
   initVoiceSearch();
-  drawSparkline();
-  window.addEventListener("resize", () => {
-    drawSparkline();
-    for (const m of maps) m.resize();
-  });
+  computeTrendSeries();
+  /* The graph is sized in pixels off its panel, and the right sidebar can be
+     resized by dragging its grip - which changes that width without any window
+     resize to listen for. Watching the canvas itself catches both. */
+  new ResizeObserver(() => drawMovementTrends()).observe($("#movement-trends"));
+  initTrendsClick();
+  window.addEventListener("resize", () => { for (const m of maps) m.resize(); });
   // open the story at the beginning
   renderAll();
 })();

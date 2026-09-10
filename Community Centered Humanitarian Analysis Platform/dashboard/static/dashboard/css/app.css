@@ -46,12 +46,12 @@
   --ifrc-red-dark:       #d22730;
 
   /* --- 2. data-mark steps ----------------------------------------------
-     The five narrative dimensions, each given the IFRC thematic palette that
-     means the same thing. These five are drawn on the map at the same time,
+     The four narrative dimensions, each given the IFRC thematic palette that
+     means the same thing. All four are drawn on the map at the same time,
      so they were checked as a set against all pairs, for normal colour vision
      and for the three kinds of colour blindness (protan/deutan/tritan).
 
-     Three are the brand colour unchanged. Two needed a lighter step of the
+     Two are the brand colour unchanged. Two needed a lighter step of the
      same hue: IFRC's purple and blue are both deep and, at their published
      lightness, indistinguishable to a deuteranope (deltaE 3.0 - effectively
      the same colour). Lifting them apart brings that to 8.0, the accepted
@@ -63,6 +63,11 @@
   --dim-vulnerability: #6b3a90;   /* Values/power/inclusion - #512d6d lifted */
   --dim-coping:        #009775;   /* Climate and environment- brand, unchanged */
   --dim-need:          #1874a0;   /* Health and wellbeing   - #0f3a50 lifted */
+  /* NOT a dimension any more. Movement patterns was the fifth pillar until the
+     Movement trends graph took over saying what this dashboard knows about
+     movement - in people rather than in mentions. The token stays because the
+     seasonal calendar borrows it below for livestock migration, which is a
+     movement and should go on being drawn in the movement colour. */
   --dim-movement:      #ff8200;   /* Migration and identity - brand, unchanged */
 
   /* The seasonal calendar's bands. ONE COLOUR PER KIND OF SEASON, and the same
@@ -76,12 +81,13 @@
      of ONE hue: they are consecutive stages of a single cycle, and shading them
      as a sequence says so.
 
-     Three DELIBERATELY borrow a dimension colour from the block above, because
-     they mean the same thing the map means by it - a seasonal hazard is a
-     hazard, livestock migration is a movement, and the lean season is the
-     window when vulnerability peaks. The echo is the point: the calendar and
-     the map should not use two different reds for danger. If you restyle the
-     dimensions, restyle these with them or the link silently breaks. */
+     Three DELIBERATELY borrow a colour from the block above, because they mean
+     the same thing the map means by it - a seasonal hazard is a hazard, and the
+     lean season is the window when vulnerability peaks. The echo is the point:
+     the calendar and the map should not use two different reds for danger. If
+     you restyle the dimensions, restyle these with them or the link silently
+     breaks. (Livestock keeps --dim-movement, which the map no longer draws -
+     see the note on that token.) */
   --season-rain:      var(--ifrc-blue-medium);    /* #8dcde2 water     - brand */
   --season-dry:       var(--ifrc-orange-light);   /* #ffb25b sun/arid  - brand */
   --season-planting:  var(--ifrc-green-light);    /* #47d7ac early growth - brand */
@@ -112,7 +118,7 @@
      primary brand colour. */
   --event: var(--ifrc-dark-blue);       /* key events */
   /* The MCP data layers get their own colours. They are dots in the same
-     legend as the five dimensions, so they must be separable from those five,
+     legend as the four dimensions, so they must be separable from those four,
      from the key-event navy and from each other - every pair above deltaE 8.
      (Influx arrows deliberately have no token of their own: they are movement
      INTO Sudan and share --return with the other return flows.) */
@@ -135,10 +141,37 @@
    Clearing it first means the rules below start from a blank slate. */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html, body { height: 100%; }
+
+/* ---------- --ui-scale: the whole page, drawn one size down --------------
+   THE SINGLE KNOB FOR HOW BIG THIS DASHBOARD IS. Every length in this file is
+   in px, and they were all chosen while reading the page at 80% browser zoom -
+   which is the only size at which the header sits on one line, the sidebar
+   panels are all visible without scrolling, and the map has room to be a map.
+   Nobody using this dashboard is going to reach for Ctrl+Minus first, so the
+   page has to open at that size on its own.
+
+   zoom (not transform: scale) because zoom RE-LAYS-OUT: the header unwraps,
+   the map pane genuinely gets wider, and percentage heights still resolve
+   against the viewport, so body height:100% keeps filling the screen exactly.
+   MapLibre already divides pointer coordinates by getBoundingClientRect().width
+   / offsetWidth, so clicks, drags and wheel-zoom land where the cursor is.
+
+   Two things do NOT come along for the ride, because they are measured against
+   the real viewport rather than the laid-out page, and both are corrected by
+   hand below - search this file for --ui-scale to find them:
+     * vh units      - see .hover-popup, which divides by the scale
+     * media queries - they cannot read a custom property; the breakpoints at
+                       the end of this file carry the multiplication instead
+   Setting --ui-scale back to 1 restores the browser's own idea of 100%. The vh
+   correction looks after itself when you do (dividing by 1 changes nothing);
+   the breakpoints have to be re-multiplied by hand. */
+:root { --ui-scale: .8; }
+
 /* The whole page is one vertical column: header, then the three-column
    layout, then the timeline. overflow:hidden stops the page itself from
    scrolling - each panel scrolls on its own instead. */
 body {
+  zoom: var(--ui-scale);
   font-family: "Open Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
   background: var(--bg); color: var(--text);
   display: flex; flex-direction: column; overflow: hidden;
@@ -150,12 +183,46 @@ h1, h2, h3, .panel h2, .stat-value, #current-date, .theme-group h3 {
 /* ---------- header: IFRC red bar with the four headline figures -------- */
 #topbar {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 18px; background: var(--header); color: var(--on-header);
+  /* NO PADDING ON THE LEFT, and 166px of it instead: the logo plate below is
+     taken out of the flex flow and pinned into the corner, so the bar has to
+     hold that width open for it (150px of plate + 16px before the title). The
+     18px of red that used to sit left of the logo is exactly what made the
+     logo look like it was floating in the middle of the bar. */
+  padding: 10px 18px 10px 166px; background: var(--header); color: var(--on-header);
   box-shadow: 0 2px 6px rgba(0,0,0,.18);
-  gap: 16px; flex-wrap: wrap; z-index: 1000;
+  gap: 16px; flex-wrap: wrap; z-index: 1000; position: relative;
 }
 #title-block { display: flex; align-items: center; gap: 16px; }
-#ifrc-logo { height: 38px !important; width: auto !important; max-height: 38px; max-width: 200px; display: block; flex-shrink: 0; }
+
+/* ---------- the logo plate --------------------------------------------
+   A LOGO THAT BRINGS ITS OWN BACKGROUND. IFRC's Logo-Horizontal-RGB.svg has a
+   viewBox of 841.89 x 380.21 and paints a white rectangle at (94.73, 93.38)
+   measuring 652.43 x 193.44 - so the white is 77.50% of the file's width and
+   50.88% of its height, centred, with transparent margin all round. Dropped
+   straight onto the red bar, that margin shows as red and the white reads as a
+   chip hovering in the header rather than as part of it.
+
+   So the plate, not the file, is the thing you see. This box IS white, is
+   pinned flush into the top-left corner, and runs the full height of the bar -
+   ABSOLUTELY POSITIONED for that last part, because #topbar wraps onto two
+   lines at laptop widths and a flex item can only stretch to its own line,
+   which left red showing under the logo on exactly the screens most people use.
+
+   Inside it, the image is blown up and pushed left until its white rectangle
+   spans the box exactly - width 1/0.7750 = 129.03%, left -(94.73/841.89) of
+   that = -14.52%, both measured against the box width, so they hold at any
+   header height. Vertically it is simply centred: the box is already the same
+   white, so however much of it the logo does not cover reads as margin rather
+   than as a seam. */
+#ifrc-logo-plate {
+  position: absolute; left: 0; top: 0; bottom: 0; width: 150px;
+  overflow: hidden; background: var(--ifrc-white);
+}
+#ifrc-logo {
+  position: absolute; left: -14.52%; width: 129.03%; height: auto;
+  top: 50%; transform: translateY(-50%);
+  max-width: none; display: block;
+}
 #title-block h1 { font-size: 19px; letter-spacing: 1px; color: var(--on-header); }
 #title-block h1 span { color: rgba(255,255,255,.88); font-weight: 400; }
 #page-footer {
@@ -243,8 +310,8 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 #country-panel { overflow: visible; }
 
 /* ---------- the dropdown filter -----------------------------------------
-   ONE component, used six times: the country filter in the header and the
-   five theme dimensions in the sidebar. app.js builds the markup
+   ONE component, used five times: the country filter in the header and the
+   four theme dimensions in the sidebar. app.js builds the markup
    (makeDropdown); everything below is only how it looks.
 
    The panel is absolutely positioned and revealed by the class "open", which
@@ -341,12 +408,15 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 .event-item.extracted .ev-title { color: var(--muted); font-style: italic; }
 
 /* ---------- the map, its event banner and its popups ------------------- */
-#map-wrap { flex: 1; position: relative; min-width: 0; }
+/* A column, not a stack of overlays: the map panes take the height that is
+   going and the legend sits under them as the map's bottom edge. position is
+   still relative because the event banner is absolutely placed against it. */
+#map-wrap { flex: 1; position: relative; min-width: 0; display: flex; flex-direction: column; }
 /* One pane normally. When app.js adds "split" to #map-wrap the second pane
    appears and the two share the width, each with the country name written
    across its top. The gap is a hairline of page background, which reads as a
    divider without needing a border on either map. */
-#map-panes { position: absolute; inset: 0; display: flex; gap: 0; }
+#map-panes { position: relative; flex: 1; min-height: 0; display: flex; gap: 0; }
 .map-pane { position: relative; flex: 1; min-width: 0; }
 .map-canvas { position: absolute; inset: 0; }
 #pane-b { display: none; }
@@ -389,7 +459,10 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 .hover-popup { pointer-events: none; }
 .hover-popup .maplibregl-popup-content {
   box-shadow: 0 4px 14px rgba(0,0,0,.22);
-  max-height: 46vh; overflow: hidden; padding: 10px 12px;
+  /* 46% of the window's height. Divided by --ui-scale because vh is measured
+     against the real viewport and then shrunk with the rest of the page - left
+     as a bare 46vh it would cap the bubble at 37% of the screen. */
+  max-height: calc(46vh / var(--ui-scale)); overflow: hidden; padding: 10px 12px;
 }
 .hover-popup.pinned { pointer-events: auto; }
 .hover-popup.pinned .maplibregl-popup-content {
@@ -430,7 +503,11 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
   color: var(--muted); margin-top: 7px; text-align: right; opacity: .8;
 }
 
-/* ---------- the timeline: play button, slider and trend chart ---------- */
+/* ---------- the timeline: play button, slider and the date -------------
+   The trend chart used to be drawn on a canvas behind the slider. It is its
+   own panel in the right sidebar now (#trends-graph-panel), which is why this
+   bar has nothing in it but the controls for moving through time.
+   ---------------------------------------------------------------------- */
 #timebar {
   display: flex; align-items: center; gap: 14px; padding: 10px 18px 14px;
   background: var(--panel); border-top: 1px solid var(--border);
@@ -442,8 +519,7 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 }
 #play-btn:hover { background: var(--accent); color: #fff; }
 #slider-wrap { flex: 1; position: relative; }
-#sparkline { width: 100%; display: block; opacity: .95; }
-#time-slider { width: 100%; accent-color: var(--accent); cursor: pointer; margin-top: 2px; }
+#time-slider { width: 100%; accent-color: var(--accent); cursor: pointer; display: block; }
 #slider-ticks { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 1px; }
 #current-date {
   min-width: 110px; text-align: center; font-size: 15px; font-weight: 700;
@@ -487,13 +563,17 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 .trigger-bar { height: 6px; border-radius: 3px; background: rgba(0,0,0,.08); overflow: hidden; }
 .trigger-bar > div { height: 100%; border-radius: 3px; background: var(--out); }
 
-/* ---------- the legend box in the corner of the map ------------------- */
+/* ---------- the legend strip along the bottom of the map --------------- */
+/* It used to float over the map as a card, which covered whatever was beneath
+   it - and what is beneath the middle-bottom of this map is southern Sudan.
+   It is now the map's bottom boundary: a full-width strip in the flow, so it
+   hides nothing and the map ends where the legend begins. It wraps to as many
+   rows as it needs and the map gives up that height. */
 #map-legend {
-  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
-  background: rgba(255,255,255,.94); border: 1px solid var(--border); border-radius: 8px;
-  padding: 6px 14px; font-size: 11px; color: var(--muted); z-index: 4; max-width: 90%;
-  box-shadow: 0 2px 10px rgba(0,0,0,.12);
+  flex-shrink: 0;
+  display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; align-items: center;
+  background: var(--panel); border-top: 1px solid var(--border);
+  padding: 7px 14px; font-size: 11px; color: var(--muted); z-index: 4;
 }
 .leg { display: flex; align-items: center; gap: 5px; }
 .leg-arrow { font-weight: 800; letter-spacing: -1px; }
@@ -511,17 +591,43 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 .leg-water { width: 14px; height: 3px; border-radius: 2px; display: inline-block;
              background: var(--water); box-shadow: 0 0 4px var(--water); }
 
-/* ---------- the small colour key beside the timeline ------------------ */
-#trend-legend { display: flex; flex-direction: column; gap: 1px; min-width: 116px; }
-#trend-legend .tl { font-size: 10px; color: var(--muted); }
-#current-date { min-width: 0; text-align: left; margin-bottom: 2px; }
+/* ---------- the Movement trends graph and its key ---------------------
+   The canvas is sized in JS from its own offsetWidth. The height is stated
+   here as well as in JS on purpose: without it the canvas keeps its default
+   300x132 aspect ratio until the first draw, so the panel would be laid out
+   short and then jump taller a frame later. Keep this in step with CSS_H in
+   drawMovementTrends().
+   ---------------------------------------------------------------------- */
+/* Taller than it was, to pay for the axis gutters - see TREND_CSS_H in
+   app.js, which MUST match this height. Crosshair because the graph is
+   clickable: clicking it moves the timeline, and the whole page with it. */
+#movement-trends { width: 100%; height: 176px; display: block; cursor: crosshair; }
+#trend-key { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+.tk-row { display: flex; align-items: center; gap: 7px; font-size: 11.5px; }
+/* A short bar rather than a dot: it is a LINE on the graph, and the key should
+   look like the thing it points at. */
+.tk-line { width: 14px; height: 3px; border-radius: 2px; flex-shrink: 0; }
+.tk-label { color: var(--muted); flex: 1; min-width: 0; }
+/* Tabular figures so the numbers line up as the timeline moves and they change
+   width - a column that jitters is hard to read a trend off. */
+.tk-val { font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+.graph-note { font-size: 9.5px; color: var(--muted); margin-top: 8px; line-height: 1.4; }
 
 /* stat trend arrows */
 .stat-value .trend { font-size: 12px; margin-left: 4px; vertical-align: 2px; }
 
-/* responsive */
-@media (max-width: 1280px) { #rightbar { display: none; } }
-@media (max-width: 900px) {
+/* responsive
+   THE BREAKPOINTS CARRY --ui-scale MULTIPLIED IN, because a media query is
+   evaluated against the real viewport and cannot read a custom property. What
+   these two rules are really asking is "is there room for the right sidebar /
+   for both sidebars", and the page is laid out at 1/--ui-scale the viewport's
+   width, so a 1024px window has 1280px of room in it. The widths below are the
+   layout widths these rules were written for, times .8:
+     1280 -> 1024   the right sidebar no longer fits
+      900 ->  720   neither sidebar fits
+   Change --ui-scale and these have to be re-multiplied by hand. */
+@media (max-width: 1024px) { #rightbar { display: none; } }
+@media (max-width: 720px) {
   #sidebar { display: none; }
   #stat-cards .stat { min-width: 100px; }
   /* Two maps side by side need width there is not any of, so stack them. */
