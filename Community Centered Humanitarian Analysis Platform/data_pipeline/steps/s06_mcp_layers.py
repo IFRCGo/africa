@@ -16,7 +16,7 @@ Outputs into dashboard/data/:
   ipc_areas_fs.geojson    Sudan's IPC snapshots over time            (IPC)
   ipc_fs/<ISO3>.geojson   the same, per country, for the rest        (IPC/CH)
   hsps.geojson            humanitarian service points, by district   (Kobo)
-  seasonal.json           seasonal calendars, now one per country    (FEWS NET)
+  seasonal.json           seasonal calendars, now one per country    (ACAPS)
   aoi_ipc.geojson         IFRC Areas of Interest + their IPC phase
 
 WHY FOOD SECURITY IS SPLIT PER COUNTRY. One file carrying every country at every
