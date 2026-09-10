@@ -131,8 +131,6 @@ const DIM_META = {
    outside because they are the thing that happens TO a place; the pillars that
    describe the people there sit within it. */
 const DIM_ORDER = ["hazard", "vulnerability", "coping", "need", "movement_pattern"];
-// Pixels between one pillar's band and the next.
-const BAND_STEP = 3.5;
 const COLOR_WATER = paletteColor("--water", "#1f9ad6");
 
 /* Which tags make the water worth pointing at. Flooding and water/sanitation
@@ -738,20 +736,27 @@ function addLayers(m) {
      and "flooding somewhere in Sudan" are different findings and one bubble in
      the middle of the country said the same thing for both.
 
-     DRAWN LIKE THE IPC CHOROPLETH, because that is the one layer on this map
-     that reads at a glance: a solid fill and a dark hairline on the admin area
-     itself. The pillars used to be a wash as faint as 0.07 opacity under five
-     inset line bands, and at country zoom an admin2 polygon is not many pixels
-     across - the bands collapsed into each other and the wash was invisible,
-     so a reader saw the grey national dimming and nothing else.
+     DRAWN EXACTLY LIKE THE IPC CHOROPLETH: a solid fill and a thin dark
+     hairline on the admin area, and NOTHING ELSE ON THE EDGE. That last clause
+     is the whole lesson of this layer's history.
 
-     THE OVERLAY RULE SURVIVES, in a cheaper form. The five pillars are meant to
-     be read TOGETHER: put hazards up, add vulnerabilities, then see whether
-     coping is reported in the same places. The LEADING pillar on an area is now
-     the fill; any FURTHER pillar still draws a band inset one step further from
-     the boundary. So a single-pillar area is a plain filled polygon like IPC's,
-     and an area where three pillars converge is a filled polygon wearing two
-     rings. Bands never blend, so every colour still means exactly one pillar.
+     WHAT MADE IT LOOK BLOBBY WAS NEVER THE GEOMETRY. The pillars used to draw
+     five line bands inset from the boundary with line-offset, one step further
+     per pillar. line-offset is measured in PIXELS, and at the zoom where a
+     Sudanese state fills the screen one pixel is two to five kilometres - so an
+     offset of 3.5 to 14px pushed the outline ten to seventy kilometres off the
+     boundary, rounding every corner and doubling every edge. The polygons
+     underneath were fine all along: the areas this layer draws carry about 27
+     vertices per 100km of edge, against 22 for the IPC areas beside them.
+     Simplification runs at 550m, a fifth of a pixel at that zoom, and cannot
+     bulge anything.
+
+     SO CONVERGENCE MOVED OFF THE EDGE. The five pillars are still meant to be
+     read together, but an area now shows the HIGHEST-PRECEDENCE pillar reported
+     on it and says the rest in its popup, which lists every pillar with its
+     tags and counts. Trying to say "three pillars converge here" in the outline
+     is what kept the layer unreadable for anyone trying to see where anything
+     was at all.
 
      One source holds all 336 polygons and is set once. What each pillar shows
      on it is carried by FEATURE STATE rather than by five copies of the
@@ -788,19 +793,6 @@ function addLayers(m) {
       "line-color": "#0e1116", "line-width": 0.5,
       "line-opacity": ["coalesce", ["feature-state", "edge"], 0],
     },
-  });
-  DIM_ORDER.forEach((dim, i) => {
-    m.addLayer({
-      id: `theme-band-${dim}`, type: "line", source: "areas",
-      layout: { "line-join": "round" },
-      paint: {
-        "line-color": DIM_META[dim].color,
-        // one step further inside the boundary for each pillar
-        "line-offset": -(i * BAND_STEP),
-        "line-width": ["coalesce", ["feature-state", `w_${dim}`], 0],
-        "line-opacity": ["coalesce", ["feature-state", `o_${dim}`], 0],
-      },
-    });
   });
 
   /* ---- water ------------------------------------------------------------
@@ -1344,15 +1336,6 @@ function renderThemes() {
        are already on screen the moment its mentions overtook the first. A fixed
        precedence means a hazard area stays hazard-red as more pillars go on. */
     const top = DIM_ORDER.find((d) => dims[d] != null) || null;
-    for (const [dim, count] of Object.entries(dims)) {
-      // The pillar holding the fill does not also draw a ring around it: one
-      // pillar on an area should look exactly like an IPC area, no more.
-      if (dim === top) { st[`w_${dim}`] = 0; st[`o_${dim}`] = 0; continue; }
-      // Band thickness grows with mentions, as the square root so that a
-      // place reported ten times over is not drawn ten times as thick.
-      st[`w_${dim}`] = Math.max(1.6, Math.min(7, 1.2 + Math.sqrt(count) * 0.9));
-      st[`o_${dim}`] = 0.95;
-    }
     if (top) {
       st.topColor = DIM_META[top].color;
       /* Opacity still carries volume, but over a NARROW band that starts where

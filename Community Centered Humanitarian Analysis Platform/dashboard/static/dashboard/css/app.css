@@ -498,8 +498,14 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 .leg { display: flex; align-items: center; gap: 5px; }
 .leg-arrow { font-weight: 800; letter-spacing: -1px; }
 .leg-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
-/* A pillar is drawn as a band around an area, so its key is a ring not a dot. */
-.leg-band { width: 11px; height: 11px; border: 2px solid; border-radius: 2px; display: inline-block; }
+/* A pillar is drawn as a FILLED area with a dark hairline, so its key is a
+   filled box with the same hairline - it used to be a hollow ring, which was
+   right when the pillars were drawn as bands around an area and became a lie
+   the moment they became fills. */
+.leg-band {
+  width: 11px; height: 11px; border-radius: 2px; display: inline-block;
+  border: 0.5px solid rgba(14, 17, 22, .55);
+}
 .leg-tint { width: 11px; height: 11px; border-radius: 2px; display: inline-block;
             background: rgba(1,30,65,.18); }
 .leg-water { width: 14px; height: 3px; border-radius: 2px; display: inline-block;
