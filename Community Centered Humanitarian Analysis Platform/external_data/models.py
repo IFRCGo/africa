@@ -85,10 +85,22 @@ class SourceSync(models.Model):
 class SeasonalCalendar(models.Model):
     """When the lean season bites, when the harvest comes in - per country.
 
-    NO COLOUR COLUMN, deliberately. The dashboard's calendar strip needs one, but
-    FEWS NET does not publish colours, so a colour column would be null for every
-    real row. Colour is derived at build time from `season_type`, which has the
-    happy side effect that a lean season is the same colour in every country.
+    TWO PUBLISHERS, AND THEY ARE NOT EQUIVALENT. FEWS NET gives national bands with
+    bare names: "Lean", "Harvest", "Post-harvest". ACAPS gives the same seasons
+    with the crop named, a sentence of explanation, the admin-1 regions each
+    applies to, and the organisation that assessed it with a link to the document.
+    The office asked for the ACAPS calendar for exactly that reason, so `source`
+    keeps both and the dashboard prefers ACAPS where it exists.
+
+    MONTHS ARE STORED AS A LIST, not only as a span. ACAPS publishes an explicit
+    set of months per event and a span cannot represent every set it might publish;
+    start_month/end_month are kept beside it because a span is what reads well in a
+    strip, but `months` is the authoritative field.
+
+    NO COLOUR COLUMN, deliberately. Neither publisher supplies one, so the column
+    would be null for every real row. Colour is derived at build time from
+    `season_type`, which has the happy side effect that a lean season is the same
+    colour in every country.
     """
 
     iso3 = models.CharField(max_length=3, db_index=True)
@@ -101,10 +113,35 @@ class SeasonalCalendar(models.Model):
     source_ref = models.TextField(
         null=True, blank=True, help_text="FEWS NET fnid, or the ACAPS record id"
     )
-    label = models.TextField(help_text="'Lean', 'Main harvest', 'Post-harvest'")
+    label = models.TextField(help_text="What the season is about: 'Lean', 'Cotton', 'Sorghum'")
     season_type = models.TextField(
-        null=True, blank=True, help_text="Lean / Harvest / Dry / Rainy"
+        null=True, blank=True, help_text="Normalised: Lean / Harvest / Dry / Rainy / Hazard"
     )
+    # ACAPS's own vocabulary, kept unflattened beside the normalised one. It is
+    # finer than season_type and is what a reader recognises: "Planting and
+    # growing" and "1st/main planting" say different things.
+    event = models.TextField(null=True, blank=True, help_text="e.g. '1st/main planting'")
+    event_type = models.TextField(
+        null=True, blank=True,
+        help_text="ACAPS: Planting and growing / Harvest / Seasonal hazard / "
+                  "Lean season / Livestock / Outbreak",
+    )
+    # The explicit set of months, which is what ACAPS actually publishes.
+    months = models.JSONField(default=list, blank=True, help_text="Month numbers, 1-12")
+    country_wide = models.BooleanField(
+        null=True, blank=True, help_text="False when the event applies to named regions only"
+    )
+    admin_names = models.JSONField(
+        default=list, blank=True, help_text="The admin-1 regions this applies to, when not national"
+    )
+    admin_codes = models.TextField(
+        null=True, blank=True, help_text="ACAPS publishes GADM codes (SDN.1_1), not p-codes"
+    )
+    # WHO SAID SO. ACAPS is the aggregator; the assessment behind each row is
+    # USDA's, FAO's, FEWS NET's or WFP's, and the link goes to that document.
+    source_org = models.TextField(null=True, blank=True, help_text="USDA / FAO / FEWS NET / WFP")
+    source_date = models.DateField(null=True, blank=True)
+    source_url = models.TextField(null=True, blank=True)
     purpose = models.TextField(
         null=True, blank=True, help_text="NutritionIndicator / CropProductionIndicator"
     )
@@ -123,8 +160,11 @@ class SeasonalCalendar(models.Model):
         db_table = "seasonal_calendar"
         ordering = ["iso3", "purpose", "display_order"]
         constraints = [
+            # source_ref is in the key because ACAPS rows are identified by their
+            # own record id: one country can carry several "Harvest" events for
+            # different crops, and they are different findings, not duplicates.
             models.UniqueConstraint(
-                fields=["source", "iso3", "admin_pcode", "purpose", "label"],
+                fields=["source", "iso3", "admin_pcode", "purpose", "label", "source_ref"],
                 name="uniq_seasonal_band",
                 nulls_distinct=False,
             ),

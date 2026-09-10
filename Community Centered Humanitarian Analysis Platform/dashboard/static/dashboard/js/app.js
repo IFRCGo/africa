@@ -430,6 +430,91 @@ function filterFC(fc) {
            features: fc.features.filter((f) => s.has(f.properties.country)) };
 }
 
+/* ---------------------------------------------------------------- sidebars
+   Both sidebars can be dragged wider. The panels carry long place names, whole
+   quotes and the ACAPS seasonal descriptions, and at their default width those
+   wrap awkwardly - but the default is deliberately unchanged, so the page opens
+   exactly as it always has and only widens when someone asks it to.
+
+   The chosen width is remembered per browser. It is a reading preference, not
+   data: if localStorage is unavailable or the stored value is nonsense, the
+   default stands and nothing breaks.
+*/
+const SIDEBAR_LIMITS = {
+  sidebar:  { varName: "--sidebar-w",  min: 260, max: 720, def: 320, edge: "right" },
+  rightbar: { varName: "--rightbar-w", min: 240, max: 640, def: 290, edge: "left" },
+};
+
+function initSidebarResize() {
+  for (const [id, cfg] of Object.entries(SIDEBAR_LIMITS)) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+
+    const stored = Number(safeGet(`width:${id}`));
+    if (stored >= cfg.min && stored <= cfg.max)
+      document.documentElement.style.setProperty(cfg.varName, `${stored}px`);
+
+    const grip = document.createElement("div");
+    grip.className = "side-grip";
+    grip.title = "Drag to resize · double-click to reset";
+    el.appendChild(grip);
+
+    let startX = 0, startW = 0;
+
+    const onMove = (ev) => {
+      // The left sidebar grows as the pointer moves right; the right one grows
+      // as it moves left, so the delta is signed by which edge is being pulled.
+      const delta = cfg.edge === "right" ? ev.clientX - startX : startX - ev.clientX;
+      const w = Math.round(Math.min(cfg.max, Math.max(cfg.min, startW + delta)));
+      document.documentElement.style.setProperty(cfg.varName, `${w}px`);
+    };
+
+    const onUp = () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      document.body.classList.remove("resizing");
+      grip.classList.remove("dragging");
+      const w = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue(cfg.varName), 10);
+      safeSet(`width:${id}`, String(w));
+      // The map canvas is sized in pixels, so it has to be told the viewport
+      // changed - otherwise it keeps the old width and the picture stretches.
+      resizeMaps();
+    };
+
+    grip.addEventListener("pointerdown", (ev) => {
+      ev.preventDefault();
+      startX = ev.clientX;
+      startW = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue(cfg.varName), 10) || cfg.def;
+      document.body.classList.add("resizing");
+      grip.classList.add("dragging");
+      window.addEventListener("pointermove", onMove);
+      window.addEventListener("pointerup", onUp);
+    });
+
+    grip.addEventListener("dblclick", () => {
+      document.documentElement.style.setProperty(cfg.varName, `${cfg.def}px`);
+      safeSet(`width:${id}`, String(cfg.def));
+      resizeMaps();
+    });
+  }
+}
+
+/* Both map panes, told that their box changed. */
+function resizeMaps() {
+  for (const m of maps) { try { m.resize(); } catch (e) { /* not ready yet */ } }
+}
+
+/* localStorage can throw outright - a private window, or site data blocked - so
+   a remembered width must never be able to stop the dashboard loading. */
+function safeGet(key) {
+  try { return localStorage.getItem(key); } catch (e) { return null; }
+}
+function safeSet(key, value) {
+  try { localStorage.setItem(key, value); } catch (e) { /* preference only */ }
+}
+
 /* ========================= 3. LOAD ===================================== */
 
 /* Fetch every data file once, at start-up, and remember it in state.data.
@@ -1834,10 +1919,11 @@ const ISO3_TO_COUNTRY = Object.fromEntries(
   Object.entries(COUNTRY_TO_ISO3).map(([name, iso]) => [iso, name]));
 
 /* Which countries have a food-security file to fetch. Egypt and Libya have no
-   classification from any source, and Ethiopia's phases come from FEWS NET,
-   which publishes unit codes rather than polygons - so none of the three has a
-   map layer, and asking for one would 404 on every toggle. */
-const IPC_COUNTRIES = ["SDN", "TCD", "CAF", "SSD"];
+   classification from ANY source - neither IPC nor FEWS NET covers them - so
+   asking for a file would 404 on every toggle. Ethiopia is here because its
+   FEWS NET phases have been matched to the boundary library by name; IPC itself
+   has published nothing for it since 2021. */
+const IPC_COUNTRIES = ["SDN", "TCD", "CAF", "SSD", "ETH"];
 
 /* WHO PUBLISHED A NUMBER, AND WHERE TO GO AND READ IT.
 
@@ -1892,25 +1978,61 @@ function renderSeasonal() {
     if (!entry || !entry.items || !entry.items.length) { absent.push(country); continue; }
 
     shown++;
-    html += `<div class="cal-country">${country}</div>`;
+    const src = entry.source === "acaps" ? "ACAPS" : "FEWS NET";
+    html += `<div class="cal-country">${escapeHTML(country)}
+      <span class="cal-src">${src}</span></div>`;
+
+    // ACAPS groups its events - planting, harvest, hazards - and the grouping is
+    // most of what makes it readable: a reader looks for "when is the lean
+    // season", not for the twelfth row of an undifferentiated list.
+    const groups = new Map();
+    for (const it of entry.items) {
+      const g = it.event_type || "Season";
+      if (!groups.has(g)) groups.set(g, []);
+      groups.get(g).push(it);
+    }
+    const ORDER = ["Lean season", "Planting and growing", "Harvest",
+                   "Seasonal hazard", "Livestock", "Outbreak"];
+    const names = [...groups.keys()].sort(
+      (a, b) => (ORDER.indexOf(a) + 1 || 99) - (ORDER.indexOf(b) + 1 || 99));
+
     html += `<div class="cal-row cal-head"><span class="cal-label"></span>`;
     for (let m = 0; m < 12; m++)
       html += `<span class="cal-cell ${m === cur ? "cal-now" : ""}">${CAL_MONTHS[m]}</span>`;
     html += `</div>`;
-    for (const it of entry.items) {
-      const title = escapeHTML(it.note || "");
-      html += `<div class="cal-row"><span class="cal-label" title="${title}">${escapeHTML(it.label)}</span>`;
-      for (let m = 1; m <= 12; m++) {
-        const on = it.months.includes(m);
-        html += `<span class="cal-cell ${m - 1 === cur ? "cal-now" : ""}"${on ? ` style="background:${it.color}"` : ""}></span>`;
+
+    for (const g of names) {
+      html += `<div class="cal-group">${escapeHTML(g)}</div>`;
+      for (const it of groups.get(g)) {
+        // Everything ACAPS says about this event, in the tooltip: the sentence of
+        // explanation, the regions it applies to when it is not national, and who
+        // assessed it. That detail is the reason this calendar was asked for.
+        const bits = [];
+        if (it.note) bits.push(it.note);
+        if (it.event && it.event !== it.label) bits.push(it.event);
+        if (it.country_wide === false && (it.areas || []).length)
+          bits.push("Regions: " + it.areas.join(", "));
+        if (it.source_org) bits.push(`Source: ${it.source_org}${it.source_date ? " (" + it.source_date.slice(0, 4) + ")" : ""}`);
+        const title = escapeHTML(bits.join(" — "));
+        const partial = it.country_wide === false ? " cal-partial" : "";
+        html += `<div class="cal-row"><span class="cal-label${partial}" title="${title}">${escapeHTML(it.label)}</span>`;
+        for (let m = 1; m <= 12; m++) {
+          const on = it.months.includes(m);
+          html += `<span class="cal-cell ${m - 1 === cur ? "cal-now" : ""}"${on ? ` style="background:${it.color}"` : ""}></span>`;
+        }
+        html += `</div>`;
       }
-      html += `</div>`;
     }
   }
 
   if (absent.length)
-    html += `<div class="panel-note">No FEWS NET calendar published for
+    html += `<div class="panel-note">No seasonal calendar published for
       ${absent.map(escapeHTML).join(", ")}.</div>`;
+  if (shown)
+    html += `<div class="panel-note">Hover a row for the description, the regions it
+      covers and who assessed it. Source:
+      <a href="https://www.acaps.org/en/thematics/all-topics/seasonal-events-calendar"
+         target="_blank" rel="noopener">ACAPS Seasonal Events Calendar</a>.</div>`;
   if (!shown && !absent.length)
     html += `<div class="panel-note">No seasonal calendar for this selection.</div>`;
   el.innerHTML = html;
@@ -2417,6 +2539,7 @@ async function fitToSelection() {
   initControls();
   initCountryFilter();
   initThemeControls();
+  initSidebarResize();
   initVoiceSearch();
   drawSparkline();
   window.addEventListener("resize", () => {

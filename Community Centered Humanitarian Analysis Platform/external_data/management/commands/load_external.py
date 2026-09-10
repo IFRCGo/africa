@@ -44,10 +44,17 @@ class Command(BaseCommand):
         if not path.is_file():
             raise CommandError(f"no such file: {path}")
 
-        try:
-            payload = json.loads(path.read_text(encoding="utf-8"))
-        except json.JSONDecodeError as exc:
-            raise CommandError(f"{path} is not valid JSON: {exc}") from exc
+        if path.suffix.lower() == ".csv":
+            # ACAPS publishes this calendar as a CSV export as well as through the
+            # MCP, and the records are identical - so the same loader reads both
+            # and an analyst can hand over a download without a conversion step.
+            from external_data.loaders.acaps_seasonal import read_csv
+            payload = read_csv(path)
+        else:
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as exc:
+                raise CommandError(f"{path} is not valid JSON: {exc}") from exc
 
         loader = LOADERS[options["dataset"]]()
         context = {

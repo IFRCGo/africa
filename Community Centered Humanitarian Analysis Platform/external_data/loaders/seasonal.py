@@ -29,15 +29,32 @@ ISO3_TO_ISO2 = {
 }
 
 
+def _months_between(start, end):
+    """The months a span covers, wrap included: (11, 2) -> [11, 12, 1, 2]."""
+    if not start or not end:
+        return []
+    out, m = [], start
+    while True:
+        out.append(m)
+        if m == end or len(out) >= 12:
+            break
+        m = 1 if m == 12 else m + 1
+    return out
+
+
 @register
 class SeasonalLoader(Loader):
     dataset = "seasonal_calendar"
     source = "fewsnet"
     model = SeasonalCalendar
     tool = "get_seasons"
-    unique_fields = ["source", "iso3", "admin_pcode", "purpose", "label"]
+    # source_ref (the fnid) is part of the key because the constraint includes it
+    # for ACAPS's sake. For FEWS NET the parser has already reduced each season to
+    # one winning definition, so adding it changes nothing here - but the declared
+    # key MUST match the constraint or Postgres refuses the upsert outright.
+    unique_fields = ["source", "iso3", "admin_pcode", "purpose", "label", "source_ref"]
     update_fields = [
-        "country_name", "source_ref", "season_type", "start_month", "end_month",
+        "country_name", "season_type", "months", "start_month", "end_month",
         "alignment", "description", "aliases", "display_order",
     ]
 
@@ -81,6 +98,7 @@ class SeasonalLoader(Loader):
                 "purpose": r.get("purpose"),
                 "start_month": r.get("start_month"),
                 "end_month": r.get("end_month"),
+                "months": _months_between(r.get("start_month"), r.get("end_month")),
                 "alignment": r.get("alignment"),
                 "description": r.get("description") or "",
                 "aliases": r.get("aliases") or [],

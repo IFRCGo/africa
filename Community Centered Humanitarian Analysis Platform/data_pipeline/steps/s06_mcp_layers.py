@@ -214,8 +214,10 @@ def build_foodsec():
     what a multi-country map should load: one file per country in scope, rather
     than one 13.9 MB file carrying every country at every period.
 
-    Ethiopia has rows but no geometry - FEWS NET publishes unit codes, not polygons
-    - so it produces no file, and that is recorded rather than silently skipped.
+    A country with rows but no geometry produces no file, and is named rather than
+    silently skipped. Ethiopia used to be that case: FEWS NET publishes unit codes,
+    not polygons. Its areas are now matched to the boundary library by name
+    (manage.py resolve_fewsnet_areas), so it maps like the rest.
     """
     isos = sorted(set(FoodSecurityArea.objects.values_list("iso3", flat=True)))
     written, skipped = [], []
@@ -253,7 +255,17 @@ def build_foodsec():
 # also means a lean season is the same colour in every country.
 SEASON_COLOURS = {
     "Lean": "#e67e22", "Harvest": "#27ae60", "Dry": "#c9a14a", "Rainy": "#3498db",
+    # A seasonal hazard is a warning, not a stage of the agricultural cycle, so it
+    # is coloured apart from the seasons rather than blended among them.
+    "Hazard": "#d22730", "Livestock": "#8d6e63",
 }
+
+# Which publisher a country's calendar is taken from. ACAPS wins wherever it has
+# rows: it names the crop, explains the event in a sentence, says which regions it
+# applies to, and links the assessment behind it - all of which FEWS NET's bare
+# national bands leave out. FEWS NET remains the fallback so a country ACAPS has
+# not covered still shows something.
+SEASONAL_PREFERENCE = ["acaps", "fewsnet", "curated"]
 
 
 def build_seasonal():
@@ -264,32 +276,50 @@ def build_seasonal():
     the one output whose structure moves in this step, and it moves now so the
     multi-country panel is a frontend change alone.
     """
+    # One publisher per country, the best available - not a blend. Showing ACAPS
+    # and FEWS NET bands side by side would put two descriptions of the same
+    # lean season in one strip and leave a reader to guess which to believe.
+    have = {}
+    for r in SeasonalCalendar.objects.all():
+        have.setdefault(r.iso3, set()).add(r.source)
+    chosen = {iso: next((s for s in SEASONAL_PREFERENCE if s in srcs), None)
+              for iso, srcs in have.items()}
+
     out = {}
-    for r in SeasonalCalendar.objects.order_by("iso3", "purpose", "display_order"):
-        entry = out.setdefault(r.iso3, {"country": r.country_name, "sources": [], "items": []})
-        if r.source not in entry["sources"]:
-            entry["sources"].append(r.source)
-        # A band that wraps the year end has end < start; expand it the long way
-        # round so the frontend can keep treating months as a plain list.
-        months, m = [], r.start_month
-        while True:
-            months.append(m)
-            if m == r.end_month:
-                break
-            m = 1 if m == 12 else m + 1
-            if len(months) > 12:
-                break
+    for r in SeasonalCalendar.objects.order_by("iso3", "event_type", "start_month", "label"):
+        if r.source != chosen.get(r.iso3):
+            continue
+        entry = out.setdefault(r.iso3, {
+            "country": r.country_name, "source": r.source, "items": [],
+        })
+        # `months` is the stored truth where we have it; a span is expanded only
+        # for rows that predate that column.
+        months = list(r.months or [])
+        if not months:
+            m = r.start_month
+            while True:
+                months.append(m)
+                if m == r.end_month or len(months) > 12:
+                    break
+                m = 1 if m == 12 else m + 1
         entry["items"].append({
             "label": r.label, "months": months,
             "color": SEASON_COLOURS.get(r.season_type, "#9e9e9e"),
-            "note": r.description or "", "purpose": r.purpose,
+            "note": r.description or "",
+            "event": r.event, "event_type": r.event_type,
             "season_type": r.season_type, "source": r.source,
+            "country_wide": r.country_wide,
+            "areas": r.admin_names or [],
+            "source_org": r.source_org, "source_url": r.source_url,
+            "source_date": r.source_date.isoformat() if r.source_date else None,
         })
     dump("seasonal.json", {
-        "source": "FEWS NET get_seasons, held in the seasonal_calendar table.",
+        "source": "ACAPS Seasonal Events Calendar where available, FEWS NET get_seasons "
+                  "otherwise; held in the seasonal_calendar table.",
         "countries": out,
     })
-    print(f"    {len(out)} countries: " + ", ".join(f"{k} ({len(v['items'])})" for k, v in sorted(out.items())))
+    print("    " + ", ".join(f"{k} {len(v['items'])} ({v['source']})"
+                             for k, v in sorted(out.items())))
 
 
 # ============================================================ AOI + IPC

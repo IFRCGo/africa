@@ -526,3 +526,56 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 }
 .cal-country:first-child { margin-top: 0; }
 #seasonal-panel .panel-note { margin-top: 8px; }
+
+/* ACAPS groups its events, and the grouping is most of what makes the calendar
+   readable - so the group headings are visible but quiet, and the strip stays
+   the thing being read. */
+.cal-group {
+  font-size: 9px; text-transform: uppercase; letter-spacing: .7px;
+  color: var(--muted); margin: 6px 0 2px; padding-top: 4px;
+  border-top: 1px dashed var(--border);
+}
+.cal-src {
+  font-size: 8.5px; font-weight: 600; letter-spacing: .5px;
+  color: var(--muted); border: 1px solid var(--border); border-radius: 4px;
+  padding: 1px 5px; margin-left: 6px; text-transform: none;
+}
+/* An event that applies to named regions rather than the whole country. The
+   dotted underline is the hint that the tooltip names them. */
+.cal-label.cal-partial { border-bottom: 1px dotted var(--muted); cursor: help; }
+#seasonal-panel .panel-note a { color: var(--ifrc-red, #d22730); }
+
+/* ---------- resizable sidebars ----------------------------------------
+   The panels hold long place names, quotes and seasonal descriptions, and at
+   320px those wrap hard. Each sidebar can be dragged wider; the width it
+   starts at is the width it has always had, so nothing moves until someone
+   decides it should.
+
+   The width lives in a custom property rather than on the element, because
+   both the panel and its drag handle need it and CSS should only be told once.
+   -------------------------------------------------------------------------- */
+:root { --sidebar-w: 320px; --rightbar-w: 290px; }
+
+#sidebar  { width: var(--sidebar-w);  min-width: var(--sidebar-w); }
+#rightbar { width: var(--rightbar-w); min-width: var(--rightbar-w); }
+
+/* The handle sits inside the sidebar's inner edge, four pixels wide and
+   invisible until pointed at. A visible divider would be one more line on a
+   page that already has plenty. */
+.side-grip {
+  position: absolute; top: 0; bottom: 0; width: 6px; z-index: 5;
+  cursor: col-resize; background: transparent;
+  transition: background .12s ease;
+}
+.side-grip:hover, .side-grip.dragging { background: var(--accent, #d22730); opacity: .55; }
+#sidebar  { position: relative; }
+#rightbar { position: relative; }
+#sidebar  .side-grip { right: -3px; }
+#rightbar .side-grip { left: -3px; }
+
+/* While dragging, stop the pointer selecting text across the whole page. */
+body.resizing, body.resizing * { user-select: none !important; cursor: col-resize !important; }
+
+/* The seasonal strip has a fixed label column that squeezes the months at
+   narrow widths. Give it room to grow with the panel instead. */
+.cal-row { grid-template-columns: minmax(84px, 1.6fr) repeat(12, 1fr); }
