@@ -115,6 +115,7 @@ INSTALLED_APPS = [
     "data_track",                    # the seven database tables + the JSON API
     "boundaries",                    # the map itself: admin areas and features
     "external_data",                 # IPC, FEWS NET, DTM, UNHCR + their freshness
+    "insights",                      # what communities said, and who reviewed it
     "data_pipeline",                 # the ETL steps, as manage.py commands
     "dashboard",                     # serves the MapLibre dashboard
     "updater",                       # the one-click "Update now" page
