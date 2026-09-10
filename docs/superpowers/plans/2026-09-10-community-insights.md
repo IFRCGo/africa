@@ -32,12 +32,13 @@
 
 **Files:**
 - Create: `insights/__init__.py`, `insights/apps.py`, `insights/models.py`, `insights/migrations/__init__.py`
+- Note: five models, not four — `InsightUpload` closes the single-document intake route (pre-flight ruling F2)
 - Create: `insights/tests/__init__.py`, `insights/tests/test_models.py`
 - Modify: `config/settings.py` (INSTALLED_APPS, after `"external_data",`)
 
 **Interfaces:**
 - Consumes: nothing.
-- Produces: `insights.models.Insight`, `InsightCoding`, `InsightFolder`, `ExtractionJob`. Field names are exactly as written below and every later task depends on them.
+- Produces: `insights.models.Insight`, `InsightCoding`, `InsightFolder`, `InsightUpload`, `ExtractionJob`. Field names are exactly as written below and every later task depends on them.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -58,10 +59,13 @@ a null document and a null page, and under PostgreSQL's default rule two NULLs
 never collide - so without nulls_distinct=False every duplicate would be accepted
 silently. This is the same trap admin_areas and source_sync already document.
 """
+import tempfile
+
+from django.core.exceptions import ValidationError
 from django.db import IntegrityError, transaction
 from django.test import TestCase
 
-from insights.models import ExtractionJob, Insight, InsightCoding
+from insights.models import ExtractionJob, Insight, InsightCoding, InsightFolder
 
 
 def make_insight(**kwargs):
@@ -125,6 +129,19 @@ class ExtractionJobTests(TestCase):
         self.assertEqual(job.insights_rejected_unverifiable, 0)
         self.assertEqual(job.insights_skipped_reviewed, 0)
         self.assertEqual(job.status, "queued")
+
+
+class InsightFolderTests(TestCase):
+    def test_an_unreachable_path_is_a_validation_error_not_a_saved_row(self):
+        """Spec §7: Admin validates on save and says so, rather than failing in a job."""
+        folder = InsightFolder(label="gone", path="/nowhere/at/all")
+        with self.assertRaises(ValidationError) as caught:
+            folder.full_clean()
+        self.assertIn("path", caught.exception.error_dict)
+
+    def test_a_real_directory_validates(self):
+        folder = InsightFolder(label="tmp", path=tempfile.gettempdir())
+        folder.full_clean()   # must not raise
 ```
 
 - [ ] **Step 2: Run test to verify it fails**
@@ -168,6 +185,8 @@ The statement and its interpretation are deliberately two tables. Flattening the
 codings into one tagged row per theme would lose the statement, which is the only
 part no model can reconstruct.
 """
+from pathlib import Path
+
 from django.conf import settings
 from django.db import models
 
@@ -191,8 +210,54 @@ class InsightFolder(models.Model):
         db_table = "insight_folders"
         ordering = ["label"]
 
+    def clean(self):
+        """Reject an unreachable path at save time rather than inside a job.
+
+        Admin calls this, so a mistyped path is a field error on the form. The
+        `reachable` column in the changelist stays, for a folder that was valid
+        when registered and has since moved.
+        """
+        from pathlib import Path
+
+        from django.core.exceptions import ValidationError
+
+        if self.path and not Path(self.path).is_dir():
+            raise ValidationError({"path": (
+                f"{self.path} is not a directory inside this container. Folders must "
+                f"live under a mounted path - /work covers the whole SUDAN Ops folder."
+            )})
+
     def __str__(self):
         return self.label
+
+
+class InsightUpload(models.Model):
+    """One document uploaded through Admin, rather than found in a folder.
+
+    Files land under MEDIA_ROOT, which is inside /app: /work is mounted read-only,
+    so an upload cannot be written beside the UNHCR PDFs. Saving one catalogues it
+    immediately - see InsightUploadAdmin.save_model - and `document` then points at
+    the row it produced.
+    """
+
+    file = models.FileField(upload_to="insights/")
+    label = models.TextField(null=True, blank=True)
+    iso3 = models.CharField(max_length=3, null=True, blank=True)
+    report_date = models.DateField(null=True, blank=True)
+    document = models.ForeignKey(
+        "data_track.Document", on_delete=models.SET_NULL, null=True, blank=True,
+        help_text="Filled in once the upload has been catalogued",
+    )
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "insight_uploads"
+        ordering = ["-id"]
+
+    def __str__(self):
+        if self.label:
+            return self.label
+        return Path(self.file.name).name if self.file else f"upload {self.id}"
 
 
 class ExtractionJob(models.Model):
@@ -341,18 +406,18 @@ docker compose exec web python manage.py makemigrations insights
 docker compose exec web python manage.py migrate
 ```
 
-Expected: creates `insights/migrations/0001_initial.py` with four tables.
+Expected: creates `insights/migrations/0001_initial.py` with five tables.
 
 - [ ] **Step 7: Run tests to verify they pass**
 
 Run: `docker compose exec web python manage.py test insights -v 2`
-Expected: 7 tests, all PASS.
+Expected: 9 tests, all PASS.
 
 - [ ] **Step 8: Commit**
 
 ```bash
 git add insights config/settings.py
-git commit -m "insights: four tables the pipeline never writes to
+git commit -m "insights: five tables the pipeline never writes to
 
 Insight is the statement, kept whole; InsightCoding is what was read out of
 it. Keeping them apart is the point - flattening the codings into tagged rows
@@ -373,7 +438,7 @@ duplicate as distinct."
 
 **Interfaces:**
 - Consumes: `data_pipeline.common.load_taxonomy()` — returns the parsed `taxonomy.json` as `{dimension: {tag: [patterns]}}`, plus a `_comment` key that is not a dimension.
-- Produces: `insights.taxonomy.normalise_coding(dimension, tag) -> dict` returning `{"dimension": str, "tag": str, "tag_raw": str | None}`, and `insights.taxonomy.valid_dimensions() -> set[str]`. Tasks 6 and 8 both call `normalise_coding`.
+- Produces: `insights.taxonomy.normalise_coding(dimension, tag) -> dict` returning `{"dimension": str, "tag": str, "tag_raw": str | None}`, and `insights.taxonomy.valid_dimensions() -> set[str]`. Task 5's `contract.parse` is the only direct caller; Task 6 reaches it through that.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -519,7 +584,7 @@ grows by a reviewer's decision rather than a model's."
 
 **Interfaces:**
 - Consumes: `data_track.models.DocumentText`.
-- Produces: `insights.verify.normalise(text) -> str`, `insights.verify.quote_sha1(text) -> str`, and `insights.verify.quote_is_verbatim(document_id, page, quote) -> bool`. Tasks 6 and 8 both call `quote_sha1`; Task 6 and Task 8 both call `quote_is_verbatim`.
+- Produces: `insights.verify.normalise(text) -> str`, `insights.verify.quote_sha1(text) -> str`, and `insights.verify.quote_is_verbatim(document_id, page, quote) -> bool`. Task 6's loader calls `quote_is_verbatim` and `quote_sha1`; Task 8 calls `quote_sha1` only, in `Insight.save()`.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -681,7 +746,7 @@ and nothing more - a changed word is what this exists to catch."
 
 **Interfaces:**
 - Consumes: `boundaries.models.AdminArea` — fields `iso3`, `level`, `pcode`, `name`, `name_alt` (JSON list), `center_lat`, `center_lon`.
-- Produces: `insights.places.resolve(iso3, place_name) -> dict` returning `{"admin_pcode", "admin_level", "match_method", "lat", "lon"}`. Tasks 6 and 8 call it.
+- Produces: `insights.places.resolve(iso3, place_name) -> dict` returning `{"admin_pcode", "admin_level", "match_method", "lat", "lon"}` — exactly the five placement fields `Insight` declares, so Task 6 splats it with `**placement`. Task 6 is the only caller.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -853,7 +918,7 @@ those insights simply stay off the map."
 
 **Interfaces:**
 - Consumes: `insights.taxonomy.normalise_coding`.
-- Produces: `insights.contract.ContractError` (exception) and `insights.contract.parse(payload: dict) -> list[dict]`, each dict having keys `quote, quote_language, page, voice_type, place_name_as_written, iso3, codings, people_affected, severity, confidence`. `codings` is a list of `{dimension, tag, tag_raw}`. Task 6 consumes this.
+- Produces: `insights.contract.ContractError` (exception) and `insights.contract.parse(payload: dict) -> list[dict]`, each dict having keys `quote, quote_language, page, voice_type, place_name_as_written, iso3, codings, people_affected, severity, confidence`. `codings` is a list of `{dimension, tag, tag_raw}`. Task 6 calls `parse`; Tasks 8 and 13 import `ContractError` to report a bad payload.
 
 - [ ] **Step 1: Write the fixtures**
 
@@ -1109,7 +1174,7 @@ external_data's loader already refuses to conflate the two."
 
 **Interfaces:**
 - Consumes: `insights.contract.parse`, `insights.verify.quote_is_verbatim`, `insights.verify.quote_sha1`, `insights.places.resolve`, all four models.
-- Produces: `insights.loader.load(payload, document, job=None, method="llm", model_used=None) -> LoadReport`, where `LoadReport` is a dataclass with `written, rejected_unverifiable, skipped_reviewed`. Task 8 (Admin action) calls it.
+- Produces: `insights.loader.load(payload, document, job=None, method="llm", model_used=None) -> LoadReport`, where `LoadReport` is a dataclass with `written, rejected_unverifiable, skipped_reviewed`. Task 8's Admin action and Task 13's command both call it.
 
 - [ ] **Step 1: Write the failing test**
 
@@ -1228,6 +1293,7 @@ upserts on conflict. That is right for API data and wrong here: re-running an
 extraction would silently discard every correction a reviewer had made.
 """
 from dataclasses import dataclass
+from datetime import date
 
 from django.db import transaction
 
@@ -1257,6 +1323,11 @@ def load(payload, document=None, job=None, method="llm", model_used=None):
     stated_on = (payload.get("source") or {}).get("report_date")
     if document is not None and not stated_on:
         stated_on = document.report_date
+    # Same guard intake uses: Django stores a string date happily, but the
+    # in-memory object keeps the string, so anything reading .stated_on before a
+    # reload would get a str where it expects a date.
+    if isinstance(stated_on, str):
+        stated_on = date.fromisoformat(stated_on)
 
     for row in rows:
         # Gate 1 - only where there is a document to check against.
@@ -1796,9 +1867,11 @@ from django.utils.html import format_html
 
 from data_track.models import Document
 from insights.contract import ContractError
-from insights.intake import catalogue_folder
+from insights.intake import catalogue_file, catalogue_folder
 from insights.loader import load
-from insights.models import ExtractionJob, Insight, InsightCoding, InsightFolder
+from insights.models import (
+    ExtractionJob, Insight, InsightCoding, InsightFolder, InsightUpload,
+)
 
 
 class InsightCodingInline(admin.TabularInline):
@@ -1891,6 +1964,40 @@ class InsightFolderAdmin(admin.ModelAdmin):
                 f"Run your extraction agent, then use 'Load payloads' on the job.",
                 messages.SUCCESS,
             )
+
+
+@admin.register(InsightUpload)
+class InsightUploadAdmin(admin.ModelAdmin):
+    """The single-document route. Saving one catalogues it there and then.
+
+    Spec §7 asks for a file field on the intake screen, and this is it: the third
+    way in beside a registered folder and the typed form. Cataloguing on save is
+    what makes it a route rather than a filing cabinet - an uploaded file nobody
+    catalogued would sit in MEDIA_ROOT doing nothing.
+    """
+
+    list_display = ("__str__", "iso3", "report_date", "document", "uploaded_at")
+    readonly_fields = ("document", "uploaded_at")
+
+    def save_model(self, request, obj, form, change):
+        super().save_model(request, obj, form, change)
+        if obj.document_id:
+            return
+        try:
+            document = catalogue_file(
+                Path(obj.file.path), iso3=obj.iso3, report_date=obj.report_date)
+        except Exception as exc:                      # noqa: BLE001 - surfaced to the user
+            self.message_user(
+                request, f"Uploaded, but could not be read: {exc}", messages.ERROR)
+            return
+        obj.document = document
+        obj.save(update_fields=["document"])
+        self.message_user(
+            request,
+            f"{document.file_name}: {document.pages} pages catalogued. Run your "
+            f"extraction agent, then use 'Load payloads' on a job.",
+            messages.SUCCESS,
+        )
 
 
 @admin.register(ExtractionJob)
@@ -2832,7 +2939,7 @@ match_method knows and a reader should not have to guess."
 - Modify: `config/settings.py` (LLM settings), `requirements.txt`, `docker-compose.yml` (web `environment:`), `env.example`
 
 **Interfaces:**
-- Consumes: `insights.contract.parse`, `insights.loader.load`, `insights.intake`.
+- Consumes: `insights.contract.ContractError`, `insights.loader.load`, and `data_track`'s `Document`/`DocumentText`.
 - Produces: `insights.extractors.get_extractor() -> Extractor` with `Extractor.extract(document, pages) -> dict` (a payload matching Task 5's contract).
 
 - [ ] **Step 1: Write the failing test**
