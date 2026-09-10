@@ -738,12 +738,20 @@ function addLayers(m) {
      and "flooding somewhere in Sudan" are different findings and one bubble in
      the middle of the country said the same thing for both.
 
-     THE OVERLAY RULE. The five pillars are meant to be read TOGETHER: put
-     hazards up, add vulnerabilities, then see whether coping is reported in
-     the same places. So they are five independent layers, and each draws a
-     band inset one step further from the boundary than the last. Bands never
-     blend, so every colour still means exactly one pillar, and an area
-     wearing three bands is an area where three pillars converge.
+     DRAWN LIKE THE IPC CHOROPLETH, because that is the one layer on this map
+     that reads at a glance: a solid fill and a dark hairline on the admin area
+     itself. The pillars used to be a wash as faint as 0.07 opacity under five
+     inset line bands, and at country zoom an admin2 polygon is not many pixels
+     across - the bands collapsed into each other and the wash was invisible,
+     so a reader saw the grey national dimming and nothing else.
+
+     THE OVERLAY RULE SURVIVES, in a cheaper form. The five pillars are meant to
+     be read TOGETHER: put hazards up, add vulnerabilities, then see whether
+     coping is reported in the same places. The LEADING pillar on an area is now
+     the fill; any FURTHER pillar still draws a band inset one step further from
+     the boundary. So a single-pillar area is a plain filled polygon like IPC's,
+     and an area where three pillars converge is a filled polygon wearing two
+     rings. Bands never blend, so every colour still means exactly one pillar.
 
      One source holds all 336 polygons and is set once. What each pillar shows
      on it is carried by FEATURE STATE rather than by five copies of the
@@ -760,13 +768,25 @@ function addLayers(m) {
   m.addSource("areas", {
     type: "geojson", data: state.data.areas || empty(), promoteId: "id",
   });
-  // A faint wash under the bands, so a highlighted area reads as filled in
-  // rather than merely outlined. It takes the leading pillar's colour.
+  // The fill, in the leading pillar's colour. Keeps the id "area-wash" because
+  // the popup is bound to it; it is no longer a wash in anything but name.
   m.addLayer({
     id: "area-wash", type: "fill", source: "areas",
     paint: {
       "fill-color": ["coalesce", ["feature-state", "topColor"], "rgba(0,0,0,0)"],
       "fill-opacity": ["coalesce", ["feature-state", "wash"], 0],
+    },
+  });
+  /* The hairline that makes a fill read as a place rather than a smudge - the
+     same one IPC's areas get. Its opacity is on feature state, NOT a constant:
+     an outline drawn on all 245 areas would put a permanent mesh over the map
+     and break the rule that admin levels are colourless until a pillar asks
+     for them. Only a lit area gets an edge. */
+  m.addLayer({
+    id: "area-line", type: "line", source: "areas",
+    paint: {
+      "line-color": "#0e1116", "line-width": 0.5,
+      "line-opacity": ["coalesce", ["feature-state", "edge"], 0],
     },
   });
   DIM_ORDER.forEach((dim, i) => {
@@ -1317,17 +1337,30 @@ function renderThemes() {
   const areaStates = {};
   for (const [areaId, dims] of Object.entries(byArea)) {
     const st = {};
-    let top = null;
+    /* WHICH PILLAR OWNS THE FILL: the first one present in DIM_ORDER, not the
+       most-mentioned one. The workflow this map is for is "put hazards up, add
+       vulnerabilities, then look for coping in the same places" - and ranking by
+       count breaks it, because adding a second pillar would recolour areas that
+       are already on screen the moment its mentions overtook the first. A fixed
+       precedence means a hazard area stays hazard-red as more pillars go on. */
+    const top = DIM_ORDER.find((d) => dims[d] != null) || null;
     for (const [dim, count] of Object.entries(dims)) {
+      // The pillar holding the fill does not also draw a ring around it: one
+      // pillar on an area should look exactly like an IPC area, no more.
+      if (dim === top) { st[`w_${dim}`] = 0; st[`o_${dim}`] = 0; continue; }
       // Band thickness grows with mentions, as the square root so that a
       // place reported ten times over is not drawn ten times as thick.
       st[`w_${dim}`] = Math.max(1.6, Math.min(7, 1.2 + Math.sqrt(count) * 0.9));
       st[`o_${dim}`] = 0.95;
-      if (!top || count > top[1]) top = [dim, count];
     }
     if (top) {
-      st.topColor = DIM_META[top[0]].color;
-      st.wash = Math.max(0.07, Math.min(0.3, 0.05 + Math.sqrt(top[1]) * 0.03));
+      st.topColor = DIM_META[top].color;
+      /* Opacity still carries volume, but over a NARROW band that starts where
+         a colour is already unmistakable. The old floor of 0.07 is what made a
+         lightly-reported area indistinguishable from an empty one; IPC sits at
+         a flat 0.6 and is legible everywhere, so this brackets that. */
+      st.wash = Math.max(0.5, Math.min(0.72, 0.46 + Math.sqrt(dims[top]) * 0.05));
+      st.edge = 0.55;
     }
     areaStates[areaId] = st;
   }
