@@ -42,6 +42,8 @@ class VerbatimTests(TestCase):
     def setUp(self):
         self.doc = Document.objects.create(file_name="x.pdf", rel_path="insights/x.pdf")
         DocumentText.objects.create(document=self.doc, page=7, text=PAGE_TEXT)
+        # Add a second page with a short statement for testing the word-count floor.
+        DocumentText.objects.create(document=self.doc, page=8, text="We have no water.")
 
     def test_a_real_quote_is_found_across_line_breaks(self):
         quote = ("When it rains we get flash floods, and with the fighting around us "
@@ -60,3 +62,16 @@ class VerbatimTests(TestCase):
 
     def test_an_empty_quote_is_never_verbatim(self):
         self.assertFalse(quote_is_verbatim(self.doc.id, 7, "   "))
+
+    def test_a_two_word_fragment_is_rejected_even_if_it_appears(self):
+        # "flash floods" genuinely appears on page 7, but has only 2 words.
+        self.assertFalse(quote_is_verbatim(self.doc.id, 7, "flash floods"))
+
+    def test_a_single_word_is_rejected_even_if_it_appears(self):
+        # "hospitals" genuinely appears on page 7, but is a single word.
+        self.assertFalse(quote_is_verbatim(self.doc.id, 7, "hospitals"))
+
+    def test_a_short_four_word_statement_passes_the_minimum(self):
+        # "We have no water." has 4 words and 17 characters (after normalisation),
+        # so it passes both thresholds.
+        self.assertTrue(quote_is_verbatim(self.doc.id, 8, "We have no water."))

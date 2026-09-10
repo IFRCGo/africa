@@ -39,11 +39,22 @@ def quote_is_verbatim(document_id, page, quote):
 
     A missing page is False rather than an exception: a payload naming a page the
     document does not have is a failed extraction, which is a result, not a crash.
+
+    Guard against degenerate fragments: a quote must have at least 3 words and at
+    least 12 characters after normalisation. This is not a quality bar — human
+    review filters whether a statement is worth keeping. This is purely a guard
+    against "the", "the hospitals", or other trivial substrings that match
+    everywhere and undermine why this gate exists in the first place.
     """
     from data_track.models import DocumentText
 
     needle = normalise(quote)
     if not needle:
+        return False
+
+    # Enforce minimum length: 3 words and 12 characters.
+    words = needle.split()
+    if len(words) < 3 or len(needle) < 12:
         return False
 
     row = DocumentText.objects.filter(document_id=document_id, page=page).first()
