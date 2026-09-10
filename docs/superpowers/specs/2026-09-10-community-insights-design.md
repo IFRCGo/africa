@@ -56,6 +56,9 @@ that protects nothing.
    search, and a quote-bubble map layer filtered by the same theme selection as every
    other panel.
 6. Never be truncated by a pipeline run.
+7. Fold the `updater` page into Django Admin and make `dashboard/data/` a cache the
+   database rebuilds on demand, so managing data happens in one place and nobody has to
+   remember to refresh anything.
 
 ## 3. Non-goals
 
@@ -64,10 +67,11 @@ that protects nothing.
 - **No fix for `s04_events` deleting curated milestones.** It is a real bug of the same
   family and it is flagged in §14, not fixed here.
 - **No new scheduler, queue or worker service.** No Celery. Background work reuses the
-  updater's existing subprocess-and-lock pattern.
+  subprocess-and-lock pattern lifted from `updater/views.py` before that app is removed.
 - **No GeoDjango.** Consistent with `boundaries/models.py` and `external_data/models.py`:
   `lat`/`lon` are plain floats, `admin_pcode` is plain text.
-- **No decision on the updater's future.** §14 records the criterion for deciding later.
+- **No move of the map layers onto live endpoints.** Geometry stays pre-built. §14 explains
+  why that is a design choice rather than a leftover.
 - **No primary data collection form.** Sub-project 3.
 - **No automatic translation.** A French statement stores its original; a translation is
   entered by a reviewer if one is wanted.
@@ -85,6 +89,9 @@ that protects nothing.
 | Live API endpoint for this one panel | Quotes are low-volume text. The map layers keep their pre-built files, so map performance is unaffected, and "publish" can mean published. |
 | Two LLM adapters, not N | Anthropic native plus one OpenAI-compatible path covers OpenAI, Codex, Ollama, LM Studio and vLLM, which all speak the same wire format. |
 | Phase 1 ships without any LLM dependency | The external-agent route needs no API key, no egress and no new package. It is usable before any of those questions are answered. |
+| The `updater` app is deleted; running the pipeline becomes an Admin action | Django Admin coordinates the data. Three screens now watch a long job, and one pattern for that is better than two. |
+| `dashboard/data/` becomes a rebuild-on-demand cache, not a build artefact | The database is the source of truth; the files are a render of it. Nobody should have to remember to rebuild them. |
+| Cache staleness is triggered by the data changing, not by the dashboard closing | A browser tab closing is not observable from Django, and with two viewers "closed" is undefined. §14.1. |
 
 ## 5. Data model
 
@@ -400,7 +407,8 @@ on its own.
 ### 8.2 Phase 2 — in-container adapters
 
 A "Run extraction now" button runs `manage.py extract_insights --job N` as a subprocess,
-reusing the updater's existing lock-and-stream pattern so progress is watchable. No Celery,
+reusing the lock-and-stream pattern inherited from `updater/` so progress is watchable. It
+is the same machinery the pipeline action and the intake action use (§14). No Celery,
 no new service.
 
 Two adapters behind one interface:
@@ -557,6 +565,16 @@ in its docstring about not reading its dots as building locations.
    snippet returns nothing.
 10. **The map filter agrees with the panel.** With only `hazard|flooding` ticked, the
     bubbles on the map and the cards in the panel are the same set.
+11. **The cache regenerates from nothing.** Delete `dashboard/data/` entirely and load the
+    dashboard; every layer returns and the map is identical to before the deletion.
+12. **A fresh cache is not rebuilt.** Load the dashboard twice with no data change in
+    between; the second load does no rebuild and is as fast as it is today.
+13. **A data change invalidates it.** Change a row behind one of the built files, load the
+    dashboard, and the served file reflects the change without anyone running a command.
+14. **Publishing an insight needs no rebuild.** Publish in Admin with a fresh cache; the
+    quote appears on refresh, and no rebuild is triggered.
+15. **The updater is gone.** `updater/` is removed from the repo and `INSTALLED_APPS`, the
+    pipeline runs from an Admin action, and no URL 404s that previously resolved.
 
 ## 13. How sub-projects 2 and 3 fit
 
@@ -575,20 +593,63 @@ primary-collected statements write to this table and appear in this panel with n
 migration. A Kobo path already exists — `load_hsps` reads Kobo exports and a Kobo MCP is
 available. The real work is form design and a consent question, and neither belongs here.
 
-## 14. The updater, and one thing left broken
+## 14. The updater is absorbed, and the files become a cache
 
-**Keep the updater.** It is not replaced by any of this. Its job is running the seven-step
-pipeline that builds every map layer, with a progress bar over a slow PDF-extraction step.
-The insights channel catalogues documents and loads payloads — different work, different
-tables, and deliberately out of the pipeline's way.
+**The `updater` app is deleted.** Its job — notice new files in a folder, extract them,
+publish to the dashboard — is exactly what this design restructures: documents enter
+through Admin, data lands in PostgreSQL, and the dashboard renders what the database holds.
+Its folder-watching half is replaced by registered `InsightFolder` records, which are better
+than the two hard-coded paths it walked. Its pipeline-running half becomes **an Admin action
+beside "Catalogue and queue" and "Load payloads"**, reusing the same job-and-progress
+machinery all three now need. One place to manage data, one pattern for watching a long job.
 
-What overlaps is narrower: both screens now watch a long job and stream progress. So the
-question after Phase 1 is not *keep or drop* but *should these be one operations page*, and
-the criterion is: **once the insights channel has run on a real folder, if the updater is
-opened only to re-run the pipeline after loading insights, merge them; if the two are used
-for genuinely separate work, leave them apart.** Decided on use, not in advance.
+Nothing is lost by deleting the page: `manage.py run_pipeline` already does the work, and
+the Admin action wraps the same command.
 
-**Left broken, deliberately and on the record:** `s04_events` deletes every row in `events`
+### 14.1 `dashboard/data/` is a render cache, rebuilt on demand
+
+The dashboard fetches 15 static files at start-up — `meta, flows, headline, events, tags,
+documents, crossings, idp_localities, idp_states, refugee_camps, seasonal` plus four geojson
+layers (`app.js:549-559`) — and lazy-loads `ipc_fs/<iso>.geojson` per country. All are built
+by `s05_export`, `s06_mcp_layers` and `s07_xlsx`. Total on disk: **15 MB**, of which
+`ipc_fs/` is roughly half.
+
+**These files stay, and they stay files.** The database is already the source of truth for
+them — the external-data spec §10 moved `s06`/`s07` to read PostgreSQL rather than
+`mcp_cache/` — so they are a *rendered cache of the database*, not a parallel store.
+Geometry is where this matters: `ipc_areas_fs.geojson` is ~1.5 MB and the boundary layers
+are larger, and serving those from PostgreSQL on every toggle would make the map slower.
+Live endpoints are right for low-volume text, which is why insights get one; they are wrong
+for polygons.
+
+**What changes is who triggers the rebuild.** Each build records the database watermark it
+was built from. When the dashboard loads, Django compares that stamp against the current
+`max(updated_at)` of the tables behind it — one cheap query:
+
+- **Fresh** → serve the files as today. Nothing is slower.
+- **Stale or missing** → **rebuild, then serve.** The page waits, so what a reader sees is
+  always current. The wait is seconds, not minutes: these three steps read the database and
+  do no PDF parsing.
+
+The properties this gives are the ones asked for. The database is the only source of truth.
+The files are genuinely disposable — delete `dashboard/data/` and the next page load
+recreates it. And nobody has to remember to rebuild anything, which was the updater's real
+job.
+
+**Rebuilding is not tied to the dashboard opening and closing**, and that is a deliberate
+departure from the request. Django cannot reliably observe a browser tab closing — a close
+beacon is best-effort and frequently never arrives — and with two people viewing, "closed"
+is undefined. Building the eviction on that signal would delete files while someone still
+had the dashboard open. Staleness is triggered by *the data changing* instead, which is
+observable, correct, and achieves the same end. No eviction sweep is specified: at 15 MB
+the disk saving is not worth a mechanism that can be wrong.
+
+**Publishing an insight bypasses all of this.** Insights come from the live `/api/insights/`
+endpoint (§10), so a published quote appears on refresh whatever state the cache is in.
+
+### 14.2 One thing left broken
+
+**Deliberately, and on the record:** `s04_events` deletes every row in `events`
 — including the curated milestones its own docstring describes as hand-checked — and
 rebuilds them from a literal Python list. `Event.source='curated'` protects nothing. It is
 the same trap this design avoids for insights, still live in the timeline, and it is out of
@@ -608,7 +669,18 @@ scope here.
 - **Place resolution is only as good as the boundary library.** Camps, informal settlements
   and neighbourhoods will not match; they land `unmatched` and stay off the map. That is
   correct behaviour, not a gap to paper over.
-- **The Analyst tab mixes durable and rebuilt content.** Published `secondary_analysis`
+- **The first dashboard load after a data change pays for the rebuild.** That is the chosen
+  trade: nobody is ever shown a stale figure, and every subsequent load is as fast as today.
+  If the wait turns out to be long enough to annoy, the fix is the progress screen the
+  updater already had, not serving stale files.
+- **Two people can trigger the same rebuild at once.** The rebuild must take the same lock
+  the updater used, so the second request waits for the first rather than running a
+  concurrent build over the same files.
+- **Deleting `updater/` removes a start-up guard worth keeping.** `updater/views.py` raises
+  `ImproperlyConfigured` when `STEP_BANDS` drifts out of step with the pipeline's `STEPS` —
+  a check that catches a renamed step immediately instead of silently freezing a progress
+  bar. Whatever replaces it in Admin must carry that check across; losing it is a real
+  regression, not a tidy-up. Published `secondary_analysis`
   insights persist; the `tags.json` snippets beside them are rebuilt by `s03_parse` on every
   pipeline run. An analyst snippet found by search last week can be absent after the next
   "Update now" — not deleted, simply no longer matched. Community-voice content is never
