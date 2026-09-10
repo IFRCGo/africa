@@ -1,173 +1,125 @@
-"""Step 6 of 7 - external open-data layers (sourced via the IFRC/HDX/FEWS NET MCP servers).
+"""Step 6 of 7 - the external humanitarian layers, built FROM THE DATABASE.
 
-These five layers are built from data pulled through MCP servers in Claude Desktop / Claude
-Code (HDX HAPI, UNHCR, FEWS NET). MCP tools are only callable by the assistant at runtime, so
-the raw pulls are cached under data_pipeline/mcp_cache/ and this step rebuilds the dashboard
-JSON from those caches + curated geography. To refresh the data, re-run the MCP pulls (see
-MAINTENANCE.md "Refreshing the MCP layers") and overwrite the caches, then run this step.
+This step used to read JSON files out of data_pipeline/mcp_cache/ and flatten them
+into dashboard/data/. It no longer does. Everything it needs now lives in the
+external_data tables, and the cache is only the staging area a pull lands in before
+`manage.py load_external` puts it in the database.
+
+What that changes in practice: the numbers on the dashboard and the numbers an
+analyst queries in SQL are the same numbers, from the same rows, and a refresh is
+"pull what source_sync says is missing, load it, run this step".
 
 Outputs into dashboard/data/:
-  crossings.json          border crossings tagged to movement corridors  (curated geography)
-  idp_localities.json     IDP locality bubbles + monthly series           (IOM-DTM via HDX HAPI)
-  refugee_camps.json      host-country refugee totals + camp markers      (UNHCR via HDX HAPI)
-  ipc_areas_fs.geojson    area-level IPC phase snapshots over time        (IPC via IPC MCP)
-  seasonal.json           seasonal calendar                               (FEWS NET get_seasons)
-  aoi_ipc.geojson         IFRC Areas of Interest + their IPC phase         (HSP boundaries + IPC MCP)
+  crossings.json          border crossings tagged to movement corridors
+  idp_localities.json     IDP locality bubbles + monthly series      (IOM-DTM)
+  refugee_camps.json      host-country refugee totals + camp markers (UNHCR + Excel)
+  ipc_areas_fs.geojson    Sudan's IPC snapshots over time            (IPC)
+  ipc_fs/<ISO3>.geojson   the same, per country, for the rest        (IPC/CH)
+  hsps.geojson            humanitarian service points, by district   (Kobo)
+  seasonal.json           seasonal calendars, now one per country    (ACAPS)
+  aoi_ipc.geojson         IFRC Areas of Interest + their IPC phase
 
-Boundary context layers (vendored static assets, from the IFRC HSP dashboard, not rebuilt here):
-  dashboard/data/boundaries/admin0.geojson        operational-country outlines
-  dashboard/data/boundaries/admin1_lines.geojson  state/region context lines
-  dashboard/data/boundaries/aoi.geojson           Areas-of-Interest polygons (base geometry)
-
-Caches consumed (refreshed by the assistant via MCP):
-  mcp_cache/idps_admin2_overview.json   HDX get_idps, admin2, 'Overview' cumulative rows
-  mcp_cache/sdn_adm2.geojson            geoBoundaries ADM2 (locality centroids)
-  mcp_cache/ipc_area_YYYY-MM.geojson    IPC get_areas_by_analysis, one per analysis period
-  mcp_cache/aoi_ipc_phases.json         per-AOI IPC phase (from _build_aoi_ipc.py)
+WHY FOOD SECURITY IS SPLIT PER COUNTRY. One file carrying every country at every
+period would be 13.9 MB - the data grew from one country to five, and each period
+has to carry every country's then-current snapshot. ipc_areas_fs.geojson therefore
+keeps its existing Sudan-only shape so the current dashboard is untouched, and the
+per-country files beside it are what the multi-country map will load on demand.
 """
 import collections
 import json
-import re
 
-from data_pipeline.common import MCP_CACHE, DASHBOARD_DATA
+from django.db import connection
 
-# Shorthand for the folder holding the raw MCP pulls.
-CACHE = MCP_CACHE
-
-
-def norm(s):
-    """Simplify a place name so spellings can be compared.
-
-    "Ash Shamaliyah" and "Shamaliyah" both become "shamaliyah", which lets us
-    match names between two datasets that transliterate Arabic differently.
-    """
-    s = (s or "").lower()
-    s = re.sub(r"[^a-z0-9 ]", " ", s)
-    s = re.sub(r"\s+", " ", s).strip()
-    for a in ("al ", "el ", "ash ", "aj ", "as ", "ad "):
-        s = s.replace(a, "")
-    return s.strip()
+from data_pipeline.common import DASHBOARD_DATA
+from external_data.models import (BorderCrossing, FoodSecurityArea,
+                                  HumanitarianServicePoint, MovementPattern,
+                                  SeasonalCalendar)
 
 
 def dump(name, obj):
     """Write one file into dashboard/data/ and print its size."""
     p = DASHBOARD_DATA / name
+    p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(obj, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(f"  {name:24} {p.stat().st_size / 1024:8.1f} KB")
 
 
 # ============================================================ border crossings
-# Curated authoritative crossings, each tagged to corridor IDs present in flows.json so the
-# frontend can highlight a crossing whenever population actually moved along that corridor.
-CROSSINGS = [
-    {"name": "El Geneina – Adré", "country": "Chad", "lon": 22.20, "lat": 13.47,
-     "corridor": "sudan-chad", "return_corridor": "chad-sudan-return"},
-    {"name": "Tiné", "country": "Chad", "lon": 22.30, "lat": 14.94,
-     "corridor": "sudan-chad", "return_corridor": "chad-sudan-return"},
-    {"name": "Um Dukhun – Am Dafok", "country": "Central African Republic", "lon": 23.45, "lat": 11.00,
-     "corridor": "sudan-car", "return_corridor": None},
-    {"name": "Wadi Halfa – Argeen / Ashkeet", "country": "Egypt", "lon": 31.55, "lat": 21.95,
-     "corridor": "sudan-egypt", "return_corridor": "egypt-sudan-return"},
-    {"name": "Qustul – Ashkeet", "country": "Egypt", "lon": 31.50, "lat": 22.00,
-     "corridor": "sudan-egypt", "return_corridor": "egypt-sudan-return"},
-    {"name": "Sudan–Libya desert route (Dongola–Kufra)", "country": "Libya", "lon": 24.40, "lat": 20.30,
-     "corridor": "sudan-libya", "return_corridor": "libya-sudan-return"},
-    {"name": "Joda – Renk", "country": "South Sudan", "lon": 32.41, "lat": 11.90,
-     "corridor": "sudan-south_sudan", "return_corridor": "south_sudan-sudan-return"},
-    {"name": "Gallabat – Metema", "country": "Ethiopia", "lon": 36.16, "lat": 12.97,
-     "corridor": "sudan-ethiopia", "return_corridor": None},
-    {"name": "Hamdayet", "country": "Ethiopia", "lon": 36.35, "lat": 14.30,
-     "corridor": "sudan-ethiopia", "return_corridor": None},
-]
-
-
 def build_crossings():
-    """Write the border-crossing points (curated, not fetched)."""
+    """The curated crossings, from the border_crossings table."""
+    points = [
+        {"name": c.name, "country": c.country, "lon": c.lon, "lat": c.lat,
+         "corridor": c.corridor, "return_corridor": c.return_corridor}
+        for c in BorderCrossing.objects.order_by("id")
+    ]
     dump("crossings.json", {
-        "source": "Curated authoritative Sudan border crossings (UNHCR/OCHA operational geography), "
-                  "tagged to the movement corridors in flows.json.",
-        "points": CROSSINGS,
+        "source": "Curated authoritative Sudan border crossings (UNHCR/OCHA operational "
+                  "geography), tagged to the movement corridors in flows.json. "
+                  "Held in the border_crossings table.",
+        "points": points,
     })
 
 
-# ============================================================ IDP localities (IOM-DTM)
-def _ring_centroid(coords):
-    """Find the centre of a polygon ring, so we can draw one dot per locality.
-
-    This is the standard area-weighted centroid formula. If the ring has no
-    area (a straight line, or a bad shape) we fall back to the average point.
-    """
-    a = cx = cy = 0.0
-    for i in range(len(coords) - 1):
-        x0, y0 = coords[i][0], coords[i][1]
-        x1, y1 = coords[i + 1][0], coords[i + 1][1]
-        cr = x0 * y1 - x1 * y0
-        a += cr; cx += (x0 + x1) * cr; cy += (y0 + y1) * cr
-    if abs(a) < 1e-12:
-        xs = [c[0] for c in coords]; ys = [c[1] for c in coords]
-        return [sum(xs) / len(xs), sum(ys) / len(ys)], 0.0
-    a *= 0.5
-    return [cx / (6 * a), cy / (6 * a)], abs(a)
-
-
-def _feature_centroid(geom):
-    """Centre of a map shape; for multi-part shapes use the biggest part."""
-    polys = [geom["coordinates"]] if geom["type"] == "Polygon" else geom["coordinates"]
-    best, best_a = None, -1
-    for poly in polys:
-        c, area = _ring_centroid(poly[0])
-        if area > best_a:
-            best, best_a = c, area
-    return best
-
-
+# ============================================================ IDP localities
 def build_idp_localities():
-    """IDP bubbles: DTM counts per locality, matched to locality centroids."""
-    gj = json.loads((CACHE / "sdn_adm2.geojson").read_text(encoding="utf-8"))
-    cents = {norm(f["properties"].get("shapeName")): _feature_centroid(f["geometry"])
-             for f in gj["features"]}
-    ov = json.loads((CACHE / "idps_admin2_overview.json").read_text(encoding="utf-8"))
+    """IDP bubbles: DTM counts per locality, placed by the boundary library.
+
+    The centroids used to come from a cached geoBoundaries file matched by name,
+    with a normaliser that stripped Arabic articles so "Ash Shamaliyah" and
+    "Shamaliyah" would meet. That is no longer needed: DTM publishes p-codes and
+    the boundary library is keyed on them, so the join is exact and no spelling has
+    to be guessed at.
+    """
+    rows = (MovementPattern.objects
+            .filter(source="hdx", metric="idps")
+            .exclude(admin_pcode=None)
+            .order_by("admin_pcode", "date"))
+
+    # One query for every centroid we might need, rather than one per locality.
+    with connection.cursor() as cur:
+        cur.execute("""
+            SELECT pcode, name, center_lon, center_lat
+              FROM admin_areas
+             WHERE iso3 = 'SDN' AND level = 2 AND kind = 'admin'
+        """)
+        places = {p: (n, lon, lat) for p, n, lon, lat in cur.fetchall()}
+
     loc = collections.defaultdict(lambda: {"name": "", "state": "", "months": {}})
-    for r in ov:
-        d = loc[r["admin2_code"]]
-        d["name"] = r["admin2_name"]; d["state"] = r["admin1_name"]
-        mk, date = r["reference_period_end"][:7], r["reference_period_end"][:10]
-        if mk not in d["months"] or date > d["months"][mk][0]:
-            d["months"][mk] = (date, int(r["population"]))
+    for r in rows:
+        d = loc[r.admin_pcode]
+        d["name"] = r.place_name or ""
+        mk = r.date.strftime("%Y-%m")
+        # The latest reading within a month wins, as it always has.
+        if mk not in d["months"] or r.date.isoformat() > d["months"][mk][0]:
+            d["months"][mk] = (r.date.isoformat(), int(r.value))
+
     out, unmatched = [], 0
-    for d in loc.values():
-        c = cents.get(norm(d["name"]))
-        if not c:
-            unmatched += 1; continue
+    for pcode, d in loc.items():
+        place = places.get(pcode)
+        if not place:
+            unmatched += 1
+            continue
+        name, lon, lat = place
         series = [{"date": dt, "value": v} for _, (dt, v) in sorted(d["months"].items()) if v > 0]
         if len(series) < 2:
             continue
-        out.append({"name": d["name"], "state": d["state"],
-                    "lon": round(c[0], 4), "lat": round(c[1], 4),
+        out.append({"name": d["name"] or name, "pcode": pcode, "state": d["state"],
+                    "lon": round(lon, 4), "lat": round(lat, 4),
                     "peak": max(p["value"] for p in series), "series": series})
     out.sort(key=lambda x: -x["peak"])
     dump("idp_localities.json", {
-        "source": "IOM DTM via HDX HAPI (get_idps, 'Overview' cumulative series), admin2; "
-                  "centroids from geoBoundaries SDN ADM2",
+        "source": "IOM DTM via HDX HAPI (get_idps, 'Overview' cumulative series), admin2, "
+                  "held in movement_patterns; placed on OCHA p-codes from the boundary library.",
         "metric": "IDP individuals (cumulative, IOM DTM)",
         "localities": out,
     })
-    print(f"    {len(out)} localities ({unmatched} unmatched centroids)")
+    print(f"    {len(out)} localities ({unmatched} without a polygon)")
 
 
-# ============================================================ refugees (UNHCR via HDX)
-# REAL — UNHCR registered Sudanese refugees by country of asylum (get_refugees, REF, all/all).
-REF_COUNTRIES = {
-    "Chad":        {"2022": 403846, "2023": 923323, "2024": 1109357, "anchor": [21.9, 13.9]},
-    "South Sudan": {"2022": 290740, "2023": 359581, "2024": 487652,  "anchor": [32.9, 10.5]},
-    "Egypt":       {"2022": 25476,  "2023": 26213,  "2024": 27696,   "anchor": [31.0, 24.0],
-                    "note": "UNHCR-registered only; actual Sudanese presence far larger (gov. est. >1M)"},
-    "Ethiopia":    {"2022": 48020,  "2023": 77424,  "2024": 90442,   "anchor": [36.5, 12.6]},
-    "Central African Republic": {"2022": 478, "2023": 21816, "2024": 29932, "anchor": [22.8, 9.5]},
-    "Libya":       {"2022": 1133,   "2023": 975,    "2024": 199388,  "anchor": [23.3, 24.2]},
-    "Uganda":      {"2022": 2871,   "2023": 14971,  "2024": 65367,   "anchor": [32.4, 2.5]},
-}
-# Curated camps / transit centres (coords approximate, from UNHCR RRP operational reporting).
+# ============================================================ refugees
+# Curated camps / transit centres (coords approximate, from UNHCR RRP reporting).
+# These stay in code: they are a handful of operational points with no API behind
+# them, and unlike the figures they do not change between reports.
 REF_CAMPS = [
     {"name": "Adré transit centre", "country": "Chad", "lon": 22.20, "lat": 13.47, "opened": "2023-04", "type": "Transit centre", "size": 3},
     {"name": "Aboutengue camp", "country": "Chad", "lon": 22.05, "lat": 13.55, "opened": "2023-06", "type": "Refugee camp", "size": 2},
@@ -186,135 +138,401 @@ REF_CAMPS = [
     {"name": "Korsi site (Birao)", "country": "Central African Republic", "lon": 22.78, "lat": 10.28, "opened": "2023-06", "type": "Reception site", "size": 1},
 ]
 
-
-def build_refugees():
-    """Refugee totals per host country, plus the curated camp markers."""
-    countries = []
-    for name, d in REF_COUNTRIES.items():
-        countries.append({
-            "country": name, "anchor": d["anchor"],
-            "series": [{"date": f"{y}-07-01", "value": d[y]} for y in ("2022", "2023", "2024") if y in d],
-            "note": d.get("note", ""),
-        })
-    dump("refugee_camps.json", {
-        "source": "Country totals: UNHCR via HDX HAPI (get_refugees, REF). "
-                  "Camp markers: curated from UNHCR RRP operational reporting (coordinates approximate).",
-        "countries": countries, "camps": REF_CAMPS,
-    })
-
-
-# ============================================================ food security (IPC via IPC MCP)
-# One full IPC snapshot per analysis period (IPC redraws analysis units each round), built from
-# the cached per-period geojson pulls. Geometry simplified for the web. Frontend shows the period
-# in effect at the current timeline date and colours by IPC's own phase colour.
-def _simplify(geom, nd=3):
-    """Round coordinates to 3 decimals (~100 m) so the map file stays small."""
-    def ring(r):
-        out = []
-        for pt in r:
-            p = [round(pt[0], nd), round(pt[1], nd)]
-            if not out or out[-1] != p:
-                out.append(p)
-        if len(out) < 4:
-            return [[round(pt[0], nd), round(pt[1], nd)] for pt in r]
-        if out[0] != out[-1]:
-            out.append(out[0])
-        return out
-    if geom["type"] == "Polygon":
-        return {"type": "Polygon", "coordinates": [ring(r) for r in geom["coordinates"]]}
-    if geom["type"] == "MultiPolygon":
-        return {"type": "MultiPolygon",
-                "coordinates": [[ring(r) for r in poly] for poly in geom["coordinates"]]}
-    return geom
-
-
-def build_foodsec():
-    """One IPC food-insecurity snapshot per analysis period."""
-    import glob
-    files = sorted(glob.glob(str(CACHE / "ipc_area_*.geojson")))
-    periods, dates = {}, []
-    for f in files:
-        date = re.search(r"ipc_area_(\d{4}-\d{2})", f)[1] + "-01"
-        dates.append(date)
-        g = json.loads(open(f, encoding="utf-8").read())
-        feats = []
-        for ft in g["features"]:
-            p = ft["properties"]
-            phase = p.get("overall_phase")
-            if phase is None:
-                continue
-            p3 = round((p.get("phase3_percent") or 0) + (p.get("phase4_percent") or 0)
-                       + (p.get("phase5_percent") or 0), 3)
-            fam = bool((p.get("phase5_population") or 0) > 0 or phase >= 5)
-            feats.append({"type": "Feature", "geometry": _simplify(ft["geometry"]),
-                          "properties": {"area": (p.get("title") or "").strip(), "ph": phase,
-                                         "p3": p3, "fam": fam, "color": p.get("color", "#cccccc")}})
-        periods[date] = {"type": "FeatureCollection", "features": feats}
-    dump("ipc_areas_fs.geojson", {
-        "_meta": {"source": "IPC (ipcinfo.org) via IPC MCP get_areas_by_analysis; one snapshot per "
-                            "analysis period, area level (overall IPC phase; p3 = phase 3+ share; "
-                            "fam = Phase 5 famine present).",
-                  "dates": sorted(dates)},
-        "periods": periods,
-    })
-    print(f"    {len(periods)} IPC periods, {sum(len(v['features']) for v in periods.values())} area-features")
-
-
-# ============================================================ seasonal (FEWS NET get_seasons)
-SEASONAL = {
-    "source": "FEWS NET seasonal calendar for Sudan (get_seasons API).",
-    "items": [
-        {"label": "Lean / hunger season", "months": [5, 6, 7, 8, 9, 10], "color": "#e67e22",
-         "note": "FEWS NET nutrition lean season (May–Oct)"},
-        {"label": "Rainy / growing season", "months": [6, 7, 8, 9, 10], "color": "#3498db",
-         "note": "Main agricultural season (cultivation)"},
-        {"label": "Main (rainfed) harvest", "months": [11, 12, 1], "color": "#27ae60",
-         "note": "Traditional & mechanized rainfed harvest (Nov–Jan)"},
-        {"label": "Irrigated harvest", "months": [3], "color": "#9ccc65",
-         "note": "Irrigated harvest (March)"},
-        {"label": "Post-harvest / dry season", "months": [1, 2, 3, 4], "color": "#c9a14a",
-         "note": "Dry post-harvest period (Jan–Apr)"},
-    ],
+# Where to draw each host country's total. Kept here because it is a cartographic
+# choice - a readable spot on the map - not a fact about the country.
+REF_ANCHORS = {
+    "Chad": [21.9, 13.9], "South Sudan": [32.9, 10.5], "Egypt": [31.0, 24.0],
+    "Ethiopia": [36.5, 12.6], "Central African Republic": [22.8, 9.5],
+    "Libya": [23.3, 24.2], "Uganda": [32.4, 2.5],
 }
 
 
+def build_refugees():
+    """Host-country refugee totals - UNHCR's annuals AND the Excel biweekly series.
+
+    Both sources are read here, in one place. s07 used to rewrite this file after
+    s06 had written it, merging the workbook in; that meant two steps owned one
+    file, and whichever ran last decided what the dashboard showed. Now the table
+    holds both and this function reads them together.
+    """
+    rows = (MovementPattern.objects
+            .filter(metric="refugees")
+            .exclude(place_name=None)
+            .order_by("place_name", "date"))
+
+    by_country = collections.defaultdict(dict)
+    sources = collections.defaultdict(set)
+    for r in rows:
+        # A date reported by both sources keeps the Excel figure: it is the more
+        # recent reading of the same quantity.
+        key = r.date.isoformat()
+        if key not in by_country[r.place_name] or r.source == "excel":
+            by_country[r.place_name][key] = int(r.value)
+        sources[r.place_name].add(r.source)
+
+    countries = []
+    for name, series in sorted(by_country.items()):
+        countries.append({
+            "country": name,
+            "anchor": REF_ANCHORS.get(name),
+            "series": [{"date": d, "value": v} for d, v in sorted(series.items())],
+            "sources": sorted(sources[name]),
+        })
+    dump("refugee_camps.json", {
+        "source": "Country totals from movement_patterns: UNHCR annual stocks via HDX plus "
+                  "the biweekly Excel series. Camp markers curated from UNHCR RRP "
+                  "operational reporting (coordinates approximate).",
+        "countries": countries, "camps": REF_CAMPS,
+    })
+    n_points = sum(len(c["series"]) for c in countries)
+    print(f"    {len(countries)} host countries, {n_points} figures")
+
+
+# ============================================================ food security
+def _features_sql(where, params):
+    """Read areas back as GeoJSON features, geometry written by PostGIS itself."""
+    with connection.cursor() as cur:
+        cur.execute(f"""
+            SELECT json_build_object(
+                     'type', 'Feature',
+                     'geometry', ST_AsGeoJSON(geom_web, 5)::json,
+                     'properties', json_build_object(
+                        'area', area_title, 'ph', phase, 'p3', phase3plus_pct,
+                        'fam', (COALESCE(phase5_population, 0) > 0 OR phase >= 5),
+                        'color', colour, 'iso3', iso3, 'src', source))
+              FROM food_security
+             WHERE geom_web IS NOT NULL AND NOT ST_IsEmpty(geom_web) AND {where}
+        """, params)
+        return [row[0] for row in cur.fetchall()]
+
+
+def build_foodsec():
+    """One IPC snapshot per analysis period, per country.
+
+    Sudan keeps the existing single file so the current dashboard is untouched.
+    Every country - Sudan included - also gets its own file under ipc_fs/, which is
+    what a multi-country map should load: one file per country in scope, rather
+    than one 13.9 MB file carrying every country at every period.
+
+    A country with rows but no geometry produces no file, and is named rather than
+    silently skipped. Ethiopia used to be that case: FEWS NET publishes unit codes,
+    not polygons. Its areas are now matched to the boundary library by name
+    (manage.py resolve_fewsnet_areas), so it maps like the rest.
+    """
+    isos = sorted(set(FoodSecurityArea.objects.values_list("iso3", flat=True)))
+    written, skipped = [], []
+    for iso in isos:
+        dates = sorted(set(FoodSecurityArea.objects
+                           .filter(iso3=iso).exclude(period_date=None)
+                           .values_list("period_date", flat=True)))
+        periods = {}
+        for d in dates:
+            feats = _features_sql("iso3 = %s AND period_date = %s", [iso, d])
+            if feats:
+                periods[d.isoformat()] = {"type": "FeatureCollection", "features": feats}
+        if not periods:
+            skipped.append(iso)
+            continue
+        payload = {
+            "_meta": {"source": "IPC / Cadre Harmonise via the food_security table; one "
+                                "snapshot per analysis period, area level.",
+                      "iso3": iso, "dates": sorted(periods)},
+            "periods": periods,
+        }
+        dump(f"ipc_fs/{iso}.geojson", payload)
+        written.append(iso)
+        if iso == "SDN":
+            # The file the current dashboard already fetches, unchanged in shape.
+            dump("ipc_areas_fs.geojson", payload)
+
+    print(f"    {len(written)} countries with mappable areas: {', '.join(written)}")
+    if skipped:
+        print(f"    {', '.join(skipped)} have phases but no geometry (FEWS NET publishes none)")
+
+
+# ============================================================ seasonal
+# FEWS NET publishes no colours, so they are chosen here, by season type - which
+# also means a lean season is the same colour in every country.
+# NO COLOUR TABLE HERE ANY MORE. It used to bake a hex into every row of
+# seasonal.json, which put the calendar's palette in a second place - so the
+# brand block in app.css was no longer "the ONE place colour is defined" that it
+# claims to be, and the strip's colours drifted away from IFRC's. The frontend
+# now colours by `season_type` from --season-* in that block, and this step
+# emits the type alone.
+
+# Which publisher a country's calendar is taken from. ACAPS wins wherever it has
+# rows: it names the crop, explains the event in a sentence, says which regions it
+# applies to, and links the assessment behind it - all of which FEWS NET's bare
+# national bands leave out. FEWS NET remains the fallback so a country ACAPS has
+# not covered still shows something.
+SEASONAL_PREFERENCE = ["acaps", "fewsnet", "curated"]
+
+
 def build_seasonal():
-    """Write the lean / rainy / harvest calendar bands."""
-    dump("seasonal.json", SEASONAL)
+    """The seasonal calendars, now one per country instead of Sudan alone.
+
+    The shape changes here, and only here: this file becomes {iso3: {...}} so the
+    frontend can show the calendar for whichever countries are selected. That is
+    the one output whose structure moves in this step, and it moves now so the
+    multi-country panel is a frontend change alone.
+    """
+    # One publisher per country, the best available - not a blend. Showing ACAPS
+    # and FEWS NET bands side by side would put two descriptions of the same
+    # lean season in one strip and leave a reader to guess which to believe.
+    have = {}
+    for r in SeasonalCalendar.objects.all():
+        have.setdefault(r.iso3, set()).add(r.source)
+    chosen = {iso: next((s for s in SEASONAL_PREFERENCE if s in srcs), None)
+              for iso, srcs in have.items()}
+
+    out = {}
+    for r in SeasonalCalendar.objects.order_by("iso3", "event_type", "start_month", "label"):
+        if r.source != chosen.get(r.iso3):
+            continue
+        entry = out.setdefault(r.iso3, {
+            "country": r.country_name, "source": r.source, "items": [],
+        })
+        # `months` is the stored truth where we have it; a span is expanded only
+        # for rows that predate that column.
+        months = list(r.months or [])
+        if not months:
+            m = r.start_month
+            while True:
+                months.append(m)
+                if m == r.end_month or len(months) > 12:
+                    break
+                m = 1 if m == 12 else m + 1
+        entry["items"].append({
+            "label": r.label, "months": months,
+            "note": r.description or "",
+            "event": r.event, "event_type": r.event_type,
+            "season_type": r.season_type, "source": r.source,
+            "country_wide": r.country_wide,
+            "areas": r.admin_names or [],
+            "source_org": r.source_org, "source_url": r.source_url,
+            "source_date": r.source_date.isoformat() if r.source_date else None,
+        })
+    dump("seasonal.json", {
+        "source": "ACAPS Seasonal Events Calendar where available, FEWS NET get_seasons "
+                  "otherwise; held in the seasonal_calendar table.",
+        "countries": out,
+    })
+    print("    " + ", ".join(f"{k} {len(v['items'])} ({v['source']})"
+                             for k, v in sorted(out.items())))
 
 
-# ============================================================ IFRC Areas of Interest + IPC
-# Country outlines (admin0) and state lines (admin1) are vendored static assets under
-# dashboard/data/boundaries/ (from the IFRC HSP dashboard). Here we merge the cached per-AOI
-# IPC phases (built by _build_aoi_ipc.py from IPC MCP pulls) onto the AOI polygons.
+# ============================================================ AOI + IPC
 def build_aoi():
-    """Colour each IFRC Area of Interest by the worst IPC phase inside it."""
-    base_path = DASHBOARD_DATA / "boundaries" / "aoi.geojson"
-    if not base_path.exists():
-        print("    (no aoi.geojson — skipping AOI layer)")
+    """Colour each IFRC Area of Interest by the worst IPC phase inside it.
+
+    This used to read a cached file built by _build_aoi_ipc.py, which in turn read
+    IPC pulls from a path pinned to a Claude session from June - so it silently
+    served stale data, or none, depending on what still existed on disk. The phase
+    is now computed where the geometry already lives: a spatial join in PostGIS
+    between the AOI polygons and the food-security areas that intersect them.
+
+    A consequence worth having: CAR's Vakaga and Uganda's Kiryandongo were grey
+    only because nobody had pulled their country's IPC data. Vakaga now colours
+    itself, and Kiryandongo stays grey for the true reason - Uganda has no IPC
+    analysis at all.
+    """
+    with connection.cursor() as cur:
+        cur.execute("""
+            WITH latest AS (
+                SELECT DISTINCT ON (iso3) iso3, period_date
+                  FROM food_security
+                 WHERE geom IS NOT NULL
+                 ORDER BY iso3, period_date DESC
+            )
+            SELECT a.id, a.name, a.iso3,
+                   MAX(f.phase)                              AS worst_phase,
+                   COUNT(f.id)                               AS n_areas,
+                   COUNT(f.id) FILTER (WHERE f.phase >= 3)   AS n_phase3plus,
+                   MAX(f.phase3plus_pct)                     AS p3,
+                   ST_AsGeoJSON(a.geom_web, 5)               AS geometry
+              FROM admin_areas a
+              LEFT JOIN latest l ON l.iso3 = a.iso3
+              LEFT JOIN food_security f
+                     ON f.iso3 = a.iso3 AND f.period_date = l.period_date
+                    AND f.geom IS NOT NULL
+                    AND ST_Intersects(a.geom, f.geom)
+             WHERE a.kind = 'aoi'
+             GROUP BY a.id, a.name, a.iso3, a.geom_web
+             ORDER BY a.iso3, a.name
+        """)
+        rows = cur.fetchall()
+
+    # IPC's own phase colours, so an AOI reads the same as the areas beneath it.
+    colours = {1: "#CDFACD", 2: "#FAE61E", 3: "#E67800", 4: "#C80000", 5: "#640000"}
+    features, with_ipc = [], 0
+    for _id, name, iso3, phase, n_areas, n3, p3, geometry in rows:
+        if phase:
+            with_ipc += 1
+        features.append({
+            "type": "Feature",
+            "geometry": json.loads(geometry) if geometry else None,
+            "properties": {
+                "name": name, "ipc_country": iso3,
+                "ipc_phase": phase,
+                "ipc_color": colours.get(phase, "#bdbdbd"),
+                "ipc_p3": p3, "ipc_n_areas": n_areas or 0, "ipc_n_phase3plus": n3 or 0,
+            },
+        })
+    dump("aoi_ipc.geojson", {"type": "FeatureCollection", "features": features})
+    print(f"    {len(features)} AOIs, {with_ipc} with an IPC phase "
+          f"(computed by spatial join, not from a cache)")
+
+
+# ============================================================ service points
+def build_hsps():
+    """Humanitarian Service Points - one marker per district offering a service.
+
+    A MARKER HERE IS A DISTRICT, NOT A BUILDING. The Kobo export holds no site
+    coordinates: it records which services a National Society offers and which
+    districts it offers them in. The position is the district's point-on-surface,
+    resolved when the export was loaded, so a marker means "this service is
+    offered somewhere in this district". The popup says so too - it would be very
+    easy for a reader to take these for addresses.
+
+    The newest export wins. Older ones stay in the table so a later reader can see
+    what changed, but the map shows the current picture.
+    """
+    latest = (HumanitarianServicePoint.objects
+              .order_by("-date_reported").values_list("date_reported", flat=True).first())
+    if latest is None:
+        print("    (no service points loaded - skipping)")
         return
-    nm = lambda s: re.sub(r"[^a-z0-9 ]", " ", (s or "").lower()).strip()
-    base = json.loads(base_path.read_text(encoding="utf-8"))
-    phases_path = CACHE / "aoi_ipc_phases.json"
-    phases = json.loads(phases_path.read_text(encoding="utf-8")) if phases_path.exists() else {}
-    none_info = {"ipc_phase": None, "ipc_color": "#bdbdbd", "ipc_p3": None,
-                 "ipc_n_areas": 0, "ipc_n_phase3plus": 0}
-    with_ipc = 0
-    for ft in base["features"]:
-        info = phases.get(nm(ft["properties"].get("name", "")))
-        ft["properties"].update(info or none_info)
-        with_ipc += 1 if (info and info.get("ipc_phase")) else 0
-    dump("aoi_ipc.geojson", base)
-    print(f"    {len(base['features'])} AOIs, {with_ipc} with an IPC phase")
+
+    rows = (HumanitarianServicePoint.objects
+            .filter(date_reported=latest)
+            .exclude(lat=None)
+            .order_by("iso3", "location_name", "service"))
+
+    # One marker per place, carrying every service offered there: a district with
+    # eight services should be one dot to click, not eight stacked on each other.
+    places = {}
+    for r in rows:
+        key = (r.iso3, r.location_name)
+        p = places.setdefault(key, {
+            "country": r.country, "iso3": r.iso3, "place": r.location_name,
+            "pcode": r.admin_pcode, "lon": r.lon, "lat": r.lat,
+            "scope": r.scope, "services": [],
+        })
+        if r.service not in p["services"]:
+            p["services"].append(r.service)
+
+    feats = [{
+        "type": "Feature",
+        "geometry": {"type": "Point", "coordinates": [p["lon"], p["lat"]]},
+        "properties": {**{k: v for k, v in p.items() if k not in ("lon", "lat")},
+                       "n_services": len(p["services"]),
+                       "date_reported": latest.isoformat()},
+    } for p in places.values()]
+
+    dump("hsps.geojson", {
+        "type": "FeatureCollection",
+        "_meta": {
+            "source": "IFRC Humanitarian Service Point Mapping (Kobo), held in the "
+                      "humanitarian_service_points table.",
+            "date_reported": latest.isoformat(),
+            "note": "District-level, not point-level: the source publishes no site "
+                    "coordinates. A marker is the district's point-on-surface.",
+        },
+        "features": feats,
+    })
+    print(f"    {len(feats)} districts offering services, reported {latest}")
+
+
+# ============================================================ theme areas
+def build_theme_areas():
+    """The polygons the five pillars are drawn on, keyed by p-code.
+
+    THIS IS THE LAYER THE HIGHLIGHTING LIVES ON, and it was silently broken. The
+    corpus was re-parsed against the boundary library, so narrative_tags.area_id
+    became an OCHA p-code - "SD16", "ET0604". But boundaries/areas.geojson was
+    still the older file built by build_map_context, whose feature ids look like
+    "SDN-ADM2:Abassiya". app.js writes one feature-state per area id onto that
+    source, so every write landed on a feature that did not exist: no bands, no
+    fills, and only the country-level wash - which is keyed on country name -
+    still showing. That is exactly "I only see the country dimming".
+
+    Building it here from admin_areas fixes the mismatch at its root, and gets two
+    things free: the polygons are the office's own boundaries rather than borrowed
+    ones, and every area the corpus can name is present, at whatever level it was
+    matched - a locality highlights as a locality.
+    """
+    from data_track.models import NarrativeTag
+
+    pcodes = sorted(set(NarrativeTag.objects
+                        .exclude(area_id=None).exclude(area_id="")
+                        .values_list("area_id", flat=True)))
+    if not pcodes:
+        print("    (no tagged areas - skipping theme areas)")
+        return
+
+    # Named water bodies, so a flooding tag can light the river beside the area.
+    water_path = DASHBOARD_DATA / "water.geojson"
+    boxes = []
+    if water_path.exists():
+        water = json.loads(water_path.read_text(encoding="utf-8"))
+        for f in water["features"]:
+            name = (f["properties"] or {}).get("name")
+            if not name:
+                continue
+            xs, ys = [], []
+            def walk(c):
+                if isinstance(c[0], (int, float)):
+                    xs.append(c[0]); ys.append(c[1])
+                else:
+                    for x in c:
+                        walk(x)
+            walk(f["geometry"]["coordinates"])
+            boxes.append((name, min(xs), min(ys), max(xs), max(ys)))
+    MARGIN = 0.6
+
+    with connection.cursor() as cur:
+        cur.execute("""
+            SELECT pcode, name, country_name, iso3, level,
+                   bbox_w, bbox_s, bbox_e, bbox_n,
+                   ST_AsGeoJSON(geom_web, 5)
+              FROM admin_areas
+             WHERE pcode = ANY(%s) AND geom_web IS NOT NULL
+             ORDER BY level DESC, pcode
+        """, [pcodes])
+        rows = cur.fetchall()
+
+    seen, feats = set(), []
+    for pcode, name, country, iso3, level, w, s, e, n, geometry in rows:
+        # Finest first, so where two publishers hold the same p-code the deeper
+        # polygon wins - the same "most precise wins" rule the old file used.
+        if pcode in seen:
+            continue
+        seen.add(pcode)
+        near = [nm for nm, ww, ws, we, wn in boxes
+                if w is not None and we >= w - MARGIN and ww <= e + MARGIN
+                and wn >= s - MARGIN and ws <= n + MARGIN]
+        feats.append({
+            "type": "Feature",
+            "geometry": json.loads(geometry),
+            "properties": {"id": pcode, "name": name, "country": country,
+                           "iso3": iso3, "level": level, "water": near},
+        })
+
+    dump("boundaries/areas.geojson", {"type": "FeatureCollection", "features": feats})
+    missing = len(pcodes) - len(feats)
+    print(f"    {len(feats)} theme areas keyed by p-code"
+          + (f" ({missing} referenced but without geometry)" if missing else ""))
 
 
 def run():
-    """Rebuild every external layer from whatever is currently cached."""
+    """Rebuild every external layer from the database."""
     DASHBOARD_DATA.mkdir(parents=True, exist_ok=True)
-    print("== external MCP layers")
+    print("== external layers, from the database")
     build_crossings()
     build_idp_localities()
     build_refugees()
     build_foodsec()
     build_seasonal()
     build_aoi()
+    build_hsps()
+    build_theme_areas()

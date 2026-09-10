@@ -476,3 +476,71 @@ If a per-site HSP list with coordinates exists elsewhere, the point layer it wou
 strictly better than district symbols. The tables above take it without redesign: a site row
 is an `hsp_service_areas` row with its own geometry instead of an `admin_area` link. Until
 such a file is provided, district placement is what the data supports.
+
+---
+
+# Addendum, 2026-09-09: IFRC GO layers, HDX fallback, and keeping p-codes
+
+Decisions taken for sub-project D. Recorded here because they change what the
+boundary library holds; D's own spec will carry the implementation.
+
+## D1. What replaces what
+
+ADM1 and ADM2 move to the IFRC GO geospatial layers, held on disk at
+`~/OneDrive - IFRC/Sharepoints/IFRC Sharing - GO Geospatial Layers sharing/GO-admin-json/`.
+Verified coverage for the nine operational countries, across both the `Africa` and
+`Middle East & North Africa` region folders:
+
+| Level | From IFRC GO | From HDX (`get_admin2`) |
+|---|---|---|
+| ADM1 | all nine | — |
+| ADM2 | SDN, EGY, UGA, CAF, ERI | **TCD, ETH, LBY, SSD** — no GO file exists |
+
+ADM0 and ADM3+ stay on their current sources (OCHA COD, GADM for Sudan's ADM3).
+GO publishes no ADM3, so the library becomes mixed-provenance *by level*. That is
+acceptable only because it is recorded — see D3.
+
+## D2. P-codes are preserved, not surrendered
+
+**The GO files carry no p-codes.** Verified 2026-09-09: admin1 features expose only
+`district_id`, `country_id` and `iso3`, and `name_en` holds the *country* name — all
+eighteen of Sudan's admin1 polygons are labelled "Sudan". Admin2 adds `admin2_name`
+and `admin2_id`, still with no p-code. HDX's admin2, by contrast, does return
+p-codes.
+
+Adopting GO as published would therefore leave half the library p-code-less while
+the other half had them, and `narrative_tags.area_id` is p-code based — it is what
+`eedd7ba "Re-parse the corpus against the boundary library"` produced. Half the
+corpus highlighting would stop working.
+
+**So every row keeps a p-code.** GO polygons are spatially cross-walked onto the
+p-codes already in the library (the COD load), by containment of a point on
+surface, exactly as `parent_method='spatial'` already does for Sudan's GADM ADM3.
+GO's own identifiers are kept beside them, not instead of them:
+
+- `go_district_id`, `go_admin2_id` — new nullable columns on `admin_areas`, so GO
+  geometry can be joined to GO's own API data (DREFs, appeals, local units).
+- `pcode` — never null. Where a GO polygon matches no existing p-code, the load
+  reports it rather than writing a row with an empty identity.
+
+Admin1 names come from the GO API (`/api/v2/district/`, which returns `id`, `name`
+and a GO code) since the files do not carry them, and are reconciled against the
+COD names during the cross-walk. A mismatch is a loud failure, not a silent
+overwrite: Sudan's GO layer has 18 admin1 units where the COD load has 19, so the
+vintages genuinely differ and that difference must be seen, not averaged away.
+
+## D3. Provenance is a column, not a lookup
+
+`boundary_sources.publisher` already records this per file. D adds `provider`
+directly to `admin_areas` as well — `IFRC GO`, `HDX`, `OCHA ITOS`, `GADM` — so an
+analyst can filter on it without a join, and so "which of these came from GO and
+which from HDX?" is one query. This is the user's explicit requirement.
+
+## D4. Rendering, for the same sub-project
+
+Admin outlines are drawn colourless at open and revealed by viewport: a country in
+view shows ADM1; an ADM1 filling the view shows ADM2; an ADM2 filling the view
+shows ADM3. When a pillar is selected, the highlight lands on **the level the
+report actually named** — `narrative_tags.area_level` already records it, so
+"somewhere in North Darfur" and "in El Fasher locality" stay visibly different
+findings. All five dimensions behave the same way.

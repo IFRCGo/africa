@@ -52,6 +52,15 @@ const ANCHORS = {
 const COUNTRIES = ["Sudan", "Central African Republic", "Chad", "Egypt",
                    "Ethiopia", "Libya", "South Sudan", "Uganda"];
 
+/* The seasonal calendar and the food-security files are keyed by ISO3, because
+   that is how the database stores them. This turns the dropdown's country name
+   into that key. */
+const COUNTRY_TO_ISO3 = {
+  "Sudan": "SDN", "Chad": "TCD", "Egypt": "EGY", "Ethiopia": "ETH",
+  "Libya": "LBY", "South Sudan": "SSD", "Uganda": "UGA",
+  "Central African Republic": "CAF", "Eritrea": "ERI",
+};
+
 /* Corridor ids in flows.json are built from country slugs - "sudan-chad",
    "chad-sudan-return", "south_sudan-sudan-influx". This turns a slug back into
    the country name the rest of the dashboard uses. */
@@ -59,13 +68,6 @@ const SLUG_TO_COUNTRY = {
   sudan: "Sudan", chad: "Chad", egypt: "Egypt", libya: "Libya",
   ethiopia: "Ethiopia", uganda: "Uganda", eritrea: "Eritrea",
   south_sudan: "South Sudan", car: "Central African Republic",
-};
-
-/* The IFRC Areas of Interest carry a two-letter country code instead of a
-   name (aoi_ipc.geojson, "ipc_country"). */
-const ISO2_TO_COUNTRY = {
-  SD: "Sudan", TD: "Chad", EG: "Egypt", LY: "Libya", ET: "Ethiopia",
-  UG: "Uganda", SS: "South Sudan", CF: "Central African Republic",
 };
 
 /* These datasets describe the inside of Sudan only, so they have nothing to
@@ -103,24 +105,35 @@ const WHITE = paletteColor("--ifrc-white", "#ffffff");
 const COLOR_IDP_LOCALITY = paletteColor("--idp-locality", "#ffb25b");
 const COLOR_IDP_STATE = paletteColor("--idp-state", "#958dbe");
 const COLOR_IN_HOST = paletteColor("--refugees", "#8dcde2");
+// Humanitarian service points. Deliberately not one of the pillar colours:
+// a service is a response, not a finding about a place.
+const COLOR_HSP = paletteColor("--hsp", "#6b3a90");
 
-// The five theme groups, their display names and their colours. These match
-// the "dimension" values the pipeline writes into tags.json, and each one is
-// given the IFRC thematic palette that means the same thing.
+/* The four theme groups, their display names and their colours. These match
+   the "dimension" values the pipeline writes into tags.json, and each one is
+   given the IFRC thematic palette that means the same thing.
+
+   THIS OBJECT IS THE SWITCH. Every panel that shows narrative reporting - the
+   theme dropdowns, the map pillars, the area popups, Community Insights, the
+   theme detail list - walks DIM_META or DIM_ORDER, so a dimension that is not
+   named here does not appear anywhere on the page.
+
+   movement_pattern used to be the fifth. It was reporting ABOUT movement,
+   counted in mentions, sitting beside a map and a headline row that carry the
+   movement itself, counted in people - and the two never agreed. The mention
+   counts stay in tags.json; the dashboard now says what it knows about
+   movement with the Movement trends graph, which plots people. */
 const DIM_META = {
   hazard: { label: "Hazards", color: paletteColor("--dim-hazard", "#d22730") },
   vulnerability: { label: "Vulnerabilities", color: paletteColor("--dim-vulnerability", "#6b3a90") },
   coping: { label: "Coping mechanisms", color: paletteColor("--dim-coping", "#009775") },
   need: { label: "Needs", color: paletteColor("--dim-need", "#1874a0") },
-  movement_pattern: { label: "Movement patterns", color: paletteColor("--dim-movement", "#ff8200") },
 };
 
 /* The order the pillar bands are nested in, outermost first. Hazards are
    outside because they are the thing that happens TO a place; the pillars that
    describe the people there sit within it. */
-const DIM_ORDER = ["hazard", "vulnerability", "coping", "need", "movement_pattern"];
-// Pixels between one pillar's band and the next.
-const BAND_STEP = 3.5;
+const DIM_ORDER = ["hazard", "vulnerability", "coping", "need"];
 const COLOR_WATER = paletteColor("--water", "#1f9ad6");
 
 /* Which tags make the water worth pointing at. Flooding and water/sanitation
@@ -142,17 +155,21 @@ const state = {
      one place. */
   countries: new Set(),
   voiceSearch: "",         // text typed into the Community Insights search box
+  /* The three lines of the Movement trends graph, worked out once per FILTER
+     change rather than per timeline move - see computeTrendSeries(). */
+  trend: { series: [], vmax: 1 },
   // Which layers are switched on. These match the checkboxes in index.html.
   showFlows: true, showReturns: true, showEvents: true,
-  showIDP: false, showIDPStates: false, showRefugees: false, showFoodsec: false, showCrossings: true, showAOI: false,
+  showIDP: false, showIDPStates: false, showRefugees: false, showFoodsec: false,
+  showCrossings: true, showAOI: false, showHSP: false,
 };
 
 /* ========================= 2. HELPERS =================================== */
 
 /* IPC republishes its food-security map a few times a year. This finds the
    most recent published version that existed on the timeline date `t`. */
-function ipcPeriodAt(t) {
-  const dates = (state.data.ipc && state.data.ipc._meta.dates) || [];
+function ipcPeriodAt(t, payload) {
+  const dates = (payload && payload._meta && payload._meta.dates) || [];
   let d = null;
   for (const dt of dates) { if (Date.parse(dt) <= t) d = dt; }
   return d;
@@ -333,11 +350,13 @@ function boundsFor(names) {
     w = Math.min(w, shape.bbox[0]); s = Math.min(s, shape.bbox[1]);
     e = Math.max(e, shape.bbox[2]); n = Math.max(n, shape.bbox[3]);
   }
-  if (w > e) return REGION_BOUNDS;   // nothing recognised - show the region
+  if (w > e) return HOME_BOUNDS;     // nothing recognised - show the region
   const pad = 0.6;
+  // Clamp to the LOCK, not to home: fitting to a box the map may not pan to
+  // would leave MapLibre quietly framing something else.
   return [
-    [Math.max(REGION_BOUNDS[0][0], w - pad), Math.max(REGION_BOUNDS[0][1], s - pad)],
-    [Math.min(REGION_BOUNDS[1][0], e + pad), Math.min(REGION_BOUNDS[1][1], n + pad)],
+    [Math.max(PAN_BOUNDS[0][0], w - pad), Math.max(PAN_BOUNDS[0][1], s - pad)],
+    [Math.min(PAN_BOUNDS[1][0], e + pad), Math.min(PAN_BOUNDS[1][1], n + pad)],
   ];
 }
 
@@ -378,9 +397,13 @@ function deriveCountries() {
   for (const ev of state.data.events)
     ev.country = countryAt(ev.lon, ev.lat) || "Regional";
 
-  // the IFRC Areas of Interest carry a two-letter code
+  /* The Areas of Operation name their country by ISO3 ("TCD", "SDN"), which is
+     what build_aoi writes and what admin_areas stores. This was reading them
+     through a two-letter table, so EVERY area resolved to null - and because
+     filterFC() keeps a feature only when its .country is in scope, picking any
+     country at all emptied the layer completely. */
   for (const f of (state.data.aoi || { features: [] }).features)
-    f.properties.country = ISO2_TO_COUNTRY[f.properties.ipc_country] || null;
+    f.properties.country = ISO3_TO_COUNTRY[f.properties.ipc_country] || null;
 }
 
 /* The polygons the pillars are drawn on, and the rivers beside them, come to
@@ -408,21 +431,6 @@ function loadAreas() {
   return areasLoading;
 }
 
-/* The IPC food-security file is downloaded lazily, the first time someone
-   switches that layer on, so its areas are located then rather than at
-   start-up. Each area is placed by the centre of its bounding box, which is
-   accurate enough for "which country is this in?" and far cheaper than a true
-   centroid over several thousand polygons. */
-function deriveIPCCountries() {
-  for (const fc of Object.values(state.data.ipc.periods)) {
-    for (const f of fc.features) {
-      if (f.properties.country !== undefined) continue;
-      const [w, s, e, n] = geomBBox(f.geometry);
-      f.properties.country = countryAt((w + e) / 2, (s + n) / 2);
-    }
-  }
-}
-
 /* Keep only the areas in the selected countries. Returns the collection
    unchanged when no filter is on, so the common case copies nothing. */
 function filterFC(fc) {
@@ -430,6 +438,107 @@ function filterFC(fc) {
   const s = scopeCountries();
   return { type: "FeatureCollection",
            features: fc.features.filter((f) => s.has(f.properties.country)) };
+}
+
+/* ---------------------------------------------------------------- sidebars
+   Both sidebars can be dragged wider. The panels carry long place names, whole
+   quotes and the ACAPS seasonal descriptions, and at their default width those
+   wrap awkwardly - but the default is deliberately unchanged, so the page opens
+   exactly as it always has and only widens when someone asks it to.
+
+   The chosen width is remembered per browser. It is a reading preference, not
+   data: if localStorage is unavailable or the stored value is nonsense, the
+   default stands and nothing breaks.
+*/
+const SIDEBAR_LIMITS = {
+  sidebar:  { varName: "--sidebar-w",  min: 260, max: 720, def: 320, edge: "right" },
+  rightbar: { varName: "--rightbar-w", min: 240, max: 640, def: 290, edge: "left" },
+};
+
+/* How much smaller than life the page is being drawn - app.css sets zoom on
+   <body> from --ui-scale so the dashboard opens at the size it was designed at
+   (see the --ui-scale block there). Measured, not read from the property, and
+   the same measurement MapLibre makes for its own pointer maths: the rendered
+   width against the laid-out width. Returns 1 when nothing is scaled. */
+function uiScale() {
+  const b = document.body;
+  return b.getBoundingClientRect().width / b.offsetWidth || 1;
+}
+
+function initSidebarResize() {
+  for (const [id, cfg] of Object.entries(SIDEBAR_LIMITS)) {
+    const el = document.getElementById(id);
+    if (!el) continue;
+
+    const stored = Number(safeGet(`width:${id}`));
+    if (stored >= cfg.min && stored <= cfg.max)
+      document.documentElement.style.setProperty(cfg.varName, `${stored}px`);
+
+    const grip = document.createElement("div");
+    grip.className = "side-grip";
+    grip.title = "Drag to resize · double-click to reset";
+    el.appendChild(grip);
+
+    let startX = 0, startW = 0;
+
+    const onMove = (ev) => {
+      // The left sidebar grows as the pointer moves right; the right one grows
+      // as it moves left, so the delta is signed by which edge is being pulled.
+      // Divided by uiScale() because the pointer is reported in real screen
+      // pixels while the width we set is a laid-out one - without it the edge
+      // moves only 80% as far as the cursor and the grip slides out from under
+      // the hand. Measured rather than read from --ui-scale so it is 1, and
+      // this a no-op, if the page is ever drawn at its natural size again.
+      const raw = cfg.edge === "right" ? ev.clientX - startX : startX - ev.clientX;
+      const delta = raw / uiScale();
+      const w = Math.round(Math.min(cfg.max, Math.max(cfg.min, startW + delta)));
+      document.documentElement.style.setProperty(cfg.varName, `${w}px`);
+    };
+
+    const onUp = () => {
+      window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerup", onUp);
+      document.body.classList.remove("resizing");
+      grip.classList.remove("dragging");
+      const w = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue(cfg.varName), 10);
+      safeSet(`width:${id}`, String(w));
+      // The map canvas is sized in pixels, so it has to be told the viewport
+      // changed - otherwise it keeps the old width and the picture stretches.
+      resizeMaps();
+    };
+
+    grip.addEventListener("pointerdown", (ev) => {
+      ev.preventDefault();
+      startX = ev.clientX;
+      startW = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue(cfg.varName), 10) || cfg.def;
+      document.body.classList.add("resizing");
+      grip.classList.add("dragging");
+      window.addEventListener("pointermove", onMove);
+      window.addEventListener("pointerup", onUp);
+    });
+
+    grip.addEventListener("dblclick", () => {
+      document.documentElement.style.setProperty(cfg.varName, `${cfg.def}px`);
+      safeSet(`width:${id}`, String(cfg.def));
+      resizeMaps();
+    });
+  }
+}
+
+/* Both map panes, told that their box changed. */
+function resizeMaps() {
+  for (const m of maps) { try { m.resize(); } catch (e) { /* not ready yet */ } }
+}
+
+/* localStorage can throw outright - a private window, or site data blocked - so
+   a remembered width must never be able to stop the dashboard loading. */
+function safeGet(key) {
+  try { return localStorage.getItem(key); } catch (e) { return null; }
+}
+function safeSet(key, value) {
+  try { localStorage.setItem(key, value); } catch (e) { /* preference only */ }
 }
 
 /* ========================= 3. LOAD ===================================== */
@@ -441,13 +550,15 @@ async function loadData() {
                  "crossings", "idp_localities", "idp_states", "refugee_camps", "seasonal"];
   const res = await Promise.all(names.map((n) => fetch(`data/${n}.json`).then((r) => r.json())));
   names.forEach((n, i) => (state.data[n] = res[i]));
-  // boundary context layers (country outlines, state lines, IFRC Areas of Interest + IPC)
-  const [admin0, admin1, aoi] = await Promise.all([
+  // boundary context layers (country outlines, state lines, IFRC Areas of Operation + IPC)
+  const [admin0, admin1, aoi, hsps] = await Promise.all([
     fetch("data/boundaries/admin0.geojson").then((r) => r.json()),
     fetch("data/boundaries/admin1_lines.geojson").then((r) => r.json()),
     fetch("data/aoi_ipc.geojson").then((r) => r.json()),
+    fetch("data/hsps.geojson").then((r) => (r.ok ? r.json() : null)).catch(() => null),
   ]);
   state.data.admin0 = admin0; state.data.admin1 = admin1; state.data.aoi = aoi;
+  state.data.hsps = hsps;
   // ipc_areas_fs.geojson (~2 MB) is lazy-loaded on first food-security toggle
   state.endDate = Date.parse(state.data.meta.date_max);
   // Work out which country every row belongs to, once, before anything draws.
@@ -481,10 +592,26 @@ let map;                 // the primary map (always maps[0])
 let mapB = null;         // the right-hand map; built lazily, only if ever needed
 const maps = [];         // every live map, in the order they were created
 
-// Zoom lock to the Sudan + neighbours region. The top edge is 34.5°N rather
-// than the region's 32°N because Libya reaches 33.18°N: with a lower cap,
-// fitBounds() would silently clamp and never frame Libya properly.
-const REGION_BOUNDS = [[8.0, -3.0], [56.0, 34.5]];
+/* TWO DIFFERENT BOXES, and they used to be one - which is why panning out to
+   the rest of Africa was impossible without also changing where the map opens.
+
+   PAN_BOUNDS is the LOCK: how far a user may pan and zoom out. It is now the
+   whole continent, so neighbouring and coastal countries can be looked at in
+   context. The edges take in the islands as well as the mainland - Cape Verde
+   reaches 25.4°W and Mauritius 57.8°E, so a mainland-only box (17.5°W to
+   51.4°E) would clip them off - with a degree of slack so the outermost
+   coastlines are not pinned against the edge of the viewport.
+
+   HOME_BOUNDS is the VIEW: where the map points with no country selected. That
+   stays the operational region, because opening on the whole continent would
+   push Sudan down to a thumbnail and bury the detail this dashboard exists to
+   show. Widening the lock is not the same as changing the subject.
+
+   HOME_BOUNDS's top edge is 34.5°N rather than the region's 32°N because Libya
+   reaches 33.18°N: with a lower cap, fitBounds() would silently clamp and never
+   frame Libya properly. */
+const PAN_BOUNDS  = [[-26.0, -37.0], [64.0, 39.0]];
+const HOME_BOUNDS = [[8.0, -3.0], [56.0, 34.5]];
 
 /* ---- Talking to Mapbox --------------------------------------------------
 
@@ -538,9 +665,10 @@ function mapboxUrl(url, token) {
   return sign(`/v4/${rest}.json?secure`);
 }
 
-/* Create one map on the IFRC GO basemap, locked to the Sudan and neighbours
-   region so a user cannot accidentally pan away to Europe. Resolves once the
-   style has loaded, because layers cannot be added before then. */
+/* Create one map on the IFRC GO basemap, locked to Africa so a user cannot
+   accidentally pan away to Europe, but opening on the operational region.
+   Resolves once the style has loaded, because layers cannot be added before
+   then. */
 function initMap(containerId) {
   const basemap = window.BASEMAP || {};
   const m = new maplibregl.Map({
@@ -549,8 +677,10 @@ function initMap(containerId) {
     transformRequest: (url) => ({ url: mapboxUrl(url, basemap.token) }),
     center: [29.5, 15.2],
     zoom: 4.35,
-    minZoom: 3,
-    maxBounds: REGION_BOUNDS,
+    // 2.5, not 3: at zoom 3 a short viewport cannot fit Africa's 76 degrees of
+    // latitude, so the new lock would be unreachable from inside the old floor.
+    minZoom: 2.5,
+    maxBounds: PAN_BOUNDS,
     attributionControl: { compact: true },
   });
   m.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
@@ -590,25 +720,32 @@ function addLayers(m) {
     paint: { "line-color": COLOR_ACCENT, "line-width": 1.8 },
   });
 
-  // ---- boundary context: state lines, country outlines, IFRC Areas of Interest ----
+  // ---- boundary context: state lines, country outlines, IFRC Areas of Operation ----
   m.addSource("admin1lines", { type: "geojson", data: state.data.admin1 || empty() });
   m.addLayer({
     id: "admin1-line", type: "line", source: "admin1lines",
     paint: { "line-color": "#bfc4cb", "line-width": 0.6, "line-dasharray": [2, 2] },
   });
   m.addSource("aoi", { type: "geojson", data: empty() });
+  /* OUTLINE ONLY. This fill is deliberately invisible and is deliberately still
+     here: it is the click target for the area popup (a line layer only catches
+     clicks within a couple of pixels of the edge, so without it the popup would
+     be unreachable everywhere except on the boundary itself). The IPC phase it
+     used to be shaded by is still read - and still named, in the popup - it is
+     just no longer painted, because a per-phase fill made the Areas of
+     Operation look like fourteen different kinds of thing. */
   m.addLayer({
     id: "aoi-fill", type: "fill", source: "aoi",
-    paint: { "fill-color": ["get", "ipc_color"], "fill-opacity": 0.5 },
+    paint: { "fill-color": "rgba(0,0,0,0)", "fill-opacity": 0 },
   });
   m.addLayer({
     id: "aoi-line", type: "line", source: "aoi",
-    paint: { "line-color": COLOR_EVENT, "line-width": 2.4 },
+    paint: { "line-color": COLOR_EVENT, "line-width": 1.2 },
   });
   /* The national wash. About two-thirds of tagged reporting names no place
      ("shelter needs remain acute across Chad"), and that reporting is real. It
      shades the whole country in NEUTRAL GREY, darker where there is more of
-     it. Grey deliberately: the five pillar colours belong to the bands, so a
+     it. Grey deliberately: the pillar colours belong to the bands, so a
      colour on this map always names one pillar and the grey always means
      "reported, but not to a place". */
   m.addSource("admin0fill", { type: "geojson", data: state.data.admin0 || empty(),
@@ -632,15 +769,30 @@ function addLayers(m) {
      and "flooding somewhere in Sudan" are different findings and one bubble in
      the middle of the country said the same thing for both.
 
-     THE OVERLAY RULE. The five pillars are meant to be read TOGETHER: put
-     hazards up, add vulnerabilities, then see whether coping is reported in
-     the same places. So they are five independent layers, and each draws a
-     band inset one step further from the boundary than the last. Bands never
-     blend, so every colour still means exactly one pillar, and an area
-     wearing three bands is an area where three pillars converge.
+     DRAWN EXACTLY LIKE THE IPC CHOROPLETH: a solid fill and a thin dark
+     hairline on the admin area, and NOTHING ELSE ON THE EDGE. That last clause
+     is the whole lesson of this layer's history.
+
+     WHAT MADE IT LOOK BLOBBY WAS NEVER THE GEOMETRY. The pillars used to draw
+     line bands inset from the boundary with line-offset, one step further
+     per pillar. line-offset is measured in PIXELS, and at the zoom where a
+     Sudanese state fills the screen one pixel is two to five kilometres - so an
+     offset of 3.5 to 14px pushed the outline ten to seventy kilometres off the
+     boundary, rounding every corner and doubling every edge. The polygons
+     underneath were fine all along: the areas this layer draws carry about 27
+     vertices per 100km of edge, against 22 for the IPC areas beside them.
+     Simplification runs at 550m, a fifth of a pixel at that zoom, and cannot
+     bulge anything.
+
+     SO CONVERGENCE MOVED OFF THE EDGE. The pillars are still meant to be
+     read together, but an area now shows the HIGHEST-PRECEDENCE pillar reported
+     on it and says the rest in its popup, which lists every pillar with its
+     tags and counts. Trying to say "three pillars converge here" in the outline
+     is what kept the layer unreadable for anyone trying to see where anything
+     was at all.
 
      One source holds all 336 polygons and is set once. What each pillar shows
-     on it is carried by FEATURE STATE rather than by five copies of the
+     on it is carried by FEATURE STATE rather than by four copies of the
      geometry - see renderThemes().
 
      SEEDED FROM WHAT IS ALREADY LOADED, and this is not optional. Every other
@@ -654,8 +806,8 @@ function addLayers(m) {
   m.addSource("areas", {
     type: "geojson", data: state.data.areas || empty(), promoteId: "id",
   });
-  // A faint wash under the bands, so a highlighted area reads as filled in
-  // rather than merely outlined. It takes the leading pillar's colour.
+  // The fill, in the leading pillar's colour. Keeps the id "area-wash" because
+  // the popup is bound to it; it is no longer a wash in anything but name.
   m.addLayer({
     id: "area-wash", type: "fill", source: "areas",
     paint: {
@@ -663,18 +815,17 @@ function addLayers(m) {
       "fill-opacity": ["coalesce", ["feature-state", "wash"], 0],
     },
   });
-  DIM_ORDER.forEach((dim, i) => {
-    m.addLayer({
-      id: `theme-band-${dim}`, type: "line", source: "areas",
-      layout: { "line-join": "round" },
-      paint: {
-        "line-color": DIM_META[dim].color,
-        // one step further inside the boundary for each pillar
-        "line-offset": -(i * BAND_STEP),
-        "line-width": ["coalesce", ["feature-state", `w_${dim}`], 0],
-        "line-opacity": ["coalesce", ["feature-state", `o_${dim}`], 0],
-      },
-    });
+  /* The hairline that makes a fill read as a place rather than a smudge - the
+     same one IPC's areas get. Its opacity is on feature state, NOT a constant:
+     an outline drawn on all 245 areas would put a permanent mesh over the map
+     and break the rule that admin levels are colourless until a pillar asks
+     for them. Only a lit area gets an edge. */
+  m.addLayer({
+    id: "area-line", type: "line", source: "areas",
+    paint: {
+      "line-color": "#0e1116", "line-width": 0.5,
+      "line-opacity": ["coalesce", ["feature-state", "edge"], 0],
+    },
   });
 
   /* ---- water ------------------------------------------------------------
@@ -810,14 +961,34 @@ function addLayers(m) {
     },
   });
 
+  // ---- humanitarian service points ----
+  // Drawn as a ring whose size grows with the number of services offered, so a
+  // district doing eight things reads as busier than one doing one.
+  m.addSource("hsps", { type: "geojson", data: empty() });
+  m.addLayer({
+    id: "hsp-dots", type: "circle", source: "hsps",
+    paint: {
+      "circle-radius": ["interpolate", ["linear"], ["get", "n_services"], 1, 5, 11, 12],
+      "circle-color": COLOR_HSP,
+      "circle-opacity": 0.75,
+      "circle-stroke-color": WHITE, "circle-stroke-width": 1.6,
+    },
+  });
+
   // ---- border crossings ----
   m.addSource("crossings", { type: "geojson", data: empty() });
   m.addLayer({
     id: "crossing-dots", type: "circle", source: "crossings",
+    /* THE SAME DOT THE TOGGLE SHOWS: white, one thin muted ring, 10px across -
+       .dot-swatch in app.css to the pixel. A crossing used to swell to a red
+       disc on dates when people moved through it, which meant the legend's dot
+       and the map's dot were two different marks and neither one was "a border
+       crossing". Whether a corridor is moving today is now said in the popup,
+       where it can be said in people rather than in radius. */
     paint: {
-      "circle-radius": ["case", ["get", "active"], 7, 4.5],
-      "circle-color": ["case", ["get", "active"], COLOR_EVENT, WHITE],
-      "circle-stroke-color": COLOR_INK, "circle-stroke-width": 1.4,
+      "circle-radius": 5,
+      "circle-color": WHITE,
+      "circle-stroke-color": COLOR_MUTED, "circle-stroke-width": 1,
     },
   });
   m.addLayer({
@@ -878,11 +1049,28 @@ function addLayers(m) {
   popup(m, "crossing-dots", (p) => `<b>${p.name}</b><br>Crossing to ${p.country}<br>
     ${p.active ? `<b style="color:${COLOR_EVENT}">Active corridor</b> — ${p.flowLabel} people moved (cumulative)` : "No recorded movement at this date"}`, "Border crossing");
   popup(m, "ipc-fill", (p) => `<b>${p.area}</b><br>IPC <b>Phase ${p.ph}</b>${p.fam ? ` · <b style="color:${COLOR_ACCENT}">Famine (P5)</b>` : ""}<br>
-    <b>${Math.round(p.p3 * 100)}%</b> in Phase 3+ (Crisis or worse)<br><span style="color:${COLOR_MUTED}">IPC analysis via IPC MCP</span>`, "Food security (IPC)");
-  popup(m, "aoi-fill", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.ipc_country || ""})</span><br>
-    <b style="color:${COLOR_EVENT}">IFRC Area of Interest</b><br>
-    ${p.ipc_phase ? `IPC <b>Phase ${p.ipc_phase}</b> — <b>${Math.round((p.ipc_p3 || 0) * 100)}%</b> in Phase 3+
-      <span style="color:${COLOR_MUTED}">(${p.ipc_n_phase3plus}/${p.ipc_n_areas} sub-areas)</span>` : `<span style="color:${COLOR_MUTED}">No current IPC analysis</span>`}`, "IFRC area of interest");
+    ${p.p3 != null ? `<b>${Math.round(p.p3 * 100)}%</b> in Phase 3+ (Crisis or worse)<br>` : ""}
+    ${sourceLine(p.src)}`, "Food security");
+  popup(m, "hsp-dots", (p) => {
+    const services = (typeof p.services === "string" ? JSON.parse(p.services) : p.services) || [];
+    return `<b>${escapeHTML(p.place)}</b> <span style="color:${COLOR_MUTED}">(${escapeHTML(p.country || "")})</span><br>
+      <b>${p.n_services}</b> service${p.n_services === 1 ? "" : "s"} offered in this district<br>
+      <span style="color:${COLOR_MUTED}">${services.map(escapeHTML).join(" · ")}</span><br>
+      <span style="color:${COLOR_MUTED}">District-level: the source publishes no site coordinates.</span><br>
+      ${sourceLine("kobo", "reported " + (p.date_reported || ""))}`;
+  }, "Humanitarian service points");
+  /* WHERE IFRC WORKS, AND NOTHING ELSE. This bubble used to go on to report the
+     worst IPC phase inside the area and the share of its sub-areas in Phase 3+.
+     That is a food-security finding; the IPC layer two rows up in the layer
+     control exists to say it, says it per area rather than per operation, and
+     says it in IPC's own colours. Repeating it here made an IFRC operational
+     boundary read as an IPC classification of its own - the same confusion the
+     per-phase fill on this layer used to cause before it was taken off.
+
+     The joined phase is still computed and still in the file (see
+     s06_mcp_layers.build_aoi); it is simply not this layer's to tell. */
+  popup(m, "aoi-fill", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.country || ""})</span><br>
+    <b style="color:${COLOR_EVENT}">IFRC Area of Operation</b>`, "IFRC area of operation");
 
   // Every layer has now said what it would show. From here the registry is
   // closed, and one handler per map serves all of them from a single bubble.
@@ -910,7 +1098,7 @@ function hoverBubble(m) {
 /* ===================== ONE BUBBLE, NOT FIVE =============================
  * The layers on this map deliberately sit on top of each other: a state can
  * carry a hazard band, a vulnerability band, an IPC phase, IDP figures and a
- * river, all at the same point. Giving each its own popup meant five bubbles
+ * river, all at the same point. Giving each its own popup meant several bubbles
  * stacked on one another, four of them unreadable.
  *
  * So nothing binds its own popup. Each layer REGISTERS what it would say, and
@@ -1116,7 +1304,7 @@ function renderEventBanner() {
 
 // small per-dimension offsets so bubbles of different dimensions don't fully overlap
 const DIM_OFFSET = { hazard: [0, 0], vulnerability: [0.55, 0.35], coping: [-0.55, 0.35],
-                     need: [0.55, -0.35], movement_pattern: [-0.55, -0.35] };
+                     need: [0.55, -0.35] };
 
 /* Theme bubbles: for every tag the user ticked, how many times was it
    mentioned in this month of reporting, per country? A bigger bubble means
@@ -1188,17 +1376,21 @@ function renderThemes() {
   const areaStates = {};
   for (const [areaId, dims] of Object.entries(byArea)) {
     const st = {};
-    let top = null;
-    for (const [dim, count] of Object.entries(dims)) {
-      // Band thickness grows with mentions, as the square root so that a
-      // place reported ten times over is not drawn ten times as thick.
-      st[`w_${dim}`] = Math.max(1.6, Math.min(7, 1.2 + Math.sqrt(count) * 0.9));
-      st[`o_${dim}`] = 0.95;
-      if (!top || count > top[1]) top = [dim, count];
-    }
+    /* WHICH PILLAR OWNS THE FILL: the first one present in DIM_ORDER, not the
+       most-mentioned one. The workflow this map is for is "put hazards up, add
+       vulnerabilities, then look for coping in the same places" - and ranking by
+       count breaks it, because adding a second pillar would recolour areas that
+       are already on screen the moment its mentions overtook the first. A fixed
+       precedence means a hazard area stays hazard-red as more pillars go on. */
+    const top = DIM_ORDER.find((d) => dims[d] != null) || null;
     if (top) {
-      st.topColor = DIM_META[top[0]].color;
-      st.wash = Math.max(0.07, Math.min(0.3, 0.05 + Math.sqrt(top[1]) * 0.03));
+      st.topColor = DIM_META[top].color;
+      /* Opacity still carries volume, but over a NARROW band that starts where
+         a colour is already unmistakable. The old floor of 0.07 is what made a
+         lightly-reported area indistinguishable from an empty one; IPC sits at
+         a flat 0.6 and is legible everywhere, so this brackets that. */
+      st.wash = Math.max(0.5, Math.min(0.72, 0.46 + Math.sqrt(dims[top]) * 0.05));
+      st.edge = 0.55;
     }
     areaStates[areaId] = st;
   }
@@ -1454,7 +1646,13 @@ function monthTagTotals(dim, mk) {
 
 /* Plain-English findings for the current date, worked out on the spot: the
    fastest-growing outflow, the direction of returns and of internal
-   displacement, and the most-reported hazard and need this month. */
+   displacement.
+
+   All three are POPULATION FIGURES, read from the same series the headline row
+   and the Movement trends graph read. The panel used to end with the month's
+   most-reported hazard and top need, which are mention counts from the
+   documents - a different unit answering a different question, and already
+   answered better by Top reported hazards and by the theme panel. */
 function renderInsights() {
   const t = state.current, el = $("#insight-list");
   const items = [];
@@ -1478,13 +1676,6 @@ function renderInsights() {
   if (iNow && iPrev && Math.abs(iNow - iPrev) > iNow * 0.02)
     items.push({ ico: iNow > iPrev ? "⚠" : "↩", good: iNow < iPrev,
       html: `Internal displacement ${iNow > iPrev ? "rising" : "falling"}: <b>${fmtNum(iNow)}</b> IDPs (${iNow > iPrev ? "+" : "−"}${fmtNum(Math.abs(iNow - iPrev))} since ${fmtDate(t - 90 * DAY)}).` });
-  // dominant hazard + need this month
-  const mk = monthKey(t);
-  const hz = monthTagTotals("hazard", mk)[0];
-  if (hz) items.push({ ico: "🔥", html: `Most-reported hazard this month: <b>${hz[0].replace(/_/g, " ")}</b> (${hz[1]} mentions).` });
-  const nd = monthTagTotals("need", mk)[0];
-  if (nd) items.push({ ico: "📦", html: `Top need in the reporting: <b>${nd[0].replace(/_/g, " ")}</b> (${nd[1]} mentions).` });
-
   el.innerHTML = items.length
     ? items.map((i) => `<div class="insight ${i.good ? "good" : ""}"><span class="ico">${i.ico}</span><span>${i.html}</span></div>`).join("")
     : `<div class="panel-note">${filtered()
@@ -1586,12 +1777,28 @@ function highlight(text, q) {
   return safe.replace(re, (m) => `<mark>${m}</mark>`);
 }
 
+/* THE ONE WAY THE TIMELINE MOVES. Four things ask for a different date - the
+   slider, the play loop, a month link in the insights panel, and a click on the
+   Movement trends graph - and every one of them has to do the same three
+   things: set the date, put the slider where the date is, and redraw. Written
+   out four times it is four chances for the slider to end up saying one date
+   while the map shows another, so it is written once.
+
+   Days, not milliseconds: the slider's resolution is a day, so a date that is
+   not on a day boundary would set a slider position that rounds back to a
+   different date - and the next drag would jump. */
+function setCurrentDate(t) {
+  const days = Math.round((clamp(t, START, state.endDate) - START) / DAY);
+  state.current = START + days * DAY;
+  $("#time-slider").value = days;
+  renderAll();
+}
+
+function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
+
 /* Move the timeline to the first day of a month and redraw everything. */
 function goToMonth(mk) {
-  const t = Math.min(Math.max(Date.parse(mk + "-01"), START), state.endDate);
-  state.current = t;
-  $("#time-slider").value = Math.round((t - START) / DAY);
-  renderAll();
+  setCurrentDate(Date.parse(mk + "-01"));
 }
 
 /* A small bar chart of the six most-mentioned hazards this month. */
@@ -1643,10 +1850,49 @@ function lastDateOnOrBefore(series, t) {
 }
 
 /* IPC food-insecurity map: show the analysis that was current on this date. */
+/* Food insecurity, for every country in scope rather than Sudan alone.
+
+   Each country is a separate file and keeps its own analysis calendar - IPC
+   redraws its units per round and no two countries publish on the same date - so
+   the period in effect is worked out PER COUNTRY at the current timeline date and
+   the results are concatenated. Showing one global period would blank every
+   country that had not published in that particular month. */
 function renderFoodsec() {
-  if (!state.showFoodsec || !state.data.ipc) { setSource("ipc", empty()); return; }
-  const d = ipcPeriodAt(state.current);
-  setSource("ipc", d ? filterFC(state.data.ipc.periods[d]) : empty());
+  if (!state.showFoodsec) { setSource("ipc", empty()); return; }
+  const scope = scopeCountries();
+  let feats = [];
+  for (const [iso3, payload] of Object.entries(state.data.ipcByCountry || {})) {
+    const country = ISO3_TO_COUNTRY[iso3];
+    if (scope.size && country && !scope.has(country)) continue;
+    const d = ipcPeriodAt(state.current, payload);
+    if (d && payload.periods[d]) feats = feats.concat(payload.periods[d].features);
+  }
+  setSource("ipc", { type: "FeatureCollection", features: feats });
+}
+
+/* Fetch the food-security file for each country in scope that is not loaded
+   yet. One file per country, on demand: together they are far larger than any
+   one of them, and a reader looking at Chad has no use for Sudan's polygons. */
+async function loadFoodsecForScope() {
+  state.data.ipcByCountry = state.data.ipcByCountry || {};
+  const scope = scopeCountries();
+  const wanted = COUNTRIES
+    .filter((c) => !scope.size || scope.has(c))
+    .map((c) => COUNTRY_TO_ISO3[c])
+    .filter((iso) => iso && IPC_COUNTRIES.includes(iso) && !(iso in state.data.ipcByCountry));
+  if (!wanted.length) return;
+  const loaded = await Promise.all(wanted.map((iso) =>
+    fetch(`data/ipc_fs/${iso}.geojson`)
+      .then((r) => (r.ok ? r.json() : null))
+      .catch(() => null)));
+  wanted.forEach((iso, i) => {
+    if (!loaded[i]) return;
+    // Stamp the country name each area belongs to, once, from the file it came
+    // in - no bounding-box guessing needed now that the data carries its iso3.
+    for (const fc of Object.values(loaded[i].periods))
+      for (const f of fc.features) f.properties.country = ISO3_TO_COUNTRY[iso];
+    state.data.ipcByCountry[iso] = loaded[i];
+  });
 }
 
 /* One bubble per locality (admin2) inside Sudan, sized by its IDP count. This
@@ -1756,39 +2002,184 @@ function renderCrossings() {
   setSource("crossings", { type: "FeatureCollection", features: feats });
 }
 
-/* The 14 IFRC Areas of Interest, coloured by their current IPC phase. */
+/* The 14 IFRC Areas of Operation, drawn as a uniform outline. The IPC phase
+   joined onto them is deliberately neither drawn nor named - see aoi-fill. */
+/* Service points for the countries in scope. */
+function renderHSP() {
+  if (!state.showHSP || !state.data.hsps) { setSource("hsps", empty()); return; }
+  setSource("hsps", filterFC(state.data.hsps));
+}
+
 function renderAOI() {
   setSource("aoi", state.showAOI ? filterFC(state.data.aoi) : empty());
 }
 
+/* iso3 -> the country name the rest of the dashboard uses. */
+const ISO3_TO_COUNTRY = Object.fromEntries(
+  Object.entries(COUNTRY_TO_ISO3).map(([name, iso]) => [iso, name]));
+
+/* Which countries have a food-security file to fetch. Egypt and Libya have no
+   classification from ANY source - neither IPC nor FEWS NET covers them - so
+   asking for a file would 404 on every toggle. Ethiopia is here because its
+   FEWS NET phases have been matched to the boundary library by name; IPC itself
+   has published nothing for it since 2021. */
+const IPC_COUNTRIES = ["SDN", "TCD", "CAF", "SSD", "ETH"];
+
+/* WHO PUBLISHED A NUMBER, AND WHERE TO GO AND READ IT.
+
+   A popup used to say "via IPC MCP". MCP is how this project fetches the data,
+   which is a fact about our plumbing and of no interest to a reader deciding
+   whether to trust a phase classification. What matters is who assessed it, so
+   each source is named and linked to its own site. */
+const SOURCES = {
+  ipc:     { name: "IPC",      url: "https://www.ipcinfo.org/" },
+  ch:      { name: "Cadre Harmonisé", url: "https://www.ipcinfo.org/ch/" },
+  fewsnet: { name: "FEWS NET", url: "https://fews.net/" },
+  hdx:     { name: "IOM DTM via HDX", url: "https://data.humdata.org/" },
+  unhcr:   { name: "UNHCR",    url: "https://data.unhcr.org/" },
+  excel:   { name: "IFRC operational reporting", url: "" },
+  kobo:    { name: "IFRC HSP Mapping", url: "" },
+  curated: { name: "Curated by the operation", url: "" },
+};
+
+/* One line of attribution: the publisher's name, linked where it has a site. */
+function sourceLine(key, extra) {
+  const src = SOURCES[key] || { name: key || "unknown", url: "" };
+  const label = src.url
+    ? `<a href="${src.url}" target="_blank" rel="noopener">${escapeHTML(src.name)}</a>`
+    : escapeHTML(src.name);
+  return `<span class="pp-src">${label}${extra ? " · " + escapeHTML(extra) : ""}</span>`;
+}
+
 const CAL_MONTHS = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
+
+/* WHAT EACH BAND OF THE CALENDAR MEANS, and the order the bands are read in.
+
+   Keyed on the normalised `season_type`, so one kind of season is one colour
+   in EVERY country: a reader who learns pale blue is the rains in Sudan can
+   then read Chad's strip without going back to the key. The colours themselves
+   live in app.css (--season-*) and are read from there, so the brand block
+   stays the single place colour is defined.
+
+   The order is the story the calendar tells, not the alphabet: the climate
+   first, because it drives everything under it; then the agricultural cycle in
+   the sequence it happens; then the lean season, which is the consequence; then
+   the hazards and the herds. ACAPS's own event_type is NOT used for the
+   headings - it files rainy and dry seasons under "Seasonal hazard", which
+   would put a blue band under a heading that reads as a warning. */
+const SEASON_META = {
+  Rainy:     { label: "Rainy season",   varName: "--season-rain",      fallback: "#8dcde2" },
+  Dry:       { label: "Dry season",     varName: "--season-dry",       fallback: "#ffb25b" },
+  Planting:  { label: "Planting and land preparation",
+                                        varName: "--season-planting",  fallback: "#47d7ac" },
+  Harvest:   { label: "Harvest",        varName: "--season-harvest",   fallback: "#009775" },
+  Lean:      { label: "Lean season",    varName: "--season-lean",      fallback: "#6b3a90" },
+  Hazard:    { label: "Seasonal hazard", varName: "--season-hazard",   fallback: "#d22730" },
+  Livestock: { label: "Livestock movement",
+                                        varName: "--season-livestock", fallback: "#ff8200" },
+  Other:     { label: "Unclassified",   varName: "--season-other",     fallback: "#bdbdbd" },
+};
+const SEASON_ORDER = ["Rainy", "Dry", "Planting", "Harvest", "Lean", "Hazard",
+                      "Livestock", "Other"];
+
+/* The colour of one band, read from the stylesheet so app.css stays the one
+   place the palette is defined. */
+function seasonColor(type) {
+  const meta = SEASON_META[type] || SEASON_META.Other;
+  return paletteColor(meta.varName, meta.fallback);
+}
 
 /* The seasonal calendar strip: lean, rainy and harvest bands, with the month
    the timeline is currently in highlighted. */
 function renderSeasonal() {
   const el = $("#seasonal-cal");
-  if (!el || !state.data.seasonal) return;
-  // FEWS NET publishes this calendar for Sudan, so it says nothing about a
-  // selection that leaves Sudan out. Better to say so than to show Sudan's
-  // rainy season under a heading that reads "Chad".
-  if (!countryOn(SUDAN_ONLY)) {
-    el.innerHTML = `<div class="panel-note">The seasonal calendar is published for Sudan only.
-      Add Sudan to the country filter to see it.</div>`;
-    return;
-  }
+  const data = state.data.seasonal && state.data.seasonal.countries;
+  if (!el || !data) return;
+
+  // Whichever countries are selected, in the dropdown's own order. An empty
+  // filter means no filter, so every country we hold a calendar for is shown.
+  const scope = scopeCountries();
+  const wanted = COUNTRIES.filter((c) => (scope.size === 0 || scope.has(c)) && COUNTRY_TO_ISO3[c]);
+
   const cur = new Date(state.current).getMonth();   // 0-11
-  let html = `<div class="cal-row cal-head"><span class="cal-label"></span>`;
-  for (let m = 0; m < 12; m++)
-    html += `<span class="cal-cell ${m === cur ? "cal-now" : ""}">${CAL_MONTHS[m]}</span>`;
-  html += `</div>`;
-  for (const it of state.data.seasonal.items) {
-    html += `<div class="cal-row"><span class="cal-label" title="${it.note || ""}">${it.label}</span>`;
-    for (let m = 1; m <= 12; m++) {
-      const on = it.months.includes(m);
-      html += `<span class="cal-cell ${m - 1 === cur ? "cal-now" : ""}"${on ? ` style="background:${it.color}"` : ""}></span>`;
+  let html = "";
+  let shown = 0;
+  const absent = [];
+  // The kinds of season actually on screen. The legend lists only these: a key
+  // to bands the reader cannot see is noise, and it changes with the filter.
+  const seen = new Set();
+
+  for (const country of wanted) {
+    const entry = data[COUNTRY_TO_ISO3[country]];
+    // A country FEWS NET does not cover is named rather than skipped: Egypt has
+    // crop seasons but no lean season, and Libya has a single placeholder band.
+    // Silence would read as "we did not look".
+    if (!entry || !entry.items || !entry.items.length) { absent.push(country); continue; }
+
+    shown++;
+    const src = entry.source === "acaps" ? "ACAPS" : "FEWS NET";
+    html += `<div class="cal-country">${escapeHTML(country)}
+      <span class="cal-src">${src}</span></div>`;
+
+    // ACAPS groups its events - planting, harvest, hazards - and the grouping is
+    // most of what makes it readable: a reader looks for "when is the lean
+    // season", not for the twelfth row of an undifferentiated list.
+    const groups = new Map();
+    for (const it of entry.items) {
+      const g = SEASON_META[it.season_type] ? it.season_type : "Other";
+      if (!groups.has(g)) groups.set(g, []);
+      groups.get(g).push(it);
+      seen.add(g);
     }
+    const names = [...groups.keys()].sort(
+      (a, b) => SEASON_ORDER.indexOf(a) - SEASON_ORDER.indexOf(b));
+
+    html += `<div class="cal-row cal-head"><span class="cal-label"></span>`;
+    for (let m = 0; m < 12; m++)
+      html += `<span class="cal-cell ${m === cur ? "cal-now" : ""}">${CAL_MONTHS[m]}</span>`;
     html += `</div>`;
+
+    for (const g of names) {
+      html += `<div class="cal-group">${escapeHTML(SEASON_META[g].label)}</div>`;
+      for (const it of groups.get(g)) {
+        // Everything ACAPS says about this event, in the tooltip: the sentence of
+        // explanation, the regions it applies to when it is not national, and who
+        // assessed it. That detail is the reason this calendar was asked for.
+        const bits = [];
+        if (it.note) bits.push(it.note);
+        if (it.event && it.event !== it.label) bits.push(it.event);
+        if (it.country_wide === false && (it.areas || []).length)
+          bits.push("Regions: " + it.areas.join(", "));
+        if (it.source_org) bits.push(`Source: ${it.source_org}${it.source_date ? " (" + it.source_date.slice(0, 4) + ")" : ""}`);
+        const title = escapeHTML(bits.join(" — "));
+        const partial = it.country_wide === false ? " cal-partial" : "";
+        html += `<div class="cal-row"><span class="cal-label${partial}" title="${title}">${escapeHTML(it.label)}</span>`;
+        for (let m = 1; m <= 12; m++) {
+          const on = it.months.includes(m);
+          // data-season, not an inline colour: the stylesheet decides what a
+          // rainy season looks like, and it decides it once for every country.
+          html += `<span class="cal-cell ${m - 1 === cur ? "cal-now" : ""}"${on ? ` data-season="${g}"` : ""}></span>`;
+        }
+        html += `</div>`;
+      }
+    }
   }
+
+  if (seen.size) {
+    const keys = SEASON_ORDER.filter((k) => seen.has(k)).map((k) =>
+      `<span class="cal-key"><i style="background:${seasonColor(k)}"></i>${escapeHTML(SEASON_META[k].label)}</span>`);
+    html += `<div class="cal-legend">${keys.join("")}</div>`;
+  }
+  if (absent.length)
+    html += `<div class="panel-note">No seasonal calendar published for
+      ${absent.map(escapeHTML).join(", ")}.</div>`;
+  if (shown)
+    html += `<div class="panel-note">Hover a row for the description, the regions it
+      covers and who assessed it. Source:
+      <a href="https://www.acaps.org/en/thematics/all-topics/seasonal-events-calendar"
+         target="_blank" rel="noopener">ACAPS Seasonal Events Calendar</a>.</div>`;
+  if (!shown && !absent.length)
+    html += `<div class="panel-note">No seasonal calendar for this selection.</div>`;
   el.innerHTML = html;
 }
 
@@ -1797,12 +2188,13 @@ function drawMapLayers() {
   renderFoodsec();
   renderFlows();
   renderCrossings();
+  renderHSP();
   renderIDP();
   renderIDPStates();
   renderRefugees();
   renderEvents();
   renderThemes();
-  /* The Areas of Interest used to be drawn only when their checkbox moved,
+  /* The Areas of Operation used to be drawn only when their checkbox moved,
      because they do not change with the date. They do change with the country
      filter and with the split, so they are redrawn with everything else. */
   renderAOI();
@@ -1847,58 +2239,288 @@ function renderAll() {
   renderTriggers();
   renderSeasonal();
   renderDocCount();
+  drawMovementTrends();
+  renderTrendLegend();
   $("#current-date").textContent = fmtDate(state.current);
 }
 
 /* Everything renderAll() does, plus the things that only change when a FILTER
-   changes rather than when the date does: the trend chart under the timeline
-   and, if asked, the map viewport.
+   changes rather than when the date does: the points behind the Movement
+   trends graph and, if asked, the map viewport.
 
    Fitting the map is deliberately not part of renderAll(): renderAll runs
    about eight times a second while the timeline is playing, and re-fitting the
-   camera at that rate would make the map unusable. */
+   camera at that rate would make the map unusable. Rebuilding the trend series
+   is kept out of it for the same reason - see computeTrendSeries(). */
 function applyFilters({ refit = true } = {}) {
+  computeTrendSeries();
   renderAll();
-  drawSparkline();
   if (refit) fitToSelection();
+  // Widening the country filter can bring a country into scope whose
+  // food-security file has never been fetched. Load it, then redraw that one
+  // layer - the rest of the page has already been drawn from what it had.
+  if (state.showFoodsec) loadFoodsecForScope().then(renderFoodsec);
 }
 
-/* The mini line chart under the timeline. All three series share one vertical
-   scale, so their relative sizes stay honest. Drawn with the plain HTML canvas
-   API - no charting library involved. */
-function drawSparkline() {
-  const canvas = $("#sparkline");
-  const w = (canvas.width = canvas.offsetWidth * devicePixelRatio);
-  const hpx = (canvas.height = 48 * devicePixelRatio);
+/* ---------------- the Movement trends graph ----------------------------
+ *
+ * Three population series on one pair of axes: everyone displaced, everyone
+ * who crossed a border out of Sudan, and everyone who has gone back.
+ *
+ * It used to be a 48px sparkline drawn BEHIND the timeline slider, where it
+ * was a texture rather than a chart - no scale, no year marks, no way to read
+ * a value off it, and a slider thumb sitting on top of the lines. It is now a
+ * panel of its own on the right, which leaves the timeline as just a timeline.
+ *
+ * ONE VERTICAL SCALE for all three. They are all counts of people, so plotting
+ * them against a shared axis is the only way their relative size stays honest;
+ * a second axis would let the smallest series be drawn as tall as the biggest.
+ * ------------------------------------------------------------------------ */
+
+/* The three lines, in the order they are drawn and listed. Colours are the
+   ones the map already uses for the same idea: orange leaving, green
+   returning. Checked as a set for colour blindness - the closest pair is
+   10.4 apart - but the orange is pale against white, so identity is carried
+   by the labelled key below the graph as well as by the colour. */
+const TREND_SERIES = [
+  { metric: "total_displaced", color: COLOR_OUT, label: "Total displaced" },
+  { metric: "cumulative_arrivals", color: COLOR_ACCENT, label: "Fled across a border" },
+  { metric: "returns_to_sudan_total", color: COLOR_IN, label: "Returns to Sudan" },
+];
+
+/* Work out the points and cache them on state.
+
+   Kept apart from the drawing because statSeries() is cheap unfiltered and
+   expensive under a filter - it rebuilds a series by asking statAt() for every
+   date any corridor reported on. The graph is redrawn on every timeline move,
+   about eight times a second while the story plays; the points behind it only
+   change when a FILTER changes, so that is when this runs. */
+function computeTrendSeries() {
+  const series = TREND_SERIES.map((s) => ({ ...s, points: statSeries(s.metric) }));
+  state.trend = {
+    series,
+    vmax: Math.max(...series.flatMap((s) => s.points.map((p) => p.value)), 1),
+  };
+}
+
+/* Round a maximum up to something a person would say out loud, so the top of
+   the scale reads "13M" rather than "12,994,517".
+
+   TWO significant figures, not one. A ladder of round numbers - 1, 2, 5, 10 -
+   would push a peak of 13M up to a scale of 15M and spend a fifth of the
+   panel's height on empty air, which is a lot of height in a panel this size.
+   Rounding to the second digit costs nothing in readability and keeps the
+   lines as tall as they can be. */
+function niceMax(v) {
+  const mag = Math.pow(10, Math.floor(Math.log10(v)) - 1);
+  return Math.ceil(v / mag) * mag;
+}
+
+/* THE PLOT BOX, in CSS pixels, and the one place its shape is written down.
+   The drawing multiplies these by the device pixel ratio; the click handler
+   uses them as they are, because a click arrives in CSS pixels. Both have to
+   agree about where the box starts and ends, or clicking the graph would set a
+   date other than the one under the cursor - so neither gets its own copy.
+
+   The gutters are what pay for the axes. Left holds the tick figures and the
+   rotated axis title; bottom holds the year marks and "Date". The 132px of plot
+   between them is exactly the height the lines had when the panel was 132px
+   tall and had no axes at all: the labels were added to the canvas, not taken
+   out of the chart. */
+const TREND_CSS_H = 176;
+const TREND_PAD = { t: 10, r: 4, b: 34, l: 46 };
+const TREND_TICKS = 4;                     // gridlines above zero
+
+/* Where the plot box sits across a canvas of this width. */
+function trendBox(canvas) {
+  return { x0: TREND_PAD.l, x1: canvas.offsetWidth - TREND_PAD.r };
+}
+
+/* A click's x, in CSS pixels, back into the date standing at it - xAt() run
+   backwards. Clamped, so a click in either gutter takes the nearer end of the
+   timeline rather than a date off the end of the war. */
+function dateAtTrendX(canvas, cssX) {
+  const { x0, x1 } = trendBox(canvas);
+  const f = clamp((cssX - x0) / Math.max(x1 - x0, 1), 0, 1);
+  return START + f * (state.endDate - START);
+}
+
+/* Draw the graph from the cache. Plain canvas - no charting library.
+
+   Styled the way seaborn draws a whitegrid: soft gridlines in both directions,
+   figures on both axes, a named axis on each, and no top or right spine. The
+   panel used to carry a single number - the top of the scale - floating
+   unlabelled above the lines, which gave the shape a ceiling but no way to read
+   a value at any other height. */
+function drawMovementTrends() {
+  const canvas = $("#movement-trends");
+  if (!canvas || !canvas.offsetWidth || !state.endDate) return;
+  const dpr = devicePixelRatio || 1;
+  const w = (canvas.width = canvas.offsetWidth * dpr);
+  const h = (canvas.height = TREND_CSS_H * dpr);
+  canvas.style.height = TREND_CSS_H + "px";
   const ctx = canvas.getContext("2d");
+  ctx.clearRect(0, 0, w, h);
+
+  const box = trendBox(canvas);
+  const x0 = box.x0 * dpr, x1 = box.x1 * dpr;
+  const y0 = TREND_PAD.t * dpr, y1 = h - TREND_PAD.b * dpr;
   const span = state.endDate - START;
-  // all series share one scale so relative magnitudes stay honest
-  const SERIES = [
-    ["total_displaced", COLOR_OUT],
-    ["cumulative_arrivals", COLOR_ACCENT],
-    ["returns_to_sudan_total", COLOR_IN],
-  ];
-  const drawn = SERIES.map(([metric, color]) => [statSeries(metric), color]);
-  const vmax = Math.max(...drawn.flatMap(([s]) => s.map((p) => p.value)), 1);
-  for (const [s, color] of drawn) {
-    if (s.length < 2) continue;
-    ctx.strokeStyle = color;
-    ctx.lineWidth = 1.6 * devicePixelRatio;
+  const vmax = niceMax(state.trend.vmax);
+  const xAt = (t) => x0 + ((t - START) / span) * (x1 - x0);
+  const yAt = (v) => y1 - (v / vmax) * (y1 - y0);
+
+  ctx.font = `${9.5 * dpr}px "Open Sans", Arial, sans-serif`;
+  ctx.textBaseline = "alphabetic";
+
+  const GRID = "rgba(1,30,65,.10)";
+  const SPINE = "rgba(1,30,65,.28)";
+
+  // ---- horizontal gridlines, and the figure each one stands for ---------
+  ctx.lineWidth = 1 * dpr;
+  for (let i = 0; i <= TREND_TICKS; i++) {
+    const v = (vmax / TREND_TICKS) * i;
+    const y = Math.round(yAt(v)) + 0.5;
+    if (i > 0) {                           // zero is the spine, drawn below
+      ctx.strokeStyle = GRID;
+      ctx.beginPath(); ctx.moveTo(x0, y); ctx.lineTo(x1, y); ctx.stroke();
+    }
+    ctx.fillStyle = COLOR_MUTED;
+    ctx.textAlign = "right";
+    ctx.fillText(v ? fmtNum(v) : "0", x0 - 6 * dpr, y + 3.4 * dpr);
+  }
+
+  // ---- year marks: gridline above, figure below -------------------------
+  /* The axis starts on 15 April 2023, so the loop below - which wants 1 January
+     - can never label the origin, and with real axes an unlabelled end reads as
+     a gap. So 2023 is written on the spine itself, left-aligned to stay inside
+     the box, and with no gridline of its own because the spine is already the
+     line it would draw. */
+  ctx.fillStyle = COLOR_MUTED;
+  ctx.textAlign = "left";
+  ctx.fillText("2023", x0, y1 + 14 * dpr);
+
+  const lastYear = new Date(state.endDate).getFullYear();
+  for (let y = 2024; y <= lastYear; y++) {
+    const t = Date.parse(`${y}-01-01`);
+    if (t < START || t > state.endDate) continue;
+    const x = Math.round(xAt(t)) + 0.5;
+    ctx.strokeStyle = GRID;
+    ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y1); ctx.stroke();
+    ctx.fillStyle = COLOR_MUTED;
+    ctx.textAlign = "center";
+    ctx.fillText(String(y), x, y1 + 14 * dpr);
+  }
+
+  // ---- the spines. Left and bottom only, seaborn-despined ---------------
+  ctx.strokeStyle = SPINE;
+  ctx.beginPath();
+  ctx.moveTo(Math.round(x0) + 0.5, y0);
+  ctx.lineTo(Math.round(x0) + 0.5, Math.round(y1) + 0.5);
+  ctx.lineTo(x1, Math.round(y1) + 0.5);
+  ctx.stroke();
+
+  // ---- what each axis is counting ---------------------------------------
+  ctx.fillStyle = COLOR_MUTED;
+  ctx.textAlign = "center";
+  ctx.fillText("Date", (x0 + x1) / 2, h - 4 * dpr);
+  ctx.save();                              // the y title reads bottom-to-top
+  ctx.translate(11 * dpr, (y0 + y1) / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText("People", 0, 0);
+  ctx.restore();
+
+  // ---- the defining events, as ticks standing on the zero line ----------
+  ctx.fillStyle = "rgba(200,110,0,.8)";
+  for (const ev of (state.data.events || []).filter((e) =>
+    e.source === "curated" && e.severity >= 4 && (e.country === "Regional" || countryOn(e.country)))) {
+    const t = Date.parse(ev.date);
+    if (t < START || t > state.endDate) continue;
+    ctx.fillRect(Math.round(xAt(t)), y1 - 5 * dpr, 1.5 * dpr, 5 * dpr);
+  }
+
+  // ---- where the timeline is standing -----------------------------------
+  // The graph no longer sits under the slider, so it has to say for itself
+  // which date the rest of the page is showing. Drawn under the lines.
+  const xNow = Math.round(xAt(state.current)) + 0.5;
+  ctx.strokeStyle = "rgba(1,30,65,.45)";
+  ctx.lineWidth = 1 * dpr;
+  ctx.setLineDash([3 * dpr, 3 * dpr]);
+  ctx.beginPath(); ctx.moveTo(xNow, y0 - 4 * dpr); ctx.lineTo(xNow, y1); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // ---- the three lines ---------------------------------------------------
+  for (const s of state.trend.series) {
+    if (s.points.length < 2) continue;
+    ctx.strokeStyle = s.color;
+    ctx.lineWidth = 2 * dpr;
+    ctx.lineJoin = "round";
     ctx.beginPath();
-    s.forEach((p, i) => {
-      const x = ((Date.parse(p.date) - START) / span) * w;
-      const y = hpx - (p.value / vmax) * (hpx - 8) - 4;
+    s.points.forEach((p, i) => {
+      const x = xAt(Date.parse(p.date)), y = yAt(p.value);
       i ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
     });
     ctx.stroke();
   }
-  // defining events as ticks along the bottom
-  ctx.fillStyle = "rgba(200,110,0,.85)";
-  for (const ev of state.data.events.filter((e) =>
-    e.source === "curated" && e.severity >= 4 && (e.country === "Regional" || countryOn(e.country)))) {
-    const x = ((Date.parse(ev.date) - START) / span) * w;
-    ctx.fillRect(x, hpx - 6 * devicePixelRatio, 1.5 * devicePixelRatio, 6 * devicePixelRatio);
+
+  // ---- a dot on each line at the current date ----------------------------
+  // This is what ties a line to its row in the key underneath, which carries
+  // the figure. The white ring keeps two dots apart where the lines cross.
+  for (const s of state.trend.series) {
+    const v = statAt(s.metric, state.current);
+    if (!v) continue;
+    ctx.beginPath();
+    ctx.arc(xNow, yAt(v), 3.2 * dpr, 0, Math.PI * 2);
+    ctx.fillStyle = s.color;
+    ctx.fill();
+    ctx.lineWidth = 1.6 * dpr;
+    ctx.strokeStyle = WHITE;
+    ctx.stroke();
   }
+}
+
+/* CLICKING THE GRAPH MOVES THE WHOLE DASHBOARD. The graph draws the war end to
+   end while every other panel shows a single date, so it is the one place a
+   reader can SEE the moment they want - the bend where returns start, the step
+   where a corridor opened - and until now the only way to get to that moment
+   was to hunt for it with the slider.
+
+   The story is stopped first. A click during playback would otherwise be
+   overwritten by the play timer 120ms later, which reads as the click having
+   done nothing at all. */
+function initTrendsClick() {
+  const canvas = $("#movement-trends");
+  if (!canvas) return;
+  canvas.addEventListener("click", (e) => {
+    if (!state.endDate) return;
+    stopPlaying();
+    // Worked out from the cursor and the canvas's own box rather than taken
+    // from e.offsetX, because the page is drawn smaller than it is laid out
+    // (see uiScale) and offsetX is reported at the size it is DRAWN, while
+    // dateAtTrendX measures against offsetWidth, which is the size it is laid
+    // out at. Straight from offsetX the click landed a fifth of the war early.
+    const box = canvas.getBoundingClientRect();
+    const scale = box.width / canvas.offsetWidth || 1;
+    setCurrentDate(dateAtTrendX(canvas, (e.clientX - box.left) / scale));
+  });
+}
+
+/* The key under the graph: one row per line, each carrying its figure for the
+   date the timeline is on. The figures are the point of it. Colour alone would
+   leave the orange series - the palest of the three against white - identified
+   by something a reader may not be able to see, and would leave the graph a
+   shape with no numbers anywhere on it. */
+function renderTrendLegend() {
+  const el = $("#trend-key");
+  if (!el) return;
+  el.innerHTML = state.trend.series.map((s) => {
+    const v = statAt(s.metric, state.current);
+    return `<div class="tk-row">
+      <span class="tk-line" style="background:${s.color}"></span>
+      <span class="tk-label">${s.label}</span>
+      <span class="tk-val">${v ? fmtNum(v) : "–"}</span>
+    </div>`;
+  }).join("");
 }
 
 /* ========================= 6. TIMELINE ================================= */
@@ -1911,8 +2533,7 @@ function initTimeline() {
   const days = Math.round((state.endDate - START) / DAY);
   slider.max = days;
   slider.addEventListener("input", () => {
-    state.current = START + Number(slider.value) * DAY;
-    renderAll();
+    setCurrentDate(START + Number(slider.value) * DAY);
   });
 
   // year ticks
@@ -1925,24 +2546,31 @@ function initTimeline() {
   }
 
   const play = $("#play-btn");
-  let timer = null;
   play.addEventListener("click", () => {
-    state.playing = !state.playing;
-    play.textContent = state.playing ? "❚❚" : "▶";
-    if (state.playing) {
-      if (Number(slider.value) >= days) slider.value = 0;
-      timer = setInterval(() => {
-        const v = Number(slider.value) + 4;
-        if (v >= days) {
-          slider.value = days;
-          state.playing = false; play.textContent = "▶";
-          clearInterval(timer);
-        } else slider.value = v;
-        state.current = START + Number(slider.value) * DAY;
-        renderAll();
-      }, 120);
-    } else clearInterval(timer);
+    if (state.playing) { stopPlaying(); return; }
+    state.playing = true;
+    play.textContent = "❚❚";
+    if (Number(slider.value) >= days) slider.value = 0;
+    playTimer = setInterval(() => {
+      const v = Number(slider.value) + 4;
+      if (v >= days) { slider.value = days; stopPlaying(); }
+      else slider.value = v;
+      setCurrentDate(START + Number(slider.value) * DAY);
+    }, 120);
   });
+}
+
+/* The play loop's handle, lifted out of initTimeline() so that anything which
+   moves the timeline by hand can stop the story first. Without that, clicking
+   the trends graph mid-play sets a date the timer overwrites 120ms later, and
+   the click reads as broken. */
+let playTimer = null;
+function stopPlaying() {
+  clearInterval(playTimer);
+  playTimer = null;
+  state.playing = false;
+  const play = $("#play-btn");
+  if (play) play.textContent = "▶";
 }
 
 /* ========================= 7. CONTROLS ================================= */
@@ -1969,13 +2597,15 @@ function initControls() {
   layer("#toggle-aoi", "showAOI");
   // Food security is the exception: its file is about 2 MB, so it is only
   // downloaded the first time someone asks for it.
+  $("#toggle-hsps").addEventListener("change", (e) => {
+    state.showHSP = e.target.checked;
+    renderMapLayers();
+  });
   $("#toggle-foodsec").addEventListener("change", async (e) => {
     state.showFoodsec = e.target.checked;
-    if (state.showFoodsec && !state.data.ipc) {
+    if (state.showFoodsec) {
       e.target.disabled = true;
-      state.data.ipc = await fetch("data/ipc_areas_fs.geojson").then((r) => r.json());
-      // work out which country each area sits in, once, now that we have them
-      deriveIPCCountries();
+      await loadFoodsecForScope();
       e.target.disabled = false;
     }
     renderMapLayers();
@@ -1986,7 +2616,7 @@ function initControls() {
 
 /* ---------------------------------------------------------------- dropdown
  * ONE searchable multi-select, built six times: once for the country filter
- * and once for each of the five narrative dimensions. Everything about how a
+ * and once for each of the four narrative dimensions. Everything about how a
  * filter control behaves is decided here, so all six behave identically.
  *
  * The two ways to choose, as asked for:
@@ -2145,7 +2775,7 @@ function initThemeControls() {
   for (const [dim, meta] of Object.entries(DIM_META)) {
     const tags = Object.keys(state.data.tags[dim] || {}).sort();
     if (!tags.length) continue;
-    /* activeTags is one flat set of "dimension|tag" keys shared by all five
+    /* activeTags is one flat set of "dimension|tag" keys shared by all four
        dropdowns, so each one is given a small view onto just its own slice of
        it. Select-all and Clear then act on that dimension alone. */
     const view = {
@@ -2269,7 +2899,7 @@ async function fitToSelection() {
     fitMap(maps[0], boundsFor([sel[0]]));
     fitMap(mapB, boundsFor([sel[1]]));
   } else {
-    fitMap(maps[0], sel.length ? boundsFor(sel) : REGION_BOUNDS);
+    fitMap(maps[0], sel.length ? boundsFor(sel) : HOME_BOUNDS);
   }
 }
 
@@ -2286,12 +2916,15 @@ async function fitToSelection() {
   initControls();
   initCountryFilter();
   initThemeControls();
+  initSidebarResize();
   initVoiceSearch();
-  drawSparkline();
-  window.addEventListener("resize", () => {
-    drawSparkline();
-    for (const m of maps) m.resize();
-  });
+  computeTrendSeries();
+  /* The graph is sized in pixels off its panel, and the right sidebar can be
+     resized by dragging its grip - which changes that width without any window
+     resize to listen for. Watching the canvas itself catches both. */
+  new ResizeObserver(() => drawMovementTrends()).observe($("#movement-trends"));
+  initTrendsClick();
+  window.addEventListener("resize", () => { for (const m of maps) m.resize(); });
   // open the story at the beginning
   renderAll();
 })();

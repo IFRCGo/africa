@@ -26,6 +26,9 @@ urlpatterns = [
     # Listed before data_track's "api/" so that /api/boundaries/... is matched
     # here rather than falling through to the report API.
     path("api/boundaries/", include("boundaries.urls")),
+    # Same reason: external_data owns specific paths under api/, so it is matched
+    # before data_track's catch-all include.
+    path("api/", include("external_data.urls")),
     path("api/", include("data_track.urls")),
     path("admin/", admin.site.urls),
 ]
