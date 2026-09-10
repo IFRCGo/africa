@@ -115,7 +115,10 @@ class SeasonalCalendar(models.Model):
     )
     label = models.TextField(help_text="What the season is about: 'Lean', 'Cotton', 'Sorghum'")
     season_type = models.TextField(
-        null=True, blank=True, help_text="Normalised: Lean / Harvest / Dry / Rainy / Hazard"
+        null=True, blank=True,
+        help_text="Normalised, and what the calendar strip colours by: Rainy / "
+                  "Dry / Planting / Harvest / Lean / Hazard / Livestock, or "
+                  "Other for a publisher category we have not classified.",
     )
     # ACAPS's own vocabulary, kept unflattened beside the normalised one. It is
     # finer than season_type and is what a reader recognises: "Planting and

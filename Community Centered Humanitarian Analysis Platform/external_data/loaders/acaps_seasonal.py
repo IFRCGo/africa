@@ -35,18 +35,53 @@ COUNTRY_NAMES = {
     "CAF": "Central African Republic", "ERI": "Eritrea",
 }
 
-# ACAPS's event types, mapped onto the four kinds the calendar strip colours by.
-# "Seasonal hazard" gets its own kind rather than being forced into Dry or Rainy:
-# a flood window is not a season, it is a warning, and it should not be coloured
-# as though it were part of the agricultural cycle.
+# ACAPS's vocabulary, mapped onto the kinds the calendar strip colours by.
+#
+# THE EVENT IS READ BEFORE THE EVENT_TYPE, and that ordering is the whole point.
+# ACAPS's taxonomy splits "what the climate does" from "what people plant", and
+# a rainy season lands on the climate side - which it files under the event_type
+# "Seasonal hazard", alongside Floods, Locusts and Sandstorms. Keying on the
+# event_type alone therefore typed every rainy and dry season as a hazard, and
+# the strip drew Sudan's rains in the same red as a locust infestation.
+#
+# A rainy season is not a hazard. It is the most predictable feature of the
+# agricultural year, and colouring it as a warning inverts what the calendar is
+# for. So the specific event decides first, and the event_type is the fallback.
+EVENT_TYPE_OF_EVENT = {
+    "main wet/ rainy/ monsoon season": "Rainy",
+    "2nd wet/ rainy/ monsoon season": "Rainy",
+    "dry season": "Dry",
+    "floods": "Hazard",
+    "locust/ armyworm (caterpillar)": "Hazard",
+    "sandstorms season": "Hazard",
+    "malaria": "Hazard",
+}
+
+# Planting and harvest are two stages of one cycle and are typed apart so the
+# strip can shade them as a sequence rather than as one undifferentiated block.
 SEASON_TYPE = {
     "Lean season": "Lean",
     "Harvest": "Harvest",
-    "Planting and growing": "Rainy",
+    "Planting and growing": "Planting",
     "Seasonal hazard": "Hazard",
     "Livestock": "Livestock",
     "Outbreak": "Hazard",
 }
+
+
+def _season_type(event, event_type):
+    """The normalised kind an ACAPS row belongs to, event first.
+
+    THERE IS NO SILENT DEFAULT. This used to fall back to "Dry", which is how a
+    rainy season came to be filed as a hazard and stayed that way unnoticed: a
+    wrong answer that looks like a real season is invisible. A category ACAPS
+    adds later comes out as "Other" instead, which the strip draws in grey and
+    the legend names as unclassified - visible, and obviously not a claim.
+    """
+    hit = EVENT_TYPE_OF_EVENT.get((event or "").strip().lower())
+    if hit:
+        return hit
+    return SEASON_TYPE.get((event_type or "").strip(), "Other")
 
 
 def _as_list(value):
@@ -119,7 +154,7 @@ def parse_records(records):
             "source": "acaps",
             "source_ref": str(r.get("id") or ""),
             "label": label,
-            "season_type": SEASON_TYPE.get(event_type, "Dry"),
+            "season_type": _season_type(_first(r.get("event")), event_type),
             "purpose": None,
             "event": _first(r.get("event")),
             "event_type": event_type,

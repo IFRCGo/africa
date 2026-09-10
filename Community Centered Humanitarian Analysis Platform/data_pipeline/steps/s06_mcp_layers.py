@@ -253,12 +253,12 @@ def build_foodsec():
 # ============================================================ seasonal
 # FEWS NET publishes no colours, so they are chosen here, by season type - which
 # also means a lean season is the same colour in every country.
-SEASON_COLOURS = {
-    "Lean": "#e67e22", "Harvest": "#27ae60", "Dry": "#c9a14a", "Rainy": "#3498db",
-    # A seasonal hazard is a warning, not a stage of the agricultural cycle, so it
-    # is coloured apart from the seasons rather than blended among them.
-    "Hazard": "#d22730", "Livestock": "#8d6e63",
-}
+# NO COLOUR TABLE HERE ANY MORE. It used to bake a hex into every row of
+# seasonal.json, which put the calendar's palette in a second place - so the
+# brand block in app.css was no longer "the ONE place colour is defined" that it
+# claims to be, and the strip's colours drifted away from IFRC's. The frontend
+# now colours by `season_type` from --season-* in that block, and this step
+# emits the type alone.
 
 # Which publisher a country's calendar is taken from. ACAPS wins wherever it has
 # rows: it names the crop, explains the event in a sentence, says which regions it
@@ -304,7 +304,6 @@ def build_seasonal():
                 m = 1 if m == 12 else m + 1
         entry["items"].append({
             "label": r.label, "months": months,
-            "color": SEASON_COLOURS.get(r.season_type, "#9e9e9e"),
             "note": r.description or "",
             "event": r.event, "event_type": r.event_type,
             "season_type": r.season_type, "source": r.source,

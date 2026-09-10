@@ -1974,6 +1974,42 @@ function sourceLine(key, extra) {
 
 const CAL_MONTHS = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"];
 
+/* WHAT EACH BAND OF THE CALENDAR MEANS, and the order the bands are read in.
+
+   Keyed on the normalised `season_type`, so one kind of season is one colour
+   in EVERY country: a reader who learns pale blue is the rains in Sudan can
+   then read Chad's strip without going back to the key. The colours themselves
+   live in app.css (--season-*) and are read from there, so the brand block
+   stays the single place colour is defined.
+
+   The order is the story the calendar tells, not the alphabet: the climate
+   first, because it drives everything under it; then the agricultural cycle in
+   the sequence it happens; then the lean season, which is the consequence; then
+   the hazards and the herds. ACAPS's own event_type is NOT used for the
+   headings - it files rainy and dry seasons under "Seasonal hazard", which
+   would put a blue band under a heading that reads as a warning. */
+const SEASON_META = {
+  Rainy:     { label: "Rainy season",   varName: "--season-rain",      fallback: "#8dcde2" },
+  Dry:       { label: "Dry season",     varName: "--season-dry",       fallback: "#ffb25b" },
+  Planting:  { label: "Planting and land preparation",
+                                        varName: "--season-planting",  fallback: "#47d7ac" },
+  Harvest:   { label: "Harvest",        varName: "--season-harvest",   fallback: "#009775" },
+  Lean:      { label: "Lean season",    varName: "--season-lean",      fallback: "#6b3a90" },
+  Hazard:    { label: "Seasonal hazard", varName: "--season-hazard",   fallback: "#d22730" },
+  Livestock: { label: "Livestock movement",
+                                        varName: "--season-livestock", fallback: "#ff8200" },
+  Other:     { label: "Unclassified",   varName: "--season-other",     fallback: "#bdbdbd" },
+};
+const SEASON_ORDER = ["Rainy", "Dry", "Planting", "Harvest", "Lean", "Hazard",
+                      "Livestock", "Other"];
+
+/* The colour of one band, read from the stylesheet so app.css stays the one
+   place the palette is defined. */
+function seasonColor(type) {
+  const meta = SEASON_META[type] || SEASON_META.Other;
+  return paletteColor(meta.varName, meta.fallback);
+}
+
 /* The seasonal calendar strip: lean, rainy and harvest bands, with the month
    the timeline is currently in highlighted. */
 function renderSeasonal() {
@@ -1990,6 +2026,9 @@ function renderSeasonal() {
   let html = "";
   let shown = 0;
   const absent = [];
+  // The kinds of season actually on screen. The legend lists only these: a key
+  // to bands the reader cannot see is noise, and it changes with the filter.
+  const seen = new Set();
 
   for (const country of wanted) {
     const entry = data[COUNTRY_TO_ISO3[country]];
@@ -2008,14 +2047,13 @@ function renderSeasonal() {
     // season", not for the twelfth row of an undifferentiated list.
     const groups = new Map();
     for (const it of entry.items) {
-      const g = it.event_type || "Season";
+      const g = SEASON_META[it.season_type] ? it.season_type : "Other";
       if (!groups.has(g)) groups.set(g, []);
       groups.get(g).push(it);
+      seen.add(g);
     }
-    const ORDER = ["Lean season", "Planting and growing", "Harvest",
-                   "Seasonal hazard", "Livestock", "Outbreak"];
     const names = [...groups.keys()].sort(
-      (a, b) => (ORDER.indexOf(a) + 1 || 99) - (ORDER.indexOf(b) + 1 || 99));
+      (a, b) => SEASON_ORDER.indexOf(a) - SEASON_ORDER.indexOf(b));
 
     html += `<div class="cal-row cal-head"><span class="cal-label"></span>`;
     for (let m = 0; m < 12; m++)
@@ -2023,7 +2061,7 @@ function renderSeasonal() {
     html += `</div>`;
 
     for (const g of names) {
-      html += `<div class="cal-group">${escapeHTML(g)}</div>`;
+      html += `<div class="cal-group">${escapeHTML(SEASON_META[g].label)}</div>`;
       for (const it of groups.get(g)) {
         // Everything ACAPS says about this event, in the tooltip: the sentence of
         // explanation, the regions it applies to when it is not national, and who
@@ -2039,13 +2077,20 @@ function renderSeasonal() {
         html += `<div class="cal-row"><span class="cal-label${partial}" title="${title}">${escapeHTML(it.label)}</span>`;
         for (let m = 1; m <= 12; m++) {
           const on = it.months.includes(m);
-          html += `<span class="cal-cell ${m - 1 === cur ? "cal-now" : ""}"${on ? ` style="background:${it.color}"` : ""}></span>`;
+          // data-season, not an inline colour: the stylesheet decides what a
+          // rainy season looks like, and it decides it once for every country.
+          html += `<span class="cal-cell ${m - 1 === cur ? "cal-now" : ""}"${on ? ` data-season="${g}"` : ""}></span>`;
         }
         html += `</div>`;
       }
     }
   }
 
+  if (seen.size) {
+    const keys = SEASON_ORDER.filter((k) => seen.has(k)).map((k) =>
+      `<span class="cal-key"><i style="background:${seasonColor(k)}"></i>${escapeHTML(SEASON_META[k].label)}</span>`);
+    html += `<div class="cal-legend">${keys.join("")}</div>`;
+  }
   if (absent.length)
     html += `<div class="panel-note">No seasonal calendar published for
       ${absent.map(escapeHTML).join(", ")}.</div>`;

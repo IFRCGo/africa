@@ -65,6 +65,34 @@
   --dim-need:          #1874a0;   /* Health and wellbeing   - #0f3a50 lifted */
   --dim-movement:      #ff8200;   /* Migration and identity - brand, unchanged */
 
+  /* The seasonal calendar's bands. ONE COLOUR PER KIND OF SEASON, and the same
+     colour in every country - a reader who learns that pale blue is the rains
+     in Sudan can then read Chad's strip without consulting a key again. That is
+     the whole reason colour is derived from the normalised season_type rather
+     than from anything a publisher supplies.
+
+     Four are the agricultural year, which no map pillar describes, so they take
+     brand colours of their own. Planting and harvest are deliberately two steps
+     of ONE hue: they are consecutive stages of a single cycle, and shading them
+     as a sequence says so.
+
+     Three DELIBERATELY borrow a dimension colour from the block above, because
+     they mean the same thing the map means by it - a seasonal hazard is a
+     hazard, livestock migration is a movement, and the lean season is the
+     window when vulnerability peaks. The echo is the point: the calendar and
+     the map should not use two different reds for danger. If you restyle the
+     dimensions, restyle these with them or the link silently breaks. */
+  --season-rain:      var(--ifrc-blue-medium);    /* #8dcde2 water     - brand */
+  --season-dry:       var(--ifrc-orange-light);   /* #ffb25b sun/arid  - brand */
+  --season-planting:  var(--ifrc-green-light);    /* #47d7ac early growth - brand */
+  --season-harvest:   var(--ifrc-green-dark);     /* #009775 mature crop  - brand */
+  --season-lean:      var(--dim-vulnerability);   /* borrowed, see above */
+  --season-hazard:    var(--dim-hazard);          /* borrowed, see above */
+  --season-livestock: var(--dim-movement);        /* borrowed, see above */
+  /* A category ACAPS adds that we have not classified yet. Grey on purpose: an
+     unclassified band must not be able to pass for a real season. */
+  --season-other:     #bdbdbd;
+
   /* --- 3. semantic roles -----------------------------------------------
      What this dashboard uses each colour for. Restyle here. */
   --bg: #f5f5f5;                        /* the page behind the panels */
@@ -512,7 +540,27 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 .cal-cell { height: 12px; border-radius: 2px; background: #ececec; font-size: 8px; color: var(--muted);
   text-align: center; line-height: 12px; }
 .cal-head .cal-cell { background: transparent; }
-.cal-now { outline: 1.5px solid var(--accent); outline-offset: -1px; }
+
+/* A month this event is IN. The colour comes from the season's kind, so it is
+   the same in every country - see the --season-* block at the top. */
+.cal-cell[data-season="Rainy"]     { background: var(--season-rain); }
+.cal-cell[data-season="Dry"]       { background: var(--season-dry); }
+.cal-cell[data-season="Planting"]  { background: var(--season-planting); }
+.cal-cell[data-season="Harvest"]   { background: var(--season-harvest); }
+.cal-cell[data-season="Lean"]      { background: var(--season-lean); }
+.cal-cell[data-season="Hazard"]    { background: var(--season-hazard); }
+.cal-cell[data-season="Livestock"] { background: var(--season-livestock); }
+.cal-cell[data-season="Other"]     { background: var(--season-other); }
+
+/* The month the timeline is in. It used to be a red outline, which disappeared
+   the moment it landed on the red Hazard band - exactly the month a reader is
+   most likely to be looking at. Two tones instead: a white inner hairline and a
+   dark outer one, so one of the pair contrasts against every band above and
+   against the empty grey of a month with nothing in it. */
+.cal-now {
+  outline: 1.5px solid var(--ifrc-dark-blue); outline-offset: -1px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .9);
+}
 
 /* IPC legend swatches */
 .leg-ipc { display: flex; align-items: center; gap: 4px; }
@@ -543,6 +591,19 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 /* An event that applies to named regions rather than the whole country. The
    dotted underline is the hint that the tooltip names them. */
 .cal-label.cal-partial { border-bottom: 1px dotted var(--muted); cursor: help; }
+
+/* The key to the bands. ONE per panel, under all the country strips rather
+   than repeated above each - the colours mean the same thing in all of them,
+   which is the point being made. */
+.cal-legend {
+  display: flex; flex-wrap: wrap; gap: 3px 10px;
+  margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--border);
+}
+.cal-key { display: flex; align-items: center; gap: 4px; font-size: 9.5px; color: var(--muted); }
+.cal-key i {
+  width: 14px; height: 9px; border-radius: 2px; flex-shrink: 0;
+  display: inline-block; font-style: normal;
+}
 #seasonal-panel .panel-note a { color: var(--ifrc-red, #d22730); }
 
 /* ---------- resizable sidebars ----------------------------------------
