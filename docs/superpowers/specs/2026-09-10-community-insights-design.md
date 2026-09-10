@@ -286,14 +286,21 @@ write a payload there for the container to read.
 
 ### 6.4 The four gates
 
-Every payload passes these before a row is written. They are the design's load-bearing
-element: the loader **validates** rather than trusts, so an unknown model produces *fewer*
-insights, not wrong ones.
+Every **document-derived** payload passes these before a row is written. They are the
+design's load-bearing element: the loader **validates** rather than trusts, so an unknown
+model produces *fewer* insights, not wrong ones.
 
-1. **Verbatim check.** `quote` must occur in `document_text` for the page it names, after
-   whitespace and unicode-dash normalisation. A quote that is not there is rejected, counted
-   on the job, and never shown to a reviewer. This is the one guard that does not depend on
-   the provider, which is exactly why it is the one that matters.
+1. **Verbatim check — when, and only when, `document` is not null.** `quote` must occur in
+   `document_text` for the page it names, after whitespace and unicode-dash normalisation. A
+   quote that is not there is rejected, counted on the job, and never shown to a reviewer.
+   This is the one guard that does not depend on the provider, which is exactly why it is the
+   one that matters.
+
+   **A null `document` skips it, by necessity and by design.** Manual and primary-collected
+   statements have no stored page to check against; there is nothing to compare and no
+   pretence that there is. `method='manual'` records the absence, and the human who typed it
+   is the guarantee. This is the single rule — §9's quote-edit behaviour follows it rather
+   than adding an exception to it.
 2. **Vocabulary check.** Each `tag` must be a key under its `dimension` in `taxonomy.json`,
    or it degrades to `other` + `tag_raw` and is flagged.
 3. **Place resolution.** `place_name_as_written` + `iso3` is matched against `admin_areas`;
@@ -303,6 +310,11 @@ insights, not wrong ones.
    `pending`, **skip and count it** — do not update. `external_data/loaders/base.py`
    overwrites on conflict, which is right for API data and wrong here: it would silently
    discard a reviewer's corrections on every re-run.
+
+   **A still-`pending` row is overwritten, and that is correct.** The loader is replacing its
+   own earlier proposal on a row no human has touched — a re-run with a better model should
+   improve the queue, not double it. `status` is the whole test: untouched means the loader
+   still owns the row, anything else means a person does.
 
 Everything lands as `status='pending'`.
 
@@ -335,7 +347,20 @@ three extra mounts already do.
 
 PDF and DOCX. `python-docx` is already pinned for the documentation build.
 
-### 7.1 Why this does not collide with the pipeline
+### 7.1 What intake writes on the `Document` row
+
+`Document.rel_path` is unique and is what `s01_catalog` matches on, so these values are
+part of the design rather than an implementation detail:
+
+| Field | Value |
+|---|---|
+| `rel_path` | Relative to `SOURCE_ROOT` when the file is under `/work`, so it resolves exactly as a UNHCR PDF's does. `media/<subpath>` for an upload. Unique either way. |
+| `source_collection` | `insights` — distinguishing these from `regional` and `sudan_only`. |
+| `family` | `insight_source`. |
+| `report_date`, `date_source` | From the folder registration or the review screen; `date_source='intake'`. |
+| `sha1`, `pages`, `file_size` | Computed at intake, as `s01` computes them. |
+
+### 7.2 Why this does not collide with the pipeline
 
 Verified against the code, not assumed:
 
@@ -345,10 +370,17 @@ Verified against the code, not assumed:
   writes `DocumentText` itself, these documents are never selected, so `s02` never tries to
   reopen a file at a path it cannot resolve. Its `fitz.open` is inside a `try/except` in any
   case.
-- `s03_parse`'s positional parsers dispatch on `family`; intake sets a distinct `family`, so
-  they do not fire. Its taxonomy tagger may still tag the text into `narrative_tags` — which
-  is harmless, stays in the analyst voice where it belongs, and is rebuilt on each run as it
-  always has been.
+- `s03_parse` dispatches its positional parsers on `family` and nothing else
+  (`s03_parse.py:811` `family == "weekly_mapping"`, `:813` `family == "sudan_return"`,
+  `:817` `family in NARRATIVE_FAMILIES`). `insight_source` matches none of them, so none
+  fire. The `"CORE Return" in rel_path` test at `s03_parse.py:310` sits *inside*
+  `parse_sudan_return` and is only reached once `family` has already matched — so an
+  uploaded file whose name happens to contain "Return" cannot trigger it.
+- `s03_parse`'s taxonomy tagger, however, runs for **every** document that has text
+  (`s03_parse.py:823`, outside the family branches). Uploaded documents will therefore be
+  regex-tagged into `narrative_tags` like any other. That is harmless and correct: those
+  tags are analyst voice, they live in the table that is rebuilt each run, and they never
+  touch `insights`.
 
 Documents from this channel therefore sit in the archive alongside the UNHCR reports
 without the pipeline touching them, and without them touching the pipeline.
@@ -576,6 +608,17 @@ scope here.
 - **Place resolution is only as good as the boundary library.** Camps, informal settlements
   and neighbourhoods will not match; they land `unmatched` and stay off the map. That is
   correct behaviour, not a gap to paper over.
+- **The Analyst tab mixes durable and rebuilt content.** Published `secondary_analysis`
+  insights persist; the `tags.json` snippets beside them are rebuilt by `s03_parse` on every
+  pipeline run. An analyst snippet found by search last week can be absent after the next
+  "Update now" — not deleted, simply no longer matched. Community-voice content is never
+  affected, because none of it comes from `tags.json`.
+- **A slightly reworded quote on re-run creates a second row, not a skip.** The natural key
+  hashes the quote, so a model that drops a comma the second time produces a new pending
+  insight beside the reviewer's published one, and `insights_skipped_reviewed` does not
+  increment. This is the conflict rule working — the published row is protected, which is the
+  point — but it looks like a duplication bug the first time it is seen. The reviewer rejects
+  the near-duplicate.
 - **The panel mixes two evidence standards in the Both tab.** A regex-matched analyst
   sentence and a human-reviewed community quote appear in one list. They are labelled, and
   the tabs exist so they can be separated, but the Both tab is a convenience with a real
