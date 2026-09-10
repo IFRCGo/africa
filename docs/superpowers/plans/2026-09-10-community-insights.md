@@ -41,6 +41,13 @@
 
 - [ ] **Step 1: Write the failing test**
 
+> **Note for whoever runs this later:** these tests pass an explicit `quote_sha1`.
+> From Task 8 onward an `Insight.save()` override recomputes it from `quote`, so
+> the value passed here stops being the value stored. Both tests still pass — the
+> first because both rows share a quote and therefore still collide, the second
+> because the pages differ — but if you are re-reading them after Task 8, that is
+> why the literal hashes no longer appear in the database.
+
 Create `insights/tests/__init__.py` (empty) and `insights/tests/test_models.py`:
 
 ```python
@@ -696,14 +703,16 @@ from insights.places import resolve
 class ResolveTests(TestCase):
     @classmethod
     def setUpTestData(cls):
-        source = BoundarySource.objects.create(name="test", kind="test")
+        # BoundarySource has exactly one required field: `path`, which is unique.
+        # It has no `name` and no `kind` - `kind` lives on AdminArea.
+        source = BoundarySource.objects.create(path="tests/insights-fixture")
         AdminArea.objects.create(
-            source=source, kind="admin", iso3="ETH", country_name="Ethiopia",
+            source=source, kind=AdminArea.KIND_ADMIN, iso3="ETH", country_name="Ethiopia",
             level=1, pcode="ET02", name="Afar", name_alt=["Afar Region", "Afaar"],
             center_lat=11.75, center_lon=40.95,
         )
         AdminArea.objects.create(
-            source=source, kind="admin", iso3="SDN", country_name="Sudan",
+            source=source, kind=AdminArea.KIND_ADMIN, iso3="SDN", country_name="Sudan",
             level=1, pcode="SD08", name="North Darfur", name_alt=[],
             center_lat=15.5, center_lon=25.0,
         )
@@ -791,7 +800,7 @@ def resolve(iso3, place_name):
         return dict(UNMATCHED)
 
     candidates = list(
-        AdminArea.objects.filter(iso3=iso3, kind="admin")
+        AdminArea.objects.filter(iso3=iso3, kind=AdminArea.KIND_ADMIN)
         .only("pcode", "level", "name", "name_alt", "center_lat", "center_lon")
         .order_by("level")
     )
@@ -818,8 +827,6 @@ def resolve(iso3, place_name):
 
 Run: `docker compose exec web python manage.py test insights.tests.test_places -v 2`
 Expected: 7 tests, all PASS.
-
-If `BoundarySource` requires fields beyond `name`/`kind`, read `boundaries/models.py` and pass what it needs — do not change the model to suit the test.
 
 - [ ] **Step 5: Commit**
 
@@ -1556,6 +1563,7 @@ exactly as a UNHCR PDF's does; otherwise it is 'media/<name>'. It is unique
 either way, which is what s01 matches on.
 """
 import hashlib
+from datetime import date
 from pathlib import Path
 
 import fitz
@@ -1606,6 +1614,13 @@ def catalogue_file(path, iso3=None, report_date=None):
     existing = Document.objects.filter(rel_path=rel).first()
     if existing is not None:
         return existing
+
+    # Parse a string date rather than handing it straight to the DateField. Django
+    # would accept it and the in-memory object would keep the string, so a later
+    # `document.report_date.isoformat()` - which the Phase 2 extractor calls -
+    # would raise on a freshly created object but not on a reloaded one.
+    if isinstance(report_date, str):
+        report_date = date.fromisoformat(report_date)
 
     pages = _pages_of(path)
     document = Document.objects.create(
@@ -2700,11 +2715,32 @@ function renderInsightBubbles() {
 }
 ```
 
-- [ ] **Step 3: Call it wherever the layers refresh**
+- [ ] **Step 3: Call it only when what it draws actually changes**
 
-In `renderMapLayers()`, add `renderInsightBubbles();` as its last statement. In
-the render pass that already calls `renderVoices()` (~line 2238), add
-`renderInsightBubbles();` immediately after it.
+**Do NOT call this from `renderMapLayers()` or `renderAll()`.** `renderAll()` runs
+on every slider move and its docstring says so outright: *"This runs on every
+slider move, so each render*() function above must stay fast and must not fetch
+anything."* Rebuilding a clustered GeoJSON source on every timeline tick is the
+one change in this plan that could make the map slower.
+
+The bubbles do not depend on the month — only on the theme filter, the country
+filter and the active tab. So call `renderInsightBubbles()` from exactly the three
+places those change:
+
+1. The tab handler added in Task 11 Step 7 (already calls it).
+2. Wherever `state.activeTags` changes — the theme checkbox handler near
+   `app.js:2778-2800`, beside the existing `loadAreas().then(renderMapLayers)`.
+3. Once at start-up, after `loadData()` resolves and the map style has loaded.
+
+For (2), add it to the same handler that already reacts to a theme toggle:
+
+```javascript
+        if (state.activeTags.size) loadAreas().then(renderMapLayers);
+        renderInsightBubbles();   // bubbles follow the theme filter, not the month
+```
+
+Read the surrounding lines before editing — Task 11 has already shifted every
+line number in this file.
 
 - [ ] **Step 4: Add the popup**
 
@@ -3250,3 +3286,9 @@ re-loaded without re-paying for the model."
 **Type consistency.** `quote_sha1` is a function in `insights/verify.py` and a column on `Insight`; Task 8 imports it as `_sha1` inside `save()` to avoid shadowing the field — checked. `resolve()` returns exactly the five keys `Insight` expects, and Task 6 splats them with `**placement` — checked. `LoadReport` fields (`written`, `rejected_unverifiable`, `skipped_reviewed`) match the counters Task 6's tests and Task 8's messages read — checked. `allVoices()` rows gain `full`, `voice`, `id`, `lat`, `lon` in Task 11 and Task 12 consumes exactly those — checked. `normalise_coding` returns `{dimension, tag, tag_raw}`, which is what `InsightCoding(**coding)` needs — checked.
 
 **Known soft spot for the executor:** Task 11 and Task 12 give line numbers from the current `app.js`. Those shift as soon as Task 11 lands. Read the surrounding function before applying Task 12's edits rather than trusting the numbers.
+
+**Three defects found in a second pass and fixed in place**, recorded so nobody reintroduces them:
+
+- Task 4's fixture built `BoundarySource(name=…, kind=…)`. That model has neither field — its only required column is `path`, and `kind` belongs to `AdminArea`. Verified against `boundaries/models.py:34-58` and `:76`.
+- Task 7 handed a date **string** straight to `Document.report_date`. Django accepts it, but the in-memory object keeps the string, so `report_date.isoformat()` — which Task 13's `empty_payload` calls — would raise on a freshly created document and not on a reloaded one. Now parsed with `date.fromisoformat`.
+- Task 12 originally called `renderInsightBubbles()` from `renderMapLayers()`. `renderAll()` calls that on every slider move and its own docstring forbids exactly this: *"each render*() function above must stay fast and must not fetch anything"* (`app.js:2228`). The bubbles do not depend on the month, so they are now redrawn only when the tab or the theme filter changes.
