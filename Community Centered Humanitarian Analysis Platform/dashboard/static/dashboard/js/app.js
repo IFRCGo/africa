@@ -1759,14 +1759,18 @@ function voicesForTab() {
   return all;
 }
 
-/* Verbatim sentences from the reports - the human voice behind the numbers.
+/* Verbatim statements and sentences - the human voice behind the numbers.
 
-   With the search box empty this shows up to three quotes for the month the
-   timeline is on, one per dimension, as it always has. Type anything and it
-   searches the WHOLE archive instead: any single month holds only a handful
-   of quotes, so a search confined to one month would almost always come back
-   empty. Each result is labelled with its month and clicking it moves the
-   timeline there. */
+   With the search box empty this shows quotes for the month the timeline is
+   on, scoped to whichever tab is active: up to one per dimension on Analyst
+   (as it always showed), up to twelve on Community/Both, since community
+   statements are scarce enough that showing all of them for the month is
+   more useful than picking one. Type anything and it searches every quote
+   IN THE ACTIVE TAB across the whole archive instead: any single month holds
+   only a handful, so a search confined to one month would almost always come
+   back empty - and confined to the tab, so Community search never surfaces
+   analyst prose. Each result is labelled with its month and clicking it
+   moves the timeline there. */
 function renderVoices() {
   const el = $("#voices"), q = state.voiceSearch.trim().toLowerCase();
   const searching = q.length > 0;
@@ -1783,9 +1787,16 @@ function renderVoices() {
   } else {
     const mk = monthKey(state.current);
     const month = pool.filter((v) => v.mk === mk);
-    // Community voice is scarce, so show all of it for the month. Analyst
-    // snippets are plentiful: keep the old one-per-dimension behaviour.
-    picks = state.voiceTab === "analyst" ? month.slice(0, 3) : month.slice(0, 12);
+    if (state.voiceTab === "analyst") {
+      // Keep the old one-per-dimension behaviour: analyst snippets are
+      // plentiful, so taking the first three ROWS (not dimensions) would
+      // show three tags of the same dimension instead of a spread.
+      const seenDims = new Set();
+      picks = month.filter((v) => !seenDims.has(v.dim) && seenDims.add(v.dim)).slice(0, 3);
+    } else {
+      // Community voice is scarce, so show all of it for the month.
+      picks = month.slice(0, 12);
+    }
   }
 
   if (!picks.length) {
