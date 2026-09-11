@@ -7,13 +7,14 @@ re-run.
 """
 import json
 from pathlib import Path
+from unittest.mock import patch
 
 from django.test import TestCase
 
 from data_track.models import Document, DocumentText
 from insights.contract import ContractError
 from insights.loader import load
-from insights.models import ExtractionJob, Insight
+from insights.models import ExtractionJob, Insight, InsightCoding
 
 FIXTURES = Path(__file__).parent / "fixtures"
 QUOTE = ("When it rains we get flash floods, and with the fighting around us the "
@@ -90,11 +91,24 @@ class LoaderTests(TestCase):
         with self.assertRaises(ContractError):
             load(self.payload, document=None)
 
-    def test_nothing_is_written_when_the_payload_has_no_usable_date(self):
-        """The transaction rolls back whole, not row by row."""
+    def test_the_date_check_happens_before_anything_is_written(self):
+        """This proves check-ordering, not rollback: the ContractError fires
+        before the per-row loop starts, so no row exists whether or not the
+        load is transactional. See test_a_mid_loop_failure_rolls_back_every_row
+        for the actual rollback proof."""
         del self.payload["source"]["report_date"]
         with self.assertRaises(ContractError):
             load(self.payload, document=None)
+        self.assertEqual(Insight.objects.count(), 0)
+
+    def test_a_mid_loop_failure_rolls_back_every_row(self):
+        """The only way to force a genuine mid-loop failure: every input-level
+        problem (bad quote, bad date, bad vocabulary) is caught before the loop
+        runs, so proving @transaction.atomic actually rolls back requires
+        breaking something inside the loop itself - here, the coding write."""
+        with patch.object(InsightCoding.objects, "bulk_create", side_effect=RuntimeError("boom")):
+            with self.assertRaises(RuntimeError):
+                load(self.payload, self.doc)
         self.assertEqual(Insight.objects.count(), 0)
 
     def test_the_documents_report_date_is_used_when_the_payload_has_none(self):
@@ -111,3 +125,32 @@ class LoaderTests(TestCase):
         report = load(self.payload, other_doc)
         self.assertEqual(report.written, 1)
         self.assertEqual(Insight.objects.get().stated_on.isoformat(), "2026-03-14")
+
+    def test_a_malformed_date_string_raises_contracterror_not_valueerror(self):
+        self.payload["source"]["report_date"] = "14 March 2026"
+        with self.assertRaises(ContractError):
+            load(self.payload, self.doc)
+
+    def test_an_iso_timestamp_string_is_accepted_and_dated_correctly(self):
+        self.payload["source"]["report_date"] = "2026-03-14T09:00:00Z"
+        report = load(self.payload, self.doc)
+        self.assertEqual(report.written, 1)
+        self.assertEqual(Insight.objects.get().stated_on.isoformat(), "2026-03-14")
+
+    def test_a_non_string_non_date_report_date_raises_contracterror(self):
+        self.payload["source"]["report_date"] = 20260314
+        with self.assertRaises(ContractError):
+            load(self.payload, self.doc)
+
+    def test_a_manual_insight_with_no_document_is_written(self):
+        """document=None: gate 1 is genuinely bypassed, not accidentally
+        passing - the quote below appears on no stored page anywhere."""
+        self.payload["source"]["report_date"] = "2026-03-14"
+        self.payload["insights"][0]["quote"] = (
+            "Nothing on any stored page says this, and that is the point.")
+        report = load(self.payload, document=None)
+        self.assertEqual(report.written, 1)
+        row = Insight.objects.get()
+        self.assertEqual(row.channel, "manual")
+        self.assertIsNone(row.page)
+        self.assertIsNone(row.document_id)

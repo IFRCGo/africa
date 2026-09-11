@@ -14,7 +14,7 @@ upserts on conflict. That is right for API data and wrong here: re-running an
 extraction would silently discard every correction a reviewer had made.
 """
 from dataclasses import dataclass
-from datetime import date
+from datetime import date, datetime
 
 from django.db import transaction
 
@@ -29,6 +29,39 @@ class LoadReport:
     written: int = 0
     rejected_unverifiable: int = 0
     skipped_reviewed: int = 0
+
+
+def _coerce_stated_on(value):
+    """Reduce whatever the payload or document gave us to a plain date.
+
+    A datetime - or an ISO timestamp string, which is just a datetime spelled
+    as text - is a real date wearing extra precision, so its .date() is taken
+    without complaint (datetime is a subclass of date, so it is checked first).
+    Anything else that is not already a plain date is a malformed payload, not
+    ours to guess at, so it becomes a ContractError naming the offending value
+    rather than a bare ValueError escaping into a caller that only catches
+    ContractError.
+    """
+    if isinstance(value, datetime):
+        return value.date()
+    if isinstance(value, date):
+        return value
+    if isinstance(value, str):
+        try:
+            return date.fromisoformat(value)
+        except ValueError:
+            pass
+        try:
+            return datetime.fromisoformat(value.replace("Z", "+00:00")).date()
+        except ValueError:
+            raise ContractError(
+                f"payload's date {value!r} is not a valid YYYY-MM-DD date "
+                "(or a full ISO timestamp)"
+            )
+    raise ContractError(
+        f"payload's date must be a string (YYYY-MM-DD) or a date, not "
+        f"{type(value).__name__}: {value!r}"
+    )
 
 
 @transaction.atomic
@@ -46,9 +79,11 @@ def load(payload, document=None, job=None, method="llm", model_used=None):
         stated_on = document.report_date
     # Same guard intake uses: Django stores a string date happily, but the
     # in-memory object keeps the string, so anything reading .stated_on before a
-    # reload would get a str where it expects a date.
-    if isinstance(stated_on, str):
-        stated_on = date.fromisoformat(stated_on)
+    # reload would get a str where it expects a date. A falsy value (None, "",
+    # 0) is left alone here and caught by the "no usable date" check below,
+    # rather than fed to _coerce_stated_on, which would reject it as a bad type.
+    if stated_on:
+        stated_on = _coerce_stated_on(stated_on)
 
     # stated_on is what the dashboard's month timeline rides on, so a dateless
     # insight could never be displayed even if it were stored - refuse the whole
