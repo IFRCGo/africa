@@ -31,6 +31,11 @@ def env_path(name: str, default: Path) -> Path:
 SOURCE_ROOT = env_path("SOURCE_ROOT", REPO_DIR.parent)
 DASHBOARD_DATA_DIR = env_path("DASHBOARD_DATA_DIR", BASE_DIR / "dashboard" / "data")
 
+# Documents uploaded through the insights intake screen. Inside /app because
+# /work is mounted read-only - see docker-compose.yml, mount 1.
+MEDIA_ROOT = env_path("MEDIA_ROOT", BASE_DIR / "media")
+MEDIA_URL = "/media/"
+
 # Raw pulls from the humanitarian MCP servers (HDX, IPC, FEWS NET, UNHCR).
 # These are fetched by an analyst in Claude Code, NOT by this app; the
 # pipeline only re-reads whatever sits in the folder. See data_pipeline/README.md.
