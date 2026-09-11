@@ -170,7 +170,17 @@ class ExtractionJobAdmin(admin.ModelAdmin):
 
         for job in queryset:
             for path in files:
-                payload = json.loads(path.read_text(encoding="utf-8"))
+                # These files are written by an external extraction agent that can be
+                # killed mid-write, so a truncated or unreadable file is an expected
+                # input here, not an exceptional one - report it and move on to the
+                # next file rather than taking the whole action down.
+                try:
+                    payload = json.loads(path.read_text(encoding="utf-8"))
+                except (json.JSONDecodeError, OSError, UnicodeDecodeError) as exc:
+                    self.message_user(
+                        request, f"{path.name}: could not be read as JSON ({exc}).",
+                        messages.ERROR)
+                    continue
                 rel = (payload.get("source") or {}).get("rel_path")
                 document = Document.objects.filter(rel_path=rel).first() if rel else None
                 if rel and document is None:
@@ -181,7 +191,9 @@ class ExtractionJobAdmin(admin.ModelAdmin):
                 try:
                     report = load(payload, document, job=job)
                 except ContractError as exc:
-                    self.message_user(request, f"{path.name}: {exc}", messages.ERROR)
+                    self.message_user(
+                        request, f"{path.name}: the payload was rejected ({exc}).",
+                        messages.ERROR)
                     continue
                 self.message_user(
                     request,

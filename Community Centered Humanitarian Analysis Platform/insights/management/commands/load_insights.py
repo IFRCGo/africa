@@ -37,7 +37,11 @@ class Command(BaseCommand):
         job = ExtractionJob.objects.filter(id=options["job"]).first() if options["job"] else None
 
         for path in files:
-            payload = json.loads(path.read_text(encoding="utf-8"))
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8"))
+            except (json.JSONDecodeError, OSError, UnicodeDecodeError) as exc:
+                self.stderr.write(f"{path.name}: could not be read as JSON ({exc}); skipped")
+                continue
             rel = (payload.get("source") or {}).get("rel_path")
             document = Document.objects.filter(rel_path=rel).first() if rel else None
             if rel and document is None:
@@ -46,7 +50,7 @@ class Command(BaseCommand):
             try:
                 report = load(payload, document, job=job)
             except ContractError as exc:
-                self.stderr.write(f"{path.name}: {exc}")
+                self.stderr.write(f"{path.name}: the payload was rejected ({exc})")
                 continue
             self.stdout.write(
                 f"{path.name}: {report.written} written, "
