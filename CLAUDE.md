@@ -43,5 +43,5 @@ does not restate it.
   `movement_flows` and `narrative_tags` on every run, and `s04_events.py` deletes
   every row in `events`. Do not put hand-curated data in those tables.
 - The `insights` app is never written to by any pipeline step. That is deliberate.
-- Settings read `os.environ.get(X) or default`, never `get(X, default)`.
+- Settings use `os.environ.get(X, default)` by default; use `get(X) or default` (or `env_path()`) only when an empty .env value must fall back to the default instead of being treated as empty.
 - Specs are in `docs/superpowers/specs/`, plans in `docs/superpowers/plans/`.

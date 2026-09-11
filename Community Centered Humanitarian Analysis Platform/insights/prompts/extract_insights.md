@@ -29,6 +29,12 @@ document. Do not pad.**
    translate.
 5. **Name the place as the document writes it** in `place_name_as_written`. Do not
    convert it to a p-code and do not guess a finer location than the text gives.
+6. **REQUIRED: Set the country code.** Every insight must include `iso3`, an
+   ISO3 country code (e.g. `ETH`, `SDN`, `TCD`). A missing or blank `iso3`
+   causes the **entire payload file to be rejected**, not just that insight.
+   Typically: the country the document is about, or the country containing the
+   place named in `place_name_as_written`. Note: `Document.country_focus` is
+   free text and must not be copied blindly to `iso3`.
 
 ## Codings
 
