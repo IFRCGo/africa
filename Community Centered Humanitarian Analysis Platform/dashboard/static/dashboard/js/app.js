@@ -1870,9 +1870,24 @@ function setCurrentDate(t) {
 
 function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
 
-/* Move the timeline to the first day of a month and redraw everything. */
+/* Move the timeline to the first day of a month and redraw everything.
+
+   mk can be empty or unparseable: /api/insights/ deliberately emits
+   date: null for an undated row (views.py's own choice), and allVoices()
+   turns that into mk = "". Date.parse("-01") is NaN, and NaN unguarded would
+   flow straight into setCurrentDate() -> state.current, then into the next
+   renderAll() -> monthKey(NaN) -> new Date(NaN).toISOString(), which THROWS.
+   That one click would take down every panel on the page, not just this one -
+   so an unparseable month key is a no-op here, before setCurrentDate ever
+   sees it. The row itself still renders and stays visible in search results;
+   it just is not navigable. This is the only place a month key turns into a
+   timestamp, so guarding here covers every caller: the search-result click
+   above, and any future month link - including Task 12's map bubbles, which
+   read the same allVoices() rows and so can carry the same null date. */
 function goToMonth(mk) {
-  setCurrentDate(Date.parse(mk + "-01"));
+  const t = Date.parse(mk + "-01");
+  if (Number.isNaN(t)) return;
+  setCurrentDate(t);
 }
 
 /* A small bar chart of the six most-mentioned hazards this month. */

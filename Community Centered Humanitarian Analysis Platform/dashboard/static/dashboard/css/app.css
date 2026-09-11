@@ -780,7 +780,10 @@ body.resizing, body.resizing * { user-select: none !important; cursor: col-resiz
 .voice .v-voice {
   font-size: 10px; text-transform: uppercase; letter-spacing: .04em; opacity: .65;
 }
-.voice.is-community { border-left-width: 3px; }
+/* 5px, not the base rule's 3px: telling the two voices apart at a glance is
+   the whole point of the tabs, and 3px here was a no-op - the base .voice
+   rule already sets 3px, so this changed nothing until now. */
+.voice.is-community { border-left-width: 5px; }
 .voice .v-full { white-space: pre-wrap; }
 .voice .v-translated { opacity: .75; font-style: italic; margin-top: 4px; }
 .voices-unmapped { font-size: 11px; opacity: .7; margin-top: 6px; }
