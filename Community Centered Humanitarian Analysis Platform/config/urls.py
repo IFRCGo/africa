@@ -9,6 +9,7 @@ Four apps, and each one owns everything behind its address:
   /data/...         -> the JSON + GeoJSON the map fetches       dashboard app
   /updater/         -> the one-click "Update now" page          updater app
   /updater/api/...  -> what that page calls in the background   updater app
+  /api/insights/    -> published community statements, read live       insights app
   /api/...          -> read-only JSON built live from PostgreSQL data_track app
   /admin/           -> browse and edit every table by hand      data_track tables
   /static/...       -> the CSS and JavaScript of both pages     served by WhiteNoise
@@ -29,6 +30,9 @@ urlpatterns = [
     # Same reason: external_data owns specific paths under api/, so it is matched
     # before data_track's catch-all include.
     path("api/", include("external_data.urls")),
+    # Same reason: insights owns a specific path under api/, so it is matched
+    # before data_track's catch-all include.
+    path("api/", include("insights.urls")),
     path("api/", include("data_track.urls")),
     path("admin/", admin.site.urls),
 ]
