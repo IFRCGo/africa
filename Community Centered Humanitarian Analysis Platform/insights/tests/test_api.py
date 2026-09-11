@@ -58,3 +58,41 @@ class InsightApiTests(TestCase):
 
     def test_the_count_reflects_the_filter(self):
         self.assertEqual(self.get("?iso3=SDN")["count"], 1)
+
+    def test_dimension_and_tag_filters_match_same_row(self):
+        """When both dimension and tag are supplied, they must describe the
+        same coding row. Chained .filter() calls join separately; this test
+        proves they are combined in one .filter() call when both are supplied.
+        """
+        # Create an insight with two codings: hazard/flooding and need/health
+        multi = make("We have floods and health needs.", iso3="ETH")
+        InsightCoding.objects.create(insight=multi, dimension="hazard", tag="flooding")
+        InsightCoding.objects.create(insight=multi, dimension="need", tag="health")
+
+        # Query for dimension=need & tag=flooding should NOT return it
+        # (those never co-occur on one coding)
+        results = self.get("?dimension=need&tag=flooding")["results"]
+        self.assertEqual(len(results), 0)
+
+        # Query for dimension=hazard & tag=flooding should return it
+        results = self.get("?dimension=hazard&tag=flooding")["results"]
+        self.assertEqual(len(results), 1)
+
+    def test_distinct_prevents_join_duplicates(self):
+        """When an insight has multiple codings and we join the codings table,
+        .distinct() prevents that insight from appearing multiple times in
+        results. This test proves .distinct() is doing work.
+        """
+        # Create an insight with two codings that both have the same dimension.
+        # Without .distinct(), filtering by that dimension would return the
+        # insight twice (once for each matching coding).
+        multi = make("Multiple codes same dimension.", iso3="SDN")
+        InsightCoding.objects.create(insight=multi, dimension="hazard", tag="flooding")
+        InsightCoding.objects.create(insight=multi, dimension="hazard", tag="windstorm")
+
+        # Query in a way that joins the codings table
+        body = self.get("?dimension=hazard")
+        # The insight should appear exactly once in results, not twice
+        results = [r for r in body["results"] if r["quote"] == "Multiple codes same dimension."]
+        self.assertEqual(len(results), 1, "Insight should appear exactly once despite having 2 hazard codings")
+        self.assertEqual(body["count"], 2)  # count includes the cholera insight too

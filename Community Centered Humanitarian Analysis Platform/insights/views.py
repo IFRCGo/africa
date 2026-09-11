@@ -33,10 +33,19 @@ def insights(request):
     for field in ("voice_type", "iso3", "admin_pcode"):
         if value := request.GET.get(field):
             rows = rows.filter(**{field: value})
-    if dimension := request.GET.get("dimension"):
-        rows = rows.filter(codings__dimension=dimension)
-    if tag := request.GET.get("tag"):
-        rows = rows.filter(codings__tag=tag)
+    dimension = request.GET.get("dimension")
+    tag = request.GET.get("tag")
+    if dimension and tag:
+        # When both dimension and tag are supplied, apply them in a single
+        # .filter() call so one coding row must match both. Chained .filter()
+        # calls on a to-many relation join the table separately, so a row can
+        # match the dimension in one coding and the tag in another — wrong.
+        rows = rows.filter(codings__dimension=dimension, codings__tag=tag)
+    else:
+        if dimension:
+            rows = rows.filter(codings__dimension=dimension)
+        if tag:
+            rows = rows.filter(codings__tag=tag)
     if start := request.GET.get("from"):
         rows = rows.filter(stated_on__gte=start)
     if end := request.GET.get("to"):
