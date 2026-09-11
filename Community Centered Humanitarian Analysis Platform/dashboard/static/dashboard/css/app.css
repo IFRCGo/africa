@@ -795,3 +795,17 @@ body.resizing, body.resizing * { user-select: none !important; cursor: col-resiz
 .voice .v-full { white-space: pre-wrap; }
 .voice .v-translated { opacity: .75; font-style: italic; margin-top: 4px; }
 .voices-unmapped { font-size: 11px; opacity: .7; margin-top: 6px; }
+/* Highlighted by a click on its map bubble (Task 12 R5). */
+.voice.is-selected { outline: 2px solid var(--accent); outline-offset: -1px; }
+
+/* Community-insight map popup body (Task 12 R4). Reuses the same combined
+   bubble as every other layer - see "ONE BUBBLE, NOT FIVE" in app.js - so
+   only the section content is styled here. */
+.insight-popup blockquote {
+  margin: 4px 0; font-size: 12px; line-height: 1.45; white-space: pre-wrap;
+}
+.insight-popup .ip-voice {
+  font-size: 10px; text-transform: uppercase; letter-spacing: .04em; opacity: .65;
+}
+.insight-popup .ip-place { font-size: 11px; opacity: .8; }
+.insight-popup .ip-meta { font-size: 10px; opacity: .6; margin-top: 4px; }

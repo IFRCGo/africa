@@ -921,6 +921,31 @@ function addLayers(m) {
     },
   });
 
+  /* Community-insight popups are registered FIRST, ahead of every other
+     popup() call in this function (Task 12 R4b): POPUP_SPECS order is
+     display order, and the community's own words should lead the combined
+     bubble, not trail behind an IPC phase or an IDP count. Registering here
+     does not require the insight-bubbles/insight-clusters LAYERS to exist
+     yet - popup() only records a layer id string, and sectionsAt() does not
+     look anything up until a user actually hovers, long after addLayers()
+     has finished. The layers themselves are added further down (search
+     "Quote bubbles"), deliberately LAST in the stack so they draw on top of
+     everything else this map shows (R1). */
+  popup(m, "insight-bubbles", (p) => {
+    const placed = p.matchMethod === "unmatched" ? "" :
+      `<div class="ip-place">Located to ${escapeHTML(p.place)}${
+        p.matchMethod === "name" ? " (named area, label position)" : " (p-code)"}</div>`;
+    return `<div class="insight-popup">
+        <div class="ip-voice">${p.voice === "community" ? "Community" : "Analyst"}</div>
+        <blockquote>${escapeHTML(p.quote)}</blockquote>
+        ${placed}
+        <div class="ip-meta">${escapeHTML(p.date)}${p.source ? ` · ${escapeHTML(p.source)}` : ""}</div>
+      </div>`;
+  }, "Community insight");
+  popup(m, "insight-clusters", (p) =>
+    `<div class="insight-popup">${p.point_count} community statement${
+      p.point_count === 1 ? "" : "s"} here — zoom in to read them</div>`, "Community insights");
+
   // Events and corridors read on hover like every other layer.
   popup(m, "event-dots", (p) =>
     `<b style="color:${COLOR_EVENT}">${fmtDate(Date.parse(p.date))}</b><br><b>${p.title}</b><br>${p.description || ""}`, "Key event");
@@ -1006,6 +1031,62 @@ function addLayers(m) {
       "text-offset": [0, 1.1], "text-anchor": "top", "text-optional": true,
     },
     paint: { "text-color": COLOR_INK, "text-halo-color": WHITE, "text-halo-width": 1.6 },
+  });
+
+  /* ---- Quote bubbles: community and analyst statements, placed ----------
+     Added LAST in this function's layer list, deliberately: it must draw on
+     TOP of every choropleth and every other point layer on this map (Task 12
+     R1). Its popups are registered near the TOP of addLayers() instead - see
+     the comment there for why the two are split.
+
+     Seeded with empty(), like every other layer here; renderInsightBubbles()
+     fills it. Deliberately NOT sized by anything (R7): a single statement is
+     not a quantity, and scaling it would imply one. */
+  m.addSource("insight-bubbles", {
+    type: "geojson",
+    data: empty(),
+    cluster: true,
+    clusterRadius: 28,
+  });
+  m.addLayer({
+    id: "insight-bubbles", type: "circle", source: "insight-bubbles",
+    filter: ["!", ["has", "point_count"]],
+    paint: {
+      "circle-radius": 6,
+      "circle-color": ["get", "colour"],
+      "circle-stroke-width": 1.5,
+      "circle-stroke-color": "#fff",
+      "circle-opacity": 0.9,
+    },
+  });
+  m.addLayer({
+    id: "insight-clusters", type: "circle", source: "insight-bubbles",
+    filter: ["has", "point_count"],
+    paint: {
+      "circle-radius": 12,
+      "circle-color": "#555",
+      "circle-stroke-width": 1.5,
+      "circle-stroke-color": "#fff",
+      "circle-opacity": 0.85,
+    },
+  });
+  m.addLayer({
+    id: "insight-cluster-count", type: "symbol", source: "insight-bubbles",
+    filter: ["has", "point_count"],
+    layout: { "text-field": ["get", "point_count_abbreviated"], "text-size": 11 },
+    paint: { "text-color": "#fff" },
+  });
+  /* The map-to-panel link. This ONLY toggles the matching card's highlight -
+     it is a side effect, not a popup, so it coexists with bindPopups()'s
+     click-to-pin handler on the same click (Task 12 R5). Registered once per
+     map because addLayers() runs once per map. If the card is not currently
+     rendered in the panel (wrong tab, filtered out, off the visible page),
+     the click simply highlights nothing - it does not switch tabs or search
+     to go find it. */
+  m.on("click", "insight-bubbles", (e) => {
+    const id = String(e.features[0].properties.id);
+    for (const node of document.querySelectorAll("#voices .voice"))
+      node.classList.toggle("is-selected", node.dataset.id === id);
   });
 
   popup(m, "idp-circles", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.state})</span><br>
@@ -1782,13 +1863,21 @@ function allVoices() {
   return rows.sort((a, b) => (a.mk < b.mk ? 1 : a.mk > b.mk ? -1 : 0));
 }
 
+/* Whether a voice_type belongs on the currently active Community Insights
+   tab. Pulled out on its own (Task 12 R3a) so voicesForTab() (the panel) and
+   renderInsightBubbles() (the map) apply exactly one rule between them - two
+   copies of "community tab means voice === community" would be free to drift
+   the moment either one changed. */
+function voiceOnTab(voice) {
+  if (state.voiceTab === "community") return voice === "community";
+  if (state.voiceTab === "analyst") return voice === "secondary_analysis";
+  return true;
+}
+
 /* The rows the active tab shows. Search is scoped to this, which is the point
    of the tabs: with Community selected, a search never returns analyst prose. */
 function voicesForTab() {
-  const all = allVoices();
-  if (state.voiceTab === "community") return all.filter((v) => v.voice === "community");
-  if (state.voiceTab === "analyst") return all.filter((v) => v.voice === "secondary_analysis");
-  return all;
+  return allVoices().filter((v) => voiceOnTab(v.voice));
 }
 
 /* One badge per coding, in that dimension's colour - a community/API row can
@@ -2328,6 +2417,50 @@ function renderSeasonal() {
   el.innerHTML = html;
 }
 
+/* Bubbles for every published insight that passes the shared filters.
+
+   Deliberately does NOT call allVoices() or voicesForTab() (Task 12 R3):
+   those walk the ~2.4 MB tags.json archive to build the analyst-snippet rows
+   too, and this runs inside drawMapLayers() - once per slider tick, and twice
+   per tick in split view. Iterating state.data.insights directly keeps this
+   O(published insights), which stays small.
+
+   A row passes when insightPasses() says its country and theme are in scope
+   (the same predicate the panel uses - see its comment for why that matters),
+   voiceOnTab() says the active tab wants its voice, and it has a resolved
+   point: camps, settlements and neighbourhoods are not in the boundary
+   library and never will be, so an unplaced statement is simply absent
+   rather than guessed at. One feature per insight id, never per coding - a
+   statement coded twice is still one thing someone said. */
+function renderInsightBubbles() {
+  const seen = new Set();
+  const feats = [];
+  for (const row of state.data.insights || []) {
+    if (row.id == null || row.lat == null || row.lon == null) continue;
+    if (seen.has(row.id)) continue;
+    seen.add(row.id);
+    if (!insightPasses(row)) continue;
+    if (!voiceOnTab(row.voice_type)) continue;
+    const codings = row.codings || [];
+    const first = codings.find((c) => DIM_META[c.dimension]);
+    feats.push({
+      type: "Feature",
+      geometry: { type: "Point", coordinates: [row.lon, row.lat] },
+      properties: {
+        id: row.id,
+        colour: first ? DIM_META[first.dimension].color : COLOR_MUTED,
+        quote: row.quote,
+        place: row.place_name || "",
+        date: row.date || "",
+        source: row.source_document || "",
+        matchMethod: row.match_method || "unmatched",
+        voice: row.voice_type,
+      },
+    });
+  }
+  setSource("insight-bubbles", { type: "FeatureCollection", features: feats });
+}
+
 /* Every layer of ONE map, for whatever scope is currently in force. */
 function drawMapLayers() {
   renderFoodsec();
@@ -2339,6 +2472,7 @@ function drawMapLayers() {
   renderRefugees();
   renderEvents();
   renderThemes();
+  renderInsightBubbles();
   /* The Areas of Operation used to be drawn only when their checkbox moved,
      because they do not change with the date. They do change with the country
      filter and with the split, so they are redrawn with everything else. */
@@ -2965,7 +3099,10 @@ function initVoiceSearch() {
       for (const other of document.querySelectorAll(".voice-tab"))
         other.classList.toggle("is-active", other === tab);
       renderVoices();
-      if (typeof renderInsightBubbles === "function") renderInsightBubbles();
+      // renderMapLayers(), not renderInsightBubbles() directly: outside
+      // withPane() a direct call would write the UNSCOPED set to every map
+      // and break split-view scoping until the next slider tick (Task 12 R6).
+      renderMapLayers();
     });
 }
 
