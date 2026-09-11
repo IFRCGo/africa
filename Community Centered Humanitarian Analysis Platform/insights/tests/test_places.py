@@ -26,6 +26,16 @@ class ResolveTests(TestCase):
             level=1, pcode="SD08", name="North Darfur", name_alt=[],
             center_lat=15.5, center_lon=25.0,
         )
+        AdminArea.objects.create(
+            source=source, kind=AdminArea.KIND_ADMIN, iso3="TCD", country_name="Chad",
+            level=1, pcode="TC02", name="OUADDAÏ", name_alt=[],
+            center_lat=14.5, center_lon=23.0,
+        )
+        AdminArea.objects.create(
+            source=source, kind=AdminArea.KIND_ADMIN, iso3="CAF", country_name="Central African Republic",
+            level=1, pcode="CF03", name="Mambéré-Kadéï", name_alt=[],
+            center_lat=4.5, center_lon=15.5,
+        )
 
     def test_an_exact_name_matches_and_copies_the_label_point(self):
         self.assertEqual(resolve("ETH", "Afar"), {
@@ -56,3 +66,31 @@ class ResolveTests(TestCase):
 
     def test_no_place_name_is_unmatched(self):
         self.assertEqual(resolve("ETH", None)["match_method"], "unmatched")
+
+    def test_accent_dropped_in_input_matches_accented_boundary_name(self):
+        # "Ouaddai" (accent-dropped) resolves to area stored as "OUADDAÏ"
+        self.assertEqual(resolve("TCD", "Ouaddai"), {
+            "admin_pcode": "TC02", "admin_level": 1, "match_method": "name",
+            "lat": 14.5, "lon": 23.0,
+        })
+
+    def test_hyphen_and_accents_dropped_in_input_matches_hyphenated_accented_boundary_name(self):
+        # "Mambere Kadei" (hyphens-and-accents-dropped) resolves to area stored as "Mambéré-Kadéï"
+        self.assertEqual(resolve("CAF", "Mambere Kadei"), {
+            "admin_pcode": "CF03", "admin_level": 1, "match_method": "name",
+            "lat": 4.5, "lon": 15.5,
+        })
+
+    def test_accented_input_still_resolves_correctly(self):
+        # An accented input "Ouaddaï" resolves to the same area - folding does not break exact input
+        self.assertEqual(resolve("TCD", "Ouaddaï"), {
+            "admin_pcode": "TC02", "admin_level": 1, "match_method": "name",
+            "lat": 14.5, "lon": 23.0,
+        })
+
+    def test_hyphenated_accented_input_resolves_correctly(self):
+        # An accented and hyphenated input "Mambéré-Kadéï" resolves to the same area
+        self.assertEqual(resolve("CAF", "Mambéré-Kadéï"), {
+            "admin_pcode": "CF03", "admin_level": 1, "match_method": "name",
+            "lat": 4.5, "lon": 15.5,
+        })

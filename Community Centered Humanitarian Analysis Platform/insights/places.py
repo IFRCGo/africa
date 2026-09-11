@@ -10,6 +10,8 @@ the same reason: the finest truthful placement the source supports.
 "somewhere in Afar" and "we do not know where" are different findings and only
 this column tells them apart afterwards.
 """
+import unicodedata
+
 from boundaries.models import AdminArea
 
 UNMATCHED = {"admin_pcode": None, "admin_level": None,
@@ -17,7 +19,24 @@ UNMATCHED = {"admin_pcode": None, "admin_level": None,
 
 
 def _key(text):
-    return " ".join(str(text).strip().lower().split())
+    """Normalize text for comparison: lowercase, collapse whitespace, fold accents and hyphens.
+
+    Francophone boundary names carry diacritics (OUADDAÏ, Mambéré-Kadéï) with no
+    alternates, while English-language humanitarian reports drop them and write
+    hyphens as spaces. This normalisation bridges that gap so accented boundary
+    names match their accent-dropped English variants.
+
+    Trade-off: two genuinely distinct places differing only by an accent or hyphen
+    within one country would now collide. This is judged vanishingly unlikely for
+    admin boundary names.
+    """
+    # Replace hyphens with spaces before whitespace collapsing
+    text = str(text).strip().replace('-', ' ').lower()
+    # Fold accents: decompose with NFKD, then drop combining marks (category Mn)
+    text = unicodedata.normalize("NFKD", text)
+    text = "".join(ch for ch in text if unicodedata.category(ch) != "Mn")
+    # Collapse whitespace
+    return " ".join(text.split())
 
 
 def _hit(area, method):
