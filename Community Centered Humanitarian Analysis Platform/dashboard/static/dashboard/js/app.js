@@ -155,6 +155,7 @@ const state = {
      one place. */
   countries: new Set(),
   voiceSearch: "",         // text typed into the Community Insights search box
+  voiceTab: "community",   // which Community Insights tab is showing
   /* The three lines of the Movement trends graph, worked out once per FILTER
      change rather than per timeline move - see computeTrendSeries(). */
   trend: { series: [], vmax: 1 },
@@ -559,6 +560,13 @@ async function loadData() {
   ]);
   state.data.admin0 = admin0; state.data.admin1 = admin1; state.data.aoi = aoi;
   state.data.hsps = hsps;
+  // Community insights are the one panel that reads the database live, so a
+  // statement published in Admin appears on the next refresh. Failure is not
+  // fatal: the panel falls back to the analyst snippets from tags.json.
+  state.data.insights = await fetch("api/insights/?limit=2000")
+    .then((r) => (r.ok ? r.json() : { results: [] }))
+    .then((body) => body.results)
+    .catch(() => []);
   // ipc_areas_fs.geojson (~2 MB) is lazy-loaded on first food-security toggle
   state.endDate = Date.parse(state.data.meta.date_max);
   // Work out which country every row belongs to, once, before anything draws.
@@ -1687,26 +1695,68 @@ function renderInsights() {
 const monthLabel = (mk) =>
   new Date(mk + "-01").toLocaleDateString("en-GB", { month: "long", year: "numeric" });
 
-/* Every quote in the whole archive, as flat rows, honouring the country
-   filter. Built on demand by the search below rather than kept around,
-   because it is only needed while someone is typing. */
+/* Every quote the panel can show, from both sources, in one shape.
+
+   Two sources, deliberately not merged into one table upstream:
+     - tags.json snippets: regex matches on analyst prose, rebuilt by s03_parse
+       on every pipeline run. These are secondary_analysis by definition.
+     - /api/insights/: statements a person reviewed and published.
+
+   Both filters are applied HERE, as the comment on monthTagTotals requires, so
+   the panel and the map cannot drift apart. */
 function allVoices() {
   const rows = [];
+
+  // Analyst voice: the regex snippets, exactly as before.
   for (const [dim, tags] of Object.entries(state.data.tags)) {
     if (!DIM_META[dim]) continue;
     const only = activeTagsIn(dim);
     for (const [tag, tagData] of Object.entries(tags)) {
       if (only && !only.has(tag)) continue;
       for (const mk of Object.keys(tagData.snippets)) {
-        // Under a filter, keep a quote only where its tag was actually
-        // reported in one of the selected countries that month.
         if (filtered() && !tagCount(tagData, mk)) continue;
         const text = snippetFor(tagData, mk);
-        if (text) rows.push({ dim, tag, mk, text });
+        if (text) rows.push({ dim, tag, mk, text, full: text, voice: "secondary_analysis" });
       }
     }
   }
+
+  // Published insights, community and analyst alike.
+  for (const row of state.data.insights || []) {
+    // Same country filter every other panel applies, through the one place
+    // that decides it - see countryOn(). A row whose country cannot be
+    // resolved (or has none) drops out under a filter, same as an analyst
+    // snippet with no count in the selected countries that month.
+    if (!countryOn(ISO3_TO_COUNTRY[row.iso3])) continue;
+    const mk = (row.date || "").slice(0, 7);
+    for (const coding of row.codings.length ? row.codings : [{ dimension: null, tag: null }]) {
+      const dim = coding.dimension;
+      if (dim && !DIM_META[dim]) continue;
+      // Same theme filter the map layers use - one filter, four consumers.
+      if (dim) {
+        const only = activeTagsIn(dim);
+        if (only && !only.has(coding.tag)) continue;
+      }
+      rows.push({
+        dim: dim || "need", tag: coding.tag || "other", mk,
+        text: row.quote, full: row.quote, translated: row.quote_translated,
+        voice: row.voice_type, place: row.place_name, date: row.date,
+        source: row.source_document, matchMethod: row.match_method,
+        lat: row.lat, lon: row.lon, id: row.id,
+      });
+    }
+  }
+
   return rows.sort((a, b) => (a.mk < b.mk ? 1 : a.mk > b.mk ? -1 : 0));
+}
+
+/* The rows the active tab shows. Search is scoped to this, which is the point
+   of the tabs: with Community selected, a search never returns analyst prose. */
+function voicesForTab() {
+  const all = allVoices();
+  if (state.voiceTab === "community") return all.filter((v) => v.voice === "community");
+  if (state.voiceTab === "analyst") return all.filter((v) => v.voice === "secondary_analysis");
+  return all;
 }
 
 /* Verbatim sentences from the reports - the human voice behind the numbers.
@@ -1718,30 +1768,32 @@ function allVoices() {
    empty. Each result is labelled with its month and clicking it moves the
    timeline there. */
 function renderVoices() {
-  const el = $("#voices");
-  const q = state.voiceSearch.trim().toLowerCase();
-  let picks, searching = q.length > 0;
+  const el = $("#voices"), q = state.voiceSearch.trim().toLowerCase();
+  const searching = q.length > 0;
+  const pool = voicesForTab();
+  let picks;
 
   if (searching) {
-    picks = allVoices().filter((v) =>
-      v.text.toLowerCase().includes(q) ||
+    picks = pool.filter((v) =>
+      v.full.toLowerCase().includes(q) ||
+      (v.translated || "").toLowerCase().includes(q) ||
+      (v.place || "").toLowerCase().includes(q) ||
       v.tag.replace(/_/g, " ").toLowerCase().includes(q) ||
       DIM_META[v.dim].label.toLowerCase().includes(q)).slice(0, 40);
   } else {
     const mk = monthKey(state.current);
-    picks = [];
-    for (const dim of Object.keys(DIM_META)) {
-      for (const [tag, n, snippet] of monthTagTotals(dim, mk)) {
-        if (snippet) { picks.push({ dim, tag, mk, text: snippet }); break; }
-      }
-      if (picks.length >= 3) break;
-    }
+    const month = pool.filter((v) => v.mk === mk);
+    // Community voice is scarce, so show all of it for the month. Analyst
+    // snippets are plentiful: keep the old one-per-dimension behaviour.
+    picks = state.voiceTab === "analyst" ? month.slice(0, 3) : month.slice(0, 12);
   }
 
   if (!picks.length) {
     el.innerHTML = `<div class="voices-empty">${searching
-      ? `No quote matches “${escapeHTML(state.voiceSearch)}”${filtered() ? " in the selected countries" : ""}.`
-      : "No narrative reporting captured for this month."}</div>`;
+      ? `No quote matches “${escapeHTML(state.voiceSearch)}” in this tab.`
+      : state.voiceTab === "community"
+        ? "No community statement recorded for this month."
+        : "No narrative reporting captured for this month."}</div>`;
     $("#voice-count").textContent = "";
     return;
   }
@@ -1749,13 +1801,24 @@ function renderVoices() {
   $("#voice-count").textContent = searching
     ? `${picks.length}${picks.length === 40 ? "+" : ""} across all months` : "";
 
-  el.innerHTML = picks.map((p, i) => `<div class="voice${searching ? " voice-hit" : ""}"
-      style="border-color:${DIM_META[p.dim].color}" data-month="${p.mk}" data-i="${i}">
-      “…${searching ? highlight(p.text, q) : escapeHTML(p.text)}…”
-      <div class="v-meta">${DIM_META[p.dim].label} · ${escapeHTML(p.tag.replace(/_/g, " "))} · ${monthLabel(p.mk)}</div>
-    </div>`).join("");
+  const unmapped = picks.filter((v) => v.voice === "community" && v.lat == null).length;
 
-  // Clicking a search result takes the whole dashboard to that month.
+  el.innerHTML = picks.map((p, i) => `<div class="voice${
+      p.voice === "community" ? " is-community" : ""}${searching ? " voice-hit" : ""}"
+      style="border-color:${DIM_META[p.dim].color}"
+      data-month="${p.mk}" data-i="${i}" data-id="${p.id || ""}">
+      <div class="v-full">${searching ? highlight(p.full, q) : escapeHTML(p.full)}</div>
+      ${p.translated ? `<div class="v-translated">${escapeHTML(p.translated)}</div>` : ""}
+      <div class="v-meta">
+        <span class="v-voice">${p.voice === "community" ? "Community" : "Analyst"}</span>
+        · ${DIM_META[p.dim].label} · ${escapeHTML(p.tag.replace(/_/g, " "))}
+        ${p.place ? ` · ${escapeHTML(p.place)}` : ""} · ${monthLabel(p.mk)}
+        ${p.source ? ` · ${escapeHTML(p.source)}` : ""}
+      </div>
+    </div>`).join("") + (unmapped
+      ? `<div class="voices-unmapped">${unmapped} of these could not be placed on the map.</div>`
+      : "");
+
   if (searching)
     for (const node of el.querySelectorAll(".voice-hit"))
       node.addEventListener("click", () => goToMonth(node.dataset.month));
@@ -2814,6 +2877,14 @@ function initVoiceSearch() {
   input.addEventListener("keydown", (e) => {
     if (e.key === "Escape") { input.value = ""; state.voiceSearch = ""; renderVoices(); }
   });
+  for (const tab of document.querySelectorAll(".voice-tab"))
+    tab.addEventListener("click", () => {
+      state.voiceTab = tab.dataset.tab;
+      for (const other of document.querySelectorAll(".voice-tab"))
+        other.classList.toggle("is-active", other === tab);
+      renderVoices();
+      if (typeof renderInsightBubbles === "function") renderInsightBubbles();
+    });
 }
 
 /* ------------------------------------------------------- map fit and split */
