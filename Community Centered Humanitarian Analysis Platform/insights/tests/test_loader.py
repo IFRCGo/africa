@@ -11,6 +11,7 @@ from pathlib import Path
 from django.test import TestCase
 
 from data_track.models import Document, DocumentText
+from insights.contract import ContractError
 from insights.loader import load
 from insights.models import ExtractionJob, Insight
 
@@ -82,3 +83,31 @@ class LoaderTests(TestCase):
         job.refresh_from_db()
         self.assertEqual(job.insights_proposed, 2)
         self.assertEqual(job.insights_rejected_unverifiable, 1)
+
+    def test_a_dateless_manual_payload_is_rejected(self):
+        """No document, no source.report_date: nothing to fall back to."""
+        del self.payload["source"]["report_date"]
+        with self.assertRaises(ContractError):
+            load(self.payload, document=None)
+
+    def test_nothing_is_written_when_the_payload_has_no_usable_date(self):
+        """The transaction rolls back whole, not row by row."""
+        del self.payload["source"]["report_date"]
+        with self.assertRaises(ContractError):
+            load(self.payload, document=None)
+        self.assertEqual(Insight.objects.count(), 0)
+
+    def test_the_documents_report_date_is_used_when_the_payload_has_none(self):
+        del self.payload["source"]["report_date"]
+        report = load(self.payload, self.doc)
+        self.assertEqual(report.written, 1)
+        self.assertEqual(Insight.objects.get().stated_on.isoformat(), "2026-03-14")
+
+    def test_the_payloads_report_date_wins_over_the_documents(self):
+        other_doc = Document.objects.create(
+            file_name="y.pdf", rel_path="insights/y.pdf", report_date="2020-01-01")
+        DocumentText.objects.create(document=other_doc, page=7, text=f"Participants said: “{QUOTE}”")
+        # self.payload's source.report_date is 2026-03-14, other_doc's is 2020-01-01.
+        report = load(self.payload, other_doc)
+        self.assertEqual(report.written, 1)
+        self.assertEqual(Insight.objects.get().stated_on.isoformat(), "2026-03-14")

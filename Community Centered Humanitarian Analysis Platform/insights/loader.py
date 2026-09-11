@@ -19,7 +19,7 @@ from datetime import date
 from django.db import transaction
 
 from insights import places
-from insights.contract import parse
+from insights.contract import ContractError, parse
 from insights.models import Insight, InsightCoding
 from insights.verify import quote_is_verbatim, quote_sha1
 
@@ -49,6 +49,17 @@ def load(payload, document=None, job=None, method="llm", model_used=None):
     # reload would get a str where it expects a date.
     if isinstance(stated_on, str):
         stated_on = date.fromisoformat(stated_on)
+
+    # stated_on is what the dashboard's month timeline rides on, so a dateless
+    # insight could never be displayed even if it were stored - refuse the whole
+    # payload here rather than let a NOT NULL column turn this into a bare
+    # IntegrityError. report_date lives on the payload's source block, not per
+    # insight, so an undated payload is undated for every row in it.
+    if not stated_on:
+        raise ContractError(
+            "payload has no usable date: set source.report_date (YYYY-MM-DD), "
+            "or attach it to a document whose report_date is set"
+        )
 
     for row in rows:
         # Gate 1 - only where there is a document to check against.
