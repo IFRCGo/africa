@@ -190,6 +190,14 @@ class Insight(models.Model):
             models.Index(fields=["iso3", "stated_on"], name="idx_insight_place"),
         ]
 
+    def save(self, *args, **kwargs):
+        # The fingerprint is part of the natural key, so it must follow the quote.
+        # Editing a quote in Admin is allowed only to repair an OCR artefact; this
+        # keeps the key honest when that happens.
+        from insights.verify import quote_sha1 as _sha1
+        self.quote_sha1 = _sha1(self.quote)
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return f"{self.iso3} {self.stated_on}: {self.quote[:60]}"
 
