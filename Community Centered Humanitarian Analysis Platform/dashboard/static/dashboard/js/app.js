@@ -1695,15 +1695,48 @@ function renderInsights() {
 const monthLabel = (mk) =>
   new Date(mk + "-01").toLocaleDateString("en-GB", { month: "long", year: "numeric" });
 
+/* Whether one published insight belongs under the current country and theme
+   filters - country through countryOn(), the one function every filter test
+   in this file goes through; theme through activeTagsIn(), same as every
+   other panel. A row with several codings passes on theme as soon as ANY ONE
+   of them does: a statement coded both hazard/flooding and need/water_wash
+   should not disappear just because the hazard filter alone would exclude it.
+   A row with no codings at all cannot be excluded by a theme filter that has
+   nothing on the row to test against, so it always passes that half.
+
+   THIS FUNCTION IS THE SHARED DEFINITION. Task 12 draws these same insights
+   as map bubbles and must call this exact predicate rather than reimplement
+   it, or the panel and the map would filter differently and drift apart -
+   the same rule the comment on monthTagTotals states for the analyst
+   snippets. Deliberately independent of tags.json and of the current month:
+   a statement's country and theme do not change with the date, and Task 12
+   calls this once per slider tick. */
+function insightPasses(row) {
+  if (!countryOn(ISO3_TO_COUNTRY[row.iso3])) return false;
+  const codings = row.codings.length ? row.codings : [{ dimension: null, tag: null }];
+  return codings.some((c) => {
+    if (!c.dimension) return true;
+    const only = activeTagsIn(c.dimension);
+    return !only || only.has(c.tag);
+  });
+}
+
 /* Every quote the panel can show, from both sources, in one shape.
 
    Two sources, deliberately not merged into one table upstream:
      - tags.json snippets: regex matches on analyst prose, rebuilt by s03_parse
-       on every pipeline run. These are secondary_analysis by definition.
-     - /api/insights/: statements a person reviewed and published.
+       on every pipeline run. These are secondary_analysis by definition. One
+       row per dimension/tag/month, as before - that granularity is right for
+       a mention count.
+     - /api/insights/: statements a person reviewed and published. ONE row per
+       INSIGHT, not one per coding: a statement coded hazard/flooding AND
+       need/water_wash is still one thing someone said, and showing it as
+       four repeated cards because it touches four themes would be wrong -
+       the statement is what was read and verified, not the coding.
 
    Both filters are applied HERE, as the comment on monthTagTotals requires, so
-   the panel and the map cannot drift apart. */
+   the panel and the map cannot drift apart. The insights half of that rule is
+   insightPasses() above, kept as its own function for exactly that reason. */
 function allVoices() {
   const rows = [];
 
@@ -1721,30 +1754,29 @@ function allVoices() {
     }
   }
 
-  // Published insights, community and analyst alike.
+  // Published insights, community and analyst alike - one row per statement,
+  // carrying every coding it has so renderVoices() can draw a chip for each.
   for (const row of state.data.insights || []) {
-    // Same country filter every other panel applies, through the one place
-    // that decides it - see countryOn(). A row whose country cannot be
-    // resolved (or has none) drops out under a filter, same as an analyst
-    // snippet with no count in the selected countries that month.
-    if (!countryOn(ISO3_TO_COUNTRY[row.iso3])) continue;
-    const mk = (row.date || "").slice(0, 7);
-    for (const coding of row.codings.length ? row.codings : [{ dimension: null, tag: null }]) {
-      const dim = coding.dimension;
-      if (dim && !DIM_META[dim]) continue;
-      // Same theme filter the map layers use - one filter, four consumers.
-      if (dim) {
-        const only = activeTagsIn(dim);
-        if (only && !only.has(coding.tag)) continue;
-      }
-      rows.push({
-        dim: dim || "need", tag: coding.tag || "other", mk,
-        text: row.quote, full: row.quote, translated: row.quote_translated,
-        voice: row.voice_type, place: row.place_name, date: row.date,
-        source: row.source_document, matchMethod: row.match_method,
-        lat: row.lat, lon: row.lon, id: row.id,
-      });
-    }
+    if (!insightPasses(row)) continue;
+    const codings = row.codings || [];
+    // dim/tag stand in for the old single chip wherever code still expects
+    // one (the border colour, an unfiltered search match): the first coding
+    // whose OWN theme filter it satisfies - the same test insightPasses()
+    // used to let this row through at all, so a real coding always matches
+    // when one exists - or "need"/"other" when the statement carries none.
+    const primary = codings.find((c) => {
+      const only = activeTagsIn(c.dimension);
+      return !only || only.has(c.tag);
+    });
+    const dim = primary && DIM_META[primary.dimension] ? primary.dimension : "need";
+    const tag = (primary && primary.tag) || "other";
+    rows.push({
+      dim, tag, mk: (row.date || "").slice(0, 7),
+      text: row.quote, full: row.quote, translated: row.quote_translated,
+      voice: row.voice_type, place: row.place_name, date: row.date,
+      source: row.source_document, matchMethod: row.match_method,
+      lat: row.lat, lon: row.lon, id: row.id, codings,
+    });
   }
 
   return rows.sort((a, b) => (a.mk < b.mk ? 1 : a.mk > b.mk ? -1 : 0));
@@ -1757,6 +1789,20 @@ function voicesForTab() {
   if (state.voiceTab === "community") return all.filter((v) => v.voice === "community");
   if (state.voiceTab === "analyst") return all.filter((v) => v.voice === "secondary_analysis");
   return all;
+}
+
+/* One badge per coding, in that dimension's colour - a community/API row can
+   carry several themes and must show all of them, not just the "primary"
+   one used for the card's own border colour. Analyst snippet cards never
+   call this: they still carry exactly one dim/tag and print it inline,
+   unchanged from before this task. */
+function codingChips(codings) {
+  if (!codings.length) return '<span class="v-chip v-chip-uncoded">Uncoded</span>';
+  return codings.map((c) => {
+    const meta = DIM_META[c.dimension];
+    return `<span class="v-chip" style="border-color:${meta ? meta.color : "var(--border)"}">${
+      escapeHTML(meta ? meta.label : (c.dimension || "Uncoded"))} · ${escapeHTML((c.tag || "").replace(/_/g, " "))}</span>`;
+  }).join("");
 }
 
 /* Verbatim statements and sentences - the human voice behind the numbers.
@@ -1778,12 +1824,20 @@ function renderVoices() {
   let picks;
 
   if (searching) {
+    // An insight row carries several codings now, not one - match the
+    // search text against ANY of them, not just the "primary" dim/tag used
+    // for the border colour. Analyst rows have no .codings array and fall
+    // through to the single dim/tag they have always carried.
     picks = pool.filter((v) =>
       v.full.toLowerCase().includes(q) ||
       (v.translated || "").toLowerCase().includes(q) ||
       (v.place || "").toLowerCase().includes(q) ||
-      v.tag.replace(/_/g, " ").toLowerCase().includes(q) ||
-      DIM_META[v.dim].label.toLowerCase().includes(q)).slice(0, 40);
+      (Array.isArray(v.codings)
+        ? v.codings.some((c) =>
+            (c.tag || "").replace(/_/g, " ").toLowerCase().includes(q) ||
+            (DIM_META[c.dimension] ? DIM_META[c.dimension].label : "").toLowerCase().includes(q))
+        : v.tag.replace(/_/g, " ").toLowerCase().includes(q) ||
+          DIM_META[v.dim].label.toLowerCase().includes(q))).slice(0, 40);
   } else {
     const mk = monthKey(state.current);
     const month = pool.filter((v) => v.mk === mk);
@@ -1822,7 +1876,9 @@ function renderVoices() {
       ${p.translated ? `<div class="v-translated">${escapeHTML(p.translated)}</div>` : ""}
       <div class="v-meta">
         <span class="v-voice">${p.voice === "community" ? "Community" : "Analyst"}</span>
-        · ${DIM_META[p.dim].label} · ${escapeHTML(p.tag.replace(/_/g, " "))}
+        ${Array.isArray(p.codings)
+          ? codingChips(p.codings)
+          : ` · ${DIM_META[p.dim].label} · ${escapeHTML(p.tag.replace(/_/g, " "))}`}
         ${p.place ? ` · ${escapeHTML(p.place)}` : ""} · ${monthLabel(p.mk)}
         ${p.source ? ` · ${escapeHTML(p.source)}` : ""}
       </div>

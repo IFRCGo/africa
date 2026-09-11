@@ -545,6 +545,14 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
   font-size: 12px; font-style: italic; color: var(--muted); line-height: 1.45;
 }
 .voice .v-meta { font-style: normal; font-size: 10.5px; color: var(--muted); margin-top: 3px; }
+/* One badge per coding on a community/API card - a statement can carry
+   several themes and each needs its own dimension colour, unlike the single
+   "Dimension · tag" text an analyst snippet still prints inline. */
+.v-chip {
+  display: inline-block; border: 1px solid var(--border); border-radius: 9px;
+  padding: 0 6px; margin: 2px 3px 0 0; font-size: 10px; line-height: 1.6;
+}
+.v-chip-uncoded { color: var(--muted); font-style: italic; }
 /* A search result is clickable - it takes the timeline to that month. */
 .voice-hit { cursor: pointer; transition: background .15s; }
 .voice-hit:hover { background: var(--hover); }
