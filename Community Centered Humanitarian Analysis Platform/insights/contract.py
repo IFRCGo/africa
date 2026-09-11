@@ -58,13 +58,23 @@ def parse(payload):
                 f"insights[{index}]: confidence {confidence!r} not in {sorted(CONFIDENCES)}")
 
         severity = item.get("severity")
-        if severity is not None and not (isinstance(severity, int) and 1 <= severity <= 5):
-            raise ContractError(f"insights[{index}]: severity must be 1-5, got {severity!r}")
+        if severity is not None:
+            # bool subclasses int in Python, so isinstance(True, int) is True. Reject it explicitly
+            # to prevent a JSON boolean from silently becoming 1/0 in an integer database column.
+            if type(severity) is bool:
+                raise ContractError(f"insights[{index}]: severity must be a number 1-5, got a boolean")
+            if not (isinstance(severity, int) and 1 <= severity <= 5):
+                raise ContractError(f"insights[{index}]: severity must be 1-5, got {severity!r}")
 
         people = item.get("people_affected")
-        if people is not None and not (isinstance(people, int) and people >= 0):
-            raise ContractError(
-                f"insights[{index}]: people_affected must be a whole number, got {people!r}")
+        if people is not None:
+            # bool subclasses int in Python, so isinstance(True, int) is True. Reject it explicitly
+            # to prevent a JSON boolean from silently becoming 1/0 in an integer database column.
+            if type(people) is bool:
+                raise ContractError(f"insights[{index}]: people_affected must be a whole number, got a boolean")
+            if not (isinstance(people, int) and people >= 0):
+                raise ContractError(
+                    f"insights[{index}]: people_affected must be a whole number, got {people!r}")
 
         codings = []
         for coding in item.get("codings") or []:

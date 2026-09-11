@@ -76,3 +76,27 @@ class ParseTests(SimpleTestCase):
         self.assertEqual(row["quote_language"], "en")
         self.assertIsNone(row["people_affected"])
         self.assertIsNone(row["severity"])
+
+    def test_severity_true_is_an_error(self):
+        payload = load("payload_ok.json")
+        payload["insights"][0]["severity"] = True
+        with self.assertRaises(ContractError):
+            parse(payload)
+
+    def test_severity_false_is_an_error(self):
+        payload = load("payload_ok.json")
+        payload["insights"][0]["severity"] = False
+        with self.assertRaises(ContractError):
+            parse(payload)
+
+    def test_people_affected_true_is_an_error(self):
+        payload = load("payload_ok.json")
+        payload["insights"][0]["people_affected"] = True
+        with self.assertRaises(ContractError):
+            parse(payload)
+
+    def test_valid_numeric_values_still_work(self):
+        """Confirm the fix does not break the valid cases: severity: 4 and people_affected: null."""
+        rows = parse(load("payload_ok.json"))
+        self.assertEqual(rows[0]["severity"], 4)
+        self.assertIsNone(rows[0]["people_affected"])
