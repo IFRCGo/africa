@@ -9,10 +9,11 @@ import tempfile
 from pathlib import Path
 
 import fitz
+from django.conf import settings
 from django.test import TestCase
 
 from data_track.models import Document, DocumentText
-from insights.intake import catalogue_file, catalogue_folder
+from insights.intake import catalogue_file, catalogue_folder, relative_path
 from insights.models import InsightFolder
 
 
@@ -23,6 +24,15 @@ def write_pdf(path, pages):
         page.insert_text((72, 72), text)
     doc.save(str(path))
     doc.close()
+
+
+def write_docx(path, paragraphs):
+    from docx import Document as Docx
+
+    doc = Docx()
+    for text in paragraphs:
+        doc.add_paragraph(text)
+    doc.save(str(path))
 
 
 class CatalogueFileTests(TestCase):
@@ -63,6 +73,53 @@ class CatalogueFileTests(TestCase):
         write_pdf(pdf, ["Words."])
         catalogue_file(pdf)
         self.assertEqual(Document.objects.filter(texts__isnull=True).count(), 0)
+
+    def test_two_different_files_sharing_a_basename_do_not_collide(self):
+        """A bare basename is not unique - two uploads could both be named
+        'assessment.pdf'. Content-addressing the media path must keep them
+        as two separate documents, not silently merge the second into the
+        first (wrong sha1, wrong pages, wrong text, no error raised)."""
+        dir_a = self.dir / "a"
+        dir_b = self.dir / "b"
+        dir_a.mkdir()
+        dir_b.mkdir()
+        pdf_a = dir_a / "assessment.pdf"
+        pdf_b = dir_b / "assessment.pdf"
+        write_pdf(pdf_a, ["Alpha content."])
+        write_pdf(pdf_b, ["Beta content, and different."])
+
+        document_a = catalogue_file(pdf_a)
+        document_b = catalogue_file(pdf_b)
+
+        self.assertNotEqual(document_a.id, document_b.id)
+        self.assertNotEqual(document_a.rel_path, document_b.rel_path)
+        self.assertNotEqual(document_a.sha1, document_b.sha1)
+        self.assertEqual(Document.objects.count(), 2)
+
+    def test_a_file_under_source_root_keeps_a_plain_relative_path(self):
+        """No sha1 prefix when the file is under SOURCE_ROOT - it must resolve
+        exactly as a UNHCR PDF's rel_path does."""
+        target = Path(settings.SOURCE_ROOT) / "UNHCR Regional Population Movement pdfs" / "hypothetical.pdf"
+        rel = relative_path(target, "abc123abc123abc123abc123abc123abc123abcd")
+        self.assertEqual(rel, "UNHCR Regional Population Movement pdfs/hypothetical.pdf")
+        self.assertNotIn("abc123", rel)
+
+    def test_a_docx_becomes_a_document_with_its_body_as_one_page(self):
+        """A DOCX has no pages until rendered, so the whole body is page 1."""
+        docx_path = self.dir / "notes.docx"
+        write_docx(docx_path, ["First paragraph.", "Second paragraph."])
+        document = catalogue_file(docx_path)
+        self.assertEqual(document.pages, 1)
+        text = DocumentText.objects.get(document=document, page=1).text
+        self.assertIn("First paragraph", text)
+        self.assertIn("Second paragraph", text)
+
+    def test_a_blank_report_date_does_not_raise(self):
+        """Task 8's Admin form submits '' for a blank optional field."""
+        pdf = self.dir / "undated.pdf"
+        write_pdf(pdf, ["Words."])
+        document = catalogue_file(pdf, report_date="")
+        self.assertIsNone(document.report_date)
 
 
 class CatalogueFolderTests(TestCase):

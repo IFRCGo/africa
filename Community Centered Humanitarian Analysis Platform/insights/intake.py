@@ -15,8 +15,16 @@ WHY THIS DOES NOT COLLIDE WITH THE PIPELINE (spec §7.2), all verified:
                never touch `insights`.
 
 rel_path is relative to SOURCE_ROOT when the file is under it, so it resolves
-exactly as a UNHCR PDF's does; otherwise it is 'media/<name>'. It is unique
-either way, which is what s01 matches on.
+exactly as a UNHCR PDF's does. Otherwise it is content-addressed:
+'media/<sha1[:12]>-<name>'. A basename alone is NOT unique - "assessment.pdf"
+is the most likely filename in the world for an upload - so two different
+files sharing a name would otherwise collide and catalogue_file's dedup would
+silently hand the second upload the first upload's Document: wrong sha1,
+wrong pages, wrong page text, no error raised. Prefixing with the content's
+own sha1 fixes that: identical content (the same file uploaded twice) hashes
+to the same prefix and so dedups correctly, exactly as intended; different
+content, even under an identical name, hashes to a different prefix and can
+never collide.
 """
 import hashlib
 from datetime import date
@@ -24,6 +32,7 @@ from pathlib import Path
 
 import fitz
 from django.conf import settings
+from django.db import transaction
 
 from data_track.models import Document, DocumentText
 from insights.models import ExtractionJob
@@ -39,13 +48,17 @@ def sha1_of(path, chunk=1 << 20):
     return digest.hexdigest()
 
 
-def relative_path(path):
-    """Relative to SOURCE_ROOT when it is under it; 'media/<name>' otherwise."""
+def relative_path(path, sha1):
+    """Relative to SOURCE_ROOT when it is under it; content-addressed otherwise.
+
+    sha1 must already be computed by the caller - it is what makes the
+    out-of-tree case collision-proof (see the module docstring).
+    """
     path = Path(path).resolve()
     try:
         return path.relative_to(Path(settings.SOURCE_ROOT).resolve()).as_posix()
     except ValueError:
-        return f"media/{path.name}"
+        return f"media/{sha1[:12]}-{path.name}"
 
 
 def _pages_of(path):
@@ -65,35 +78,50 @@ def _pages_of(path):
 def catalogue_file(path, iso3=None, report_date=None):
     """Create the Document and its page rows. Returns the existing one if known."""
     path = Path(path)
-    rel = relative_path(path)
+    # sha1 has to exist before rel_path is built, because the out-of-tree case
+    # content-addresses on it - and before the dedup lookup, since that lookup
+    # is keyed on rel_path.
+    digest = sha1_of(path)
+    rel = relative_path(path, digest)
 
     existing = Document.objects.filter(rel_path=rel).first()
     if existing is not None:
         return existing
 
-    # Parse a string date rather than handing it straight to the DateField. Django
-    # would accept it and the in-memory object would keep the string, so a later
-    # `document.report_date.isoformat()` - which the Phase 2 extractor calls -
-    # would raise on a freshly created object but not on a reloaded one.
-    if isinstance(report_date, str):
+    # A falsy report_date (None, or "" from an Admin form's optional field)
+    # becomes None outright rather than reaching fromisoformat, which raises
+    # on "". A non-empty string is parsed rather than handed straight to the
+    # DateField: Django would accept it and the in-memory object would keep
+    # the string, so a later `document.report_date.isoformat()` - which the
+    # Phase 2 extractor calls - would raise on a freshly created object but
+    # not on a reloaded one.
+    if not report_date:
+        report_date = None
+    elif isinstance(report_date, str):
         report_date = date.fromisoformat(report_date)
 
     pages = _pages_of(path)
-    document = Document.objects.create(
-        file_name=path.name,
-        rel_path=rel,
-        source_collection="insights",
-        family="insight_source",
-        country_focus=iso3,
-        report_date=report_date or None,
-        date_source="intake",
-        pages=len(pages),
-        file_size=path.stat().st_size,
-        sha1=sha1_of(path),
-    )
-    DocumentText.objects.bulk_create(
-        [DocumentText(document=document, page=number, text=text) for number, text in pages]
-    )
+    # Atomic because a crash between the Document and its DocumentText rows
+    # would strand the document permanently: catalogue_file's own dedup would
+    # keep returning that same textless row on every later attempt, and for
+    # a media/-rooted upload s02 cannot resolve the path either, so nothing
+    # would ever backfill the text.
+    with transaction.atomic():
+        document = Document.objects.create(
+            file_name=path.name,
+            rel_path=rel,
+            source_collection="insights",
+            family="insight_source",
+            country_focus=iso3,
+            report_date=report_date,
+            date_source="intake",
+            pages=len(pages),
+            file_size=path.stat().st_size,
+            sha1=digest,
+        )
+        DocumentText.objects.bulk_create(
+            [DocumentText(document=document, page=number, text=text) for number, text in pages]
+        )
     return document
 
 
