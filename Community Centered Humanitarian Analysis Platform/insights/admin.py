@@ -162,9 +162,13 @@ class InsightUploadAdmin(admin.ModelAdmin):
 
 @admin.register(ExtractionJob)
 class ExtractionJobAdmin(admin.ModelAdmin):
+    # R13b point 4: progress is read off this changelist, not a streaming UI
+    # (that is deliberately deferred to the section-14 job-machinery plan) -
+    # documents_done has to be a column for "N of M documents done" to be
+    # visible at all while a background extraction is running.
     list_display = ("id", "folder", "producer", "status", "documents_total",
-                    "insights_proposed", "insights_rejected_unverifiable",
-                    "insights_skipped_reviewed")
+                    "documents_done", "insights_proposed",
+                    "insights_rejected_unverifiable", "insights_skipped_reviewed")
     list_filter = ("status", "producer")
     readonly_fields = ("insights_proposed", "insights_rejected_unverifiable",
                        "insights_skipped_reviewed", "log", "started_at", "finished_at")

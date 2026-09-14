@@ -62,10 +62,19 @@ class Extractor:
 
     @staticmethod
     def parse_json(text):
-        """Models sometimes wrap JSON in a fence. Tolerate that and nothing else."""
+        """Models sometimes wrap JSON in a fence. Tolerate that and nothing else.
+
+        A fence with nothing after its opening line (just "```" or "```json"
+        with no newline - the shape a mid-stream fallback handoff can leave
+        behind, see parse_insights()) must still reach json.loads() and fail
+        there as a JSONDecodeError, not raise IndexError from the split: that
+        is the one exception parse_insights() catches to turn a bad chunk
+        into a recorded problem instead of a crashed extract() call.
+        """
         text = text.strip()
         if text.startswith("```"):
-            text = text.split("\n", 1)[1].rsplit("```", 1)[0]
+            parts = text.split("\n", 1)
+            text = parts[1].rsplit("```", 1)[0] if len(parts) > 1 else ""
         return json.loads(text)
 
     def parse_insights(self, text):

@@ -149,6 +149,15 @@ class OpenAICompatibleAdapterTests(SimpleTestCase):
         self.assertEqual(payload["insights"], [])
         self.assertEqual(len(extractor.problems), 1)
 
+    def test_a_fence_with_nothing_after_its_opening_line_is_recorded_not_raised(self):
+        """A bare "```" or "```json" with no newline after it would otherwise
+        hit text.split("\\n", 1)[1] with only one element - an IndexError,
+        not the JSONDecodeError parse_insights() catches. This is exactly the
+        shape a mid-stream fallback handoff (rulings §3) can leave behind."""
+        extractor, payload = self._extract_with("```json")
+        self.assertEqual(payload["insights"], [])
+        self.assertEqual(len(extractor.problems), 1)
+
     def test_json_without_an_insights_list_is_recorded_not_raised(self):
         """An LLM error serialised as a bare object with no "insights" key is
         exactly as much a problem as text that fails to parse at all."""
