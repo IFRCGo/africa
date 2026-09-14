@@ -1,5 +1,13 @@
 """What both adapters share: how a document is turned into a request, and how
-a chunk that went wrong is recorded instead of losing the whole document.
+a chunk whose RESPONSE went wrong - JSON that will not parse, or parses
+without an "insights" list - is recorded instead of losing the whole
+document. That guarantee is narrower than it sounds: it covers a malformed
+answer, not a failed request. A transport/SDK failure (a dropped connection,
+a rate limit, a dead key) is a different class of error and is NOT this
+module's concern - each adapter leaves that to propagate out of its own
+extract(), on purpose, so the caller sees a real failure instead of a job
+that quietly "succeeded" with nothing in it. See the "TRANSPORT VS
+RESPONSE-SHAPE ERRORS" note at the top of each adapter module.
 """
 import json
 
@@ -13,6 +21,12 @@ PAGES_PER_REQUEST = 8
 
 class Extractor:
     name = ""
+    # Every subclass sets this in __init__ (settings.LLM_MODEL, with its own
+    # fallback default) - declared here so the contract empty_payload() and
+    # extract_insights.py both rely on (self.name, self.model) is explicit on
+    # the base class rather than merely assumed of whatever __init__ happens
+    # to set.
+    model = None
 
     def __init__(self):
         # Refusals and malformed chunks hit during the extract() call in

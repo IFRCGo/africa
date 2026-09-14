@@ -134,6 +134,36 @@ class AnthropicAdapterTests(SimpleTestCase):
         self.assertEqual(len(payload["insights"]), 1)
         self.assertEqual(extractor.problems, [])
 
+    def test_a_transport_failure_propagates_it_is_not_a_chunk_problem(self):
+        """fix-round, task-13-rulings.md-adjacent: a connection failure, rate
+        limit, auth failure or 5xx has already exhausted the SDK's own
+        retries by the time it reaches here (anthropic 1.5.0's
+        DEFAULT_MAX_RETRIES=2) and must propagate rather than be recorded as
+        an ordinary chunk problem - swallowing it would let a dead API key
+        end a job "loaded" with zero insights, a silent success."""
+        extractor = AnthropicExtractor()
+        client = MagicMock()
+        client.beta.messages.stream.side_effect = ConnectionError("connection reset")
+        with patch.object(AnthropicExtractor, "_client", return_value=client):
+            with self.assertRaises(ConnectionError):
+                extractor.extract(_document(), [(1, "Some page text.")])
+        # Not recorded as a chunk problem - it never reached that code path.
+        self.assertEqual(extractor.problems, [])
+
+    def test_a_response_with_no_readable_text_is_recorded_not_raised(self):
+        """A malformed RESPONSE SHAPE (here: a content block with no .text)
+        is the opposite class from a transport failure - the request
+        succeeded, so this is recorded like malformed JSON, not raised."""
+        message = SimpleNamespace(
+            stop_reason="end_turn", stop_details=None,
+            # No .text attribute at all - not even an empty string.
+            content=[SimpleNamespace(type="text")],
+        )
+        extractor, payload, _ = self._extract_with(message)
+        self.assertEqual(payload["insights"], [])
+        self.assertEqual(len(extractor.problems), 1)
+        self.assertIn("could not be read", extractor.problems[0])
+
 
 @override_settings(LLM_PROVIDER="openai_compatible", LLM_BASE_URL="http://x/v1", LLM_API_KEY="")
 class OpenAICompatibleAdapterTests(SimpleTestCase):
@@ -175,3 +205,28 @@ class OpenAICompatibleAdapterTests(SimpleTestCase):
         with override_settings(LLM_BASE_URL=""):
             with self.assertRaises(ValueError):
                 OpenAICompatibleExtractor()
+
+    def test_a_transport_failure_propagates_it_is_not_a_chunk_problem(self):
+        """Unlike the Anthropic SDK, urllib has no retry layer of its own -
+        so a blip here genuinely could be transient. The choice is still to
+        let it propagate: an honest failed job a human re-runs beats a false
+        "loaded" with zero insights."""
+        extractor = OpenAICompatibleExtractor()
+        with patch.object(OpenAICompatibleExtractor, "_post",
+                           side_effect=TimeoutError("timed out")):
+            with self.assertRaises(TimeoutError):
+                extractor.extract(_document(), [(1, "Some page text.")])
+        self.assertEqual(extractor.problems, [])
+
+    def test_a_response_missing_the_expected_keys_is_recorded_not_raised(self):
+        """A malformed RESPONSE SHAPE - here, a server that does not answer
+        in the chat-completions shape at all - is the opposite class from a
+        transport failure: the HTTP call succeeded, so this is recorded like
+        malformed JSON, not raised."""
+        extractor = OpenAICompatibleExtractor()
+        with patch.object(OpenAICompatibleExtractor, "_post",
+                           return_value={"error": "no choices here"}):
+            payload = extractor.extract(_document(), [(1, "Some page text.")])
+        self.assertEqual(payload["insights"], [])
+        self.assertEqual(len(extractor.problems), 1)
+        self.assertIn("could not be read", extractor.problems[0])

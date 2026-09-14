@@ -4,8 +4,12 @@ The extractor is always mocked here - no network call, no real model, no real
 anthropic/openai_compatible adapter. What is worth testing at this layer is
 the wiring: that a job extracts ONLY its own documents (R13a - without this a
 job for one folder would silently re-extract every other folder's documents
-too), and that a refusal or a parse failure the adapter recorded lands in the
-job's own log, not dropped and not raised (task-13-rulings.md §2-4).
+too), that a refusal or a parse failure the adapter recorded lands in the
+job's own log, not dropped and not raised (task-13-rulings.md §2-4), that a
+transport/SDK failure the adapter let propagate ends the job "failed" rather
+than wedging it at "running" (fix-round, 2026-09-14), and that a re-run does
+not accumulate documents_done across runs (§5 sanctions re-running a job on
+purpose).
 """
 import tempfile
 from unittest.mock import patch
@@ -28,26 +32,43 @@ QUOTE = (
 
 class FakeExtractor:
     """Stands in for AnthropicExtractor/OpenAICompatibleExtractor: same shape
-    (name, model, problems, extract()), no HTTP call."""
+    (name, model, problems, extract()), no HTTP call.
+
+    `raise_by_document_id` models a transport/SDK failure the way both real
+    adapters now behave: `self.problems` is set to whatever chunks had
+    already been recorded BEFORE the failure (mirroring a real extract()
+    call that dies partway through its chunk loop), and then the exception
+    is raised - it is never turned into an ordinary problem entry.
+    """
 
     name = "fake"
     model = "fake-model"
 
-    def __init__(self, payload_by_document_id, problems_by_document_id=None):
-        self._payload_by_document_id = payload_by_document_id
+    def __init__(self, payload_by_document_id=None, problems_by_document_id=None,
+                 raise_by_document_id=None):
+        self._payload_by_document_id = payload_by_document_id or {}
         self._problems_by_document_id = problems_by_document_id or {}
+        self._raise_by_document_id = raise_by_document_id or {}
         self.problems = []
         self.extracted_document_ids = []
 
     def extract(self, document, pages):
         self.extracted_document_ids.append(document.id)
         self.problems = self._problems_by_document_id.get(document.id, [])
+        if document.id in self._raise_by_document_id:
+            raise self._raise_by_document_id[document.id]
         return self._payload_by_document_id[document.id]
 
 
 def _document(name):
+    # source_collection and family mirror what insights.intake.catalogue_file()
+    # actually writes (task-13 fix-round review) - so the R13a isolation test
+    # below fails for the illustrative reason (the scoping regressed to "every
+    # insights-collection document") rather than by accident (the two
+    # documents happening to differ on some other attribute).
     return Document.objects.create(
-        file_name=name, rel_path=f"insights/{name}", report_date="2026-03-14")
+        file_name=name, rel_path=f"insights/{name}", report_date="2026-03-14",
+        source_collection="insights", family="insight_source")
 
 
 def _payload(document, quote):
@@ -131,3 +152,82 @@ class RefusalsAndParseFailuresReachTheJobLogTests(TestCase):
 
         self.job.refresh_from_db()
         self.assertIn("not valid JSON", self.job.log)
+
+
+class TransportFailureTests(TestCase):
+    """fix-round, 2026-09-14: a transport/SDK failure that an adapter let
+    propagate (rather than swallowing as a chunk problem - see the
+    "TRANSPORT VS RESPONSE-SHAPE ERRORS" note in each adapter module) must
+    end the job "failed", never leave it at "running" - a job stuck at
+    "running" is refused forever by run_extraction_now's double-click guard.
+    """
+
+    def setUp(self):
+        self.document = _document("report.pdf")
+        DocumentText.objects.create(document=self.document, page=1, text=f"Witnesses said: {QUOTE}")
+        self.job = ExtractionJob.objects.create(producer="external", status="queued")
+        self.job.documents.add(self.document)
+
+    def test_a_transport_failure_ends_the_job_failed_not_running(self):
+        extractor = FakeExtractor(
+            raise_by_document_id={self.document.id: ConnectionError("connection reset")})
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+                call_command("extract_insights", "--job", str(self.job.id))
+
+        self.job.refresh_from_db()
+        self.assertEqual(self.job.status, "failed")
+        self.assertNotEqual(self.job.status, "running")
+        self.assertIsNotNone(self.job.finished_at)
+        # (h): only the exception's type and message, never a raw traceback
+        # or a repr of the request/response object.
+        self.assertIn("ConnectionError", self.job.log)
+        self.assertIn("connection reset", self.job.log)
+
+    def test_problems_recorded_before_a_later_failure_still_reach_the_log(self):
+        """The chunks that succeeded before the one that killed the call are
+        not lost with it - flushed to job.log before the exception is
+        allowed to end the run (task-13-rulings.md §2: never a silent loss,
+        now proven across a mid-document crash too, not just a clean
+        document boundary)."""
+        extractor = FakeExtractor(
+            problems_by_document_id={
+                self.document.id: ["report.pdf page 2: refused by the model"],
+            },
+            raise_by_document_id={self.document.id: ConnectionError("connection reset")},
+        )
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+                call_command("extract_insights", "--job", str(self.job.id))
+
+        self.job.refresh_from_db()
+        self.assertIn("refused by the model", self.job.log)
+        self.assertIn("ConnectionError", self.job.log)
+
+
+class RerunResetsDocumentsDoneTests(TestCase):
+    def test_a_rerun_does_not_accumulate_documents_done(self):
+        """§5 sanctions re-running the SAME job on purpose (e.g. with a
+        better model). documents_done is the only per-run progress number on
+        ExtractionJobAdmin's changelist - a second run of a 1-document job
+        showing "2 of 1" would be actively misleading, not just untidy."""
+        document = _document("report.pdf")
+        DocumentText.objects.create(document=document, page=1, text=f"Witnesses said: {QUOTE}")
+        job = ExtractionJob.objects.create(producer="external", status="queued")
+        job.documents.add(document)
+
+        extractor = FakeExtractor({document.id: _payload(document, QUOTE)})
+
+        with tempfile.TemporaryDirectory() as tmp, override_settings(MCP_CACHE_DIR=tmp):
+            with patch(GET_EXTRACTOR, return_value=extractor):
+                call_command("extract_insights", "--job", str(job.id))
+                job.refresh_from_db()
+                self.assertEqual(job.documents_done, 1)
+
+                call_command("extract_insights", "--job", str(job.id))
+
+        job.refresh_from_db()
+        self.assertEqual(job.documents_done, 1)
+        self.assertEqual(job.documents_total, 1)

@@ -172,7 +172,42 @@ class ExtractionJobAdmin(admin.ModelAdmin):
     list_filter = ("status", "producer")
     readonly_fields = ("insights_proposed", "insights_rejected_unverifiable",
                        "insights_skipped_reviewed", "log", "started_at", "finished_at")
-    actions = ["load_payloads_for_job", "run_extraction_now"]
+    actions = ["load_payloads_for_job", "run_extraction_now", "reset_stuck_job"]
+
+    @admin.action(description="Reset stuck job to queued")
+    def reset_stuck_job(self, request, queryset):
+        """Manual recovery for a job wedged at "running" forever.
+
+        extract_insights.py now catches a transport/SDK failure and marks the
+        job "failed" - but it can only do that when its own process raises an
+        exception. It cannot do anything when the process is KILLED instead:
+        `docker compose restart web` (exactly what a dependency rebuild does)
+        kills the detached child launched by run_extraction_now with no
+        exception anywhere in this codebase to catch. The job is left at
+        "running" forever, and run_extraction_now's own double-click guard
+        then refuses to ever launch it again. This is the way out: put it
+        back to "queued" so run_extraction_now accepts it.
+
+        Deliberately not automatic - there is no pid tracked anywhere to
+        check whether the process is actually gone versus still working, and
+        guessing wrong would let two extractions of the same job run at
+        once. Auto-detection is the section-14 job-machinery plan's problem
+        to solve properly; this is a manual override, not a pre-emption of
+        that work.
+        """
+        stuck = queryset.filter(status="running")
+        updated = stuck.count()
+        stuck.update(status="queued")
+        skipped = queryset.count() - updated
+        if updated:
+            self.message_user(
+                request, f"{updated} job(s) reset to queued.", messages.SUCCESS)
+        if skipped:
+            self.message_user(
+                request,
+                f"{skipped} job(s) were not \"running\" and were left alone.",
+                messages.WARNING,
+            )
 
     @admin.action(description="Run extraction now (in-container model)")
     def run_extraction_now(self, request, queryset):

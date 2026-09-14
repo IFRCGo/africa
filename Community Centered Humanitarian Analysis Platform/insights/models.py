@@ -112,7 +112,14 @@ class ExtractionJob(models.Model):
         "data_track.Document", blank=True, related_name="extraction_jobs")
     producer = models.TextField(default="external", help_text="external / anthropic / openai_compatible")
     model_used = models.TextField(null=True, blank=True)
-    status = models.TextField(default="queued", help_text="queued / running / loaded / failed")
+    status = models.TextField(
+        default="queued",
+        help_text=(
+            "queued / running / loaded / failed. A job stuck at 'running' because "
+            "its process was killed rather than raising (e.g. docker compose restart "
+            "web) can be recovered with the 'Reset stuck job to queued' action below."
+        ),
+    )
     documents_total = models.IntegerField(default=0)
     documents_done = models.IntegerField(default=0)
     insights_proposed = models.IntegerField(default=0)

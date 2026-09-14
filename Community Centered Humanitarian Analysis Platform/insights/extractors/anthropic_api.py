@@ -21,6 +21,28 @@ REFUSALS are never a silent `continue`. The taxonomy this project extracts
 against covers GBV, sexual violence and attacks on civilians - exactly where a
 safety classifier may decline - so a refusal is recorded as a problem (see
 base.Extractor.problems) and extract_insights writes it to ExtractionJob.log.
+
+TRANSPORT/SDK ERRORS ARE NOT CHUNK PROBLEMS (fix-round, 2026-09-14) - this is
+deliberately asymmetric with the refusal and parse-failure handling above.
+A connection failure, rate limit, auth failure or 5xx surfacing out of
+`client.beta.messages.stream(...)`/`stream.get_final_message()` is left to
+propagate out of extract() uncaught. The anthropic 1.5.0 SDK already retries
+such things itself (`DEFAULT_MAX_RETRIES = 2`, with retry-after handling), so
+anything that reaches here has already exhausted its own retries and is not
+transient. Catching it and recording it as an ordinary chunk problem would
+turn one dead API key into a string of "chunk problem" log lines and a job
+that ends "loaded" with zero insights - a silent success, which is exactly
+the failure insights/contract.py's own docstring says this whole design
+exists to prevent. extract_insights.py is what turns the propagated
+exception into `ExtractionJob.status = "failed"`, which is the honest
+result: a human re-runs a genuinely failed job, they do not get to believe a
+job that quietly extracted nothing succeeded.
+
+A malformed RESPONSE SHAPE - a content block with no usable .text, or text
+that will not parse as JSON - is the opposite case: the request succeeded,
+the model answered, and what came back cannot be read. That stays a recorded
+chunk problem so one bad chunk does not cost the rest of the document; see
+parse_insights() in base.py.
 """
 from django.conf import settings
 
@@ -115,12 +137,20 @@ class AnthropicExtractor(Extractor):
                 )
                 continue
 
-            text = "".join(b.text for b in message.content if b.type == "text")
+            # Both the response-shape read (a content block with no .text,
+            # or message.content in a shape this loop cannot walk) and the
+            # JSON parse live in one guarded region: both are "the model
+            # answered but what came back cannot be read", the class this
+            # module's docstring says gets recorded rather than raised.
+            # AttributeError/TypeError guard against the former, ValueError
+            # (via parse_insights) against the latter.
             try:
+                text = "".join(b.text for b in message.content if b.type == "text")
                 insights = self.parse_insights(text)
-            except ValueError as exc:
+            except (AttributeError, TypeError, ValueError) as exc:
                 self.problems.append(
-                    f"{document.file_name} {self.chunk_label(chunk)}: {exc}"
+                    f"{document.file_name} {self.chunk_label(chunk)}: "
+                    f"the model's response could not be read ({exc})"
                 )
                 continue
             payload["insights"].extend(insights)

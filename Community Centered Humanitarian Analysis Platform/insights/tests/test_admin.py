@@ -242,3 +242,62 @@ class RunExtractionNowActionTests(TestCase):
 
         self.assertEqual(response.status_code, 200)
         mock_popen.assert_called_once()
+
+
+class ResetStuckJobActionTests(TestCase):
+    """fix-round, 2026-09-14: extract_insights.py now marks a job "failed"
+    when its own process raises - but it cannot do anything when the process
+    is KILLED instead (docker compose restart web kills a detached child
+    with no exception anywhere to catch). That leaves a job wedged at
+    "running" forever, which run_extraction_now's own double-click guard
+    then refuses to ever launch again. This action is the manual way out.
+    """
+
+    def setUp(self):
+        self.user = User.objects.create_superuser("resetter", "reset@example.org", "pw")
+        self.client.force_login(self.user)
+        self.job = ExtractionJob.objects.create(producer="external", status="running")
+
+    def _reset(self, job_ids):
+        return self.client.post(reverse("admin:insights_extractionjob_changelist"), {
+            "action": "reset_stuck_job",
+            "_selected_action": [str(i) for i in job_ids],
+        }, follow=True)
+
+    def test_a_running_job_is_reset_to_queued(self):
+        response = self._reset([self.job.id])
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "reset to queued")
+        self.job.refresh_from_db()
+        self.assertEqual(self.job.status, "queued")
+
+    def test_a_job_that_is_not_running_is_left_alone(self):
+        self.job.status = "loaded"
+        self.job.save(update_fields=["status"])
+        response = self._reset([self.job.id])
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "were not")
+        self.job.refresh_from_db()
+        self.assertEqual(self.job.status, "loaded")
+
+    @override_settings(LLM_PROVIDER="anthropic", LLM_MODEL="claude-opus-5")
+    def test_run_extraction_now_accepts_the_job_once_it_is_reset(self):
+        """The end-to-end point of this action: a job run_extraction_now
+        would otherwise refuse forever becomes launchable again."""
+        self._reset([self.job.id])
+        self.job.refresh_from_db()
+        self.assertEqual(self.job.status, "queued")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with override_settings(MCP_CACHE_DIR=tmp), \
+                    patch("insights.admin.subprocess.Popen") as mock_popen:
+                response = self.client.post(
+                    reverse("admin:insights_extractionjob_changelist"), {
+                        "action": "run_extraction_now",
+                        "_selected_action": [str(self.job.id)],
+                    }, follow=True)
+
+        self.assertEqual(response.status_code, 200)
+        mock_popen.assert_called_once()
+        self.job.refresh_from_db()
+        self.assertEqual(self.job.status, "running")
