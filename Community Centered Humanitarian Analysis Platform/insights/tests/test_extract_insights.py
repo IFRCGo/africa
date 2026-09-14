@@ -208,11 +208,15 @@ class TransportFailureTests(TestCase):
 
 
 class RerunResetsDocumentsDoneTests(TestCase):
-    def test_a_rerun_does_not_accumulate_documents_done(self):
+    def test_a_rerun_does_not_accumulate_progress_counters(self):
         """§5 sanctions re-running the SAME job on purpose (e.g. with a
-        better model). documents_done is the only per-run progress number on
-        ExtractionJobAdmin's changelist - a second run of a 1-document job
-        showing "2 of 1" would be actively misleading, not just untidy."""
+        better model). documents_done and insights_proposed are the only
+        per-run progress numbers on ExtractionJobAdmin's changelist - a
+        second run of a 1-document, 1-insight job showing "2 of 1" and
+        insights_proposed=2 would be actively misleading, not just untidy.
+        insights_rejected_unverifiable and insights_skipped_reviewed are the
+        same bug for the same reason (the model's own docstring calls
+        insights_rejected_unverifiable "a direct per-run measurement")."""
         document = _document("report.pdf")
         DocumentText.objects.create(document=document, page=1, text=f"Witnesses said: {QUOTE}")
         job = ExtractionJob.objects.create(producer="external", status="queued")
@@ -225,9 +229,13 @@ class RerunResetsDocumentsDoneTests(TestCase):
                 call_command("extract_insights", "--job", str(job.id))
                 job.refresh_from_db()
                 self.assertEqual(job.documents_done, 1)
+                self.assertEqual(job.insights_proposed, 1)
 
                 call_command("extract_insights", "--job", str(job.id))
 
         job.refresh_from_db()
         self.assertEqual(job.documents_done, 1)
         self.assertEqual(job.documents_total, 1)
+        self.assertEqual(job.insights_proposed, 1)
+        self.assertEqual(job.insights_rejected_unverifiable, 0)
+        self.assertEqual(job.insights_skipped_reviewed, 0)

@@ -87,10 +87,21 @@ class Command(BaseCommand):
         job.started_at = timezone.now()
         job.documents_total = len(documents)
         # Re-running the SAME job on purpose (§5) must not inherit the
-        # previous run's count - without this a second run of a 3-document
-        # job that already did 3 would show "6 of 3" on the only progress
-        # screen a reviewer has (ExtractionJobAdmin.list_display).
+        # previous run's counts - every one of these is incremented, never
+        # set, by the code below (documents_done here) and by loader.load()
+        # (the other three - shared with load_payloads_for_job, where
+        # accumulating across several payload FILES in one action is
+        # correct, so the reset belongs here, not in the loader). Without
+        # this a second run of a 1-insight job would show documents_done=2
+        # and insights_proposed=2 on the only progress columns a reviewer
+        # has (ExtractionJobAdmin.list_display) - and
+        # insights_rejected_unverifiable is documented on the model itself
+        # as "a direct per-run measurement", which a number carried over
+        # from a previous run directly contradicts.
         job.documents_done = 0
+        job.insights_proposed = 0
+        job.insights_rejected_unverifiable = 0
+        job.insights_skipped_reviewed = 0
         job.save()
 
         try:
