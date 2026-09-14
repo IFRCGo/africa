@@ -20,7 +20,14 @@ once, around the whole per-document loop: whatever chunk problems the dying
 document had already recorded are flushed to the job log before the
 exception is allowed to end the run, the job is marked "failed" rather than
 left at "running", and a human can tell at a glance that this run needs to
-be re-tried rather than trusting a false "loaded" with nothing written.
+be re-tried rather than trusting a false "loaded" with nothing written. The
+job's state is then re-raised as a CommandError, so CLAUDE.md's own
+`docker compose exec web python manage.py <command>` invoked directly also
+sees a non-zero exit rather than a quiet 0 - CommandError specifically,
+because Django's run_from_argv prints only str(exc) for one and no
+traceback, keeping "type and message only, never a raw traceback or the
+underlying request object" true for a human reading the terminal too, not
+just for what lands in job.log.
 
 A job that instead has its PROCESS killed outright - `docker compose restart
 web` kills a detached child (R13b's start_new_session=True) with no
@@ -153,6 +160,18 @@ class Command(BaseCommand):
             job.status = "failed"
             job.finished_at = timezone.now()
             job.save(update_fields=["log", "status", "finished_at"])
+            # The job's own state is already written above - that is what
+            # ExtractionJobAdmin reads. This raise is for the OTHER caller
+            # CLAUDE.md documents: `docker compose exec web python manage.py
+            # extract_insights --job N` run directly. CommandError specifically
+            # (not a bare `raise`) is what keeps this from undercutting the
+            # "type and message only" rule just above it: Django's
+            # run_from_argv catches CommandError and writes only str(exc) to
+            # stderr with no traceback, then exits non-zero - so the caller
+            # gets an honest failing exit code without the raw exception (and
+            # whatever it dragged in, e.g. an SDK error's underlying request)
+            # ever reaching the terminal.
+            raise CommandError(message) from exc
         else:
             job.status = "loaded"
             job.finished_at = timezone.now()

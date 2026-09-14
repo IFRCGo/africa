@@ -15,6 +15,7 @@ import tempfile
 from unittest.mock import patch
 
 from django.core.management import call_command
+from django.core.management.base import CommandError
 from django.test import TestCase, override_settings
 
 from data_track.models import Document, DocumentText
@@ -160,6 +161,14 @@ class TransportFailureTests(TestCase):
     "TRANSPORT VS RESPONSE-SHAPE ERRORS" note in each adapter module) must
     end the job "failed", never leave it at "running" - a job stuck at
     "running" is refused forever by run_extraction_now's double-click guard.
+
+    The command also re-raises as a CommandError once the job's own state is
+    saved, so `manage.py extract_insights` run directly (CLAUDE.md's own
+    documented way of invoking any command) exits non-zero rather than a
+    quiet 0 - call_command() propagates that to the caller here exactly like
+    running it from a real shell would (run_from_argv is what turns it into
+    a clean stderr line and a plain sys.exit(1) with no traceback; that part
+    is Django's own behaviour, not exercised in-process by call_command()).
     """
 
     def setUp(self):
@@ -174,8 +183,11 @@ class TransportFailureTests(TestCase):
 
         with tempfile.TemporaryDirectory() as tmp:
             with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
-                call_command("extract_insights", "--job", str(self.job.id))
+                with self.assertRaises(CommandError):
+                    call_command("extract_insights", "--job", str(self.job.id))
 
+        # The exception must not have cost the state written just before it
+        # was raised - the job's own record is the whole point of (c).
         self.job.refresh_from_db()
         self.assertEqual(self.job.status, "failed")
         self.assertNotEqual(self.job.status, "running")
@@ -190,7 +202,7 @@ class TransportFailureTests(TestCase):
         not lost with it - flushed to job.log before the exception is
         allowed to end the run (task-13-rulings.md §2: never a silent loss,
         now proven across a mid-document crash too, not just a clean
-        document boundary)."""
+        document boundary). Raising afterwards must not cost this either."""
         extractor = FakeExtractor(
             problems_by_document_id={
                 self.document.id: ["report.pdf page 2: refused by the model"],
@@ -200,7 +212,8 @@ class TransportFailureTests(TestCase):
 
         with tempfile.TemporaryDirectory() as tmp:
             with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
-                call_command("extract_insights", "--job", str(self.job.id))
+                with self.assertRaises(CommandError):
+                    call_command("extract_insights", "--job", str(self.job.id))
 
         self.job.refresh_from_db()
         self.assertIn("refused by the model", self.job.log)
