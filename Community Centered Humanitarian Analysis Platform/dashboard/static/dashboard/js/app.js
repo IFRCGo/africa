@@ -1803,7 +1803,7 @@ const monthLabel = (mk) =>
    box could ever match.
 
    Do not "fix" this by switching to activeTagsIn(): that would re-break the
-   bug this predicate exists to avoid. See voicesForTab()'s and
+   bug this predicate exists to avoid. See allVoices()'s and
    renderInsightBubbles()'s comments for why this stays one function.
 
    THIS FUNCTION IS THE SHARED DEFINITION. Task 12 draws these same insights
@@ -2459,7 +2459,15 @@ function renderInsightBubbles() {
     if (!insightPasses(row)) continue;
     if (!voiceOnTab(row.voice_type)) continue;
     const codings = row.codings || [];
-    const first = codings.find((c) => DIM_META[c.dimension]);
+    // Colour by the SAME rule allVoices() uses for the card's border: the
+    // coding that is actually ticked, else the first one with a dimension we
+    // can colour. Without the first clause a statement coded [hazard, need]
+    // would draw a red bubble while its own panel card drew a blue border,
+    // for the same tick - the panel and the map disagreeing about what a
+    // statement is "about" is exactly the drift insightPasses() exists to
+    // prevent, and colour is the most visible place for it to show.
+    const first = codings.find((c) => DIM_META[c.dimension] && state.activeTags.has(`${c.dimension}|${c.tag}`))
+      || codings.find((c) => DIM_META[c.dimension]);
     feats.push({
       type: "Feature",
       geometry: { type: "Point", coordinates: [row.lon, row.lat] },
