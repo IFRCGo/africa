@@ -1778,12 +1778,33 @@ const monthLabel = (mk) =>
 
 /* Whether one published insight belongs under the current country and theme
    filters - country through countryOn(), the one function every filter test
-   in this file goes through; theme through activeTagsIn(), same as every
-   other panel. A row with several codings passes on theme as soon as ANY ONE
-   of them does: a statement coded both hazard/flooding and need/water_wash
-   should not disappear just because the hazard filter alone would exclude it.
-   A row with no codings at all cannot be excluded by a theme filter that has
-   nothing on the row to test against, so it always passes that half.
+   in this file goes through.
+
+   THEME IS DELIBERATELY NOT activeTagsIn(). activeTagsIn()'s own docstring
+   says its null-means-unrestricted rule exists so "choosing two hazards
+   [can] narrow the hazard reporting without silently emptying Needs" - which
+   is right for a PER-DIMENSION display like Top hazards, Trends or the theme
+   panel, each of which only ever shows one dimension at a time and so has no
+   other dimension to accidentally empty.
+
+   An insight is not per-dimension: it is ONE statement that can carry
+   several codings across several dimensions at once. Applying activeTagsIn()
+   here made ticking a hazard hide almost nothing, because nearly every real
+   statement also carries a needs coding, and a needs coding always passed
+   through the untouched Needs dimension's "unrestricted" null. That is the
+   opposite of what ticking flooding is for: "only flood-tagged insights
+   remain." So with anything ticked at all, an insight now needs ONE of its
+   OWN codings to be one of the ticked "dimension|tag" pairs - not merely a
+   coding in some other dimension nobody touched.
+
+   With NOTHING ticked in any dimension, every insight passes (state.activeTags
+   is empty), matching activeTagsIn()'s "no filter" case. A row with no
+   codings at all can only pass that way - it has no tag of its own a ticked
+   box could ever match.
+
+   Do not "fix" this by switching to activeTagsIn(): that would re-break the
+   bug this predicate exists to avoid. See voicesForTab()'s and
+   renderInsightBubbles()'s comments for why this stays one function.
 
    THIS FUNCTION IS THE SHARED DEFINITION. Task 12 draws these same insights
    as map bubbles and must call this exact predicate rather than reimplement
@@ -1794,12 +1815,8 @@ const monthLabel = (mk) =>
    calls this once per slider tick. */
 function insightPasses(row) {
   if (!countryOn(ISO3_TO_COUNTRY[row.iso3])) return false;
-  const codings = row.codings.length ? row.codings : [{ dimension: null, tag: null }];
-  return codings.some((c) => {
-    if (!c.dimension) return true;
-    const only = activeTagsIn(c.dimension);
-    return !only || only.has(c.tag);
-  });
+  if (!state.activeTags.size) return true;
+  return (row.codings || []).some((c) => state.activeTags.has(`${c.dimension}|${c.tag}`));
 }
 
 /* Every quote the panel can show, from both sources, in one shape.
@@ -1842,13 +1859,13 @@ function allVoices() {
     const codings = row.codings || [];
     // dim/tag stand in for the old single chip wherever code still expects
     // one (the border colour, an unfiltered search match): the first coding
-    // whose OWN theme filter it satisfies - the same test insightPasses()
-    // used to let this row through at all, so a real coding always matches
-    // when one exists - or "need"/"other" when the statement carries none.
-    const primary = codings.find((c) => {
-      const only = activeTagsIn(c.dimension);
-      return !only || only.has(c.tag);
-    });
+    // whose "dimension|tag" key is actually ticked - matching the theme
+    // test insightPasses() now uses to let this row through at all - or,
+    // when nothing is ticked (or none of the row's own codings are the
+    // reason it passed), simply the first coding it carries. Picking a
+    // coding that ISN'T one of the ticked keys would show a border colour
+    // for a theme the row does not actually match.
+    const primary = codings.find((c) => state.activeTags.has(`${c.dimension}|${c.tag}`)) || codings[0];
     const dim = primary && DIM_META[primary.dimension] ? primary.dimension : "need";
     const tag = (primary && primary.tag) || "other";
     rows.push({
