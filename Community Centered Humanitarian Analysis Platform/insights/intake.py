@@ -139,7 +139,11 @@ def catalogue_folder(folder):
 
     job = ExtractionJob.objects.create(folder=folder, producer="external", status="queued")
     for path in files:
-        catalogue_file(path, iso3=folder.default_iso3)
+        document = catalogue_file(path, iso3=folder.default_iso3)
+        # A document already catalogued by an earlier job is attached to this
+        # one too - the M2M has no ordering opinion about which job "owns" a
+        # document, and extract_insights will re-extract it here on purpose.
+        job.documents.add(document)
     job.documents_total = len(files)
     job.save(update_fields=["documents_total"])
     return job

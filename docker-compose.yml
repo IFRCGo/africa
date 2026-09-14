@@ -72,6 +72,14 @@ services:
   # ------------------------------------------------------------------ Django
   web:
     build: "./Community Centered Humanitarian Analysis Platform"
+    # tini becomes PID 1 inside this container instead of gunicorn. Without it,
+    # a detached child launched by the "Run extraction now" Admin action
+    # (insights/admin.py, start_new_session=True) that outlives its worker
+    # reparents straight to gunicorn's own Arbiter.reap_workers(), which halts
+    # the whole server if that child happens to exit 3 or 4 - gunicorn's own
+    # WORKER_BOOT_ERROR / APP_LOAD_ERROR codes, misread off a pid that was
+    # never gunicorn's. See task-13-rulings.md §6b (R13c) for the full trace.
+    init: true
     environment:
       # Database connection. Inside Docker the host is always the "db" service.
       POSTGRES_DB: ${POSTGRES_DB:-sudan_neighbouring_pop_movement}
@@ -89,6 +97,15 @@ services:
       DJANGO_CSRF_TRUSTED_ORIGINS: ${DJANGO_CSRF_TRUSTED_ORIGINS:-}
       DASHBOARD_URL: ${DASHBOARD_URL:-/}
       TZ: ${TZ:-UTC}
+
+      # Optional in-container insight extraction. Leave unset to run extraction
+      # with an agent on the host instead. For a local model, point LLM_BASE_URL
+      # at http://host.docker.internal:11434/v1 and set LLM_PROVIDER to
+      # openai_compatible.
+      LLM_PROVIDER: ${LLM_PROVIDER:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
 
       # The basemap drawn under the dashboard: the shared IFRC GO style on
       # Mapbox. Both defaults are the public values published by GO itself

@@ -99,6 +99,17 @@ class ExtractionJob(models.Model):
     """
 
     folder = models.ForeignKey(InsightFolder, on_delete=models.SET_NULL, null=True, blank=True)
+    # What this job extracts, and nothing else. Without this link
+    # `extract_insights --job N` had nothing to scope itself to but
+    # "every document ever catalogued into the insights collection" - a job
+    # for one folder would silently re-extract every other folder's documents
+    # too. Additive: this table lives in insights and data_track is untouched.
+    # A document already catalogued by an earlier job may be attached to a
+    # later one too - re-running the SAME job on purpose (e.g. with a better
+    # model) re-extracts its documents; the loader's conflict rule (gate 4)
+    # already protects any row a reviewer has touched.
+    documents = models.ManyToManyField(
+        "data_track.Document", blank=True, related_name="extraction_jobs")
     producer = models.TextField(default="external", help_text="external / anthropic / openai_compatible")
     model_used = models.TextField(null=True, blank=True)
     status = models.TextField(default="queued", help_text="queued / running / loaded / failed")

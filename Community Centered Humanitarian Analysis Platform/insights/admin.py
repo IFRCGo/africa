@@ -8,6 +8,8 @@ then sees what the model made of it. That ordering is the whole point of the
 screen, so do not fold it into a general "details" block.
 """
 import json
+import subprocess
+import sys
 from pathlib import Path
 
 from django.conf import settings
@@ -142,10 +144,18 @@ class InsightUploadAdmin(admin.ModelAdmin):
             return
         obj.document = document
         obj.save(update_fields=["document"])
+        # R13a: every catalogued document belongs to a job at catalogue time,
+        # the same as one catalogued through a registered folder - otherwise
+        # a document uploaded through this one-off screen would have nothing
+        # to attach it to and could never be extracted.
+        job = ExtractionJob.objects.create(
+            producer="external", status="queued", documents_total=1)
+        job.documents.add(document)
         self.message_user(
             request,
-            f"{document.file_name}: {document.pages} pages catalogued. Run your "
-            f"extraction agent, then use 'Load payloads' on a job.",
+            f"{document.file_name}: {document.pages} pages catalogued as job {job.id}. "
+            f"Run your extraction agent, or use 'Run extraction now' on the job, then "
+            f"'Load payloads' once it is done.",
             messages.SUCCESS,
         )
 
@@ -158,7 +168,77 @@ class ExtractionJobAdmin(admin.ModelAdmin):
     list_filter = ("status", "producer")
     readonly_fields = ("insights_proposed", "insights_rejected_unverifiable",
                        "insights_skipped_reviewed", "log", "started_at", "finished_at")
-    actions = ["load_payloads_for_job"]
+    actions = ["load_payloads_for_job", "run_extraction_now"]
+
+    @admin.action(description="Run extraction now (in-container model)")
+    def run_extraction_now(self, request, queryset):
+        """Launch extract_insights as a detached background process (spec §8.2).
+
+        Validated once, up front, against get_extractor() - not against
+        LLM_API_KEY, which an empty value does not disqualify: the Anthropic
+        SDK falls back to ANTHROPIC_API_KEY or an `ant auth login` profile,
+        and a local OpenAI-compatible server needs no key at all.
+
+        The process is launched with start_new_session=True so a gunicorn
+        worker recycling mid-run does not kill it. That is also why
+        docker-compose.yml's web service now sets init: true - see R13c in
+        task-13-rulings.md for the full trace of how an orphaned child that
+        exits 3 or 4 could otherwise take the whole web server down through
+        gunicorn's own Arbiter.reap_workers().
+        """
+        from insights.extractors import get_extractor
+
+        try:
+            get_extractor()
+        except ValueError as exc:
+            self.message_user(
+                request, f"Extraction is not configured: {exc}", messages.ERROR)
+            return
+
+        for job in queryset:
+            # A double click must not run two extractions of the same job at
+            # once - it would double every insight the second pass wrote,
+            # since the loader's conflict gate only protects reviewed rows.
+            if job.status == "running":
+                self.message_user(
+                    request,
+                    f"job {job.id}: already running - not launching a second "
+                    f"extraction of the same job.",
+                    messages.WARNING,
+                )
+                continue
+
+            log_dir = Path(settings.MCP_CACHE_DIR) / "insights"
+            # This directory only exists once something has written a payload
+            # into it, so on a fresh setup the very first click here would
+            # otherwise fail opening the log file below - before the command
+            # itself ever gets a chance to create the directory.
+            log_dir.mkdir(parents=True, exist_ok=True)
+            log_path = log_dir / f"job-{job.id}.log"
+
+            # Set to "running" and save BEFORE launching: the request returns
+            # immediately, and the child process is what moves the job on to
+            # "loaded" (or leaves it stuck at "running" if it dies - visible
+            # on the changelist either way, which is the point of doing this
+            # here rather than inside a request the browser is waiting on).
+            job.status = "running"
+            job.save(update_fields=["status"])
+
+            with open(log_path, "wb") as log_file:
+                subprocess.Popen(
+                    [sys.executable, "manage.py", "extract_insights", "--job", str(job.id)],
+                    cwd=settings.BASE_DIR,
+                    stdout=log_file,
+                    stderr=log_file,
+                    start_new_session=True,
+                )
+
+            self.message_user(
+                request,
+                f"job {job.id}: extraction launched in the background. Refresh this "
+                f"changelist to watch progress; log at {log_path}.",
+                messages.SUCCESS,
+            )
 
     @admin.action(description="Load payloads written by the agent")
     def load_payloads_for_job(self, request, queryset):

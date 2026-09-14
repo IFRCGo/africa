@@ -36,6 +36,14 @@ DASHBOARD_DATA_DIR = env_path("DASHBOARD_DATA_DIR", BASE_DIR / "dashboard" / "da
 MEDIA_ROOT = env_path("MEDIA_ROOT", BASE_DIR / "media")
 MEDIA_URL = "/media/"
 
+# The in-container extraction adapter (spec §8.2). Optional: with nothing set,
+# extraction is run by an agent on the host and loaded from mcp_cache/insights/.
+# `or` rather than a default argument - an empty value in .env must fall back.
+LLM_PROVIDER = os.environ.get("LLM_PROVIDER") or "anthropic"
+LLM_MODEL = os.environ.get("LLM_MODEL") or "claude-opus-5"
+LLM_BASE_URL = os.environ.get("LLM_BASE_URL") or ""
+LLM_API_KEY = os.environ.get("LLM_API_KEY") or ""
+
 # Raw pulls from the humanitarian MCP servers (HDX, IPC, FEWS NET, UNHCR).
 # These are fetched by an analyst in Claude Code, NOT by this app; the
 # pipeline only re-reads whatever sits in the folder. See data_pipeline/README.md.

@@ -144,3 +144,31 @@ class CatalogueFolderTests(TestCase):
         folder = InsightFolder.objects.create(label="gone", path="/nowhere/at/all")
         with self.assertRaises(FileNotFoundError):
             catalogue_folder(folder)
+
+    def test_every_catalogued_document_is_attached_to_the_job(self):
+        """R13a: without this link the brief's `extract_insights --job N` had
+        nothing to scope itself to but every document ever catalogued into
+        the insights collection - a job for this folder must extract only
+        this folder's documents."""
+        for name in ("a.pdf", "b.pdf"):
+            write_pdf(self.dir / name, ["Words."])
+        folder = InsightFolder.objects.create(
+            label="test", path=str(self.dir), default_iso3="TCD")
+        job = catalogue_folder(folder)
+        self.assertEqual(job.documents.count(), 2)
+        self.assertEqual(
+            set(job.documents.values_list("file_name", flat=True)), {"a.pdf", "b.pdf"})
+
+    def test_a_document_already_catalogued_by_an_earlier_job_is_attached_again(self):
+        """Re-cataloguing the same file (e.g. the folder is run a second
+        time) must not skip attaching it to the new job just because
+        catalogue_file() found it already existed."""
+        pdf = self.dir / "assessment.pdf"
+        write_pdf(pdf, ["Words."])
+        first_folder = InsightFolder.objects.create(label="first", path=str(self.dir))
+        first_job = catalogue_folder(first_folder)
+        second_job = catalogue_folder(first_folder)
+        self.assertEqual(first_job.documents.count(), 1)
+        self.assertEqual(second_job.documents.count(), 1)
+        self.assertEqual(
+            first_job.documents.first().id, second_job.documents.first().id)
