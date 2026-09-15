@@ -22,6 +22,8 @@ from django.core.management.base import BaseCommand
 from external_data.fetchers import fetcher_for
 from external_data.fetchers.base import missing_keys, redact
 from external_data.models import SourceSync
+from mcp.locks import JobBusy, claim
+from mcp.models import ACTIVE
 
 
 class Command(BaseCommand):
@@ -46,6 +48,7 @@ class Command(BaseCommand):
             job.progress_total = len(rows)
             job.save(update_fields=["status", "started_at", "progress_total"])
 
+        batch_user = job.requested_by if job else None
         pulled = failed = skipped = 0
         try:
             for index, row in enumerate(rows, start=1):
@@ -60,17 +63,51 @@ class Command(BaseCommand):
                     continue
 
                 self.stdout.write(f"--- {label}")
+
+                # EVERY ROW GETS ITS OWN JOB, and that is not bookkeeping for
+                # its own sake: the status column on the data sources page reads
+                # the latest job for a row. Without one, a batch would refresh
+                # eight countries, move every freshness date, and leave all
+                # eight rows still showing a dash - the pull having visibly
+                # done nothing.
+                #
+                # Claimed one at a time, and closed before the next row starts:
+                # uniq_active_job_per_source allows exactly one active job per
+                # source, and a batch of eight FEWS NET countries would breach
+                # it the moment two overlapped.
                 try:
-                    # In-process, so refresh_external's own guarantees apply.
-                    # Its per-source job row is not claimed here: the batch is
-                    # already serial, and claiming would refuse a source the
-                    # operator deliberately queued behind another.
+                    row_job = claim("pull", source=row.source, dataset=row.dataset,
+                                    iso3=row.iso3, variant=row.variant,
+                                    user=batch_user)
+                except JobBusy as exc:
+                    # Somebody pressed Pull on this source while the batch was
+                    # running. Their job is doing the work; skipping is right,
+                    # and taking the whole batch down with an IntegrityError is
+                    # not.
+                    skipped += 1
+                    self.stdout.write(f"    skipped: {exc}")
+                    self._progress(job, index, f"skipped {label}")
+                    continue
+
+                try:
+                    # In-process, so refresh_external's own guarantees apply -
+                    # fetch, save, load, watermark last, redact on the way out.
                     call_command("refresh_external", row.source, row.dataset,
-                                 iso3=row.iso3, variant=row.variant)
+                                 iso3=row.iso3, variant=row.variant, job=row_job.id)
                     pulled += 1
                 except Exception as exc:
                     failed += 1
                     self.stdout.write(self.style.WARNING(f"    failed: {redact(exc)}"))
+                finally:
+                    # refresh_external closes the job itself on both paths, but
+                    # a crash before it got that far would leave the row job
+                    # active and hold the source against every later press.
+                    row_job.refresh_from_db()
+                    if row_job.status in ACTIVE:
+                        row_job.status = "failed"
+                        row_job.finished_at = datetime.now(dt_timezone.utc)
+                        row_job.message = row_job.message or "ended without reporting"
+                        row_job.save(update_fields=["status", "finished_at", "message"])
                 self._progress(job, index, f"{pulled} pulled, {failed} failed")
         finally:
             # ALWAYS closes. A batch left active holds no source itself, but the

@@ -116,22 +116,51 @@ class DataSourceAdmin(admin.ModelAdmin):
     def country(self, obj):
         return obj.iso3 or "global"
 
-    @admin.display(description="status")
+    @admin.display(description="last attempt")
     def job_status(self, obj):
         """The latest attempt for this row - including the ones that failed.
 
         This column is why PullJob exists: source_sync records what is HELD and
-        says nothing about an attempt that did not land.
+        says nothing about an attempt that did not land. A pull that SUCCEEDED
+        has to be visible here too, or the only evidence a refresh happened is a
+        date moving in the next column along.
         """
         job = (PullJob.objects
                .filter(source=obj.source, dataset=obj.dataset, iso3=obj.iso3,
                        variant=obj.variant)
                .order_by("-requested_at").first())
         if job is None:
-            return "—"
-        label = "stuck" if job.is_stale else job.status
-        detail = f": {job.message[:80]}" if job.status == "failed" else ""
-        return format_html('<a href="job/{}/">{}{}</a>', job.id, label, detail)
+            return format_html('<span style="color:#888">&mdash;</span>')
+
+        if job.is_stale:
+            return self._chip("#ef6c00", "stuck", "no process behind it", job)
+        if job.status == "failed":
+            return self._chip("#c62828", "failed", job.message[:90], job)
+        if job.status in ACTIVE:
+            detail = job.progress_note or job.status
+            if job.progress_total:
+                detail = f"{job.progress_done} of {job.progress_total} - {detail}"
+            return self._chip("#2b7cd3", "running", detail, job)
+
+        # Succeeded. "0 rows" reads like a failure to anyone scanning the page,
+        # and for an incremental pull it is the ordinary result - so the reason
+        # it wrote nothing is what gets shown instead of the count.
+        if job.rows_written:
+            detail = f"{job.rows_written:,} rows"
+        elif "up to date" in (job.message or ""):
+            detail = "already up to date"
+        else:
+            detail = job.message[:90] or "no rows"
+        when = timezone.localtime(job.finished_at).strftime("%H:%M") if job.finished_at else ""
+        return self._chip("#2e7d32", "succeeded", f"{detail}{' at ' + when if when else ''}", job)
+
+    def _chip(self, colour, label, detail, job):
+        """One coloured word plus what it means, linking to the full log."""
+        return format_html(
+            '<a href="job/{}/" style="text-decoration:none">'
+            '<span style="color:{};font-weight:600">{}</span>'
+            '<span style="color:#555"> {}</span></a>',
+            job.id, colour, label, detail)
 
     @admin.display(description="")
     def pull_button(self, obj):
