@@ -21,19 +21,25 @@ from pathlib import Path
 from django.conf import settings
 from django.contrib import admin as django_admin
 from django.contrib import messages
+from django.forms import inlineformset_factory
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.views.decorators.http import require_POST
 
 from data_track.models import Document
 from insights import review
 from insights.extractors import get_extractor
+from insights.forms import InsightInlineEditForm
 from insights.intake import SUFFIXES, catalogue_file
-from insights.models import ExtractionJob, Insight, InsightUpload
+from insights.models import ExtractionJob, Insight, InsightCoding, InsightUpload
 
 RECENT_JOBS = 20
 LOG_TAIL_BYTES = 4096
+
+CodingFormSet = inlineformset_factory(
+    Insight, InsightCoding, fields=("dimension", "tag"), extra=1, can_delete=True)
 
 
 def page(request, **extra):
@@ -210,8 +216,44 @@ def decide(request, job_id):
 
 
 def edit(request, insight_id):
-    """One insight's inline editor. Filled in by Task 9."""
-    raise NotImplementedError
+    """One statement's editor, and the save behind it.
+
+    An inlineformset_factory rather than the admin's TabularInline: that class
+    only exists inside an admin change view and leans on admin's own inlines.js.
+    Outside it, empty_form plus a few lines of JavaScript is the whole feature.
+
+    The form is InsightPlaceForm's subclass, so the rules that keep a place
+    derived rather than typed are inherited rather than restated - including the
+    one that leaves an untouched location exactly as the extractor wrote it.
+    """
+    insight = get_object_or_404(Insight, id=insight_id)
+    prefix = f"insight-{insight.id}"
+    coding_prefix = f"{prefix}-codings"
+
+    if request.method == "POST":
+        form = InsightInlineEditForm(request.POST, instance=insight, prefix=prefix)
+        formset = CodingFormSet(request.POST, instance=insight, prefix=coding_prefix)
+        if form.is_valid() and formset.is_valid():
+            form.save()
+            formset.save()
+            insight.refresh_from_db()
+            return JsonResponse({
+                "saved": True,
+                "row": render_to_string(
+                    "insights/_review_row.html", {"insight": insight}, request=request),
+            })
+        return JsonResponse({
+            "saved": False,
+            "panel": render_to_string(
+                "insights/_edit_panel.html",
+                {"insight": insight, "form": form, "formset": formset}, request=request),
+        })
+
+    return render(request, "insights/_edit_panel.html", {
+        "insight": insight,
+        "form": InsightInlineEditForm(instance=insight, prefix=prefix),
+        "formset": CodingFormSet(instance=insight, prefix=coding_prefix),
+    })
 
 
 def log_path(job):

@@ -249,6 +249,11 @@ class InsightPlaceForm(forms.ModelForm):
         self.fields["country"].widget.attrs["data-place-options-url"] = reverse(
             "admin:insights_place_options")
 
+        # Found by role, not by id. The review page renders one of these forms
+        # per row with a prefix, so "id_country" is neither unique nor present.
+        for name in ("country", "state", "district"):
+            self.fields[name].widget.attrs["data-place-role"] = name
+
         self.initial.setdefault("country", country)
         self.initial.setdefault("state", state)
         self.initial.setdefault("district", district)
@@ -411,3 +416,23 @@ class InsightPlaceForm(forms.ModelForm):
 
     class Media:
         js = ("insights/place_picker.js",)
+
+
+class InsightInlineEditForm(InsightPlaceForm):
+    """InsightPlaceForm, narrowed to what a reviewer corrects in the review page.
+
+    A subclass rather than a second form: every rule that makes the place safe
+    - the server-side choice rebuild, clean()'s country check, save()'s "only
+    re-derive when the pick actually changed" - is inherited, not re-stated.
+
+    The field list exists because InsightPlaceForm uses Meta.exclude, so outside
+    the admin's own fieldsets it would render `document` and `job` as selects
+    over every document and every job in the database.
+    """
+
+    class Meta(InsightPlaceForm.Meta):
+        fields = ("quote", "quote_language", "quote_translated", "voice_type",
+                  "channel", "stated_on", "place_name_as_written",
+                  "people_affected", "severity", "confidence", "method",
+                  "status", "rejection_reason")
+        exclude = None

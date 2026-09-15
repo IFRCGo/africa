@@ -9,6 +9,13 @@
  * The endpoint is read off a data- attribute rather than hardcoded, because the
  * admin owns that URL (insights/admin.py, get_urls) and a path written twice is
  * a path that goes stale once.
+ *
+ * BOUND TO A CONTAINER, NOT TO IDS. The admin change form has exactly one set
+ * of these and it is in the page at load. The wizard's review page has one set
+ * PER ROW, each with its own form prefix, and injects them after load - so
+ * "id_country" is there neither uniquely nor at all. The three are found by
+ * data-place-role instead (set in InsightPlaceForm.__init__), and the review
+ * page calls bind() on each panel as it arrives.
  */
 (function () {
   "use strict";
@@ -18,11 +25,16 @@
     else { document.addEventListener("DOMContentLoaded", fn); }
   }
 
-  ready(function () {
-    var country = document.getElementById("id_country");
-    var state = document.getElementById("id_state");
-    var district = document.getElementById("id_district");
+  function bind(root) {
+    var country = root.querySelector("[data-place-role=country]");
+    var state = root.querySelector("[data-place-role=state]");
+    var district = root.querySelector("[data-place-role=district]");
     if (!country || !state || !district) { return; }
+
+    /* A second bind() on an already-wired panel would stack a duplicate
+     * listener, so every change fired two fetches and the later answer won. */
+    if (country.dataset.placeBound) { return; }
+    country.dataset.placeBound = "1";
 
     var endpoint = country.dataset.placeOptionsUrl;
     if (!endpoint) { return; }
@@ -72,5 +84,8 @@
     state.addEventListener("change", function () {
       load(district, state.value, 2, "");
     });
-  });
+  }
+
+  window.insightsPlacePicker = { bind: bind };
+  ready(function () { bind(document); });
 }());
