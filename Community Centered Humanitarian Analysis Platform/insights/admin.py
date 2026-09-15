@@ -463,6 +463,12 @@ class DocumentsToInsightsAdmin(admin.ModelAdmin):
             path("batch/<int:job_id>/ready/",
                  self.admin_site.admin_view(wizard.batch_ready),
                  name="insights_wizard_batch_ready"),
+            path("job/<int:job_id>/extract/",
+                 self.admin_site.admin_view(wizard.extract),
+                 name="insights_wizard_extract"),
+            path("job/<int:job_id>/progress/",
+                 self.admin_site.admin_view(wizard.progress),
+                 name="insights_wizard_progress"),
         ] + super().get_urls()
 
     def changelist_view(self, request, extra_context=None):

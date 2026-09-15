@@ -13,18 +13,24 @@ redirect as every other admin page - exactly as place_options and
 folder_browse already are.
 """
 import hashlib
+import subprocess
+import sys
+from datetime import datetime, timezone as dt_timezone
 from pathlib import Path
 
+from django.conf import settings
 from django.contrib import admin as django_admin
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, render
 from django.views.decorators.http import require_POST
 
 from data_track.models import Document
+from insights.extractors import get_extractor
 from insights.intake import SUFFIXES, catalogue_file
 from insights.models import ExtractionJob, InsightUpload
 
 RECENT_JOBS = 20
+LOG_TAIL_BYTES = 4096
 
 
 def page(request, **extra):
@@ -166,3 +172,119 @@ def job_step(request, job_id):
                       page(request, job=job, wizard_step=3))
     return render(request, "insights/wizard_review.html",
                   page(request, job=job, wizard_step=4))
+
+
+def log_path(job):
+    """Where the detached extraction writes its output."""
+    return Path(settings.MCP_CACHE_DIR) / "insights" / f"job-{job.id}.log"
+
+
+def _tail(path):
+    """The last few KB of a file, or "" if there is no file yet.
+
+    Seeked, not read: a long run's log grows without bound and this endpoint is
+    polled every two seconds. The first line of the block is dropped when the
+    file is longer than the window, because it is half a line.
+    """
+    try:
+        size = path.stat().st_size
+        with open(path, "rb") as handle:
+            handle.seek(max(0, size - LOG_TAIL_BYTES))
+            block = handle.read()
+    except OSError:
+        return ""
+    text = block.decode("utf-8", errors="replace")
+    return text if size <= LOG_TAIL_BYTES else text.split("\n", 1)[-1]
+
+
+def _last_change(path):
+    """When the extraction last wrote anything, as an ISO timestamp.
+
+    THE LOG FILE'S MTIME, not a column on the job. ExtractionJob has no
+    updated_at, and adding one with auto_now=True would not work: the command
+    saves with update_fields=["documents_done"] and update_fields=["log"], and
+    an auto_now field is only touched when it is among the fields listed. The
+    child writes to this file as each document finishes, which is exactly the
+    signal the stall warning needs, and it costs no model change.
+    """
+    try:
+        stamp = path.stat().st_mtime
+    except OSError:
+        return None
+    return datetime.fromtimestamp(stamp, tz=dt_timezone.utc).isoformat()
+
+
+def progress(request, job_id):
+    """Everything the extract step redraws itself from."""
+    job = get_object_or_404(ExtractionJob, id=job_id)
+    path = log_path(job)
+    return JsonResponse({
+        "status": job.status,
+        "done": job.documents_done,
+        "total": job.documents_total,
+        "proposed": job.insights_proposed,
+        "unverifiable": job.insights_rejected_unverifiable,
+        "skipped_reviewed": job.insights_skipped_reviewed,
+        "log_tail": _tail(path),
+        "last_change": _last_change(path),
+    })
+
+
+@require_POST
+def extract(request, job_id):
+    """Launch the extraction as a detached background process.
+
+    Detached (start_new_session=True) so a gunicorn worker recycling mid-run
+    does not kill a paid-for extraction, and so closing this tab does not
+    either. docker-compose.yml's web service sets init: true for the other half
+    of that: an orphaned child exiting 3 or 4 reparents to gunicorn's own
+    Arbiter.reap_workers() and can halt the whole web server.
+    """
+    job = get_object_or_404(ExtractionJob, id=job_id)
+
+    if job.status == "running":
+        # A double click must not run two extractions of the same job - the
+        # second pass would double every insight the first one wrote, since the
+        # loader's conflict gate only protects rows a reviewer has touched.
+        return JsonResponse({
+            "started": False,
+            "message": "This batch is already extracting.",
+        })
+
+    try:
+        get_extractor()
+    except ValueError as exc:
+        # The normal state for the route CLAUDE.md documents first: extraction
+        # run by an agent on the host, writing payloads into mcp_cache/insights/
+        # for "Load payloads" to pick up. Not an error, so it is not reported
+        # as one.
+        return JsonResponse({
+            "started": False,
+            "message": (
+                f"No in-container model is configured ({exc}). Run the extraction "
+                f"with an agent on the host, then use “Load payloads written "
+                f"by the agent” on this job."
+            ),
+        })
+
+    path = log_path(job)
+    # Only exists once something has written a payload into it, so on a fresh
+    # setup the very first click here would otherwise fail opening the log.
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Set to running and saved BEFORE launching: this request returns at once,
+    # and the child is what moves the job on to "loaded" - or leaves it at
+    # "running" if it dies, which is visible either way.
+    job.status = "running"
+    job.save(update_fields=["status"])
+
+    with open(path, "wb") as log_file:
+        subprocess.Popen(
+            [sys.executable, "manage.py", "extract_insights", "--job", str(job.id)],
+            cwd=settings.BASE_DIR,
+            stdout=log_file,
+            stderr=log_file,
+            start_new_session=True,
+        )
+
+    return JsonResponse({"started": True, "message": "Extraction started."})
