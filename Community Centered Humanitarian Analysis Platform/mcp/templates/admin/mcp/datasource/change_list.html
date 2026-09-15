@@ -1,0 +1,15 @@
+{% extends "admin/change_list.html" %}
+{% block object-tools %}
+  <div style="margin:0 0 1em 0;padding:.75em 1em;background:#f6f6f6;border:1px solid #ddd">
+    <a class="button" href="rebuild/">Rebuild dashboard layers</a>
+    <span style="margin-left:.75em;color:#555">
+      {% if pulls_since_rebuild %}
+        {{ pulls_since_rebuild }} pull{{ pulls_since_rebuild|pluralize }} since the last rebuild.
+      {% else %}
+        No pulls since the last rebuild.
+      {% endif %}
+      A pull updates the database only; the map changes when you rebuild.
+    </span>
+  </div>
+  {{ block.super }}
+{% endblock %}

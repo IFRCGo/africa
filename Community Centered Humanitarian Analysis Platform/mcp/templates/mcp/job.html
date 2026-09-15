@@ -1,0 +1,20 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+  <h1>Job {{ job.id }} — {{ job.target }}</h1>
+  <p>
+    <strong>{{ job.status }}</strong>
+    {% if job.rows_written %} · {{ job.rows_written }} rows{% endif %}
+    {% if job.requested_by %} · started by {{ job.requested_by }}{% endif %}
+    · requested {{ job.requested_at }}
+  </p>
+  {% if job.message %}<p>{{ job.message }}</p>{% endif %}
+  <pre style="background:#111;color:#eee;padding:1em;overflow:auto;max-height:60vh">{{ log }}</pre>
+  <p><a href="{% url 'admin:mcp_datasource_changelist' %}">Back to data sources</a></p>
+  {% if job.status == "queued" or job.status == "running" %}
+  <script>
+    // The command is still writing. Reload until it stops, then leave the page
+    // alone so a finished log can be read and copied.
+    setTimeout(function () { location.reload(); }, 4000);
+  </script>
+  {% endif %}
+{% endblock %}
