@@ -18,8 +18,9 @@ one."**
 Today the only way to refresh IPC phases or FEWS NET seasons is for someone to open Claude
 Code on the host, call an MCP tool, save the response into `data_pipeline/mcp_cache/`, and
 run `manage.py load_external`. That is four steps, a terminal, and a person who knows the
-convention. It is the reason the UNHCR refugee rows still read "never" in the pulled column
-and carry 2024 data.
+convention. The UNHCR refugee rows show what that costs: they read "never" in the pulled
+column and carry 2024 figures, because `seed_external` transcribed them by hand and nothing
+has ever pulled them. They are the first thing this button should fix.
 
 **Django cannot call the MCP servers, and this spec does not pretend otherwise.** `.mcp.json`
 points at Node scripts under `IFRC-GO-MCP/` on a Windows share that is not mounted into the
@@ -52,8 +53,10 @@ rather than leaving someone to discover it.
 - **No scheduler.** Nothing pulls on a timer. Every pull is a button press by a signed-in
   staff user. A cron-driven refresh is a later question and this design does not foreclose
   it — `refresh_external` is a management command first and an admin button second.
-- **No new data tables for external data.** The six subject tables and `source_sync` stay
-  exactly as they are. This adds one table, and it records jobs, not humanitarian data.
+- **No new data tables for external data.** The six subject tables stay exactly as they are,
+  and this adds one table that records jobs rather than humanitarian data. `source_sync`
+  gains two columns and no new meaning — `skipped_ids` and `params` are bookkeeping about
+  pulls, which is what that table is for. §7.3 and §7.4 say why each is needed.
 - **No change to any loader.** The four guarantees in `external_data/loaders/base.py` are
   what make the button safe; they are used, not modified.
 - **No MCP client in Python.** Considered and rejected — see §4.
@@ -74,6 +77,8 @@ rather than leaving someone to discover it.
 | Row grain | **source × dataset × iso3 × variant** — one row per `source_sync` row | A pull is then a single upstream call, which is what keeps the IPC rule below enforceable. |
 | Pull and rebuild | **Two separate buttons** | A pull touches the database only. Chaining a pipeline rebuild onto it widens the blast radius of a refresh button, and the operator wants to see the data before the map moves. |
 | Concurrency | **A database lock, not `threading.Lock`** | `updater/views.py` uses an in-process lock, which cannot see the other gunicorn workers. Two browser tabs is exactly how the recorded IPC crash happens again. §9. |
+| Which analyses to pull | **held ∪ deliberately skipped**, not held alone | A diff against `known_ids` alone re-pulls everything a curator excluded, and retries known-empty analyses forever. §7.3. |
+| Call parameters | **Pinned per fetcher, and written back to `source_sync.params`** | `params` is empty on every row today, so there is nothing to replay yet. §7.4. |
 | Failed attempts | **On `PullJob`, never on `source_sync`** | `source_sync` may only be advanced by a successful load. A failed pull must not look fresh. |
 | HTTP client | **`requests==2.32.3`** | One pinned dependency, the mocking story is well understood, and `urllib` would cost hand-rolled retry and timeout handling for nothing. |
 
@@ -211,29 +216,77 @@ Two keys cover all four API sources.
 for the nine countries in scope. It is a lookup, not a library: an unmapped ISO3 raises
 rather than guessing a two-letter code.
 
-**HAPI paginates.** `callHapiApi` passes no limit and the endpoint's default applies, so the
-fetcher follows pages until a short one comes back and concatenates `data` before saving. The
-5,686 Sudan IDP rows are more than one page.
+**HAPI paginates, and its default page is 100.** `get_idps` declares `limit` with a default
+of 100, so the 5,686 Sudan IDP rows are 57 pages. The fetcher follows `offset` until a short
+page comes back and concatenates `data` before saving — one file, as though it had been one
+call, because that is the shape the loader expects.
+
+**IPC wants ISO2 too.** `/analyses` takes `country` as a two-letter code, so the same map
+serves both fetchers.
 
 ### 7.3 IPC, which is the one with real logic
 
-`plan()` calls `/analyses?country=<ISO3>`, compares the returned analysis ids against
-`sync.known_ids`, and yields a Call only for ids not already held. For each, it fetches
-`/areas/{id}/C` — the current-situation period, matching the `-C` suffix on every file
-already in `mcp_cache/ipc/`.
+Reconnaissance against the live API (`mcp_cache/ipc/analyses-CAF.json`, pulled 2026-09-15 and
+kept as the test fixture) settled three things a naive diff would have got wrong.
 
-**The period comes from the analysis record, not from the filename.** `load_external`
-recovers IPC's period by regex over the filename, and the existing `ipc/CAF-62439499-C.geojson`
-names carry no `YYYY-MM` for it to find. The fetcher has the analysis metadata in hand and
-passes `period_date` in `context` directly, which is both correct and one less convention to
-maintain. Cache filenames keep the existing `<ISO3>-<analysis_id>-C.geojson` shape so the
-folder stays uniform and a hand-run `load_external --period` still works on them.
+**The list goes back to 2013, and `known_ids` is not the filter it looks like.** CAF returns
+22 analyses; `known_ids` holds 4. A diff of "returned minus held" would queue 18 pulls of
+8–15 MB each, back to 2013, on the first button press — a worse first impression than the
+agent path it replaces, and the exact load profile that took the IPC server down before.
 
-An analysis that publishes an empty `FeatureCollection` — a projection update, as the CAF and
-SSD notes in `source_sync` already record — trips `EmptyPayload`. That job is marked failed
-with the analysis id in the message, and, because `known_ids` is only advanced by a
-successful load, it will be retried next time rather than silently skipped. A retried
-analysis that is empty every time is a source fact, and the note column is where it belongs.
+**`known_ids` means "held", and the fetcher needs "considered".** The `notes` column already
+records a curator's judgement that the ids cannot: TCD excludes the Mar 2023 analysis and the
+Mar 2024 displaced-population analysis ("counts a different denominator and would not compose
+with the rest"); CAF's 87143421 and SSD's 81832747 publish no current-period geometry at all.
+None of those ids is in `known_ids`, so a naive diff re-pulls every one of them, and the two
+empty ones fail on every press forever.
+
+So `source_sync` gains **`skipped_ids`**, a JSON list beside `known_ids`, seeded from the
+decisions already written in `notes` and appended by the runner whenever an analysis trips
+`EmptyPayload`. The diff is `returned − (known_ids ∪ skipped_ids)`. A skipped id is shown on
+the row with its reason, because a silent skip is how curated exclusions get forgotten.
+
+**A crisis-start floor is a pre-filter, not the authority.** `CRISIS_START` already exists —
+`config/settings.py:270` and `data_pipeline/common.py:31`, both 2023-04-15 — and dropping
+analyses from before it removes 16 of CAF's 22. It cannot replace `skipped_ids`, and the
+evidence is in the fixture: CAF's April 2023 analysis was *created* 2023-05-09, after the
+crisis start, but describes a period before it, which is precisely why a person excluded it.
+The floor is applied to the period, and the curator's list overrides either way.
+
+**There is no period date in the response, and the spec no longer claims there is.** The
+analysis record carries `id`, `title`, `country`, `year`, `condition`, `created` and
+`modified` — no analysis period. The period is in the title ("Acute Food Insecurity September
+2025"), so the fetcher parses it from there and passes `period_date` in `context`; where the
+title yields no month, the job fails naming the analysis rather than filing it under a guess.
+That is the same rule `_period_date` already keeps in `load_external`, and for the same
+reason.
+
+Cache filenames keep the existing `<ISO3>-<analysis_id>-C.geojson` shape, and the analyses
+listing is saved as `analyses-<ISO3>.json` beside them.
+
+**"Proj Update" in a title is a usable warning.** Every known-empty analysis in the notes is
+a projection update, and the titles say so — "March 2022 (Proj Update)", "Apr 2020
+(Projection update)". The fetcher does not skip on the title alone, because that is a
+guess about a source rather than a fact from it; it pulls, and if the payload is empty the
+id goes to `skipped_ids` with the title as its reason. One wasted call per analysis, once,
+and never again.
+
+### 7.4 Parameters, and the `params` column
+
+`SourceSync.params` is documented as "the last call made, for reproducibility" and is `{}`
+on all 36 rows — nothing has ever written it. So there is nothing to replay, and each fetcher
+carries its own pinned parameters, keyed on the row's **`variant`** as well as its source and
+dataset. That matters in two places today:
+
+- `hdx/idps/SDN` is variant `admin2-overview`, which is an `admin_level=2` overview request,
+  not a bare country call.
+- `fewsnet/food_security/ETH` is variant `fewsnet-phases` while its loader's dataset is
+  `fewsnet_phases`. A registry keyed on `(source, dataset)` alone misses this row entirely.
+
+The registry is therefore keyed on `(source, dataset, variant)`, and every successful pull
+writes the parameters it actually used back into `params`. After the first press the column
+starts doing the job its help text promises, and a later reader can see what was asked
+rather than infer it.
 
 ## 8. `manage.py refresh_external`
 
@@ -251,6 +304,13 @@ same thing, which is how it gets tested and how it will be scheduled if that is 
 5. For each Call the fetcher plans, serially: request with a 60-second timeout, save the raw
    body to `mcp_cache/`, then `loaders.base.load(loader, payload, iso3, context=…)`.
 6. Sum rows written; mark `succeeded`, or `failed` with the exception text.
+
+**One Call failing does not discard the Calls that succeeded.** Each Call is saved and loaded
+in its own loader transaction, as `load_external` already does per file. A job whose Calls
+partly succeeded ends `failed`, its message naming which Call broke and how many of the rest
+landed — the alternative, rolling back six good IPC analyses because the seventh was empty,
+would throw away 8–15 MB of successful work per failure and make an empty projection update
+poison the whole country.
 
 Output goes to stdout line by line and is captured into `PullJob.log`, so the job page can
 show it the way the updater page shows a pipeline run.
@@ -271,9 +331,26 @@ clicks. The rule is therefore enforced in code rather than in documentation.
   is writing.
 - A **rebuild** is refused while any job at all is in flight.
 
-The check and the transition to `running` happen in one `select_for_update()` transaction, so
-two simultaneous requests cannot both pass it. A refused request is a message on the page,
-not an error.
+**`select_for_update()` is the wrong tool and the spec says so before the tests are written
+against it.** It locks rows that exist; when no `ipc` job is active there is no row to lock,
+two concurrent requests both find nothing and both insert. The lock is instead
+`pg_advisory_xact_lock(hashtext(<source>))`, taken inside the transaction that checks for an
+active job and inserts the new one — the advisory lock is held on a name, not a row, so it
+serialises the empty case too, and PostgreSQL releases it when the transaction ends however
+it ends.
+
+A partial unique constraint backs it up as a database-level guarantee:
+
+```python
+UniqueConstraint(fields=["source"], name="uniq_active_job_per_source",
+                 condition=Q(status__in=["queued", "running"]))
+```
+
+An `IntegrityError` on insert is then read as "already running", not as a crash. The rebuild
+takes the advisory lock under a fixed sentinel name and checks for any active job, which the
+constraint alone could not express.
+
+A refused request is a message on the page, not an error.
 
 A job left `running` by a container restart is stale. The list shows a job running longer
 than 30 minutes as **stuck**, with a reset action — the same affordance, and the same reason,
@@ -346,6 +423,20 @@ Tests live in `external_data/tests/` and `mcp/tests/`, and none of them touch th
 - POSTing the button as a staff user creates a queued job; as an anonymous user it is refused
 - the rebuild button reports the number of pulls since the last rebuild
 
+**Secrets**
+- HAPI carries its token as a query parameter, so a `requests` exception message can contain
+  it. A failed job's `message` and `log` are asserted never to contain the value of
+  `HDX_API_TOKEN` or `IPC_API_KEY`; the runner redacts before writing. Without this test,
+  §11's "never echoed into a job log" is a wish rather than a property.
+
+**The skip list**
+- an analysis id in `skipped_ids` is not planned for a pull
+- an analysis that returns an empty payload is appended to `skipped_ids` with its title as
+  the reason, and is not planned on the next run
+- analyses whose period predates `CRISIS_START` are not planned
+- the CAF fixture plans 0 Calls when `known_ids` and `skipped_ids` between them cover it, and
+  the count is asserted against the fixture rather than a number typed into the test
+
 **By hand, once, against the real APIs:** pull `fewsnet/seasonal_calendar/TCD` (no key) and
 `unhcr/refugees/TCD` (keyed, and years out of date), and confirm `external_status` moves. The
 UNHCR rows reading "never" are the honest first target.
@@ -357,20 +448,27 @@ UNHCR rows reading "never" are the honest first target.
 3. `fewsnet.py` — the unkeyed, single-call case, end to end. Tests.
 4. `mcp` app: `PullJob`, migration, the lock, `refresh_external`. Tests.
 5. `hdx.py`, including pagination. Tests.
-6. `ipc.py`, including the analyses diff and `period_date`. Tests.
-7. The admin section: proxy model, list, buttons, job page.
-8. The rebuild button and its counter.
-9. `CLAUDE.md`: the refresh route for a person is now the admin section; the agent's
+6. `source_sync.skipped_ids`: migration, plus a data migration seeding it from the
+   exclusions already written in `notes` (TCD Mar 2023 and Mar 2024, CAF 87143421,
+   SSD 81832747). Tests.
+7. `ipc.py` — the analyses diff, the `CRISIS_START` floor, the title-parsed period, and the
+   empty-payload skip. Tests, against the saved CAF fixture.
+8. The admin section: proxy model, list, buttons, job page.
+9. The rebuild button and its counter.
+10. `CLAUDE.md`: the refresh route for a person is now the admin section; the agent's
    fetch-save-load path is unchanged and stays documented for sources with no fetcher.
 
-Steps 2–6 are usable from the command line before any admin work exists, which is the point
-of the ordering: the feature is verifiable before it has a button.
+Steps 2–7 are usable from the command line before any admin work exists, which is the point
+of the ordering: the feature is verifiable before it has a button. Step 3 is the first one
+that can be demonstrated end to end, because FEWS NET needs no key.
 
 ## 14. Rollback
 
-Remove `mcp` from `INSTALLED_APPS` and the section disappears; the data and `source_sync` are
+Remove `mcp` from `INSTALLED_APPS` and the section disappears; the six subject tables are
 untouched, because nothing in this design writes to them except loaders that already existed.
-`mcp_pull_job` can be dropped with its migration. `external_data/fetchers/` is additive and
+`mcp_pull_job` can be dropped with its migration. `source_sync.skipped_ids` is additive and
+read by one fetcher — dropping it loses the four transcribed exclusions, which are recoverable
+from `notes`, where they still are and where this design does not edit them. `external_data/fetchers/` is additive and
 imported only by `refresh_external`. The MCP-through-Claude-Code path keeps working
 throughout and is not modified.
 
@@ -383,6 +481,14 @@ throughout and is not modified.
   fetcher's `tool = …` attribute is the breadcrumb for whoever checks.
 - **Four sources have fetchers; four do not.** `excel`, `kobo` and `acaps` are file-based, and
   `ch` shares IPC's fetcher because Cadre Harmonisé analyses come from the IPC API.
+- **The seeded skip list is a transcription of somebody's judgement.** Four exclusions move
+  from prose in `notes` into a machine-read column. If that reading is wrong, a real analysis
+  stays out of the database and nothing complains. The row shows its skipped ids with their
+  reasons for exactly this reason, and clearing one is a one-line shell command.
+- **`skipped_ids` grows and is never pruned.** An analysis that publishes geometry later,
+  having published none when first pulled, stays skipped until someone clears it. IPC
+  re-publishing an analysis id is rare enough that automatic re-checking is not worth the
+  traffic; noticing it is a human job.
 - **No retry and no backoff.** A failed pull is a failed job with its error kept, and the
   operator presses the button again. Automatic retry against a source that has already gone
   down once under load is not obviously the safe default.
