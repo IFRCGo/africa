@@ -103,10 +103,29 @@ class RefugeesFetcher(_HapiFetcher):
     tool = "get_refugees"
 
     def plan(self, sync):
+        # THREE PINS, ALL ABOUT MEANING. Found by the first real pull, which
+        # failed outright with "ON CONFLICT DO UPDATE command cannot affect row
+        # a second time".
+        #
+        # gender/age_range='all': HAPI answers with 611 rows for one country -
+        #   every combination of f/m/all and 0-4 ... all - and MovementPattern
+        #   has no gender or age column, so the loader collapses all of them
+        #   onto one key per year and the upsert collides with itself.
+        #
+        # population_group='REF': asylum seekers (ASY) would otherwise land
+        #   under metric='refugees' beside the refugee rows for the same country
+        #   and date. build_refugees() in s06_mcp_layers keeps ONE value per
+        #   (country, date) and does not sum, so Chad's 1,330,950 refugees could
+        #   be overwritten on the dashboard by its 3,645 asylum seekers.
+        #   Asylum seekers are a different quantity; movement_patterns has a
+        #   documented 'asylum_seekers' metric for them, and pulling them is a
+        #   separate job nobody has asked for yet.
         yield Call(
             url=f"{BASE}/affected-people/refugees",
             params=self._params({"origin_location_code": "SDN",
-                                 "asylum_location_code": sync.iso3}),
+                                 "asylum_location_code": sync.iso3,
+                                 "population_group": "REF",
+                                 "gender": "all", "age_range": "all"}),
             cache_path=Path("hdx_refugees") / f"{sync.iso3}.json",
             loader_dataset="refugees",
             context={},
@@ -114,4 +133,6 @@ class RefugeesFetcher(_HapiFetcher):
         )
 
     def params_record(self):
-        return {"tool": self.tool, "origin_location_code": "SDN", "paginated": True}
+        return {"tool": self.tool, "origin_location_code": "SDN",
+                "population_group": "REF", "gender": "all", "age_range": "all",
+                "paginated": True}
