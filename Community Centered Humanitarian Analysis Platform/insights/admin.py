@@ -15,11 +15,10 @@ from pathlib import Path
 from django.conf import settings
 from django.contrib import admin, messages
 from django.urls import path
-from django.utils import timezone
 from django.utils.html import format_html
 
 from data_track.models import Document
-from insights import admin_views
+from insights import admin_views, review
 from insights.contract import ContractError
 from insights.forms import InsightFolderForm, InsightPlaceForm, InsightUploadForm
 from insights.intake import catalogue_file, catalogue_folder
@@ -136,14 +135,12 @@ class InsightAdmin(admin.ModelAdmin):
 
     @admin.action(description="Publish selected insights")
     def publish_selected(self, request, queryset):
-        updated = queryset.update(
-            status="published", reviewed_by=request.user, reviewed_at=timezone.now())
+        updated = review.publish(queryset, request.user)
         self.message_user(request, f"{updated} published.", messages.SUCCESS)
 
     @admin.action(description="Reject selected insights")
     def reject_selected(self, request, queryset):
-        updated = queryset.update(
-            status="rejected", reviewed_by=request.user, reviewed_at=timezone.now())
+        updated = review.reject(queryset, request.user)
         self.message_user(
             request,
             f"{updated} rejected. Add a reason on each one - a rejected extraction is "
