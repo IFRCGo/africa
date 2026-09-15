@@ -15,12 +15,16 @@ class RebuildTests(TestCase):
         self.user = get_user_model().objects.create_superuser("t", "t@e.org", "pw")
         self.client.force_login(self.user)
 
-    def test_pressing_it_launches_the_pipeline_steps(self):
+    def test_pressing_it_launches_the_rebuild_wrapper(self):
+        """run_rebuild, not run_pipeline directly: the pipeline takes no --job,
+        so a job launched straight at it never leaves 'queued' - and a queued
+        rebuild blocks every pull on every source, forever. The wrapper is what
+        closes the job. See mcp/tests/test_rebuild_job.py."""
         with patch("mcp.views.subprocess.Popen") as popen:
             self.client.post("/admin/mcp/datasource/rebuild/")
         argv = popen.call_args.args[0]
-        self.assertIn("run_pipeline", argv)
-        self.assertIn("s06,s07", argv)
+        self.assertIn("run_rebuild", argv)
+        self.assertIn("--job", argv)
 
     def test_it_creates_a_rebuild_job(self):
         with patch("mcp.views.subprocess.Popen"):

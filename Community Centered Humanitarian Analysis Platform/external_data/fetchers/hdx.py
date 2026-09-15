@@ -64,9 +64,18 @@ class IdpsFetcher(_HapiFetcher):
     tool = "get_idps"
 
     def plan(self, sync):
+        # assessment_type='BA' IS PART OF WHAT "admin2-overview" MEANS, not a
+        # refinement of it. All 5,686 rows already held are Baseline assessments
+        # of the "Armed Clashes in Sudan (Overview)" operation. Asking for admin
+        # level 2 alone also returns DTM's ETT (Emergency Tracking) and SA (Site
+        # Assessment) rounds, which count different things on different dates -
+        # and because the loader's key includes the date and place, those would
+        # be ADDED to the series rather than replace anything. A refresh would
+        # then silently inflate the IDP figures the dashboard draws.
         yield Call(
             url=f"{BASE}/affected-people/idps",
-            params=self._params({"location_code": sync.iso3, "admin_level": 2}),
+            params=self._params({"location_code": sync.iso3, "admin_level": 2,
+                                 "assessment_type": "BA"}),
             cache_path=Path("hdx_idps") / f"{sync.iso3}-admin2-overview.json",
             loader_dataset="idps",
             context={},
@@ -74,7 +83,8 @@ class IdpsFetcher(_HapiFetcher):
         )
 
     def params_record(self):
-        return {"tool": self.tool, "admin_level": 2, "paginated": True}
+        return {"tool": self.tool, "admin_level": 2,
+                "assessment_type": "BA", "paginated": True}
 
 
 @register

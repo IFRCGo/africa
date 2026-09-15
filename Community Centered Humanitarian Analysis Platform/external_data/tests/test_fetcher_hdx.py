@@ -42,6 +42,15 @@ class CallShapeTests(TestCase):
         self.assertEqual(call.params["admin_level"], 2)
         self.assertEqual(call.cache_path, Path("hdx_idps/SDN-admin2-overview.json"))
 
+    def test_idps_asks_only_for_baseline_assessments(self):
+        """Every one of the 5,686 rows already held is a Baseline assessment.
+        Without this filter a refresh also pulls DTM's ETT and SA rounds, which
+        the loader would ADD to the series - silently inflating the figures."""
+        sync = SourceSync.objects.create(source="hdx", dataset="idps", iso3="SDN",
+                                         variant="admin2-overview")
+        call = next(iter(fetcher_for("hdx", "idps", "admin2-overview")().plan(sync)))
+        self.assertEqual(call.params["assessment_type"], "BA")
+
     def test_refugees_asks_for_sudanese_origin(self):
         """RefugeeLoader files these as population_group 'sudanese_refugees'. The
         request must actually be for people originating in Sudan, or the label

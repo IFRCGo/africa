@@ -4,8 +4,9 @@ READ-ONLY APART FROM THE BUTTONS, and for the reason external_data/admin.py
 already gives: every row here is written by a loader, so a row hand-edited in the
 browser is a row the next refresh silently overwrites.
 """
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.urls import path
+from django.utils import timezone
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
@@ -123,9 +124,38 @@ class PullJobAdmin(admin.ModelAdmin):
     list_filter = ("kind", "status", "source")
     search_fields = ("source", "dataset", "iso3", "message")
     date_hierarchy = "requested_at"
+    actions = ["reset_stuck_job"]
 
     def has_add_permission(self, request):
         return False
 
     def has_change_permission(self, request, obj=None):
         return False
+
+    @admin.action(description="Reset a stuck job (release its source)")
+    def reset_stuck_job(self, request, queryset):
+        """Free a source held by a job whose process is gone.
+
+        `docker compose up -d --build` mid-pull leaves a row at 'running' with
+        nothing behind it, and that row then refuses every future press for its
+        source. This is the way out, and it is the same affordance - and the same
+        reasoning - as reset_stuck_job in insights/admin.py.
+
+        ONLY ACTIVE JOBS ARE TOUCHED. Rewriting a succeeded job as failed would
+        destroy the record of a pull that really happened.
+        """
+        stuck = queryset.filter(status__in=ACTIVE)
+        count = stuck.count()
+        for job in stuck:
+            job.status = "failed"
+            job.finished_at = timezone.now()
+            job.message = f"reset by {request.user}"
+            job.save(update_fields=["status", "finished_at", "message"])
+
+        if hasattr(request, "_messages") and request._messages is not None:
+            self.message_user(
+                request,
+                f"{count} job(s) reset; their sources can be pulled again."
+                if count else "nothing to reset - none of those jobs was active.",
+                messages.SUCCESS if count else messages.WARNING,
+            )

@@ -14,6 +14,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.http import Http404, JsonResponse
 from django.shortcuts import redirect, render
+from django.utils import timezone
 
 from external_data.fetchers import fetcher_for
 from external_data.fetchers.base import missing_keys
@@ -32,18 +33,31 @@ def _log_path(job):
 
 
 def _launch(job, argv):
-    """Run a management command detached, with its output going to the job log."""
-    path = _log_path(job)
-    job.log_path = str(path)
-    job.save(update_fields=["log_path"])
-    with open(path, "wb") as log_file:
-        subprocess.Popen(
-            [sys.executable, "manage.py", *argv],
-            cwd=settings.BASE_DIR,
-            stdout=log_file,
-            stderr=log_file,
-            start_new_session=True,
-        )
+    """Run a management command detached, with its output going to the job log.
+
+    A FAILURE TO LAUNCH FAILS THE JOB. Without this the row stays 'queued' with
+    no process behind it, holding its source - or, for a rebuild, holding every
+    source - against every future press. No path that has finished may leave a
+    job in an active status.
+    """
+    try:
+        path = _log_path(job)
+        job.log_path = str(path)
+        job.save(update_fields=["log_path"])
+        with open(path, "wb") as log_file:
+            subprocess.Popen(
+                [sys.executable, "manage.py", *argv],
+                cwd=settings.BASE_DIR,
+                stdout=log_file,
+                stderr=log_file,
+                start_new_session=True,
+            )
+    except Exception as exc:
+        job.status = "failed"
+        job.finished_at = timezone.now()
+        job.message = f"could not start: {exc}"[:4000]
+        job.save(update_fields=["status", "finished_at", "message"])
+        raise
 
 
 def pull(request, pk):
@@ -82,7 +96,11 @@ def pull(request, pk):
         argv += ["--iso3", row.iso3]
     if row.variant:
         argv += ["--variant", row.variant]
-    _launch(job, argv)
+    try:
+        _launch(job, argv)
+    except Exception as exc:
+        messages.error(request, f"job {job.id} could not start: {exc}")
+        return redirect("admin:mcp_datasource_changelist")
 
     messages.success(request, f"job {job.id}: pulling {row.source}/{row.dataset} "
                               f"{row.iso3 or 'global'} in the background.")
@@ -144,6 +162,14 @@ def rebuild(request):
         messages.warning(request, str(exc))
         return redirect("admin:mcp_datasource_changelist")
 
-    _launch(job, ["run_pipeline", "--only", "s06,s07"])
+    # run_rebuild, NOT run_pipeline: the pipeline takes no --job and would leave
+    # this row at 'queued' forever, blocking every pull on every source. See the
+    # docstring of mcp/management/commands/run_rebuild.py.
+    try:
+        _launch(job, ["run_rebuild", "--job", str(job.id)])
+    except Exception as exc:
+        messages.error(request, f"job {job.id} could not start: {exc}")
+        return redirect("admin:mcp_datasource_changelist")
+
     messages.success(request, f"job {job.id}: rebuilding the dashboard layers.")
     return redirect("admin:mcp_datasource_changelist")
