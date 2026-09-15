@@ -13,6 +13,10 @@ credentials
 
 # Django
 Community Centered Humanitarian Analysis Platform/staticfiles/
+# Documents uploaded through Admin. /app is bind-mounted to this folder, so
+# without this every uploaded PDF lands in the working tree waiting to be
+# committed by accident.
+Community Centered Humanitarian Analysis Platform/media/
 Community_Centered_Humanitarian_Analysis_Documentation.docx
 
 # Subagent-driven-development scratch: ledgers, briefs, review packages.

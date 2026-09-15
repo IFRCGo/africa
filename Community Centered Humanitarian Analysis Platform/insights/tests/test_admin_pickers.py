@@ -426,8 +426,13 @@ class FolderBrowserEndpointTests(TestCase):
 
     A browser's own directory input hands back a path on the reviewer's Windows
     machine, which does not exist inside this container. So the browsing is done
-    server-side, and it is confined to the mounted roots - a reviewer who can
+    server-side, and it is confined to the configured roots - a reviewer who can
     reach this page must not be able to walk it to /etc.
+
+    These override INSIGHT_DOCUMENT_ROOTS rather than SOURCE_ROOT: the roots are
+    a setting of their own now, so a deployment can name several and none of
+    them has to be the source-document mount. Overriding it here is also what
+    proves that setting is what drives the browser.
     """
 
     def setUp(self):
@@ -439,7 +444,7 @@ class FolderBrowserEndpointTests(TestCase):
 
     def test_the_roots_are_listed_when_no_path_is_given(self):
         with tempfile.TemporaryDirectory() as tmp:
-            with override_settings(SOURCE_ROOT=tmp):
+            with override_settings(INSIGHT_DOCUMENT_ROOTS=[Path(tmp)]):
                 body = self._get().json()
         self.assertEqual([entry["path"] for entry in body["roots"]][0], tmp)
 
@@ -447,7 +452,7 @@ class FolderBrowserEndpointTests(TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             (Path(tmp) / "DTM Round 12").mkdir()
             (Path(tmp) / "notes.pdf").write_text("x", encoding="utf-8")
-            with override_settings(SOURCE_ROOT=tmp):
+            with override_settings(INSIGHT_DOCUMENT_ROOTS=[Path(tmp)]):
                 body = self._get(path=tmp).json()
 
         self.assertEqual([entry["name"] for entry in body["entries"]], ["DTM Round 12"])
@@ -457,7 +462,7 @@ class FolderBrowserEndpointTests(TestCase):
 
     def test_a_path_outside_the_roots_is_refused(self):
         with tempfile.TemporaryDirectory() as tmp:
-            with override_settings(SOURCE_ROOT=tmp):
+            with override_settings(INSIGHT_DOCUMENT_ROOTS=[Path(tmp)]):
                 response = self._get(path="/etc")
         self.assertEqual(response.status_code, 400)
 
@@ -465,7 +470,7 @@ class FolderBrowserEndpointTests(TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             inner = Path(tmp) / "inner"
             inner.mkdir()
-            with override_settings(SOURCE_ROOT=str(inner)):
+            with override_settings(INSIGHT_DOCUMENT_ROOTS=[inner]):
                 response = self._get(path=str(inner / ".." / ".."))
         self.assertEqual(response.status_code, 400)
 

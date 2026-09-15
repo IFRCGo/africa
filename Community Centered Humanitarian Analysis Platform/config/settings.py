@@ -49,6 +49,27 @@ LLM_API_KEY = os.environ.get("LLM_API_KEY") or ""
 # pipeline only re-reads whatever sits in the folder. See data_pipeline/README.md.
 MCP_CACHE_DIR = env_path("MCP_CACHE_DIR", BASE_DIR / "data_pipeline" / "mcp_cache")
 
+
+def env_paths(name: str, default: list) -> list:
+    """A path-separator list from the environment, falling back when empty.
+
+    `or default` rather than a default argument, for the same reason env_path
+    uses it: an empty value in .env must fall back, not be read as "no folders
+    at all", which would leave the folder browser with nothing to offer and no
+    way to tell a misconfiguration from a deliberate empty list.
+    """
+    raw = os.environ.get(name) or ""
+    chosen = [Path(part) for part in raw.split(os.pathsep) if part.strip()]
+    return chosen or default
+
+
+# Which folders the insights folder browser may offer, and the only folders an
+# InsightFolder may point at. Configuration, not a literal: this platform is
+# deployed against different folders in different places, and no message shown
+# to a user may name one deployment's own paths. The wizard's native upload
+# route needs none of this - it has no container path at all.
+INSIGHT_DOCUMENT_ROOTS = env_paths("INSIGHT_DOCUMENT_ROOTS", [SOURCE_ROOT, MEDIA_ROOT])
+
 # The two folders of UNHCR situation reports that the pipeline reads.
 SOURCE_COLLECTIONS = {
     "regional": SOURCE_ROOT / "UNHCR Regional Population Movement pdfs",

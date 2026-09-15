@@ -129,9 +129,10 @@ def catalogue_folder(folder):
     """Catalogue everything in a registered folder and open a job for it."""
     root = Path(folder.path)
     if not root.is_dir():
+        from insights import document_roots
         raise FileNotFoundError(
-            f"{folder.path} is not a directory inside this container. Folders must "
-            f"live under a mounted path - /work covers the whole SUDAN Ops folder."
+            f"{folder.path} is not a directory inside this container. "
+            f"{document_roots.sentence()}"
         )
 
     pattern = "**/*" if folder.recursive else "*"

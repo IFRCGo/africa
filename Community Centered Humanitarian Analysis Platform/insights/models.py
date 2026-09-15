@@ -47,14 +47,14 @@ class InsightFolder(models.Model):
         `reachable` column in the changelist stays, for a folder that was valid
         when registered and has since moved.
         """
-        from pathlib import Path
-
         from django.core.exceptions import ValidationError
+
+        from insights import document_roots
 
         if self.path and not Path(self.path).is_dir():
             raise ValidationError({"path": (
-                f"{self.path} is not a directory inside this container. Folders must "
-                f"live under a mounted path - /work covers the whole SUDAN Ops folder."
+                f"{self.path} is not a directory inside this container. "
+                f"{document_roots.sentence()}"
             )})
 
     def __str__(self):
@@ -64,10 +64,11 @@ class InsightFolder(models.Model):
 class InsightUpload(models.Model):
     """One document uploaded through Admin, rather than found in a folder.
 
-    Files land under MEDIA_ROOT, which is inside /app: /work is mounted read-only,
-    so an upload cannot be written beside the UNHCR PDFs. Saving one catalogues it
-    immediately - see InsightUploadAdmin.save_model - and `document` then points at
-    the row it produced.
+    Files land under MEDIA_ROOT, which is inside the app itself, because the
+    folder holding the source documents is mounted read-only: an upload cannot
+    be written beside the PDFs it will be read with. Saving one catalogues it
+    immediately - see InsightUploadAdmin.save_model - and `document` then points
+    at the row it produced.
     """
 
     file = models.FileField(upload_to="insights/")

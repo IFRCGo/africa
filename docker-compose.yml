@@ -135,10 +135,15 @@ services:
       BOUNDARY_ICONS_DIR: ${BOUNDARY_ICONS_DIR:-/boundary-src/icons}
       HSP_XLSX: ${HSP_XLSX:-/boundary-src/chad-maps/Humanitarian_Service_Points_Mapping_-_all_versions_-_labels_-_2026-09-08-11-46-14.xlsx}
     volumes:
-      # 1. The parent "SUDAN Ops" folder, READ-ONLY: the pipeline reads the
-      #    source PDFs and the Excel from here and writes nothing back. The
-      #    dashboard files it produces now live inside the app, in mount 2.
-      - "..:/work:ro"
+      # 1. The folder holding the source documents, READ-ONLY: the pipeline
+      #    reads the source PDFs and the Excel from here and writes nothing
+      #    back. The dashboard files it produces live inside the app, in mount 2.
+      #
+      #    The host side is a variable because this platform is deployed against
+      #    different folders in different places; the container path stays /work,
+      #    so nothing else has to change when it moves. The default is the parent
+      #    of this repository, which is the "SUDAN Ops" folder it was built in.
+      - "${SOURCE_HOST_DIR:-..}:/work:ro"
       # 2. The Django project - code, templates, static files and the
       #    dashboard's data/ folder. Edits on your machine take effect without
       #    rebuilding the image, and the pipeline's output lands here.
