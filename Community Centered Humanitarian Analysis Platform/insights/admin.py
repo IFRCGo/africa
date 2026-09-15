@@ -18,13 +18,14 @@ from django.urls import path
 from django.utils.html import format_html
 
 from data_track.models import Document
-from insights import admin_views, review
+from insights import admin_views, review, wizard
 from insights.contract import ContractError
 from insights.forms import InsightFolderForm, InsightPlaceForm, InsightUploadForm
 from insights.intake import catalogue_file, catalogue_folder
 from insights.loader import load
 from insights.models import (
-    ExtractionJob, Insight, InsightCoding, InsightFolder, InsightUpload,
+    DocumentsToInsights, ExtractionJob, Insight, InsightCoding, InsightFolder,
+    InsightUpload,
 )
 
 
@@ -155,6 +156,19 @@ class InsightFolderAdmin(admin.ModelAdmin):
     list_display = ("label", "path", "default_iso3", "reachable", "recursive")
     actions = ["catalogue_selected"]
 
+    def get_model_perms(self, request):
+        """Off the index, but every URL still works.
+
+        Returning no perms is the documented way to drop a model from the app
+        list without touching access: the wizard is the front door now, and
+        these three are its machinery. Deliberately NOT has_module_permission,
+        which also blocks the app index page.
+
+        They must stay reachable: "Reset stuck job to queued" is the only way
+        out of a job whose process was killed rather than raised.
+        """
+        return {}
+
     def get_urls(self):
         """The folder browser's JSON. Staff-only, for the same reason as above.
 
@@ -203,6 +217,19 @@ class InsightUploadAdmin(admin.ModelAdmin):
     list_display = ("__str__", "iso3", "report_date", "document", "uploaded_at")
     readonly_fields = ("document", "uploaded_at")
 
+    def get_model_perms(self, request):
+        """Off the index, but every URL still works.
+
+        Returning no perms is the documented way to drop a model from the app
+        list without touching access: the wizard is the front door now, and
+        these three are its machinery. Deliberately NOT has_module_permission,
+        which also blocks the app index page.
+
+        They must stay reachable: "Reset stuck job to queued" is the only way
+        out of a job whose process was killed rather than raised.
+        """
+        return {}
+
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)
         if obj.document_id:
@@ -245,6 +272,19 @@ class ExtractionJobAdmin(admin.ModelAdmin):
     readonly_fields = ("insights_proposed", "insights_rejected_unverifiable",
                        "insights_skipped_reviewed", "log", "started_at", "finished_at")
     actions = ["load_payloads_for_job", "run_extraction_now", "reset_stuck_job"]
+
+    def get_model_perms(self, request):
+        """Off the index, but every URL still works.
+
+        Returning no perms is the documented way to drop a model from the app
+        list without touching access: the wizard is the front door now, and
+        these three are its machinery. Deliberately NOT has_module_permission,
+        which also blocks the app index page.
+
+        They must stay reachable: "Reset stuck job to queued" is the only way
+        out of a job whose process was killed rather than raised.
+        """
+        return {}
 
     @admin.action(description="Reset stuck job to queued")
     def reset_stuck_job(self, request, queryset):
@@ -395,3 +435,32 @@ class ExtractionJobAdmin(admin.ModelAdmin):
                 )
             job.status = "loaded"
             job.save(update_fields=["status"])
+
+
+@admin.register(DocumentsToInsights)
+class DocumentsToInsightsAdmin(admin.ModelAdmin):
+    """Part 1 on the index. Every page it serves lives in insights/wizard.py.
+
+    The changelist is replaced outright rather than configured: what a person
+    needs here is "start a batch" and "open the one I was in the middle of",
+    not a filterable table of a database row's columns.
+    """
+
+    def get_urls(self):
+        # Before super(), so these are matched ahead of the admin's own
+        # <path:object_id> catch-all - which would otherwise swallow every one
+        # of them as an attempt to open a job with that id.
+        return [
+            path("start/", self.admin_site.admin_view(wizard.start),
+                 name="insights_wizard_start"),
+            path("job/<int:job_id>/", self.admin_site.admin_view(wizard.job_step),
+                 name="insights_wizard_job"),
+        ] + super().get_urls()
+
+    def changelist_view(self, request, extra_context=None):
+        return wizard.job_list(request)
+
+    def has_add_permission(self, request):
+        # "Add extraction job" would create an empty batch with no documents
+        # and no way to add any. Batches are started by the wizard.
+        return False

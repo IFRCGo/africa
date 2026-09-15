@@ -1,0 +1,34 @@
+{% extends "admin/base_site.html" %}
+{% comment %}
+The wizard's chrome: the four steps, with the current one marked. Extending
+admin/base_site.html is what gives these pages the admin's own header, login
+redirect and stylesheet, so they do not read as a bolted-on second site.
+{% endcomment %}
+{% block extrastyle %}{{ block.super }}
+<style>
+  .wiz-steps { display: flex; gap: .5rem; list-style: none; padding: 0; margin: 0 0 1.5rem; }
+  .wiz-steps li { padding: .4rem .9rem; border-radius: 999px; background: #f0f0f0; color: #555; font-size: .85rem; }
+  .wiz-steps li.is-current { background: #417690; color: #fff; font-weight: 600; }
+  .wiz-steps li.is-done { background: #dfeeda; color: #2b5c1e; }
+  .wiz-files { width: 100%; border-collapse: collapse; }
+  .wiz-files td, .wiz-files th { padding: .4rem .6rem; border-bottom: 1px solid #eee; text-align: left; }
+  .wiz-files tr.is-skipped { color: #999; }
+  .wiz-files tr.is-failed td { color: #a41515; }
+  .wiz-bar { height: 1.25rem; background: #f0f0f0; border-radius: 999px; overflow: hidden; }
+  .wiz-bar span { display: block; height: 100%; background: #417690; width: 0; transition: width .3s; }
+  .wiz-log { background: #1f1f1f; color: #ddd; padding: .75rem; height: 16rem; overflow-y: auto;
+             white-space: pre-wrap; font-family: monospace; font-size: .8rem; }
+  .wiz-note { padding: .75rem 1rem; border-left: 4px solid #999; background: #fafafa; margin: 1rem 0; }
+  .wiz-note.is-bad { border-color: #a41515; background: #fdf0f0; }
+  .wiz-note.is-warn { border-color: #c79100; background: #fdf8e8; }
+</style>
+{% endblock %}
+{% block content %}
+<ol class="wiz-steps">
+  <li class="{% if wizard_step == 1 %}is-current{% elif wizard_step > 1 %}is-done{% endif %}">1. Bring documents in</li>
+  <li class="{% if wizard_step == 2 %}is-current{% elif wizard_step > 2 %}is-done{% endif %}">2. Check what will be read</li>
+  <li class="{% if wizard_step == 3 %}is-current{% elif wizard_step > 3 %}is-done{% endif %}">3. Extract</li>
+  <li class="{% if wizard_step == 4 %}is-current{% endif %}">4. Review and publish</li>
+</ol>
+{% block wizard_body %}{% endblock %}
+{% endblock %}
