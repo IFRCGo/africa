@@ -14,11 +14,14 @@ from pathlib import Path
 
 from django.conf import settings
 from django.contrib import admin, messages
+from django.urls import path
 from django.utils import timezone
 from django.utils.html import format_html
 
 from data_track.models import Document
+from insights import admin_views
 from insights.contract import ContractError
+from insights.forms import InsightFolderForm, InsightPlaceForm, InsightUploadForm
 from insights.intake import catalogue_file, catalogue_folder
 from insights.loader import load
 from insights.models import (
@@ -36,21 +39,30 @@ class InsightCodingInline(admin.TabularInline):
 @admin.register(Insight)
 class InsightAdmin(admin.ModelAdmin):
     inlines = [InsightCodingInline]
+    form = InsightPlaceForm
     list_display = ("opening", "iso3", "place_name_as_written", "voice_type",
                     "themes", "status", "stated_on", "method")
     list_filter = ("status", "voice_type", "channel", "method", "iso3", "match_method", "job")
     search_fields = ("quote", "quote_translated", "place_name_as_written")
     date_hierarchy = "stated_on"
     actions = ["publish_selected", "reject_selected"]
-    readonly_fields = ("quote_sha1", "source_link", "reviewed_by", "reviewed_at", "created_at")
+    readonly_fields = ("resolved_to", "quote_sha1", "source_link", "reviewed_by",
+                       "reviewed_at", "created_at")
     fieldsets = (
         ("The statement", {
             "fields": ("quote", "quote_language", "quote_translated"),
             "description": "Read this first. Edit only to repair an OCR artefact.",
         }),
         ("What it is", {"fields": ("voice_type", "channel", "stated_on")}),
-        ("Where", {"fields": ("iso3", "place_name_as_written", "admin_pcode",
-                              "admin_level", "match_method", "lat", "lon")}),
+        ("Where", {
+            "fields": ("country", "state", "district", "place_name_as_written",
+                       "resolved_to"),
+            "description": (
+                "Pick the finest place the source actually gives. The p-code, the "
+                "level and the coordinates are worked out from that pick - see "
+                "'Resolved to' below."
+            ),
+        }),
         ("Scale (usually blank)", {"fields": ("people_affected", "severity")}),
         ("Source", {"fields": ("source_link", "document", "page")}),
         ("Provenance", {"fields": ("method", "model_used", "confidence", "job",
@@ -58,8 +70,55 @@ class InsightAdmin(admin.ModelAdmin):
         ("Review", {"fields": ("status", "rejection_reason", "reviewed_by", "reviewed_at")}),
     )
 
+    def get_urls(self):
+        """The dropdowns' own JSON, inside the admin so it is staff-only.
+
+        admin_view() wraps it in the same permission check and login redirect
+        every other admin page gets. It is not in insights/urls.py because that
+        file is the public read API and this is not public.
+        """
+        return [
+            path("place-options/",
+                 self.admin_site.admin_view(admin_views.place_options),
+                 name="insights_place_options"),
+        ] + super().get_urls()
+
     def get_queryset(self, request):
         return super().get_queryset(request).select_related("document").prefetch_related("codings")
+
+    @admin.display(description="Resolved to")
+    def resolved_to(self, obj):
+        """Where the pick landed, shown but not typeable.
+
+        These five columns used to be five text boxes. They are derived now (see
+        insights/forms.py), but they stay on the page: a reviewer auditing a
+        published insight needs to see which polygon it is drawn on, and
+        `match_method` is the column that tells "somewhere in Sudan" apart from
+        "we do not know where".
+
+        lat/lon are a LABEL POSITION - a point guaranteed inside the polygon,
+        not an address. The wording says so, because the same caveat is written
+        into insights/places.py and the dashboard popup.
+        """
+        if obj is None or not obj.pk:
+            return "— nothing yet. Pick a country above and save."
+        if not obj.admin_pcode:
+            return format_html(
+                "<b>{}</b> only — no polygon ({}). Nothing will be drawn on the map "
+                "for this insight.",
+                obj.iso3 or "—", obj.match_method or "unmatched")
+        return format_html(
+            "<b>{}</b> · {} · {} · label point {}, {} <br>"
+            "<small>A point inside the polygon, not an address.</small>",
+            obj.admin_pcode,
+            # A p-code with no level should not exist, but this column is
+            # written by loaders as well as by this form, and "ADMNone" on a
+            # reviewer's screen is worse than saying the level is missing.
+            f"ADM{obj.admin_level}" if obj.admin_level is not None else "level unknown",
+            obj.match_method,
+            f"{obj.lat:.4f}" if obj.lat is not None else "—",
+            f"{obj.lon:.4f}" if obj.lon is not None else "—",
+        )
 
     @admin.display(description="Statement")
     def opening(self, obj):
@@ -95,8 +154,23 @@ class InsightAdmin(admin.ModelAdmin):
 
 @admin.register(InsightFolder)
 class InsightFolderAdmin(admin.ModelAdmin):
+    form = InsightFolderForm
     list_display = ("label", "path", "default_iso3", "reachable", "recursive")
     actions = ["catalogue_selected"]
+
+    def get_urls(self):
+        """The folder browser's JSON. Staff-only, for the same reason as above.
+
+        It lists directories inside the container, which is the only kind of path
+        InsightFolder.path can hold - a browser's own directory input hands back
+        a path on the reviewer's own machine, which does not exist in here. See
+        insights/admin_views.py.
+        """
+        return [
+            path("folder-browse/",
+                 self.admin_site.admin_view(admin_views.folder_browse),
+                 name="insights_folder_browse"),
+        ] + super().get_urls()
 
     @admin.display(boolean=True, description="Reachable")
     def reachable(self, obj):
@@ -128,6 +202,7 @@ class InsightUploadAdmin(admin.ModelAdmin):
     catalogued would sit in MEDIA_ROOT doing nothing.
     """
 
+    form = InsightUploadForm
     list_display = ("__str__", "iso3", "report_date", "document", "uploaded_at")
     readonly_fields = ("document", "uploaded_at")
 
