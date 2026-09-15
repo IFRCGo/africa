@@ -378,3 +378,35 @@ first task of the implementation plan is therefore to establish a baseline:
 `docker compose exec web python manage.py test insights -v 2`, read the diff, and either commit
 it or decide what of it survives — before a line of the wizard is written. Building on an
 unknown diff means debugging a half-finished picker while believing it is a new bug.
+
+## 14. What changed while this was built
+
+Three departures from the plan, all deliberate, recorded here so the next reader
+does not "correct" them back:
+
+- **The preview's rows are built with `textContent`, not `innerHTML`.** The plan
+  wrote the row markup as an HTML string. These names come off the operator's own
+  disk, so a file called `<img src=x onerror=...>.pdf` would have executed in the
+  page. Nothing about the feature changes; the escaping does.
+- **Duplicate detection moved to `Document.sha1`.** The plan (and §6.2 as first
+  written) claimed `catalogue_file`'s own dedup would fire. It would not: that
+  dedup is on `rel_path`, which for an upload is built from the name *storage*
+  settled on, and storage uniquifies a collision. The same report sent twice was
+  two documents and two payments to read it. **This is still true of
+  `InsightUploadAdmin`'s single-file route**, which was not in scope here.
+- **`insights/tests/test_admin_pickers.py` was changed**, though the plan said it
+  would pass untouched. Four of its folder-browser tests drove the browser by
+  overriding `SOURCE_ROOT`, which is no longer the setting that decides which
+  folders are offered. They override `INSIGHT_DOCUMENT_ROOTS` now — which is also
+  what proves the new setting is what drives it.
+
+**What is verified and what is not.** Every endpoint, gate and rule in §11 is
+covered by the 285 passing tests, and the wizard's pages, static files and URL
+wiring were checked against the running container. The *write* path was
+deliberately not exercised against the live app — uploading through a native OS
+window cannot be automated, and doing it by hand is the walkthrough in the plan's
+Task 10. Until that is done, three things are proved only in the test database:
+that `MEDIA_ROOT` is writable by the gunicorn user, that `mcp_cache/insights/` is
+creatable from a request, and that `subprocess.Popen` of `manage.py` works from
+one. All three were already true of the old `run_extraction_now`, so they are
+expected to hold — but expected is not verified.

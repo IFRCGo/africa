@@ -69,6 +69,33 @@ class ExtractProgressTests(TestCase):
         self.assertFalse(body["started"])
         self.assertIn("LLM_PROVIDER is not set", body["message"])
 
+    def test_the_stall_notices_reset_button_actually_resets(self):
+        """The only way out of a run whose process was killed.
+
+        The button posts the existing changelist action rather than a second
+        implementation of it, and ExtractionJobAdmin is hidden from the index
+        by get_model_perms returning {} - so this proves the action still runs
+        for a model that no longer appears in the app list. Without it the
+        stall path has no exit at all: run_extraction_now and the wizard's own
+        extract() both refuse to relaunch a job sitting at "running".
+        """
+        response = self.client.post(
+            reverse("admin:insights_extractionjob_changelist"),
+            {"action": "reset_stuck_job",
+             "_selected_action": [str(self.job.id)],
+             "index": "0"},
+            follow=True)
+        self.job.refresh_from_db()
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(self.job.status, "queued")
+
+    def test_the_reset_button_is_on_the_stall_notice(self):
+        """The page has to carry the form, not just describe the way out."""
+        body = self.client.get(
+            reverse("admin:insights_wizard_job", args=[self.job.id])).content.decode()
+        self.assertIn('value="reset_stuck_job"', body)
+        self.assertIn(f'name="_selected_action" value="{self.job.id}"', body)
+
     def test_launching_marks_the_job_running_before_it_returns(self):
         self.job.status = "queued"
         self.job.save(update_fields=["status"])
