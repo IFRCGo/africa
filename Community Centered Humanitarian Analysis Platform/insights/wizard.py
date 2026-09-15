@@ -20,14 +20,17 @@ from pathlib import Path
 
 from django.conf import settings
 from django.contrib import admin as django_admin
+from django.contrib import messages
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.urls import reverse
 from django.views.decorators.http import require_POST
 
 from data_track.models import Document
+from insights import review
 from insights.extractors import get_extractor
 from insights.intake import SUFFIXES, catalogue_file
-from insights.models import ExtractionJob, InsightUpload
+from insights.models import ExtractionJob, Insight, InsightUpload
 
 RECENT_JOBS = 20
 LOG_TAIL_BYTES = 4096
@@ -171,7 +174,44 @@ def job_step(request, job_id):
         return render(request, "insights/wizard_extract.html",
                       page(request, job=job, wizard_step=3))
     return render(request, "insights/wizard_review.html",
-                  page(request, job=job, wizard_step=4))
+                  page(request, job=job, wizard_step=4, insights=_job_insights(job)))
+
+
+def _job_insights(job):
+    """This job's statements, grouped the way they are read: by document, by page."""
+    return (Insight.objects.filter(job=job)
+            .select_related("document")
+            .prefetch_related("codings")
+            .order_by("document__file_name", "page", "id"))
+
+
+@require_POST
+def decide(request, job_id):
+    """Publish or reject the selected statements.
+
+    SCOPED TO THIS JOB. The ids come from a form, so they are the client's to
+    choose; filtering on the job as well means a tampered form cannot publish
+    somebody else's pending review queue.
+    """
+    job = get_object_or_404(ExtractionJob, id=job_id)
+    chosen = Insight.objects.filter(job=job, id__in=request.POST.getlist("selected"))
+
+    if request.POST.get("decision") == "publish":
+        moved = review.publish(chosen, request.user)
+        messages.success(request, f"{moved} published.")
+    else:
+        moved = review.reject(chosen, request.user)
+        messages.warning(
+            request,
+            f"{moved} rejected. Add a reason on each one - a rejected extraction "
+            f"is evidence about the model, not rubbish.")
+
+    return redirect(reverse("admin:insights_wizard_job", args=[job.id]))
+
+
+def edit(request, insight_id):
+    """One insight's inline editor. Filled in by Task 9."""
+    raise NotImplementedError
 
 
 def log_path(job):

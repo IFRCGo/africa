@@ -469,6 +469,12 @@ class DocumentsToInsightsAdmin(admin.ModelAdmin):
             path("job/<int:job_id>/progress/",
                  self.admin_site.admin_view(wizard.progress),
                  name="insights_wizard_progress"),
+            path("job/<int:job_id>/decide/",
+                 self.admin_site.admin_view(wizard.decide),
+                 name="insights_wizard_decide"),
+            path("insight/<int:insight_id>/edit/",
+                 self.admin_site.admin_view(wizard.edit),
+                 name="insights_wizard_edit"),
         ] + super().get_urls()
 
     def changelist_view(self, request, extra_context=None):
