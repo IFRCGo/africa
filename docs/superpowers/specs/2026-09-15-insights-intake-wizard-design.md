@@ -65,6 +65,22 @@ The Community Insights admin section lists exactly two entries:
 | **Part 1 — Documents → insights** | The wizard: bring in → preview → extract → review & publish. |
 | **Part 2 — Insights** | The statement table: type one by hand, search, audit anything published. |
 
+Django's admin index lists **registered models**, not arbitrary pages, so Part 1 is a proxy
+model over `ExtractionJob`:
+
+```python
+class DocumentsToInsights(ExtractionJob):
+    class Meta:
+        proxy = True
+        verbose_name_plural = "Part 1 — Documents → insights"
+```
+
+Its `changelist_view` renders the wizard's job list — recent batches and their state, with
+"Start a new batch" above them — and the wizard's own steps hang off its `get_urls()`. A proxy
+creates no table; the migration is a `CreateModel` with `proxy=True` plus an
+`AlterModelOptions` on `Insight` for "Part 2 — Insights". `_build_app_dict` sorts the index by
+name, so the two labels order themselves.
+
 `ExtractionJob`, `InsightFolder` and `InsightUpload` are hidden from the index by overriding
 `ModelAdmin.get_model_perms` to return `{}` — the documented idiom for dropping a model from
 the app list while leaving every URL, view, action and permission working. Deliberately *not*
@@ -92,8 +108,12 @@ away server-side. The skipped files are listed on the preview with their reason,
 is visible rather than silent.
 
 `File.webkitRelativePath` carries the folder's internal structure
-(`DTM Round 12/Chad/report.pdf`). It is kept as the upload's label so the preview and the
-review page can group by it.
+(`DTM Round 12/Chad/report.pdf`). It is kept in `InsightUpload.label` **and nowhere else** —
+specifically, it never reaches a filesystem path. It arrives as an ordinary form field under
+the client's control, and a value of `../../etc/passwd` joined onto a directory is a traversal.
+Nothing needs it on disk: `catalogue_file` de-duplicates on the content's sha1, so where
+storage puts the bytes is immaterial. Keeping it as a label removes the hole rather than
+guarding it.
 
 ### 6.2 The preview, in two stages
 
@@ -121,7 +141,7 @@ All four are mounted through `ExtractionJobAdmin.get_urls()` and wrapped in
 | Method + path | Does |
 |---|---|
 | `POST wizard/batch/` | Creates an `ExtractionJob` with `status="collecting"` and the batch label. Returns its id. |
-| `POST wizard/batch/<id>/file/` | One file. Writes it under `MEDIA_ROOT/insights/<job id>/<relative path>`, creates an `InsightUpload` row, calls `catalogue_file`, attaches the `Document` to the job. Returns that file's outcome. |
+| `POST wizard/batch/<id>/file/` | One file. Creates an `InsightUpload` row — Django's storage names the file under `upload_to="insights/"` and de-duplicates the name itself — then calls `catalogue_file` and attaches the `Document` to the job. Returns that file's outcome. |
 | `POST wizard/batch/<id>/ready/` | Sets `documents_total` from the attached documents and `status="queued"`. Redirects to the extract step. |
 | `GET  wizard/job/<id>/` | The wizard itself, showing whichever step the job's status puts it at. |
 
@@ -152,9 +172,22 @@ The page then polls `GET wizard/job/<id>/progress/` every two seconds. That endp
  "last_change": "2026-09-15T10:14:02+00:00"}
 ```
 
-`last_change` is the job's most recent write, used for the stall warning below. The log tail is
-read from the end of the file with a seek, never by reading the whole file — a long run's log
-grows without bound.
+`last_change` is **`job-<id>.log`'s `st_mtime`**, used for the stall warning below. Deliberately
+not a column on the job: `ExtractionJob` has no `updated_at`, and adding one with
+`auto_now=True` would not work, because `extract_insights` saves with
+`update_fields=["documents_done"]` and `update_fields=["log"]` and an `auto_now` field only
+updates when it is among the fields listed. The log file's mtime needs no model change and no
+edit to the command — the child writes to it as each document finishes, which is exactly the
+signal wanted.
+
+The log tail is read from the end of the file with a seek, never by reading the whole file — a
+long run's log grows without bound.
+
+**If no extractor is configured, the step says so rather than dead-ending.** `get_extractor()`
+raising `ValueError` is the normal state for the route CLAUDE.md documents first: extraction
+run by an agent on the host, writing payloads into `mcp_cache/insights/`. The step then shows
+that, and offers the existing "Load payloads written by the agent" action on the job instead of
+a Start button that cannot work.
 
 **Three end states, three behaviours:**
 
@@ -197,7 +230,17 @@ Everything `InsightPlaceForm` guarantees holds unchanged here, because it *is* t
   so a row placed at ADM3 is not silently dragged up to the ADM2 the dropdowns can express, and
   a `match_method` of `name` is not restamped `pcode` because someone fixed a typo.
 
-`place_picker.js` is loaded once by the review page rather than per panel.
+**Two mechanical consequences of taking the form out of the admin change view:**
+
+- **`place_picker.js` must be refactored to bind per panel.** It currently runs once on
+  `DOMContentLoaded` and looks up `#id_country`, `#id_state`, `#id_district` by hardcoded id.
+  A review page has one trio per row and injects them after load, so both assumptions break.
+  It becomes a function taking a container element, called on each panel as it arrives, with
+  the existing `DOMContentLoaded` call kept for the admin change form. Each row's form carries
+  a prefix (`insight-<id>`) so the ids are unique.
+- **The codings are an `inlineformset_factory`, not the `TabularInline`.** `admin.TabularInline`
+  only exists inside an admin change view and depends on admin's own `inlines.js`; outside it,
+  the add/remove row behaviour is the formset's `empty_form` plus a few lines of JavaScript.
 
 **Publishing is a decision per statement.** Checkboxes drive **Publish selected** and **Reject
 selected**, which call the same code as `InsightAdmin.publish_selected` and `reject_selected` —
@@ -255,10 +298,12 @@ container path at all.
   file uploaded through Admin currently lands inside the working tree as an untracked file
   waiting to be committed by accident. This is true today, before any of this work; the wizard
   makes it far easier to hit.
+- **`DocumentsToInsights`**, the proxy model of §5. `proxy = True` creates no table.
 - Templates live in `insights/templates/insights/`, which `APP_DIRS = True` already finds.
   Wizard pages extend `admin/base_site.html` so they carry the admin's own chrome and login.
 
-No change to `Insight`, `InsightCoding` or `InsightFolder`.
+`Insight` gets an **options-only** migration — `verbose_name_plural` for its index label, per
+§5. No column on `Insight` changes, and `InsightCoding` and `InsightFolder` are untouched.
 
 ## 11. Verification
 
@@ -315,3 +360,18 @@ before the branch is finished, per the verification loop this project already us
   extraction of a `running` job, which covers the damaging case. Two reviewers publishing from
   the same review page will simply both succeed, last write winning on `reviewed_by` — the same
   behaviour the existing changelist actions have.
+
+## 13. Before any of this is built
+
+The working tree carries unfinished work from an earlier session, and the wizard is built
+directly on top of it:
+
+- `insights/admin.py` — 81 uncommitted lines;
+- `insights/admin_views.py`, `insights/forms.py`, `insights/static/insights/` and
+  `insights/tests/test_admin_pickers.py` — untracked entirely.
+
+That WIP *is* the folder browser and the place pickers this design reuses and refactors. The
+first task of the implementation plan is therefore to establish a baseline:
+`docker compose exec web python manage.py test insights -v 2`, read the diff, and either commit
+it or decide what of it survives — before a line of the wizard is written. Building on an
+unknown diff means debugging a half-finished picker while believing it is a new bug.
