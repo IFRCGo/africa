@@ -36,6 +36,17 @@ Read `insights/prompts/extract_insights.md` and follow it exactly. That file is
 the single source of truth for the extraction and its output format; this section
 does not restate it.
 
+The route in for a person is **Admin → Community insights → Part 1 — Documents →
+insights**: pick files or a folder from a native window on your own machine,
+check the preview, extract (watchable, and it survives the tab closing), then
+review and publish. Part 2 is the statement table, for typing one in by hand and
+for auditing anything ever published.
+
+An archive already sitting on a mounted share should be registered as an
+`InsightFolder` instead — nothing is copied that way. Which folders may be
+browsed is `INSIGHT_DOCUMENT_ROOTS`; there is no hardcoded `/work` any more, and
+the host folder behind the mount is `SOURCE_HOST_DIR`.
+
 ## Things worth knowing before changing anything
 
 - `/work` is mounted **read-only**. Anything written goes under `/app`.
