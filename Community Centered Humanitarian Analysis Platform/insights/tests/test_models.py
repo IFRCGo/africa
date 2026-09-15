@@ -88,3 +88,18 @@ class InsightFolderTests(TestCase):
     def test_a_real_directory_validates(self):
         folder = InsightFolder(label="tmp", path=tempfile.gettempdir())
         folder.full_clean()   # must not raise
+
+
+class WizardModelTests(TestCase):
+    def test_a_batch_records_what_it_was(self):
+        job = ExtractionJob.objects.create(
+            status="collecting", label="folder: DTM Round 12")
+        self.assertEqual(job.label, "folder: DTM Round 12")
+        self.assertEqual(job.status, "collecting")
+
+    def test_the_proxy_shares_the_jobs_table(self):
+        from insights.models import DocumentsToInsights
+
+        job = ExtractionJob.objects.create(status="collecting")
+        self.assertTrue(DocumentsToInsights.objects.filter(id=job.id).exists())
+        self.assertEqual(DocumentsToInsights._meta.db_table, ExtractionJob._meta.db_table)

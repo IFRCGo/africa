@@ -111,14 +111,22 @@ class ExtractionJob(models.Model):
     # already protects any row a reviewer has touched.
     documents = models.ManyToManyField(
         "data_track.Document", blank=True, related_name="extraction_jobs")
+    label = models.TextField(
+        null=True, blank=True,
+        help_text="What this batch was: 'folder: DTM Round 12', '4 files'. Kept "
+                  "because a folder chosen in a browser is not a path the server "
+                  "can recover any other way.",
+    )
     producer = models.TextField(default="external", help_text="external / anthropic / openai_compatible")
     model_used = models.TextField(null=True, blank=True)
     status = models.TextField(
         default="queued",
         help_text=(
-            "queued / running / loaded / failed. A job stuck at 'running' because "
-            "its process was killed rather than raising (e.g. docker compose restart "
-            "web) can be recovered with the 'Reset stuck job to queued' action below."
+            "collecting / queued / running / loaded / failed. 'collecting' is a "
+            "wizard batch whose files are still arriving. A job stuck at 'running' "
+            "because its process was killed rather than raising (e.g. docker "
+            "compose restart web) can be recovered with the 'Reset stuck job to "
+            "queued' action below."
         ),
     )
     documents_total = models.IntegerField(default=0)
@@ -195,6 +203,10 @@ class Insight(models.Model):
     class Meta:
         db_table = "insights"
         ordering = ["-stated_on", "id"]
+        # How this table is named on the admin index. "Part 2" because the
+        # wizard is Part 1 and the two are read in that order; the admin sorts
+        # the index by name, so the numbers do the ordering.
+        verbose_name_plural = "Part 2 — Insights"
         constraints = [
             # nulls_distinct=False because a manual insight has a null document and
             # a null page. Under PostgreSQL's default rule two NULLs never collide,
@@ -245,3 +257,18 @@ class InsightCoding(models.Model):
 
     def __str__(self):
         return f"{self.dimension}:{self.tag}"
+
+
+class DocumentsToInsights(ExtractionJob):
+    """The wizard's front door on the admin index.
+
+    A proxy, because Django's admin index lists registered MODELS and the
+    wizard is a sequence of pages. Proxying ExtractionJob rather than inventing
+    a model is honest about what the wizard drives: a batch IS a job, and the
+    steps are that job's states. No table is created.
+    """
+
+    class Meta:
+        proxy = True
+        verbose_name = "Documents → insights"
+        verbose_name_plural = "Part 1 — Documents → insights"
