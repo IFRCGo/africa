@@ -56,6 +56,20 @@ class SourceSync(models.Model):
         default=list, blank=True,
         help_text="Identities already held, for sources with no date filter (IPC analysis ids)",
     )
+    # WHAT known_ids CANNOT SAY. known_ids means "held": it is filled from rows
+    # that loaded. It has no way to record that a person looked at an analysis
+    # and decided it does not belong - Chad's Mar 2024 analysis "counts a
+    # different denominator and would not compose with the rest" - or that a
+    # source publishes an id with no data behind it at all.
+    #
+    # Without this column, an automated diff of "published minus held" re-pulls
+    # every deliberate exclusion and retries every empty analysis on every press,
+    # forever. Entries are {"id": "...", "reason": "..."}; the reason is not
+    # decoration, it is the difference between a decision and a mystery.
+    skipped_ids = models.JSONField(
+        default=list, blank=True,
+        help_text="Identities deliberately NOT held: [{id, reason}]. See known_ids.",
+    )
     row_count = models.IntegerField(default=0)
     notes = models.TextField(
         null=True, blank=True,
