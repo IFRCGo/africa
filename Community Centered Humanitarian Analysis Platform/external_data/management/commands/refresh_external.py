@@ -49,7 +49,7 @@ class Command(BaseCommand):
             job.save(update_fields=["status", "started_at"])
 
         try:
-            written = self._run(options)
+            written = self._run(options, job)
         except Exception as exc:
             # Every failure route ends here, so there is exactly one place that
             # writes a failure onto the job - and exactly one place that has to
@@ -57,11 +57,13 @@ class Command(BaseCommand):
             self._finish(job, "failed", message=redact(exc))
             raise CommandError(redact(exc)) from None
 
-        self._finish(job, "succeeded", rows=written, message=f"wrote {written} rows")
-        self.stdout.write(f"wrote {written} rows")
+        message = ("already up to date - nothing new published"
+                   if getattr(self, "_uptodate", False) else f"wrote {written} rows")
+        self._finish(job, "succeeded", rows=written, message=message)
+        self.stdout.write(message)
         return None
 
-    def _run(self, options):
+    def _run(self, options, job=None):
         source, dataset = options["source"], options["dataset"]
         variant = options["variant"] or ""
 
@@ -91,8 +93,16 @@ class Command(BaseCommand):
         fetcher = fetcher_cls()
         written = 0
         failures = []
+        uptodate = []
 
-        for call in fetcher.plan(sync):
+        # Materialised so the job can say "3 of 7" instead of spinning. For IPC
+        # this performs the analyses listing and nothing else - the area fetches
+        # still happen one at a time, in the loop below, which is the rule that
+        # matters.
+        calls = list(fetcher.plan(sync))
+        self._progress(job, done=0, total=len(calls), note="starting")
+
+        for index, call in enumerate(calls, start=1):
             self.stdout.write(f"GET {call.url}")
             if call.paginated:
                 from external_data.fetchers.hdx import fetch_all_pages
@@ -111,13 +121,26 @@ class Command(BaseCommand):
                 result = load(loader, payload, sync.iso3,
                               dry_run=options["dry_run"], context=call.context)
             except EmptyPayload as exc:
+                if call.narrowed:
+                    # NOTHING NEW IS NOT A FAULT. "Loud on empty" exists so an
+                    # API error serialised as [] can never be recorded as a
+                    # successful, up-to-date pull - but once the question was
+                    # "anything since June?", an empty answer is the ordinary
+                    # way of saying no. Only an UNNARROWED empty is still a
+                    # failure, which is exactly where the guarantee was aimed.
+                    uptodate.append(call)
+                    self.stdout.write("  nothing new")
+                    self._progress(job, done=index, note="up to date")
+                    continue
                 failures.append((call, exc))
                 self.stdout.write(self.style.WARNING(f"  empty: {exc}"))
                 self._note_empty(fetcher, sync, call)
+                self._progress(job, done=index, note="empty")
                 continue
 
             written += result.written
             self.stdout.write(f"  loaded {result.written} rows")
+            self._progress(job, done=index, note=f"{written} rows so far")
 
         if failures and not written:
             raise EmptyPayload(
@@ -132,6 +155,8 @@ class Command(BaseCommand):
 
         if not options["dry_run"]:
             SourceSync.objects.filter(pk=sync.pk).update(params=fetcher.params_record())
+
+        self._uptodate = bool(uptodate) and not written
         return written
 
     def _note_empty(self, fetcher, sync, call):
@@ -144,6 +169,27 @@ class Command(BaseCommand):
         hook = getattr(fetcher, "note_empty", None)
         if hook:
             hook(sync, call)
+
+    def _progress(self, job, done=None, total=None, note=""):
+        """Record how far along this job is, so the banner can say something true.
+
+        Written on the row rather than parsed out of the log: a banner that
+        scrapes stdout breaks the first time a message is reworded.
+        """
+        if not job:
+            return
+        fields = []
+        if done is not None:
+            job.progress_done = done
+            fields.append("progress_done")
+        if total is not None:
+            job.progress_total = total
+            fields.append("progress_total")
+        if note:
+            job.progress_note = note[:200]
+            fields.append("progress_note")
+        if fields:
+            job.save(update_fields=fields)
 
     def _finish(self, job, status, rows=0, message=""):
         if not job:

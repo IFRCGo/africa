@@ -49,9 +49,12 @@ class _HapiFetcher(Fetcher):
 
     requires = ("HDX_API_TOKEN",)
 
-    def _params(self, extra):
-        return {**extra, "app_identifier": settings.HDX_API_TOKEN,
-                "output_format": "json"}
+    def _params(self, extra, since=None):
+        params = {**extra, "app_identifier": settings.HDX_API_TOKEN,
+                  "output_format": "json"}
+        if since:
+            params["start_date"] = since.isoformat()
+        return params
 
 
 @register
@@ -64,6 +67,7 @@ class IdpsFetcher(_HapiFetcher):
     tool = "get_idps"
 
     def plan(self, sync):
+        since = self.since(sync)
         # assessment_type='BA' IS PART OF WHAT "admin2-overview" MEANS, not a
         # refinement of it. All 5,686 rows already held are Baseline assessments
         # of the "Armed Clashes in Sudan (Overview)" operation. Asking for admin
@@ -75,11 +79,12 @@ class IdpsFetcher(_HapiFetcher):
         yield Call(
             url=f"{BASE}/affected-people/idps",
             params=self._params({"location_code": sync.iso3, "admin_level": 2,
-                                 "assessment_type": "BA"}),
+                                 "assessment_type": "BA"}, since),
             cache_path=Path("hdx_idps") / f"{sync.iso3}-admin2-overview.json",
             loader_dataset="idps",
             context={},
             paginated=True,
+            narrowed=bool(since),
         )
 
     def params_record(self):
@@ -103,6 +108,7 @@ class RefugeesFetcher(_HapiFetcher):
     tool = "get_refugees"
 
     def plan(self, sync):
+        since = self.since(sync)
         # THREE PINS, ALL ABOUT MEANING. Found by the first real pull, which
         # failed outright with "ON CONFLICT DO UPDATE command cannot affect row
         # a second time".
@@ -125,11 +131,12 @@ class RefugeesFetcher(_HapiFetcher):
             params=self._params({"origin_location_code": "SDN",
                                  "asylum_location_code": sync.iso3,
                                  "population_group": "REF",
-                                 "gender": "all", "age_range": "all"}),
+                                 "gender": "all", "age_range": "all"}, since),
             cache_path=Path("hdx_refugees") / f"{sync.iso3}.json",
             loader_dataset="refugees",
             context={},
             paginated=True,
+            narrowed=bool(since),
         )
 
     def params_record(self):

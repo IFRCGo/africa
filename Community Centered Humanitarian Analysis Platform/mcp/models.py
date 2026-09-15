@@ -42,7 +42,7 @@ class PullJob(models.Model):
 
     kind = models.CharField(
         max_length=16, default="pull",
-        help_text="pull (one source_sync row) / rebuild (the dashboard layers)",
+        help_text="pull (one row) / batch (several, serially) / rebuild (the layers)",
     )
     # Null for a rebuild, which belongs to no single row.
     source = models.TextField(null=True, blank=True)
@@ -59,6 +59,13 @@ class PullJob(models.Model):
     finished_at = models.DateTimeField(null=True, blank=True)
 
     rows_written = models.IntegerField(default=0)
+
+    # How far along, for the banner. Kept as columns rather than scraped out of
+    # the log, because a banner that parses stdout breaks the first time a
+    # message is reworded.
+    progress_done = models.IntegerField(default=0)
+    progress_total = models.IntegerField(default=0)
+    progress_note = models.TextField(default="", blank=True)
     payload_path = models.TextField(
         null=True, blank=True, help_text="Where the raw response was saved"
     )
@@ -88,6 +95,14 @@ class PullJob(models.Model):
                 fields=["kind"], name="uniq_active_rebuild",
                 condition=Q(kind="rebuild", status__in=ACTIVE),
             ),
+            # Same reasoning for a batch: `source` is null on one, so the
+            # per-source constraint cannot see it. Two batches running at once
+            # would race for the same rows and defeat the one-at-a-time rule
+            # they exist to keep.
+            models.UniqueConstraint(
+                fields=["kind"], name="uniq_active_batch",
+                condition=Q(kind="batch", status__in=ACTIVE),
+            ),
         ]
         indexes = [
             models.Index(fields=["source", "status"], name="idx_pull_job_source_status"),
@@ -110,9 +125,11 @@ class PullJob(models.Model):
 
     @property
     def target(self):
-        """'ipc/food_security SDN', or 'dashboard layers' for a rebuild."""
+        """'ipc/food_security SDN', or what the batch and rebuild jobs cover."""
         if self.kind == "rebuild":
             return "dashboard layers"
+        if self.kind == "batch":
+            return f"{self.progress_total or 'several'} data sources"
         where = self.iso3 or "global"
         return f"{self.source}/{self.dataset} {where} {self.variant}".strip()
 

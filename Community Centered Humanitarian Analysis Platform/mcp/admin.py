@@ -13,6 +13,7 @@ from django.utils.safestring import mark_safe
 from external_data.fetchers import fetcher_for
 from external_data.fetchers.base import missing_keys
 from mcp import views
+from mcp.locks import JobBusy
 from mcp.models import ACTIVE, DataSource, PullJob
 
 # What each source is CALLED, as opposed to what its column says. The office says
@@ -39,6 +40,7 @@ class DataSourceAdmin(admin.ModelAdmin):
     list_filter = ("source", "dataset", "iso3")
     search_fields = ("source", "dataset", "variant", "tool", "notes")
     change_list_template = "admin/mcp/datasource/change_list.html"
+    actions = ["pull_selected"]
 
     def has_add_permission(self, request):
         return False
@@ -53,6 +55,10 @@ class DataSourceAdmin(admin.ModelAdmin):
         return [
             path("pull/<int:pk>/", self.admin_site.admin_view(views.pull),
                  name="mcp_pull"),
+            path("pull-all/", self.admin_site.admin_view(views.pull_all),
+                 name="mcp_pull_all"),
+            path("activity/", self.admin_site.admin_view(views.activity),
+                 name="mcp_activity"),
             path("rebuild/", self.admin_site.admin_view(views.rebuild),
                  name="mcp_rebuild"),
             path("job/<int:job_id>/", self.admin_site.admin_view(views.job_page),
@@ -65,7 +71,42 @@ class DataSourceAdmin(admin.ModelAdmin):
     def changelist_view(self, request, extra_context=None):
         extra_context = extra_context or {}
         extra_context["pulls_since_rebuild"] = views.pulls_since_last_rebuild()
+        extra_context["stale_count"] = len(views.stale_rows())
         return super().changelist_view(request, extra_context)
+
+    @admin.action(description="Pull the selected data sources (one at a time)")
+    def pull_selected(self, request, queryset):
+        """Several rows, one press, still strictly serial.
+
+        The selection is filtered before launching rather than after: a row with
+        no API, or no key, would only fail inside the batch, and a failure the
+        operator could have been told about up front is noise in a log.
+        """
+        rows, skipped = [], []
+        for row in queryset:
+            why = views.pullable(row)
+            (skipped.append((row, why)) if why else rows.append(row))
+
+        if not rows:
+            self.message_user(
+                request, "None of those can be pulled: "
+                         + "; ".join(f"{r.source}/{r.dataset} - {w}" for r, w in skipped),
+                messages.WARNING)
+            return
+
+        try:
+            job = views.start_batch(request, rows)
+        except JobBusy as exc:
+            self.message_user(request, str(exc), messages.WARNING)
+            return
+        except Exception as exc:
+            self.message_user(request, f"could not start: {exc}", messages.ERROR)
+            return
+
+        note = f"job {job.id}: pulling {len(rows)} source(s), one at a time."
+        if skipped:
+            note += f" {len(skipped)} skipped (no API or no key)."
+        self.message_user(request, note, messages.SUCCESS)
 
     @admin.display(description="source", ordering="source")
     def source_label(self, obj):

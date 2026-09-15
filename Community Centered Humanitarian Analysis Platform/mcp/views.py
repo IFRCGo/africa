@@ -14,13 +14,17 @@ from django.conf import settings
 from django.contrib import messages
 from django.http import Http404, JsonResponse
 from django.shortcuts import redirect, render
+from datetime import timedelta
+
 from django.utils import timezone
 
 from external_data.fetchers import fetcher_for
 from external_data.fetchers.base import missing_keys
 from external_data.models import SourceSync
 from mcp.locks import JobBusy, claim
-from mcp.models import PullJob
+from django.db.models import Q
+
+from mcp.models import ACTIVE, PullJob
 
 
 def _log_path(job):
@@ -125,6 +129,100 @@ def job_status(request, job_id):
         raise Http404("no such job")
     return JsonResponse({"status": job.status, "rows": job.rows_written,
                          "message": job.message})
+
+
+def pullable(row):
+    """Can this row be pulled right now? Returns None, or the reason it cannot."""
+    fetcher_cls = fetcher_for(row.source, row.dataset, row.variant)
+    if fetcher_cls is None:
+        return "file-based, no API"
+    absent = missing_keys(fetcher_cls)
+    if absent:
+        return f"{absent[0]} is not set"
+    return None
+
+
+def stale_rows():
+    """The rows "pull everything out of date" should actually pull.
+
+    OUT OF DATE, NOT SIMPLY PULLABLE. Anything already pulled today is left
+    alone, so pressing the button twice in a row costs nothing the second time -
+    which is the difference between a refresh button and a re-download button.
+    Rows with no API, and rows whose key is missing, are never included: there is
+    nothing to ask.
+    """
+    today = timezone.now().date()
+    return [row for row in SourceSync.objects.all()
+            if pullable(row) is None
+            and not (row.last_pulled_at and row.last_pulled_at.date() >= today)]
+
+
+def start_batch(request, rows):
+    """Claim a batch job for these rows and launch it detached."""
+    job = claim("batch", user=request.user)
+    job.progress_total = len(rows)
+    job.save(update_fields=["progress_total"])
+    _launch(job, ["pull_batch", "--job", str(job.id),
+                  "--rows", ",".join(str(r.pk) for r in rows)])
+    return job
+
+
+def pull_all(request):
+    """One press: bring every out-of-date source up to date, one at a time."""
+    rows = stale_rows()
+    if request.method != "POST":
+        return render(request, "mcp/confirm_batch.html",
+                      {"rows": rows, "heading": "Pull everything out of date"})
+
+    if not rows:
+        messages.info(request, "Everything with an API was already pulled today.")
+        return redirect("admin:mcp_datasource_changelist")
+
+    try:
+        job = start_batch(request, rows)
+    except JobBusy as exc:
+        messages.warning(request, str(exc))
+        return redirect("admin:mcp_datasource_changelist")
+    except Exception as exc:
+        messages.error(request, f"could not start: {exc}")
+        return redirect("admin:mcp_datasource_changelist")
+
+    messages.success(request, f"job {job.id}: pulling {len(rows)} sources, one at a time.")
+    return redirect("admin:mcp_datasource_changelist")
+
+
+def activity(request):
+    """What is happening, and what just happened - the banner's only source.
+
+    Finished jobs are included for THIRTY MINUTES after they end. That window is
+    the point of the banner: a pull that failed while you were on another tab is
+    still on the page when you come back, so the Pull jobs list is somewhere you
+    go to read a log, not somewhere you go to find out whether anything worked.
+    """
+    cutoff = timezone.now() - timedelta(minutes=30)
+    jobs = PullJob.objects.filter(
+        Q(status__in=ACTIVE) | Q(finished_at__gte=cutoff)
+    ).order_by("-requested_at")[:12]
+
+    def one(job):
+        return {
+            "id": job.id,
+            "kind": job.kind,
+            "target": job.target,
+            "status": "stuck" if job.is_stale else job.status,
+            "done": job.progress_done,
+            "total": job.progress_total,
+            "note": job.progress_note,
+            "rows": job.rows_written,
+            "message": job.message[:200],
+            "url": f"job/{job.id}/",
+        }
+
+    payload = [one(j) for j in jobs]
+    return JsonResponse({
+        "running": [j for j in payload if j["status"] in ACTIVE or j["status"] == "stuck"],
+        "finished": [j for j in payload if j["status"] in ("succeeded", "failed")],
+    })
 
 
 def pulls_since_last_rebuild():

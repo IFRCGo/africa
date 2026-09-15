@@ -48,6 +48,10 @@ class SeasonsFetcher(Fetcher):
     requires = ()
 
     def plan(self, sync):
+        # NEVER NARROWED, and there is nothing to narrow with: FEWS NET's season
+        # endpoint has no date filter, and a country's calendar is six bands.
+        # A full pull is cheaper than the code it would take to avoid one.
+        #
         # page_size 50 matches the MCP tool's own default. One country's seasons
         # are a few dozen rows even counting the historical unit versions the
         # loader discards, so this is one page in practice.
@@ -78,11 +82,22 @@ class PhasesFetcher(Fetcher):
     requires = ()
 
     def plan(self, sync):
+        # THE FLOOR IS STILL THE FLOOR. A watermark walked back by the lookback
+        # can land before the crisis start - and would if anyone ever backfills
+        # older phases - so the later of the two wins. Asking FEWS NET for 2019
+        # would pull years of pre-crisis assessments this project does not want.
+        since = self.since(sync)
+        start = settings.CRISIS_START
+        narrowed = False
+        if since and since.isoformat() > start:
+            start = since.isoformat()
+            narrowed = True
+
         yield Call(
             url=f"{BASE}/api/ipcphase/",
-            params={"country_code": _iso2(sync.iso3),
-                    "start_date": settings.CRISIS_START},
+            params={"country_code": _iso2(sync.iso3), "start_date": start},
             cache_path=Path("fewsnet_phases") / f"{sync.iso3}.json",
             loader_dataset="fewsnet_phases",
             context={},
+            narrowed=narrowed,
         )

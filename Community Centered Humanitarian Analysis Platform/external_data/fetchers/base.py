@@ -18,6 +18,7 @@ Four guarantees, matching the loaders' four:
 """
 import json
 from dataclasses import dataclass, field
+from datetime import timedelta
 from pathlib import Path
 
 import requests
@@ -27,6 +28,15 @@ from external_data.fetchers import fetcher_for  # noqa: F401  (re-exported)
 
 # Every setting whose value must never appear in a log line or an error message.
 SECRET_SETTINGS = ("IPC_API_KEY", "HDX_API_TOKEN")
+
+# How far BEHIND the watermark a narrowed request starts.
+#
+# Not zero, and that is the whole point. The watermark is the newest DATA date
+# held, so asking strictly after it would never see a figure the agency later
+# restates - and they do restate recent months. Ninety days is long enough to
+# catch a corrected quarter and short enough that a refresh stays an update
+# rather than becoming a re-download.
+LOOKBACK_DAYS = 90
 
 
 class FetchError(Exception):
@@ -47,6 +57,10 @@ class Call:
     cache_path: Path
     loader_dataset: str
     context: dict = field(default_factory=dict)
+    # Whether this request was narrowed by the watermark. It decides what an
+    # EMPTY answer means: nothing new (fine) versus nothing at all (a fault).
+    # See the runner, and `since` below.
+    narrowed: bool = False
     # HAPI pages at 100 by default and Sudan's IDP series is 5,686 rows, so some
     # Calls must be followed to the end. The flag lives on the Call rather than
     # in the runner because whether an endpoint paginates is the fetcher's
@@ -70,6 +84,16 @@ class Fetcher:
         ask for, and the runner is what records that it asked.
         """
         raise NotImplementedError
+
+    def since(self, sync):
+        """The date a narrowed request should start from, or None for everything.
+
+        None when nothing is held: a first pull must ask for the whole series,
+        or the table is silently seeded with a slice and called complete.
+        """
+        if not sync.high_water_date:
+            return None
+        return sync.high_water_date - timedelta(days=LOOKBACK_DAYS)
 
     def params_record(self):
         """What to write into source_sync.params after a successful pull.
