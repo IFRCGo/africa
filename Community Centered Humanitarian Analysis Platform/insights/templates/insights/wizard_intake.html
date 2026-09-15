@@ -1,0 +1,38 @@
+{% extends "insights/wizard_base.html" %}
+{% load static %}
+{% block wizard_body %}
+<div id="wiz-intake"
+     data-batch-url="{% url 'admin:insights_wizard_batch' %}"
+     data-batch-file-url="{% url 'admin:insights_wizard_batch_file' 0 %}"
+     data-batch-ready-url="{% url 'admin:insights_wizard_batch_ready' 0 %}"
+     data-job-url="{% url 'admin:insights_wizard_job' 0 %}">
+  {% csrf_token %}
+
+  <p>Pick the reports to read. Both buttons open a window on your own computer.
+     Only PDF and Word (.docx) files are sent; anything else in a folder is left
+     where it is.</p>
+
+  <p>
+    <label class="button" for="wiz-files">Choose files</label>
+    <input id="wiz-files" type="file" multiple accept=".pdf,.docx" hidden>
+
+    <label class="button" for="wiz-folder">Choose a folder</label>
+    <input id="wiz-folder" type="file" webkitdirectory hidden>
+  </p>
+
+  <div id="wiz-preview" hidden>
+    <h2>What will be read <small id="wiz-count"></small></h2>
+    <table class="wiz-files"><tbody id="wiz-rows"></tbody></table>
+    <p>
+      <button type="button" id="wiz-send" class="default">Read these documents</button>
+      <button type="button" id="wiz-clear">Start again</button>
+    </p>
+  </div>
+
+  <div id="wiz-progress" hidden>
+    <div class="wiz-bar"><span id="wiz-bar-fill"></span></div>
+    <p id="wiz-progress-text"></p>
+  </div>
+</div>
+<script src="{% static 'insights/wizard_intake.js' %}" defer></script>
+{% endblock %}
