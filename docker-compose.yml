@@ -107,6 +107,11 @@ services:
       LLM_BASE_URL: ${LLM_BASE_URL:-}
       LLM_API_KEY: ${LLM_API_KEY:-}
 
+      # Keys for the MCP pull buttons. Unset is fine: those buttons are then
+      # disabled and say so. See env.example for where each one comes from.
+      IPC_API_KEY: ${IPC_API_KEY:-}
+      HDX_API_TOKEN: ${HDX_API_TOKEN:-}
+
       # The basemap drawn under the dashboard: the shared IFRC GO style on
       # Mapbox. Both defaults are the public values published by GO itself
       # (https://go-wiki.ifrc.org/en/user_guide/Maps), so this works untouched;

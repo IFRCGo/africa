@@ -49,6 +49,16 @@ LLM_API_KEY = os.environ.get("LLM_API_KEY") or ""
 # pipeline only re-reads whatever sits in the folder. See data_pipeline/README.md.
 MCP_CACHE_DIR = env_path("MCP_CACHE_DIR", BASE_DIR / "data_pipeline" / "mcp_cache")
 
+# The two keys the fetchers need. `get(X) or ""`, NOT `get(X, "")`: an empty
+# value in .env must fall back to "not set" rather than be sent as a blank key,
+# which HAPI answers with a 403 instead of a comprehensible refusal.
+#
+# Absent is empty string, never None: the admin tests truthiness to decide
+# whether a row's Pull button is live, and None would work by accident today
+# and break the moment somebody writes `len(...)`.
+IPC_API_KEY = os.environ.get("IPC_API_KEY") or ""
+HDX_API_TOKEN = os.environ.get("HDX_API_TOKEN") or ""
+
 
 def env_paths(name: str, default: list) -> list:
     """A path-separator list from the environment, falling back when empty.
