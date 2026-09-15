@@ -111,9 +111,8 @@ is visible rather than silent.
 (`DTM Round 12/Chad/report.pdf`). It is kept in `InsightUpload.label` **and nowhere else** —
 specifically, it never reaches a filesystem path. It arrives as an ordinary form field under
 the client's control, and a value of `../../etc/passwd` joined onto a directory is a traversal.
-Nothing needs it on disk: `catalogue_file` de-duplicates on the content's sha1, so where
-storage puts the bytes is immaterial. Keeping it as a label removes the hole rather than
-guarding it.
+Nothing needs it on disk: duplicates are caught on the content's sha1 (§6.2), so where storage
+puts the bytes is immaterial. Keeping it as a label removes the hole rather than guarding it.
 
 ### 6.2 The preview, in two stages
 
@@ -129,8 +128,12 @@ operator can clear the selection and pick again at no cost.
 catalogued as it lands, and its row fills in live with one of:
 
 - `12 pages` — catalogued, attached to the job;
-- `already catalogued (identical file)` — `catalogue_file`'s sha1 dedup fired, the existing
-  `Document` is attached to this job rather than a second one being made;
+- `already catalogued (identical file)` — the content's sha1 already matches a `Document`,
+  so that one is attached to this job and nothing is written. Matched on
+  `Document.sha1`, **not** on `catalogue_file`'s `rel_path` dedup: an upload's
+  `rel_path` is built from the name storage settled on, and storage uniquifies a
+  collision, so the same report sent twice under two names would otherwise be
+  catalogued twice and read by the model twice;
 - `could not be read: <reason>` — a corrupt or password-protected PDF. **The batch continues.**
 
 ### 6.3 The endpoints

@@ -379,7 +379,28 @@ and further down, the parent link:
                    else None),
 ```
 
-Update the module docstring's `folder-browse/` line to read "the directories under a configured document root".
+Update the module docstring's `folder-browse/` line to read "the directories under a configured document root", and its "WHY THE FOLDER BROWSER IS SERVER-SIDE" paragraph so the example path is not `/work`.
+
+Two comments elsewhere still name the mount, and Step 8 greps for exactly that. In `insights/models.py`, `InsightUpload`'s docstring:
+
+```python
+    """One document uploaded through Admin, rather than found in a folder.
+
+    Files land under MEDIA_ROOT, which is inside the app itself, because the
+    folder holding the source documents is mounted read-only: an upload cannot
+    be written beside the PDFs it will be read with. Saving one catalogues it
+    immediately - see InsightUploadAdmin.save_model - and `document` then points
+    at the row it produced.
+    """
+```
+
+and in `insights/admin_views.py`, the document-count comment in `folder_browse`:
+
+```python
+        # Counted in this folder only, not recursively: a document root can hold
+        # thousands of PDFs and a recursive walk on every click would make the
+        # picker crawl. It answers "is this the folder?", which is all it needs to.
+```
 
 - [ ] **Step 6: Run the tests**
 
@@ -1111,13 +1132,25 @@ class BatchTests(TestCase):
         self.assertEqual(job.documents.count(), 1)
 
     def test_the_same_content_under_another_name_is_a_duplicate(self):
-        # catalogue_file de-duplicates on the content's sha1, so this must
-        # attach the existing Document rather than make a second one.
+        # Matched on Document.sha1, NOT on rel_path. An upload's rel_path is
+        # built from the name storage settled on, and storage uniquifies a
+        # collision - so the same report sent twice would otherwise be
+        # catalogued twice, and the model paid for twice to read it.
         payload = a_pdf()
         with override_settings(MEDIA_ROOT=self.media.name):
             job_id = self.open_batch()
             self.send(job_id, "report.pdf", payload)
             body = self.send(job_id, "report-copy.pdf", payload).json()
+        self.assertEqual(body["outcome"], "duplicate")
+        self.assertEqual(Document.objects.filter(source_collection="insights").count(), 1)
+        self.assertEqual(ExtractionJob.objects.get(id=job_id).documents.count(), 1)
+
+    def test_the_identical_file_twice_is_also_a_duplicate(self):
+        payload = a_pdf()
+        with override_settings(MEDIA_ROOT=self.media.name):
+            job_id = self.open_batch()
+            self.send(job_id, "report.pdf", payload)
+            body = self.send(job_id, "report.pdf", payload).json()
         self.assertEqual(body["outcome"], "duplicate")
         self.assertEqual(Document.objects.filter(source_collection="insights").count(), 1)
 
@@ -1175,6 +1208,7 @@ Expected: FAIL — `NoReverseMatch: Reverse for 'insights_wizard_batch' not foun
 Add to `insights/wizard.py` — imports first:
 
 ```python
+import hashlib
 from pathlib import Path
 
 from django.http import JsonResponse
@@ -1182,7 +1216,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_POST
 
 from data_track.models import Document
-from insights.intake import SUFFIXES, catalogue_file, relative_path, sha1_of
+from insights.intake import SUFFIXES, catalogue_file
 from insights.models import ExtractionJob, InsightUpload
 ```
 
@@ -1226,13 +1260,34 @@ def batch_file(request, job_id):
             "message": f"{suffix or 'no extension'} is not a PDF or Word document.",
         })
 
+    # HASHED BEFORE IT IS SAVED, AND MATCHED ON THE HASH. catalogue_file
+    # de-duplicates on rel_path, which for an upload is
+    # "media/<sha1[:12]>-<stored name>" - and the STORED name is whatever
+    # Django's storage settled on, which uniquifies a collision to
+    # "report_AbCdEf.pdf". So the same report sent twice, or sent under two
+    # names, lands on two rel_paths and is catalogued twice. Matching on
+    # Document.sha1 is what actually answers "is this file already in the
+    # database". File.chunks() seeks to 0 first, so the upload is still
+    # readable afterwards.
+    digest = hashlib.sha1()
+    for chunk in upload.chunks():
+        digest.update(chunk)
+    fingerprint = digest.hexdigest()
+
+    existing = Document.objects.filter(sha1=fingerprint).first()
+    if existing is not None:
+        # Nothing is written: a second copy on disk of a file already
+        # catalogued is pure cost. The document is attached to this batch so
+        # it is extracted with the rest of it.
+        job.documents.add(existing)
+        return JsonResponse({
+            "name": label, "outcome": "duplicate", "pages": existing.pages,
+            "document_id": existing.id,
+            "message": "Already catalogued - the same file is in the database.",
+        })
+
     row = InsightUpload.objects.create(file=upload, label=label)
     stored = Path(row.file.path)
-
-    # Asked before cataloguing, because catalogue_file returns the existing
-    # Document either way and there is no other way to tell the two apart.
-    rel = relative_path(stored, sha1_of(stored))
-    already = Document.objects.filter(rel_path=rel).exists()
 
     try:
         document = catalogue_file(stored)
@@ -1252,12 +1307,8 @@ def batch_file(request, job_id):
     job.documents.add(document)
 
     return JsonResponse({
-        "name": label,
-        "outcome": "duplicate" if already else "catalogued",
-        "pages": document.pages,
-        "document_id": document.id,
-        "message": ("Already catalogued - the same file is in the database."
-                    if already else ""),
+        "name": label, "outcome": "catalogued", "pages": document.pages,
+        "document_id": document.id, "message": "",
     })
 
 
@@ -1892,6 +1943,25 @@ Create `insights/templates/insights/wizard_extract.html`:
 
   <div id="wiz-note" class="wiz-note" hidden></div>
 
+  {% comment %}
+  The way out of a run whose process was killed outright - `docker compose
+  restart web` kills a detached child with no exception anywhere to catch. It
+  posts the existing changelist action rather than duplicating it: one
+  implementation of "put this job back to queued", and it stays audited by the
+  admin's own action machinery. index=0 is what tells the changelist this is an
+  action POST and not a bulk edit.
+  {% endcomment %}
+  <div id="wiz-stall" class="wiz-note is-warn" hidden>
+    <p id="wiz-stall-text"></p>
+    <form method="post" action="{% url 'admin:insights_extractionjob_changelist' %}">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="reset_stuck_job">
+      <input type="hidden" name="_selected_action" value="{{ job.id }}">
+      <input type="hidden" name="index" value="0">
+      <button type="submit">Reset this batch to queued</button>
+    </form>
+  </div>
+
   <h3>Log</h3>
   <pre class="wiz-log" id="wiz-log"></pre>
 
@@ -1934,6 +2004,8 @@ Create `insights/static/insights/wizard_extract.js`:
   var fill = document.getElementById("wiz-bar-fill");
   var counters = document.getElementById("wiz-counters");
   var note = document.getElementById("wiz-note");
+  var stall = document.getElementById("wiz-stall");
+  var stallText = document.getElementById("wiz-stall-text");
   var log = document.getElementById("wiz-log");
   var startButton = document.getElementById("wiz-start");
   var timer = null;
@@ -1965,6 +2037,7 @@ Create `insights/static/insights/wizard_extract.js`:
 
     if (body.status === "loaded") {
       stop();
+      stall.hidden = true;
       say("Extraction finished. Opening the review step…", null);
       window.location = root.dataset.reviewUrl;
       return;
@@ -1972,6 +2045,7 @@ Create `insights/static/insights/wizard_extract.js`:
 
     if (body.status === "failed") {
       stop();
+      stall.hidden = true;
       startButton.disabled = false;
       startButton.textContent = "Try again";
       say("This run failed. The reason is at the end of the log above; the full " +
@@ -1983,12 +2057,18 @@ Create `insights/static/insights/wizard_extract.js`:
       startButton.disabled = true;
       var since = body.last_change ? Date.now() - Date.parse(body.last_change) : 0;
       if (since > STALL_MS) {
-        say("No progress since " + new Date(body.last_change).toLocaleTimeString() +
-            ". If the container was restarted the run is gone and the job needs " +
-            "resetting to queued — use “Reset stuck job to queued” on the job page. " +
-            "Nothing here can tell a killed process from a slow one, so nothing " +
-            "resets it automatically.", "warn");
+        /* Reported, never acted on. Nothing here tracks a pid, so nothing here
+         * can tell a killed process from a slow document - and resetting a job
+         * that is actually still working would let two extractions of it run
+         * at once. The button is the person's to press. */
+        stallText.textContent =
+          "No progress since " + new Date(body.last_change).toLocaleTimeString() +
+          ". If the container was restarted, this run is gone and the batch has " +
+          "to go back to queued before it can be started again. If it is simply " +
+          "on a long document, leave it — nothing here can tell the two apart.";
+        stall.hidden = false;
       } else {
+        stall.hidden = true;
         note.hidden = true;
       }
     }
@@ -2270,10 +2350,22 @@ Create `insights/templates/insights/wizard_review.html`:
 
 <div id="wiz-review"
      data-edit-url="{% url 'admin:insights_wizard_edit' 0 %}">
+  {% comment %}
+  Grouped by the document each statement came out of: a reviewer reads a
+  report's statements together, and "which report said this" is the first
+  question asked of any of them. regroup needs the rows already ordered by the
+  grouping key, which _job_insights does.
+  {% endcomment %}
+  {% regroup insights by document as by_document %}
   <table class="wiz-files">
     <tbody>
-      {% for insight in insights %}
-        {% include "insights/_review_row.html" %}
+      {% for group in by_document %}
+        <tr><th colspan="3">
+          {% if group.grouper %}{{ group.grouper.file_name }}{% else %}Typed by hand — no source document{% endif %}
+        </th></tr>
+        {% for insight in group.list %}
+          {% include "insights/_review_row.html" %}
+        {% endfor %}
       {% empty %}
         <tr><td>Nothing was extracted from this batch. The log on
             <a href="{% url 'admin:insights_extractionjob_change' job.id %}">job {{ job.id }}</a>
@@ -2379,7 +2471,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
-from boundaries.models import AdminArea
+from boundaries.models import AdminArea, BoundarySource
 from insights.models import ExtractionJob, Insight
 from insights.verify import quote_sha1
 
@@ -2390,13 +2482,26 @@ class InlineEditTests(TestCase):
     def setUp(self):
         self.user = User.objects.create_superuser("reviewer", "r@example.org", "pw")
         self.client.force_login(self.user)
+        # AdminArea.source is a required FK and BoundarySource's only required
+        # field is its unique `path` - the same fixture shape test_places.py uses.
+        source = BoundarySource.objects.create(path="tests/wizard-fixture")
         self.country = AdminArea.objects.create(
-            kind=AdminArea.KIND_ADMIN, level=0, pcode="TD", iso3="TCD",
-            country_name="Chad", name="Chad")
+            source=source, kind=AdminArea.KIND_ADMIN, level=0, pcode="TD",
+            iso3="TCD", country_name="Chad", name="Chad")
         self.state = AdminArea.objects.create(
-            kind=AdminArea.KIND_ADMIN, level=1, pcode="TD01", iso3="TCD",
-            country_name="Chad", name="Ouaddai", parent_pcode="TD",
+            source=source, kind=AdminArea.KIND_ADMIN, level=1, pcode="TD01",
+            iso3="TCD", country_name="Chad", name="Ouaddai", parent_pcode="TD",
             center_lat=13.8, center_lon=20.8)
+        # The ADM3 the "untouched place" test sits on. It must EXIST: the form
+        # reconstructs an insight's original chain by walking parent_pcode up
+        # through this table, and a p-code with no row walks to nothing - which
+        # would make that test's "untouched" pick read as a change, re-derive
+        # the columns, and pass for entirely the wrong reason.
+        self.village = AdminArea.objects.create(
+            source=source, kind=AdminArea.KIND_ADMIN, level=3, pcode="TD0103",
+            iso3="TCD", country_name="Chad", name="Abeche Ville",
+            parent_pcode="TD01", center_lat=13.82, center_lon=20.83)
+        self.source = source
         self.job = ExtractionJob.objects.create(status="loaded")
         self.insight = Insight.objects.create(
             quote=QUOTE, quote_sha1=quote_sha1(QUOTE), voice_type="community",
@@ -2458,8 +2563,8 @@ class InlineEditTests(TestCase):
 
     def test_a_state_from_the_wrong_country_is_refused(self):
         other = AdminArea.objects.create(
-            kind=AdminArea.KIND_ADMIN, level=1, pcode="SD01", iso3="SDN",
-            country_name="Sudan", name="Kassala", parent_pcode="SD")
+            source=self.source, kind=AdminArea.KIND_ADMIN, level=1, pcode="SD01",
+            iso3="SDN", country_name="Sudan", name="Kassala", parent_pcode="SD")
         response = self.client.post(self.url(), self.post_data(state=other.pcode))
         self.insight.refresh_from_db()
         self.assertFalse(response.json()["saved"])
@@ -2471,7 +2576,7 @@ class InlineEditTests(TestCase):
         self.assertIn(QUOTE, body["row"])
 ```
 
-Check `boundaries/models.py` for `AdminArea`'s exact required fields before running — if `KIND_ADMIN` or a field name differs, match the fixtures already used in `insights/tests/test_places.py` rather than inventing them.
+This fixture is the one `insights/tests/test_places.py` already uses, verified against `boundaries/models.py`: `AdminArea.source` is a required FK, `BoundarySource.path` is its only required field, and `geom` is added by raw SQL in migration 0001 rather than being a model field — so an `AdminArea` created without geometry is valid.
 
 - [ ] **Step 2: Run them to verify they fail**
 
