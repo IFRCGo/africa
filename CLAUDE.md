@@ -11,13 +11,42 @@ Everything runs in Docker. There is no Django environment on the host:
 
 ## The two jobs an agent does here
 
-### 1. Pull external data through the MCP servers
+### 1. Pull external data
+
+**For a person, the route in is Admin → Model Context Protocol (MCP) → Data
+sources.** Each row carries its last pull and its newest data date, and every
+API-backed row has a **Pull now** button that fetches, saves the raw response
+under `data_pipeline/mcp_cache/`, and loads it. Rebuilding the dashboard
+afterwards is a **separate** button on that page, so the database and the map
+move only when you say so.
+
+From a terminal, the same thing, and this is what the button runs:
+
+    docker compose exec web python manage.py refresh_external <source> <dataset> --iso3 <ISO3>
+
+Those buttons call the upstream APIs **directly**, because the container cannot
+run the MCP servers: they are Node scripts on a host share that is not mounted
+into it. The payloads are identical — every MCP tool this project uses is a
+pass-through wrapper ending in `return response.data` — but the distinction
+matters the day a fetcher and its tool disagree. Fetchers live in
+`external_data/fetchers/`, mirroring `loaders/`; each records the tool it
+reproduces. `IPC_API_KEY` and `HDX_API_TOKEN` go in `.env` (the HDX one also
+covers the `unhcr` rows); FEWS NET needs no key. Design:
+`docs/superpowers/specs/2026-09-15-mcp-data-sources-admin-design.md`.
+
+**IPC pulls are filtered, and not only by what is held.** `known_ids` says what
+loaded; `skipped_ids` says what a person deliberately excluded, plus anything
+that came back empty. Without the second list a refresh re-pulls every
+exclusion — Chad's March 2024 displaced-population analysis among them — and
+retries the known-empty analyses forever.
 
 `.mcp.json` in this folder configures five humanitarian MCP servers — `hdx`,
 `fewsnet`, `ifrc-go`, `unhcr-refugees`, `ipc`. Claude Code reads it
 automatically; nothing else needs configuring.
 
-The rule is **fetch, save, then load** — never fetch straight into the database:
+**For an agent, and for the sources with no fetcher** (`excel`, `kobo`,
+`acaps`), the rule is unchanged — **fetch, save, then load**, never fetch
+straight into the database:
 
 1. Check what is already held: `manage.py external_status`.
 2. Call the MCP tool for what is missing or newer.
