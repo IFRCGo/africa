@@ -501,3 +501,60 @@ throughout and is not modified.
 - **A pull does not move the dashboard.** That is the design, and the rebuild button is the
   answer. Someone who pulls and does not rebuild has fresher data in the database than on the
   map, which is exactly the state the second button exists to let them choose.
+
+---
+
+# Addendum, 2026-09-15: what implementation changed
+
+Four things moved between this design and the code that implements it. They are
+recorded here rather than edited into the sections above, so the reasoning that
+produced each one stays legible.
+
+## A1. The rebuild needs a wrapper command, and the reason is the lock
+
+§5.3 says the rebuild button runs `run_pipeline --only s06,s07`. Implemented
+literally, it bricks the feature on first press: `run_pipeline` takes no `--job`
+and knows nothing about `PullJob`, so the job it was launched for stays `queued`
+forever - and `queued` is an ACTIVE status, so §9's rule then refuses **every**
+pull on **every** source until somebody edits the row in a shell.
+
+`mcp/management/commands/run_rebuild.py` is the missing piece: it owns the job,
+marks it running, calls the pipeline, and closes it succeeded or failed. The rule
+this enforces is worth stating on its own, because it is what §9 silently assumed:
+
+> **No path that has finished may leave a job in an active status.**
+
+`_launch` now keeps it too - if Popen itself raises, the job is failed rather than
+left holding the lock.
+
+## A2. §9's reset action was promised and had to be built
+
+The design describes it; the plan's self-review mistakenly counted it as covered
+by the lock task. `PullJobAdmin.reset_stuck_job` now does it, touching only active
+jobs - rewriting a succeeded job as failed would destroy the record of a pull that
+really happened.
+
+## A3. `assessment_type=BA` is part of what `admin2-overview` means
+
+§7.2 gave the IDP call as `admin_level=2` and nothing else. Every one of the 5,686
+rows already held is a **Baseline** assessment of the "Armed Clashes in Sudan
+(Overview)" operation; admin level alone also returns DTM's ETT and SA rounds,
+which count different things on different dates. Because the loader's key includes
+the date and the place, those rows would be **added** to the series rather than
+replace anything, and a refresh would quietly inflate the IDP figures the dashboard
+draws. The variant's name was already telling the truth; the call now matches it.
+
+## A4. The job log is a file, not a column
+
+§6 lists `log` as a text column. It is a file under `MCP_CACHE_DIR/mcp/job-N.log`
+with `log_path` on the row, following `insights/admin.py`: the job page can tail a
+log that is still being written, and a long IPC run does not become a very long
+database row. `message` still carries the one-line summary or error.
+
+## A5. One patchable door for HTTP
+
+Not a design change, but a trap worth recording. `refresh_external` reaches
+`http_get_json` through the module (`base.http_get_json`), never by importing the
+name. A direct `from ... import` binds a second reference that a test patch cannot
+reach - which had the suite quietly making live calls to fdw.fews.net while
+appearing to pass.
