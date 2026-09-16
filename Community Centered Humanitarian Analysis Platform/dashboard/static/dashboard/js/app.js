@@ -147,6 +147,14 @@ const state = {
   data: {},                // every file loaded from data/, keyed by name
   endDate: null,           // the most recent date we have data for
   current: START,          // the date the timeline is pointing at RIGHT NOW
+  /* THE WINDOW THE TIMELINE COVERS, set by the two date pickers in the
+     timebar. It bounds the slider itself, so dragging cannot leave it either,
+     and it is what play runs between. rangeEnd starts as null because
+     state.endDate is not known until the data has loaded; initTimeline() fills
+     both in. Invariant, kept in setRange(): START <= rangeStart <= rangeEnd
+     <= endDate. */
+  rangeStart: START,
+  rangeEnd: null,
   playing: false,          // is the play button running?
   activeTags: new Set(),   // ticked theme boxes, stored as "dimension|tag"
   /* THE COUNTRY FILTER. Empty means "no filter - show everything", which is
@@ -155,6 +163,7 @@ const state = {
      one place. */
   countries: new Set(),
   voiceSearch: "",         // text typed into the Community Insights search box
+  voiceTab: "community",   // which Community Insights tab is showing
   /* The three lines of the Movement trends graph, worked out once per FILTER
      change rather than per timeline move - see computeTrendSeries(). */
   trend: { series: [], vmax: 1 },
@@ -180,6 +189,9 @@ const $ = (s) => document.querySelector(s);   // shorthand for "find this elemen
 const fmtNum = (v) => v >= 1e6 ? (v / 1e6).toFixed(1) + "M" : v >= 1e3 ? Math.round(v / 1e3) + "K" : String(v);
 const fmtDate = (t) => new Date(t).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 const monthKey = (t) => new Date(t).toISOString().slice(0, 7);   // -> "2024-08"
+/* The format <input type="date"> reads and writes. UTC, like START and
+   monthKey, so a date put into a picker comes back out as the same day. */
+const ymd = (t) => new Date(t).toISOString().slice(0, 10);       // -> "2024-08-01"
 
 /* THE most-used function in this file.
 
@@ -559,6 +571,13 @@ async function loadData() {
   ]);
   state.data.admin0 = admin0; state.data.admin1 = admin1; state.data.aoi = aoi;
   state.data.hsps = hsps;
+  // Community insights are the one panel that reads the database live, so a
+  // statement published in Admin appears on the next refresh. Failure is not
+  // fatal: the panel falls back to the analyst snippets from tags.json.
+  state.data.insights = await fetch("api/insights/?limit=2000")
+    .then((r) => (r.ok ? r.json() : { results: [] }))
+    .then((body) => body.results)
+    .catch(() => []);
   // ipc_areas_fs.geojson (~2 MB) is lazy-loaded on first food-security toggle
   state.endDate = Date.parse(state.data.meta.date_max);
   // Work out which country every row belongs to, once, before anything draws.
@@ -913,6 +932,31 @@ function addLayers(m) {
     },
   });
 
+  /* Community-insight popups are registered FIRST, ahead of every other
+     popup() call in this function (Task 12 R4b): POPUP_SPECS order is
+     display order, and the community's own words should lead the combined
+     bubble, not trail behind an IPC phase or an IDP count. Registering here
+     does not require the insight-bubbles/insight-clusters LAYERS to exist
+     yet - popup() only records a layer id string, and sectionsAt() does not
+     look anything up until a user actually hovers, long after addLayers()
+     has finished. The layers themselves are added further down (search
+     "Quote bubbles"), deliberately LAST in the stack so they draw on top of
+     everything else this map shows (R1). */
+  popup(m, "insight-bubbles", (p) => {
+    const placed = p.matchMethod === "unmatched" ? "" :
+      `<div class="ip-place">Located to ${escapeHTML(p.place)}${
+        p.matchMethod === "name" ? " (named area, label position)" : " (p-code)"}</div>`;
+    return `<div class="insight-popup">
+        <div class="ip-voice">${p.voice === "community" ? "Community" : "Analyst"}</div>
+        <blockquote>${escapeHTML(p.quote)}</blockquote>
+        ${placed}
+        <div class="ip-meta">${escapeHTML(p.date)}${p.source ? ` · ${escapeHTML(p.source)}` : ""}</div>
+      </div>`;
+  }, "Community insight");
+  popup(m, "insight-clusters", (p) =>
+    `<div class="insight-popup">${p.point_count} community statement${
+      p.point_count === 1 ? "" : "s"} here — zoom in to read them</div>`, "Community insights");
+
   // Events and corridors read on hover like every other layer.
   popup(m, "event-dots", (p) =>
     `<b style="color:${COLOR_EVENT}">${fmtDate(Date.parse(p.date))}</b><br><b>${p.title}</b><br>${p.description || ""}`, "Key event");
@@ -998,6 +1042,62 @@ function addLayers(m) {
       "text-offset": [0, 1.1], "text-anchor": "top", "text-optional": true,
     },
     paint: { "text-color": COLOR_INK, "text-halo-color": WHITE, "text-halo-width": 1.6 },
+  });
+
+  /* ---- Quote bubbles: community and analyst statements, placed ----------
+     Added LAST in this function's layer list, deliberately: it must draw on
+     TOP of every choropleth and every other point layer on this map (Task 12
+     R1). Its popups are registered near the TOP of addLayers() instead - see
+     the comment there for why the two are split.
+
+     Seeded with empty(), like every other layer here; renderInsightBubbles()
+     fills it. Deliberately NOT sized by anything (R7): a single statement is
+     not a quantity, and scaling it would imply one. */
+  m.addSource("insight-bubbles", {
+    type: "geojson",
+    data: empty(),
+    cluster: true,
+    clusterRadius: 28,
+  });
+  m.addLayer({
+    id: "insight-bubbles", type: "circle", source: "insight-bubbles",
+    filter: ["!", ["has", "point_count"]],
+    paint: {
+      "circle-radius": 6,
+      "circle-color": ["get", "colour"],
+      "circle-stroke-width": 1.5,
+      "circle-stroke-color": "#fff",
+      "circle-opacity": 0.9,
+    },
+  });
+  m.addLayer({
+    id: "insight-clusters", type: "circle", source: "insight-bubbles",
+    filter: ["has", "point_count"],
+    paint: {
+      "circle-radius": 12,
+      "circle-color": "#555",
+      "circle-stroke-width": 1.5,
+      "circle-stroke-color": "#fff",
+      "circle-opacity": 0.85,
+    },
+  });
+  m.addLayer({
+    id: "insight-cluster-count", type: "symbol", source: "insight-bubbles",
+    filter: ["has", "point_count"],
+    layout: { "text-field": ["get", "point_count_abbreviated"], "text-size": 11 },
+    paint: { "text-color": "#fff" },
+  });
+  /* The map-to-panel link. This ONLY toggles the matching card's highlight -
+     it is a side effect, not a popup, so it coexists with bindPopups()'s
+     click-to-pin handler on the same click (Task 12 R5). Registered once per
+     map because addLayers() runs once per map. If the card is not currently
+     rendered in the panel (wrong tab, filtered out, off the visible page),
+     the click simply highlights nothing - it does not switch tabs or search
+     to go find it. */
+  m.on("click", "insight-bubbles", (e) => {
+    const id = String(e.features[0].properties.id);
+    for (const node of document.querySelectorAll("#voices .voice"))
+      node.classList.toggle("is-selected", node.dataset.id === id);
   });
 
   popup(m, "idp-circles", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.state})</span><br>
@@ -1687,61 +1787,195 @@ function renderInsights() {
 const monthLabel = (mk) =>
   new Date(mk + "-01").toLocaleDateString("en-GB", { month: "long", year: "numeric" });
 
-/* Every quote in the whole archive, as flat rows, honouring the country
-   filter. Built on demand by the search below rather than kept around,
-   because it is only needed while someone is typing. */
+/* Whether one published insight belongs under the current country and theme
+   filters - country through countryOn(), the one function every filter test
+   in this file goes through.
+
+   THEME IS DELIBERATELY NOT activeTagsIn(). activeTagsIn()'s own docstring
+   says its null-means-unrestricted rule exists so "choosing two hazards
+   [can] narrow the hazard reporting without silently emptying Needs" - which
+   is right for a PER-DIMENSION display like Top hazards, Trends or the theme
+   panel, each of which only ever shows one dimension at a time and so has no
+   other dimension to accidentally empty.
+
+   An insight is not per-dimension: it is ONE statement that can carry
+   several codings across several dimensions at once. Applying activeTagsIn()
+   here made ticking a hazard hide almost nothing, because nearly every real
+   statement also carries a needs coding, and a needs coding always passed
+   through the untouched Needs dimension's "unrestricted" null. That is the
+   opposite of what ticking flooding is for: "only flood-tagged insights
+   remain." So with anything ticked at all, an insight now needs ONE of its
+   OWN codings to be one of the ticked "dimension|tag" pairs - not merely a
+   coding in some other dimension nobody touched.
+
+   With NOTHING ticked in any dimension, every insight passes (state.activeTags
+   is empty), matching activeTagsIn()'s "no filter" case. A row with no
+   codings at all can only pass that way - it has no tag of its own a ticked
+   box could ever match.
+
+   Do not "fix" this by switching to activeTagsIn(): that would re-break the
+   bug this predicate exists to avoid. See allVoices()'s and
+   renderInsightBubbles()'s comments for why this stays one function.
+
+   THIS FUNCTION IS THE SHARED DEFINITION. Task 12 draws these same insights
+   as map bubbles and must call this exact predicate rather than reimplement
+   it, or the panel and the map would filter differently and drift apart -
+   the same rule the comment on monthTagTotals states for the analyst
+   snippets. Deliberately independent of tags.json and of the current month:
+   a statement's country and theme do not change with the date, and Task 12
+   calls this once per slider tick. */
+function insightPasses(row) {
+  if (!countryOn(ISO3_TO_COUNTRY[row.iso3])) return false;
+  if (!state.activeTags.size) return true;
+  return (row.codings || []).some((c) => state.activeTags.has(`${c.dimension}|${c.tag}`));
+}
+
+/* Every quote the panel can show, from both sources, in one shape.
+
+   Two sources, deliberately not merged into one table upstream:
+     - tags.json snippets: regex matches on analyst prose, rebuilt by s03_parse
+       on every pipeline run. These are secondary_analysis by definition. One
+       row per dimension/tag/month, as before - that granularity is right for
+       a mention count.
+     - /api/insights/: statements a person reviewed and published. ONE row per
+       INSIGHT, not one per coding: a statement coded hazard/flooding AND
+       need/water_wash is still one thing someone said, and showing it as
+       four repeated cards because it touches four themes would be wrong -
+       the statement is what was read and verified, not the coding.
+
+   Both filters are applied HERE, as the comment on monthTagTotals requires, so
+   the panel and the map cannot drift apart. The insights half of that rule is
+   insightPasses() above, kept as its own function for exactly that reason. */
 function allVoices() {
   const rows = [];
+
+  // Analyst voice: the regex snippets, exactly as before.
   for (const [dim, tags] of Object.entries(state.data.tags)) {
     if (!DIM_META[dim]) continue;
     const only = activeTagsIn(dim);
     for (const [tag, tagData] of Object.entries(tags)) {
       if (only && !only.has(tag)) continue;
       for (const mk of Object.keys(tagData.snippets)) {
-        // Under a filter, keep a quote only where its tag was actually
-        // reported in one of the selected countries that month.
         if (filtered() && !tagCount(tagData, mk)) continue;
         const text = snippetFor(tagData, mk);
-        if (text) rows.push({ dim, tag, mk, text });
+        if (text) rows.push({ dim, tag, mk, text, full: text, voice: "secondary_analysis" });
       }
     }
   }
+
+  // Published insights, community and analyst alike - one row per statement,
+  // carrying every coding it has so renderVoices() can draw a chip for each.
+  for (const row of state.data.insights || []) {
+    if (!insightPasses(row)) continue;
+    const codings = row.codings || [];
+    // dim/tag stand in for the old single chip wherever code still expects
+    // one (the border colour, an unfiltered search match): the first coding
+    // whose "dimension|tag" key is actually ticked - matching the theme
+    // test insightPasses() now uses to let this row through at all - or,
+    // when nothing is ticked (or none of the row's own codings are the
+    // reason it passed), simply the first coding it carries. Picking a
+    // coding that ISN'T one of the ticked keys would show a border colour
+    // for a theme the row does not actually match.
+    const primary = codings.find((c) => state.activeTags.has(`${c.dimension}|${c.tag}`)) || codings[0];
+    const dim = primary && DIM_META[primary.dimension] ? primary.dimension : "need";
+    const tag = (primary && primary.tag) || "other";
+    rows.push({
+      dim, tag, mk: (row.date || "").slice(0, 7),
+      text: row.quote, full: row.quote, translated: row.quote_translated,
+      voice: row.voice_type, place: row.place_name, date: row.date,
+      source: row.source_document, matchMethod: row.match_method,
+      lat: row.lat, lon: row.lon, id: row.id, codings,
+    });
+  }
+
   return rows.sort((a, b) => (a.mk < b.mk ? 1 : a.mk > b.mk ? -1 : 0));
 }
 
-/* Verbatim sentences from the reports - the human voice behind the numbers.
+/* Whether a voice_type belongs on the currently active Community Insights
+   tab. Pulled out on its own (Task 12 R3a) so voicesForTab() (the panel) and
+   renderInsightBubbles() (the map) apply exactly one rule between them - two
+   copies of "community tab means voice === community" would be free to drift
+   the moment either one changed. */
+function voiceOnTab(voice) {
+  if (state.voiceTab === "community") return voice === "community";
+  if (state.voiceTab === "analyst") return voice === "secondary_analysis";
+  return true;
+}
 
-   With the search box empty this shows up to three quotes for the month the
-   timeline is on, one per dimension, as it always has. Type anything and it
-   searches the WHOLE archive instead: any single month holds only a handful
-   of quotes, so a search confined to one month would almost always come back
-   empty. Each result is labelled with its month and clicking it moves the
-   timeline there. */
+/* The rows the active tab shows. Search is scoped to this, which is the point
+   of the tabs: with Community selected, a search never returns analyst prose. */
+function voicesForTab() {
+  return allVoices().filter((v) => voiceOnTab(v.voice));
+}
+
+/* One badge per coding, in that dimension's colour - a community/API row can
+   carry several themes and must show all of them, not just the "primary"
+   one used for the card's own border colour. Analyst snippet cards never
+   call this: they still carry exactly one dim/tag and print it inline,
+   unchanged from before this task. */
+function codingChips(codings) {
+  if (!codings.length) return '<span class="v-chip v-chip-uncoded">Uncoded</span>';
+  return codings.map((c) => {
+    const meta = DIM_META[c.dimension];
+    return `<span class="v-chip" style="border-color:${meta ? meta.color : "var(--border)"}">${
+      escapeHTML(meta ? meta.label : (c.dimension || "Uncoded"))} · ${escapeHTML((c.tag || "").replace(/_/g, " "))}</span>`;
+  }).join("");
+}
+
+/* Verbatim statements and sentences - the human voice behind the numbers.
+
+   With the search box empty this shows quotes for the month the timeline is
+   on, scoped to whichever tab is active: up to one per dimension on Analyst
+   (as it always showed), up to twelve on Community/Both, since community
+   statements are scarce enough that showing all of them for the month is
+   more useful than picking one. Type anything and it searches every quote
+   IN THE ACTIVE TAB across the whole archive instead: any single month holds
+   only a handful, so a search confined to one month would almost always come
+   back empty - and confined to the tab, so Community search never surfaces
+   analyst prose. Each result is labelled with its month and clicking it
+   moves the timeline there. */
 function renderVoices() {
-  const el = $("#voices");
-  const q = state.voiceSearch.trim().toLowerCase();
-  let picks, searching = q.length > 0;
+  const el = $("#voices"), q = state.voiceSearch.trim().toLowerCase();
+  const searching = q.length > 0;
+  const pool = voicesForTab();
+  let picks;
 
   if (searching) {
-    picks = allVoices().filter((v) =>
-      v.text.toLowerCase().includes(q) ||
-      v.tag.replace(/_/g, " ").toLowerCase().includes(q) ||
-      DIM_META[v.dim].label.toLowerCase().includes(q)).slice(0, 40);
+    // An insight row carries several codings now, not one - match the
+    // search text against ANY of them, not just the "primary" dim/tag used
+    // for the border colour. Analyst rows have no .codings array and fall
+    // through to the single dim/tag they have always carried.
+    picks = pool.filter((v) =>
+      v.full.toLowerCase().includes(q) ||
+      (v.translated || "").toLowerCase().includes(q) ||
+      (v.place || "").toLowerCase().includes(q) ||
+      (Array.isArray(v.codings)
+        ? v.codings.some((c) =>
+            (c.tag || "").replace(/_/g, " ").toLowerCase().includes(q) ||
+            (DIM_META[c.dimension] ? DIM_META[c.dimension].label : "").toLowerCase().includes(q))
+        : v.tag.replace(/_/g, " ").toLowerCase().includes(q) ||
+          DIM_META[v.dim].label.toLowerCase().includes(q))).slice(0, 40);
   } else {
     const mk = monthKey(state.current);
-    picks = [];
-    for (const dim of Object.keys(DIM_META)) {
-      for (const [tag, n, snippet] of monthTagTotals(dim, mk)) {
-        if (snippet) { picks.push({ dim, tag, mk, text: snippet }); break; }
-      }
-      if (picks.length >= 3) break;
+    const month = pool.filter((v) => v.mk === mk);
+    if (state.voiceTab === "analyst") {
+      // Keep the old one-per-dimension behaviour: analyst snippets are
+      // plentiful, so taking the first three ROWS (not dimensions) would
+      // show three tags of the same dimension instead of a spread.
+      const seenDims = new Set();
+      picks = month.filter((v) => !seenDims.has(v.dim) && seenDims.add(v.dim)).slice(0, 3);
+    } else {
+      // Community voice is scarce, so show all of it for the month.
+      picks = month.slice(0, 12);
     }
   }
 
   if (!picks.length) {
     el.innerHTML = `<div class="voices-empty">${searching
-      ? `No quote matches “${escapeHTML(state.voiceSearch)}”${filtered() ? " in the selected countries" : ""}.`
-      : "No narrative reporting captured for this month."}</div>`;
+      ? `No quote matches “${escapeHTML(state.voiceSearch)}” in this tab.`
+      : state.voiceTab === "community"
+        ? "No community statement recorded for this month."
+        : "No narrative reporting captured for this month."}</div>`;
     $("#voice-count").textContent = "";
     return;
   }
@@ -1749,13 +1983,26 @@ function renderVoices() {
   $("#voice-count").textContent = searching
     ? `${picks.length}${picks.length === 40 ? "+" : ""} across all months` : "";
 
-  el.innerHTML = picks.map((p, i) => `<div class="voice${searching ? " voice-hit" : ""}"
-      style="border-color:${DIM_META[p.dim].color}" data-month="${p.mk}" data-i="${i}">
-      “…${searching ? highlight(p.text, q) : escapeHTML(p.text)}…”
-      <div class="v-meta">${DIM_META[p.dim].label} · ${escapeHTML(p.tag.replace(/_/g, " "))} · ${monthLabel(p.mk)}</div>
-    </div>`).join("");
+  const unmapped = picks.filter((v) => v.voice === "community" && v.lat == null).length;
 
-  // Clicking a search result takes the whole dashboard to that month.
+  el.innerHTML = picks.map((p, i) => `<div class="voice${
+      p.voice === "community" ? " is-community" : ""}${searching ? " voice-hit" : ""}"
+      style="border-color:${DIM_META[p.dim].color}"
+      data-month="${p.mk}" data-i="${i}" data-id="${p.id || ""}">
+      <div class="v-full">${searching ? highlight(p.full, q) : escapeHTML(p.full)}</div>
+      ${p.translated ? `<div class="v-translated">${escapeHTML(p.translated)}</div>` : ""}
+      <div class="v-meta">
+        <span class="v-voice">${p.voice === "community" ? "Community" : "Analyst"}</span>
+        ${Array.isArray(p.codings)
+          ? codingChips(p.codings)
+          : ` · ${DIM_META[p.dim].label} · ${escapeHTML(p.tag.replace(/_/g, " "))}`}
+        ${p.place ? ` · ${escapeHTML(p.place)}` : ""} · ${monthLabel(p.mk)}
+        ${p.source ? ` · ${escapeHTML(p.source)}` : ""}
+      </div>
+    </div>`).join("") + (unmapped
+      ? `<div class="voices-unmapped">${unmapped} of these could not be placed on the map.</div>`
+      : "");
+
   if (searching)
     for (const node of el.querySelectorAll(".voice-hit"))
       node.addEventListener("click", () => goToMonth(node.dataset.month));
@@ -1788,7 +2035,11 @@ function highlight(text, q) {
    not on a day boundary would set a slider position that rounds back to a
    different date - and the next drag would jump. */
 function setCurrentDate(t) {
-  const days = Math.round((clamp(t, START, state.endDate) - START) / DAY);
+  /* Clamped to the picked window, not to the whole war. That is what makes
+     every other way of moving the timeline - a month link, a click on the
+     trends graph, which still spans everything - respect the filter without
+     each of them having to know about it. */
+  const days = Math.round((clamp(t, rangeLo(), rangeHi()) - START) / DAY);
   state.current = START + days * DAY;
   $("#time-slider").value = days;
   renderAll();
@@ -1796,9 +2047,24 @@ function setCurrentDate(t) {
 
 function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
 
-/* Move the timeline to the first day of a month and redraw everything. */
+/* Move the timeline to the first day of a month and redraw everything.
+
+   mk can be empty or unparseable: /api/insights/ deliberately emits
+   date: null for an undated row (views.py's own choice), and allVoices()
+   turns that into mk = "". Date.parse("-01") is NaN, and NaN unguarded would
+   flow straight into setCurrentDate() -> state.current, then into the next
+   renderAll() -> monthKey(NaN) -> new Date(NaN).toISOString(), which THROWS.
+   That one click would take down every panel on the page, not just this one -
+   so an unparseable month key is a no-op here, before setCurrentDate ever
+   sees it. The row itself still renders and stays visible in search results;
+   it just is not navigable. This is the only place a month key turns into a
+   timestamp, so guarding here covers every caller: the search-result click
+   above, and any future month link - including Task 12's map bubbles, which
+   read the same allVoices() rows and so can carry the same null date. */
 function goToMonth(mk) {
-  setCurrentDate(Date.parse(mk + "-01"));
+  const t = Date.parse(mk + "-01");
+  if (Number.isNaN(t)) return;
+  setCurrentDate(t);
 }
 
 /* A small bar chart of the six most-mentioned hazards this month. */
@@ -2183,6 +2449,58 @@ function renderSeasonal() {
   el.innerHTML = html;
 }
 
+/* Bubbles for every published insight that passes the shared filters.
+
+   Deliberately does NOT call allVoices() or voicesForTab() (Task 12 R3):
+   those walk the ~2.4 MB tags.json archive to build the analyst-snippet rows
+   too, and this runs inside drawMapLayers() - once per slider tick, and twice
+   per tick in split view. Iterating state.data.insights directly keeps this
+   O(published insights), which stays small.
+
+   A row passes when insightPasses() says its country and theme are in scope
+   (the same predicate the panel uses - see its comment for why that matters),
+   voiceOnTab() says the active tab wants its voice, and it has a resolved
+   point: camps, settlements and neighbourhoods are not in the boundary
+   library and never will be, so an unplaced statement is simply absent
+   rather than guessed at. One feature per insight id, never per coding - a
+   statement coded twice is still one thing someone said. */
+function renderInsightBubbles() {
+  const seen = new Set();
+  const feats = [];
+  for (const row of state.data.insights || []) {
+    if (row.id == null || row.lat == null || row.lon == null) continue;
+    if (seen.has(row.id)) continue;
+    seen.add(row.id);
+    if (!insightPasses(row)) continue;
+    if (!voiceOnTab(row.voice_type)) continue;
+    const codings = row.codings || [];
+    // Colour by the SAME rule allVoices() uses for the card's border: the
+    // coding that is actually ticked, else the first one with a dimension we
+    // can colour. Without the first clause a statement coded [hazard, need]
+    // would draw a red bubble while its own panel card drew a blue border,
+    // for the same tick - the panel and the map disagreeing about what a
+    // statement is "about" is exactly the drift insightPasses() exists to
+    // prevent, and colour is the most visible place for it to show.
+    const first = codings.find((c) => DIM_META[c.dimension] && state.activeTags.has(`${c.dimension}|${c.tag}`))
+      || codings.find((c) => DIM_META[c.dimension]);
+    feats.push({
+      type: "Feature",
+      geometry: { type: "Point", coordinates: [row.lon, row.lat] },
+      properties: {
+        id: row.id,
+        colour: first ? DIM_META[first.dimension].color : COLOR_MUTED,
+        quote: row.quote,
+        place: row.place_name || "",
+        date: row.date || "",
+        source: row.source_document || "",
+        matchMethod: row.match_method || "unmatched",
+        voice: row.voice_type,
+      },
+    });
+  }
+  setSource("insight-bubbles", { type: "FeatureCollection", features: feats });
+}
+
 /* Every layer of ONE map, for whatever scope is currently in force. */
 function drawMapLayers() {
   renderFoodsec();
@@ -2194,6 +2512,7 @@ function drawMapLayers() {
   renderRefugees();
   renderEvents();
   renderThemes();
+  renderInsightBubbles();
   /* The Areas of Operation used to be drawn only when their checkbox moved,
      because they do not change with the date. They do change with the country
      filter and with the split, so they are redrawn with everything else. */
@@ -2525,35 +2844,130 @@ function renderTrendLegend() {
 
 /* ========================= 6. TIMELINE ================================= */
 
-/* Wire up the slider and the play button. The slider value is a number of days
-   since 15 April 2023, which we turn back into a date. Play simply advances
-   that number by 4 days every 120 milliseconds. */
+/* The two ends of the picked window, as dates and as the slider's own unit -
+   whole days since 15 April 2023. Read through these rather than captured in a
+   variable anywhere, because the window moves while the page is open: a play
+   loop or a slider bound that remembered its limit from boot would keep
+   running past a window narrowed afterwards.
+
+   rangeEnd is null until initTimeline() has run, and state.endDate is itself
+   null until the data has loaded, so both fall back to what is known. */
+const rangeLo = () => state.rangeStart;
+const rangeHi = () => state.rangeEnd || state.endDate || START;
+const dayNo = (t) => Math.round((t - START) / DAY);
+
+/* Move either end of the window, keeping end >= start.
+
+   The rule the pickers need is not "reject an end before the start" - that
+   leaves the person looking at a control that ignored them - but "the other
+   end gives way". Drag the start past the end and the end comes with it, and
+   the other way round, so the window is never inside out and never empty.
+   Everything else here follows from that: clamp into the dates we hold, push
+   the pair back into the inputs and their min/max, rebuild the ticks, and
+   re-clamp the current date, which may now be outside the window.
+
+   keep names the end that was just edited, and so the one that must be
+   honoured when the two cross; the other is the one that gives way. Without
+   it the edited end is the one that moves, which looks like the picker
+   ignoring what was typed into it.
+
+   render: false is for the one call made during boot, where the page has not
+   been drawn even once yet and boot() ends with its own renderAll(). */
+function setRange(startT, endT, { render = true, keep = "start" } = {}) {
+  let lo = clamp(startT, START, state.endDate);
+  let hi = clamp(endT, START, state.endDate);
+  if (hi < lo) { if (keep === "end") lo = hi; else hi = lo; }
+  state.rangeStart = START + dayNo(lo) * DAY;
+  state.rangeEnd = START + dayNo(hi) * DAY;
+
+  const s = $("#range-start"), e = $("#range-end");
+  s.value = ymd(state.rangeStart);
+  e.value = ymd(state.rangeEnd);
+  /* min/max only grey out days in the picker's own popup - a typed date walks
+     straight past them - so they are a courtesy on top of the clamping above,
+     never the thing enforcing the constraint. */
+  s.min = ymd(START);        s.max = ymd(state.rangeEnd);
+  e.min = ymd(state.rangeStart); e.max = ymd(state.endDate);
+
+  const slider = $("#time-slider");
+  slider.min = dayNo(state.rangeStart);
+  slider.max = dayNo(state.rangeEnd);
+
+  drawSliderTicks();
+  if (render) setCurrentDate(state.current);   // clamps into the window, redraws
+  else state.current = clamp(state.current, rangeLo(), rangeHi());
+}
+
+/* The labels under the slider. Years once the window is long enough to hold
+   one, the two end dates when it is not, because two year labels pinned to the
+   ends of a short window read as a scale a year wide and labelled wrongly.
+
+   The test is the window's LENGTH, not how many year boundaries it crosses:
+   November to February is three months that happen to straddle New Year, and
+   counting boundaries would label it "2024" ... "2025" - the very thing this
+   is avoiding. */
+function drawSliderTicks() {
+  const ticks = $("#slider-ticks");
+  ticks.innerHTML = "";
+  const y0 = new Date(rangeLo()).getUTCFullYear();
+  const y1 = new Date(rangeHi()).getUTCFullYear();
+  const labels = rangeHi() - rangeLo() >= 365 * DAY
+    ? Array.from({ length: y1 - y0 + 1 }, (_, i) => String(y0 + i))
+    : [fmtDate(rangeLo()), fmtDate(rangeHi())];
+  for (const text of labels) {
+    const span = document.createElement("span");
+    span.textContent = text;
+    ticks.appendChild(span);
+  }
+}
+
+/* Read one picker. Returns null for a cleared or unparseable box, which the
+   caller turns back into the boundary it started from: Date.parse("") is NaN,
+   and NaN reaching setCurrentDate() would flow into monthKey() -> new
+   Date(NaN).toISOString(), which throws and takes every panel down with it. */
+function pickedDate(input) {
+  const t = Date.parse(input.value);
+  return Number.isNaN(t) ? null : t;
+}
+
+/* Wire up the slider, the date pickers and the play button. The slider value is
+   a number of days since 15 April 2023, which we turn back into a date. Play
+   simply advances that number by 4 days every 120 milliseconds, between the
+   ends of the picked window. */
 function initTimeline() {
   const slider = $("#time-slider");
-  const days = Math.round((state.endDate - START) / DAY);
-  slider.max = days;
   slider.addEventListener("input", () => {
     setCurrentDate(START + Number(slider.value) * DAY);
   });
 
-  // year ticks
-  const ticks = $("#slider-ticks");
-  const y0 = 2023, y1 = new Date(state.endDate).getFullYear();
-  for (let y = y0; y <= y1; y++) {
-    const span = document.createElement("span");
-    span.textContent = y;
-    ticks.appendChild(span);
-  }
+  // The window opens on everything we hold, which is how the page behaved
+  // before there was a window at all.
+  const s = $("#range-start"), e = $("#range-end");
+  setRange(START, state.endDate, { render: false });
+
+  /* Changing either end is a move of the timeline by hand, so it stops the
+     story first - the same rule the trends graph follows. */
+  s.addEventListener("change", () => {
+    stopPlaying();
+    setRange(pickedDate(s) ?? START, state.rangeEnd);
+  });
+  e.addEventListener("change", () => {
+    stopPlaying();
+    setRange(state.rangeStart, pickedDate(e) ?? state.endDate, { keep: "end" });
+  });
 
   const play = $("#play-btn");
   play.addEventListener("click", () => {
     if (state.playing) { stopPlaying(); return; }
     state.playing = true;
     play.textContent = "❚❚";
-    if (Number(slider.value) >= days) slider.value = 0;
+    // Play again from the end of the window and it starts at the beginning of
+    // the window, not at the beginning of the war.
+    if (Number(slider.value) >= dayNo(rangeHi())) slider.value = dayNo(rangeLo());
     playTimer = setInterval(() => {
+      const hi = dayNo(rangeHi());
       const v = Number(slider.value) + 4;
-      if (v >= days) { slider.value = days; stopPlaying(); }
+      if (v >= hi) { slider.value = hi; stopPlaying(); }
       else slider.value = v;
       setCurrentDate(START + Number(slider.value) * DAY);
     }, 120);
@@ -2814,6 +3228,17 @@ function initVoiceSearch() {
   input.addEventListener("keydown", (e) => {
     if (e.key === "Escape") { input.value = ""; state.voiceSearch = ""; renderVoices(); }
   });
+  for (const tab of document.querySelectorAll(".voice-tab"))
+    tab.addEventListener("click", () => {
+      state.voiceTab = tab.dataset.tab;
+      for (const other of document.querySelectorAll(".voice-tab"))
+        other.classList.toggle("is-active", other === tab);
+      renderVoices();
+      // renderMapLayers(), not renderInsightBubbles() directly: outside
+      // withPane() a direct call would write the UNSCOPED set to every map
+      // and break split-view scoping until the next slider tick (Task 12 R6).
+      renderMapLayers();
+    });
 }
 
 /* ------------------------------------------------------- map fit and split */

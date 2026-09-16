@@ -13,4 +13,18 @@ credentials
 
 # Django
 Community Centered Humanitarian Analysis Platform/staticfiles/
+# Documents uploaded through Admin. /app is bind-mounted to this folder, so
+# without this every uploaded PDF lands in the working tree waiting to be
+# committed by accident.
+Community Centered Humanitarian Analysis Platform/media/
 Community_Centered_Humanitarian_Analysis_Documentation.docx
+
+# Subagent-driven-development scratch: ledgers, briefs, review packages.
+# Recreated per plan run; the git history is the real record.
+.superpowers/
+
+# A filled-in .env under another name. `vvv` is the staging copy you rename to
+# .env once the passwords and API keys are pasted in - it holds real secrets
+# from that moment on, so it is ignored exactly as .env is.
+vv
+vvv

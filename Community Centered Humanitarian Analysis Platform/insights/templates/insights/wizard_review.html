@@ -1,0 +1,47 @@
+{% extends "insights/wizard_base.html" %}
+{% load static %}
+{% block wizard_body %}
+<h2>{{ job.label|default:job }}</h2>
+<p>{{ insights|length }} statement(s) from {{ job.documents_total }} document(s).
+   Read them, correct anything the model got wrong, then publish the ones that
+   should reach the dashboard. Nothing publishes itself.</p>
+
+<form id="wiz-decide" method="post"
+      action="{% url 'admin:insights_wizard_decide' job.id %}">{% csrf_token %}
+</form>
+
+<div id="wiz-review"
+     data-edit-url="{% url 'admin:insights_wizard_edit' 0 %}">
+  {% comment %}
+  Grouped by the document each statement came out of: a reviewer reads a
+  report's statements together, and "which report said this" is the first
+  question asked of any of them. regroup needs the rows already ordered by the
+  grouping key, which _job_insights does.
+  {% endcomment %}
+  {% regroup insights by document as by_document %}
+  <table class="wiz-files">
+    <tbody>
+      {% for group in by_document %}
+        <tr><th colspan="3">
+          {% if group.grouper %}{{ group.grouper.file_name }}{% else %}Typed by hand — no source document{% endif %}
+        </th></tr>
+        {% for insight in group.list %}
+          {% include "insights/_review_row.html" %}
+        {% endfor %}
+      {% empty %}
+        <tr><td>Nothing was extracted from this batch. The log on
+            <a href="{% url 'admin:insights_extractionjob_change' job.id %}">job {{ job.id }}</a>
+            says why.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% if insights %}
+<p>
+  <button type="submit" form="wiz-decide" name="decision" value="publish" class="default">Publish selected</button>
+  <button type="submit" form="wiz-decide" name="decision" value="reject">Reject selected</button>
+</p>
+{% endif %}
+<script src="{% static 'insights/wizard_review.js' %}" defer></script>
+{% endblock %}

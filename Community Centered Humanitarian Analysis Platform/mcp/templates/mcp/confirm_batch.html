@@ -1,0 +1,27 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+  <h1>{{ heading }}</h1>
+  {% if rows %}
+    <p>
+      {{ rows|length }} source{{ rows|length|pluralize }} will be pulled
+      <strong>one at a time</strong>, in this order. Each fetches from its API,
+      saves the raw response under <code>mcp_cache/</code>, and loads it into the
+      database. The dashboard is not rebuilt — that is a separate button.
+    </p>
+    <ol>
+      {% for row in rows %}
+        <li>{{ row.source }} / {{ row.dataset }} — {{ row.iso3|default:"global" }}
+          {% if row.high_water_date %}<span style="color:#666">(holds data to {{ row.high_water_date }})</span>{% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" class="default">Pull them</button>
+      <a href="{% url 'admin:mcp_datasource_changelist' %}" class="button cancel-link">Cancel</a>
+    </form>
+  {% else %}
+    <p>Nothing to pull: everything with an API was already pulled today.</p>
+    <p><a href="{% url 'admin:mcp_datasource_changelist' %}">Back to data sources</a></p>
+  {% endif %}
+{% endblock %}

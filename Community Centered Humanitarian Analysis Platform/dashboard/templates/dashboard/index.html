@@ -196,16 +196,22 @@
       <h2>Trends</h2>
       <div id="insight-list"></div>
     </section>
-    <!-- Community Insights. With the search box empty this shows the quotes
-         for the month the timeline is on; type in it and app.js searches every
-         quote in the archive instead, because any one month holds only a
-         handful. Clicking a result moves the timeline to that month. -->
+    <!-- Community Insights: three tabs (Community / Analyst / Both) over one
+         list. With the search box empty this shows the quotes for the month
+         the timeline is on, scoped to the active tab; type in it and app.js
+         searches every quote IN THAT TAB across the archive instead, because
+         any one month holds only a handful. Clicking a result moves the
+         timeline to that month. -->
     <section class="panel" id="voices-panel">
       <h2>Community Insights <span id="voice-count" class="panel-count"></span></h2>
-      <div class="panel-search">
-        <input type="search" id="voice-search" placeholder="Search all community quotes…"
-               aria-label="Search community insights">
+      <div class="voice-tabs" role="tablist">
+        <button class="voice-tab is-active" data-tab="community" role="tab">Community</button>
+        <button class="voice-tab" data-tab="analyst" role="tab">Analyst</button>
+        <button class="voice-tab" data-tab="both" role="tab">Both</button>
       </div>
+      <label class="sr-only" for="voice-search">Search community quotes</label>
+      <input type="search" id="voice-search" placeholder="Search the selected tab…"
+             autocomplete="off">
       <div id="voices"></div>
     </section>
     <section class="panel" id="triggers-panel">
@@ -231,15 +237,25 @@
 
 <!-- ===================== THE TIMELINE ================================= -->
 <!-- Dragging the slider is the main way to use this dashboard: it sets the
-     date, and everything above redraws for that date. Nothing else lives here:
+     date, and everything above redraws for that date. Either side of it sits
+     the pair of date pickers that says how much of the war the slider spans;
      the trend chart that used to be drawn behind the slider is now the
      Movement trends panel in the right sidebar. -->
 <footer id="timebar">
   <button id="play-btn" title="Play / pause the story">▶</button>
+  <!-- The window of time the timeline covers. Narrowing it narrows the slider
+       itself, not only the play loop: dragging cannot leave the window either.
+       app.js keeps end >= start by pushing whichever picker was not touched. -->
+  <label class="range-field" for="range-start">From
+    <input type="date" id="range-start" title="First date the timeline covers">
+  </label>
   <div id="slider-wrap">
     <input type="range" id="time-slider" min="0" max="100" value="0" step="1">
     <div id="slider-ticks"></div>
   </div>
+  <label class="range-field" for="range-end">To
+    <input type="date" id="range-end" title="Last date the timeline covers">
+  </label>
   <div id="current-date">15 Apr 2023</div>
 </footer>
 

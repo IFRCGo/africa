@@ -72,6 +72,14 @@ services:
   # ------------------------------------------------------------------ Django
   web:
     build: "./Community Centered Humanitarian Analysis Platform"
+    # tini becomes PID 1 inside this container instead of gunicorn. Without it,
+    # a detached child launched by the "Run extraction now" Admin action
+    # (insights/admin.py, start_new_session=True) that outlives its worker
+    # reparents straight to gunicorn's own Arbiter.reap_workers(), which halts
+    # the whole server if that child happens to exit 3 or 4 - gunicorn's own
+    # WORKER_BOOT_ERROR / APP_LOAD_ERROR codes, misread off a pid that was
+    # never gunicorn's. See task-13-rulings.md §6b (R13c) for the full trace.
+    init: true
     environment:
       # Database connection. Inside Docker the host is always the "db" service.
       POSTGRES_DB: ${POSTGRES_DB:-sudan_neighbouring_pop_movement}
@@ -89,6 +97,20 @@ services:
       DJANGO_CSRF_TRUSTED_ORIGINS: ${DJANGO_CSRF_TRUSTED_ORIGINS:-}
       DASHBOARD_URL: ${DASHBOARD_URL:-/}
       TZ: ${TZ:-UTC}
+
+      # Optional in-container insight extraction. Leave unset to run extraction
+      # with an agent on the host instead. For a local model, point LLM_BASE_URL
+      # at http://host.docker.internal:11434/v1 and set LLM_PROVIDER to
+      # openai_compatible.
+      LLM_PROVIDER: ${LLM_PROVIDER:-}
+      LLM_MODEL: ${LLM_MODEL:-}
+      LLM_BASE_URL: ${LLM_BASE_URL:-}
+      LLM_API_KEY: ${LLM_API_KEY:-}
+
+      # Keys for the MCP pull buttons. Unset is fine: those buttons are then
+      # disabled and say so. See env.example for where each one comes from.
+      IPC_API_KEY: ${IPC_API_KEY:-}
+      HDX_API_TOKEN: ${HDX_API_TOKEN:-}
 
       # The basemap drawn under the dashboard: the shared IFRC GO style on
       # Mapbox. Both defaults are the public values published by GO itself
@@ -118,10 +140,15 @@ services:
       BOUNDARY_ICONS_DIR: ${BOUNDARY_ICONS_DIR:-/boundary-src/icons}
       HSP_XLSX: ${HSP_XLSX:-/boundary-src/chad-maps/Humanitarian_Service_Points_Mapping_-_all_versions_-_labels_-_2026-09-08-11-46-14.xlsx}
     volumes:
-      # 1. The parent "SUDAN Ops" folder, READ-ONLY: the pipeline reads the
-      #    source PDFs and the Excel from here and writes nothing back. The
-      #    dashboard files it produces now live inside the app, in mount 2.
-      - "..:/work:ro"
+      # 1. The folder holding the source documents, READ-ONLY: the pipeline
+      #    reads the source PDFs and the Excel from here and writes nothing
+      #    back. The dashboard files it produces live inside the app, in mount 2.
+      #
+      #    The host side is a variable because this platform is deployed against
+      #    different folders in different places; the container path stays /work,
+      #    so nothing else has to change when it moves. The default is the parent
+      #    of this repository, which is the "SUDAN Ops" folder it was built in.
+      - "${SOURCE_HOST_DIR:-..}:/work:ro"
       # 2. The Django project - code, templates, static files and the
       #    dashboard's data/ folder. Edits on your machine take effect without
       #    rebuilding the image, and the pipeline's output lands here.

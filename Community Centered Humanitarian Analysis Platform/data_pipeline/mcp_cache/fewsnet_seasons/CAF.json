@@ -1,0 +1,27 @@
+{
+  "count": 1,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "name": "Main harvest",
+      "country": "Central African Republic",
+      "purpose": "CropProductionIndicator",
+      "season_type": "Harvest",
+      "start_month": 8,
+      "end_month": 1,
+      "alignment": "Start",
+      "geographicunit_name": "Central African Republic",
+      "geographicunit_full_name": "Central African Republic",
+      "fnid": "CF",
+      "unit_type": "Admin 0",
+      "description": "August-January",
+      "order": 1,
+      "aliases": [
+        "récolte principale"
+      ],
+      "geographicunit": 8014,
+      "country_code": "CF"
+    }
+  ]
+}

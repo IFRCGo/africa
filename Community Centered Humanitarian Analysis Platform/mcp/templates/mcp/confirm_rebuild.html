@@ -1,0 +1,20 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+  <h1>Rebuild the dashboard layers?</h1>
+  <p>
+    This runs pipeline steps s06 and s07, rewriting the files under
+    <code>dashboard/data/</code> from what is currently in the database.
+    {% if pulls %}
+      There {{ pulls|pluralize:"has,have" }} been {{ pulls }} successful
+      pull{{ pulls|pluralize }} since the last rebuild.
+    {% else %}
+      Nothing has been pulled since the last rebuild, so this will reproduce what
+      is already on screen.
+    {% endif %}
+  </p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="default">Rebuild now</button>
+    <a href="{% url 'admin:mcp_datasource_changelist' %}" class="button cancel-link">Cancel</a>
+  </form>
+{% endblock %}

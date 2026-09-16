@@ -518,6 +518,22 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
   flex-shrink: 0; transition: all .15s;
 }
 #play-btn:hover { background: var(--accent); color: #fff; }
+/* The two date pickers that bound the slider. They sit in the bar rather than
+   in a panel because they change what the slider IS, not what the map draws,
+   and a control that reshapes the timeline belongs next to it. Fixed width so
+   the slider does not jump a few pixels when a date goes from 1 to 11. */
+.range-field {
+  display: flex; flex-direction: column; gap: 2px; flex-shrink: 0;
+  font-size: 10px; font-weight: 600; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.range-field input[type="date"] {
+  width: 128px; padding: 4px 6px; border: 1px solid var(--border); border-radius: 5px;
+  background: var(--bg); color: var(--accent);
+  font: 600 12px "Open Sans", Arial, sans-serif; font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.range-field input[type="date"]:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
 #slider-wrap { flex: 1; position: relative; }
 #time-slider { width: 100%; accent-color: var(--accent); cursor: pointer; display: block; }
 #slider-ticks { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 1px; }
@@ -545,6 +561,14 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
   font-size: 12px; font-style: italic; color: var(--muted); line-height: 1.45;
 }
 .voice .v-meta { font-style: normal; font-size: 10.5px; color: var(--muted); margin-top: 3px; }
+/* One badge per coding on a community/API card - a statement can carry
+   several themes and each needs its own dimension colour, unlike the single
+   "Dimension · tag" text an analyst snippet still prints inline. */
+.v-chip {
+  display: inline-block; border: 1px solid var(--border); border-radius: 9px;
+  padding: 0 6px; margin: 2px 3px 0 0; font-size: 10px; line-height: 1.6;
+}
+.v-chip-uncoded { color: var(--muted); font-style: italic; }
 /* A search result is clickable - it takes the timeline to that month. */
 .voice-hit { cursor: pointer; transition: background .15s; }
 .voice-hit:hover { background: var(--hover); }
@@ -752,3 +776,52 @@ body.resizing, body.resizing * { user-select: none !important; cursor: col-resiz
 /* The seasonal strip has a fixed label column that squeezes the months at
    narrow widths. Give it room to grow with the panel instead. */
 .cal-row { grid-template-columns: minmax(84px, 1.6fr) repeat(12, 1fr); }
+
+/* Visually hidden but still reachable by screen readers - used for the
+   Community Insights search label, which would otherwise print its own text
+   above the search box. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* Community Insights: three tabs over one list. The active tab decides both
+   what is listed and what the search box searches. */
+.voice-tabs { display: flex; gap: 2px; margin: 6px 0; }
+.voice-tab {
+  flex: 1; padding: 4px 6px; font-size: 11px; cursor: pointer;
+  border: 1px solid var(--border); background: transparent; color: var(--muted);
+}
+.voice-tab.is-active { background: var(--text); color: var(--bg); font-weight: 600; }
+/* #voice-search lost its .panel-search wrapper when the tabs were added, so
+   it needs the same look .panel-search input gave it, applied directly. */
+#voice-search {
+  width: 100%; box-sizing: border-box; font-family: inherit; font-size: 12px;
+  padding: 6px 9px; margin-bottom: 8px; border: 1px solid var(--border);
+  border-radius: 6px; background: var(--panel2); color: var(--text);
+}
+#voice-search:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
+.voice .v-voice {
+  font-size: 10px; text-transform: uppercase; letter-spacing: .04em; opacity: .65;
+}
+/* 5px, not the base rule's 3px: telling the two voices apart at a glance is
+   the whole point of the tabs, and 3px here was a no-op - the base .voice
+   rule already sets 3px, so this changed nothing until now. */
+.voice.is-community { border-left-width: 5px; }
+.voice .v-full { white-space: pre-wrap; }
+.voice .v-translated { opacity: .75; font-style: italic; margin-top: 4px; }
+.voices-unmapped { font-size: 11px; opacity: .7; margin-top: 6px; }
+/* Highlighted by a click on its map bubble (Task 12 R5). */
+.voice.is-selected { outline: 2px solid var(--accent); outline-offset: -1px; }
+
+/* Community-insight map popup body (Task 12 R4). Reuses the same combined
+   bubble as every other layer - see "ONE BUBBLE, NOT FIVE" in app.js - so
+   only the section content is styled here. */
+.insight-popup blockquote {
+  margin: 4px 0; font-size: 12px; line-height: 1.45; white-space: pre-wrap;
+}
+.insight-popup .ip-voice {
+  font-size: 10px; text-transform: uppercase; letter-spacing: .04em; opacity: .65;
+}
+.insight-popup .ip-place { font-size: 11px; opacity: .8; }
+.insight-popup .ip-meta { font-size: 10px; opacity: .6; margin-top: 4px; }

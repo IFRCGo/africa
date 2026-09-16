@@ -1,0 +1,251 @@
+{
+  "source": {
+    "rel_path": "UNHCR Regional Population Movement pdfs/2026/2026 Regional Refugee Response Plan Sudan Situation [121204].pdf",
+    "sha1": "b03826e07aa1e52a4573e1c33d847e96e736b549",
+    "report_date": "2026-06-12"
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "Food insecurity has spilled across borders, with 1 in 10 newly arrived Sudanese refugee children in Chad being malnourished.",
+      "quote_language": "en",
+      "page": 8,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Chad",
+      "iso3": "TCD",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food_security"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "malnutrition"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Refugees continued to face significant challenges in meeting their basic needs due to administrative barriers, rising living costs and limited access to formal employment opportunities.",
+      "quote_language": "en",
+      "page": 9,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "basic_needs"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "livelihoods"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Refugees in Libya have struggled with shortages in shelter, healthcare, WASH, and education.",
+      "quote_language": "en",
+      "page": 9,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Libya",
+      "iso3": "LBY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health"
+        },
+        {
+          "dimension": "need",
+          "tag": "shelter"
+        },
+        {
+          "dimension": "need",
+          "tag": "wash"
+        },
+        {
+          "dimension": "need",
+          "tag": "education"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "In host communities, market disruption and rising prices, driven by the influx and logistics challenges, deepen the vulnerabilities of both displaced and local populations.",
+      "quote_language": "en",
+      "page": 17,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "CAR",
+      "iso3": "CAF",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "economic_vulnerability"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "inflation"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Protection risks remain elevated due to the remote location of many refugee arrivals, compounded by limitations in registration, documentation and assistance, which means that refugees, especially those in “sur-place” status, and host communities face increased exposure to rights violations, restricted access to essential services, and protracted dependence on humanitarian support.",
+      "quote_language": "en",
+      "page": 17,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "CAR",
+      "iso3": "CAF",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "protection"
+        },
+        {
+          "dimension": "need",
+          "tag": "basic_services"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "However, the overall funding shortfalls at the beginning of 2025, coupled with the continuing deterioration of the humanitarian and security situation in Sudan, have severely constrained the humanitarian response and increased the vulnerability of the affected populations.",
+      "quote_language": "en",
+      "page": 22,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Chad",
+      "iso3": "TCD",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "other"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "As the modality of choice of the people we work for and with, cash assistance will be used as the primary means to meet immediate basic needs and to contribute to protection outcomes.",
+      "quote_language": "en",
+      "page": 30,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "cash_assistance"
+        },
+        {
+          "dimension": "coping",
+          "tag": "cash_assistance"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Refugees and host communities face significant socio-economic vulnerabilities, including constrained livelihoods, food insecurity, rising prices, uneven access to health and education services, as well as critical shelter needs and limited access to alternative energy sources.",
+      "quote_language": "en",
+      "page": 33,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Ethiopia",
+      "iso3": "ETH",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "socio-economic"
+        },
+        {
+          "dimension": "need",
+          "tag": "livelihoods"
+        },
+        {
+          "dimension": "need",
+          "tag": "food_security"
+        },
+        {
+          "dimension": "need",
+          "tag": "health"
+        },
+        {
+          "dimension": "need",
+          "tag": "education"
+        },
+        {
+          "dimension": "need",
+          "tag": "shelter"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Livelihood opportunities in Alkufra remain highly competitive and difficult to secure, prompting most Sudanese refugees to move on to other cities such as Ajdabiya, Benghazi, and Tripoli in search of better prospects and schooling for their children.",
+      "quote_language": "en",
+      "page": 38,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Alkufra",
+      "iso3": "LBY",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "secondary_displacement"
+        },
+        {
+          "dimension": "need",
+          "tag": "livelihoods"
+        },
+        {
+          "dimension": "need",
+          "tag": "education"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Recent changes to the registration process in the East requiring documentation, a Libyan sponsor, and payment of Libyan Dinar (LYD) 500 per person, have made it difficult for the majority of refugees to register with the authorities, making their access to humanitarian assistance in Alkufra challenging, and leaving them at risk of arrest and deportation.",
+      "quote_language": "en",
+      "page": 38,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Alkufra",
+      "iso3": "LBY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "legal_status"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "deportation"
+        },
+        {
+          "dimension": "need",
+          "tag": "protection"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    }
+  ]
+}

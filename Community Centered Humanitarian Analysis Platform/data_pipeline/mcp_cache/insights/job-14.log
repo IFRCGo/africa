@@ -1,0 +1,2 @@
+DFS.pdf pages 17-24: the model's response could not be read (the model's JSON had no "insights" list)
+DFS.pdf: payload has no usable date: set source.report_date (YYYY-MM-DD), or attach it to a document whose report_date is set

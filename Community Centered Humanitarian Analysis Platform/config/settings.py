@@ -31,10 +31,54 @@ def env_path(name: str, default: Path) -> Path:
 SOURCE_ROOT = env_path("SOURCE_ROOT", REPO_DIR.parent)
 DASHBOARD_DATA_DIR = env_path("DASHBOARD_DATA_DIR", BASE_DIR / "dashboard" / "data")
 
+# Documents uploaded through the insights intake screen. Inside /app because
+# /work is mounted read-only - see docker-compose.yml, mount 1.
+MEDIA_ROOT = env_path("MEDIA_ROOT", BASE_DIR / "media")
+MEDIA_URL = "/media/"
+
+# The in-container extraction adapter (spec §8.2). Optional: with nothing set,
+# extraction is run by an agent on the host and loaded from mcp_cache/insights/.
+# `or` rather than a default argument - an empty value in .env must fall back.
+LLM_PROVIDER = os.environ.get("LLM_PROVIDER") or "anthropic"
+LLM_MODEL = os.environ.get("LLM_MODEL") or "claude-opus-5"
+LLM_BASE_URL = os.environ.get("LLM_BASE_URL") or ""
+LLM_API_KEY = os.environ.get("LLM_API_KEY") or ""
+
 # Raw pulls from the humanitarian MCP servers (HDX, IPC, FEWS NET, UNHCR).
 # These are fetched by an analyst in Claude Code, NOT by this app; the
 # pipeline only re-reads whatever sits in the folder. See data_pipeline/README.md.
 MCP_CACHE_DIR = env_path("MCP_CACHE_DIR", BASE_DIR / "data_pipeline" / "mcp_cache")
+
+# The two keys the fetchers need. `get(X) or ""`, NOT `get(X, "")`: an empty
+# value in .env must fall back to "not set" rather than be sent as a blank key,
+# which HAPI answers with a 403 instead of a comprehensible refusal.
+#
+# Absent is empty string, never None: the admin tests truthiness to decide
+# whether a row's Pull button is live, and None would work by accident today
+# and break the moment somebody writes `len(...)`.
+IPC_API_KEY = os.environ.get("IPC_API_KEY") or ""
+HDX_API_TOKEN = os.environ.get("HDX_API_TOKEN") or ""
+
+
+def env_paths(name: str, default: list) -> list:
+    """A path-separator list from the environment, falling back when empty.
+
+    `or default` rather than a default argument, for the same reason env_path
+    uses it: an empty value in .env must fall back, not be read as "no folders
+    at all", which would leave the folder browser with nothing to offer and no
+    way to tell a misconfiguration from a deliberate empty list.
+    """
+    raw = os.environ.get(name) or ""
+    chosen = [Path(part) for part in raw.split(os.pathsep) if part.strip()]
+    return chosen or default
+
+
+# Which folders the insights folder browser may offer, and the only folders an
+# InsightFolder may point at. Configuration, not a literal: this platform is
+# deployed against different folders in different places, and no message shown
+# to a user may name one deployment's own paths. The wizard's native upload
+# route needs none of this - it has no container path at all.
+INSIGHT_DOCUMENT_ROOTS = env_paths("INSIGHT_DOCUMENT_ROOTS", [SOURCE_ROOT, MEDIA_ROOT])
 
 # The two folders of UNHCR situation reports that the pipeline reads.
 SOURCE_COLLECTIONS = {
@@ -115,6 +159,8 @@ INSTALLED_APPS = [
     "data_track",                    # the seven database tables + the JSON API
     "boundaries",                    # the map itself: admin areas and features
     "external_data",                 # IPC, FEWS NET, DTM, UNHCR + their freshness
+    "mcp",                           # pulling those sources, and the job record
+    "insights",                      # what communities said, and who reviewed it
     "data_pipeline",                 # the ETL steps, as manage.py commands
     "dashboard",                     # serves the MapLibre dashboard
     "updater",                       # the one-click "Update now" page

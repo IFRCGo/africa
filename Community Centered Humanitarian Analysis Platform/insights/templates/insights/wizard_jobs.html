@@ -1,0 +1,30 @@
+{% extends "insights/wizard_base.html" %}
+{% block wizard_body %}
+<p><a class="button" href="{% url 'admin:insights_wizard_start' %}">Start a new batch</a></p>
+
+<h2>Recent batches</h2>
+{% if jobs %}
+<table class="wiz-files">
+  <tr><th>Batch</th><th>State</th><th>Documents</th><th>Statements</th><th></th></tr>
+  {% for job in jobs %}
+  <tr>
+    <td>{{ job.label|default:job }}</td>
+    <td>{{ job.status }}</td>
+    <td>{{ job.documents_done }} of {{ job.documents_total }}</td>
+    <td>{{ job.insights_proposed }}</td>
+    <td><a href="{% url 'admin:insights_wizard_job' job.id %}">Open</a></td>
+  </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p>No batches yet. "Start a new batch" opens a window on your own computer to pick
+   the PDFs or Word documents to read.</p>
+{% endif %}
+
+<p class="wiz-note">
+  Working from an archive already on this server rather than your own machine?
+  Register it as a folder under
+  <a href="{% url 'admin:insights_insightfolder_changelist' %}">source folders</a>
+  — nothing is copied that way.
+</p>
+{% endblock %}

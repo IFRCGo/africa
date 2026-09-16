@@ -84,6 +84,25 @@ class IdpLoader(_MovementLoader):
         return rows
 
 
+def _group(published):
+    """HAPI's population-group code in this project's vocabulary.
+
+    'REF' AND 'sudanese_refugees' ARE THE SAME SERIES, and the evidence is that
+    they agree to the person: the rows seed_external transcribed by hand give
+    Chad 923,323 for 2023 and 1,109,357 for 2024, and HAPI's REF totals for the
+    same years are 923,323 and 1,109,357. The fetcher pins origin to Sudan, so
+    every REF row this loader sees IS a Sudanese refugee count.
+
+    Keeping the published code would put the pulled rows BESIDE the seeded ones
+    instead of updating them - two refugee series for one country, which the
+    dashboard would then choose between arbitrarily.
+
+    Anything else is kept exactly as published. A code this project has not
+    thought about must not be quietly relabelled as Sudanese refugees.
+    """
+    return "sudanese_refugees" if published in (None, "", "REF") else published
+
+
 @register
 class RefugeeLoader(_MovementLoader):
     """UNHCR registered refugee stocks by country of asylum, via HDX `get_refugees`."""
@@ -108,7 +127,7 @@ class RefugeeLoader(_MovementLoader):
                 "admin_level": 0,
                 "place_name": r.get("asylum_location_name") or r.get("location_name"),
                 "metric": "refugees",
-                "population_group": r.get("population_group") or "sudanese_refugees",
+                "population_group": _group(r.get("population_group")),
                 "value": int(r["population"]),
                 "unit": "individuals",
                 "source": self.source,

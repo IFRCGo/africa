@@ -1,0 +1,4 @@
+GET https://hapi.humdata.org/api/v1/affected-people/refugees
+  saved /app/data_pipeline/mcp_cache/hdx_refugees/CAF.json
+  loaded 25 rows
+wrote 25 rows

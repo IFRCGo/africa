@@ -1,0 +1,380 @@
+{
+  "source": {
+    "rel_path": "media/618b8fa6afb6-DFS.pdf",
+    "sha1": "618b8fa6afb6bb4359933caa61dee90e3203e9b8",
+    "report_date": null
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "Civic actors — notably women's leaders and other civil society representatives — have strongly questioned the neutrality and guarantees of a military-led dialogue, demanding clear participation criteria, accountability for abuses, and warning that broad amnesties could entrench military rule or produce impunity",
+      "quote_language": "en",
+      "page": 7,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "political_exclusion"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Sudanese women leaders and civil society have publicly questioned the neutrality and legitimacy of Gen. El-Burhan's dialogue plan, demanding a ceasefire, independent guarantees, meaningful participation, and accountability rather than a one-sided process",
+      "quote_language": "en",
+      "page": 8,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "political_exclusion"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Sudanese women leaders and activists have called for \"peace from a feminist perspective,\" demanding meaningful participation, accountability for abuses, and independent guarantees for any national dialogue rather than processes led solely by military actors",
+      "quote_language": "en",
+      "page": 12,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "participation"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "gender_based_violence"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "ERR volunteers from outside Khartoum report their priorities are under-represented in coordination fora, amplifying exclusion from strategic funding and agenda-setting",
+      "quote_language": "en",
+      "page": 12,
+      "voice_type": "community",
+      "place_name_as_written": "Khartoum",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "coordination"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "exclusion"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "anti-war civilian and political groups formally rejected the AU endorsement and submitted a memorandum to the AU Peace and Security Council on September 2, 2026, insisting that a humanitarian truce and ceasefire must precede any political process",
+      "quote_language": "en",
+      "page": 10,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "peace_process"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "According to FAO DIEM monitoring, returnees and refugees report pervasive constraints to agricultural production, especially limited access to land (reported by ~68% of returnees/refugees), poor access to seeds, pesticides and fertilisers, land occupation/theft, and restrictions on livestock mobility; only 9% of returnees engaged in agricultural activity in the 12 months preceding the survey, down from 42% prior to displacement",
+      "quote_language": "en",
+      "page": 25,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "livelihoods"
+        },
+        {
+          "dimension": "need",
+          "tag": "agriculture"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "New arrivals in El Obeid in mid–late August 2026 were reported as arriving in states of distress and trauma, and affected households are resorting to widespread stress-related coping strategies while displaced and returnee groups report trauma-related symptoms linked to loss, disruption and insecurity",
+      "quote_language": "en",
+      "page": 27,
+      "voice_type": "community",
+      "place_name_as_written": "El Obeid",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "mental_health"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "By September, the World Food Programme (WFP): 200,000 people are at risk of starvation",
+      "quote_language": "en",
+      "page": 34,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food_security"
+        }
+      ],
+      "people_affected": 200000,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "Red Cross helps 38,500 families reconnect as Sudan’s missing-person crisis deepens",
+      "quote_language": "en",
+      "page": 37,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "family_separation"
+        }
+      ],
+      "people_affected": 38500,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Displaced people in Sudan’s Darfur and Kordofan face humanitarian and health catastrophe",
+      "quote_language": "en",
+      "page": 45,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Darfur and Kordofan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "displacement"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "South Kordofan camps struggle with water as displacement rises",
+      "quote_language": "en",
+      "page": 45,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "South Kordofan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "water"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "displacement"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "South Kordofan camps struggle with water as displacement rises",
+      "quote_language": "en",
+      "page": 52,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "South Kordofan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "water"
+        },
+        {
+          "dimension": "movement_pattern",
+          "tag": "displacement"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Displaced people in Sudan’s Darfur and Kordofan face humanitarian and health catastrophe",
+      "quote_language": "en",
+      "page": 52,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Darfur and Kordofan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "displaced_people"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "South Kordofan camps struggle with water as displacement rises",
+      "quote_language": "en",
+      "page": 57,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "South Kordofan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "water"
+        },
+        {
+          "dimension": "movement_pattern",
+          "tag": "displacement"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Displaced people in Sudan’s Darfur and Kordofan face humanitarian and health catastrophes",
+      "quote_language": "en",
+      "page": 58,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Darfur and Kordofan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "displacement"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "Communist Party: ‘Sudan’s war economy deepens the economic abyss’",
+      "quote_language": "en",
+      "page": 68,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "economic_decline"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Sudan Youth Parliament warns of ‘deepening de facto partition’",
+      "quote_language": "en",
+      "page": 68,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "political_instability"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "Displaced people in Sudan’s Darfur and Kordofan face humanitarian and health catastrophe",
+      "quote_language": "en",
+      "page": 73,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Darfur and Kordofan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "displacement"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "Climate pressures and displacement deepen Sudan’s rural challenges",
+      "quote_language": "en",
+      "page": 73,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "climate_change"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "displacement"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    }
+  ]
+}

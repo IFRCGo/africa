@@ -1,0 +1,165 @@
+{
+  "source": {
+    "rel_path": "media/70743084d587-DTM_Sudan_Displacement_and_Return_Snapshot_UPDATE_8.pdf",
+    "sha1": "70743084d58756cdf8636bf1d29ae47c2acbd169",
+    "report_date": null
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "Approximately 115 individuals were displaced due to floods in Ar Rashad, South Kordofan on 7 July 2026.",
+      "quote_language": "en",
+      "page": 4,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Ar Rashad, South Kordofan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "flooding"
+        },
+        {
+          "dimension": "movement_pattern",
+          "tag": "displacement"
+        }
+      ],
+      "people_affected": 115,
+      "severity": 2,
+      "confidence": "high"
+    },
+    {
+      "quote": "During July 2026, approximately 115 individuals (23 households) were displaced due to heavy rains and floods across Tandik village in Ar Rashad locality, South Kordofan.",
+      "quote_language": "en",
+      "page": 8,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Tandik village, Ar Rashad locality, South Kordofan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "flooding"
+        },
+        {
+          "dimension": "movement_pattern",
+          "tag": "displacement"
+        }
+      ],
+      "people_affected": 115,
+      "severity": 2,
+      "confidence": "high"
+    },
+    {
+      "quote": "The vast majority of households (87%) returned due to improved security at the return destination or place of origin.",
+      "quote_language": "en",
+      "page": 10,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "return"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "However, all returnee households (100%) in North Darfur reportedly returned due to the depletion of resources in areas of displacement.",
+      "quote_language": "en",
+      "page": 10,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "North Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "lack_of_resources"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "all reportedly returned due to the lack of resources in their area of displacement.",
+      "quote_language": "en",
+      "page": 19,
+      "voice_type": "community",
+      "place_name_as_written": "North Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "livelihoods"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "economic_vulnerability"
+        }
+      ],
+      "people_affected": 267761,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "the majority (89%) of returned households cited improved security at locations of origin, but seven per cent returned primarily for family reunification and two per cent of households reportedly returned due to depleted resources in areas of displacement.",
+      "quote_language": "en",
+      "page": 18,
+      "voice_type": "community",
+      "place_name_as_written": "Khartoum",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "return"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "security"
+        }
+      ],
+      "people_affected": 2513328,
+      "severity": 2,
+      "confidence": "high"
+    },
+    {
+      "quote": "The decrease in IDPs primarily reflected the return movement of South Sudanese IDPs back to South Sudan, alongside continued return movements to Khartoum state.",
+      "quote_language": "en",
+      "page": 32,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "White Nile",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "return"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "An additional 1,559,118 individuals may therefore return to Khartoum, depending on security and humanitarian conditions, in addition to hundreds of thousands who were displaced abroad.",
+      "quote_language": "en",
+      "page": 34,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Khartoum",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "return"
+        }
+      ],
+      "people_affected": 1559118,
+      "severity": 3,
+      "confidence": "high"
+    }
+  ]
+}
