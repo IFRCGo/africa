@@ -77,13 +77,30 @@ The anti-padding guard survives in a different form, and the prompt must state i
 is still the correct answer.** Without that sentence, eight headings become eight things a
 model feels obliged to fill.
 
-### 4.2 Every item keeps its verbatim quote
+### 4.2 Every item keeps its verbatim quote, and every number keeps its span
 
 Numbers, origins, destinations and reasons are attributes **of a quoted sentence**, never
 free-standing facts. `verify.py` stays universal — there is no row kind that skips it.
 
-This is the decision that keeps the whole design honest. A model cannot be talked into
-inventing a figure that must also appear, word for word, on the page it cites.
+That alone is not enough, and it is worth being precise about why. `verify.py` checks the
+*quote* against the page; it says nothing about a number typed beside it. A model could
+quote "About 65 percent of refugees are highly or extremely vulnerable" perfectly and write
+`value: 56`, and every gate would pass.
+
+So a figure carries **`figure_as_written`** — the span exactly as printed: `"65 percent"`,
+`"0.7 million"`, `"two-fifths of refugee households (44 percent)"`. It is required, and it
+must occur in the normalised quote (`verify.normalise`, the same folding the quote gate
+uses). `value` and `unit` are the *parsed reading* of that span. `InsightMovement.value`
+carries `value_as_written` under the identical rule.
+
+This is the repo's own idiom, one level down: `place_name_as_written` is what the document
+said and `admin_pcode` is what we resolved it to, and the pair is what makes the resolution
+auditable. A number gets the same treatment. It also handles "0.7 million" → `700000`
+without a brittle digit-for-digit match, because the check is on the printed span, not on
+the parsed value.
+
+A figure whose span is not in the quote is dropped and counted (§6.3) — the insight and its
+quote survive.
 
 ### 4.3 The subject place keeps its meaning
 
@@ -148,11 +165,12 @@ more nodes.
 
 ```python
 class InsightFigure(models.Model):
-    insight     = FK(Insight, related_name="figures", on_delete=CASCADE)
-    value       = models.FloatField()
-    unit        = models.TextField(choices=FIGURE_UNITS)   # people / percent / households
-    measures    = models.TextField()                       # "highly or extremely vulnerable"
-    applies_to  = models.TextField(null=True, blank=True)  # "non-Arabic speaking households"
+    insight           = FK(Insight, related_name="figures", on_delete=CASCADE)
+    figure_as_written = models.TextField()                       # "65 percent", "0.7 million"
+    value             = models.FloatField()
+    unit              = models.TextField(choices=FIGURE_UNITS)   # people / percent / households
+    measures          = models.TextField()                       # "highly or extremely vulnerable"
+    applies_to        = models.TextField(null=True, blank=True)  # "non-Arabic speaking households"
 ```
 
 `value` is a float because a share is not an integer. `unit` is closed and validated: an
@@ -187,9 +205,15 @@ class InsightMovement(models.Model):
     dest_lat, dest_lon       = FloatField(null=True, blank=True) x2
 
     flow_type          = TextField(choices=FLOW_TYPES)   # cross_border / internal / return / transit
+    value_as_written   = TextField(null=True, blank=True)          # "0.7 million"
     value              = BigIntegerField(null=True, blank=True)
     unit               = TextField(choices=MOVEMENT_UNITS, null=True, blank=True)  # people / households
 ```
+
+A corridor stating a number carries `value_as_written` under the §4.2 rule, checked against
+the quote the same way. A corridor with no number states no number — `value_as_written`,
+`value` and `unit` are all null together, and a corridor is still worth recording without
+one.
 
 `unit` here is **not** `FIGURE_UNITS`. A corridor counts people or households; it is never a
 share, and `value` is a `BigIntegerField` that could not hold one honestly. A percentage
@@ -216,7 +240,21 @@ repeat it when these are eventually drawn.
 
 `insights/contract.py` and `insights/prompts/extract_insights.md` are two halves of one
 thing and change together. That rule is in `contract.py`'s docstring and this spec does not
-relax it.
+relax it — it corrects it.
+
+**There is a third half, and it is load-bearing.** `insights/extractors/anthropic_api.py`
+hard-codes a `SCHEMA` constant passed as the request's `json_schema` output format, and that
+schema sets `"additionalProperties": False` on both the insight object and the coding object.
+Until it is updated, the Anthropic adapter **cannot emit** `figures`, `movements` or
+`codings[].role` at all: the fields are not merely ignored, they are forbidden by the
+response format. A prompt-and-contract change alone would produce a run that looks healthy
+and returns nothing new.
+
+`insights/extractors/openai_compatible.py` is unaffected — it asks for
+`{"type": "json_object"}` with no schema, so it is governed by the prompt alone.
+
+`contract.py`'s docstring should be amended to name the schema as the third half, so the
+next person to widen the payload finds this stated rather than discovers it.
 
 ### 6.1 Everything new is optional
 
@@ -230,19 +268,43 @@ An unrecognised `role` becomes `subject`, matching how `taxonomy.normalise_codin
 unknown tag into `other`. A role is an interpretation; a wrong one costs a query, not a
 fact.
 
-### 6.3 `unit` and `flow_type` are hard errors
+### 6.3 A bad figure costs the figure, never the document
 
-An unknown `unit` or `flow_type` raises `ContractError` and the payload is rejected. These
-are not interpretations: silently defaulting `percent` to `people` would turn "65 percent"
-into "65 people" and store it as a fact. The existing boolean guards on `severity` and
-`people_affected` exist for the same reason and are the precedent.
+`unit` and `flow_type` are closed vocabularies and they never degrade to a default:
+silently reading `percent` as `people` would turn "65 percent" into "65 people" and store it
+as a fact.
 
-### 6.4 A corridor needs both ends
+But the penalty is scoped to the row. An unknown `unit` or `flow_type`, or a
+`figure_as_written` that is not in the quote, **drops that figure or corridor and is
+counted** — the insight, its quote and its codings still load. EVAR states currency amounts
+and ratios alongside its percentages; one figure the model labels `EGP` must not zero out a
+43-page run. Rejecting the whole payload for one bad vocabulary word would also undo §4.1:
+the widened prompt asks for far more small structured items per document, so the chance of
+one being wrong is much higher than it was, and the blast radius has to shrink to match.
 
-A `movements[]` entry with no `origin_name_as_written` **and** no `dest_name_as_written` is
-rejected. "They fled here" with no stated origin produces no movement row rather than a
-guessed one. One end named and the other absent is allowed and recorded as such — a
-half-known corridor is a finding.
+`ContractError` on the whole payload is reserved for a malformed *shape* — `figures` not a
+list, a figure that is not an object, a missing required key — which is a broken producer
+rather than a wrong reading.
+
+The dropped counts are surfaced, never swallowed: `ExtractionJob` gains
+`figures_rejected` and `movements_rejected` beside the existing
+`insights_rejected_unverifiable`, and each drop is written to `ExtractionJob.log` naming the
+insight and the reason. `insights_rejected_unverifiable` keeps its current meaning — whole
+insights that failed the quote gate — so the number a reviewer already watches does not
+quietly change definition.
+
+The precedent is `verify.py`: a quote that does not match is discarded and counted, and the
+run continues.
+
+### 6.4 A corridor needs at least one end
+
+A `movements[]` entry with no `origin_name_as_written` **and** no `dest_name_as_written`
+names nothing and is dropped and counted (§6.3). "They fled here", with neither end stated,
+produces no movement row rather than a guessed one.
+
+One end named and the other absent is **allowed** and recorded as such. A half-known
+corridor is a finding: "arrivals from Sudan" with no stated destination is true, useful, and
+honestly incomplete, and `dest_match_method` says so.
 
 ## 7. The prompt
 
@@ -263,8 +325,10 @@ above rather than onto eight free-text headings:
 
 Two rules are added to the five:
 
-6. **A figure is only ever an attribute of a quoted sentence.** If the number is not
-   printed in the passage you are quoting, there is no figure.
+6. **A figure is only ever an attribute of a quoted sentence, and you must copy its span.**
+   Give `figure_as_written` exactly as printed — "65 percent", "0.7 million" — alongside the
+   parsed `value` and `unit`. If the number is not printed in the passage you are quoting,
+   there is no figure.
 7. **Name only the ends the text names.** Do not infer an origin or a destination from
    surrounding context. A corridor with one end stated and the other genuinely absent is
    recorded with one end; a corridor with neither is not a corridor (§6.4).
@@ -289,9 +353,23 @@ live boundary library: every country carries a level-0 row, so `Sudan` → SDN c
 `Alexandria` → an EGY governorate both resolve today. EGY holds 27 admin-1 and 365 admin-2
 areas, so EVAR's named locations geocode.
 
+**Each side's `iso3` comes from the payload, and is never inherited.** `places.resolve()`
+needs a country per side, and on the corridor that matters — SDN → EGY — neither side equals
+the parent's `iso3` in both positions. The model states `origin_iso3` and `dest_iso3` in
+`movements[]`. A side with no `iso3` is recorded `unmatched` with its written name kept;
+defaulting it to the parent's country would invent a placement and would be wrong precisely
+on cross-border movement, the case this table exists for.
+
 **Gate 4 covers the children.** A reviewed insight is skipped whole — its figures and
 movements are not rewritten either. Re-running an extraction must not discard a figure a
 reviewer corrected, for exactly the reason gate 4 exists for the quote.
+
+**A pending parent's children are replaced wholesale.** Neither child table has a natural
+key, so re-running a job on a still-pending insight would otherwise duplicate every figure
+and corridor. This is not a new rule: `loader.py` already does exactly this for codings
+(`insight.codings.all().delete()` before `bulk_create`), with the reason in a comment there
+— a re-run's reading of a statement supersedes its own earlier one, and merging the two
+accumulates rows no single reading ever proposed. Figures and movements follow it.
 
 ## 9. Review
 
@@ -310,13 +388,17 @@ Deliberately asymmetric, to keep the change shippable:
 Test-driven, in this order:
 
 1. **Backwards compatibility.** An existing fixture payload — no `figures`, no `movements`,
-   no `role` — loads and produces identical rows. Written first, before any new field
-   exists.
-2. **Contract.** Unknown `unit` and unknown `flow_type` raise `ContractError`; unknown
-   `role` degrades to `subject`; a movement with neither end named is rejected.
+   no `role` — loads and produces rows identical in every pre-existing column, with
+   `role = subject` and no children. Written first, before any new field exists.
+2. **Contract.** Unknown `unit`, unknown `flow_type`, and a `figure_as_written` absent from
+   the quote each drop their own row and leave the insight intact, counted and logged;
+   unknown `role` degrades to `subject`; a movement with neither end named is dropped; a
+   malformed shape still raises `ContractError` for the payload.
 3. **Loader.** Both sides of a corridor resolve independently (SDN level-0 origin, EGY
-   level-1 destination); an unresolvable origin is recorded `unmatched` rather than
-   dropped; gate 4 leaves a reviewed insight's children untouched on re-extraction.
+   level-1 destination); a side with no `iso3` is `unmatched` and is *not* given the
+   parent's country; an unresolvable origin is recorded `unmatched` rather than dropped;
+   re-loading a pending insight replaces its children rather than duplicating them; gate 4
+   leaves a reviewed insight's children untouched on re-extraction.
 4. **Model.** The widened coding constraint admits the same tag in two roles and still
    rejects a true duplicate.
 5. **API.** `figures`, `movements` and `role` are serialised; `?role=` and `?flow_type=`
