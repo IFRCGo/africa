@@ -26,6 +26,31 @@ STATUSES = [("pending", "Pending review"), ("published", "Published"), ("rejecte
 DIMENSIONS = [("hazard", "Hazard"), ("vulnerability", "Vulnerability"), ("need", "Need"),
               ("coping", "Coping"), ("movement_pattern", "Movement pattern")]
 
+# The coding's part in the statement. 'subject' is what every row written before
+# this column existed means, which is why it is the default and why the migration
+# needs no backfill. 'driver' is what makes "why are they returning" a query
+# rather than a reading exercise: return_movement as subject, armed_conflict as
+# driver, on one quote. 'barrier' is what blocks access to a need.
+CODING_ROLES = [("subject", "Subject"), ("driver", "Driver"), ("barrier", "Barrier")]
+
+# A figure may be a share. A corridor may not: its value is a BigIntegerField and
+# there is no honest way to put "65 percent" in one. A percentage about a moving
+# population is a figure on the same quote, not a corridor.
+FIGURE_UNITS = [("people", "People"), ("percent", "Percent"), ("households", "Households")]
+MOVEMENT_UNITS = [("people", "People"), ("households", "Households")]
+
+# The corridor's direction class - what decides how an arrow is drawn, and the
+# same vocabulary data_track.MovementFlow.flow_type already uses. NOT the same
+# thing as the movement_pattern coding, which is the richer taxonomy label;
+# neither is derivable from the other.
+FLOW_TYPES = [("cross_border", "Cross-border"), ("internal", "Internal"),
+              ("return", "Return"), ("transit", "Transit")]
+
+ROLE_VALUES = {value for value, _ in CODING_ROLES}
+FIGURE_UNIT_VALUES = {value for value, _ in FIGURE_UNITS}
+MOVEMENT_UNIT_VALUES = {value for value, _ in MOVEMENT_UNITS}
+FLOW_TYPE_VALUES = {value for value, _ in FLOW_TYPES}
+
 
 class InsightFolder(models.Model):
     """A folder of source documents, registered once and re-read on demand."""
@@ -134,6 +159,14 @@ class ExtractionJob(models.Model):
     insights_proposed = models.IntegerField(default=0)
     insights_rejected_unverifiable = models.IntegerField(default=0)
     insights_skipped_reviewed = models.IntegerField(default=0)
+    # A bad vocabulary word costs its own figure or corridor, not the document
+    # (spec 6.3) - but a drop must never be silent, so it is counted here and
+    # named in `log`. These are deliberately NOT folded into
+    # insights_rejected_unverifiable: that number means "whole insights that
+    # failed the quote gate" and a reviewer already watches it, so it must not
+    # quietly change definition.
+    figures_rejected = models.IntegerField(default=0)
+    movements_rejected = models.IntegerField(default=0)
     log = models.TextField(null=True, blank=True)
     started_at = models.DateTimeField(null=True, blank=True)
     finished_at = models.DateTimeField(null=True, blank=True)
@@ -246,17 +279,121 @@ class InsightCoding(models.Model):
     tag = models.TextField(help_text="A key in taxonomy.json under this dimension, or 'other'")
     tag_raw = models.TextField(
         null=True, blank=True, help_text="What was proposed, when it fell outside the vocabulary")
+    role = models.TextField(
+        choices=CODING_ROLES, default="subject",
+        help_text="What part this theme plays in the statement. 'driver' is the "
+                  "cause; 'barrier' is what blocks access to a need.")
 
     class Meta:
         db_table = "insight_codings"
         ordering = ["dimension", "tag"]
         constraints = [
+            # role joins the key because one statement can legitimately carry the
+            # same tag twice in two parts: displacement as the thing happening,
+            # and displacement as what drives a further need.
             models.UniqueConstraint(
-                fields=["insight", "dimension", "tag"], name="uniq_insight_coding"),
+                fields=["insight", "dimension", "tag", "role"], name="uniq_insight_coding"),
         ]
 
     def __str__(self):
         return f"{self.dimension}:{self.tag}"
+
+
+class InsightFigure(models.Model):
+    """One number read out of one statement.
+
+    WHY THIS IS NOT Insight.people_affected. That column is a BigIntegerField
+    holding a headline people-count, and it stays. But an assessment report
+    states most of what it knows as a share - the Egypt EVAR states 253 figures
+    as percentages - and there is no honest way to put "65 percent" in a whole
+    number of people.
+
+    WHY figure_as_written EXISTS. verify.py checks the QUOTE against the page; it
+    says nothing about a number typed beside it. A model could quote "About 65
+    percent of refugees are highly or extremely vulnerable" perfectly and write
+    value 56, and every gate would pass. So the span as printed is stored and
+    checked against the quote, and value/unit are the parsed reading of it. This
+    is place_name_as_written / admin_pcode one level down: what the document said,
+    and what we made of it, kept side by side so the reading stays auditable.
+    """
+
+    insight = models.ForeignKey(Insight, on_delete=models.CASCADE, related_name="figures")
+    figure_as_written = models.TextField(
+        help_text="The span exactly as printed: '65 percent', '0.7 million'. Must "
+                  "occur in the quote.")
+    value = models.FloatField(
+        help_text="The parsed reading. A float because a share is not an integer.")
+    unit = models.TextField(choices=FIGURE_UNITS)
+    measures = models.TextField(help_text="What it counts: 'highly or extremely vulnerable'")
+    applies_to = models.TextField(
+        null=True, blank=True,
+        help_text="The subgroup, when the figure is disaggregated: 'non-Arabic "
+                  "speaking households'. Null means the whole population the "
+                  "statement is about.")
+
+    class Meta:
+        db_table = "insight_figures"
+        ordering = ["id"]
+
+    def __str__(self):
+        return f"{self.figure_as_written} ({self.measures})"
+
+
+class InsightMovement(models.Model):
+    """One corridor read out of one statement - a complete arrow.
+
+    WHY A ROW IS A CORRIDOR AND NOT A PAIR OF COLUMNS ON Insight. EVAR p.10 names
+    eight origin countries in a single sentence, and the (document, page,
+    quote_sha1) unique constraint means one quote cannot be split into eight rows
+    to hold them. Eight child rows are eight unambiguous arrows on one quote.
+
+    WHY EACH SIDE CARRIES ITS OWN iso3. places.resolve() needs a country per side,
+    and on the corridor this table exists for - Sudan to Egypt - neither side
+    equals the parent insight's iso3 in both positions. Inheriting it would invent
+    a placement, and would do so precisely on cross-border movement.
+
+    origin_lat/lon and dest_lat/lon are LABEL POSITIONS copied from
+    AdminArea.center_lat/center_lon, not addresses - the same caveat the subject
+    place carries, and the dashboard popup must repeat it.
+    """
+
+    insight = models.ForeignKey(Insight, on_delete=models.CASCADE, related_name="movements")
+
+    origin_name_as_written = models.TextField(null=True, blank=True)
+    origin_iso3 = models.CharField(max_length=3, null=True, blank=True)
+    origin_pcode = models.TextField(null=True, blank=True)
+    origin_admin_level = models.IntegerField(null=True, blank=True)
+    origin_match_method = models.TextField(
+        default="unmatched", help_text="pcode / name / unmatched")
+    origin_lat = models.FloatField(null=True, blank=True)
+    origin_lon = models.FloatField(null=True, blank=True)
+
+    dest_name_as_written = models.TextField(null=True, blank=True)
+    dest_iso3 = models.CharField(max_length=3, null=True, blank=True)
+    dest_pcode = models.TextField(null=True, blank=True)
+    dest_admin_level = models.IntegerField(null=True, blank=True)
+    dest_match_method = models.TextField(
+        default="unmatched", help_text="pcode / name / unmatched")
+    dest_lat = models.FloatField(null=True, blank=True)
+    dest_lon = models.FloatField(null=True, blank=True)
+
+    flow_type = models.TextField(choices=FLOW_TYPES)
+    value_as_written = models.TextField(
+        null=True, blank=True,
+        help_text="The span exactly as printed: '0.7 million'. Must occur in the "
+                  "quote when present.")
+    value = models.BigIntegerField(null=True, blank=True)
+    unit = models.TextField(choices=MOVEMENT_UNITS, null=True, blank=True)
+
+    class Meta:
+        db_table = "insight_movements"
+        ordering = ["id"]
+        indexes = [
+            models.Index(fields=["origin_iso3", "dest_iso3"], name="idx_movement_corridor"),
+        ]
+
+    def __str__(self):
+        return f"{self.origin_name_as_written or '?'} → {self.dest_name_as_written or '?'}"
 
 
 class DocumentsToInsights(ExtractionJob):
