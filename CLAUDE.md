@@ -79,6 +79,13 @@ the host folder behind the mount is `SOURCE_HOST_DIR`.
 ## Things worth knowing before changing anything
 
 - `/work` is mounted **read-only**. Anything written goes under `/app`.
+- **`web` runs gunicorn, which never autoreloads. After a model change, run
+  `docker compose restart web`** — migrating alone is not enough. The symptom is
+  not a stale page: `AddField` sets a DB default only to backfill it and then
+  drops it, so a worker that booted before the field existed omits the column
+  from its INSERT and the next request raises
+  `NotNullViolation: null value in column "<field>"`. `manage.py test` forks a
+  fresh process, so the whole suite stays green while the running site is broken.
 - `data_pipeline/steps/s03_parse.py` deletes and rebuilds `population_figures`,
   `movement_flows` and `narrative_tags` on every run, and `s04_events.py` deletes
   every row in `events`. Do not put hand-curated data in those tables.
