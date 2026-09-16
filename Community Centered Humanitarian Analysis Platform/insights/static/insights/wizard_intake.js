@@ -27,6 +27,19 @@
   var fill = document.getElementById("wiz-bar-fill");
   var progressText = document.getElementById("wiz-progress-text");
   var sendButton = document.getElementById("wiz-send");
+  /* Step 2 in the chrome above. It is the one step with no page of its own -
+   * the preview is this page - so the button is dead until there is a preview
+   * to show, and then it just brings it into view. */
+  var stepTwo = document.getElementById("wiz-step-preview");
+
+  function showPreview(visible) {
+    preview.hidden = !visible;
+    if (stepTwo) {
+      stepTwo.disabled = !visible;
+      stepTwo.title = visible
+        ? "Show what will be read." : "Pick files first - the preview appears below.";
+    }
+  }
 
   function csrf() {
     var field = root.querySelector("[name=csrfmiddlewaretoken]");
@@ -97,7 +110,7 @@
       (skipped ? ", " + skipped + " other file(s) skipped" : "");
     sendButton.disabled = chosen.length === 0;
     root.dataset.batchLabel = label;
-    preview.hidden = false;
+    showPreview(true);
     progress.hidden = true;
   }
 
@@ -163,9 +176,15 @@
   document.getElementById("wiz-clear").addEventListener("click", function () {
     chosen = [];
     rows.replaceChildren();
-    preview.hidden = true;
+    showPreview(false);
     progress.hidden = true;
   });
 
   sendButton.addEventListener("click", send);
+
+  if (stepTwo) {
+    stepTwo.addEventListener("click", function () {
+      preview.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
 }());

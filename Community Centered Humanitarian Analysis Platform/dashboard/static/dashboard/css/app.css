@@ -518,6 +518,22 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
   flex-shrink: 0; transition: all .15s;
 }
 #play-btn:hover { background: var(--accent); color: #fff; }
+/* The two date pickers that bound the slider. They sit in the bar rather than
+   in a panel because they change what the slider IS, not what the map draws,
+   and a control that reshapes the timeline belongs next to it. Fixed width so
+   the slider does not jump a few pixels when a date goes from 1 to 11. */
+.range-field {
+  display: flex; flex-direction: column; gap: 2px; flex-shrink: 0;
+  font-size: 10px; font-weight: 600; color: var(--muted);
+  text-transform: uppercase; letter-spacing: .04em;
+}
+.range-field input[type="date"] {
+  width: 128px; padding: 4px 6px; border: 1px solid var(--border); border-radius: 5px;
+  background: var(--bg); color: var(--accent);
+  font: 600 12px "Open Sans", Arial, sans-serif; font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+.range-field input[type="date"]:focus { outline: 2px solid var(--accent); outline-offset: -1px; }
 #slider-wrap { flex: 1; position: relative; }
 #time-slider { width: 100%; accent-color: var(--accent); cursor: pointer; display: block; }
 #slider-ticks { display: flex; justify-content: space-between; font-size: 10px; color: var(--muted); margin-top: 1px; }

@@ -1,0 +1,162 @@
+[
+  {
+    "id": "87143417",
+    "title": "Sudan - Acute Food Insecurity Analysis – SD February 2026",
+    "link": "https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1163315/?iso3=SDN",
+    "country": "SD",
+    "year": 2026,
+    "condition": "A",
+    "created": "2026-05-14",
+    "modified": "2026-05-14"
+  },
+  {
+    "id": "84375905",
+    "title": "Sudan - Acute Food Insecurity September 2025",
+    "link": "https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1159787/?iso3=SDN",
+    "country": "SD",
+    "year": 2025,
+    "condition": "A",
+    "created": "2025-10-18",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "74795267",
+    "title": "Sudan - Acute Food Insecurity October 2024",
+    "link": "https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1159433/?iso3=SDN",
+    "country": "SD",
+    "year": 2024,
+    "condition": "A",
+    "created": "2024-12-24",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "68887616",
+    "title": "Sudan - Acute Food Insecurity April 2024",
+    "link": "https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1157066/?iso3=SDN",
+    "country": "SD",
+    "year": 2024,
+    "condition": "A",
+    "created": "2024-06-25",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "64768802",
+    "title": "Sudan - Acute Food Insecurity October 2023 (Proj Update)",
+    "link": "https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1156730/?iso3=SDN",
+    "country": "SD",
+    "year": 2023,
+    "condition": "A",
+    "created": "2023-12-07",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "58836462",
+    "title": "Sudan - Acute Food Insecurity June 2023",
+    "link": "https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1156504/?iso3=SDN",
+    "country": "SD",
+    "year": 2023,
+    "condition": "A",
+    "created": "2023-07-31",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "25857808",
+    "title": "Sudan - Acute Food Insecurity May 2022",
+    "link": "https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1155716/?iso3=SDN",
+    "country": "SD",
+    "year": 2022,
+    "condition": "A",
+    "created": "2022-06-22",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "24004104",
+    "title": "Sudan - Acute Food Insecurity April 2021",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1154879/?iso3=SDN",
+    "country": "SD",
+    "year": 2021,
+    "condition": "A",
+    "created": "2021-05-24",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "19191589",
+    "title": "Sudan - Acute Food Insecurity November 2020 (Proj Update)",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1152920/?iso3=SDN",
+    "country": "SD",
+    "year": 2020,
+    "condition": "A",
+    "created": "2020-11-17",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "18151797",
+    "title": "Sudan - Acute Food Insecurity June 2020",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1152718/",
+    "country": "SD",
+    "year": 2020,
+    "condition": "A",
+    "created": "2020-06-30",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "14192889",
+    "title": "Sudan - Acute Food Insecurity July 2019",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1152151/?iso3=SDN",
+    "country": "SD",
+    "year": 2019,
+    "condition": "A",
+    "created": "2020-03-31",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "12204047",
+    "title": "Sudan - Sudan AFI Aug-Oct 2014",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/459599/",
+    "country": "SD",
+    "year": 2014,
+    "condition": "A",
+    "created": "2018-02-20",
+    "modified": "2026-02-03"
+  },
+  {
+    "id": "12204444",
+    "title": "Sudan - Sudan AFI May-July 2014",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/459575/",
+    "country": "SD",
+    "year": 2014,
+    "condition": "A",
+    "created": "2018-02-20",
+    "modified": "2026-02-03"
+  },
+  {
+    "id": "12203650",
+    "title": "Sudan - Sudan AFI Aug-Oct 2013",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/459545/",
+    "country": "SD",
+    "year": 2013,
+    "condition": "A",
+    "created": "2018-02-20",
+    "modified": "2026-02-03"
+  },
+  {
+    "id": "12202855",
+    "title": "Sudan - Sudan AFI Feb-April 2013",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1073057/",
+    "country": "SD",
+    "year": 2013,
+    "condition": "A",
+    "created": "2018-02-20",
+    "modified": "2026-02-03"
+  },
+  {
+    "id": "12203253",
+    "title": "Sudan - Sudan AFI Aug-Oct 2012",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/459503/",
+    "country": "SD",
+    "year": 2012,
+    "condition": "A",
+    "created": "2018-02-20",
+    "modified": "2026-02-03"
+  }
+]

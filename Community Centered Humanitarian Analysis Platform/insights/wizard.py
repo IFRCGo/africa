@@ -42,6 +42,46 @@ CodingFormSet = inlineformset_factory(
     Insight, InsightCoding, fields=("dimension", "tag"), extra=1, can_delete=True)
 
 
+STEPS = (
+    (1, "Bring documents in"),
+    (2, "Check what will be read"),
+    (3, "Extract"),
+    (4, "Review and publish"),
+)
+
+
+def step_links(job, current):
+    """The four steps, each with the URL that reaches it right now - or None.
+
+    WHERE A STEP LEADS IS THE JOB'S STATUS, NOT A ROUTE OF ITS OWN. job_step
+    serves whichever page the status puts the batch at, so a button for step 3
+    on a batch that has already loaded would not go back to the extract page -
+    it would bounce straight to review. A step that cannot honestly be reached
+    from here therefore gets no URL and is rendered inert, rather than a link
+    that lies about where it goes.
+
+    Step 2 never has one: the preview lives on the intake page itself, revealed
+    by wizard_intake.js once files are picked, so its button is that page's to
+    enable. Step 1 always has one - the way to bring in more documents is a new
+    batch, whatever this one is doing.
+    """
+    job_url = reverse("admin:insights_wizard_job", args=[job.id]) if job else None
+    status = job.status if job else None
+    urls = {
+        1: job_url if status == "collecting" else reverse("admin:insights_wizard_start"),
+        2: None,
+        3: job_url if status in ("queued", "running", "failed") else None,
+        4: job_url if status == "loaded" else None,
+    }
+    return [{
+        "number": number,
+        "label": label,
+        "url": None if number == current else urls[number],
+        "state": ("is-current" if number == current
+                  else "is-done" if current and number < current else ""),
+    } for number, label in STEPS]
+
+
 def page(request, **extra):
     """The context every wizard page needs.
 
@@ -50,7 +90,11 @@ def page(request, **extra):
     permission check and the login redirect and nothing else - so a page that
     forgets this renders as an unstyled orphan with no way back to the admin.
     """
-    return {**django_admin.site.each_context(request), **extra}
+    return {
+        **django_admin.site.each_context(request),
+        "wizard_steps": step_links(extra.get("job"), extra.get("wizard_step", 0)),
+        **extra,
+    }
 
 
 def job_list(request):

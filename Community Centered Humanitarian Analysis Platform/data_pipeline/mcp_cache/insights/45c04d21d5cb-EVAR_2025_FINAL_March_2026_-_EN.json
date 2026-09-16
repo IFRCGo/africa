@@ -1,0 +1,368 @@
+{
+  "source": {
+    "rel_path": "media/45c04d21d5cb-EVAR_2025_FINAL_March_2026_-_EN.pdf",
+    "sha1": "45c04d21d5cbc5875762905853dee8eae22a431a",
+    "report_date": null
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "About 65 percent of refugees are highly or extremely vulnerable and unable to meet their basic needs due to limited livelihoods, food insecurity and poor living conditions.",
+      "quote_language": "en",
+      "page": 6,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "socio-economic"
+        },
+        {
+          "dimension": "need",
+          "tag": "basic_needs"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Nearly 58 percent face moderate to severe food insecurity.",
+      "quote_language": "en",
+      "page": 6,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "food_insecurity"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Almost all refugee in Egypt (92 percent) were found to adopt food consumption-based coping strategies reducing meal portion and frequency and restricting consumption of adult in favor of children.",
+      "quote_language": "en",
+      "page": 6,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "food_consumption"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "However, one-quarter of all refugees in Egypt (25 percent) reported that not all community members had access to information on assistance, especially among new and protracted Sudanese refugees, older people, people with disabilities and women, and among refugees in Aswan.",
+      "quote_language": "en",
+      "page": 15,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "information_needs"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "About one-quarter of refugees in Egypt (26 percent) indicated that the existing feedback and complaints mechanisms are not accessible to all refugees, especially for the elderly, women and illiterate people (see table 5).",
+      "quote_language": "en",
+      "page": 15,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "accountability"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Due to the increasing influx of refugees, some participants expressed concerns related to exclusion, a feeling that may be further exacerbated by the economic challenges facing the country.",
+      "quote_language": "en",
+      "page": 15,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "social_cohesion"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Perceived disparities in assistance provided to refugees (29 percent), limited employment opportunities (21 percent) and unpaid debt (17 percent) were cited as the primary causes of conflict and tension.",
+      "quote_language": "en",
+      "page": 15,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "social_tension"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Focus group participants also noted that high food prices have forced them to significantly reduce or entirely stop consuming animal-based proteins.",
+      "quote_language": "en",
+      "page": 17,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food"
+        },
+        {
+          "dimension": "coping",
+          "tag": "dietary_change"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "One FGD participant stated: “Business and factory owners hire refugees for a very low salary and say, “take it or leave it”.",
+      "quote_language": "en",
+      "page": 20,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "exploitation"
+        },
+        {
+          "dimension": "need",
+          "tag": "livelihood"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Many said they reduced food consumption, eating only one meal a day, or sold personal belongings, moved to cheaper housing or withdrew children from school.",
+      "quote_language": "en",
+      "page": 23,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "livelihood_coping_strategies"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "education"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Many rely on community support systems or remittances, but these are limited and unreliable. Humanitarian assistance, they said, was not sufficient to meet needs, access is inconsistent, and employment programmes reach only a fraction of those in need.",
+      "quote_language": "en",
+      "page": 23,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "humanitarian_assistance"
+        },
+        {
+          "dimension": "coping",
+          "tag": "social_support"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "The monthly average per capita consumption of refugees in Egypt amounts to USD 63 (EGP 3 138), with nearly half of it allocated to food (see Fig. 12).",
+      "quote_language": "en",
+      "page": 25,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "economic_vulnerability"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Overall, more than half (56 percent) of refugees in Egypt live below the SMEB, highlighting their severely limited economic capacity (see Fig. 24).",
+      "quote_language": "en",
+      "page": 26,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "economic_vulnerability"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "The majority (58 percent) of refugees in Egypt are moderately or severely food insecure, with half (51 percent) moderately food insecure and 7.2 percent severely food insecure (see Fig. 20).",
+      "quote_language": "en",
+      "page": 30,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "The issue of inadequate access to education was strongly emphasized during the FGDs.",
+      "quote_language": "en",
+      "page": 34,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "education"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "The rising cost of rent, risk of eviction and poor quality of shelter were raised as key concerns in the FGDs.",
+      "quote_language": "en",
+      "page": 35,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "shelter"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "eviction"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "About 65 percent of refugees are highly or extremely vulnerable and unable to meet their basic needs due to limited livelihoods, food insecurity and poor living conditions.",
+      "quote_language": "en",
+      "page": 41,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "socio-economic"
+        },
+        {
+          "dimension": "need",
+          "tag": "basic_needs"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Nearly 58 percent face moderate to severe food insecurity.",
+      "quote_language": "en",
+      "page": 41,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food_security"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Almost all refugees in Egypt (92 percent) were found to adopt food consumption-based coping strategies reducing meal portion and frequency and restricting consumption of adult in favor of children.",
+      "quote_language": "en",
+      "page": 41,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "food_consumption"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    }
+  ]
+}

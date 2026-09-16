@@ -237,15 +237,25 @@
 
 <!-- ===================== THE TIMELINE ================================= -->
 <!-- Dragging the slider is the main way to use this dashboard: it sets the
-     date, and everything above redraws for that date. Nothing else lives here:
+     date, and everything above redraws for that date. Either side of it sits
+     the pair of date pickers that says how much of the war the slider spans;
      the trend chart that used to be drawn behind the slider is now the
      Movement trends panel in the right sidebar. -->
 <footer id="timebar">
   <button id="play-btn" title="Play / pause the story">▶</button>
+  <!-- The window of time the timeline covers. Narrowing it narrows the slider
+       itself, not only the play loop: dragging cannot leave the window either.
+       app.js keeps end >= start by pushing whichever picker was not touched. -->
+  <label class="range-field" for="range-start">From
+    <input type="date" id="range-start" title="First date the timeline covers">
+  </label>
   <div id="slider-wrap">
     <input type="range" id="time-slider" min="0" max="100" value="0" step="1">
     <div id="slider-ticks"></div>
   </div>
+  <label class="range-field" for="range-end">To
+    <input type="date" id="range-end" title="Last date the timeline covers">
+  </label>
   <div id="current-date">15 Apr 2023</div>
 </footer>
 

@@ -147,6 +147,14 @@ const state = {
   data: {},                // every file loaded from data/, keyed by name
   endDate: null,           // the most recent date we have data for
   current: START,          // the date the timeline is pointing at RIGHT NOW
+  /* THE WINDOW THE TIMELINE COVERS, set by the two date pickers in the
+     timebar. It bounds the slider itself, so dragging cannot leave it either,
+     and it is what play runs between. rangeEnd starts as null because
+     state.endDate is not known until the data has loaded; initTimeline() fills
+     both in. Invariant, kept in setRange(): START <= rangeStart <= rangeEnd
+     <= endDate. */
+  rangeStart: START,
+  rangeEnd: null,
   playing: false,          // is the play button running?
   activeTags: new Set(),   // ticked theme boxes, stored as "dimension|tag"
   /* THE COUNTRY FILTER. Empty means "no filter - show everything", which is
@@ -181,6 +189,9 @@ const $ = (s) => document.querySelector(s);   // shorthand for "find this elemen
 const fmtNum = (v) => v >= 1e6 ? (v / 1e6).toFixed(1) + "M" : v >= 1e3 ? Math.round(v / 1e3) + "K" : String(v);
 const fmtDate = (t) => new Date(t).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
 const monthKey = (t) => new Date(t).toISOString().slice(0, 7);   // -> "2024-08"
+/* The format <input type="date"> reads and writes. UTC, like START and
+   monthKey, so a date put into a picker comes back out as the same day. */
+const ymd = (t) => new Date(t).toISOString().slice(0, 10);       // -> "2024-08-01"
 
 /* THE most-used function in this file.
 
@@ -2024,7 +2035,11 @@ function highlight(text, q) {
    not on a day boundary would set a slider position that rounds back to a
    different date - and the next drag would jump. */
 function setCurrentDate(t) {
-  const days = Math.round((clamp(t, START, state.endDate) - START) / DAY);
+  /* Clamped to the picked window, not to the whole war. That is what makes
+     every other way of moving the timeline - a month link, a click on the
+     trends graph, which still spans everything - respect the filter without
+     each of them having to know about it. */
+  const days = Math.round((clamp(t, rangeLo(), rangeHi()) - START) / DAY);
   state.current = START + days * DAY;
   $("#time-slider").value = days;
   renderAll();
@@ -2829,35 +2844,130 @@ function renderTrendLegend() {
 
 /* ========================= 6. TIMELINE ================================= */
 
-/* Wire up the slider and the play button. The slider value is a number of days
-   since 15 April 2023, which we turn back into a date. Play simply advances
-   that number by 4 days every 120 milliseconds. */
+/* The two ends of the picked window, as dates and as the slider's own unit -
+   whole days since 15 April 2023. Read through these rather than captured in a
+   variable anywhere, because the window moves while the page is open: a play
+   loop or a slider bound that remembered its limit from boot would keep
+   running past a window narrowed afterwards.
+
+   rangeEnd is null until initTimeline() has run, and state.endDate is itself
+   null until the data has loaded, so both fall back to what is known. */
+const rangeLo = () => state.rangeStart;
+const rangeHi = () => state.rangeEnd || state.endDate || START;
+const dayNo = (t) => Math.round((t - START) / DAY);
+
+/* Move either end of the window, keeping end >= start.
+
+   The rule the pickers need is not "reject an end before the start" - that
+   leaves the person looking at a control that ignored them - but "the other
+   end gives way". Drag the start past the end and the end comes with it, and
+   the other way round, so the window is never inside out and never empty.
+   Everything else here follows from that: clamp into the dates we hold, push
+   the pair back into the inputs and their min/max, rebuild the ticks, and
+   re-clamp the current date, which may now be outside the window.
+
+   keep names the end that was just edited, and so the one that must be
+   honoured when the two cross; the other is the one that gives way. Without
+   it the edited end is the one that moves, which looks like the picker
+   ignoring what was typed into it.
+
+   render: false is for the one call made during boot, where the page has not
+   been drawn even once yet and boot() ends with its own renderAll(). */
+function setRange(startT, endT, { render = true, keep = "start" } = {}) {
+  let lo = clamp(startT, START, state.endDate);
+  let hi = clamp(endT, START, state.endDate);
+  if (hi < lo) { if (keep === "end") lo = hi; else hi = lo; }
+  state.rangeStart = START + dayNo(lo) * DAY;
+  state.rangeEnd = START + dayNo(hi) * DAY;
+
+  const s = $("#range-start"), e = $("#range-end");
+  s.value = ymd(state.rangeStart);
+  e.value = ymd(state.rangeEnd);
+  /* min/max only grey out days in the picker's own popup - a typed date walks
+     straight past them - so they are a courtesy on top of the clamping above,
+     never the thing enforcing the constraint. */
+  s.min = ymd(START);        s.max = ymd(state.rangeEnd);
+  e.min = ymd(state.rangeStart); e.max = ymd(state.endDate);
+
+  const slider = $("#time-slider");
+  slider.min = dayNo(state.rangeStart);
+  slider.max = dayNo(state.rangeEnd);
+
+  drawSliderTicks();
+  if (render) setCurrentDate(state.current);   // clamps into the window, redraws
+  else state.current = clamp(state.current, rangeLo(), rangeHi());
+}
+
+/* The labels under the slider. Years once the window is long enough to hold
+   one, the two end dates when it is not, because two year labels pinned to the
+   ends of a short window read as a scale a year wide and labelled wrongly.
+
+   The test is the window's LENGTH, not how many year boundaries it crosses:
+   November to February is three months that happen to straddle New Year, and
+   counting boundaries would label it "2024" ... "2025" - the very thing this
+   is avoiding. */
+function drawSliderTicks() {
+  const ticks = $("#slider-ticks");
+  ticks.innerHTML = "";
+  const y0 = new Date(rangeLo()).getUTCFullYear();
+  const y1 = new Date(rangeHi()).getUTCFullYear();
+  const labels = rangeHi() - rangeLo() >= 365 * DAY
+    ? Array.from({ length: y1 - y0 + 1 }, (_, i) => String(y0 + i))
+    : [fmtDate(rangeLo()), fmtDate(rangeHi())];
+  for (const text of labels) {
+    const span = document.createElement("span");
+    span.textContent = text;
+    ticks.appendChild(span);
+  }
+}
+
+/* Read one picker. Returns null for a cleared or unparseable box, which the
+   caller turns back into the boundary it started from: Date.parse("") is NaN,
+   and NaN reaching setCurrentDate() would flow into monthKey() -> new
+   Date(NaN).toISOString(), which throws and takes every panel down with it. */
+function pickedDate(input) {
+  const t = Date.parse(input.value);
+  return Number.isNaN(t) ? null : t;
+}
+
+/* Wire up the slider, the date pickers and the play button. The slider value is
+   a number of days since 15 April 2023, which we turn back into a date. Play
+   simply advances that number by 4 days every 120 milliseconds, between the
+   ends of the picked window. */
 function initTimeline() {
   const slider = $("#time-slider");
-  const days = Math.round((state.endDate - START) / DAY);
-  slider.max = days;
   slider.addEventListener("input", () => {
     setCurrentDate(START + Number(slider.value) * DAY);
   });
 
-  // year ticks
-  const ticks = $("#slider-ticks");
-  const y0 = 2023, y1 = new Date(state.endDate).getFullYear();
-  for (let y = y0; y <= y1; y++) {
-    const span = document.createElement("span");
-    span.textContent = y;
-    ticks.appendChild(span);
-  }
+  // The window opens on everything we hold, which is how the page behaved
+  // before there was a window at all.
+  const s = $("#range-start"), e = $("#range-end");
+  setRange(START, state.endDate, { render: false });
+
+  /* Changing either end is a move of the timeline by hand, so it stops the
+     story first - the same rule the trends graph follows. */
+  s.addEventListener("change", () => {
+    stopPlaying();
+    setRange(pickedDate(s) ?? START, state.rangeEnd);
+  });
+  e.addEventListener("change", () => {
+    stopPlaying();
+    setRange(state.rangeStart, pickedDate(e) ?? state.endDate, { keep: "end" });
+  });
 
   const play = $("#play-btn");
   play.addEventListener("click", () => {
     if (state.playing) { stopPlaying(); return; }
     state.playing = true;
     play.textContent = "❚❚";
-    if (Number(slider.value) >= days) slider.value = 0;
+    // Play again from the end of the window and it starts at the beginning of
+    // the window, not at the beginning of the war.
+    if (Number(slider.value) >= dayNo(rangeHi())) slider.value = dayNo(rangeLo());
     playTimer = setInterval(() => {
+      const hi = dayNo(rangeHi());
       const v = Number(slider.value) + 4;
-      if (v >= days) { slider.value = days; stopPlaying(); }
+      if (v >= hi) { slider.value = hi; stopPlaying(); }
       else slider.value = v;
       setCurrentDate(START + Number(slider.value) * DAY);
     }, 120);
