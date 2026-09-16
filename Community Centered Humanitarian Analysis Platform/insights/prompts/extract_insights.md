@@ -12,9 +12,39 @@ A **community insight** is a statement about a community's situation, quoted
 - `secondary_analysis` — an analyst's own description of a community's hazards,
   needs or vulnerabilities.
 
-**Most sitreps contain no community voice at all. Returning only
-`secondary_analysis` passages, or a short list, is the correct answer for such a
-document. Do not pad.**
+**Label the voice honestly, whatever the topic.** Widening what you read for does
+not blur these two. A focus-group finding is `community`; a survey statistic in
+the analyst's own prose is `secondary_analysis`, even when both sit in the same
+paragraph about the same people.
+
+## Read the document for all of this
+
+Read for each of the following. **Coverage is opportunistic: a topic the document
+does not cover yields nothing, and that is still the correct answer.** Do not pad
+a thin document to fill these headings — a weekly sitrep that holds two statements
+should return two statements, and most sitreps contain no community voice at all.
+
+| What to look for | Where it goes |
+|---|---|
+| movement numbers | a `movements[]` entry with `value` and `unit` |
+| where people came from, where they are going | `movements[]`, both ends named |
+| why they moved, why they are returning | the movement tag as `subject`, the cause as `driver` |
+| hazards they are exposed to | `hazard` codings |
+| who is vulnerable, and why | the group as `subject`, the cause as `driver` |
+| coping mechanisms adopted | `coping` codings |
+| needs | `need` codings, and `barrier` for what blocks access |
+| any other stated quantity | a `figures[]` entry |
+
+### The role on a coding
+
+Each coding carries a `role`, and this is how a reason is recorded:
+
+- `subject` — what the statement is about. The default; omit it if unsure.
+- `driver` — the cause. A quote coded `movement_pattern:return_movement` as
+  subject and `hazard:armed_conflict` as driver says *why* they are returning.
+- `barrier` — what blocks access. `need:health` as subject with
+  `vulnerability:statelessness_documentation` as barrier says they cannot reach
+  the clinic without papers.
 
 ## The rules that matter
 
@@ -35,6 +65,19 @@ document. Do not pad.**
    Typically: the country the document is about, or the country containing the
    place named in `place_name_as_written`. Note: `Document.country_focus` is
    free text and must not be copied blindly to `iso3`.
+7. **A figure is only ever an attribute of a quoted sentence, and you must copy
+   its span.** Give `figure_as_written` exactly as printed — `"65 percent"`,
+   `"0.7 million"`, `"two-fifths of refugee households (44 percent)"` — alongside
+   the parsed `value` and `unit`. The span is checked against your quote and the
+   figure is discarded if it is not there. If the number is not printed in the
+   passage you are quoting, there is no figure. `unit` is one of `people`,
+   `percent`, `households`; a corridor's `unit` is `people` or `households` only,
+   never a share.
+8. **Name only the ends the text names.** Do not infer an origin or a destination
+   from surrounding context. A corridor with one end stated and the other genuinely
+   absent is recorded with one end; a corridor with neither is not a corridor.
+   Give each end its own `iso3` — on a cross-border movement the two differ, and
+   neither is assumed from the document's country.
 
 ## Codings
 
@@ -61,8 +104,20 @@ Write one JSON file per document to `data_pipeline/mcp_cache/insights/<stem>.jso
       "place_name_as_written": "Afar",
       "iso3": "ETH",
       "codings": [
-        {"dimension": "hazard", "tag": "flooding"},
-        {"dimension": "need", "tag": "health"}
+        {"dimension": "movement_pattern", "tag": "cross_border_arrival", "role": "subject"},
+        {"dimension": "hazard", "tag": "armed_conflict", "role": "driver"},
+        {"dimension": "need", "tag": "health", "role": "subject"}
+      ],
+      "figures": [
+        {"figure_as_written": "65 percent", "value": 65, "unit": "percent",
+         "measures": "highly or extremely vulnerable",
+         "applies_to": "female-headed households"}
+      ],
+      "movements": [
+        {"origin_name_as_written": "Sudan", "origin_iso3": "SDN",
+         "dest_name_as_written": "Egypt", "dest_iso3": "EGY",
+         "flow_type": "cross_border",
+         "value_as_written": "0.7 million", "value": 700000, "unit": "people"}
       ],
       "people_affected": null,
       "severity": 4,

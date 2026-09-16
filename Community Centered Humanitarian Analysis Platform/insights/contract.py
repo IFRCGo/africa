@@ -1,8 +1,19 @@
 """The shape every producer must write, whoever the producer is.
 
 This module is pure - no database access - so a payload can be checked before
-anything is opened. It is the machine-readable half of
-insights/prompts/extract_insights.md; when one changes, so must the other.
+anything is opened. It is one of THREE halves of the same thing, and they move
+together:
+
+  1. this module                            what is accepted
+  2. insights/prompts/extract_insights.md   what is asked for
+  3. insights/extractors/anthropic_api.py   SCHEMA - what CAN be emitted
+
+The third is easy to miss and it is load-bearing. SCHEMA is passed as the
+request's json_schema output format with "additionalProperties": False, so a
+field this module accepts but that schema omits is forbidden rather than
+ignored: the model never emits it, and the run looks healthy while returning
+nothing new. openai_compatible.py asks for a bare json_object and is governed by
+the prompt alone.
 
 An EMPTY insight list is an error, never a quiet success. An LLM or MCP failure
 serialised as [] looks exactly like a document with nothing to say, and treating
