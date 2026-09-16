@@ -578,9 +578,10 @@ def chapter_dashboard(doc):
             "IOM-DTM via HDX"],
            ["IDP by state (admin1)", "One bubble per Sudanese state",
             "Excel workbook (Sudan IDPs.xlsx)"],
-           ["Refugee totals by country", "One bubble per host country, plus camp "
-            "markers that appear from the month they opened",
+           ["Refugee totals by country", "One bubble per host country",
             "UNHCR via HDX + Excel"],
+           ["Settlements and camps", "Camp markers, which appear from the month "
+            "they opened", "UNHCR RRP (curated)"],
            ["Food insecurity (IPC phase)", "Area-level IPC choropleth across six "
             "analysis periods, with famine areas outlined", "IPC"],
            ["Border crossings", "Crossings, highlighted when their corridor is "

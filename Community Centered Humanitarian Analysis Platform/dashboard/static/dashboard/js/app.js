@@ -169,7 +169,8 @@ const state = {
   trend: { series: [], vmax: 1 },
   // Which layers are switched on. These match the checkboxes in index.html.
   showFlows: true, showReturns: true, showEvents: true,
-  showIDP: false, showIDPStates: false, showRefugees: false, showFoodsec: false,
+  showIDP: false, showIDPStates: false, showRefugees: false,
+  showRefugeeCamps: false, showFoodsec: false,
   showCrossings: true, showAOI: false, showHSP: false,
 };
 
@@ -2207,32 +2208,35 @@ function renderIDPStates() {
   setSource("idp-states", { type: "FeatureCollection", features: feats });
 }
 
-/* Two things at once: a big bubble per host country sized by its refugee
-   total (the only level at which a time series exists), and small dots for
-   individual camps, which appear on the map from the month they opened. */
+/* Two layers, switched independently: a big bubble per host country sized by
+   its refugee total (the only level at which a time series exists), and small
+   dots for individual camps, which appear on the map from the month they
+   opened. The camps carry no figure of their own - their size is a curated
+   rank - so the country bubbles are where the magnitude is read. */
 function renderRefugees() {
+  const t = state.current;
   if (!state.showRefugees) {
     setSource("refcountry", empty());
-    setSource("refcamps", empty());
-    return;
+  } else {
+    const cfeats = [];
+    for (const c of state.data.refugee_camps.countries) {
+      if (!countryOn(c.country)) continue;
+      const v = seriesAt(c.series, t);
+      if (!v) continue;
+      const dl = lastDateOnOrBefore(c.series, t);
+      cfeats.push({
+        type: "Feature", geometry: { type: "Point", coordinates: c.anchor },
+        properties: {
+          radius: Math.max(8, Math.min(58, Math.sqrt(v) / 22)),
+          country: c.country, valFull: v.toLocaleString(),
+          dateLabel: dl ? fmtDate(Date.parse(dl)) : "",
+          note: c.note || "",
+        },
+      });
+    }
+    setSource("refcountry", { type: "FeatureCollection", features: cfeats });
   }
-  const t = state.current, cfeats = [];
-  for (const c of state.data.refugee_camps.countries) {
-    if (!countryOn(c.country)) continue;
-    const v = seriesAt(c.series, t);
-    if (!v) continue;
-    const dl = lastDateOnOrBefore(c.series, t);
-    cfeats.push({
-      type: "Feature", geometry: { type: "Point", coordinates: c.anchor },
-      properties: {
-        radius: Math.max(8, Math.min(58, Math.sqrt(v) / 22)),
-        country: c.country, valFull: v.toLocaleString(),
-        dateLabel: dl ? fmtDate(Date.parse(dl)) : "",
-        note: c.note || "",
-      },
-    });
-  }
-  setSource("refcountry", { type: "FeatureCollection", features: cfeats });
+  if (!state.showRefugeeCamps) { setSource("refcamps", empty()); return; }
   const cam = [];
   for (const m of state.data.refugee_camps.camps) {
     if (Date.parse(m.opened + "-01") > t || !countryOn(m.country)) continue;
@@ -3007,6 +3011,7 @@ function initControls() {
   layer("#toggle-idp", "showIDP");
   layer("#toggle-idp-states", "showIDPStates");
   layer("#toggle-refugees", "showRefugees");
+  layer("#toggle-refugee-camps", "showRefugeeCamps");
   layer("#toggle-crossings", "showCrossings");
   layer("#toggle-aoi", "showAOI");
   // Food security is the exception: its file is about 2 MB, so it is only
