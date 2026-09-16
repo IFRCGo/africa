@@ -24,21 +24,38 @@ from insights.forms import InsightFolderForm, InsightPlaceForm, InsightUploadFor
 from insights.intake import catalogue_file, catalogue_folder
 from insights.loader import load
 from insights.models import (
-    DocumentsToInsights, ExtractionJob, Insight, InsightCoding, InsightFolder,
-    InsightUpload,
+    DocumentsToInsights, ExtractionJob, Insight, InsightCoding, InsightFigure,
+    InsightFolder, InsightMovement, InsightUpload,
 )
 
 
 class InsightCodingInline(admin.TabularInline):
     model = InsightCoding
     extra = 1
-    fields = ("dimension", "tag", "tag_raw")
+    fields = ("dimension", "tag", "role", "tag_raw")
     readonly_fields = ("tag_raw",)
+
+
+class InsightFigureInline(admin.TabularInline):
+    model = InsightFigure
+    extra = 0
+    fields = ("figure_as_written", "value", "unit", "measures", "applies_to")
+
+
+class InsightMovementInline(admin.TabularInline):
+    model = InsightMovement
+    extra = 0
+    fields = ("origin_name_as_written", "origin_iso3", "dest_name_as_written",
+              "dest_iso3", "flow_type", "value_as_written", "value", "unit",
+              "origin_match_method", "dest_match_method")
+    # Resolved by the loader from the written name plus that side's iso3. Editing
+    # a match method by hand would claim a placement nothing resolved.
+    readonly_fields = ("origin_match_method", "dest_match_method")
 
 
 @admin.register(Insight)
 class InsightAdmin(admin.ModelAdmin):
-    inlines = [InsightCodingInline]
+    inlines = [InsightCodingInline, InsightFigureInline, InsightMovementInline]
     form = InsightPlaceForm
     list_display = ("opening", "iso3", "place_name_as_written", "voice_type",
                     "themes", "status", "stated_on", "method")

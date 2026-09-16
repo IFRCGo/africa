@@ -231,7 +231,7 @@ def _job_insights(job):
     """This job's statements, grouped the way they are read: by document, by page."""
     return (Insight.objects.filter(job=job)
             .select_related("document")
-            .prefetch_related("codings")
+            .prefetch_related("codings", "figures", "movements")
             .order_by("document__file_name", "page", "id"))
 
 

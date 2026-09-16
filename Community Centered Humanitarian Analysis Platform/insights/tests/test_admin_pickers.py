@@ -63,11 +63,20 @@ class PlacePickerFormTests(TestCase):
             "stated_on": "2026-05-01",
             "method": "manual",
             "status": "pending",
-            # The InsightCoding inline is part of the same form.
+            # All three inlines are part of the same form, and Django rejects the
+            # whole thing if any one's management form is missing.
             "codings-TOTAL_FORMS": "0",
             "codings-INITIAL_FORMS": "0",
             "codings-MIN_NUM_FORMS": "0",
             "codings-MAX_NUM_FORMS": "1000",
+            "figures-TOTAL_FORMS": "0",
+            "figures-INITIAL_FORMS": "0",
+            "figures-MIN_NUM_FORMS": "0",
+            "figures-MAX_NUM_FORMS": "1000",
+            "movements-TOTAL_FORMS": "0",
+            "movements-INITIAL_FORMS": "0",
+            "movements-MIN_NUM_FORMS": "0",
+            "movements-MAX_NUM_FORMS": "1000",
         }
         payload.update(where)
         return self.client.post(reverse("admin:insights_insight_add"), payload, follow=True)
@@ -193,6 +202,10 @@ class PlacePickerEditTests(TestCase):
             "status": "published",
             "country": "SDN", "state": "SD03", "district": "SD03001",
             "codings-TOTAL_FORMS": "0", "codings-INITIAL_FORMS": "0",
+            "figures-TOTAL_FORMS": "0", "figures-INITIAL_FORMS": "0",
+            "figures-MIN_NUM_FORMS": "0", "figures-MAX_NUM_FORMS": "1000",
+            "movements-TOTAL_FORMS": "0", "movements-INITIAL_FORMS": "0",
+            "movements-MIN_NUM_FORMS": "0", "movements-MAX_NUM_FORMS": "1000",
             "codings-MIN_NUM_FORMS": "0", "codings-MAX_NUM_FORMS": "1000",
         }, follow=True)
 
@@ -261,6 +274,10 @@ class ReSaveGuardTests(TestCase):
             "state": form["state"].value() or "",
             "district": form["district"].value() or "",
             "codings-TOTAL_FORMS": "0", "codings-INITIAL_FORMS": "0",
+            "figures-TOTAL_FORMS": "0", "figures-INITIAL_FORMS": "0",
+            "figures-MIN_NUM_FORMS": "0", "figures-MAX_NUM_FORMS": "1000",
+            "movements-TOTAL_FORMS": "0", "movements-INITIAL_FORMS": "0",
+            "movements-MIN_NUM_FORMS": "0", "movements-MAX_NUM_FORMS": "1000",
             "codings-MIN_NUM_FORMS": "0", "codings-MAX_NUM_FORMS": "1000",
         }
         payload.update(overrides)
@@ -366,6 +383,10 @@ class OrphanAreaTests(TestCase):
             "status": "pending",
             "country": "SSD", "state": "SS0001", "district": "",
             "codings-TOTAL_FORMS": "0", "codings-INITIAL_FORMS": "0",
+            "figures-TOTAL_FORMS": "0", "figures-INITIAL_FORMS": "0",
+            "figures-MIN_NUM_FORMS": "0", "figures-MAX_NUM_FORMS": "1000",
+            "movements-TOTAL_FORMS": "0", "movements-INITIAL_FORMS": "0",
+            "movements-MIN_NUM_FORMS": "0", "movements-MAX_NUM_FORMS": "1000",
             "codings-MIN_NUM_FORMS": "0", "codings-MAX_NUM_FORMS": "1000",
         }, follow=True)
 
