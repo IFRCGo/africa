@@ -35,6 +35,7 @@ from django.conf import settings
 from django.db import transaction
 
 from data_track.models import Document, DocumentText
+from insights import document_date
 from insights.models import ExtractionJob
 
 SUFFIXES = {".pdf", ".docx"}
@@ -59,6 +60,21 @@ def relative_path(path, sha1):
         return path.relative_to(Path(settings.SOURCE_ROOT).resolve()).as_posix()
     except ValueError:
         return f"media/{sha1[:12]}-{path.name}"
+
+
+def _pdf_metadata(path):
+    """The PDF's own /CreationDate etc, or {} for a DOCX or an unreadable file.
+
+    Read here rather than in document_date so that module stays testable without
+    a file on disk - it arbitrates between dates, it does not open documents.
+    """
+    if path.suffix.lower() != ".pdf":
+        return {}
+    try:
+        with fitz.open(str(path)) as pdf:
+            return pdf.metadata or {}
+    except Exception:  # noqa: BLE001 - a missing date is not worth failing intake
+        return {}
 
 
 def _pages_of(path):
@@ -101,6 +117,18 @@ def catalogue_file(path, iso3=None, report_date=None):
         report_date = date.fromisoformat(report_date)
 
     pages = _pages_of(path)
+
+    # Nobody supplied a date, so read one out of the document. `date_source`
+    # records which source won, using the vocabulary the pipeline already writes
+    # there. A guess whose sources disagree is NOT written: report_date stays
+    # null and the wizard asks, because a wrong date silently mis-places every
+    # insight in the document on the dashboard timeline. See document_date.py.
+    date_source = "intake"
+    if report_date is None:
+        guess = document_date.infer(path, pages, _pdf_metadata(path))
+        if guess.date is not None and not guess.needs_person:
+            report_date, date_source = guess.date, guess.source
+
     # Atomic because a crash between the Document and its DocumentText rows
     # would strand the document permanently: catalogue_file's own dedup would
     # keep returning that same textless row on every later attempt, and for
@@ -114,7 +142,7 @@ def catalogue_file(path, iso3=None, report_date=None):
             family="insight_source",
             country_focus=iso3,
             report_date=report_date,
-            date_source="intake",
+            date_source=date_source,
             pages=len(pages),
             file_size=path.stat().st_size,
             sha1=digest,
