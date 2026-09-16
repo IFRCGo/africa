@@ -11,6 +11,7 @@ chunk is recorded rather than either dropped silently or left to raise and
 kill the whole document (§3).
 """
 import json
+import urllib.error
 from datetime import date
 from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
@@ -20,7 +21,9 @@ from django.test import SimpleTestCase, override_settings
 from data_track.models import Document
 from insights.extractors import get_extractor, prompt_text
 from insights.extractors.anthropic_api import AnthropicExtractor
-from insights.extractors.openai_compatible import OpenAICompatibleExtractor
+from insights.extractors.openai_compatible import (
+    RETRY_ATTEMPTS, OpenAICompatibleExtractor,
+)
 
 
 class SelectionTests(SimpleTestCase):
@@ -230,3 +233,104 @@ class OpenAICompatibleAdapterTests(SimpleTestCase):
         self.assertEqual(payload["insights"], [])
         self.assertEqual(len(extractor.problems), 1)
         self.assertIn("could not be read", extractor.problems[0])
+
+
+@override_settings(LLM_PROVIDER="openai_compatible", LLM_BASE_URL="http://x/v1", LLM_API_KEY="")
+class OpenAICompatibleRetryTests(SimpleTestCase):
+    """A transient 503 must not cost a whole document.
+
+    The module docstring already names this gap: urllib has no retry layer of
+    its own, so "a transient blip genuinely could be what reaches _post() and
+    propagates". Gemini's free tier returns 503 often enough that on a 43-page
+    document - six chunks, six chances - losing the run to one blip is the
+    normal case rather than the unlucky one.
+
+    What must NOT change: a failure that survives the retries still propagates
+    and still fails the job loudly. A job that ends "loaded" with zero insights
+    looks exactly like a document with nothing to say, and that is the confusion
+    the unguarded call exists to prevent.
+    """
+
+    def _http_error(self, code):
+        return urllib.error.HTTPError(
+            url="http://x/v1/chat/completions", code=code, msg="Service Unavailable",
+            hdrs=None, fp=None)
+
+    def _answer(self):
+        content = json.dumps({"insights": [{"quote": "They said the water is gone."}]})
+        return {"choices": [{"message": {"content": content}}]}
+
+    def test_a_transient_503_is_retried_and_the_chunk_survives(self):
+        extractor = OpenAICompatibleExtractor()
+        attempts = [self._http_error(503), self._http_error(503), self._answer()]
+
+        def flaky(body):
+            outcome = attempts.pop(0)
+            if isinstance(outcome, Exception):
+                raise outcome
+            return outcome
+
+        with patch("insights.extractors.openai_compatible.time.sleep"):
+            with patch.object(OpenAICompatibleExtractor, "_post_once", side_effect=flaky):
+                payload = extractor.extract(_document(), [(1, "Some page text.")])
+
+        self.assertEqual(len(payload["insights"]), 1)
+        self.assertEqual(extractor.problems, [])
+        self.assertEqual(attempts, [])
+
+    def test_a_503_that_never_clears_still_propagates(self):
+        """The design rule survives: an honest failed job beats a false 'loaded'."""
+        extractor = OpenAICompatibleExtractor()
+        with patch("insights.extractors.openai_compatible.time.sleep"):
+            with patch.object(OpenAICompatibleExtractor, "_post_once",
+                              side_effect=self._http_error(503)) as posted:
+                with self.assertRaises(urllib.error.HTTPError):
+                    extractor.extract(_document(), [(1, "Some page text.")])
+        self.assertEqual(extractor.problems, [])
+        self.assertEqual(posted.call_count, RETRY_ATTEMPTS)
+
+    def test_a_429_is_retried_too(self):
+        extractor = OpenAICompatibleExtractor()
+        attempts = [self._http_error(429), self._answer()]
+
+        def flaky(body):
+            outcome = attempts.pop(0)
+            if isinstance(outcome, Exception):
+                raise outcome
+            return outcome
+
+        with patch("insights.extractors.openai_compatible.time.sleep"):
+            with patch.object(OpenAICompatibleExtractor, "_post_once", side_effect=flaky):
+                payload = extractor.extract(_document(), [(1, "Some page text.")])
+        self.assertEqual(len(payload["insights"]), 1)
+
+    def test_a_400_is_not_retried(self):
+        """A bad request is not transient. Retrying it wastes tokens and time
+        and buys nothing - the same request gets the same answer."""
+        extractor = OpenAICompatibleExtractor()
+        with patch("insights.extractors.openai_compatible.time.sleep"):
+            with patch.object(OpenAICompatibleExtractor, "_post_once",
+                              side_effect=self._http_error(400)) as posted:
+                with self.assertRaises(urllib.error.HTTPError):
+                    extractor.extract(_document(), [(1, "Some page text.")])
+        self.assertEqual(posted.call_count, 1)
+
+    def test_a_dead_key_401_is_not_retried(self):
+        extractor = OpenAICompatibleExtractor()
+        with patch("insights.extractors.openai_compatible.time.sleep"):
+            with patch.object(OpenAICompatibleExtractor, "_post_once",
+                              side_effect=self._http_error(401)) as posted:
+                with self.assertRaises(urllib.error.HTTPError):
+                    extractor.extract(_document(), [(1, "Some page text.")])
+        self.assertEqual(posted.call_count, 1)
+
+    def test_a_timeout_is_retried_then_propagates(self):
+        """A dropped connection is the same class of transient as a 503."""
+        extractor = OpenAICompatibleExtractor()
+        with patch("insights.extractors.openai_compatible.time.sleep"):
+            with patch.object(OpenAICompatibleExtractor, "_post_once",
+                              side_effect=TimeoutError("timed out")) as posted:
+                with self.assertRaises(TimeoutError):
+                    extractor.extract(_document(), [(1, "Some page text.")])
+        self.assertEqual(posted.call_count, RETRY_ATTEMPTS)
+        self.assertEqual(extractor.problems, [])
