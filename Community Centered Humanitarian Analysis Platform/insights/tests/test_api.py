@@ -1,7 +1,9 @@
 """Only published rows leave the building."""
 from django.test import TestCase
 
-from insights.models import Insight, InsightCoding
+from insights.models import (
+    Insight, InsightCoding, InsightFigure, InsightMovement,
+)
 from insights.verify import quote_sha1
 
 
@@ -36,7 +38,11 @@ class InsightApiTests(TestCase):
 
     def test_codings_travel_with_the_row(self):
         row = next(r for r in self.get()["results"] if r["quote"].startswith("We have"))
-        self.assertEqual(row["codings"], [{"dimension": "hazard", "tag": "disease_outbreak"}])
+        # Each coding now carries its role; a coding written without one is a
+        # 'subject'. See ComprehensiveFieldTests for what a 'driver' is for.
+        self.assertEqual(
+            row["codings"],
+            [{"dimension": "hazard", "tag": "disease_outbreak", "role": "subject"}])
 
     def test_placement_is_reported_honestly(self):
         row = next(r for r in self.get()["results"] if r["quote"].startswith("We have"))
@@ -96,3 +102,67 @@ class InsightApiTests(TestCase):
         results = [r for r in body["results"] if r["quote"] == "Multiple codes same dimension."]
         self.assertEqual(len(results), 1, "Insight should appear exactly once despite having 2 hazard codings")
         self.assertEqual(body["count"], 2)  # count includes the cholera insight too
+
+
+class ComprehensiveFieldTests(TestCase):
+    """The endpoint is mounted at /api/insights/ - reuse the module's `make`
+    helper, which already fills quote_sha1 and the other defaults."""
+
+    def setUp(self):
+        self.insight = make(
+            "Since the escalation of conflict in Sudan in April 2023, 0.7 million "
+            "Sudanese refugees have been registered in Egypt.",
+            iso3="EGY", stated_on="2026-03-01", voice_type="secondary_analysis")
+        InsightCoding.objects.create(
+            insight=self.insight, dimension="movement_pattern",
+            tag="cross_border_arrival", role="subject")
+        InsightCoding.objects.create(
+            insight=self.insight, dimension="hazard", tag="armed_conflict", role="driver")
+        InsightFigure.objects.create(
+            insight=self.insight, figure_as_written="0.7 million", value=700000.0,
+            unit="people", measures="Sudanese refugees registered in Egypt")
+        InsightMovement.objects.create(
+            insight=self.insight, origin_name_as_written="Sudan", origin_iso3="SDN",
+            dest_name_as_written="Egypt", dest_iso3="EGY", flow_type="cross_border",
+            value_as_written="0.7 million", value=700000, unit="people")
+
+    def get(self, query=""):
+        return self.client.get(f"/api/insights/{query}").json()
+
+    def only_row(self):
+        return [r for r in self.get()["results"] if r["iso3"] == "EGY"][0]
+
+    def test_the_figures_are_served(self):
+        figure = self.only_row()["figures"][0]
+        self.assertEqual(figure["value"], 700000.0)
+        self.assertEqual(figure["unit"], "people")
+        self.assertEqual(figure["as_written"], "0.7 million")
+
+    def test_the_corridor_is_served_with_both_ends(self):
+        movement = self.only_row()["movements"][0]
+        self.assertEqual(movement["origin"]["name"], "Sudan")
+        self.assertEqual(movement["origin"]["iso3"], "SDN")
+        self.assertEqual(movement["destination"]["iso3"], "EGY")
+        self.assertEqual(movement["flow_type"], "cross_border")
+
+    def test_each_coding_carries_its_role(self):
+        roles = {c["tag"]: c["role"] for c in self.only_row()["codings"]}
+        self.assertEqual(roles["armed_conflict"], "driver")
+
+    def test_filtering_by_role_and_tag_finds_the_driver(self):
+        """'What drives cross-border arrival' - the question the role column adds."""
+        self.assertEqual(
+            self.get("?dimension=hazard&tag=armed_conflict&role=driver")["count"], 1)
+
+    def test_a_role_that_matches_no_coding_returns_nothing(self):
+        self.assertEqual(
+            self.get("?dimension=hazard&tag=armed_conflict&role=barrier")["count"], 0)
+
+    def test_filtering_by_flow_type(self):
+        self.assertEqual(self.get("?flow_type=cross_border")["count"], 1)
+        self.assertEqual(self.get("?flow_type=return")["count"], 0)
+
+    def test_a_pending_insight_is_still_never_served(self):
+        self.insight.status = "pending"
+        self.insight.save()
+        self.assertEqual(self.get("?iso3=EGY")["count"], 0)
