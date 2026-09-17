@@ -27,7 +27,8 @@ from pathlib import Path
 from django.conf import settings
 
 from external_data.fetchers import register
-from external_data.fetchers.base import Call, Fetcher, http_get_json, save_payload
+from external_data.fetchers.base import (Call, Fetcher, crisis_floor, http_get_json,
+                                         save_payload)
 from external_data.loaders.seasonal import ISO3_TO_ISO2
 
 BASE = "https://api.ipcinfo.org"
@@ -59,16 +60,6 @@ def period_from_title(title):
     if not match:
         return None
     return date(int(match.group(2)), MONTHS[match.group(1).lower()], 1)
-
-
-def _crisis_floor():
-    """CRISIS_START as a date.
-
-    Defined in settings as a string and in data_pipeline.common as a date; this
-    module has no business importing the pipeline, so it parses the setting.
-    """
-    year, month, day = (int(part) for part in settings.CRISIS_START.split("-"))
-    return date(year, month, day)
 
 
 @register
@@ -103,7 +94,7 @@ class FoodSecurityFetcher(Fetcher):
 
         considered = set(sync.known_ids or [])
         considered |= {s.get("id") for s in (sync.skipped_ids or [])}
-        floor = _crisis_floor()
+        floor = crisis_floor()
 
         for record in analyses:
             analysis_id = str(record.get("id") or "")
