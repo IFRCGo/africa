@@ -165,3 +165,37 @@ class FallbackChainTests(TestCase):
                 (["FL"], ("hydrological", "floods")),
                 (["nat-cli-wil-wil"], ("non_technological", "wildfires"))):
             self.assertEqual(hazards.for_codes(codes), expected, codes)
+
+
+class CodebookBeatsUndrrTests(TestCase):
+    """Five places where the two vocabularies disagree, all found in real data.
+
+    This is the whole reason the mapping is an annotated table rather than a
+    parse of the slug: a parse would silently adopt UNDRR's answer everywhere,
+    and the office asked for the IFRC codebook's.
+    """
+
+    def test_wildfire_is_non_technological_not_climatological(self):
+        self.assertEqual(hazards.for_codes(["nat-cli-wil-wil"])[0], "non_technological")
+
+    def test_extreme_heat_is_climatological_not_meteorological(self):
+        self.assertEqual(hazards.for_codes(["nat-met-ext-hea"])[0], "climatological")
+
+    def test_a_wet_landslide_is_geophysical_not_hydrological(self):
+        """40 Ethiopian IDMC-IDU landslides arrive as nat-hyd-mmw-lan."""
+        self.assertEqual(hazards.for_codes(["nat-hyd-mmw-lan"]),
+                         ("geophysical", "landslide"))
+
+    def test_a_hailstorm_is_hydrological_not_meteorological(self):
+        """14 Ugandan hailstorms arrive as nat-met-sto-hai."""
+        self.assertEqual(hazards.for_codes(["nat-met-sto-hai"]),
+                         ("hydrological", "hailstorm"))
+
+    def test_a_storm_surge_is_hydrological_not_meteorological(self):
+        self.assertEqual(hazards.for_codes(["nat-met-sto-sur"]),
+                         ("hydrological", "storm_surge"))
+
+    def test_the_dry_and_wet_landslides_end_up_in_the_same_place(self):
+        """GH0300/nat-geo-mmd-lan and nat-hyd-mmw-lan are one codebook hazard."""
+        self.assertEqual(hazards.for_codes(["GH0300"]),
+                         hazards.for_codes(["nat-hyd-mmw-lan"]))

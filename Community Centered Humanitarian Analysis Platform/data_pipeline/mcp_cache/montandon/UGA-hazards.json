@@ -1,0 +1,7076 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "pdc-hazard-cbecce64-3df7-4e6c-a352-5d53e1fd816e-533965-1788984532223",
+      "bbox": [
+        33.19342179515258,
+        0.17177804258659432,
+        33.19342179515258,
+        0.17177804258659432
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.19342179515258,
+          0.17177804258659432
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Flood - Lake Victoria, Lake Victoria, Uganda",
+        "datetime": "2026-09-09T02:45:04Z",
+        "end_datetime": "2026-09-10T20:09:07Z",
+        "monty:corr_id": "20260909-UGA-811067-MH0600-1-GCDB",
+        "start_datetime": "2026-09-09T02:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-cbecce64-3df7-4e6c-a352-5d53e1fd816e-533965-1788984532223",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-5cedccd7-a241-4044-a4c7-7d9bdf76442b-533883-1788951926337",
+      "bbox": [
+        32.75171132549704,
+        3.09873079358696,
+        32.75171132549704,
+        3.09873079358696
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.75171132549704,
+          3.09873079358696
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Potential Wildfire - Lamwo and Kitgum, Uganda",
+        "datetime": "2026-09-08T13:00:24Z",
+        "end_datetime": "2026-09-10T11:05:33Z",
+        "monty:corr_id": "20260908-UGA-838065-EN0205-1-GCDB",
+        "start_datetime": "2026-09-08T13:00:24Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "ADVISORY",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-5cedccd7-a241-4044-a4c7-7d9bdf76442b-533883-1788951926337",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-5cedccd7-a241-4044-a4c7-7d9bdf76442b-533883-1788907564404",
+      "bbox": [
+        32.75171132549704,
+        3.09873079358696,
+        32.75171132549704,
+        3.09873079358696
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.75171132549704,
+          3.09873079358696
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Potential Wildfire - Lamwo and Kitgum, Uganda",
+        "datetime": "2026-09-08T13:00:24Z",
+        "end_datetime": "2026-09-10T11:05:33Z",
+        "monty:corr_id": "20260908-UGA-838065-EN0205-1-GCDB",
+        "start_datetime": "2026-09-08T13:00:24Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "ADVISORY",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-5cedccd7-a241-4044-a4c7-7d9bdf76442b-533883-1788907564404",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-2383155e-b2ed-49a3-817b-42a8ad636305-533735-1788953125203",
+      "bbox": [
+        33.66076816736529,
+        3.18261233813917,
+        33.66076816736529,
+        3.18261233813917
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.66076816736529,
+          3.18261233813917
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Potential Wildfire - Kotido and Kitgum, Uganda",
+        "datetime": "2026-09-08T13:00:24Z",
+        "end_datetime": "2026-09-10T11:05:33Z",
+        "monty:corr_id": "20260908-UGA-838069-EN0205-1-GCDB",
+        "start_datetime": "2026-09-08T13:00:24Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "ADVISORY",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-2383155e-b2ed-49a3-817b-42a8ad636305-533735-1788953125203",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-2383155e-b2ed-49a3-817b-42a8ad636305-533735-1788888772034",
+      "bbox": [
+        33.66076816736529,
+        3.18261233813917,
+        33.66076816736529,
+        3.18261233813917
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.66076816736529,
+          3.18261233813917
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Potential Wildfire - Kotido and Kitgum, Uganda",
+        "datetime": "2026-09-08T13:00:24Z",
+        "end_datetime": "2026-09-10T11:05:33Z",
+        "monty:corr_id": "20260908-UGA-838069-EN0205-1-GCDB",
+        "start_datetime": "2026-09-08T13:00:24Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "ADVISORY",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-2383155e-b2ed-49a3-817b-42a8ad636305-533735-1788888772034",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-883b41f7-c3ca-4af7-a6a1-cfe87e775362-530646-1788475525562",
+      "bbox": [
+        33.742806013703195,
+        2.8866406885423297,
+        33.742806013703195,
+        2.8866406885423297
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.742806013703195,
+          2.8866406885423297
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - Labwor, Kotido, Uganda",
+        "datetime": "2026-09-03T22:39:52Z",
+        "end_datetime": "2026-09-04T04:45:32Z",
+        "monty:corr_id": "20260903-UGA-836269-EN0205-1-GCDB",
+        "start_datetime": "2026-09-03T22:39:52Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "ADVISORY",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-883b41f7-c3ca-4af7-a6a1-cfe87e775362-530646-1788475525562",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-819b37dc-62cd-441a-a218-a29eb3715d1a-530590-1788520244047",
+      "bbox": [
+        33.70212857698176,
+        1.01271037003464,
+        33.70212857698176,
+        1.01271037003464
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.70212857698176,
+          1.01271037003464
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - Busiki and Kibuku, Uganda",
+        "datetime": "2026-09-03T21:19:52Z",
+        "end_datetime": "2026-09-04T17:10:53Z",
+        "monty:corr_id": "20260903-UGA-818269-EN0205-1-GCDB",
+        "start_datetime": "2026-09-03T21:19:52Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "ADVISORY",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-819b37dc-62cd-441a-a218-a29eb3715d1a-530590-1788520244047",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-a5fe3f05-f236-477c-a229-0d4da946bbe9-530698-1788519324211",
+      "bbox": [
+        33.91056012078905,
+        2.78955998599635,
+        33.91056012078905,
+        2.78955998599635
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.91056012078905,
+          2.78955998599635
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - Kotido, Uganda",
+        "datetime": "2026-09-03T13:09:52Z",
+        "end_datetime": "2026-09-05T10:55:33Z",
+        "monty:corr_id": "20260903-UGA-834470-EN0205-1-GCDB",
+        "start_datetime": "2026-09-03T13:09:52Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "ADVISORY",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-a5fe3f05-f236-477c-a229-0d4da946bbe9-530698-1788519324211",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-eaafe0a9-6382-494a-9361-bb479f3951e7-530098-1788425693633",
+      "bbox": [
+        32.54851207547708,
+        0.11744008337981,
+        32.54851207547708,
+        0.11744008337981
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.54851207547708,
+          0.11744008337981
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - Wakiso near Lake Victoria, Uganda",
+        "datetime": "2026-09-03T02:41:38Z",
+        "end_datetime": "2026-09-04T08:55:02Z",
+        "monty:corr_id": "20260903-UGA-811063-EN0205-1-GCDB",
+        "start_datetime": "2026-09-03T02:41:38Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WARNING",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-eaafe0a9-6382-494a-9361-bb479f3951e7-530098-1788425693633",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-febecbf5-60ab-4043-975a-98f4e11cbc97-526356-1787973399940",
+      "bbox": [
+        31.708929819636943,
+        -0.22346453037283143,
+        31.708929819636943,
+        -0.22346453037283143
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.708929819636943,
+          -0.22346453037283143
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - Masaka region, Uganda",
+        "datetime": "2026-08-28T13:41:38Z",
+        "end_datetime": "2026-08-29T21:18:21Z",
+        "monty:corr_id": "20260828-UGA-807459-EN0205-1-GCDB",
+        "start_datetime": "2026-08-28T13:41:38Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WARNING",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-febecbf5-60ab-4043-975a-98f4e11cbc97-526356-1787973399940",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-febecbf5-60ab-4043-975a-98f4e11cbc97-526356-1787933740722",
+      "bbox": [
+        31.708929819636943,
+        -0.22346453037283143,
+        31.708929819636943,
+        -0.22346453037283143
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.708929819636943,
+          -0.22346453037283143
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - Masaka region, Uganda",
+        "datetime": "2026-08-28T13:41:38Z",
+        "end_datetime": "2026-08-29T21:18:21Z",
+        "monty:corr_id": "20260828-UGA-807459-EN0205-1-GCDB",
+        "start_datetime": "2026-08-28T13:41:38Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WARNING",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-febecbf5-60ab-4043-975a-98f4e11cbc97-526356-1787933740722",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-48ce2085-d193-4260-9b8f-bb5affa32b8b-526629-1787960087274",
+      "bbox": [
+        33.94165935481768,
+        2.890597556245536,
+        33.94165935481768,
+        2.890597556245536
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.94165935481768,
+          2.890597556245536
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - Kotido, Uganda",
+        "datetime": "2026-08-28T12:41:38Z",
+        "end_datetime": "2026-08-29T23:34:49Z",
+        "monty:corr_id": "20260828-UGA-836270-EN0205-1-GCDB",
+        "start_datetime": "2026-08-28T12:41:38Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "ADVISORY",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-48ce2085-d193-4260-9b8f-bb5affa32b8b-526629-1787960087274",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027465-1",
+      "bbox": [
+        30.0,
+        -1.0,
+        36.0,
+        3.0
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                31,
+                3
+              ],
+              [
+                30,
+                3
+              ],
+              [
+                30,
+                2
+              ],
+              [
+                31,
+                2
+              ],
+              [
+                31,
+                3
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                36,
+                2
+              ],
+              [
+                35,
+                2
+              ],
+              [
+                35,
+                3
+              ],
+              [
+                32,
+                3
+              ],
+              [
+                32,
+                2
+              ],
+              [
+                31,
+                2
+              ],
+              [
+                31,
+                -1
+              ],
+              [
+                32,
+                -1
+              ],
+              [
+                32,
+                0
+              ],
+              [
+                36,
+                0
+              ],
+              [
+                36,
+                2
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Democratic Republic of Congo, Kenya, Tanzania, Uganda",
+        "datetime": "2026-05-21T00:00:00Z",
+        "end_datetime": "2026-08-02T00:00:00Z",
+        "monty:corr_id": "20260521-KEN-821867-MH0401-1-GCDB",
+        "start_datetime": "2026-05-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "KEN",
+          "UGA",
+          "COD",
+          "TZA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027465-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1103869-1",
+      "bbox": [
+        33.8746,
+        0.5751,
+        34.3132,
+        0.8746
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.9823,
+              0.5751
+            ],
+            [
+              34.2766,
+              0.6396
+            ],
+            [
+              34.3132,
+              0.7565
+            ],
+            [
+              33.99,
+              0.8746
+            ],
+            [
+              33.8746,
+              0.6894
+            ],
+            [
+              33.9823,
+              0.5751
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2026-05-03T01:00:00Z",
+        "end_datetime": "2026-05-05T01:00:00Z",
+        "monty:corr_id": "20260503-UGA-816471-MH0600-1-GCDB",
+        "start_datetime": "2026-05-03T01:00:00Z",
+        "monty:hazard_codes": [
+          "MH0600"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1103869-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-04885d5a-713a-4c92-827b-b06b1dc1012c-414268-1775053625446",
+      "bbox": [
+        29.94887351989746,
+        0.5261242389678955,
+        29.94887351989746,
+        0.5261242389678955
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.94887351989746,
+          0.5261242389678955
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Landslide - Ruwenzori, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-04-01T14:15:22Z",
+        "end_datetime": "2026-04-02T02:57:42Z",
+        "monty:corr_id": "20260401-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-04-01T14:15:22Z",
+        "monty:hazard_codes": [
+          "GH0300"
+        ],
+        "monty:country_codes": [
+          "UGA",
+          "COD"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-04885d5a-713a-4c92-827b-b06b1dc1012c-414268-1775053625446",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-acc18270-0d87-4cb9-98c8-8dd3f86c1ee0-409082-1773930332060",
+      "bbox": [
+        29.285465240478516,
+        -0.24596978724002838,
+        29.285465240478516,
+        -0.24596978724002838
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.285465240478516,
+          -0.24596978724002838
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Lubero, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-03-19T02:15:22Z",
+        "end_datetime": "2026-03-20T02:56:07Z",
+        "monty:corr_id": "20260319-COD-807447-GH0300-1-GCDB",
+        "start_datetime": "2026-03-19T02:15:22Z",
+        "monty:hazard_codes": [
+          "GH0300"
+        ],
+        "monty:country_codes": [
+          "COD",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-acc18270-0d87-4cb9-98c8-8dd3f86c1ee0-409082-1773930332060",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-a2736e51-6247-4905-94a9-c4b956c2274b-409077-1773930313544",
+      "bbox": [
+        29.408496856689453,
+        -1.5716354846954346,
+        29.408496856689453,
+        -1.5716354846954346
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.408496856689453,
+          -1.5716354846954346
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Nyabihu, Iburengerazuba, Rwanda",
+        "datetime": "2026-03-19T02:15:22Z",
+        "end_datetime": "2026-03-20T02:55:24Z",
+        "monty:corr_id": "20260319-UGA-GH0300-1-GCDB",
+        "start_datetime": "2026-03-19T02:15:22Z",
+        "monty:hazard_codes": [
+          "GH0300"
+        ],
+        "monty:country_codes": [
+          "UGA",
+          "COD",
+          "RWA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-a2736e51-6247-4905-94a9-c4b956c2274b-409077-1773930313544",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-a2736e51-6247-4905-94a9-c4b956c2274b-409077-1773887117738",
+      "bbox": [
+        29.408496856689453,
+        -1.5716354846954346,
+        29.408496856689453,
+        -1.5716354846954346
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.408496856689453,
+          -1.5716354846954346
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Nyabihu, Iburengerazuba, Rwanda",
+        "datetime": "2026-03-19T02:15:22Z",
+        "end_datetime": "2026-03-20T02:55:24Z",
+        "monty:corr_id": "20260319-UGA-GH0300-1-GCDB",
+        "start_datetime": "2026-03-19T02:15:22Z",
+        "monty:hazard_codes": [
+          "GH0300"
+        ],
+        "monty:country_codes": [
+          "UGA",
+          "COD",
+          "RWA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-a2736e51-6247-4905-94a9-c4b956c2274b-409077-1773887117738",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-e7761628-e07b-4dd5-80f9-42e00c3e92f9-407583-1773584671945",
+      "bbox": [
+        30.29218292236328,
+        0.2470562756061554,
+        30.29218292236328,
+        0.2470562756061554
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.29218292236328,
+          0.2470562756061554
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Landslide - Ruwenzori, Kibale, Kamwenge, Uganda",
+        "datetime": "2026-03-15T14:15:22Z",
+        "end_datetime": "2026-03-16T02:54:53Z",
+        "monty:corr_id": "20260315-COD-811052-GH0300-1-GCDB",
+        "start_datetime": "2026-03-15T14:15:22Z",
+        "monty:hazard_codes": [
+          "GH0300"
+        ],
+        "monty:country_codes": [
+          "COD",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-e7761628-e07b-4dd5-80f9-42e00c3e92f9-407583-1773584671945",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-0235fc75-8e4c-4002-9ae6-ea49fe09da9d-394303-1770216889",
+      "bbox": [
+        29.355323647000034,
+        4.7842182220000495,
+        29.355323647000034,
+        4.7842182220000495
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.355323647000034,
+          4.7842182220000495
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - SW of Maridi, Al Istiwaiyah, Sudan",
+        "datetime": "2026-02-04T14:00:00Z",
+        "end_datetime": "2026-02-06T22:00:00Z",
+        "monty:corr_id": "20260204-SSD-EN0205-1-GCDB",
+        "start_datetime": "2026-02-04T14:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "COD",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "INFORMATION",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-0235fc75-8e4c-4002-9ae6-ea49fe09da9d-394303-1770216889",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-f767b751-f2ed-4391-9e13-725f43e30b37-394152-1770129321",
+      "bbox": [
+        32.13095332100005,
+        5.38524727600003,
+        32.13095332100005,
+        5.38524727600003
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.13095332100005,
+          5.38524727600003
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - NE of Juba, Al Istiwaiyah, Sudan",
+        "datetime": "2026-02-03T14:00:00Z",
+        "end_datetime": "2026-02-05T02:00:00Z",
+        "monty:corr_id": "20260203-SSD-EN0205-1-GCDB",
+        "start_datetime": "2026-02-03T14:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "COD",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "INFORMATION",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-f767b751-f2ed-4391-9e13-725f43e30b37-394152-1770129321",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-b5378a82-ca2f-47c7-aad7-95dd024613a7-393518-1769698231",
+      "bbox": [
+        29.149952160000055,
+        5.784032860000025,
+        29.149952160000055,
+        5.784032860000025
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.149952160000055,
+          5.784032860000025
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - N of Maridi, Al Istiwaiyah, Sudan",
+        "datetime": "2026-01-29T14:00:00Z",
+        "end_datetime": "2026-01-30T22:00:00Z",
+        "monty:corr_id": "20260129-COD-EN0205-1-GCDB",
+        "start_datetime": "2026-01-29T14:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "COD",
+          "SSD",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "INFORMATION",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-b5378a82-ca2f-47c7-aad7-95dd024613a7-393518-1769698231",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-b768e02e-a92c-4f02-b20b-f26599ebb4e3-390912-1768403513",
+      "bbox": [
+        29.844854886000064,
+        5.258899627000062,
+        29.844854886000064,
+        5.258899627000062
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.844854886000064,
+          5.258899627000062
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - NE of Maridi, West Equatoria, South Sudan",
+        "datetime": "2026-01-14T14:00:00Z",
+        "end_datetime": "2026-01-15T22:00:00Z",
+        "monty:corr_id": "20260114-SSD-EN0205-1-GCDB",
+        "start_datetime": "2026-01-14T14:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "COD",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "INFORMATION",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-b768e02e-a92c-4f02-b20b-f26599ebb4e3-390912-1768403513",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-c9a3690f-3b7e-4432-8ef1-271d6168ecc4-390653-1768245159",
+      "bbox": [
+        29.19180383300005,
+        5.617239623000046,
+        29.19180383300005,
+        5.617239623000046
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.19180383300005,
+          5.617239623000046
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - N of Maridi, Al Istiwaiyah, Sudan",
+        "datetime": "2026-01-12T18:00:00Z",
+        "end_datetime": "2026-01-14T02:00:00Z",
+        "monty:corr_id": "20260112-SSD-EN0205-1-GCDB",
+        "start_datetime": "2026-01-12T18:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "UGA",
+          "COD"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "INFORMATION",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-c9a3690f-3b7e-4432-8ef1-271d6168ecc4-390653-1768245159",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027007-3",
+      "bbox": [
+        31.5359444660941,
+        2.1784300000000005,
+        31.71216,
+        2.24318
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.5359444660941,
+              2.21669553390593
+            ],
+            [
+              31.6010626625414,
+              2.20983709741657
+            ],
+            [
+              31.68841,
+              2.1784300000000005
+            ],
+            [
+              31.71216,
+              2.20545
+            ],
+            [
+              31.61419,
+              2.24318
+            ],
+            [
+              31.5359444660941,
+              2.21669553390593
+            ]
+          ],
+          [
+            [
+              31.6311780068227,
+              2.21203298696515
+            ],
+            [
+              31.632313675156,
+              2.21343286654195
+            ],
+            [
+              31.6328791582532,
+              2.21258656128
+            ],
+            [
+              31.6311780068227,
+              2.21203298696515
+            ]
+          ],
+          [
+            [
+              31.6141833069816,
+              2.22786484313347
+            ],
+            [
+              31.6140212671297,
+              2.22789707486402
+            ],
+            [
+              31.6140534988603,
+              2.22805911471594
+            ],
+            [
+              31.6141833069816,
+              2.22786484313347
+            ]
+          ],
+          [
+            [
+              31.682776488673,
+              2.1924935517091306
+            ],
+            [
+              31.677440298288,
+              2.1951664288574806
+            ],
+            [
+              31.6834493976626,
+              2.19797658283817
+            ],
+            [
+              31.682776488673,
+              2.1924935517091306
+            ]
+          ],
+          [
+            [
+              31.6373983862523,
+              2.1968135731492704
+            ],
+            [
+              31.6387069812405,
+              2.2001735723086004
+            ],
+            [
+              31.6384912912118,
+              2.1980707746908505
+            ],
+            [
+              31.6373983862523,
+              2.1968135731492704
+            ]
+          ],
+          [
+            [
+              31.6938919762399,
+              2.2022724117495804
+            ],
+            [
+              31.6938451945035,
+              2.20228171721552
+            ],
+            [
+              31.693931635881,
+              2.2022989114745504
+            ],
+            [
+              31.6938919762399,
+              2.2022724117495804
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Uganda",
+        "datetime": "2026-01-12T00:00:00Z",
+        "end_datetime": "2026-01-18T00:00:00Z",
+        "monty:corr_id": "20260112-UGA-EN0205-3-GCDB",
+        "start_datetime": "2026-01-12T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027007-3",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027007-2",
+      "bbox": [
+        31.5359444660941,
+        2.17822,
+        31.7092893976626,
+        2.24279939766256
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                31.69546,
+                2.17822
+              ],
+              [
+                31.7092893976626,
+                2.1953634171618304
+              ],
+              [
+                31.6834634171618,
+                2.22365939766256
+              ],
+              [
+                31.6161034171618,
+                2.24279939766256
+              ],
+              [
+                31.5943106023374,
+                2.21622341716182
+              ],
+              [
+                31.6273565828382,
+                2.1849106023374403
+              ],
+              [
+                31.69546,
+                2.17822
+              ]
+            ],
+            [
+              [
+                31.682776488673,
+                2.1924935517091306
+              ],
+              [
+                31.677440298288,
+                2.1951664288574806
+              ],
+              [
+                31.6835433942366,
+                2.19844913552688
+              ],
+              [
+                31.682776488673,
+                2.1924935517091306
+              ]
+            ],
+            [
+              [
+                31.6373983862523,
+                2.1968135731492704
+              ],
+              [
+                31.6387069812405,
+                2.2001735723086004
+              ],
+              [
+                31.63839,
+                2.1985800000000006
+              ],
+              [
+                31.6373983862523,
+                2.1968135731492704
+              ]
+            ],
+            [
+              [
+                31.6938919762399,
+                2.2022724117495804
+              ],
+              [
+                31.6938451945035,
+                2.2022817172155205
+              ],
+              [
+                31.693931635881,
+                2.2022989114745504
+              ],
+              [
+                31.6938919762399,
+                2.2022724117495804
+              ]
+            ],
+            [
+              [
+                31.6311780068227,
+                2.21203298696515
+              ],
+              [
+                31.632313675156,
+                2.21343286654195
+              ],
+              [
+                31.6328791582532,
+                2.21258656128
+              ],
+              [
+                31.6311780068227,
+                2.21203298696515
+              ]
+            ],
+            [
+              [
+                31.6141833069816,
+                2.22786484313347
+              ],
+              [
+                31.6140212671297,
+                2.22789707486402
+              ],
+              [
+                31.6140534988603,
+                2.22805911471594
+              ],
+              [
+                31.6141833069816,
+                2.22786484313347
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                31.5387944660941,
+                2.1898044660940705
+              ],
+              [
+                31.6085334171618,
+                2.20189939766256
+              ],
+              [
+                31.5359444660941,
+                2.21669553390593
+              ],
+              [
+                31.5387944660941,
+                2.1898044660940705
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Uganda",
+        "datetime": "2026-01-12T00:00:00Z",
+        "end_datetime": "2026-01-18T00:00:00Z",
+        "monty:corr_id": "20260112-UGA-EN0205-2-GCDB",
+        "start_datetime": "2026-01-12T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027007-2",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027007-1",
+      "bbox": [
+        31.5359444660941,
+        2.17822,
+        31.69546,
+        2.24171553390593
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                31.69546,
+                2.17822
+              ],
+              [
+                31.6938534171618,
+                2.21669939766256
+              ],
+              [
+                31.6106544660941,
+                2.24171553390593
+              ],
+              [
+                31.6182065828382,
+                2.19135060233744
+              ],
+              [
+                31.69546,
+                2.17822
+              ]
+            ],
+            [
+              [
+                31.682776488673,
+                2.1924935517091306
+              ],
+              [
+                31.677440298288,
+                2.1951664288574806
+              ],
+              [
+                31.6835433942366,
+                2.19844913552688
+              ],
+              [
+                31.682776488673,
+                2.1924935517091306
+              ]
+            ],
+            [
+              [
+                31.6373983862523,
+                2.1968135731492704
+              ],
+              [
+                31.6387069812405,
+                2.2001735723086004
+              ],
+              [
+                31.63839,
+                2.1985800000000006
+              ],
+              [
+                31.6373983862523,
+                2.1968135731492704
+              ]
+            ],
+            [
+              [
+                31.6938919762399,
+                2.2022724117495804
+              ],
+              [
+                31.6938451945035,
+                2.2022817172155205
+              ],
+              [
+                31.693931635881,
+                2.2022989114745504
+              ],
+              [
+                31.6938919762399,
+                2.2022724117495804
+              ]
+            ],
+            [
+              [
+                31.6311780068227,
+                2.21203298696515
+              ],
+              [
+                31.632313675156,
+                2.21343286654196
+              ],
+              [
+                31.6328791582532,
+                2.21258656128
+              ],
+              [
+                31.6311780068227,
+                2.21203298696515
+              ]
+            ],
+            [
+              [
+                31.6141833069816,
+                2.22786484313347
+              ],
+              [
+                31.6140212671297,
+                2.22789707486402
+              ],
+              [
+                31.6140534988603,
+                2.22805911471594
+              ],
+              [
+                31.6141833069816,
+                2.22786484313347
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                31.5387944660941,
+                2.1898044660940705
+              ],
+              [
+                31.6085334171618,
+                2.20189939766256
+              ],
+              [
+                31.5359444660941,
+                2.21669553390593
+              ],
+              [
+                31.5387944660941,
+                2.1898044660940705
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Uganda",
+        "datetime": "2026-01-12T00:00:00Z",
+        "end_datetime": "2026-01-18T00:00:00Z",
+        "monty:corr_id": "20260112-UGA-EN0205-1-GCDB",
+        "start_datetime": "2026-01-12T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027007-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1026975-1",
+      "bbox": [
+        31.50713,
+        2.3417400000000006,
+        31.6419855339059,
+        2.47261553390593
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.50713,
+              2.3417400000000006
+            ],
+            [
+              31.6399955339059,
+              2.41960446609407
+            ],
+            [
+              31.6419855339059,
+              2.47261553390593
+            ],
+            [
+              31.5077344660941,
+              2.43901553390593
+            ],
+            [
+              31.50713,
+              2.3417400000000006
+            ]
+          ],
+          [
+            [
+              31.5370172066223,
+              2.3887681314606604
+            ],
+            [
+              31.5337571465306,
+              2.3890253182082204
+            ],
+            [
+              31.5343149564962,
+              2.3898601398171904
+            ],
+            [
+              31.5370172066223,
+              2.3887681314606604
+            ]
+          ],
+          [
+            [
+              31.5282840281547,
+              2.4068325958436207
+            ],
+            [
+              31.5284773439924,
+              2.4078044601889106
+            ],
+            [
+              31.5287459599666,
+              2.4078578912282502
+            ],
+            [
+              31.5282840281547,
+              2.4068325958436207
+            ]
+          ],
+          [
+            [
+              31.5222906023374,
+              2.41465341716183
+            ],
+            [
+              31.5203561065734,
+              2.41482508415705
+            ],
+            [
+              31.5230456852495,
+              2.41578347859931
+            ],
+            [
+              31.5222906023374,
+              2.41465341716183
+            ]
+          ],
+          [
+            [
+              31.5240943147505,
+              2.41675652140069
+            ],
+            [
+              31.5242877058653,
+              2.4170459516575
+            ],
+            [
+              31.5243617134409,
+              2.4169351914934
+            ],
+            [
+              31.5240943147505,
+              2.41675652140069
+            ]
+          ],
+          [
+            [
+              31.5998202442639,
+              2.41840506008546
+            ],
+            [
+              31.5941737428611,
+              2.42577213537775
+            ],
+            [
+              31.6040575620455,
+              2.42072376521619
+            ],
+            [
+              31.5998202442639,
+              2.41840506008546
+            ]
+          ],
+          [
+            [
+              31.6114822526434,
+              2.42805949538185
+            ],
+            [
+              31.6111738114883,
+              2.42961013378163
+            ],
+            [
+              31.6121544660941,
+              2.42906553390593
+            ],
+            [
+              31.6114822526434,
+              2.42805949538185
+            ]
+          ],
+          [
+            [
+              31.6104192320552,
+              2.4400128024403
+            ],
+            [
+              31.6019192827949,
+              2.43580256683768
+            ],
+            [
+              31.6006094386313,
+              2.44663582953525
+            ],
+            [
+              31.6104192320552,
+              2.4400128024403
+            ]
+          ],
+          [
+            [
+              31.6202813010496,
+              2.4408707252328603
+            ],
+            [
+              31.617954855152,
+              2.43942300925508
+            ],
+            [
+              31.6162757846391,
+              2.44090058966879
+            ],
+            [
+              31.6202813010496,
+              2.4408707252328603
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Uganda",
+        "datetime": "2026-01-11T00:00:00Z",
+        "end_datetime": "2026-01-16T00:00:00Z",
+        "monty:corr_id": "20260111-UGA-EN0205-1-GCDB",
+        "start_datetime": "2026-01-11T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1026975-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-55fa729c-455b-47f5-a1e2-6233f2b7daa1-389680-1767799084",
+      "bbox": [
+        31.030548844000066,
+        4.101241504000029,
+        31.030548844000066,
+        4.101241504000029
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.030548844000066,
+          4.101241504000029
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - NE of Yei, Central Equatoria, South Sudan",
+        "datetime": "2026-01-07T14:00:00Z",
+        "end_datetime": "2026-01-11T02:00:00Z",
+        "monty:corr_id": "20260107-SSD-EN0205-1-GCDB",
+        "start_datetime": "2026-01-07T14:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "INFORMATION",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-55fa729c-455b-47f5-a1e2-6233f2b7daa1-389680-1767799084",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-1332e6e9-9d1d-4b4a-8b46-ed2157539f19-389354-1767641185",
+      "bbox": [
+        30.701217704000044,
+        4.720854943000063,
+        30.701217704000044,
+        4.720854943000063
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.701217704000044,
+          4.720854943000063
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - N of Yei, Al Istiwaiyah, Sudan",
+        "datetime": "2026-01-05T18:00:00Z",
+        "end_datetime": "2026-01-07T02:00:00Z",
+        "monty:corr_id": "20260105-SSD-EN0205-1-GCDB",
+        "start_datetime": "2026-01-05T18:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "INFORMATION",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-1332e6e9-9d1d-4b4a-8b46-ed2157539f19-389354-1767641185",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-68be8f12-f756-4f2a-b7e7-712f4fa15a7a-389172-1767538823",
+      "bbox": [
+        31.96405361500007,
+        5.580928787000062,
+        31.96405361500007,
+        5.580928787000062
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.96405361500007,
+          5.580928787000062
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - SE of Bor, Jungoli, South Sudan",
+        "datetime": "2026-01-04T14:00:00Z",
+        "end_datetime": "2026-01-05T22:00:00Z",
+        "monty:corr_id": "20260104-SSD-EN0205-1-GCDB",
+        "start_datetime": "2026-01-04T14:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "INFORMATION",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-68be8f12-f756-4f2a-b7e7-712f4fa15a7a-389172-1767538823",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-0afb7421-7aa4-4817-ab15-bd77e6887893-388991-1767538803",
+      "bbox": [
+        31.163070322000067,
+        4.109075734000044,
+        31.163070322000067,
+        4.109075734000044
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.163070322000067,
+          4.109075734000044
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - E of Yei, Central Equatoria, South Sudan",
+        "datetime": "2026-01-03T14:00:00Z",
+        "end_datetime": "2026-01-05T22:00:00Z",
+        "monty:corr_id": "20260103-SSD-EN0205-1-GCDB",
+        "start_datetime": "2026-01-03T14:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WARNING",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-0afb7421-7aa4-4817-ab15-bd77e6887893-388991-1767538803",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-0afb7421-7aa4-4817-ab15-bd77e6887893-388991-1767452484",
+      "bbox": [
+        31.163070322000067,
+        4.109075734000044,
+        31.163070322000067,
+        4.109075734000044
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.163070322000067,
+          4.109075734000044
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Wildfire - E of Yei, Central Equatoria, South Sudan",
+        "datetime": "2026-01-03T14:00:00Z",
+        "end_datetime": "2026-01-05T22:00:00Z",
+        "monty:corr_id": "20260103-SSD-EN0205-1-GCDB",
+        "start_datetime": "2026-01-03T14:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WARNING",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-0afb7421-7aa4-4817-ab15-bd77e6887893-388991-1767452484",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1026724-5",
+      "bbox": [
+        31.01207,
+        3.7346300000000006,
+        31.1786993976626,
+        3.90963939766256
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.09002,
+              3.7346300000000006
+            ],
+            [
+              31.1786993976626,
+              3.7914965828381804
+            ],
+            [
+              31.0981434171618,
+              3.90963939766256
+            ],
+            [
+              31.0244806023374,
+              3.87751341716183
+            ],
+            [
+              31.01207,
+              3.810270000000001
+            ],
+            [
+              31.09002,
+              3.7346300000000006
+            ]
+          ],
+          [
+            [
+              31.1076417683794,
+              3.761184631536771
+            ],
+            [
+              31.1052844345296,
+              3.7636016278605307
+            ],
+            [
+              31.1069488592602,
+              3.763389446802961
+            ],
+            [
+              31.1076417683794,
+              3.761184631536771
+            ]
+          ],
+          [
+            [
+              31.1063345033057,
+              3.7837357785690306
+            ],
+            [
+              31.0780497434034,
+              3.7817245101843504
+            ],
+            [
+              31.0802504667354,
+              3.7948062865879506
+            ],
+            [
+              31.1063345033057,
+              3.7837357785690306
+            ]
+          ],
+          [
+            [
+              31.1248791441842,
+              3.775817840643991
+            ],
+            [
+              31.1163586877934,
+              3.772789848957761
+            ],
+            [
+              31.1236266046255,
+              3.7777880476679204
+            ],
+            [
+              31.1248791441842,
+              3.775817840643991
+            ]
+          ],
+          [
+            [
+              31.1186334171618,
+              3.7934906023374406
+            ],
+            [
+              31.1160682629776,
+              3.7910944325258407
+            ],
+            [
+              31.1161481914741,
+              3.793223739787591
+            ],
+            [
+              31.1186334171618,
+              3.7934906023374406
+            ]
+          ],
+          [
+            [
+              31.0717614268507,
+              3.790628907882411
+            ],
+            [
+              31.0659792941622,
+              3.788293837847481
+            ],
+            [
+              31.0706588793204,
+              3.7917761641154706
+            ],
+            [
+              31.0717614268507,
+              3.790628907882411
+            ]
+          ],
+          [
+            [
+              31.0628808718547,
+              3.7893802821859506
+            ],
+            [
+              31.062893025855,
+              3.7894413844712505
+            ],
+            [
+              31.0629607058378,
+              3.7893961621525207
+            ],
+            [
+              31.0628808718547,
+              3.7893802821859506
+            ]
+          ],
+          [
+            [
+              31.0636562266554,
+              3.8051051310395305
+            ],
+            [
+              31.0386624139125,
+              3.816241707937881
+            ],
+            [
+              31.0643312718592,
+              3.82460265416858
+            ],
+            [
+              31.0636562266554,
+              3.8051051310395305
+            ]
+          ],
+          [
+            [
+              31.0979110292681,
+              3.7968788863967706
+            ],
+            [
+              31.097155707934,
+              3.8008469026884804
+            ],
+            [
+              31.1017391492653,
+              3.8009696132518305
+            ],
+            [
+              31.0979110292681,
+              3.7968788863967706
+            ]
+          ],
+          [
+            [
+              31.0976858747035,
+              3.83720991908145
+            ],
+            [
+              31.0575554678984,
+              3.85147613051591
+            ],
+            [
+              31.0627444559602,
+              3.8560172071214
+            ],
+            [
+              31.0976858747035,
+              3.83720991908145
+            ]
+          ],
+          [
+            [
+              31.1113452036542,
+              3.8233068885515
+            ],
+            [
+              31.1108742965702,
+              3.82362153860548
+            ],
+            [
+              31.1115791667717,
+              3.82376444410395
+            ],
+            [
+              31.1113452036542,
+              3.8233068885515
+            ]
+          ],
+          [
+            [
+              31.1091145690882,
+              3.83523779247468
+            ],
+            [
+              31.1075300737432,
+              3.83668681659828
+            ],
+            [
+              31.1125637750243,
+              3.8374895231181796
+            ],
+            [
+              31.1091145690882,
+              3.83523779247468
+            ]
+          ],
+          [
+            [
+              31.0889581524468,
+              3.8563799928501004
+            ],
+            [
+              31.087306394039,
+              3.8587815207649094
+            ],
+            [
+              31.0882157588638,
+              3.85924975598182
+            ],
+            [
+              31.0889581524468,
+              3.8563799928501004
+            ]
+          ],
+          [
+            [
+              31.0398106023374,
+              3.83274658283817
+            ],
+            [
+              31.0383452265796,
+              3.83325708000827
+            ],
+            [
+              31.0394394056061,
+              3.83461271482488
+            ],
+            [
+              31.0398106023374,
+              3.83274658283817
+            ]
+          ],
+          [
+            [
+              31.04939276504,
+              3.8366685485083
+            ],
+            [
+              31.0489234577718,
+              3.83676189952803
+            ],
+            [
+              31.0487944660941,
+              3.83711446609407
+            ],
+            [
+              31.04939276504,
+              3.8366685485083
+            ]
+          ],
+          [
+            [
+              31.0480669085821,
+              3.84961442694416
+            ],
+            [
+              31.0474944660941,
+              3.8523644660940706
+            ],
+            [
+              31.0506461724711,
+              3.85097634804244
+            ],
+            [
+              31.0480669085821,
+              3.84961442694416
+            ]
+          ],
+          [
+            [
+              31.1008142958951,
+              3.88851387097536
+            ],
+            [
+              31.1007128685319,
+              3.88902378076395
+            ],
+            [
+              31.1023292332572,
+              3.88902276109677
+            ],
+            [
+              31.1008142958951,
+              3.88851387097536
+            ]
+          ],
+          [
+            [
+              31.1033949433102,
+              3.89221747003581
+            ],
+            [
+              31.1034383346673,
+              3.89243561311909
+            ],
+            [
+              31.1036090593518,
+              3.8925379173376005
+            ],
+            [
+              31.1033949433102,
+              3.89221747003581
+            ]
+          ],
+          [
+            [
+              31.1002685435134,
+              3.90222568188295
+            ],
+            [
+              31.100261707085,
+              3.90222704173311
+            ],
+            [
+              31.1002667667836,
+              3.90223461410717
+            ],
+            [
+              31.1002685435134,
+              3.90222568188295
+            ]
+          ],
+          [
+            [
+              31.1208384594806,
+              3.8105787011520205
+            ],
+            [
+              31.1223805669892,
+              3.817963570455811
+            ],
+            [
+              31.1255550244915,
+              3.8115186428917602
+            ],
+            [
+              31.1208384594806,
+              3.8105787011520205
+            ]
+          ],
+          [
+            [
+              31.1696247505247,
+              3.7955690822848704
+            ],
+            [
+              31.1695728986517,
+              3.7956466840969108
+            ],
+            [
+              31.1696924982618,
+              3.7956704739384906
+            ],
+            [
+              31.1696247505247,
+              3.7955690822848704
+            ]
+          ],
+          [
+            [
+              31.1686927252451,
+              3.805746730445201
+            ],
+            [
+              31.1684121532091,
+              3.8058025396931203
+            ],
+            [
+              31.1686198069487,
+              3.8061133154765305
+            ],
+            [
+              31.1686927252451,
+              3.805746730445201
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Sudan, Uganda",
+        "datetime": "2026-01-01T00:00:00Z",
+        "end_datetime": "2026-01-09T00:00:00Z",
+        "monty:corr_id": "20260101-SDN-EN0205-5-GCDB",
+        "start_datetime": "2026-01-01T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SDN",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1026724-5",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1026724-4",
+      "bbox": [
+        31.01207,
+        3.7346300000000006,
+        31.1786993976626,
+        3.90963939766256
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.09002,
+              3.7346300000000006
+            ],
+            [
+              31.1786993976626,
+              3.7914965828381804
+            ],
+            [
+              31.0981434171618,
+              3.90963939766256
+            ],
+            [
+              31.0244806023374,
+              3.87751341716183
+            ],
+            [
+              31.01207,
+              3.810270000000001
+            ],
+            [
+              31.09002,
+              3.7346300000000006
+            ]
+          ],
+          [
+            [
+              31.1076417683794,
+              3.761184631536771
+            ],
+            [
+              31.1052844345296,
+              3.7636016278605307
+            ],
+            [
+              31.1069488592602,
+              3.763389446802961
+            ],
+            [
+              31.1076417683794,
+              3.761184631536771
+            ]
+          ],
+          [
+            [
+              31.1063345033057,
+              3.7837357785690306
+            ],
+            [
+              31.0780497434034,
+              3.7817245101843504
+            ],
+            [
+              31.0802504667354,
+              3.7948062865879506
+            ],
+            [
+              31.1063345033057,
+              3.7837357785690306
+            ]
+          ],
+          [
+            [
+              31.1248791441842,
+              3.775817840643991
+            ],
+            [
+              31.1185708085844,
+              3.7751151539540104
+            ],
+            [
+              31.1236806023374,
+              3.777516582838171
+            ],
+            [
+              31.1248791441842,
+              3.775817840643991
+            ]
+          ],
+          [
+            [
+              31.117797923642,
+              3.790750381628321
+            ],
+            [
+              31.1161481914741,
+              3.793223739787591
+            ],
+            [
+              31.1189286775654,
+              3.7936878890317005
+            ],
+            [
+              31.117797923642,
+              3.790750381628321
+            ]
+          ],
+          [
+            [
+              31.071125776757,
+              3.7744604823805203
+            ],
+            [
+              31.0694573816629,
+              3.7749076302049103
+            ],
+            [
+              31.0713388885918,
+              3.7760993509667404
+            ],
+            [
+              31.071125776757,
+              3.7744604823805203
+            ]
+          ],
+          [
+            [
+              31.0670796371269,
+              3.7870912937746906
+            ],
+            [
+              31.0659792941622,
+              3.788293837847481
+            ],
+            [
+              31.0706588793204,
+              3.7917761641154706
+            ],
+            [
+              31.0670796371269,
+              3.7870912937746906
+            ]
+          ],
+          [
+            [
+              31.0628808718547,
+              3.7893802821859506
+            ],
+            [
+              31.062893025855,
+              3.7894413844712505
+            ],
+            [
+              31.0629607058378,
+              3.7893961621525207
+            ],
+            [
+              31.0628808718547,
+              3.7893802821859506
+            ]
+          ],
+          [
+            [
+              31.0636562266554,
+              3.8051051310395305
+            ],
+            [
+              31.0386624139125,
+              3.816241707937881
+            ],
+            [
+              31.0643312718592,
+              3.82460265416858
+            ],
+            [
+              31.0636562266554,
+              3.8051051310395305
+            ]
+          ],
+          [
+            [
+              31.0979110292681,
+              3.7968788863967706
+            ],
+            [
+              31.097155707934,
+              3.8008469026884804
+            ],
+            [
+              31.1017391492653,
+              3.8009696132518305
+            ],
+            [
+              31.0979110292681,
+              3.7968788863967706
+            ]
+          ],
+          [
+            [
+              31.0609484757945,
+              3.7973237042762307
+            ],
+            [
+              31.0602385333843,
+              3.7977980726289204
+            ],
+            [
+              31.0607617446218,
+              3.798581113582051
+            ],
+            [
+              31.0609484757945,
+              3.7973237042762307
+            ]
+          ],
+          [
+            [
+              31.0976858747035,
+              3.83720991908145
+            ],
+            [
+              31.0575554678984,
+              3.85147613051591
+            ],
+            [
+              31.0627444559602,
+              3.8560172071214
+            ],
+            [
+              31.0976858747035,
+              3.83720991908145
+            ]
+          ],
+          [
+            [
+              31.1113452036542,
+              3.8233068885515
+            ],
+            [
+              31.1108742965702,
+              3.82362153860548
+            ],
+            [
+              31.1115791667717,
+              3.82376444410395
+            ],
+            [
+              31.1113452036542,
+              3.8233068885515
+            ]
+          ],
+          [
+            [
+              31.1091145690882,
+              3.83523779247468
+            ],
+            [
+              31.1075300737432,
+              3.83668681659828
+            ],
+            [
+              31.1125637750243,
+              3.8374895231181796
+            ],
+            [
+              31.1091145690882,
+              3.83523779247468
+            ]
+          ],
+          [
+            [
+              31.0889581524468,
+              3.8563799928501004
+            ],
+            [
+              31.087306394039,
+              3.8587815207649094
+            ],
+            [
+              31.0882157588638,
+              3.85924975598182
+            ],
+            [
+              31.0889581524468,
+              3.8563799928501004
+            ]
+          ],
+          [
+            [
+              31.0398106023374,
+              3.83274658283817
+            ],
+            [
+              31.0383452265796,
+              3.83325708000827
+            ],
+            [
+              31.0394394056061,
+              3.83461271482488
+            ],
+            [
+              31.0398106023374,
+              3.83274658283817
+            ]
+          ],
+          [
+            [
+              31.04939276504,
+              3.8366685485083
+            ],
+            [
+              31.0489234577718,
+              3.83676189952803
+            ],
+            [
+              31.0494008673776,
+              3.83670928171039
+            ],
+            [
+              31.04939276504,
+              3.8366685485083
+            ]
+          ],
+          [
+            [
+              31.0480669085821,
+              3.84961442694416
+            ],
+            [
+              31.0474944660941,
+              3.8523644660940706
+            ],
+            [
+              31.0506461724711,
+              3.85097634804244
+            ],
+            [
+              31.0480669085821,
+              3.84961442694416
+            ]
+          ],
+          [
+            [
+              31.1023292332572,
+              3.88902276109677
+            ],
+            [
+              31.1007128685319,
+              3.88902378076395
+            ],
+            [
+              31.1025550566898,
+              3.89055252996419
+            ],
+            [
+              31.1023292332572,
+              3.88902276109677
+            ]
+          ],
+          [
+            [
+              31.1033949433102,
+              3.89221747003581
+            ],
+            [
+              31.1034383346673,
+              3.89243561311909
+            ],
+            [
+              31.1036090593518,
+              3.8925379173376005
+            ],
+            [
+              31.1033949433102,
+              3.89221747003581
+            ]
+          ],
+          [
+            [
+              31.1002685435134,
+              3.90222568188295
+            ],
+            [
+              31.100261707085,
+              3.90222704173311
+            ],
+            [
+              31.1002667667836,
+              3.90223461410717
+            ],
+            [
+              31.1002685435134,
+              3.90222568188295
+            ]
+          ],
+          [
+            [
+              31.1255550244915,
+              3.8115186428917602
+            ],
+            [
+              31.1213205384861,
+              3.8164144011157006
+            ],
+            [
+              31.1223805669892,
+              3.817963570455811
+            ],
+            [
+              31.1255550244915,
+              3.8115186428917602
+            ]
+          ],
+          [
+            [
+              31.1696247505247,
+              3.7955690822848704
+            ],
+            [
+              31.1695728986517,
+              3.7956466840969108
+            ],
+            [
+              31.1696924982618,
+              3.7956704739384906
+            ],
+            [
+              31.1696247505247,
+              3.7955690822848704
+            ]
+          ],
+          [
+            [
+              31.1686927252451,
+              3.805746730445201
+            ],
+            [
+              31.1684121532091,
+              3.8058025396931203
+            ],
+            [
+              31.1686198069487,
+              3.8061133154765305
+            ],
+            [
+              31.1686927252451,
+              3.805746730445201
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Sudan, Uganda",
+        "datetime": "2026-01-01T00:00:00Z",
+        "end_datetime": "2026-01-09T00:00:00Z",
+        "monty:corr_id": "20260101-SDN-EN0205-4-GCDB",
+        "start_datetime": "2026-01-01T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SDN",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1026724-4",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1026724-3",
+      "bbox": [
+        31.0244806023374,
+        3.7346300000000006,
+        31.1786993976626,
+        3.90963939766256
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.09002,
+              3.7346300000000006
+            ],
+            [
+              31.1786993976626,
+              3.7914965828381804
+            ],
+            [
+              31.0981434171618,
+              3.90963939766256
+            ],
+            [
+              31.0244806023374,
+              3.87751341716183
+            ],
+            [
+              31.0353565828382,
+              3.7828006023374403
+            ],
+            [
+              31.08179,
+              3.7631100000000006
+            ],
+            [
+              31.0806607437837,
+              3.7998942423559403
+            ],
+            [
+              31.1063345033057,
+              3.7837357785690306
+            ],
+            [
+              31.0892415045405,
+              3.7590905711798603
+            ],
+            [
+              31.0749906023374,
+              3.7582634171618303
+            ],
+            [
+              31.09002,
+              3.7346300000000006
+            ]
+          ],
+          [
+            [
+              31.0971020372639,
+              3.7546179496753003
+            ],
+            [
+              31.0974743969016,
+              3.754866752430881
+            ],
+            [
+              31.0975774543773,
+              3.7547125160188304
+            ],
+            [
+              31.0971020372639,
+              3.7546179496753003
+            ]
+          ],
+          [
+            [
+              31.0984364583799,
+              3.7609117638956207
+            ],
+            [
+              31.0982691387104,
+              3.7611621754772604
+            ],
+            [
+              31.0985621739852,
+              3.761220463817491
+            ],
+            [
+              31.0984364583799,
+              3.7609117638956207
+            ]
+          ],
+          [
+            [
+              31.1076417683794,
+              3.761184631536771
+            ],
+            [
+              31.1052844345296,
+              3.7636016278605307
+            ],
+            [
+              31.1077386482672,
+              3.7616716796228604
+            ],
+            [
+              31.1076417683794,
+              3.761184631536771
+            ]
+          ],
+          [
+            [
+              31.1248791441842,
+              3.775817840643991
+            ],
+            [
+              31.1163586877934,
+              3.772789848957761
+            ],
+            [
+              31.1236266046255,
+              3.7777880476679204
+            ],
+            [
+              31.1248791441842,
+              3.775817840643991
+            ]
+          ],
+          [
+            [
+              31.1181506023374,
+              3.7925234171618305
+            ],
+            [
+              31.1161481914741,
+              3.793223739787591
+            ],
+            [
+              31.1189286775654,
+              3.7936878890317005
+            ],
+            [
+              31.1181506023374,
+              3.7925234171618305
+            ]
+          ],
+          [
+            [
+              31.0979110292681,
+              3.7968788863967706
+            ],
+            [
+              31.097155707934,
+              3.8008469026884804
+            ],
+            [
+              31.1017391492653,
+              3.8009696132518305
+            ],
+            [
+              31.0979110292681,
+              3.7968788863967706
+            ]
+          ],
+          [
+            [
+              31.0717614268507,
+              3.790628907882411
+            ],
+            [
+              31.0659792941622,
+              3.788293837847481
+            ],
+            [
+              31.0706588793204,
+              3.7917761641154706
+            ],
+            [
+              31.0717614268507,
+              3.790628907882411
+            ]
+          ],
+          [
+            [
+              31.0978294030491,
+              3.8381916466389505
+            ],
+            [
+              31.0575554678984,
+              3.85147613051591
+            ],
+            [
+              31.0627444559602,
+              3.8560172071214
+            ],
+            [
+              31.0978294030491,
+              3.8381916466389505
+            ]
+          ],
+          [
+            [
+              31.1113452036542,
+              3.8233068885515
+            ],
+            [
+              31.1108742965702,
+              3.82362153860548
+            ],
+            [
+              31.1115734171618,
+              3.8237606023374395
+            ],
+            [
+              31.1113452036542,
+              3.8233068885515
+            ]
+          ],
+          [
+            [
+              31.1091145690882,
+              3.83523779247468
+            ],
+            [
+              31.1075300737432,
+              3.83668681659828
+            ],
+            [
+              31.1125637750243,
+              3.8374895231181796
+            ],
+            [
+              31.1091145690882,
+              3.83523779247468
+            ]
+          ],
+          [
+            [
+              31.0408126949692,
+              3.8312468452307193
+            ],
+            [
+              31.0383452265796,
+              3.83325708000827
+            ],
+            [
+              31.0394394056061,
+              3.83461271482488
+            ],
+            [
+              31.0408126949692,
+              3.8312468452307193
+            ]
+          ],
+          [
+            [
+              31.04939276504,
+              3.8366685485083
+            ],
+            [
+              31.0489234577718,
+              3.83676189952803
+            ],
+            [
+              31.0487944660941,
+              3.83711446609407
+            ],
+            [
+              31.04939276504,
+              3.8366685485083
+            ]
+          ],
+          [
+            [
+              31.0480669085821,
+              3.84961442694416
+            ],
+            [
+              31.0471499564345,
+              3.85288006123594
+            ],
+            [
+              31.0506461724711,
+              3.85097634804244
+            ],
+            [
+              31.0480669085821,
+              3.84961442694416
+            ]
+          ],
+          [
+            [
+              31.0889581524468,
+              3.8563799928501004
+            ],
+            [
+              31.087306394039,
+              3.8587815207649094
+            ],
+            [
+              31.0882157588638,
+              3.85924975598182
+            ],
+            [
+              31.0889581524468,
+              3.8563799928501004
+            ]
+          ],
+          [
+            [
+              31.1008142958951,
+              3.88851387097536
+            ],
+            [
+              31.1007128685319,
+              3.88902378076395
+            ],
+            [
+              31.1023292332572,
+              3.88902276109677
+            ],
+            [
+              31.1008142958951,
+              3.88851387097536
+            ]
+          ],
+          [
+            [
+              31.1033949433102,
+              3.89221747003581
+            ],
+            [
+              31.1034383346673,
+              3.89243561311909
+            ],
+            [
+              31.1036090593518,
+              3.8925379173376005
+            ],
+            [
+              31.1033949433102,
+              3.89221747003581
+            ]
+          ],
+          [
+            [
+              31.1002685435134,
+              3.90222568188295
+            ],
+            [
+              31.100261707085,
+              3.90222704173311
+            ],
+            [
+              31.1002667667836,
+              3.90223461410717
+            ],
+            [
+              31.1002685435134,
+              3.90222568188295
+            ]
+          ],
+          [
+            [
+              31.1255550244915,
+              3.8115186428917602
+            ],
+            [
+              31.1213205384861,
+              3.8164144011157006
+            ],
+            [
+              31.1223805669892,
+              3.817963570455811
+            ],
+            [
+              31.1255550244915,
+              3.8115186428917602
+            ]
+          ],
+          [
+            [
+              31.1696247505247,
+              3.7955690822848704
+            ],
+            [
+              31.1695728986517,
+              3.7956466840969108
+            ],
+            [
+              31.1696924982618,
+              3.7956704739384906
+            ],
+            [
+              31.1696247505247,
+              3.7955690822848704
+            ]
+          ],
+          [
+            [
+              31.1686927252451,
+              3.805746730445201
+            ],
+            [
+              31.1684121532091,
+              3.8058025396931203
+            ],
+            [
+              31.1686198069487,
+              3.8061133154765305
+            ],
+            [
+              31.1686927252451,
+              3.805746730445201
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Sudan, Uganda",
+        "datetime": "2026-01-01T00:00:00Z",
+        "end_datetime": "2026-01-09T00:00:00Z",
+        "monty:corr_id": "20260101-SDN-EN0205-3-GCDB",
+        "start_datetime": "2026-01-01T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SDN",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1026724-3",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1026724-2",
+      "bbox": [
+        31.0244806023374,
+        3.7346300000000006,
+        31.1786993976626,
+        3.90963939766256
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.09002,
+              3.7346300000000006
+            ],
+            [
+              31.1786993976626,
+              3.7914965828381804
+            ],
+            [
+              31.0981434171618,
+              3.90963939766256
+            ],
+            [
+              31.0244806023374,
+              3.87751341716183
+            ],
+            [
+              31.0326506023374,
+              3.7855065828381704
+            ],
+            [
+              31.06318,
+              3.7665200000000008
+            ],
+            [
+              31.0806607437837,
+              3.7998942423559403
+            ],
+            [
+              31.1063345033057,
+              3.7837357785690306
+            ],
+            [
+              31.09002,
+              3.7346300000000006
+            ]
+          ],
+          [
+            [
+              31.1076417683794,
+              3.761184631536771
+            ],
+            [
+              31.1052844345296,
+              3.7636016278605307
+            ],
+            [
+              31.1077386482672,
+              3.7616716796228604
+            ],
+            [
+              31.1076417683794,
+              3.761184631536771
+            ]
+          ],
+          [
+            [
+              31.1248791441842,
+              3.775817840643991
+            ],
+            [
+              31.1163586877934,
+              3.772789848957761
+            ],
+            [
+              31.1236266046255,
+              3.7777880476679204
+            ],
+            [
+              31.1248791441842,
+              3.775817840643991
+            ]
+          ],
+          [
+            [
+              31.0979110292681,
+              3.7968788863967706
+            ],
+            [
+              31.097155707934,
+              3.8008469026884804
+            ],
+            [
+              31.10154,
+              3.8009300000000006
+            ],
+            [
+              31.0979110292681,
+              3.7968788863967706
+            ]
+          ],
+          [
+            [
+              31.0717614268507,
+              3.790628907882411
+            ],
+            [
+              31.0659792941622,
+              3.788293837847481
+            ],
+            [
+              31.0706588793204,
+              3.7917761641154706
+            ],
+            [
+              31.0717614268507,
+              3.790628907882411
+            ]
+          ],
+          [
+            [
+              31.0978294030491,
+              3.8381916466389505
+            ],
+            [
+              31.0575554678984,
+              3.85147613051591
+            ],
+            [
+              31.0627444559602,
+              3.8560172071214
+            ],
+            [
+              31.0978294030491,
+              3.8381916466389505
+            ]
+          ],
+          [
+            [
+              31.1113452036542,
+              3.8233068885515
+            ],
+            [
+              31.1108742965702,
+              3.82362153860548
+            ],
+            [
+              31.1115734171618,
+              3.8237606023374395
+            ],
+            [
+              31.1113452036542,
+              3.8233068885515
+            ]
+          ],
+          [
+            [
+              31.1091145690882,
+              3.83523779247468
+            ],
+            [
+              31.1075300737432,
+              3.83668681659828
+            ],
+            [
+              31.1125637750243,
+              3.8374895231181796
+            ],
+            [
+              31.1091145690882,
+              3.83523779247468
+            ]
+          ],
+          [
+            [
+              31.0889581524468,
+              3.8563799928501004
+            ],
+            [
+              31.087306394039,
+              3.8587815207649094
+            ],
+            [
+              31.0888284376049,
+              3.8591278866029803
+            ],
+            [
+              31.0889581524468,
+              3.8563799928501004
+            ]
+          ],
+          [
+            [
+              31.0408126949692,
+              3.8312468452307193
+            ],
+            [
+              31.0383452265796,
+              3.83325708000827
+            ],
+            [
+              31.0394394056061,
+              3.83461271482488
+            ],
+            [
+              31.0408126949692,
+              3.8312468452307193
+            ]
+          ],
+          [
+            [
+              31.04939276504,
+              3.8366685485083
+            ],
+            [
+              31.0489234577718,
+              3.83676189952803
+            ],
+            [
+              31.0487944660941,
+              3.83711446609407
+            ],
+            [
+              31.04939276504,
+              3.8366685485083
+            ]
+          ],
+          [
+            [
+              31.0480669085821,
+              3.84961442694416
+            ],
+            [
+              31.0471499564345,
+              3.85288006123594
+            ],
+            [
+              31.0506461724711,
+              3.85097634804244
+            ],
+            [
+              31.0480669085821,
+              3.84961442694416
+            ]
+          ],
+          [
+            [
+              31.1002685435134,
+              3.90222568188295
+            ],
+            [
+              31.100261707085,
+              3.90222704173311
+            ],
+            [
+              31.1002667667836,
+              3.90223461410717
+            ],
+            [
+              31.1002685435134,
+              3.90222568188295
+            ]
+          ],
+          [
+            [
+              31.1255550244915,
+              3.8115186428917602
+            ],
+            [
+              31.1213205384861,
+              3.8164144011157006
+            ],
+            [
+              31.1223805669892,
+              3.817963570455811
+            ],
+            [
+              31.1255550244915,
+              3.8115186428917602
+            ]
+          ],
+          [
+            [
+              31.1696247505247,
+              3.7955690822848704
+            ],
+            [
+              31.1695728986517,
+              3.7956466840969108
+            ],
+            [
+              31.1696924982618,
+              3.7956704739384906
+            ],
+            [
+              31.1696247505247,
+              3.7955690822848704
+            ]
+          ],
+          [
+            [
+              31.1686927252451,
+              3.805746730445201
+            ],
+            [
+              31.1684121532091,
+              3.8058025396931203
+            ],
+            [
+              31.1686198069487,
+              3.8061133154765305
+            ],
+            [
+              31.1686927252451,
+              3.805746730445201
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Sudan, Uganda",
+        "datetime": "2026-01-01T00:00:00Z",
+        "end_datetime": "2026-01-09T00:00:00Z",
+        "monty:corr_id": "20260101-SDN-EN0205-2-GCDB",
+        "start_datetime": "2026-01-01T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SDN",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1026724-2",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1026724-1",
+      "bbox": [
+        31.0244806023374,
+        3.7669006023374405,
+        31.1383193976626,
+        3.90777939766256
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.0650934171618,
+              3.7669006023374405
+            ],
+            [
+              31.1383193976626,
+              3.8123465828381704
+            ],
+            [
+              31.1114834171618,
+              3.90777939766256
+            ],
+            [
+              31.0244806023374,
+              3.87751341716183
+            ],
+            [
+              31.0326506023374,
+              3.7855065828381704
+            ],
+            [
+              31.0650934171618,
+              3.7669006023374405
+            ]
+          ],
+          [
+            [
+              31.0670796371269,
+              3.7870912937746906
+            ],
+            [
+              31.0659792941622,
+              3.7882938378474806
+            ],
+            [
+              31.0706588793204,
+              3.7917761641154706
+            ],
+            [
+              31.0670796371269,
+              3.7870912937746906
+            ]
+          ],
+          [
+            [
+              31.0978294030491,
+              3.8381916466389505
+            ],
+            [
+              31.0575554678984,
+              3.85147613051591
+            ],
+            [
+              31.0627444559602,
+              3.8560172071214
+            ],
+            [
+              31.0978294030491,
+              3.8381916466389505
+            ]
+          ],
+          [
+            [
+              31.1113452036542,
+              3.8233068885515005
+            ],
+            [
+              31.1108742965702,
+              3.8236215386054804
+            ],
+            [
+              31.1115734171618,
+              3.8237606023374404
+            ],
+            [
+              31.1113452036542,
+              3.8233068885515005
+            ]
+          ],
+          [
+            [
+              31.1091145690882,
+              3.8352377924746803
+            ],
+            [
+              31.1076201138597,
+              3.8371394788318005
+            ],
+            [
+              31.1125637750243,
+              3.8374895231181805
+            ],
+            [
+              31.1091145690882,
+              3.8352377924746803
+            ]
+          ],
+          [
+            [
+              31.0889581524468,
+              3.8563799928501004
+            ],
+            [
+              31.087306394039,
+              3.8587815207649103
+            ],
+            [
+              31.0888284376049,
+              3.85912788660298
+            ],
+            [
+              31.0889581524468,
+              3.8563799928501004
+            ]
+          ],
+          [
+            [
+              31.0398106023374,
+              3.832746582838171
+            ],
+            [
+              31.0383452265796,
+              3.8332570800082704
+            ],
+            [
+              31.0394394056061,
+              3.834612714824881
+            ],
+            [
+              31.0398106023374,
+              3.832746582838171
+            ]
+          ],
+          [
+            [
+              31.04939276504,
+              3.8366685485083005
+            ],
+            [
+              31.0489234577718,
+              3.8367618995280304
+            ],
+            [
+              31.0487944660941,
+              3.8371144660940706
+            ],
+            [
+              31.04939276504,
+              3.8366685485083005
+            ]
+          ],
+          [
+            [
+              31.0480669085821,
+              3.84961442694416
+            ],
+            [
+              31.0474944660941,
+              3.85236446609407
+            ],
+            [
+              31.0506461724711,
+              3.85097634804244
+            ],
+            [
+              31.0480669085821,
+              3.84961442694416
+            ]
+          ],
+          [
+            [
+              31.1002685435134,
+              3.90222568188295
+            ],
+            [
+              31.100261707085,
+              3.90222704173311
+            ],
+            [
+              31.1002667667836,
+              3.90223461410717
+            ],
+            [
+              31.1002685435134,
+              3.90222568188295
+            ]
+          ],
+          [
+            [
+              31.1208384594806,
+              3.8105787011520205
+            ],
+            [
+              31.1223805669892,
+              3.8179635704558104
+            ],
+            [
+              31.1255550244915,
+              3.8115186428917602
+            ],
+            [
+              31.1208384594806,
+              3.8105787011520205
+            ]
+          ],
+          [
+            [
+              31.1012606023374,
+              3.8002534171618305
+            ],
+            [
+              31.097155707934,
+              3.800846902688481
+            ],
+            [
+              31.0983888965509,
+              3.8021375978750305
+            ],
+            [
+              31.1012606023374,
+              3.8002534171618305
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Sudan, Uganda",
+        "datetime": "2026-01-01T00:00:00Z",
+        "end_datetime": "2026-01-09T00:00:00Z",
+        "monty:corr_id": "20260101-SDN-EN0205-1-GCDB",
+        "start_datetime": "2026-01-01T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "SDN",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1026724-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1103590-1",
+      "bbox": [
+        34.5635807,
+        1.3516649,
+        34.5635807,
+        1.3516649
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.5635807,
+          1.3516649
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2025-10-29T01:00:00Z",
+        "end_datetime": "2025-10-31T01:00:00Z",
+        "monty:corr_id": "20251029-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2025-10-29T01:00:00Z",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1103590-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-12557274-adca-4f49-8ffe-9dce97067407-366775-1755657213984",
+      "bbox": [
+        34.46597671508789,
+        1.1483627557754517,
+        34.46597671508789,
+        1.1483627557754517
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.46597671508789,
+          1.1483627557754517
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Landslide - Mount Elgon, Sironko, Uganda",
+        "datetime": "2025-08-19T14:34:26.407000Z",
+        "end_datetime": "2025-08-20T15:04:31Z",
+        "monty:corr_id": "20250819-KEN-NAT-GEO-MMD-LAN--1-GCDB",
+        "start_datetime": "2025-08-19T14:34:26.407000Z",
+        "monty:hazard_codes": [
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "KEN",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-geo-mmd-lan",
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-12557274-adca-4f49-8ffe-9dce97067407-366775-1755657213984",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-12557274-adca-4f49-8ffe-9dce97067407-366775-1755614066446",
+      "bbox": [
+        34.46597671508789,
+        1.1483627557754517,
+        34.46597671508789,
+        1.1483627557754517
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.46597671508789,
+          1.1483627557754517
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Landslide - Mount Elgon, Sironko, Uganda",
+        "datetime": "2025-08-19T14:34:26.407000Z",
+        "end_datetime": "2025-08-20T15:04:31Z",
+        "monty:corr_id": "20250819-KEN-NAT-GEO-MMD-LAN--1-GCDB",
+        "start_datetime": "2025-08-19T14:34:26.407000Z",
+        "monty:hazard_codes": [
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "KEN",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-geo-mmd-lan",
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-12557274-adca-4f49-8ffe-9dce97067407-366775-1755614066446",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-0bb79b58-961b-47e7-ac60-e707ecbedd26-366762-1755657348591",
+      "bbox": [
+        29.810401916503906,
+        -1.437346339225769,
+        29.810401916503906,
+        -1.437346339225769
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.810401916503906,
+          -1.437346339225769
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Byumba, Amajyaruguru, Rwanda",
+        "datetime": "2025-08-19T14:31:23.509000Z",
+        "end_datetime": "2025-08-20T15:07:31Z",
+        "monty:corr_id": "20250819-COD-NAT-GEO-MMD-LAN--1-GCDB",
+        "start_datetime": "2025-08-19T14:31:23.509000Z",
+        "monty:hazard_codes": [
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "COD",
+          "RWA",
+          "TZA",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-geo-mmd-lan",
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-0bb79b58-961b-47e7-ac60-e707ecbedd26-366762-1755657348591",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-0bb79b58-961b-47e7-ac60-e707ecbedd26-366762-1755613883513",
+      "bbox": [
+        29.810401916503906,
+        -1.437346339225769,
+        29.810401916503906,
+        -1.437346339225769
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.810401916503906,
+          -1.437346339225769
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Byumba, Amajyaruguru, Rwanda",
+        "datetime": "2025-08-19T14:31:23.509000Z",
+        "end_datetime": "2025-08-20T15:07:31Z",
+        "monty:corr_id": "20250819-RWA-NAT-GEO-MMD-LAN--1-GCDB",
+        "start_datetime": "2025-08-19T14:31:23.509000Z",
+        "monty:hazard_codes": [
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "RWA",
+          "COD",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-geo-mmd-lan",
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-0bb79b58-961b-47e7-ac60-e707ecbedd26-366762-1755613883513",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-5a3248d2-302f-4f65-924d-89a6824b2de7-362445-1754448200188",
+      "bbox": [
+        34.54304122924805,
+        1.1750903129577637,
+        34.54304122924805,
+        1.1750903129577637
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.54304122924805,
+          1.1750903129577637
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Landslide - Mount Elgon, E of Sironko, Uganda",
+        "datetime": "2025-08-05T14:37:31.520000Z",
+        "end_datetime": "2025-08-06T15:14:07Z",
+        "monty:corr_id": "20250805-KEN-NAT-GEO-MMD-LAN--1-GCDB",
+        "start_datetime": "2025-08-05T14:37:31.520000Z",
+        "monty:hazard_codes": [
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "KEN",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-geo-mmd-lan",
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-5a3248d2-302f-4f65-924d-89a6824b2de7-362445-1754448200188",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1103026-1",
+      "bbox": [
+        31.2503211,
+        2.1569066,
+        31.528729,
+        2.7642666
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.2503211,
+              2.4470893
+            ],
+            [
+              31.3056758,
+              2.1569066
+            ],
+            [
+              31.528729,
+              2.4827935
+            ],
+            [
+              31.4315905,
+              2.7642666
+            ],
+            [
+              31.2503211,
+              2.4470893
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2024-11-25T01:00:00Z",
+        "end_datetime": "2024-11-29T01:00:00+00:00",
+        "monty:corr_id": "20241125-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-11-25T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1103026-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102972-1",
+      "bbox": [
+        34.1698717,
+        1.1292294,
+        34.5269108,
+        1.2912419
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34.1698717,
+              1.1601857
+            ],
+            [
+              34.5269108,
+              1.1292294
+            ],
+            [
+              34.2443379,
+              1.2912419
+            ],
+            [
+              34.1698717,
+              1.1601857
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2024-10-17T01:00:00Z",
+        "end_datetime": "2024-10-19T01:00:00+00:00",
+        "monty:corr_id": "20241017-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-10-17T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102972-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102882-1",
+      "bbox": [
+        29.925386754954957,
+        0.2713093000000002,
+        30.015476845045043,
+        0.3163543450450451
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              29.925386754954957,
+              0.2713093000000002
+            ],
+            [
+              30.015476845045043,
+              0.2713093000000002
+            ],
+            [
+              29.9704318,
+              0.3163543450450451
+            ],
+            [
+              29.925386754954957,
+              0.2713093000000002
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2024-09-06T01:00:00Z",
+        "end_datetime": "2024-09-09T01:00:00+00:00",
+        "monty:corr_id": "20240906-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-09-06T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102882-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102858-1",
+      "bbox": [
+        29.9130475,
+        0.439069,
+        30.1861072,
+        0.8854416
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              29.9130475,
+              0.439069
+            ],
+            [
+              30.0707642,
+              0.5338663
+            ],
+            [
+              30.1861072,
+              0.8854416
+            ],
+            [
+              29.9893568,
+              0.8465419
+            ],
+            [
+              29.9130475,
+              0.439069
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2024-08-25T01:00:00Z",
+        "end_datetime": "2024-08-27T01:00:00+00:00",
+        "monty:corr_id": "20240825-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-08-25T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102858-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102789-1",
+      "bbox": [
+        34.2807486,
+        2.1259778,
+        34.9549347,
+        3.1103733
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34.2807486,
+              2.9131115
+            ],
+            [
+              34.3631749,
+              2.7344482
+            ],
+            [
+              34.8062499,
+              2.1259778
+            ],
+            [
+              34.9549347,
+              2.4694052
+            ],
+            [
+              34.7621503,
+              2.8209361
+            ],
+            [
+              34.5589447,
+              3.1103733
+            ],
+            [
+              34.2807486,
+              2.9131115
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2024-07-24T01:00:00Z",
+        "end_datetime": "2024-08-11T01:00:00+00:00",
+        "monty:corr_id": "20240724-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-07-24T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102789-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102767-1",
+      "bbox": [
+        33.217570054954955,
+        1.0060706000000001,
+        33.30766014504504,
+        1.051115645045045
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.217570054954955,
+              1.0060706000000001
+            ],
+            [
+              33.30766014504504,
+              1.0060706000000001
+            ],
+            [
+              33.2626151,
+              1.051115645045045
+            ],
+            [
+              33.217570054954955,
+              1.0060706000000001
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2024-07-12T01:00:00Z",
+        "end_datetime": "2024-07-14T01:00:00+00:00",
+        "monty:corr_id": "20240712-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-07-12T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102767-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102601-1",
+      "bbox": [
+        30.019244754954958,
+        0.30310170000000114,
+        30.169398045045043,
+        0.5599688450450452
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                30.079307954954956,
+                0.5149238000000003
+              ],
+              [
+                30.169398045045043,
+                0.5149238000000003
+              ],
+              [
+                30.124353,
+                0.5599688450450452
+              ],
+              [
+                30.079307954954956,
+                0.5149238000000003
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                30.019244754954958,
+                0.30310170000000114
+              ],
+              [
+                30.109334845045044,
+                0.30310170000000114
+              ],
+              [
+                30.0642898,
+                0.348146745045046
+              ],
+              [
+                30.019244754954958,
+                0.30310170000000114
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2024-05-01T01:00:00Z",
+        "end_datetime": "2024-05-12T01:00:00+00:00",
+        "monty:corr_id": "20240501-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-05-01T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102601-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102558-1",
+      "bbox": [
+        33.9601428,
+        0.9150475,
+        33.9603411,
+        0.9151473
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.9601428,
+              0.9150793
+            ],
+            [
+              33.9603411,
+              0.9150475
+            ],
+            [
+              33.9602971,
+              0.9151473
+            ],
+            [
+              33.9601428,
+              0.9150793
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2024-04-01T01:00:00Z",
+        "end_datetime": "2024-04-03T01:00:00+00:00",
+        "monty:corr_id": "20240401-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-04-01T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102558-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102393-1",
+      "bbox": [
+        30.026291954954957,
+        0.6776654000000002,
+        30.116382045045043,
+        0.7227104450450449
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              30.026291954954957,
+              0.6776654000000002
+            ],
+            [
+              30.116382045045043,
+              0.6776654000000002
+            ],
+            [
+              30.071337,
+              0.7227104450450449
+            ],
+            [
+              30.026291954954957,
+              0.6776654000000002
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2023-12-09T01:00:00Z",
+        "end_datetime": "2023-12-11T01:00:00+00:00",
+        "monty:corr_id": "20231209-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-12-09T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102393-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102322-1",
+      "bbox": [
+        31.750780354954955,
+        3.7502813,
+        31.84087044504504,
+        3.795326345045045
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.750780354954955,
+              3.7502813
+            ],
+            [
+              31.84087044504504,
+              3.7502813
+            ],
+            [
+              31.7958254,
+              3.795326345045045
+            ],
+            [
+              31.750780354954955,
+              3.7502813
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2023-11-02T01:00:00Z",
+        "end_datetime": "2023-11-13T01:00:00+00:00",
+        "monty:corr_id": "20231102-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-11-02T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102322-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102222-1",
+      "bbox": [
+        34.2982796,
+        0.7551704,
+        34.4783999,
+        0.9610858
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34.2982796,
+              0.7551704
+            ],
+            [
+              34.4143423,
+              0.80787
+            ],
+            [
+              34.4783999,
+              0.9333268
+            ],
+            [
+              34.3075133,
+              0.9610858
+            ],
+            [
+              34.2982796,
+              0.7551704
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2023-09-12T01:00:00Z",
+        "end_datetime": "2023-09-21T01:00:00+00:00",
+        "monty:corr_id": "20230912-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-09-12T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102222-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1016544-1",
+      "bbox": [
+        30.0,
+        0.0,
+        34.0,
+        3.0
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34,
+              3
+            ],
+            [
+              33,
+              3
+            ],
+            [
+              33,
+              2
+            ],
+            [
+              30,
+              2
+            ],
+            [
+              30,
+              1
+            ],
+            [
+              33,
+              1
+            ],
+            [
+              33,
+              0
+            ],
+            [
+              34,
+              0
+            ],
+            [
+              34,
+              3
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Uganda",
+        "datetime": "2023-07-21T00:00:00Z",
+        "end_datetime": "2023-12-04T00:00:00+00:00",
+        "monty:corr_id": "20230721-UGA-NAT-CLI-DRO-DRO-1-GCDB",
+        "start_datetime": "2023-07-21T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0035"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-cli-dro-dro",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.75
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1016544-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102088-1",
+      "bbox": [
+        33.19033525495496,
+        0.44070720000000013,
+        33.280425345045046,
+        0.4857522450450449
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              33.19033525495496,
+              0.44070720000000013
+            ],
+            [
+              33.280425345045046,
+              0.44070720000000013
+            ],
+            [
+              33.2353803,
+              0.4857522450450449
+            ],
+            [
+              33.19033525495496,
+              0.44070720000000013
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2023-06-21T01:00:00Z",
+        "end_datetime": "2023-06-23T01:00:00+00:00",
+        "monty:corr_id": "20230621-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-06-21T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102088-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102029-1",
+      "bbox": [
+        34.2261302,
+        1.1318738,
+        34.5159477,
+        1.5274181
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              34.2261302,
+              1.4786293
+            ],
+            [
+              34.2554233,
+              1.2520227
+            ],
+            [
+              34.5159477,
+              1.1318738
+            ],
+            [
+              34.3053504,
+              1.3409206
+            ],
+            [
+              34.4310323,
+              1.5274181
+            ],
+            [
+              34.2261302,
+              1.4786293
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2023-05-25T01:00:00Z",
+        "end_datetime": "2023-05-29T01:00:00+00:00",
+        "monty:corr_id": "20230525-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-05-25T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102029-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1101996-1",
+      "bbox": [
+        31.8708065,
+        -0.1529499,
+        32.4261959,
+        0.4086503
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              32.2333716,
+              -0.1529499
+            ],
+            [
+              32.4261959,
+              0.286324
+            ],
+            [
+              32.2536134,
+              0.4086503
+            ],
+            [
+              32.1858085,
+              0.0980448
+            ],
+            [
+              31.8708065,
+              0.008539
+            ],
+            [
+              32.2333716,
+              -0.1529499
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2023-05-10T01:00:00Z",
+        "end_datetime": "2023-05-12T01:00:00+00:00",
+        "monty:corr_id": "20230510-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-05-10T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1101996-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1101966-1",
+      "bbox": [
+        29.78273295495497,
+        -0.6472219999999935,
+        34.215648445045034,
+        1.1143571450450458
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                34.125558354954954,
+                1.0693120999999994
+              ],
+              [
+                34.215648445045034,
+                1.0693120999999994
+              ],
+              [
+                34.170603400000005,
+                1.1143571450450458
+              ],
+              [
+                34.125558354954954,
+                1.0693120999999994
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                30.054954954954976,
+                0.4166670000000011
+              ],
+              [
+                30.14504504504506,
+                0.4166670000000011
+              ],
+              [
+                30.100000000000012,
+                0.4617120450450476
+              ],
+              [
+                30.054954954954976,
+                0.4166670000000011
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                29.970510954954975,
+                0.12138900000000778
+              ],
+              [
+                30.060601045045058,
+                0.12138900000000778
+              ],
+              [
+                30.01555600000001,
+                0.1664340450450542
+              ],
+              [
+                29.970510954954975,
+                0.12138900000000778
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                29.78273295495497,
+                -0.6472219999999935
+              ],
+              [
+                29.872823045045052,
+                -0.6472219999999935
+              ],
+              [
+                29.82777800000002,
+                -0.602176954954947
+              ],
+              [
+                29.78273295495497,
+                -0.6472219999999935
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Uganda",
+        "datetime": "2023-04-24T01:00:00Z",
+        "end_datetime": "2023-04-26T01:00:00+00:00",
+        "monty:corr_id": "20230424-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-04-24T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1101966-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -410,6 +410,21 @@
     "nat-geo-mmd-lan": {
       "category": "geophysical",
       "sub": "landslide"
+    },
+    "nat-hyd-mmw-lan": {
+      "category": "geophysical",
+      "sub": "landslide",
+      "note": "Wet mass movement / landslide. UNDRR files it under hydrological (nat-hyd); the IFRC codebook names Landslide/debris flows under Geophysical hazards. The codebook wins, and this is the same landslide as GH0300 / nat-geo-mmd-lan, which is the dry one."
+    },
+    "nat-met-sto-hai": {
+      "category": "hydrological",
+      "sub": "hailstorm",
+      "note": "Hailstorm. UNDRR files it under meteorological storms; the IFRC codebook names Hailstorms under Hydrological hazards. The codebook wins."
+    },
+    "nat-met-sto-sur": {
+      "category": "hydrological",
+      "sub": "storm_surge",
+      "note": "Storm surge. UNDRR files it under meteorological storms; the IFRC codebook names Storm surge under Hydrological hazards. The codebook wins."
     }
   },
   "glide_codes": {
@@ -453,6 +468,10 @@
     "EP": {
       "category": "biological",
       "sub": "epidemic_pandemic"
+    },
+    "SS": {
+      "category": "hydrological",
+      "sub": "storm_surge"
     }
   }
 }
