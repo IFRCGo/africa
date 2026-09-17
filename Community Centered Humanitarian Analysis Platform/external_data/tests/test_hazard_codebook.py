@@ -75,8 +75,10 @@ class MappingTests(TestCase):
         keys = {c["key"] for c in hazards.categories()}
         subs = {s["key"] for c in hazards.categories() for s in c["sub_hazards"]}
         book = hazards.codebook()
-        for table in ("hip_codes", "tags"):
+        for table in ("hip_codes", "slug_codes", "glide_codes", "tags"):
             for name, entry in book[table].items():
+                if name == "_comment":
+                    continue
                 self.assertIn(entry["category"], keys, f"{table}/{name}")
                 self.assertIn(entry["sub"], subs, f"{table}/{name}")
 
@@ -109,3 +111,57 @@ class DetectionTests(TestCase):
         """Only GDACS produces the problem, so only GDACS has a rule."""
         self.assertFalse(hazards.is_detection("pdc", "WATCH", 0))
         self.assertFalse(hazards.is_detection("idmc-idu", None, 0))
+
+
+class FallbackChainTests(TestCase):
+    """Montandon sends whichever vocabulary it has, and it is not always the same.
+
+    The design keyed on the HIP code because the slug is absent on ~38% of
+    items. The first live Sudan pull showed the mirror case and cost 133 of 813
+    events: 125 IDMC-IDU floods carried only nat-hyd-flo-flo and six GDACS
+    floods carried only "FL".
+    """
+
+    def test_the_hip_code_still_wins_when_all_three_are_present(self):
+        """Where the vocabularies disagree the codebook's answer must win, and
+        the HIP code is the one carrying it."""
+        self.assertEqual(hazards.for_codes(["EN0205", "WF", "nat-cli-wil-wil"]),
+                         ("non_technological", "wildfires"))
+
+    def test_the_slug_is_used_when_no_hip_code_is_present(self):
+        self.assertEqual(hazards.for_codes(["nat-hyd-flo-flo"]),
+                         ("hydrological", "floods"))
+
+    def test_the_glide_code_is_used_when_nothing_else_is_present(self):
+        self.assertEqual(hazards.for_codes(["FL"]), ("hydrological", "floods"))
+
+    def test_the_slug_beats_the_glide_code(self):
+        self.assertEqual(hazards.for_codes(["nat-cli-wil-wil", "WF"]),
+                         ("non_technological", "wildfires"))
+
+    def test_the_shared_storm_slug_resolves_to_an_unspecified_storm(self):
+        """MH0103 and MH0301 share nat-met-sto-sto. With no HIP code the
+        category is known and the member is not, and saying so beats guessing."""
+        self.assertEqual(hazards.for_codes(["nat-met-sto-sto"]),
+                         ("meteorological", "storm"))
+        # ...but with the HIP code present, the member IS known.
+        self.assertEqual(hazards.for_codes(["MH0301", "VW", "nat-met-sto-sto"]),
+                         ("meteorological", "violent_wind"))
+
+    def test_nothing_recognisable_is_still_uncategorised(self):
+        self.assertEqual(hazards.for_codes(["ZZ9999", "XX"]),
+                         ("uncategorised", "uncategorised"))
+        self.assertEqual(hazards.for_codes([]), ("uncategorised", "uncategorised"))
+
+    def test_the_codes_the_first_live_pull_turned_up_are_all_mapped(self):
+        """MH0012, EN0013 and MH0035 were not in the 500-row sample the design
+        was written from. An uncategorised row is a prompt to extend the file,
+        and this is that prompt answered."""
+        for codes, expected in (
+                (["MH0012", "nat-hyd-flo-flo"], ("hydrological", "floods")),
+                (["EN0013"], ("non_technological", "wildfires")),
+                (["MH0035"], ("climatological", "drought")),
+                (["nat-hyd-flo-flo"], ("hydrological", "floods")),
+                (["FL"], ("hydrological", "floods")),
+                (["nat-cli-wil-wil"], ("non_technological", "wildfires"))):
+            self.assertEqual(hazards.for_codes(codes), expected, codes)

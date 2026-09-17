@@ -28,9 +28,10 @@ class SourceSyncIdentityTests(TestCase):
         row.high_water_date = date(2025, 12, 31)
         row.save()
 
-        self.assertEqual(SourceSync.objects.count(), 1)
+        # Scoped: migration 0015 seeds eight montandon rows.
+        self.assertEqual(SourceSync.objects.filter(source="hdx").count(), 1)
         self.assertEqual(
-            SourceSync.objects.get().high_water_date, date(2025, 12, 31)
+            SourceSync.objects.get(source="hdx").high_water_date, date(2025, 12, 31)
         )
 
     def test_duplicate_identity_is_refused(self):
@@ -50,7 +51,7 @@ class SourceSyncIdentityTests(TestCase):
         SourceSync.objects.create(
             source="hdx", dataset="idps", iso3="SDN", variant="admin2-overview"
         )
-        self.assertEqual(SourceSync.objects.count(), 2)
+        self.assertEqual(SourceSync.objects.filter(source="hdx").count(), 2)
 
     def test_null_iso3_still_collides(self):
         """A global pull has no country. Two NULLs must not slip past the constraint."""

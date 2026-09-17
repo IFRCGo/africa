@@ -32,7 +32,8 @@ class RegistrationTests(TestCase):
                    CRISIS_START="2023-04-15")
 class CallShapeTests(TestCase):
     def setUp(self):
-        self.sync = SourceSync.objects.create(
+        # update_or_create, not create: migration 0015 already seeds this row.
+        self.sync, _ = SourceSync.objects.update_or_create(
             source="montandon", dataset="hazard_events", iso3="SDN", variant="")
         self.calls = list(fetcher_for("montandon", "hazard_events", "")().plan(self.sync))
 
@@ -101,16 +102,16 @@ class WindowNeverNarrowsTests(TestCase):
     def test_a_watermark_does_not_shorten_the_window(self):
         """The office asked for the whole window on every pull, so the
         inherited 90-day-lookback behaviour is deliberately switched off."""
-        sync = SourceSync.objects.create(
+        sync, _ = SourceSync.objects.update_or_create(
             source="montandon", dataset="hazard_events", iso3="TCD", variant="",
-            high_water_date=date(2026, 8, 1))
+            defaults={"high_water_date": date(2026, 8, 1)})
         calls = list(fetcher_for("montandon", "hazard_events", "")().plan(sync))
         for call in calls:
             self.assertFalse(call.narrowed)
             self.assertTrue(call.body["datetime"].startswith("2023-04-15"))
 
     def test_since_returns_none_so_an_empty_answer_stays_a_fault(self):
-        sync = SourceSync.objects.create(
+        sync, _ = SourceSync.objects.update_or_create(
             source="montandon", dataset="hazard_events", iso3="EGY", variant="",
-            high_water_date=date(2026, 8, 1))
+            defaults={"high_water_date": date(2026, 8, 1)})
         self.assertIsNone(fetcher_for("montandon", "hazard_events", "")().since(sync))

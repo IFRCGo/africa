@@ -27,7 +27,7 @@ def payload(name):
 class EventLoaderTests(TestCase):
     def setUp(self):
         self.loader = LOADERS["montandon_events"]()
-        SourceSync.objects.create(source="montandon", dataset="hazard_events",
+        SourceSync.objects.update_or_create(source="montandon", dataset="hazard_events",
                                   iso3="SDN", variant="")
 
     def load_sdn(self):
@@ -85,7 +85,7 @@ class EventLoaderTests(TestCase):
         """The wildfire carries ["ETH", "SDN"]. Loading Ethiopia after Sudan
         must ADD a row, not rewrite Sudan's - iso3 is in the natural key."""
         self.load_sdn()
-        SourceSync.objects.create(source="montandon", dataset="hazard_events",
+        SourceSync.objects.update_or_create(source="montandon", dataset="hazard_events",
                                   iso3="ETH", variant="")
         load(self.loader, payload("montandon_events_sdn.json"), "ETH",
              context={"iso3": "ETH"})
@@ -95,7 +95,7 @@ class EventLoaderTests(TestCase):
 
     def test_only_items_naming_this_country_are_loaded_for_it(self):
         """The flood is SDN-only; an Ethiopia pull must not pick it up."""
-        SourceSync.objects.create(source="montandon", dataset="hazard_events",
+        SourceSync.objects.update_or_create(source="montandon", dataset="hazard_events",
                                   iso3="ETH", variant="")
         load(self.loader, payload("montandon_events_sdn.json"), "ETH",
              context={"iso3": "ETH"})
@@ -127,7 +127,7 @@ class PointResolutionTests(TestCase):
 
     def setUp(self):
         self.loader = LOADERS["montandon_events"]()
-        SourceSync.objects.create(source="montandon", dataset="hazard_events",
+        SourceSync.objects.update_or_create(source="montandon", dataset="hazard_events",
                                   iso3="SDN", variant="")
         source = BoundarySource.objects.create(path="test/fixture.shp")
         # A state and a locality inside it, both containing the Tawila point.
@@ -171,7 +171,7 @@ class SeverityAndImpactTests(TestCase):
     """
 
     def setUp(self):
-        SourceSync.objects.create(source="montandon", dataset="hazard_events",
+        SourceSync.objects.update_or_create(source="montandon", dataset="hazard_events",
                                   iso3="SDN", variant="")
         load(LOADERS["montandon_events"](), payload("montandon_events_sdn.json"),
              "SDN", context={"iso3": "SDN"})

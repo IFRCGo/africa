@@ -166,3 +166,66 @@ class DryRunTests(TestCase):
             call_command("refresh_external", "fewsnet", "seasonal_calendar",
                          "--iso3", "TCD", "--dry-run")
         self.assertEqual(SeasonalCalendar.objects.count(), 0)
+
+
+def _montandon_payload(name):
+    return json.loads((FIXTURES / name).read_text(encoding="utf-8"))
+
+
+class MontandonEndToEndTests(TestCase):
+    """One press: three calls, three payloads saved, rows in two tables.
+
+    The three Calls are consumed by the runner's plain serial for-loop, which is
+    what makes the order safe - severity applies onto events that must already
+    exist, and significance needs impacts to have landed after that.
+    """
+
+    @override_settings(IFRC_API_TOKEN="TESTTOKEN")
+    def test_refresh_external_montandon_loads_events_severity_and_impacts(self):
+        from external_data.models import HazardEvent, HazardImpact
+        SourceSync.objects.update_or_create(
+            source="montandon", dataset="hazard_events", iso3="SDN", variant="")
+        pages = [_montandon_payload("montandon_events_sdn.json"),
+                 _montandon_payload("montandon_hazards_sdn.json"),
+                 _montandon_payload("montandon_impacts_sdn.json")]
+        with patch("external_data.fetchers.base.http_post_json", side_effect=pages) as post:
+            call_command("refresh_external", "montandon", "hazard_events",
+                         "--iso3", "SDN")
+
+        self.assertEqual(post.call_count, 3)
+        self.assertEqual(HazardEvent.objects.count(), 3)
+        self.assertEqual(HazardImpact.objects.count(), 2)
+        self.assertEqual(
+            HazardEvent.objects.get(event_id="gdacs-event-1027729").severity_label,
+            "Green")
+        self.assertEqual(
+            HazardEvent.objects.get(event_id="gdacs-event-1027729").significance,
+            "detection")
+
+    @override_settings(IFRC_API_TOKEN="TESTTOKEN")
+    def test_the_three_raw_payloads_are_saved_before_they_are_loaded(self):
+        """Saved before parsed, on purpose: a payload that breaks a loader is
+        then still on disk to look at."""
+        SourceSync.objects.update_or_create(
+            source="montandon", dataset="hazard_events", iso3="SDN", variant="")
+        pages = [_montandon_payload("montandon_events_sdn.json"),
+                 _montandon_payload("montandon_hazards_sdn.json"),
+                 _montandon_payload("montandon_impacts_sdn.json")]
+        with patch("external_data.fetchers.base.http_post_json", side_effect=pages):
+            call_command("refresh_external", "montandon", "hazard_events",
+                         "--iso3", "SDN")
+        cache = Path(settings.MCP_CACHE_DIR) / "montandon"
+        for kind in ("events", "hazards", "impacts"):
+            path = cache / f"SDN-{kind}.json"
+            self.addCleanup(path.unlink, True)
+            self.assertTrue(path.is_file(), path)
+
+    @override_settings(IFRC_API_TOKEN="")
+    def test_without_the_token_the_command_refuses_before_calling_anything(self):
+        SourceSync.objects.update_or_create(
+            source="montandon", dataset="hazard_events", iso3="SDN", variant="")
+        with patch("external_data.fetchers.base.http_post_json") as post:
+            with self.assertRaises(CommandError):
+                call_command("refresh_external", "montandon", "hazard_events",
+                             "--iso3", "SDN")
+        post.assert_not_called()

@@ -89,9 +89,11 @@ class StaleSelectionTests(TestCase):
 
     def test_rows_pulled_today_are_not_stale(self):
         from mcp.views import stale_rows
-        SourceSync.objects.create(source="fewsnet", dataset="seasonal_calendar",
-                                  iso3="TCD", last_pulled_at=timezone.now())
-        self.assertEqual(list(stale_rows()), [])
+        row = SourceSync.objects.create(source="fewsnet", dataset="seasonal_calendar",
+                                        iso3="TCD", last_pulled_at=timezone.now())
+        # The row under test, not the whole list: migration 0015 seeds eight
+        # montandon rows which have never been pulled and so are rightly stale.
+        self.assertNotIn(row.pk, [r.pk for r in stale_rows()])
 
     def test_a_row_never_pulled_is_stale(self):
         from mcp.views import stale_rows
@@ -109,13 +111,13 @@ class StaleSelectionTests(TestCase):
     def test_file_based_rows_are_never_stale(self):
         """They have no API. Offering to refresh them is offering nothing."""
         from mcp.views import stale_rows
-        SourceSync.objects.create(source="excel", dataset="idps", iso3="SDN",
-                                  variant="sudan-idps-workbook")
-        self.assertEqual(list(stale_rows()), [])
+        row = SourceSync.objects.create(source="excel", dataset="idps", iso3="SDN",
+                                        variant="sudan-idps-workbook")
+        self.assertNotIn(row.pk, [r.pk for r in stale_rows()])
 
     def test_rows_missing_their_key_are_not_stale(self):
         from django.test import override_settings
         from mcp.views import stale_rows
-        SourceSync.objects.create(source="ipc", dataset="food_security", iso3="SDN")
+        row = SourceSync.objects.create(source="ipc", dataset="food_security", iso3="SDN")
         with override_settings(IPC_API_KEY=""):
-            self.assertEqual(list(stale_rows()), [])
+            self.assertNotIn(row.pk, [r.pk for r in stale_rows()])

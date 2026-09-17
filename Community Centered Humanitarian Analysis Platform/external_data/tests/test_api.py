@@ -109,8 +109,12 @@ class SyncApiTests(TestCase):
             notes="NO IPC analysis since May 2021 - real absence in the source.",
         )
         data = self.client.get("/api/sync/").json()
-        self.assertEqual(data["count"], 1)
-        self.assertIn("May 2021", data["results"][0]["notes"])
+        # Picked out by source rather than counted: migration 0015 seeds eight
+        # montandon rows, and this test is about what `notes` carries rather
+        # than about how many rows the table happens to hold.
+        ipc = [r for r in data["results"] if r["source"] == "ipc"]
+        self.assertEqual(len(ipc), 1)
+        self.assertIn("May 2021", ipc[0]["notes"])
 
 
 class ApiIndexTests(TestCase):

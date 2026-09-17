@@ -25,6 +25,11 @@ from django.conf import settings
 # ("nat-cli-wil-wil"), in no fixed order, and the slug is missing about 38% of
 # the time - so this pattern, not a position, is how the code is found.
 _HIP = re.compile(r"^[A-Z]{2}\d{4}$")
+# The UNDRR-ISC slug, the second choice: nat-hyd-flo-flo, tec-ind-che-che.
+_SLUG = re.compile(r"^[a-z]{3}(-[a-z]{3}){3}$")
+# The GLIDE code, the last: FL, WF, EQ. Two capitals and nothing else, which is
+# why it is tested last - it would otherwise match nothing else anyway.
+_GLIDE = re.compile(r"^[A-Z]{2}$")
 
 UNCATEGORISED = ("uncategorised", "uncategorised")
 
@@ -60,6 +65,53 @@ def for_tag(tag):
 def hip_from_codes(codes):
     """The HIP code out of Montandon's mixed list, or None."""
     return next((c for c in (codes or []) if _HIP.match(c)), None)
+
+
+def slug_from_codes(codes):
+    """The UNDRR-ISC slug out of the list, or None."""
+    return next((c for c in (codes or []) if _SLUG.match(c)), None)
+
+
+def glide_from_codes(codes):
+    """The GLIDE code out of the list, or None."""
+    return next((c for c in (codes or []) if _GLIDE.match(c)), None)
+
+
+def for_codes(codes):
+    """(category, sub) for Montandon's whole mixed list. THE ONE TO CALL.
+
+    THREE VOCABULARIES, TRIED IN ORDER OF PRECISION, because Montandon sends
+    whichever it has and that is not always the same one:
+
+        HIP    EN0205           authoritative, and the only one that tells
+                                MH0103 (thunderstorm) from MH0301 (violent wind)
+        slug   nat-hyd-flo-flo  present on ~62% of items; cannot separate those two
+        GLIDE  FL               coarsest, and sometimes the only thing there is
+
+    The design keyed on the HIP code because the slug is absent on about 38% of
+    items. The first live Sudan pull showed the mirror case and cost 133 events:
+    125 IDMC-IDU floods carried ONLY nat-hyd-flo-flo, and six GDACS floods
+    carried only "FL". Preferring the HIP code stays right - where the
+    vocabularies disagree, as on wildfire and extreme heat, it is the one that
+    matches the codebook. Giving up when it was absent was the bug.
+    """
+    codes = codes or []
+    hip = hip_from_codes(codes)
+    if hip:
+        entry = codebook()["hip_codes"].get(hip)
+        if entry:
+            return entry["category"], entry["sub"]
+    slug = slug_from_codes(codes)
+    if slug:
+        entry = codebook()["slug_codes"].get(slug)
+        if entry:
+            return entry["category"], entry["sub"]
+    glide = glide_from_codes(codes)
+    if glide:
+        entry = codebook()["glide_codes"].get(glide)
+        if entry:
+            return entry["category"], entry["sub"]
+    return UNCATEGORISED
 
 
 @functools.lru_cache(maxsize=None)

@@ -30,6 +30,9 @@ class ExternalStatusTests(TestCase):
         out = StringIO()
         call_command("external_status", "--json", stdout=out)
         rows = json.loads(out.getvalue())
+        # The two this test created. Migration 0015 seeds eight montandon rows,
+        # which external_status rightly also reports.
+        rows = [r for r in rows if r["source"] in ("hdx", "ipc")]
         self.assertEqual(len(rows), 2)
         by_key = {(r["source"], r["iso3"]): r for r in rows}
         self.assertEqual(by_key[("hdx", "SDN")]["high_water_date"], "2025-12-31")

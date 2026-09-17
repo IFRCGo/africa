@@ -1,11 +1,13 @@
 {
   "_comment": "IFRC hazard codebook (2021) used as a CLUSTERING METHOD, not a list to render. Categories and definitions are the codebook's; membership comes from the data. hip_codes is keyed on the UNDRR-ISC HIP code and NOT on the nat-*-*-* slug: the slug is absent on ~38% of Montandon items, MH0103 and MH0301 share one, and where it is present it disagrees with the codebook twice - wildfire (UNDRR climatological, codebook non-technological) and extreme heat (UNDRR meteorological, codebook climatological). Definitions are the codebook's defining sentence, quoted exactly; the full paragraphs are on pages 7-9 of https://www.ifrc.org/sites/default/files/2021-06/04-HAZARD-DEFINITIONS-HR.pdf",
-
   "detection_rules": {
     "_comment": "A 'detection' is a machine observation with no evidence of consequence. Only GDACS is configured, because only GDACS produces the problem: 385 of the first 500 region-wide events are its satellite fire detections, Green with zero people potentially affected. PDC and IDMC-IDU have no rule, so everything they publish is an 'event'.",
-    "gdacs": { "no_alert_severity_labels": ["Green"] }
+    "gdacs": {
+      "no_alert_severity_labels": [
+        "Green"
+      ]
+    }
   },
-
   "categories": [
     {
       "key": "climatological",
@@ -13,14 +15,30 @@
       "in_codebook": true,
       "definition": "Hazards arising from long-lived, meso- to macro-scale atmospheric processes, from intra-seasonal to multi-decadal climate variability.",
       "sub_hazards": [
-        { "key": "drought", "label": "Drought", "source": "codebook",
-          "definition": "A long-lasting event triggered by a lack of precipitation." },
-        { "key": "extreme_heat", "label": "Extreme heat / heat wave", "source": "codebook",
-          "definition": "A period during which the daily maximum temperature exceeds for more than five consecutive days the maximum normal temperature by 5 degrees Celsius." },
-        { "key": "extreme_cold", "label": "Extreme cold / cold wave", "source": "codebook",
-          "definition": "Marked cooling of the air, or the invasion of very cold air, over a large area." },
-        { "key": "extreme_heat_drought", "label": "Extreme heat / drought (reported)", "source": "documents",
-          "definition": "Document reporting of drought, extreme heat or water scarcity. One tag spanning two codebook hazards; splitting it would mean re-parsing the corpus." }
+        {
+          "key": "drought",
+          "label": "Drought",
+          "source": "codebook",
+          "definition": "A long-lasting event triggered by a lack of precipitation."
+        },
+        {
+          "key": "extreme_heat",
+          "label": "Extreme heat / heat wave",
+          "source": "codebook",
+          "definition": "A period during which the daily maximum temperature exceeds for more than five consecutive days the maximum normal temperature by 5 degrees Celsius."
+        },
+        {
+          "key": "extreme_cold",
+          "label": "Extreme cold / cold wave",
+          "source": "codebook",
+          "definition": "Marked cooling of the air, or the invasion of very cold air, over a large area."
+        },
+        {
+          "key": "extreme_heat_drought",
+          "label": "Extreme heat / drought (reported)",
+          "source": "documents",
+          "definition": "Document reporting of drought, extreme heat or water scarcity. One tag spanning two codebook hazards; splitting it would mean re-parsing the corpus."
+        }
       ]
     },
     {
@@ -29,12 +47,24 @@
       "in_codebook": true,
       "definition": "Hazards of organic origin or conveyed by biological vectors, including exposure to pathogenic micro-organisms, toxins and bioactive substances.",
       "sub_hazards": [
-        { "key": "biological_emergency", "label": "Biological emergency", "source": "codebook",
-          "definition": "A biological emergency can occur when there is a major epidemic outbreak of diseases, plant or animal contagion, insect or other animal plagues and infestations." },
-        { "key": "epidemic_pandemic", "label": "Major epidemic and potential pandemic diseases", "source": "codebook",
-          "definition": "Either an unusual increase in the number of cases of an infectious disease that already exists in the region or population concerned, or the appearance of an infection disease previously absent from a region." },
-        { "key": "disease_outbreak", "label": "Disease outbreak (reported)", "source": "documents",
-          "definition": "Document reporting of cholera, measles, dengue, malaria, hepatitis or another epidemic." }
+        {
+          "key": "biological_emergency",
+          "label": "Biological emergency",
+          "source": "codebook",
+          "definition": "A biological emergency can occur when there is a major epidemic outbreak of diseases, plant or animal contagion, insect or other animal plagues and infestations."
+        },
+        {
+          "key": "epidemic_pandemic",
+          "label": "Major epidemic and potential pandemic diseases",
+          "source": "codebook",
+          "definition": "Either an unusual increase in the number of cases of an infectious disease that already exists in the region or population concerned, or the appearance of an infection disease previously absent from a region."
+        },
+        {
+          "key": "disease_outbreak",
+          "label": "Disease outbreak (reported)",
+          "source": "documents",
+          "definition": "Document reporting of cholera, measles, dengue, malaria, hepatitis or another epidemic."
+        }
       ]
     },
     {
@@ -43,14 +73,30 @@
       "in_codebook": true,
       "definition": "Hazards originating from internal earth processes.",
       "sub_hazards": [
-        { "key": "earthquake", "label": "Earthquake", "source": "codebook",
-          "definition": "A term used to describe both sudden slip on a fault, and the resulting ground shaking and radiated seismic energy caused by the slip, or by volcanic or magmatic activity, or other sudden stress changes in the earth." },
-        { "key": "landslide", "label": "Landslide / debris flow", "source": "codebook",
-          "definition": "Movement of surface material down a slope." },
-        { "key": "tsunami", "label": "Tsunami", "source": "codebook",
-          "definition": "A sea wave of local or distant origin that results from large-scale seafloor displacements associated with strong earthquakes, major submarine slides, or exploding volcanic islands." },
-        { "key": "volcanic_eruption", "label": "Volcanic eruption", "source": "codebook",
-          "definition": "The discharge (aerially explosive) of fragmentary ejecta, lava and gases from a volcanic vent." }
+        {
+          "key": "earthquake",
+          "label": "Earthquake",
+          "source": "codebook",
+          "definition": "A term used to describe both sudden slip on a fault, and the resulting ground shaking and radiated seismic energy caused by the slip, or by volcanic or magmatic activity, or other sudden stress changes in the earth."
+        },
+        {
+          "key": "landslide",
+          "label": "Landslide / debris flow",
+          "source": "codebook",
+          "definition": "Movement of surface material down a slope."
+        },
+        {
+          "key": "tsunami",
+          "label": "Tsunami",
+          "source": "codebook",
+          "definition": "A sea wave of local or distant origin that results from large-scale seafloor displacements associated with strong earthquakes, major submarine slides, or exploding volcanic islands."
+        },
+        {
+          "key": "volcanic_eruption",
+          "label": "Volcanic eruption",
+          "source": "codebook",
+          "definition": "The discharge (aerially explosive) of fragmentary ejecta, lava and gases from a volcanic vent."
+        }
       ]
     },
     {
@@ -59,12 +105,30 @@
       "in_codebook": true,
       "definition": "Hazards caused by short-lived, micro- to meso-scale extreme weather and atmospheric conditions that last from minutes to days.",
       "sub_hazards": [
-        { "key": "tropical_cyclone", "label": "Tropical cyclone", "source": "codebook",
-          "definition": "An atmospheric closed low pressure circulation system rotating counter-clockwise in the Northern Hemisphere and clockwise in the Southern Hemisphere." },
-        { "key": "thunderstorm", "label": "Thunderstorm / lightning", "source": "observed",
-          "definition": "Convective storm with thunder and lightning. Not named in the codebook; placed here by the Meteorological definition above." },
-        { "key": "violent_wind", "label": "Storm (violent wind)", "source": "observed",
-          "definition": "Wind- and pressure-related convective storm, including dust and sand storms. Not named in the codebook; placed here by the Meteorological definition above." }
+        {
+          "key": "tropical_cyclone",
+          "label": "Tropical cyclone",
+          "source": "codebook",
+          "definition": "An atmospheric closed low pressure circulation system rotating counter-clockwise in the Northern Hemisphere and clockwise in the Southern Hemisphere."
+        },
+        {
+          "key": "thunderstorm",
+          "label": "Thunderstorm / lightning",
+          "source": "observed",
+          "definition": "Convective storm with thunder and lightning. Not named in the codebook; placed here by the Meteorological definition above."
+        },
+        {
+          "key": "violent_wind",
+          "label": "Storm (violent wind)",
+          "source": "observed",
+          "definition": "Wind- and pressure-related convective storm, including dust and sand storms. Not named in the codebook; placed here by the Meteorological definition above."
+        },
+        {
+          "key": "storm",
+          "label": "Storm (unspecified)",
+          "source": "observed",
+          "definition": "A convective storm whose exact member is not recorded. Reached only through the nat-met-sto-sto slug, which MH0103 (thunderstorm) and MH0301 (violent wind) share - so when the HIP code is missing, the category is known and the member is not."
+        }
       ]
     },
     {
@@ -73,14 +137,30 @@
       "in_codebook": true,
       "definition": "Hazards caused by the occurrence, movement and distribution of surface and subsurface freshwater and saltwater.",
       "sub_hazards": [
-        { "key": "floods", "label": "Floods", "source": "codebook",
-          "definition": "The overflowing of the normal confines of a stream or other body of water, or the accumulation of water over areas that are not normally submerged. This includes: river/fluvial floods." },
-        { "key": "storm_surge", "label": "Storm surge", "source": "codebook",
-          "definition": "The temporary increase, at a particular locality, in the height of the sea due to extreme meteorological conditions." },
-        { "key": "hailstorm", "label": "Hailstorms", "source": "codebook",
-          "definition": "Storms that produce hail that reaches the ground are known as hailstorms." },
-        { "key": "flooding", "label": "Flooding (reported)", "source": "documents",
-          "definition": "Document reporting of flood, heavy rain or inundation." }
+        {
+          "key": "floods",
+          "label": "Floods",
+          "source": "codebook",
+          "definition": "The overflowing of the normal confines of a stream or other body of water, or the accumulation of water over areas that are not normally submerged. This includes: river/fluvial floods."
+        },
+        {
+          "key": "storm_surge",
+          "label": "Storm surge",
+          "source": "codebook",
+          "definition": "The temporary increase, at a particular locality, in the height of the sea due to extreme meteorological conditions."
+        },
+        {
+          "key": "hailstorm",
+          "label": "Hailstorms",
+          "source": "codebook",
+          "definition": "Storms that produce hail that reaches the ground are known as hailstorms."
+        },
+        {
+          "key": "flooding",
+          "label": "Flooding (reported)",
+          "source": "documents",
+          "definition": "Document reporting of flood, heavy rain or inundation."
+        }
       ]
     },
     {
@@ -89,14 +169,30 @@
       "in_codebook": true,
       "definition": "Hazards that are induced entirely or predominantly by human activities and choices. This term does not include the occurrence or risk of armed conflicts and other situations of social instability or tension that are subject to international humanitarian law and national legislation.",
       "sub_hazards": [
-        { "key": "man_made", "label": "Man-made hazards", "source": "codebook",
-          "definition": "Hazards that are induced entirely or predominantly by human activities and choices." },
-        { "key": "nuclear_emergency", "label": "Nuclear emergency", "source": "codebook",
-          "definition": "Nuclear emergencies involve or emerge from nuclear chain reactions." },
-        { "key": "radiological_emergency", "label": "Radiological emergency", "source": "codebook",
-          "definition": "Radiological emergencies can involve all other sources of radiation, such as radiography machines, radioactive material for use in industry, lost sources and more." },
-        { "key": "chemical_emergency", "label": "Chemical emergency", "source": "codebook",
-          "definition": "Any unplanned event involving hazardous substances that causes or is liable to cause harm to health, the environment or property." }
+        {
+          "key": "man_made",
+          "label": "Man-made hazards",
+          "source": "codebook",
+          "definition": "Hazards that are induced entirely or predominantly by human activities and choices."
+        },
+        {
+          "key": "nuclear_emergency",
+          "label": "Nuclear emergency",
+          "source": "codebook",
+          "definition": "Nuclear emergencies involve or emerge from nuclear chain reactions."
+        },
+        {
+          "key": "radiological_emergency",
+          "label": "Radiological emergency",
+          "source": "codebook",
+          "definition": "Radiological emergencies can involve all other sources of radiation, such as radiography machines, radioactive material for use in industry, lost sources and more."
+        },
+        {
+          "key": "chemical_emergency",
+          "label": "Chemical emergency",
+          "source": "codebook",
+          "definition": "Any unplanned event involving hazardous substances that causes or is liable to cause harm to health, the environment or property."
+        }
       ]
     },
     {
@@ -105,8 +201,12 @@
       "in_codebook": true,
       "definition": "Man-made hazards outside the technological group.",
       "sub_hazards": [
-        { "key": "wildfires", "label": "Wildfires", "source": "codebook",
-          "definition": "This includes all types of fire events, wildfires and forest fires. It is the process of combustion of inflammable materials producing heat, flames and (often) smoke." }
+        {
+          "key": "wildfires",
+          "label": "Wildfires",
+          "source": "codebook",
+          "definition": "This includes all types of fire events, wildfires and forest fires. It is the process of combustion of inflammable materials producing heat, flames and (often) smoke."
+        }
       ]
     },
     {
@@ -115,12 +215,42 @@
       "in_codebook": false,
       "definition": "NOT an IFRC codebook category. The codebook explicitly excludes armed conflict from man-made hazards, but six of this project's ten hazard tags are conflict tags and they are most of the hazard reporting in a Sudan dashboard. Filing them as uncategorised would label the largest group in the data as leftovers.",
       "sub_hazards": [
-        { "key": "armed_conflict", "label": "Armed conflict", "source": "documents", "definition": "" },
-        { "key": "shelling_airstrikes", "label": "Shelling / airstrikes", "source": "documents", "definition": "" },
-        { "key": "attacks_on_civilians", "label": "Attacks on civilians", "source": "documents", "definition": "" },
-        { "key": "siege_blockade", "label": "Siege / blockade", "source": "documents", "definition": "" },
-        { "key": "looting_robbery", "label": "Looting / robbery", "source": "documents", "definition": "" },
-        { "key": "explosive_ordnance", "label": "Explosive ordnance", "source": "documents", "definition": "" }
+        {
+          "key": "armed_conflict",
+          "label": "Armed conflict",
+          "source": "documents",
+          "definition": ""
+        },
+        {
+          "key": "shelling_airstrikes",
+          "label": "Shelling / airstrikes",
+          "source": "documents",
+          "definition": ""
+        },
+        {
+          "key": "attacks_on_civilians",
+          "label": "Attacks on civilians",
+          "source": "documents",
+          "definition": ""
+        },
+        {
+          "key": "siege_blockade",
+          "label": "Siege / blockade",
+          "source": "documents",
+          "definition": ""
+        },
+        {
+          "key": "looting_robbery",
+          "label": "Looting / robbery",
+          "source": "documents",
+          "definition": ""
+        },
+        {
+          "key": "explosive_ordnance",
+          "label": "Explosive ordnance",
+          "source": "documents",
+          "definition": ""
+        }
       ]
     },
     {
@@ -129,7 +259,12 @@
       "in_codebook": false,
       "definition": "NOT an IFRC codebook category. The codebook has no food-security hazard, and in Sudan famine is a consequence of conflict rather than a hazard in its own right - but food insecurity is central to this dashboard and needs to stay visible as its own thing.",
       "sub_hazards": [
-        { "key": "famine_food_crisis", "label": "Famine / food crisis", "source": "documents", "definition": "" }
+        {
+          "key": "famine_food_crisis",
+          "label": "Famine / food crisis",
+          "source": "documents",
+          "definition": ""
+        }
       ]
     },
     {
@@ -138,40 +273,186 @@
       "in_codebook": false,
       "definition": "Where a HIP code Montandon sends that this file does not hold ends up. Never guessed at; always visible. A row here is a prompt to extend hip_codes.",
       "sub_hazards": [
-        { "key": "uncategorised", "label": "Uncategorised", "source": "fallback", "definition": "" }
+        {
+          "key": "uncategorised",
+          "label": "Uncategorised",
+          "source": "fallback",
+          "definition": ""
+        }
       ]
     }
   ],
-
   "hip_codes": {
-    "EN0205": { "category": "non_technological", "sub": "wildfires",
-                "note": "Wildfire. UNDRR slug nat-cli-wil-wil says climatological; the IFRC codebook names Wildfires under non-technological and man-made. The codebook wins." },
-    "MH0600": { "category": "hydrological", "sub": "floods",
-                "note": "Flood. nat-hyd-flo-flo." },
-    "MH0103": { "category": "meteorological", "sub": "thunderstorm",
-                "note": "Thunderstorm / lightning. Montandon keywords: Thunderstorm, Lightning (electrical storm), Convective-Related. Shares the nat-met-sto-sto slug with MH0301, which is why this table is keyed on the HIP code." },
-    "MH0301": { "category": "meteorological", "sub": "violent_wind",
-                "note": "Violent wind (GLIDE VW). Montandon keywords: Wind & Pressure-related, Dust Storm or Sandstorm. Seen as IDMC-IDU displacement events in CAR." },
-    "MH0501": { "category": "climatological", "sub": "extreme_heat",
-                "note": "Extreme heat. UNDRR slug nat-met-ext-hea says meteorological; the IFRC codebook files heat waves as climatological. The codebook wins." },
-    "MH0401": { "category": "climatological", "sub": "drought",
-                "note": "Drought. nat-cli-dro-dro." },
-    "GH0300": { "category": "geophysical", "sub": "landslide",
-                "note": "Landslide. nat-geo-mmd-lan." },
-    "GH0101": { "category": "geophysical", "sub": "earthquake",
-                "note": "Earthquake. nat-geo-ear-gro." }
+    "EN0205": {
+      "category": "non_technological",
+      "sub": "wildfires",
+      "note": "Wildfire. UNDRR slug nat-cli-wil-wil says climatological; the IFRC codebook names Wildfires under non-technological and man-made. The codebook wins."
+    },
+    "MH0600": {
+      "category": "hydrological",
+      "sub": "floods",
+      "note": "Flood. nat-hyd-flo-flo."
+    },
+    "MH0103": {
+      "category": "meteorological",
+      "sub": "thunderstorm",
+      "note": "Thunderstorm / lightning. Montandon keywords: Thunderstorm, Lightning (electrical storm), Convective-Related. Shares the nat-met-sto-sto slug with MH0301, which is why this table is keyed on the HIP code."
+    },
+    "MH0301": {
+      "category": "meteorological",
+      "sub": "violent_wind",
+      "note": "Violent wind (GLIDE VW). Montandon keywords: Wind & Pressure-related, Dust Storm or Sandstorm. Seen as IDMC-IDU displacement events in CAR."
+    },
+    "MH0501": {
+      "category": "climatological",
+      "sub": "extreme_heat",
+      "note": "Extreme heat. UNDRR slug nat-met-ext-hea says meteorological; the IFRC codebook files heat waves as climatological. The codebook wins."
+    },
+    "MH0401": {
+      "category": "climatological",
+      "sub": "drought",
+      "note": "Drought. nat-cli-dro-dro."
+    },
+    "GH0300": {
+      "category": "geophysical",
+      "sub": "landslide",
+      "note": "Landslide. nat-geo-mmd-lan."
+    },
+    "GH0101": {
+      "category": "geophysical",
+      "sub": "earthquake",
+      "note": "Earthquake. nat-geo-ear-gro."
+    },
+    "MH0012": {
+      "category": "hydrological",
+      "sub": "floods",
+      "note": "Flood, PDC's code. Found in the first live pull: 48 Sudan events."
+    },
+    "EN0013": {
+      "category": "non_technological",
+      "sub": "wildfires",
+      "note": "Wildfire, a second GDACS code beside EN0205. Found in the first live pull."
+    },
+    "MH0035": {
+      "category": "climatological",
+      "sub": "drought",
+      "note": "Drought, a second code beside MH0401. Found in the first live pull."
+    }
   },
-
   "tags": {
-    "flooding":             { "category": "hydrological",      "sub": "flooding" },
-    "disease_outbreak":     { "category": "biological",        "sub": "disease_outbreak" },
-    "extreme_heat_drought": { "category": "climatological",    "sub": "extreme_heat_drought" },
-    "armed_conflict":       { "category": "conflict_violence", "sub": "armed_conflict" },
-    "shelling_airstrikes":  { "category": "conflict_violence", "sub": "shelling_airstrikes" },
-    "attacks_on_civilians": { "category": "conflict_violence", "sub": "attacks_on_civilians" },
-    "siege_blockade":       { "category": "conflict_violence", "sub": "siege_blockade" },
-    "looting_robbery":      { "category": "conflict_violence", "sub": "looting_robbery" },
-    "explosive_ordnance":   { "category": "conflict_violence", "sub": "explosive_ordnance" },
-    "famine_food_crisis":   { "category": "food_insecurity",   "sub": "famine_food_crisis" }
+    "flooding": {
+      "category": "hydrological",
+      "sub": "flooding"
+    },
+    "disease_outbreak": {
+      "category": "biological",
+      "sub": "disease_outbreak"
+    },
+    "extreme_heat_drought": {
+      "category": "climatological",
+      "sub": "extreme_heat_drought"
+    },
+    "armed_conflict": {
+      "category": "conflict_violence",
+      "sub": "armed_conflict"
+    },
+    "shelling_airstrikes": {
+      "category": "conflict_violence",
+      "sub": "shelling_airstrikes"
+    },
+    "attacks_on_civilians": {
+      "category": "conflict_violence",
+      "sub": "attacks_on_civilians"
+    },
+    "siege_blockade": {
+      "category": "conflict_violence",
+      "sub": "siege_blockade"
+    },
+    "looting_robbery": {
+      "category": "conflict_violence",
+      "sub": "looting_robbery"
+    },
+    "explosive_ordnance": {
+      "category": "conflict_violence",
+      "sub": "explosive_ordnance"
+    },
+    "famine_food_crisis": {
+      "category": "food_insecurity",
+      "sub": "famine_food_crisis"
+    }
+  },
+  "slug_codes": {
+    "_comment": "Second choice, used only when no HIP code is present. Keyed on the UNDRR-ISC slug. nat-met-sto-sto resolves to the unspecified storm, because MH0103 and MH0301 share it and the slug cannot tell them apart.",
+    "nat-hyd-flo-flo": {
+      "category": "hydrological",
+      "sub": "floods"
+    },
+    "nat-cli-wil-wil": {
+      "category": "non_technological",
+      "sub": "wildfires"
+    },
+    "nat-cli-dro-dro": {
+      "category": "climatological",
+      "sub": "drought"
+    },
+    "nat-met-ext-hea": {
+      "category": "climatological",
+      "sub": "extreme_heat"
+    },
+    "nat-met-sto-sto": {
+      "category": "meteorological",
+      "sub": "storm"
+    },
+    "nat-geo-ear-gro": {
+      "category": "geophysical",
+      "sub": "earthquake"
+    },
+    "nat-geo-mmd-lan": {
+      "category": "geophysical",
+      "sub": "landslide"
+    }
+  },
+  "glide_codes": {
+    "_comment": "Last choice, used only when neither a HIP code nor a slug is present - six GDACS floods in the first Sudan pull carried nothing but 'FL'. GLIDE is the coarsest of the three vocabularies, which is why it is last.",
+    "FL": {
+      "category": "hydrological",
+      "sub": "floods"
+    },
+    "WF": {
+      "category": "non_technological",
+      "sub": "wildfires"
+    },
+    "DR": {
+      "category": "climatological",
+      "sub": "drought"
+    },
+    "HT": {
+      "category": "climatological",
+      "sub": "extreme_heat"
+    },
+    "EQ": {
+      "category": "geophysical",
+      "sub": "earthquake"
+    },
+    "LS": {
+      "category": "geophysical",
+      "sub": "landslide"
+    },
+    "ST": {
+      "category": "meteorological",
+      "sub": "storm"
+    },
+    "VW": {
+      "category": "meteorological",
+      "sub": "violent_wind"
+    },
+    "TC": {
+      "category": "meteorological",
+      "sub": "tropical_cyclone"
+    },
+    "EP": {
+      "category": "biological",
+      "sub": "epidemic_pandemic"
+    }
   }
 }

@@ -84,7 +84,7 @@ class MontandonEventLoader(Loader):
                 continue
             lon, lat = _point(feature.get("geometry"))
             codes = props.get("monty:hazard_codes") or []
-            category, sub = hazards.for_hip(hazards.hip_from_codes(codes))
+            category, sub = hazards.for_codes(codes)
             rows.append({
                 "source": "montandon",
                 "collection": _family(feature.get("collection", "")),
