@@ -68,6 +68,15 @@ HAZARD_CODEBOOK = env_path("HAZARD_CODEBOOK",
 IPC_API_KEY = os.environ.get("IPC_API_KEY") or ""
 HDX_API_TOKEN = os.environ.get("HDX_API_TOKEN") or ""
 
+# Montandon, IFRC's disaster-event registry. NOT an open API: a direct request
+# to the staging host answers {"detail": "Not authenticated"}. It is the same
+# IFRC_API_TOKEN the `monty` MCP server holds, and it has to be copied into .env
+# by hand. Production (montandon-eoapi.ifrc.org) answers 401 and wants GO OIDC
+# credentials, so staging is the default until somebody holds them.
+IFRC_API_TOKEN = os.environ.get("IFRC_API_TOKEN") or ""
+MONTANDON_STAC_URL = (os.environ.get("MONTANDON_STAC_URL")
+                      or "https://montandon-eoapi-stage.ifrc.org/stac")
+
 
 def env_paths(name: str, default: list) -> list:
     """A path-separator list from the environment, falling back when empty.

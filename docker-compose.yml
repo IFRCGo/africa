@@ -111,6 +111,11 @@ services:
       # disabled and say so. See env.example for where each one comes from.
       IPC_API_KEY: ${IPC_API_KEY:-}
       HDX_API_TOKEN: ${HDX_API_TOKEN:-}
+      # Montandon is not an open API - without this the eight montandon rows
+      # say "needs IFRC_API_TOKEN in .env" and call nothing. MONTANDON_STAC_URL
+      # defaults to staging; production wants IFRC GO OIDC credentials.
+      IFRC_API_TOKEN: ${IFRC_API_TOKEN:-}
+      MONTANDON_STAC_URL: ${MONTANDON_STAC_URL:-}
 
       # The basemap drawn under the dashboard: the shared IFRC GO style on
       # Mapbox. Both defaults are the public values published by GO itself
