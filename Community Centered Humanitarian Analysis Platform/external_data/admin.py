@@ -17,6 +17,8 @@ from django.contrib import admin
 from .models import (
     BorderCrossing,
     FoodSecurityArea,
+    HazardEvent,
+    HazardImpact,
     HumanitarianServicePoint,
     MovementPattern,
     SeasonalCalendar,
@@ -94,3 +96,34 @@ class HumanitarianServicePointAdmin(ReadOnly):
     list_filter = ("iso3", "service", "scope", "match_method")
     search_fields = ("location_name", "service", "admin_pcode", "source_file")
     date_hierarchy = "date_reported"
+
+
+@admin.register(HazardEvent)
+class HazardEventAdmin(ReadOnly):
+    """Montandon's events. Read-only for the reason at the top of this file.
+
+    significance and match_method sit beside each other on purpose: a row that
+    is both 'detection' and 'unmatched' is a satellite fire pixel nobody can
+    place, and seeing the two columns together is how you spot what the map is
+    not drawing and why.
+    """
+
+    list_display = ("event_date", "iso3", "hazard_category", "hazard_sub",
+                    "significance", "severity_label", "collection",
+                    "match_method", "title")
+    list_filter = ("iso3", "hazard_category", "hazard_sub", "collection",
+                   "significance", "match_method")
+    search_fields = ("title", "corr_id", "event_id", "admin_pcode")
+    date_hierarchy = "event_date"
+
+
+@admin.register(HazardImpact)
+class HazardImpactAdmin(ReadOnly):
+    # corr_id is in the list rather than only the search box: it is how a figure
+    # is tied back to the event it describes, and reading the two tables side by
+    # side is the only way to check that join by eye.
+    list_display = ("event_date", "iso3", "impact_type", "value", "category",
+                    "unit", "collection", "corr_id")
+    list_filter = ("iso3", "impact_type", "category", "collection")
+    search_fields = ("corr_id", "impact_id")
+    date_hierarchy = "event_date"

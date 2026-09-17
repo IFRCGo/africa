@@ -22,6 +22,7 @@ SOURCE_LABELS = {
     "fewsnet": "FEWS NET", "hdx": "HDX HAPI", "ipc": "IPC",
     "ch": "Cadre Harmonisé", "unhcr": "UNHCR", "acaps": "ACAPS",
     "excel": "Excel workbook", "kobo": "Kobo",
+    "montandon": "IFRC Montandon",
 }
 
 # Why a source has no button. Naming the command that DOES load it turns a dead
