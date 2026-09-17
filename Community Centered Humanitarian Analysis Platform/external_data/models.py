@@ -503,6 +503,21 @@ class HazardEvent(models.Model):
     lon = models.FloatField(null=True, blank=True)
     admin_pcode = models.TextField(null=True, blank=True)
     admin_level = models.IntegerField(null=True, blank=True)
+    # WHERE THE POINT ACTUALLY IS, which is not always where Montandon filed it.
+    #
+    # `iso3` above is the country Montandon tagged the event with, and that tag
+    # is loose: a Sudan-filtered query returns fires whose coordinates are in
+    # South Sudan, floods in Ethiopia, and one earthquake in the Red Sea. Two
+    # thirds of Sudan's first pull were like that. Requiring the polygon to be
+    # Sudanese refused to place any of them, so the map lost them entirely.
+    #
+    # So the point is placed against every boundary the library holds, and this
+    # column records whose polygon won. The two columns then say different and
+    # both-true things: iso3 is the filing, admin_iso3 is the geography.
+    admin_iso3 = models.CharField(
+        max_length=3, null=True, blank=True, db_index=True,
+        help_text="The country of the polygon the point fell in. May differ from iso3.",
+    )
     match_method = models.TextField(
         default="unmatched", help_text="point-in-polygon / unmatched"
     )

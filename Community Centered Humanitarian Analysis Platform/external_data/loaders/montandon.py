@@ -113,14 +113,26 @@ class MontandonEventLoader(Loader):
         return max(dates) if dates else None
 
     def after_insert(self, rows):
-        """Place every point, deepest admin level first.
+        """Place every point, against every boundary, deepest level first.
 
         ST_Contains against admin_areas, which already carries a GIST index on
-        geom from boundaries/migrations/0002_geometry_columns.py. DISTINCT ON
-        with ORDER BY level DESC is the same "finest first, most precise wins"
-        rule build_theme_areas() applies - a locality beats the state holding
-        it, because "in El Fasher locality" and "somewhere in North Darfur" are
-        different findings.
+        geom from boundaries/migrations/0002_geometry_columns.py.
+
+        THE MATCH IS NOT RESTRICTED TO THE FILING COUNTRY, and that is the whole
+        point of admin_iso3. Montandon's country tags are loose: Sudan's first
+        pull returned 813 events of which 527 had coordinates outside Sudan -
+        fires in South Sudan, floods in Ethiopia, an earthquake in the Red Sea.
+        Requiring a Sudanese polygon refused every one of them and the map lost
+        two thirds of the layer. Matching against any boundary puts each event
+        where it actually happened, which is what the layer is for, and
+        admin_iso3 records whose polygon won.
+
+        THE ORDER OF PREFERENCE, where a point could belong to more than one:
+        the filing country's own polygon first - if Montandon says Sudan and the
+        point IS in Sudan, that is the answer - then the deepest level, which is
+        the same "finest first, most precise wins" rule build_theme_areas()
+        applies, because "in El Fasher locality" and "somewhere in North Darfur"
+        are different findings.
 
         Scoped to the rows this load actually touched, so a Chad pull does not
         re-place every Sudanese event.
@@ -134,18 +146,19 @@ class MontandonEventLoader(Loader):
                 UPDATE hazard_events h
                    SET admin_pcode  = m.pcode,
                        admin_level  = m.level,
+                       admin_iso3   = m.iso3,
                        match_method = 'point-in-polygon'
-                  FROM (SELECT DISTINCT ON (e.id) e.id AS event_id, a.pcode, a.level
+                  FROM (SELECT DISTINCT ON (e.id)
+                               e.id AS event_id, a.pcode, a.level, a.iso3
                           FROM hazard_events e
                           JOIN admin_areas a
-                            ON a.iso3 = e.iso3
-                           AND ST_Contains(
+                            ON ST_Contains(
                                  a.geom,
                                  ST_SetSRID(ST_MakePoint(e.lon, e.lat), 4326))
                          WHERE e.iso3 = %s
                            AND e.collection = ANY(%s)
                            AND e.lon IS NOT NULL
-                         ORDER BY e.id, a.level DESC) m
+                         ORDER BY e.id, (a.iso3 = e.iso3) DESC, a.level DESC) m
                  WHERE h.id = m.event_id
             """, [iso3, collections])
 

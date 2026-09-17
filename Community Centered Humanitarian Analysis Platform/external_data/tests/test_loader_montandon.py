@@ -160,7 +160,52 @@ class PointResolutionTests(TestCase):
              context={"iso3": "SDN"})
         fire = HazardEvent.objects.get(event_id="gdacs-event-1027729")
         self.assertIsNone(fire.admin_pcode)
+        self.assertIsNone(fire.admin_iso3)
         self.assertEqual(fire.match_method, "unmatched")
+
+    def test_the_filing_country_wins_when_the_point_is_really_in_it(self):
+        """Montandon says Sudan and the point IS in Sudan: no ambiguity."""
+        load(self.loader, payload("montandon_events_sdn.json"), "SDN",
+             context={"iso3": "SDN"})
+        flood = HazardEvent.objects.get(event_id="idmc-idu-event-80585")
+        self.assertEqual(flood.iso3, "SDN")
+        self.assertEqual(flood.admin_iso3, "SDN")
+
+
+class CrossBorderPlacementTests(TestCase):
+    """An event filed under one country whose coordinates are in another.
+
+    Montandon's country tags are loose. Sudan's first live pull returned 813
+    events of which 527 had coordinates outside Sudan - fires in South Sudan,
+    floods in Ethiopia. Refusing to place them lost two thirds of the layer, so
+    the point is matched against every boundary and admin_iso3 records whose
+    polygon won. iso3 stays the filing; admin_iso3 is the geography.
+    """
+
+    def setUp(self):
+        self.loader = LOADERS["montandon_events"]()
+        SourceSync.objects.update_or_create(source="montandon", dataset="hazard_events",
+                                            iso3="SDN", variant="")
+        source = BoundarySource.objects.create(path="test/crossborder.shp")
+        # A South Sudanese county containing the fire at (33.8278, 6.0834),
+        # which Montandon filed under Sudan. No Sudanese polygon covers it.
+        area = AdminArea.objects.create(
+            source=source, kind=AdminArea.KIND_ADMIN, iso3="SSD",
+            country_name="South Sudan", level=2, pcode="SS-TEST-2",
+            name="Akobo", name_alt=[])
+        with connection.cursor() as cur:
+            cur.execute(
+                "UPDATE admin_areas SET geom = ST_GeomFromText(%s, 4326) WHERE id = %s",
+                ["POLYGON((33.0 5.5, 34.5 5.5, 34.5 6.6, 33.0 6.6, 33.0 5.5))", area.pk])
+
+    def test_an_event_filed_under_sudan_places_into_the_country_it_is_in(self):
+        load(self.loader, payload("montandon_events_sdn.json"), "SDN",
+             context={"iso3": "SDN"})
+        fire = HazardEvent.objects.get(event_id="gdacs-event-1027729")
+        self.assertEqual(fire.iso3, "SDN")            # what Montandon filed
+        self.assertEqual(fire.admin_iso3, "SSD")      # where it actually is
+        self.assertEqual(fire.admin_pcode, "SS-TEST-2")
+        self.assertEqual(fire.match_method, "point-in-polygon")
 
 
 class SeverityAndImpactTests(TestCase):
