@@ -147,6 +147,25 @@ class PointResolutionTests(TestCase):
                     "UPDATE admin_areas SET geom = ST_GeomFromText(%s, 4326) WHERE id = %s",
                     [f"POLYGON(({box}))", pk])
 
+    def test_an_area_of_operation_never_wins_over_a_real_district(self):
+        """admin_areas also holds IFRC Areas of Operation under kind='aoi',
+        and they carry no level - which sorts FIRST under `level DESC` in
+        Postgres, so without a kind filter every AOI beat every locality."""
+        source = BoundarySource.objects.create(path="test/aoi.shp")
+        aoi = AdminArea.objects.create(
+            source=source, kind="aoi", iso3="SDN", country_name="Sudan",
+            level=None, pcode="AOI:North Darfur", name="North Darfur AOI",
+            name_alt=[])
+        with connection.cursor() as cur:
+            cur.execute(
+                "UPDATE admin_areas SET geom = ST_GeomFromText(%s, 4326) WHERE id = %s",
+                ["POLYGON((24.0 12.8, 26.0 12.8, 26.0 14.5, 24.0 14.5, 24.0 12.8))",
+                 aoi.pk])
+        load(self.loader, payload("montandon_events_sdn.json"), "SDN",
+             context={"iso3": "SDN"})
+        flood = HazardEvent.objects.get(event_id="idmc-idu-event-80585")
+        self.assertEqual(flood.admin_pcode, "SD-TEST-2")
+
     def test_a_point_inside_a_polygon_resolves_to_the_deepest_one(self):
         load(self.loader, payload("montandon_events_sdn.json"), "SDN",
              context={"iso3": "SDN"})

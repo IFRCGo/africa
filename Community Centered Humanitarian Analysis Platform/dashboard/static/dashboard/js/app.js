@@ -157,6 +157,12 @@ const state = {
   rangeEnd: null,
   playing: false,          // is the play button running?
   activeTags: new Set(),   // ticked theme boxes, stored as "dimension|tag"
+  /* THE HAZARD DIMENSION IS PICKED IN TWO STEPS, category then sub-hazard,
+     against the IFRC hazard codebook. Both sets resolve DOWN into activeTags
+     above, which is what lets Trends, Top reported hazards and Community
+     Insights go on reading the one flat set they always have. */
+  activeHazards: new Set(),      // codebook category keys
+  activeSubHazards: new Set(),   // sub-hazard keys within them
   /* THE COUNTRY FILTER. Empty means "no filter - show everything", which is
      not the same as "no countries selected". Every filter test in this file
      goes through countryOn() below, so that distinction is made in exactly
@@ -572,6 +578,15 @@ async function loadData() {
   ]);
   state.data.admin0 = admin0; state.data.admin1 = admin1; state.data.aoi = aoi;
   state.data.hsps = hsps;
+  /* The hazard vocabulary and the Montandon events. Both tolerate absence: a
+     dashboard built before this feature has neither file, and the page must
+     still draw - it simply falls back to one flat Hazards dropdown. */
+  const [hazardBook, hazardEvents] = await Promise.all([
+    fetch("data/hazards.json").then((r) => (r.ok ? r.json() : null)).catch(() => null),
+    fetch("data/hazard_events.json").then((r) => (r.ok ? r.json() : null)).catch(() => null),
+  ]);
+  state.data.hazards = hazardBook;
+  state.data.hazardEvents = hazardEvents;
   // Community insights are the one panel that reads the database live, so a
   // statement published in Admin appears on the next refresh. Failure is not
   // fatal: the panel falls back to the analyst snippets from tags.json.
@@ -1136,6 +1151,7 @@ function addLayers(m) {
       if (quote) html += `<div class="pp-quote">“…${escapeHTML(quote.slice(0, 180))}…”</div>`;
       html += `</div>`;
     }
+    html += hazardEventsHtml(detail.hazardEvents);
     if ((p.water || []).length)
       html += `<div class="pp-water">Water nearby: ${escapeHTML((p.water || []).slice(0, 4).join(", "))}</div>`;
     html += `<div class="pp-note">Counts are mentions in the reporting for this month,
@@ -1470,6 +1486,36 @@ function renderThemes() {
       } else {
         unlocated[row.country] = (unlocated[row.country] || 0) + row.count;
       }
+    }
+  }
+
+  /* MONTANDON EVENTS LIGHT THE SAME POLYGONS. Their counts go into the same
+     byArea bucket, so the fill works exactly as it does for document tags, and
+     their detail goes into a SEPARATE detail[area].hazardEvents list so the
+     popup can tell the two kinds of evidence apart.
+
+     DELIBERATELY NOT MERGED INTO state.data.tags.hazard. Merging would light
+     the polygons for free, but monthTagTotals() reads that same object, and
+     Top reported hazards would then show 1,668 GDACS fire pixels beside things
+     people actually wrote down. */
+  const feed = (state.data.hazardEvents || {}).by_sub || {};
+  const bySub = state.activeSubHazards.size > 0;
+  for (const [sub, subData] of Object.entries(feed)) {
+    const picked = bySub ? state.activeSubHazards.has(sub)
+                         : state.activeHazards.has(hazardCategoryOf(sub));
+    if (!picked) continue;
+    for (const row of subData.monthly) {
+      if (row.month !== mk || !row.area || !countryOnStrict(row.country)) continue;
+      /* A DETECTION DRAWS ONLY UNDER ITS OWN NAME. A Green GDACS fire that
+         affected nobody is a satellite observation, not an event; picking the
+         whole category must show the fires that mattered. */
+      if (row.significance === "detection" && !bySub) continue;
+      (byArea[row.area] = byArea[row.area] || {}).hazard =
+        (byArea[row.area].hazard || 0) + row.count;
+      const d = (detail[row.area] = detail[row.area] || {});
+      d.hazardEvents = (d.hazardEvents || []).concat(
+        (((state.data.hazardEvents.events || {})[row.area] || {})[mk] || [])
+          .filter((e) => e.sub === sub));
     }
   }
 
@@ -2066,6 +2112,38 @@ function goToMonth(mk) {
   const t = Date.parse(mk + "-01");
   if (Number.isNaN(t)) return;
   setCurrentDate(t);
+}
+
+/* What Montandon recorded here, this month.
+
+   NOTHING IS INVENTED TO FILL A GAP. An IDMC-IDU flood carries displacement and
+   no severity; a GDACS fire carries severity and no displacement; an empty
+   section is left out rather than printed as "unknown".
+
+   SEVERITY IS ALWAYS SHOWN WITH ITS UNIT. GDACS 0.5 "Green" and PDC 0.1
+   "WATCH" are different scales measuring different things, so a bare number
+   would invite a comparison that means nothing. */
+function hazardEventsHtml(events) {
+  if (!events || !events.length) return "";
+  const rows = events.slice(0, 8).map((e) => {
+    const bits = [`<b>${escapeHTML(e.sub.replace(/_/g, " "))}</b> — ${escapeHTML(e.date)}`];
+    if (e.title) bits.push(escapeHTML(e.title.slice(0, 90)));
+    if (e.severity_label)
+      bits.push(`severity ${escapeHTML(e.severity_label)} (${escapeHTML(e.severity_unit || "")})`);
+    for (const i of e.impacts || [])
+      bits.push(`<b>${Number(i.value).toLocaleString()}</b> ${escapeHTML(i.category || "")} ` +
+                `${escapeHTML((i.type || "").replace(/_/g, " "))} (${escapeHTML(i.source)})`);
+    bits.push(`<span style="color:${COLOR_MUTED}">reported by ${escapeHTML((e.sources || []).join(", "))}</span>`);
+    if (e.significance === "detection")
+      bits.push(`<span style="color:${COLOR_MUTED}"><i>automated detection, no recorded impact</i></span>`);
+    const n = (e.insight_ids || []).length;
+    if (n) bits.push(`${n} linked community insight${n === 1 ? "" : "s"}`);
+    return `<div class="pp-row" style="display:block">${bits.join("<br>")}</div>`;
+  });
+  const more = events.length > 8 ? `<div class="pp-row"><span>…and ${events.length - 8} more</span></div>` : "";
+  return `<div class="pp-dim" style="border-color:${DIM_META.hazard.color}">
+    <div class="pp-dim-h" style="color:${DIM_META.hazard.color}">Recorded hazard events
+      <span class="pp-n">${events.length}</span></div>${rows.join("")}${more}</div>`;
 }
 
 /* A small bar chart of the six most-mentioned hazards this month. */
@@ -3043,6 +3121,11 @@ function initControls() {
  *   click the name -> select ONLY this option, clearing the others
  * ------------------------------------------------------------------------ */
 function makeDropdown({ label, color, options, selected, onChange, placeholder }) {
+  // `options` is reassignable, because the Sub-Hazard list is rebuilt whenever
+  // a category is ticked - see setOptions() on the returned handle.
+  // allOptionValues remembers everything this control has ever offered, which
+  // is how setOptions knows which ticked values to drop.
+  const allOptionValues = new Set(options.map((o) => o.value));
   const root = document.createElement("div");
   root.className = "dd";
 
@@ -3141,7 +3224,23 @@ function makeDropdown({ label, color, options, selected, onChange, placeholder }
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") close(); });
 
   paint(); paintTrigger();
-  return { el: root, refresh: () => { paint(); paintTrigger(); } };
+  return {
+    el: root,
+    refresh: () => { paint(); paintTrigger(); },
+    /* Replace the choices without rebuilding the control, so the Sub-Hazard
+       list can narrow to whatever the Hazard dropdown has selected. Anything
+       ticked that is no longer on offer is dropped, or it would go on
+       filtering invisibly. */
+    setOptions: (next) => {
+      options = next;
+      // Anything ticked that is no longer on offer is dropped, or it would go
+      // on filtering from behind a list it is not in.
+      const offered = new Set(next.map((o) => o.value));
+      for (const o of [...allOptionValues]) if (!offered.has(o)) selected.delete(o);
+      for (const o of offered) allOptionValues.add(o);
+      paint(); paintTrigger();
+    },
+  };
 }
 
 /* ------------------------------------------------------------- the filters */
@@ -3204,6 +3303,7 @@ function initThemeControls() {
       clear: () => { for (const tag of tags) state.activeTags.delete(`${dim}|${tag}`); },
       get size() { return tags.filter((tag) => state.activeTags.has(`${dim}|${tag}`)).length; },
     };
+    if (dim === "hazard" && buildHazardDropdowns(wrap, meta)) continue;
     const dd = makeDropdown({
       label: meta.label,
       color: meta.color,
@@ -3221,6 +3321,110 @@ function initThemeControls() {
     });
     wrap.appendChild(dd.el);
   }
+}
+
+/* HAZARD, THEN SUB-HAZARD, against the IFRC hazard codebook.
+
+   The codebook is a clustering method rather than a list: hazards.json holds
+   only the categories the data actually has, so a Sahel operation is never
+   offered tsunamis. Returns false when that file is missing, and the caller
+   then falls back to the single flat dropdown this replaced.
+
+   BOTH SETS RESOLVE DOWN INTO state.activeTags. That is what lets Trends, Top
+   reported hazards, Community Insights and the theme detail list go on working
+   through the machinery they already use, untouched. A sub-hazard that exists
+   only in Montandon - wildfires, earthquake - has no document tag, resolves to
+   nothing here, and filters the event feed alone. */
+function buildHazardDropdowns(wrap, meta) {
+  const book = state.data.hazards;
+  if (!book || !(book.categories || []).length) return false;
+
+  const subsOf = (cats) =>
+    cats.flatMap((c) => c.sub_hazards.map((s) => ({ ...s, cat: c.key })));
+  const visibleSubs = () => subsOf(
+    state.activeHazards.size
+      ? book.categories.filter((c) => state.activeHazards.has(c.key))
+      : book.categories);
+
+  function resolveTags() {
+    for (const key of [...state.activeTags])
+      if (key.startsWith("hazard|")) state.activeTags.delete(key);
+    for (const sub of visibleSubs()) {
+      const on = state.activeSubHazards.size
+        ? state.activeSubHazards.has(sub.key)
+        : state.activeHazards.has(sub.cat);
+      if (on && sub.source === "documents") state.activeTags.add(`hazard|${sub.key}`);
+    }
+  }
+
+  const redraw = () => {
+    resolveTags();
+    subDropdown.setOptions(visibleSubs().map((s) => ({
+      value: s.key, label: s.label, color: meta.color,
+    })));
+    applyFilters({ refit: false });
+    if (state.activeTags.size || state.activeSubHazards.size || state.activeHazards.size)
+      loadAreas().then(renderMapLayers);
+  };
+
+  const catDropdown = makeDropdown({
+    label: "Hazard",
+    color: meta.color,
+    /* The asterisk marks the two categories this project added because the
+       codebook has nowhere to put conflict or famine. Saying so in the list is
+       cheaper than letting somebody quote them back as IFRC's. */
+    options: book.categories.map((c) => ({
+      value: c.key,
+      label: c.in_codebook ? c.label : `${c.label} *`,
+      color: meta.color,
+    })),
+    selected: setView(state.activeHazards),
+    placeholder: "Search hazard categories…",
+    onChange: () => {
+      // A category switched off must not leave its sub-hazards ticked and
+      // filtering from behind a list they are no longer on.
+      if (state.activeHazards.size) {
+        for (const key of [...state.activeSubHazards]) {
+          const owner = book.categories.find(
+            (c) => c.sub_hazards.some((s) => s.key === key));
+          if (owner && !state.activeHazards.has(owner.key))
+            state.activeSubHazards.delete(key);
+        }
+      }
+      redraw();
+    },
+  });
+
+  const subDropdown = makeDropdown({
+    label: "Sub-Hazard",
+    color: meta.color,
+    options: visibleSubs().map((s) => ({ value: s.key, label: s.label, color: meta.color })),
+    selected: setView(state.activeSubHazards),
+    placeholder: "Search sub-hazards…",
+    onChange: redraw,
+  });
+
+  wrap.appendChild(catDropdown.el);
+  wrap.appendChild(subDropdown.el);
+  return true;
+}
+
+/* The small view makeDropdown expects, over a plain Set. */
+function setView(set) {
+  return {
+    has: (v) => set.has(v),
+    add: (v) => set.add(v),
+    delete: (v) => set.delete(v),
+    clear: () => set.clear(),
+    get size() { return set.size; },
+  };
+}
+
+/* Which codebook category holds this sub-hazard. */
+function hazardCategoryOf(sub) {
+  for (const c of ((state.data.hazards || {}).categories || []))
+    if (c.sub_hazards.some((s) => s.key === sub)) return c.key;
+  return null;
 }
 
 /* The search box on the Community Insights panel. */

@@ -134,6 +134,13 @@ class MontandonEventLoader(Loader):
         applies, because "in El Fasher locality" and "somewhere in North Darfur"
         are different findings.
 
+        ADMIN AREAS ONLY. The same table also holds 14 IFRC Areas of Operation
+        under kind='aoi', and they have no level - which in Postgres sorts
+        FIRST under `level DESC`, so every one of them beat every locality.
+        Without this filter 493 of 2,422 events were placed onto one of those
+        fourteen polygons instead of the district they were actually in.
+        load_hsps.resolve_places() filters the same way, for the same reason.
+
         Scoped to the rows this load actually touched, so a Chad pull does not
         re-place every Sudanese event.
         """
@@ -152,7 +159,8 @@ class MontandonEventLoader(Loader):
                                e.id AS event_id, a.pcode, a.level, a.iso3
                           FROM hazard_events e
                           JOIN admin_areas a
-                            ON ST_Contains(
+                            ON a.kind = 'admin'
+                           AND ST_Contains(
                                  a.geom,
                                  ST_SetSRID(ST_MakePoint(e.lon, e.lat), 4326))
                          WHERE e.iso3 = %s
