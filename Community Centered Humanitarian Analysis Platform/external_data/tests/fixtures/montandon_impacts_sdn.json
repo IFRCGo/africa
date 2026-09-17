@@ -1,0 +1,39 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "idmc-idu-impact-80585-displaced",
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Sudan: Flood - North Darfur (Tawila Locality) - 17/08/2026",
+        "datetime": "2026-08-17T00:00:00Z",
+        "monty:corr_id": "20260817-SDN-900001-MH0600-1-GCDB",
+        "monty:country_codes": ["SDN"],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 813,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      }
+    },
+    {
+      "id": "gdacs-impact-1027729-wf",
+      "collection": "gdacs-impacts",
+      "properties": {
+        "title": "Forest fires in Ethiopia, Sudan",
+        "datetime": "2026-03-01T00:00:00Z",
+        "monty:corr_id": "20260301-ETH-EN0205-1-GCDB",
+        "monty:country_codes": ["ETH", "SDN"],
+        "monty:impact_detail": {
+          "type": "potentially_affected",
+          "unit": "GDACS WF",
+          "value": 0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      }
+    }
+  ]
+}

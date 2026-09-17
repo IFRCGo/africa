@@ -15,7 +15,7 @@ from django.test import TestCase
 from boundaries.models import AdminArea, BoundarySource
 from external_data.loaders import LOADERS
 from external_data.loaders.base import EmptyPayload, load
-from external_data.models import HazardEvent, SourceSync
+from external_data.models import HazardEvent, HazardImpact, SourceSync
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -161,3 +161,90 @@ class PointResolutionTests(TestCase):
         fire = HazardEvent.objects.get(event_id="gdacs-event-1027729")
         self.assertIsNone(fire.admin_pcode)
         self.assertEqual(fire.match_method, "unmatched")
+
+
+class SeverityAndImpactTests(TestCase):
+    """Severity is applied onto events by corr_id and creates no rows of its own.
+
+    A hazard item has its own STAC id and is not an event. Upserting them into
+    hazard_events would double every row that has a severity.
+    """
+
+    def setUp(self):
+        SourceSync.objects.create(source="montandon", dataset="hazard_events",
+                                  iso3="SDN", variant="")
+        load(LOADERS["montandon_events"](), payload("montandon_events_sdn.json"),
+             "SDN", context={"iso3": "SDN"})
+
+    def load_severity(self):
+        return load(LOADERS["montandon_severity"](),
+                    payload("montandon_hazards_sdn.json"), "SDN",
+                    context={"iso3": "SDN"})
+
+    def load_impacts(self):
+        return load(LOADERS["montandon_impacts"](),
+                    payload("montandon_impacts_sdn.json"), "SDN",
+                    context={"iso3": "SDN"})
+
+    def test_severity_creates_no_new_event_rows(self):
+        before = HazardEvent.objects.count()
+        self.load_severity()
+        self.assertEqual(HazardEvent.objects.count(), before)
+
+    def test_severity_lands_on_the_event_with_its_unit_and_label(self):
+        self.load_severity()
+        fire = HazardEvent.objects.get(event_id="gdacs-event-1027729", iso3="SDN")
+        self.assertEqual(fire.severity_value, 0.5)
+        self.assertEqual(fire.severity_unit, "GDACS Severity Score")
+        self.assertEqual(fire.severity_label, "Green")
+
+    def test_a_severity_whose_event_never_loaded_is_ignored(self):
+        self.load_severity()
+        self.assertFalse(
+            HazardEvent.objects.filter(corr_id="20260101-SDN-NOSUCH-1-GCDB").exists())
+
+    def test_severity_does_not_move_the_event_row_count(self):
+        """counts_rows is False on this loader: the freshness table must keep
+        reporting how many EVENTS are held."""
+        result = self.load_severity()
+        self.assertEqual(result.sync.row_count, 3)
+
+    def test_impacts_are_written_and_joined_by_corr_id(self):
+        self.load_impacts()
+        flood = HazardImpact.objects.get(impact_type="displaced_internal")
+        self.assertEqual(flood.value, 813)
+        self.assertEqual(flood.category, "people")
+        self.assertEqual(flood.corr_id, "20260817-SDN-900001-MH0600-1-GCDB")
+
+    def test_impacts_do_not_move_the_event_row_count_either(self):
+        result = self.load_impacts()
+        self.assertEqual(result.sync.row_count, 3)
+
+    def test_a_green_gdacs_fire_affecting_nobody_becomes_a_detection(self):
+        """385 of the first 500 region-wide events are these. Everything is
+        stored, but a detection draws only under its own sub-hazard."""
+        self.load_severity()
+        self.load_impacts()
+        fire = HazardEvent.objects.get(event_id="gdacs-event-1027729", iso3="SDN")
+        self.assertEqual(fire.significance, "detection")
+
+    def test_a_flood_that_displaced_people_stays_an_event(self):
+        self.load_severity()
+        self.load_impacts()
+        flood = HazardEvent.objects.get(event_id="idmc-idu-event-80585")
+        self.assertEqual(flood.significance, "event")
+
+    def test_an_idmc_event_with_no_severity_at_all_stays_an_event(self):
+        """There is no idmc-idu-hazards collection, so these are always null -
+        which must never be read as 'no alert'."""
+        self.load_severity()
+        self.load_impacts()
+        flood = HazardEvent.objects.get(event_id="idmc-idu-event-80585")
+        self.assertIsNone(flood.severity_label)
+        self.assertEqual(flood.significance, "event")
+
+    def test_an_empty_severity_payload_is_still_a_failure(self):
+        with self.assertRaises(EmptyPayload):
+            load(LOADERS["montandon_severity"](),
+                 {"type": "FeatureCollection", "features": []}, "SDN",
+                 context={"iso3": "SDN"})

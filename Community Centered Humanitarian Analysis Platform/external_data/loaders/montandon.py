@@ -148,3 +148,151 @@ class MontandonEventLoader(Loader):
                          ORDER BY e.id, a.level DESC) m
                  WHERE h.id = m.event_id
             """, [iso3, collections])
+
+
+@register
+class MontandonSeverityLoader(Loader):
+    """The *-hazards items: severity, applied onto events that already exist.
+
+    THIS LOADER INSERTS NOTHING. A hazard item has its own STAC id and is not an
+    event; upserting them into hazard_events would double every row that has a
+    severity. parse() returns the details as rows so the "empty is a failure"
+    guarantee still catches a payload that came back broken, _insert_rows
+    returns nothing, and after_insert does the real work with an UPDATE keyed on
+    corr_id rather than on the natural key.
+
+    A severity whose event never loaded matches nothing and is dropped. That is
+    the right way round: an orphan severity says nothing on its own, whereas an
+    orphan IMPACT is a figure somebody published and is kept.
+    """
+
+    dataset = "montandon_severity"
+    source = "montandon"
+    model = HazardEvent
+    unique_fields = ["collection", "event_id", "iso3"]
+    update_fields = []
+    tool = "monty__search_items"
+    counts_rows = False
+
+    def sync_key(self, iso3, context=None):
+        return {"source": "montandon", "dataset": "hazard_events",
+                "iso3": iso3, "variant": ""}
+
+    def parse(self, payload, iso3, context=None):
+        rows = []
+        for feature in payload.get("features", []):
+            props = feature.get("properties") or {}
+            if iso3 not in (props.get("monty:country_codes") or []):
+                continue
+            detail = props.get("monty:hazard_detail") or {}
+            corr_id = props.get("monty:corr_id")
+            if not corr_id or not detail:
+                continue
+            rows.append({
+                "corr_id": corr_id,
+                "iso3": iso3,
+                "severity_value": detail.get("severity_value"),
+                "severity_unit": detail.get("severity_unit"),
+                "severity_label": detail.get("severity_label"),
+                "severity_estimate_type": detail.get("estimate_type"),
+            })
+        return rows
+
+    def _insert_rows(self, rows):
+        """Nothing is inserted. See the class docstring."""
+        return []
+
+    def after_insert(self, rows):
+        if not rows:
+            return
+        with connection.cursor() as cur:
+            for row in rows:
+                cur.execute("""
+                    UPDATE hazard_events
+                       SET severity_value = %s, severity_unit = %s,
+                           severity_label = %s, severity_estimate_type = %s
+                     WHERE corr_id = %s AND iso3 = %s
+                """, [row["severity_value"], row["severity_unit"],
+                      row["severity_label"], row["severity_estimate_type"],
+                      row["corr_id"], row["iso3"]])
+
+
+@register
+class MontandonImpactLoader(Loader):
+    """The *-impacts items, then the significance classification.
+
+    LAST OF THE THREE, AND THAT IS THE POINT. significance needs severity and
+    impacts both, so it is classified here - after the fetcher's third call has
+    landed. plan() yields events, hazards, impacts in that order and the runner
+    consumes the generator serially, which is what makes this safe.
+    """
+
+    dataset = "montandon_impacts"
+    source = "montandon"
+    model = HazardImpact
+    unique_fields = ["collection", "impact_id", "iso3"]
+    update_fields = ["corr_id", "event_date", "impact_type", "category",
+                     "value", "unit", "estimate_type", "source"]
+    tool = "monty__search_items"
+    counts_rows = False
+
+    def sync_key(self, iso3, context=None):
+        return {"source": "montandon", "dataset": "hazard_events",
+                "iso3": iso3, "variant": ""}
+
+    def parse(self, payload, iso3, context=None):
+        rows = []
+        for feature in payload.get("features", []):
+            props = feature.get("properties") or {}
+            if iso3 not in (props.get("monty:country_codes") or []):
+                continue
+            detail = props.get("monty:impact_detail") or {}
+            # A figure with no value is not a figure. value=0 IS one, and is
+            # exactly what marks a GDACS fire detection - so test for None.
+            if not detail or detail.get("value") is None:
+                continue
+            rows.append({
+                "source": "montandon",
+                "collection": _family(feature.get("collection", "")),
+                "impact_id": feature.get("id"),
+                "corr_id": props.get("monty:corr_id") or "",
+                "iso3": iso3,
+                "event_date": _date(props.get("datetime")),
+                "impact_type": detail.get("type") or "unspecified",
+                "category": detail.get("category"),
+                "value": detail.get("value"),
+                "unit": detail.get("unit"),
+                "estimate_type": detail.get("estimate_type"),
+            })
+        return rows
+
+    def after_insert(self, rows):
+        """Classify every event in this country as event or detection.
+
+        Read back and written in Python rather than as one clever UPDATE: the
+        rule lives in hazard_codebook.json - which severity labels mean "no
+        alert", per collection - and keeping it there is the point. Baking it
+        into SQL would put a fact about GDACS inside a statement about hazards,
+        where nobody maintaining the vocabulary would ever find it.
+        """
+        if not rows:
+            return
+        iso3 = rows[0]["iso3"]
+
+        biggest = {}
+        for impact in HazardImpact.objects.filter(iso3=iso3).values("corr_id", "value"):
+            key = impact["corr_id"]
+            biggest[key] = max(biggest.get(key, 0), impact["value"] or 0)
+
+        detections, events = [], []
+        for event in HazardEvent.objects.filter(iso3=iso3).values(
+                "id", "collection", "severity_label", "corr_id"):
+            bucket = (detections if hazards.is_detection(
+                event["collection"], event["severity_label"],
+                biggest.get(event["corr_id"])) else events)
+            bucket.append(event["id"])
+
+        if detections:
+            HazardEvent.objects.filter(id__in=detections).update(significance="detection")
+        if events:
+            HazardEvent.objects.filter(id__in=events).update(significance="event")
