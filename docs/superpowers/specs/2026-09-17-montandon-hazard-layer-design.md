@@ -121,18 +121,21 @@ these eight countries in this window is eight codes across six categories:
 |---|---|---|---|---|
 | `EN0205` | `nat-cli-wil-wil` | Wildfire | **Non-technological and man-made** | codebook names *Wildfires* explicitly; UNDRR says climatological |
 | `MH0600` | `nat-hyd-flo-flo` | Flood | **Hydrological** | codebook *Floods* |
-| `MH0103` | `nat-met-sto-sto` | Storm | **Meteorological** | not named in the codebook; placed by the category's definition |
+| `MH0103` | `nat-met-sto-sto` | Thunderstorm / lightning | **Meteorological** | not named in the codebook; placed by the category's definition. Montandon keywords: *Thunderstorm, Lightning (electrical storm), Convective-Related* |
 | `MH0501` | `nat-met-ext-hea` | Extreme heat | **Climatological** | codebook files heat waves as climatological; UNDRR says meteorological |
 | `GH0300` | `nat-geo-mmd-lan` | Landslide | **Geophysical** | codebook *Landslide/debris flows* |
 | `MH0401` | `nat-cli-dro-dro` | Drought | **Climatological** | codebook *Drought* |
-| `MH0301` | *(slug absent)* | **to confirm** | **to confirm** | 8 events; the plan resolves this against the UNDRR-ISC HIP register before writing the row |
+| `MH0301` | `nat-met-sto-sto` | Violent wind / windstorm (`VW`) | **Meteorological** | resolved from the data: IDMC-IDU *"CAR: Storm - Mbomou"* displacement events, keywords *Wind & Pressure-related, Dust Storm or Sandstorm* |
 | `GH0101` | `nat-geo-ear-gro` | Earthquake | **Geophysical** | codebook *Earthquakes* |
 
-`MH0301` and `MH0103` are the two the plan must look up rather than infer — the
-`MH03xx` block is convective storm and the exact member matters for the label
-shown in the dropdown. **The first implementation task is to resolve them**, and
-until then they behave as any unrecognised code does: `uncategorised`, logged,
-never guessed.
+`MH0103` and `MH0301` were resolved from the data rather than inferred: both are
+convective-storm codes, but `MH0103` is thunderstorm/lightning and `MH0301` is
+violent wind, and they carry different labels in the dropdown. They share the
+`nat-met-sto-sto` slug, which is one more reason the mapping is keyed on the HIP
+code.
+
+Resolving them also produced the sharpest illustration of the loose-country
+caveat: the `MH0103` events tagged **Egypt** are *"Dense Fog - Negev, Israel"*.
 
 The remaining codebook categories — Biological, Technological and man-made — carry
 no Montandon hazard for these countries, and Biological carries the document tag
@@ -474,7 +477,7 @@ through the machinery they use today, **unchanged**.
 Sub-hazards that exist only in Montandon — wildfires, earthquake — have no
 document tag and filter the event feed only.
 
-### The one named change to `applyFilters`
+### The one named change to `renderThemes`
 
 The two feeds are **not merged into `state.data.tags.hazard`**, and this is the
 spec's most easily-got-wrong point. Merging them would light the polygons for
@@ -483,9 +486,11 @@ hazards** would start showing "wildfires: 407" from GDACS fire pixels beside
 document mentions — the exact evidence-mixing the vocabulary section argues
 against.
 
-So: `applyFilters` gains **one change, in one place** — the call that computes
-which areas to light takes the **union of two feeds**, `tags.hazard` and
-`hazard_events.by_sub`. Everything downstream of that call is untouched:
+So: `renderThemes()` gains **one change, in one place** — its
+`for (const key of state.activeTags)` loop, which accumulates `byArea` and
+`detail`, is followed by a second short loop over `hazard_events.by_sub` adding
+into the same `byArea[area].hazard` count and into a separate
+`detail[area].hazardEvents` list. Everything downstream of that is untouched:
 
 | reads | fed by |
 |---|---|
@@ -614,9 +619,6 @@ nullable and the writers run in fresh `manage.py` processes.
 carries its own `corr_id`. Dedupe on `corr_id` keeps them separate, which is
 correct when they are separate fire fronts on separate days. Collapsing episodes
 is a follow-up change with its own evidence, not a guess made now.
-
-**Resolve `MH0301` and `MH0103` first.** They are the two observed codes whose
-IFRC category is not yet settled. Everything else in `hip_codes` is decided.
 
 ## Out of scope
 
