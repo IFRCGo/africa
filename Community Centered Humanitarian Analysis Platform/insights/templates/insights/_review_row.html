@@ -16,6 +16,23 @@ page reloading and losing the reviewer's place in a long queue.
       · {{ insight.confidence|default:"confidence not stated" }}
       · <b>{{ insight.status }}</b>
     </small>
+    {% if insight.figures.all %}
+      <small class="wiz-figures">
+        {% for figure in insight.figures.all %}
+          <b>{{ figure.figure_as_written }}</b> {{ figure.measures }}{% if figure.applies_to %} <i>({{ figure.applies_to }})</i>{% endif %}{% if not forloop.last %} · {% endif %}
+        {% endfor %}
+      </small>
+    {% endif %}
+    {% for movement in insight.movements.all %}
+      <small class="wiz-movement">
+        {{ movement.origin_name_as_written|default:"?" }}
+        {% if movement.origin_pcode %}({{ movement.origin_match_method }}){% else %}(unplaced){% endif %}
+        &rarr;
+        {{ movement.dest_name_as_written|default:"?" }}
+        {% if movement.dest_pcode %}({{ movement.dest_match_method }}){% else %}(unplaced){% endif %}
+        · {{ movement.flow_type }}{% if movement.value %} · {{ movement.value_as_written }}{% endif %}
+      </small>
+    {% endfor %}
   </td>
   <td><button type="button" class="wiz-edit" data-insight="{{ insight.id }}">Edit</button></td>
 </tr>

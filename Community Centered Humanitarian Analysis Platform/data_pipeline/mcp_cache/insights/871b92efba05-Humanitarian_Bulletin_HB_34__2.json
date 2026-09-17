@@ -1,0 +1,181 @@
+{
+  "source": {
+    "rel_path": "media/871b92efba05-Humanitarian_Bulletin_HB_34__2.pdf",
+    "sha1": "871b92efba05560d939a4ce2a6885d9e5b53f1ab",
+    "report_date": null
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "Flooding has been reported in Tawila town, Western Sudan, and Kebkabiya locality, North Darfur, displacing hundreds of people and causing extensive damage to homes in both areas.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Tawila town, Western Sudan, and Kebkabiya locality, North Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "flooding",
+          "role": "subject"
+        },
+        {
+          "dimension": "movement_pattern",
+          "tag": "displacement",
+          "role": "subject"
+        }
+      ],
+      "figures": [],
+      "movements": [
+        {
+          "origin_name_as_written": "Tawila town, Western Sudan, and Kebkabiya locality, North Darfur",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": null,
+          "dest_iso3": null,
+          "flow_type": "internal_displacement",
+          "value_as_written": "hundreds",
+          "value": 200,
+          "unit": "people"
+        }
+      ],
+      "people_affected": 200,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Shifting frontlines and continuous increased insecurity in North Kordofan is driving repeated displacement, with around 300 people fleeing to El Obeid in recent days.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "North Kordofan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "displacement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "armed_conflict",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "300",
+          "value": 300,
+          "unit": "people",
+          "measures": "people fleeing",
+          "applies_to": "displaced population"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "North Kordofan",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": "El Obeid",
+          "dest_iso3": "SDN",
+          "flow_type": "internal_displacement",
+          "value_as_written": "300",
+          "value": 300,
+          "unit": "people"
+        }
+      ],
+      "people_affected": 300,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Between the 11th and the 18th of August more than 12,000 individuals were displaced in Geisan locality (Blue Nile State) due to heightened insecurity.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Geisan locality (Blue Nile State)",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "displacement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "armed_conflict",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "12,000",
+          "value": 12000,
+          "unit": "people",
+          "measures": "individuals displaced",
+          "applies_to": "displaced population"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "Geisan locality (Blue Nile State)",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": "other localities within Blue Nile state",
+          "dest_iso3": "SDN",
+          "flow_type": "internal_displacement",
+          "value_as_written": "12,000",
+          "value": 12000,
+          "unit": "people"
+        }
+      ],
+      "people_affected": 12000,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Between the 16th and the 18th of August approximately 11,000 individuals were displaced due to heightened insecurity, most people displaced to other localities within North Kordofan.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "North Kordofan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "displacement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "armed_conflict",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "11,000",
+          "value": 11000,
+          "unit": "people",
+          "measures": "individuals displaced",
+          "applies_to": "displaced population"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "North Kordofan",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": "other localities within North Kordofan",
+          "dest_iso3": "SDN",
+          "flow_type": "internal_displacement",
+          "value_as_written": "11,000",
+          "value": 11000,
+          "unit": "people"
+        }
+      ],
+      "people_affected": 11000,
+      "severity": 4,
+      "confidence": "high"
+    }
+  ]
+}

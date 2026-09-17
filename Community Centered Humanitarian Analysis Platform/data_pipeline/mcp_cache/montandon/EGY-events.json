@@ -1,0 +1,4543 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "pdc-event-c27048b3-80a2-45c8-a419-9cc22dc7b282-536724-1789391603873",
+      "bbox": [
+        35.0718029948905,
+        30.43223947945994,
+        35.0718029948905,
+        30.43223947945994
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.0718029948905,
+          30.43223947945994
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Eastern Negev, Eilat Mountains, Northern Arava, Israel",
+        "datetime": "2026-09-15T07:00:00Z",
+        "end_datetime": "2026-09-15T21:00:00Z",
+        "monty:corr_id": "20260915-EGY-1082876-MH0501-1-GCDB",
+        "start_datetime": "2026-09-15T07:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "ISR",
+          "JOR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-c27048b3-80a2-45c8-a419-9cc22dc7b282-536724-1789391603873",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-8e0f249c-38ab-410d-a256-26279b8d3b63-537108-1789455623621",
+      "bbox": [
+        34.80157241801462,
+        31.01291116893077,
+        34.80157241801462,
+        31.01291116893077
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80157241801462,
+          31.01291116893077
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - Northern And Western Negev, Israel",
+        "datetime": "2026-09-15T04:00:00Z",
+        "end_datetime": "2026-09-15T07:15:36Z",
+        "monty:corr_id": "20260915-PSE-1088275-MH0103-1-GCDB",
+        "start_datetime": "2026-09-15T04:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "PSE",
+          "EGY",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-8e0f249c-38ab-410d-a256-26279b8d3b63-537108-1789455623621",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-389074cd-029e-4130-a542-2ec9be7f29d3-537047-1789429986449",
+      "bbox": [
+        34.80157241801462,
+        31.01291116893077,
+        34.80157241801462,
+        31.01291116893077
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80157241801462,
+          31.01291116893077
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - North Western, North Eastern And Western Negev, Israel",
+        "datetime": "2026-09-15T00:00:00Z",
+        "end_datetime": "2026-09-15T04:00:00Z",
+        "monty:corr_id": "20260915-EGY-1088275-MH0103-1-GCDB",
+        "start_datetime": "2026-09-15T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "ISR",
+          "PSE"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-389074cd-029e-4130-a542-2ec9be7f29d3-537047-1789429986449",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-bad74c17-1820-4be1-8641-fa48fae41afe-536848-1789430423252",
+      "bbox": [
+        34.70296252776995,
+        31.05387603220219,
+        34.70296252776995,
+        31.05387603220219
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.70296252776995,
+          31.05387603220219
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - North Western And Western Negev, Israel",
+        "datetime": "2026-09-14T20:00:00Z",
+        "end_datetime": "2026-09-15T00:15:33Z",
+        "monty:corr_id": "20260914-PSE-1090074-MH0103-1-GCDB",
+        "start_datetime": "2026-09-14T20:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "PSE",
+          "EGY",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-bad74c17-1820-4be1-8641-fa48fae41afe-536848-1789430423252",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-32c39816-f0ab-41e4-9645-56486dcbac6e-536479-1789358422561",
+      "bbox": [
+        34.80157241801462,
+        31.01291116893077,
+        34.80157241801462,
+        31.01291116893077
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80157241801462,
+          31.01291116893077
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - Negev, Israel",
+        "datetime": "2026-09-14T00:07:00Z",
+        "end_datetime": "2026-09-14T04:15:31Z",
+        "monty:corr_id": "20260914-PSE-1088275-MH0103-1-GCDB",
+        "start_datetime": "2026-09-14T00:07:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "PSE",
+          "EGY",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-32c39816-f0ab-41e4-9645-56486dcbac6e-536479-1789358422561",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-7d1441a2-1e51-46aa-9e16-1f39c43f6e4f-536053-1789315223025",
+      "bbox": [
+        34.87335462961174,
+        30.19349151973522,
+        34.87335462961174,
+        30.19349151973522
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.87335462961174,
+          30.19349151973522
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Southern Negev, Israel",
+        "datetime": "2026-09-13T11:00:00Z",
+        "end_datetime": "2026-09-13T16:15:31Z",
+        "monty:corr_id": "20260913-EGY-1081075-MH0501-1-GCDB",
+        "start_datetime": "2026-09-13T11:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-7d1441a2-1e51-46aa-9e16-1f39c43f6e4f-536053-1789315223025",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-fdea24f6-2fd2-4d03-982e-ec1a838d4e17-533913-1788926453455",
+      "bbox": [
+        34.93728792741326,
+        31.60669481292043,
+        34.93728792741326,
+        31.60669481292043
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.93728792741326,
+          31.60669481292043
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - Izrael Valley, Northern And Western Negev, Israel",
+        "datetime": "2026-09-09T00:00:00Z",
+        "end_datetime": "2026-09-09T04:16:07Z",
+        "monty:corr_id": "20260909-EGY-1093675-MH0103-1-GCDB",
+        "start_datetime": "2026-09-09T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "ISR",
+          "PSE"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-fdea24f6-2fd2-4d03-982e-ec1a838d4e17-533913-1788926453455",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-d63a796f-62cd-49cf-9b38-9e1bc52a3768-533827-1788912057521",
+      "bbox": [
+        34.80157241801462,
+        31.01291116893077,
+        34.80157241801462,
+        31.01291116893077
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80157241801462,
+          31.01291116893077
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - Northwestern, Northeastern And Western Negev, Israel",
+        "datetime": "2026-09-08T21:00:00Z",
+        "end_datetime": "2026-09-09T00:16:09Z",
+        "monty:corr_id": "20260908-PSE-1088275-MH0103-1-GCDB",
+        "start_datetime": "2026-09-08T21:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "PSE",
+          "EGY",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-d63a796f-62cd-49cf-9b38-9e1bc52a3768-533827-1788912057521",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-270d747f-e1b2-424e-b28b-74288345c9c1-531503-1788620453353",
+      "bbox": [
+        34.92337571136818,
+        29.74411966418798,
+        34.92337571136818,
+        29.74411966418798
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.92337571136818,
+          29.74411966418798
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Eilat Mountains, Israel",
+        "datetime": "2026-09-05T12:00:00Z",
+        "end_datetime": "2026-09-05T15:16:03Z",
+        "monty:corr_id": "20260905-ISR-1077475-MH0501-1-GCDB",
+        "start_datetime": "2026-09-05T12:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ISR",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-270d747f-e1b2-424e-b28b-74288345c9c1-531503-1788620453353",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-7b4a0b76-4bbd-45c1-8902-402c40b80ff9-526611-1787957574305",
+      "bbox": [
+        34.70296252776995,
+        31.05387603220219,
+        34.70296252776995,
+        31.05387603220219
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.70296252776995,
+          31.05387603220219
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - North Western And Western Negev, Israel",
+        "datetime": "2026-08-28T23:00:00Z",
+        "end_datetime": "2026-08-29T03:00:00Z",
+        "monty:corr_id": "20260828-PSE-1090074-MH0103-1-GCDB",
+        "start_datetime": "2026-08-28T23:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "PSE",
+          "EGY",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-7b4a0b76-4bbd-45c1-8902-402c40b80ff9-526611-1787957574305",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-39c33ecc-2a1d-4c35-88e8-549500754e40-525654-1787871775452",
+      "bbox": [
+        34.80157241801462,
+        31.01291116893077,
+        34.80157241801462,
+        31.01291116893077
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80157241801462,
+          31.01291116893077
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - Northern And Western Negev, Israel",
+        "datetime": "2026-08-27T23:00:00Z",
+        "end_datetime": "2026-08-28T03:00:00Z",
+        "monty:corr_id": "20260827-ISR-1088275-MH0103-1-GCDB",
+        "start_datetime": "2026-08-27T23:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "ISR",
+          "PSE",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-39c33ecc-2a1d-4c35-88e8-549500754e40-525654-1787871775452",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-ddb4ef84-121a-462b-bd1c-b6921f97cb83-524841-1787853674014",
+      "bbox": [
+        34.96730664263798,
+        30.99307860442982,
+        34.96730664263798,
+        30.99307860442982
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.96730664263798,
+          30.99307860442982
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Izrael Valley, Negev And Eilat Mountains, Israel",
+        "datetime": "2026-08-27T08:00:00Z",
+        "end_datetime": "2026-08-27T18:16:22Z",
+        "monty:corr_id": "20260827-ISR-1088276-MH0501-1-GCDB",
+        "start_datetime": "2026-08-27T08:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ISR",
+          "PSE",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-ddb4ef84-121a-462b-bd1c-b6921f97cb83-524841-1787853674014",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-ddb4ef84-121a-462b-bd1c-b6921f97cb83-524841-1787832213872",
+      "bbox": [
+        34.96730664263798,
+        30.99307860442982,
+        34.96730664263798,
+        30.99307860442982
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.96730664263798,
+          30.99307860442982
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Izrael Valley, Negev And Eilat Mountains, Israel",
+        "datetime": "2026-08-27T08:00:00Z",
+        "end_datetime": "2026-08-27T18:16:22Z",
+        "monty:corr_id": "20260827-PSE-1088276-MH0501-1-GCDB",
+        "start_datetime": "2026-08-27T08:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "PSE",
+          "EGY",
+          "LBN",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-ddb4ef84-121a-462b-bd1c-b6921f97cb83-524841-1787832213872",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-89e20d33-4da8-45dc-895a-25805078a0d4-524836-1787814094539",
+      "bbox": [
+        34.80157241801462,
+        31.01291116893077,
+        34.80157241801462,
+        31.01291116893077
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80157241801462,
+          31.01291116893077
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - Northern And Western Negev, Israel",
+        "datetime": "2026-08-27T03:00:00Z",
+        "end_datetime": "2026-08-27T07:16:39Z",
+        "monty:corr_id": "20260827-EGY-1088275-MH0103-1-GCDB",
+        "start_datetime": "2026-08-27T03:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "PSE",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-89e20d33-4da8-45dc-895a-25805078a0d4-524836-1787814094539",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-613813e6-74be-441c-af42-2f1babab349d-524487-1787799662425",
+      "bbox": [
+        34.80157241801462,
+        31.01291116893077,
+        34.80157241801462,
+        31.01291116893077
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80157241801462,
+          31.01291116893077
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - Northern And Western Negev, Israel",
+        "datetime": "2026-08-26T23:00:00Z",
+        "end_datetime": "2026-08-27T03:16:18Z",
+        "monty:corr_id": "20260826-ISR-1088275-MH0103-1-GCDB",
+        "start_datetime": "2026-08-26T23:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "ISR",
+          "PSE",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-613813e6-74be-441c-af42-2f1babab349d-524487-1787799662425",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-d1b2cb4c-cfb9-475e-b95a-82e561f1c454-523949-1787727869007",
+      "bbox": [
+        34.70296252776995,
+        31.05387603220219,
+        34.70296252776995,
+        31.05387603220219
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.70296252776995,
+          31.05387603220219
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - North Western And Western Negev, Israel",
+        "datetime": "2026-08-26T03:00:00Z",
+        "end_datetime": "2026-08-26T07:19:39Z",
+        "monty:corr_id": "20260826-EGY-1090074-MH0103-1-GCDB",
+        "start_datetime": "2026-08-26T03:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "PSE",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-d1b2cb4c-cfb9-475e-b95a-82e561f1c454-523949-1787727869007",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4cb21b99-8012-4143-80fb-db50e3d8d778-523831-1787713289458",
+      "bbox": [
+        34.70296252776995,
+        31.05387603220219,
+        34.70296252776995,
+        31.05387603220219
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.70296252776995,
+          31.05387603220219
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - North Western And Western Negev, Israel",
+        "datetime": "2026-08-26T01:00:00Z",
+        "end_datetime": "2026-08-26T03:16:40Z",
+        "monty:corr_id": "20260826-ISR-1090074-MH0103-1-GCDB",
+        "start_datetime": "2026-08-26T01:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "ISR",
+          "PSE",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4cb21b99-8012-4143-80fb-db50e3d8d778-523831-1787713289458",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-c2934750-61f3-4f61-85ff-e83f82b794fb-522788-1787626807269",
+      "bbox": [
+        34.80157241801462,
+        31.01291116893077,
+        34.80157241801462,
+        31.01291116893077
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80157241801462,
+          31.01291116893077
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - Northern And Western Negev, Israel",
+        "datetime": "2026-08-24T23:00:00Z",
+        "end_datetime": "2026-08-25T03:15:15Z",
+        "monty:corr_id": "20260824-EGY-1088275-MH0103-1-GCDB",
+        "start_datetime": "2026-08-24T23:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "PSE",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-c2934750-61f3-4f61-85ff-e83f82b794fb-522788-1787626807269",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-6e6298e2-ffa3-4371-a56e-45a88781dde4-522629-1787612456477",
+      "bbox": [
+        34.80157241801462,
+        31.01291116893077,
+        34.80157241801462,
+        31.01291116893077
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80157241801462,
+          31.01291116893077
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - Northern And Western Negev, Israel",
+        "datetime": "2026-08-24T19:55:00Z",
+        "end_datetime": "2026-08-24T23:16:08Z",
+        "monty:corr_id": "20260824-EGY-1088275-MH0103-1-GCDB",
+        "start_datetime": "2026-08-24T19:55:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "PSE",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-6e6298e2-ffa3-4371-a56e-45a88781dde4-522629-1787612456477",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-b19959d9-1fb5-4e40-97e3-4b4eeba25562-522044-1787554872799",
+      "bbox": [
+        34.80157241801462,
+        31.01291116893077,
+        34.80157241801462,
+        31.01291116893077
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80157241801462,
+          31.01291116893077
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - Northwestern, Northeastern And Western Negev, Israel",
+        "datetime": "2026-08-24T03:00:00Z",
+        "end_datetime": "2026-08-24T07:16:17Z",
+        "monty:corr_id": "20260824-EGY-1088275-MH0103-1-GCDB",
+        "start_datetime": "2026-08-24T03:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "PSE",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-b19959d9-1fb5-4e40-97e3-4b4eeba25562-522044-1787554872799",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-6e2e47d0-d31a-4ea9-9cf9-970179b8ad35-521889-1787540499047",
+      "bbox": [
+        34.80157241801462,
+        31.01291116893077,
+        34.80157241801462,
+        31.01291116893077
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.80157241801462,
+          31.01291116893077
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - Northern And Western Negev, Israel",
+        "datetime": "2026-08-23T23:00:00Z",
+        "end_datetime": "2026-08-24T03:16:47Z",
+        "monty:corr_id": "20260823-EGY-1088275-MH0103-1-GCDB",
+        "start_datetime": "2026-08-23T23:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "PSE",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-6e2e47d0-d31a-4ea9-9cf9-970179b8ad35-521889-1787540499047",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-563ecaa9-4eef-4cf7-98fd-2f631c0956b4-520501-1787493660165",
+      "bbox": [
+        34.68679504721554,
+        30.61879828620163,
+        34.68679504721554,
+        30.61879828620163
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.68679504721554,
+          30.61879828620163
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Negev Mountain, Israel",
+        "datetime": "2026-08-23T11:00:00Z",
+        "end_datetime": "2026-08-23T14:00:00Z",
+        "monty:corr_id": "20260823-EGY-1084674-MH0501-1-GCDB",
+        "start_datetime": "2026-08-23T11:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-563ecaa9-4eef-4cf7-98fd-2f631c0956b4-520501-1787493660165",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-abb32664-1066-49af-bd78-7e84af615622-520042-1787418067801",
+      "bbox": [
+        35.17974812307867,
+        31.43262282678274,
+        35.17974812307867,
+        31.43262282678274
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.17974812307867,
+          31.43262282678274
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Lower Galilee, Jezreel Valley, North Eastern Samaria, Negev, Eilat Mountains, Israel",
+        "datetime": "2026-08-22T11:00:00Z",
+        "end_datetime": "2026-08-22T17:16:20Z",
+        "monty:corr_id": "20260822-PSE-1091877-MH0501-1-GCDB",
+        "start_datetime": "2026-08-22T11:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "PSE",
+          "EGY",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-abb32664-1066-49af-bd78-7e84af615622-520042-1787418067801",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-abb32664-1066-49af-bd78-7e84af615622-520042-1787368384763",
+      "bbox": [
+        35.17974812307867,
+        31.43262282678274,
+        35.17974812307867,
+        31.43262282678274
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.17974812307867,
+          31.43262282678274
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Lower Galilee, Jezreel Valley, North Eastern Samaria, Negev, Eilat Mountains, Israel",
+        "datetime": "2026-08-22T11:00:00Z",
+        "end_datetime": "2026-08-22T17:16:20Z",
+        "monty:corr_id": "20260822-EGY-1091877-MH0501-1-GCDB",
+        "start_datetime": "2026-08-22T11:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "PSE",
+          "LBN",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-abb32664-1066-49af-bd78-7e84af615622-520042-1787368384763",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-fbb0c291-bb05-4026-92dd-e3b4856bb6a4-518414-1787323110711",
+      "bbox": [
+        34.68679504721554,
+        30.61879828620163,
+        34.68679504721554,
+        30.61879828620163
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.68679504721554,
+          30.61879828620163
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Northern Golan And Negev Mountain, Israel",
+        "datetime": "2026-08-21T10:00:00Z",
+        "end_datetime": "2026-08-21T14:53:41Z",
+        "monty:corr_id": "20260821-ISR-1084674-MH0501-1-GCDB",
+        "start_datetime": "2026-08-21T10:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ISR",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-fbb0c291-bb05-4026-92dd-e3b4856bb6a4-518414-1787323110711",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-1b54cba3-b9e5-46d7-beae-a16739252b01-519062-1787335493359",
+      "bbox": [
+        35.15594452331147,
+        31.46270185542245,
+        35.15594452331147,
+        31.46270185542245
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.15594452331147,
+          31.46270185542245
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Galilee, Negev And Eilat Mountains, Israel",
+        "datetime": "2026-08-21T07:00:00Z",
+        "end_datetime": "2026-08-21T18:20:08Z",
+        "monty:corr_id": "20260821-LBN-1093677-MH0501-1-GCDB",
+        "start_datetime": "2026-08-21T07:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "LBN",
+          "ISR",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-1b54cba3-b9e5-46d7-beae-a16739252b01-519062-1787335493359",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-1b54cba3-b9e5-46d7-beae-a16739252b01-519062-1787282590085",
+      "bbox": [
+        35.15594452331147,
+        31.46270185542245,
+        35.15594452331147,
+        31.46270185542245
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.15594452331147,
+          31.46270185542245
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Galilee, Negev And Eilat Mountains, Israel",
+        "datetime": "2026-08-21T07:00:00Z",
+        "end_datetime": "2026-08-21T18:20:08Z",
+        "monty:corr_id": "20260821-EGY-1093677-MH0501-1-GCDB",
+        "start_datetime": "2026-08-21T07:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "LBN",
+          "ISR",
+          "PSE"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-1b54cba3-b9e5-46d7-beae-a16739252b01-519062-1787282590085",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-1b54cba3-b9e5-46d7-beae-a16739252b01-519062-1787282437867",
+      "bbox": [
+        35.15594452331147,
+        31.46270185542245,
+        35.15594452331147,
+        31.46270185542245
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.15594452331147,
+          31.46270185542245
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Galilee, Negev And Eilat Mountains, Israel",
+        "datetime": "2026-08-21T07:00:00Z",
+        "end_datetime": "2026-08-21T18:20:08Z",
+        "monty:corr_id": "20260821-EGY-1093677-MH0501-1-GCDB",
+        "start_datetime": "2026-08-21T07:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "LBN",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-1b54cba3-b9e5-46d7-beae-a16739252b01-519062-1787282437867",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-d24d190f-8fa6-455c-b4f9-81728a646c03-508384-1786341673187",
+      "bbox": [
+        34.70296252776995,
+        31.05387603220219,
+        34.70296252776995,
+        31.05387603220219
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.70296252776995,
+          31.05387603220219
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - North Western And Western Negev, Israel",
+        "datetime": "2026-08-09T23:00:00Z",
+        "end_datetime": "2026-08-10T06:16:16Z",
+        "monty:corr_id": "20260809-EGY-1090074-MH0103-1-GCDB",
+        "start_datetime": "2026-08-09T23:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "PSE",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-d24d190f-8fa6-455c-b4f9-81728a646c03-508384-1786341673187",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-d24d190f-8fa6-455c-b4f9-81728a646c03-508384-1786326781739",
+      "bbox": [
+        34.70296252776995,
+        31.05387603220219,
+        34.70296252776995,
+        31.05387603220219
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.70296252776995,
+          31.05387603220219
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Dense Fog - North Western And Western Negev, Israel",
+        "datetime": "2026-08-09T23:00:00Z",
+        "end_datetime": "2026-08-10T06:16:16Z",
+        "monty:corr_id": "20260809-PSE-1090074-MH0103-1-GCDB",
+        "start_datetime": "2026-08-09T23:00:00Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "PSE",
+          "EGY",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-d24d190f-8fa6-455c-b4f9-81728a646c03-508384-1786326781739",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-b3ea42aa-3981-4e26-9d0b-5066cbe8f9f7-502986-1785719296049",
+      "bbox": [
+        32.6273,
+        30.2922,
+        32.6273,
+        30.2922
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.6273,
+          30.2922
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Earthquake - 5.0 - 41 km NNE of Suez, Egypt",
+        "datetime": "2026-08-03T00:00:33Z",
+        "end_datetime": "2026-08-04T00:00:33Z",
+        "monty:corr_id": "20260803-EGY-1082864-GH0101-1-GCDB",
+        "start_datetime": "2026-08-03T00:00:33Z",
+        "monty:hazard_codes": [
+          "GH0101",
+          "EQ",
+          "nat-geo-ear-gro"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-b3ea42aa-3981-4e26-9d0b-5066cbe8f9f7-502986-1785719296049",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-b3ea42aa-3981-4e26-9d0b-5066cbe8f9f7-502986-1785716304044",
+      "bbox": [
+        32.6273,
+        30.2922,
+        32.6273,
+        30.2922
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.6273,
+          30.2922
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Earthquake - 5.0 - 41 km NNE of Suez, Egypt",
+        "datetime": "2026-08-03T00:00:33Z",
+        "end_datetime": "2026-08-04T00:00:33Z",
+        "monty:corr_id": "20260803-EGY-1082864-GH0101-1-GCDB",
+        "start_datetime": "2026-08-03T00:00:33Z",
+        "monty:hazard_codes": [
+          "GH0101",
+          "EQ",
+          "nat-geo-ear-gro"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-b3ea42aa-3981-4e26-9d0b-5066cbe8f9f7-502986-1785716304044",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1555797-1722637",
+      "bbox": [
+        32.6273,
+        30.2922,
+        32.6273,
+        30.2922
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.6273,
+          30.2922
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Earthquake in Egypt",
+        "datetime": "2026-08-03T00:00:33Z",
+        "end_datetime": "2026-08-03T00:00:33Z",
+        "monty:corr_id": "20260803-EGY-1082864-GH0101-1722637-GCDB",
+        "start_datetime": "2026-08-03T00:00:33Z",
+        "monty:hazard_codes": [
+          "GH0101",
+          "EQ",
+          "nat-geo-ear-gro"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1555797-1722637",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1555797-1722631",
+      "bbox": [
+        32.6273,
+        30.2922,
+        32.6273,
+        30.2922
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.6273,
+          30.2922
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Earthquake in Egypt",
+        "datetime": "2026-08-03T00:00:33Z",
+        "end_datetime": "2026-08-03T00:00:33Z",
+        "monty:corr_id": "20260803-EGY-1082864-GH0101-1722631-GCDB",
+        "start_datetime": "2026-08-03T00:00:33Z",
+        "monty:hazard_codes": [
+          "GH0101",
+          "EQ",
+          "nat-geo-ear-gro"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1555797-1722631",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-ded8da8e-55d3-4d4a-b099-8069bd0151a3-500854-1785783107528",
+      "bbox": [
+        34.97158382817833,
+        31.28779298552644,
+        34.97158382817833,
+        31.28779298552644
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.97158382817833,
+          31.28779298552644
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - All Of Israel",
+        "datetime": "2026-07-30T09:00:00Z",
+        "end_datetime": "2026-08-03T17:00:00Z",
+        "monty:corr_id": "20260730-EGY-1091876-MH0501-1-GCDB",
+        "start_datetime": "2026-07-30T09:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "LBN",
+          "PSE",
+          "JOR",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-ded8da8e-55d3-4d4a-b099-8069bd0151a3-500854-1785783107528",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-ded8da8e-55d3-4d4a-b099-8069bd0151a3-500854-1785782911092",
+      "bbox": [
+        34.97158382817833,
+        31.28779298552644,
+        34.97158382817833,
+        31.28779298552644
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.97158382817833,
+          31.28779298552644
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - All Of Israel",
+        "datetime": "2026-07-30T09:00:00Z",
+        "end_datetime": "2026-08-03T17:00:00Z",
+        "monty:corr_id": "20260730-ISR-1091876-MH0501-1-GCDB",
+        "start_datetime": "2026-07-30T09:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ISR",
+          "EGY",
+          "JOR",
+          "LBN",
+          "PSE"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-ded8da8e-55d3-4d4a-b099-8069bd0151a3-500854-1785782911092",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-ded8da8e-55d3-4d4a-b099-8069bd0151a3-500854-1785713566720",
+      "bbox": [
+        34.97158382817833,
+        31.28779298552644,
+        34.97158382817833,
+        31.28779298552644
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.97158382817833,
+          31.28779298552644
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - All Of Israel",
+        "datetime": "2026-07-30T09:00:00Z",
+        "end_datetime": "2026-08-03T17:00:00Z",
+        "monty:corr_id": "20260730-JOR-1091876-MH0501-1-GCDB",
+        "start_datetime": "2026-07-30T09:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "JOR",
+          "PSE",
+          "ISR",
+          "EGY",
+          "LBN"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-ded8da8e-55d3-4d4a-b099-8069bd0151a3-500854-1785713566720",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-ded8da8e-55d3-4d4a-b099-8069bd0151a3-500854-1785534128341",
+      "bbox": [
+        34.97158382817833,
+        31.28779298552644,
+        34.97158382817833,
+        31.28779298552644
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.97158382817833,
+          31.28779298552644
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - All Of Israel",
+        "datetime": "2026-07-30T09:00:00Z",
+        "end_datetime": "2026-08-03T17:00:00Z",
+        "monty:corr_id": "20260730-EGY-1091876-MH0501-1-GCDB",
+        "start_datetime": "2026-07-30T09:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "LBN",
+          "PSE",
+          "JOR",
+          "ISR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-ded8da8e-55d3-4d4a-b099-8069bd0151a3-500854-1785534128341",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-ded8da8e-55d3-4d4a-b099-8069bd0151a3-500854-1785528432807",
+      "bbox": [
+        34.97158382817833,
+        31.28779298552644,
+        34.97158382817833,
+        31.28779298552644
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.97158382817833,
+          31.28779298552644
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - All Of Israel",
+        "datetime": "2026-07-30T09:00:00Z",
+        "end_datetime": "2026-08-03T17:00:00Z",
+        "monty:corr_id": "20260730-JOR-1091876-MH0501-1-GCDB",
+        "start_datetime": "2026-07-30T09:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "JOR",
+          "PSE",
+          "ISR",
+          "EGY",
+          "LBN"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-ded8da8e-55d3-4d4a-b099-8069bd0151a3-500854-1785528432807",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-2fc143d1-6e6f-4702-bbfe-ee0d6b2eb6a7-488629-1784304390229",
+      "bbox": [
+        35.06587126861892,
+        31.32885582756333,
+        35.06587126861892,
+        31.32885582756333
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.06587126861892,
+          31.32885582756333
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Southern Golan, Lower Galilee, Negev And Eilat Mountains, Israel",
+        "datetime": "2026-07-17T08:00:00Z",
+        "end_datetime": "2026-07-17T16:21:36Z",
+        "monty:corr_id": "20260717-PSE-1091876-MH0501-1-GCDB",
+        "start_datetime": "2026-07-17T08:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "PSE",
+          "ISR",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-2fc143d1-6e6f-4702-bbfe-ee0d6b2eb6a7-488629-1784304390229",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-2fc143d1-6e6f-4702-bbfe-ee0d6b2eb6a7-488629-1784257983941",
+      "bbox": [
+        35.06587126861892,
+        31.32885582756333,
+        35.06587126861892,
+        31.32885582756333
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.06587126861892,
+          31.32885582756333
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Southern Golan, Lower Galilee, Negev And Eilat Mountains, Israel",
+        "datetime": "2026-07-17T08:00:00Z",
+        "end_datetime": "2026-07-17T16:21:36Z",
+        "monty:corr_id": "20260717-EGY-1091876-MH0501-1-GCDB",
+        "start_datetime": "2026-07-17T08:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "ISR",
+          "PSE"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-2fc143d1-6e6f-4702-bbfe-ee0d6b2eb6a7-488629-1784257983941",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-2fc143d1-6e6f-4702-bbfe-ee0d6b2eb6a7-488629-1784257872267",
+      "bbox": [
+        35.06587126861892,
+        31.32885582756333,
+        35.06587126861892,
+        31.32885582756333
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.06587126861892,
+          31.32885582756333
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Southern Golan, Lower Galilee, Negev And Eilat Mountains, Israel",
+        "datetime": "2026-07-17T08:00:00Z",
+        "end_datetime": "2026-07-17T16:21:36Z",
+        "monty:corr_id": "20260717-ISR-1091876-MH0501-1-GCDB",
+        "start_datetime": "2026-07-17T08:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ISR",
+          "EGY",
+          "PSE"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-2fc143d1-6e6f-4702-bbfe-ee0d6b2eb6a7-488629-1784257872267",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-ff51d259-df94-4389-8e29-c0acdf45fd3a-486767-1784131256955",
+      "bbox": [
+        35.06883230682611,
+        31.27708087725145,
+        35.06883230682611,
+        31.27708087725145
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.06883230682611,
+          31.27708087725145
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Southern Golan, Upper Galilee, Jezreel Valley, Northeastern Samaria, Negev, Israel",
+        "datetime": "2026-07-15T08:00:00Z",
+        "end_datetime": "2026-07-15T16:16:11Z",
+        "monty:corr_id": "20260715-LBN-1091876-MH0501-1-GCDB",
+        "start_datetime": "2026-07-15T08:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "LBN",
+          "EGY",
+          "ISR",
+          "PSE"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-ff51d259-df94-4389-8e29-c0acdf45fd3a-486767-1784131256955",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-ff51d259-df94-4389-8e29-c0acdf45fd3a-486767-1784035407760",
+      "bbox": [
+        35.06883230682611,
+        31.27708087725145,
+        35.06883230682611,
+        31.27708087725145
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.06883230682611,
+          31.27708087725145
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Southern Golan, Upper Galilee, Jezreel Valley, Northeastern Samaria, Negev, Israel",
+        "datetime": "2026-07-15T08:00:00Z",
+        "end_datetime": "2026-07-15T16:16:11Z",
+        "monty:corr_id": "20260715-PSE-1091876-MH0501-1-GCDB",
+        "start_datetime": "2026-07-15T08:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "PSE",
+          "LBN",
+          "ISR",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-ff51d259-df94-4389-8e29-c0acdf45fd3a-486767-1784035407760",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-ff51d259-df94-4389-8e29-c0acdf45fd3a-486767-1784035285619",
+      "bbox": [
+        35.06883230682611,
+        31.27708087725145,
+        35.06883230682611,
+        31.27708087725145
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.06883230682611,
+          31.27708087725145
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Southern Golan, Upper Galilee, Jezreel Valley, Northeastern Samaria, Negev, Israel",
+        "datetime": "2026-07-15T08:00:00Z",
+        "end_datetime": "2026-07-15T16:16:11Z",
+        "monty:corr_id": "20260715-ISR-1091876-MH0501-1-GCDB",
+        "start_datetime": "2026-07-15T08:00:00Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ISR",
+          "EGY",
+          "LBN",
+          "PSE"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-ff51d259-df94-4389-8e29-c0acdf45fd3a-486767-1784035285619",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-8b4ced21-1255-414a-8196-84d86ca0fb75-424219-1776716768751",
+      "bbox": [
+        35.01956,
+        30.54481,
+        35.01956,
+        30.54481
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.01956,
+          30.54481
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Floods - Israel",
+        "datetime": "2026-04-17T18:30:17Z",
+        "end_datetime": "2026-04-20T20:25:58Z",
+        "monty:corr_id": "20260417-ISR-1084676-MH0600-1-GCDB",
+        "start_datetime": "2026-04-17T18:30:17Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ISR",
+          "JOR",
+          "PSE",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-8b4ced21-1255-414a-8196-84d86ca0fb75-424219-1776716768751",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-8b4ced21-1255-414a-8196-84d86ca0fb75-424219-1776450855975",
+      "bbox": [
+        35.01956,
+        30.54481,
+        35.01956,
+        30.54481
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.01956,
+          30.54481
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Floods - Israel",
+        "datetime": "2026-04-17T18:30:17Z",
+        "end_datetime": "2026-04-20T20:25:58Z",
+        "monty:corr_id": "20260417-EGY-1084676-MH0600-1-GCDB",
+        "start_datetime": "2026-04-17T18:30:17Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY",
+          "JOR",
+          "ISR",
+          "PSE"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-8b4ced21-1255-414a-8196-84d86ca0fb75-424219-1776450855975",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-bb993c31-6f99-4945-938b-e8b0b05de02d-424212-1776716776388",
+      "bbox": [
+        34.89727,
+        31.67295,
+        34.89727,
+        31.67295
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.89727,
+          31.67295
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Storms - Israel",
+        "datetime": "2026-04-17T18:20:26Z",
+        "end_datetime": "2026-04-20T20:26:08Z",
+        "monty:corr_id": "20260417-LBN-MH0103-1-GCDB",
+        "start_datetime": "2026-04-17T18:20:26Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBN",
+          "JOR",
+          "PSE",
+          "ISR",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-bb993c31-6f99-4945-938b-e8b0b05de02d-424212-1776716776388",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-bb993c31-6f99-4945-938b-e8b0b05de02d-424212-1776451006742",
+      "bbox": [
+        34.89727,
+        31.67295,
+        34.89727,
+        31.67295
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.89727,
+          31.67295
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Storms - Israel",
+        "datetime": "2026-04-17T18:20:26Z",
+        "end_datetime": "2026-04-20T20:26:08Z",
+        "monty:corr_id": "20260417-PSE-MH0103-1-GCDB",
+        "start_datetime": "2026-04-17T18:20:26Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "PSE",
+          "LBN",
+          "ISR",
+          "EGY",
+          "JOR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-bb993c31-6f99-4945-938b-e8b0b05de02d-424212-1776451006742",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-bb993c31-6f99-4945-938b-e8b0b05de02d-424212-1776450287877",
+      "bbox": [
+        34.89727,
+        31.67295,
+        34.89727,
+        31.67295
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.89727,
+          31.67295
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Storms - Israel",
+        "datetime": "2026-04-17T18:20:26Z",
+        "end_datetime": "2026-04-20T20:26:08Z",
+        "monty:corr_id": "20260417-PSE-MH0103-1-GCDB",
+        "start_datetime": "2026-04-17T18:20:26Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "PSE",
+          "EGY",
+          "ISR",
+          "LBN",
+          "JOR"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-bb993c31-6f99-4945-938b-e8b0b05de02d-424212-1776450287877",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-bb993c31-6f99-4945-938b-e8b0b05de02d-424212-1776450027770",
+      "bbox": [
+        34.89727,
+        31.67295,
+        34.89727,
+        31.67295
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.89727,
+          31.67295
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Storms - Israel",
+        "datetime": "2026-04-17T18:20:26Z",
+        "end_datetime": "2026-04-20T20:26:08Z",
+        "monty:corr_id": "20260417-LBN-MH0103-1-GCDB",
+        "start_datetime": "2026-04-17T18:20:26Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBN",
+          "JOR",
+          "PSE",
+          "ISR",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-bb993c31-6f99-4945-938b-e8b0b05de02d-424212-1776450027770",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4654dc93-88fe-4a05-bbe9-3bda7ae1f29a-415014-1775199704143",
+      "bbox": [
+        31.458927305494463,
+        27.270898231244082,
+        31.458927305494463,
+        27.270898231244082
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.458927305494463,
+          27.270898231244082
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Unorganized in Asyut, Asyut, Egypt",
+        "datetime": "2026-04-02T19:45:16Z",
+        "end_datetime": "2026-04-04T07:03:35Z",
+        "monty:corr_id": "20260402-EGY-MH0600-1-GCDB",
+        "start_datetime": "2026-04-02T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4654dc93-88fe-4a05-bbe9-3bda7ae1f29a-415014-1775199704143",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4654dc93-88fe-4a05-bbe9-3bda7ae1f29a-415014-1775185428339",
+      "bbox": [
+        31.458927305494463,
+        27.270898231244082,
+        31.458927305494463,
+        27.270898231244082
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.458927305494463,
+          27.270898231244082
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Unorganized in Asyut, Asyut, Egypt",
+        "datetime": "2026-04-02T19:45:16Z",
+        "end_datetime": "2026-04-04T07:03:35Z",
+        "monty:corr_id": "20260402-EGY-MH0600-1-GCDB",
+        "start_datetime": "2026-04-02T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4654dc93-88fe-4a05-bbe9-3bda7ae1f29a-415014-1775185428339",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4654dc93-88fe-4a05-bbe9-3bda7ae1f29a-415014-1775160116222",
+      "bbox": [
+        31.458927305494463,
+        27.270898231244082,
+        31.458927305494463,
+        27.270898231244082
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.458927305494463,
+          27.270898231244082
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Unorganized in Asyut, Asyut, Egypt",
+        "datetime": "2026-04-02T19:45:16Z",
+        "end_datetime": "2026-04-04T07:03:35Z",
+        "monty:corr_id": "20260402-EGY-MH0600-1-GCDB",
+        "start_datetime": "2026-04-02T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4654dc93-88fe-4a05-bbe9-3bda7ae1f29a-415014-1775160116222",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1775113272579",
+      "bbox": [
+        30.470314475551056,
+        29.246540703783676,
+        30.470314475551056,
+        29.246540703783676
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.470314475551056,
+          29.246540703783676
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Nile Basin, Al Fayyum, Egypt",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-04-03T07:01:43Z",
+        "monty:corr_id": "20260329-EGY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1775113272579",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1775098877225",
+      "bbox": [
+        30.470314475551056,
+        29.246540703783676,
+        30.470314475551056,
+        29.246540703783676
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.470314475551056,
+          29.246540703783676
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Nile Basin, Al Fayyum, Egypt",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-04-03T07:01:43Z",
+        "monty:corr_id": "20260329-EGY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1775098877225",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1775073699676",
+      "bbox": [
+        30.470314475551056,
+        29.246540703783676,
+        30.470314475551056,
+        29.246540703783676
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.470314475551056,
+          29.246540703783676
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Nile Basin, Al Fayyum, Egypt",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-04-03T07:01:43Z",
+        "monty:corr_id": "20260329-EGY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1775073699676",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1774940506652",
+      "bbox": [
+        30.470314475551056,
+        29.246540703783676,
+        30.470314475551056,
+        29.246540703783676
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.470314475551056,
+          29.246540703783676
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Nile Basin, Al Fayyum, Egypt",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-04-03T07:01:43Z",
+        "monty:corr_id": "20260329-EGY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1774940506652",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1774926167629",
+      "bbox": [
+        30.470314475551056,
+        29.246540703783676,
+        30.470314475551056,
+        29.246540703783676
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.470314475551056,
+          29.246540703783676
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Nile Basin, Al Fayyum, Egypt",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-04-03T07:01:43Z",
+        "monty:corr_id": "20260329-EGY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1774926167629",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1774900887065",
+      "bbox": [
+        30.470314475551056,
+        29.246540703783676,
+        30.470314475551056,
+        29.246540703783676
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.470314475551056,
+          29.246540703783676
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Nile Basin, Al Fayyum, Egypt",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-04-03T07:01:43Z",
+        "monty:corr_id": "20260329-EGY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1774900887065",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1774854014958",
+      "bbox": [
+        30.470314475551056,
+        29.246540703783676,
+        30.470314475551056,
+        29.246540703783676
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.470314475551056,
+          29.246540703783676
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Nile Basin, Al Fayyum, Egypt",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-04-03T07:01:43Z",
+        "monty:corr_id": "20260329-EGY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1774854014958",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1774839694641",
+      "bbox": [
+        30.470314475551056,
+        29.246540703783676,
+        30.470314475551056,
+        29.246540703783676
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.470314475551056,
+          29.246540703783676
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Nile Basin, Al Fayyum, Egypt",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-04-03T07:01:43Z",
+        "monty:corr_id": "20260329-EGY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1774839694641",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1774814564554",
+      "bbox": [
+        30.470314475551056,
+        29.246540703783676,
+        30.470314475551056,
+        29.246540703783676
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.470314475551056,
+          29.246540703783676
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Nile Basin, Al Fayyum, Egypt",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-04-03T07:01:43Z",
+        "monty:corr_id": "20260329-EGY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-4360caca-7f82-44d4-8a77-1ef20a95911a-412805-1774814564554",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-88adc265-352e-412c-9c26-0975602e8daf-389704-1767814431528",
+      "bbox": [
+        34.398179,
+        31.421684,
+        34.398179,
+        31.421684
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.398179,
+          31.421684
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Storm - Gaza Strip",
+        "datetime": "2026-01-07T19:33:47Z",
+        "end_datetime": "2026-01-08T19:34:02Z",
+        "monty:corr_id": "20260107-ISR-MH0103-1-GCDB",
+        "start_datetime": "2026-01-07T19:33:47Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "ISR",
+          "PSE",
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-88adc265-352e-412c-9c26-0975602e8daf-389704-1767814431528",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-a9c8aaa3-0b79-4840-a1cb-73154b01f577-385696-1765902015",
+      "bbox": [
+        34.30295,
+        31.37115,
+        34.30295,
+        31.37115
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.30295,
+          31.37115
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Severe Weather - Palestine",
+        "datetime": "2025-12-16T16:16:08.553000Z",
+        "end_datetime": "2025-12-23T16:13:34.429000Z",
+        "monty:corr_id": "20251216-ISR-MH0103-1-GCDB",
+        "start_datetime": "2025-12-16T16:16:08.553000Z",
+        "monty:hazard_codes": [
+          "MH0103",
+          "ST",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "ISR",
+          "EGY",
+          "PSE"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-a9c8aaa3-0b79-4840-a1cb-73154b01f577-385696-1765902015",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1102820",
+      "bbox": [
+        27.7269966,
+        23.9802763,
+        27.7269966,
+        23.9802763
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.7269966,
+          23.9802763
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Flood in Egypt",
+        "datetime": "2024-08-08T01:00:00Z",
+        "end_datetime": "2024-08-10T01:00:00+00:00",
+        "monty:corr_id": "20240808-EGY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-08-08T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1102820",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-18881",
+      "bbox": [
+        25.700001,
+        31.466669,
+        25.700001,
+        31.466669
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          25.700001,
+          31.466669
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Egypt: Storm - Matrouh Governorate (Al-Kharouba) - 05/10/2023",
+        "datetime": "2023-10-05T00:00:00Z",
+        "end_datetime": "2023-10-05T00:00:00+00:00",
+        "monty:corr_id": "20231005-EGY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-10-05T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-18881",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    }
+  ]
+}

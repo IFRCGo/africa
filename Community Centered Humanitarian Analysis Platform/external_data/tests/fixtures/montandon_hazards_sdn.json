@@ -1,0 +1,35 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "gdacs-hazard-1027729",
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Ethiopia, Sudan",
+        "monty:corr_id": "20260301-ETH-EN0205-1-GCDB",
+        "monty:country_codes": ["ETH", "SDN"],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      }
+    },
+    {
+      "id": "gdacs-hazard-orphan",
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "A severity whose event never loaded",
+        "monty:corr_id": "20260101-SDN-NOSUCH-1-GCDB",
+        "monty:country_codes": ["SDN"],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.5
+        }
+      }
+    }
+  ]
+}

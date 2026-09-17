@@ -1,0 +1,1243 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "idmc-idu-event-45441",
+      "bbox": [
+        10.40218,
+        26.099159,
+        10.40218,
+        26.099159
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.40218,
+          26.099159
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Libya: Flood - Ghat - 01/05/2026",
+        "datetime": "2026-05-01T00:00:00Z",
+        "end_datetime": "2026-05-31T00:00:00Z",
+        "monty:corr_id": "20260501-LBY-1044953-MH0600-1-GCDB",
+        "start_datetime": "2026-05-01T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-45441",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1018406-4",
+      "bbox": [
+        12.782,
+        32.464,
+        12.782,
+        32.464
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.782,
+          32.464
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Drought in Libya, Tunisia",
+        "datetime": "2026-01-21T00:00:00Z",
+        "end_datetime": "2026-05-04T00:00:00Z",
+        "monty:corr_id": "20260121-LBY-1102565-MH0401-4-GCDB",
+        "start_datetime": "2026-01-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401",
+          "DR",
+          "nat-cli-dro-dro"
+        ],
+        "monty:country_codes": [
+          "LBY",
+          "TUN"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1018406-4",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1018406-3",
+      "bbox": [
+        12.782,
+        32.464,
+        12.782,
+        32.464
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.782,
+          32.464
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Drought in Libya, Tunisia",
+        "datetime": "2026-01-21T00:00:00Z",
+        "end_datetime": "2026-05-04T00:00:00Z",
+        "monty:corr_id": "20260121-LBY-1102565-MH0401-3-GCDB",
+        "start_datetime": "2026-01-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401",
+          "DR",
+          "nat-cli-dro-dro"
+        ],
+        "monty:country_codes": [
+          "LBY",
+          "TUN"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1018406-3",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1018406-2",
+      "bbox": [
+        12.782,
+        32.464,
+        12.782,
+        32.464
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.782,
+          32.464
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Drought in Libya, Tunisia",
+        "datetime": "2026-01-21T00:00:00Z",
+        "end_datetime": "2026-05-04T00:00:00Z",
+        "monty:corr_id": "20260121-LBY-1102565-MH0401-2-GCDB",
+        "start_datetime": "2026-01-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401",
+          "DR",
+          "nat-cli-dro-dro"
+        ],
+        "monty:country_codes": [
+          "LBY",
+          "TUN"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1018406-2",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1018406-1",
+      "bbox": [
+        12.782,
+        32.464,
+        12.782,
+        32.464
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.782,
+          32.464
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Drought in Libya, Tunisia",
+        "datetime": "2026-01-21T00:00:00Z",
+        "end_datetime": "2026-05-04T00:00:00Z",
+        "monty:corr_id": "20260121-LBY-1102565-MH0401-1-GCDB",
+        "start_datetime": "2026-01-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401",
+          "DR",
+          "nat-cli-dro-dro"
+        ],
+        "monty:country_codes": [
+          "LBY",
+          "TUN"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1018406-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1103597",
+      "bbox": [
+        21.4096623,
+        32.4833738,
+        21.4096623,
+        32.4833738
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.4096623,
+          32.4833738
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2025-11-05T01:00:00Z",
+        "end_datetime": "2025-11-08T01:00:00Z",
+        "monty:corr_id": "20251105-LBY-MH0600-1-GCDB",
+        "start_datetime": "2025-11-05T01:00:00Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1103597",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-28451",
+      "bbox": [
+        12.81466,
+        32.721539,
+        12.81466,
+        32.721539
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.81466,
+          32.721539
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Libya: Flood - Tripoli,  Al Jabal Al Gharbi,  Misrata, Al Margeb - 05/12/2024",
+        "datetime": "2024-12-05T00:00:00Z",
+        "end_datetime": "2024-12-09T00:00:00+00:00",
+        "monty:corr_id": "20241205-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-12-05T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-28451",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1103036",
+      "bbox": [
+        20.0812174,
+        32.1200168,
+        20.0812174,
+        32.1200168
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          20.0812174,
+          32.1200168
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2024-12-04T01:00:00Z",
+        "end_datetime": "2024-12-06T01:00:00+00:00",
+        "monty:corr_id": "20241204-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-12-04T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1103036",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1102901",
+      "bbox": [
+        15.1065417,
+        26.9956212,
+        15.1065417,
+        26.9956212
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.1065417,
+          26.9956212
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2024-09-13T01:00:00Z",
+        "end_datetime": "2024-09-15T01:00:00+00:00",
+        "monty:corr_id": "20240913-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-09-13T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1102901",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-26298",
+      "bbox": [
+        10.242303333333334,
+        25.073656666666665,
+        10.242303333333334,
+        25.073656666666665
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.242303333333334,
+          25.073656666666665
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Libya: Flood - Ghat - 16/08/2024",
+        "datetime": "2024-08-16T00:00:00Z",
+        "end_datetime": "2024-08-16T00:00:00+00:00",
+        "monty:corr_id": "20240816-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-08-16T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-26298",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1102829",
+      "bbox": [
+        18.1236723,
+        26.8234472,
+        18.1236723,
+        26.8234472
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.1236723,
+          26.8234472
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2024-08-11T01:00:00Z",
+        "end_datetime": "2024-08-13T01:00:00+00:00",
+        "monty:corr_id": "20240811-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-08-11T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1102829",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-26123",
+      "bbox": [
+        23.269859,
+        24.223591,
+        23.269859,
+        24.223591
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.269859,
+          24.223591
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Libya: Flood - (Kufra) - 11/08/2024",
+        "datetime": "2024-08-11T00:00:00Z",
+        "end_datetime": "2024-08-11T00:00:00+00:00",
+        "monty:corr_id": "20240811-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-08-11T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-26123",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-22094",
+      "bbox": [
+        14.56564,
+        32.46756,
+        14.56564,
+        32.46756
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.56564,
+          32.46756
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Libya: Flood (Groundwater rise) -  Misrata (Zliten) - 31/01/2024",
+        "datetime": "2024-01-30T00:00:00Z",
+        "end_datetime": "2024-01-31T00:00:00+00:00",
+        "monty:corr_id": "20240130-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-01-30T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-22094",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1016906",
+      "bbox": [
+        18.405,
+        28.991,
+        18.405,
+        28.991
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.405,
+          28.991
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Drought in Libya",
+        "datetime": "2023-11-21T00:00:00Z",
+        "end_datetime": "2024-08-07T00:00:00+00:00",
+        "monty:corr_id": "20231121-LBY-NAT-CLI-DRO-DRO-1-GCDB",
+        "start_datetime": "2023-11-21T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0035"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1016906",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-18555",
+      "bbox": [
+        10.17972,
+        24.962629,
+        10.17972,
+        24.962629
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.17972,
+          24.962629
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Libya: Storm - Ghat, Wadi al Hayaa - 30/09/2023",
+        "datetime": "2023-09-30T00:00:00Z",
+        "end_datetime": "2023-10-02T00:00:00+00:00",
+        "monty:corr_id": "20230930-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-09-30T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-18555",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-event-1102204",
+      "bbox": [
+        22.6383195,
+        32.7593795,
+        22.6383195,
+        32.7593795
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.6383195,
+          32.7593795
+        ]
+      },
+      "collection": "gdacs-events",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2023-09-08T01:00:00Z",
+        "end_datetime": "2023-09-14T00:00:00Z",
+        "monty:corr_id": "20230908-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-09-08T01:00:00Z",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1102204",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    }
+  ]
+}

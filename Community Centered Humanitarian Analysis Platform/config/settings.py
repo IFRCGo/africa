@@ -49,6 +49,15 @@ LLM_API_KEY = os.environ.get("LLM_API_KEY") or ""
 # pipeline only re-reads whatever sits in the folder. See data_pipeline/README.md.
 MCP_CACHE_DIR = env_path("MCP_CACHE_DIR", BASE_DIR / "data_pipeline" / "mcp_cache")
 
+# The hazard vocabulary: IFRC codebook categories, the HIP codes observed for the
+# countries of focus, and the document tags, all mapped onto one category set.
+# Beside taxonomy.json because it is the same kind of thing - a vocabulary a
+# person edits - but read through external_data/hazards.py, because a fetcher
+# must not import the pipeline (see fetchers/ipc.py, which parses CRISIS_START
+# out of settings for exactly that reason).
+HAZARD_CODEBOOK = env_path("HAZARD_CODEBOOK",
+                           BASE_DIR / "data_pipeline" / "hazard_codebook.json")
+
 # The two keys the fetchers need. `get(X) or ""`, NOT `get(X, "")`: an empty
 # value in .env must fall back to "not set" rather than be sent as a blank key,
 # which HAPI answers with a 403 instead of a comprehensible refusal.
@@ -58,6 +67,15 @@ MCP_CACHE_DIR = env_path("MCP_CACHE_DIR", BASE_DIR / "data_pipeline" / "mcp_cach
 # and break the moment somebody writes `len(...)`.
 IPC_API_KEY = os.environ.get("IPC_API_KEY") or ""
 HDX_API_TOKEN = os.environ.get("HDX_API_TOKEN") or ""
+
+# Montandon, IFRC's disaster-event registry. NOT an open API: a direct request
+# to the staging host answers {"detail": "Not authenticated"}. It is the same
+# IFRC_API_TOKEN the `monty` MCP server holds, and it has to be copied into .env
+# by hand. Production (montandon-eoapi.ifrc.org) answers 401 and wants GO OIDC
+# credentials, so staging is the default until somebody holds them.
+IFRC_API_TOKEN = os.environ.get("IFRC_API_TOKEN") or ""
+MONTANDON_STAC_URL = (os.environ.get("MONTANDON_STAC_URL")
+                      or "https://montandon-eoapi-stage.ifrc.org/stac")
 
 
 def env_paths(name: str, default: list) -> list:

@@ -182,6 +182,21 @@ class NarrativeTag(models.Model):
         help_text="hazard / vulnerability / coping / need / movement_pattern",
     )
     tag = models.TextField(null=True, blank=True, help_text="Normalised tag, e.g. flooding, food")
+    # WHICH CODEBOOK CATEGORY THIS TAG BELONGS TO, stamped at parse time from
+    # data_pipeline/hazard_codebook.json so the dashboard's Hazard dropdown and
+    # the Montandon events speak one vocabulary.
+    #
+    # Derived, never curated: s03_parse deletes and rebuilds this whole table on
+    # every run, so a category typed in by hand here would not survive the next
+    # pipeline pass. The place to change one is the codebook file.
+    #
+    # Null for the non-hazard dimensions - a need or a coping strategy has no
+    # hazard category, and an empty string would read as one that is blank.
+    hazard_category = models.TextField(
+        null=True, blank=True, db_index=True,
+        help_text="IFRC codebook category key. Null unless dimension='hazard'.",
+    )
+    hazard_sub = models.TextField(null=True, blank=True)
     country = models.TextField(null=True, blank=True)
     # WHERE INSIDE THE COUNTRY, when the report says. About a third of tagged
     # sentences name a state, a locality or a town; those are the ones the map

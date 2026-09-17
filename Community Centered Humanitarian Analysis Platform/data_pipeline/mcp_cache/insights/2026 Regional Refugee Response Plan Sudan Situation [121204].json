@@ -19,11 +19,22 @@
       "codings": [
         {
           "dimension": "need",
-          "tag": "food_security"
+          "tag": "food_security",
+          "role": "subject"
         },
         {
-          "dimension": "vulnerability",
-          "tag": "malnutrition"
+          "dimension": "need",
+          "tag": "nutrition",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "1 in 10",
+          "value": 0.1,
+          "unit": "percent",
+          "measures": "malnourished",
+          "applies_to": "newly arrived Sudanese refugee children"
         }
       ],
       "people_affected": null,
@@ -31,53 +42,59 @@
       "confidence": "high"
     },
     {
-      "quote": "Refugees continued to face significant challenges in meeting their basic needs due to administrative barriers, rising living costs and limited access to formal employment opportunities.",
+      "quote": "Some are choosing to return to areas of relative calm, while others are compelled by hardship in countries of asylum.",
       "quote_language": "en",
-      "page": 9,
+      "page": 8,
       "voice_type": "secondary_analysis",
-      "place_name_as_written": "Egypt",
-      "iso3": "EGY",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
       "codings": [
         {
-          "dimension": "need",
-          "tag": "basic_needs"
+          "dimension": "movement_pattern",
+          "tag": "return_movement",
+          "role": "subject"
         },
         {
-          "dimension": "vulnerability",
-          "tag": "livelihoods"
+          "dimension": "need",
+          "tag": "basic_needs",
+          "role": "driver"
         }
       ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Recognizing that persons with disabilities constitute an estimated 16 per cent of the population and face heightened barriers in displacement contexts, RRP partners will promote disability-inclusive programming across all sectors.",
+      "quote_language": "en",
+      "page": 12,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Regional",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "disability",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "inclusive_programming",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "16 per cent",
+          "value": 16,
+          "unit": "percent",
+          "measures": "population",
+          "applies_to": "persons with disabilities"
+        }
+      ],
+      "movements": [],
       "people_affected": null,
       "severity": 3,
-      "confidence": "high"
-    },
-    {
-      "quote": "Refugees in Libya have struggled with shortages in shelter, healthcare, WASH, and education.",
-      "quote_language": "en",
-      "page": 9,
-      "voice_type": "secondary_analysis",
-      "place_name_as_written": "Libya",
-      "iso3": "LBY",
-      "codings": [
-        {
-          "dimension": "need",
-          "tag": "health"
-        },
-        {
-          "dimension": "need",
-          "tag": "shelter"
-        },
-        {
-          "dimension": "need",
-          "tag": "wash"
-        },
-        {
-          "dimension": "need",
-          "tag": "education"
-        }
-      ],
-      "people_affected": null,
-      "severity": 4,
       "confidence": "high"
     },
     {
@@ -90,11 +107,13 @@
       "codings": [
         {
           "dimension": "vulnerability",
-          "tag": "economic_vulnerability"
+          "tag": "economic_vulnerability",
+          "role": "subject"
         },
         {
           "dimension": "hazard",
-          "tag": "inflation"
+          "tag": "market_disruption",
+          "role": "driver"
         }
       ],
       "people_affected": null,
@@ -102,99 +121,71 @@
       "confidence": "high"
     },
     {
-      "quote": "Protection risks remain elevated due to the remote location of many refugee arrivals, compounded by limitations in registration, documentation and assistance, which means that refugees, especially those in “sur-place” status, and host communities face increased exposure to rights violations, restricted access to essential services, and protracted dependence on humanitarian support.",
+      "quote": "Refugee arrivals from Sudan into Chad are projected to increase to 1.48 million people in 2026, driven by the unrelenting conflict between the Sudanese Armed Forces and the Rapid Support Forces, with violence showing no sign of abating and Sudan’s humanitarian situation deteriorating with famine-like conditions.",
       "quote_language": "en",
-      "page": 17,
-      "voice_type": "secondary_analysis",
-      "place_name_as_written": "CAR",
-      "iso3": "CAF",
-      "codings": [
-        {
-          "dimension": "vulnerability",
-          "tag": "protection"
-        },
-        {
-          "dimension": "need",
-          "tag": "basic_services"
-        }
-      ],
-      "people_affected": null,
-      "severity": 4,
-      "confidence": "high"
-    },
-    {
-      "quote": "However, the overall funding shortfalls at the beginning of 2025, coupled with the continuing deterioration of the humanitarian and security situation in Sudan, have severely constrained the humanitarian response and increased the vulnerability of the affected populations.",
-      "quote_language": "en",
-      "page": 22,
+      "page": 21,
       "voice_type": "secondary_analysis",
       "place_name_as_written": "Chad",
       "iso3": "TCD",
       "codings": [
         {
-          "dimension": "vulnerability",
-          "tag": "other"
+          "dimension": "movement_pattern",
+          "tag": "cross_border_arrival",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "armed_conflict",
+          "role": "driver"
         }
       ],
-      "people_affected": null,
-      "severity": 4,
+      "figures": [
+        {
+          "figure_as_written": "1.48 million",
+          "value": 1480000,
+          "unit": "people",
+          "measures": "projected refugee population",
+          "applies_to": "refugee arrivals from Sudan into Chad"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "Sudan",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": "Chad",
+          "dest_iso3": "TCD",
+          "flow_type": "cross_border",
+          "value_as_written": "1.48 million",
+          "value": 1480000,
+          "unit": "people"
+        }
+      ],
+      "people_affected": 1480000,
+      "severity": 5,
       "confidence": "high"
     },
     {
       "quote": "As the modality of choice of the people we work for and with, cash assistance will be used as the primary means to meet immediate basic needs and to contribute to protection outcomes.",
       "quote_language": "en",
       "page": 30,
-      "voice_type": "secondary_analysis",
+      "voice_type": "community",
       "place_name_as_written": "Egypt",
       "iso3": "EGY",
       "codings": [
         {
-          "dimension": "need",
-          "tag": "cash_assistance"
-        },
-        {
           "dimension": "coping",
-          "tag": "cash_assistance"
+          "tag": "cash_assistance",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "basic_needs",
+          "role": "subject"
         }
       ],
+      "figures": [],
       "people_affected": null,
-      "severity": 3,
-      "confidence": "high"
-    },
-    {
-      "quote": "Refugees and host communities face significant socio-economic vulnerabilities, including constrained livelihoods, food insecurity, rising prices, uneven access to health and education services, as well as critical shelter needs and limited access to alternative energy sources.",
-      "quote_language": "en",
-      "page": 33,
-      "voice_type": "secondary_analysis",
-      "place_name_as_written": "Ethiopia",
-      "iso3": "ETH",
-      "codings": [
-        {
-          "dimension": "vulnerability",
-          "tag": "socio-economic"
-        },
-        {
-          "dimension": "need",
-          "tag": "livelihoods"
-        },
-        {
-          "dimension": "need",
-          "tag": "food_security"
-        },
-        {
-          "dimension": "need",
-          "tag": "health"
-        },
-        {
-          "dimension": "need",
-          "tag": "education"
-        },
-        {
-          "dimension": "need",
-          "tag": "shelter"
-        }
-      ],
-      "people_affected": null,
-      "severity": 4,
+      "severity": null,
       "confidence": "high"
     },
     {
@@ -207,15 +198,41 @@
       "codings": [
         {
           "dimension": "movement_pattern",
-          "tag": "secondary_displacement"
+          "tag": "secondary_movement",
+          "role": "subject"
         },
         {
           "dimension": "need",
-          "tag": "livelihoods"
+          "tag": "livelihoods",
+          "role": "driver"
         },
         {
           "dimension": "need",
-          "tag": "education"
+          "tag": "education",
+          "role": "driver"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "Alkufra",
+          "origin_iso3": "LBY",
+          "dest_name_as_written": "Ajdabiya",
+          "dest_iso3": "LBY",
+          "flow_type": "internal"
+        },
+        {
+          "origin_name_as_written": "Alkufra",
+          "origin_iso3": "LBY",
+          "dest_name_as_written": "Benghazi",
+          "dest_iso3": "LBY",
+          "flow_type": "internal"
+        },
+        {
+          "origin_name_as_written": "Alkufra",
+          "origin_iso3": "LBY",
+          "dest_name_as_written": "Tripoli",
+          "dest_iso3": "LBY",
+          "flow_type": "internal"
         }
       ],
       "people_affected": null,
@@ -231,20 +248,23 @@
       "iso3": "LBY",
       "codings": [
         {
+          "dimension": "need",
+          "tag": "humanitarian_assistance",
+          "role": "subject"
+        },
+        {
           "dimension": "vulnerability",
-          "tag": "legal_status"
+          "tag": "documentation_status",
+          "role": "barrier"
         },
         {
           "dimension": "hazard",
-          "tag": "deportation"
-        },
-        {
-          "dimension": "need",
-          "tag": "protection"
+          "tag": "deportation",
+          "role": "subject"
         }
       ],
       "people_affected": null,
-      "severity": 5,
+      "severity": 4,
       "confidence": "high"
     }
   ]

@@ -48,12 +48,12 @@ class SeasonalLoaderTests(TestCase):
         self._load()
         self._load()
         self.assertEqual(SeasonalCalendar.objects.count(), 6)
-        self.assertEqual(SourceSync.objects.count(), 1)
-        self.assertEqual(SourceSync.objects.get().row_count, 6)
+        self.assertEqual(SourceSync.objects.filter(source="fewsnet").count(), 1)
+        self.assertEqual(SourceSync.objects.get(source="fewsnet").row_count, 6)
 
     def test_the_watermark_is_written(self):
         self._load()
-        sync = SourceSync.objects.get()
+        sync = SourceSync.objects.get(source="fewsnet")
         self.assertEqual(sync.source, "fewsnet")
         self.assertEqual(sync.dataset, "seasonal_calendar")
         self.assertEqual(sync.iso3, "TCD")
@@ -62,7 +62,10 @@ class SeasonalLoaderTests(TestCase):
     def test_dry_run_writes_nothing(self):
         self._load(dry_run=True)
         self.assertEqual(SeasonalCalendar.objects.count(), 0)
-        self.assertEqual(SourceSync.objects.count(), 0)
+        # Scoped to this test's own source, not the whole table: migration
+        # 0015 seeds eight montandon rows, and an absolute count would break
+        # on that and on every seed added after it.
+        self.assertEqual(SourceSync.objects.filter(source="fewsnet").count(), 0)
 
 
 class EmptyPayloadTests(TestCase):
@@ -76,7 +79,10 @@ class EmptyPayloadTests(TestCase):
         with self.assertRaises(CommandError):
             call_command("load_external", "seasonal_calendar",
                          str(FIXTURES / "empty.json"), "--iso3", "TCD")
-        self.assertEqual(SourceSync.objects.count(), 0)
+        # Scoped to this test's own source, not the whole table: migration
+        # 0015 seeds eight montandon rows, and an absolute count would break
+        # on that and on every seed added after it.
+        self.assertEqual(SourceSync.objects.filter(source="fewsnet").count(), 0)
         self.assertEqual(SeasonalCalendar.objects.count(), 0)
 
 

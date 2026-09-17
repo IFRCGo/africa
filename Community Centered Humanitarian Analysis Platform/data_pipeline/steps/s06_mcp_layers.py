@@ -462,10 +462,17 @@ def build_theme_areas():
     matched - a locality highlights as a locality.
     """
     from data_track.models import NarrativeTag
+    from external_data.models import HazardEvent
 
-    pcodes = sorted(set(NarrativeTag.objects
-                        .exclude(area_id=None).exclude(area_id="")
-                        .values_list("area_id", flat=True)))
+    # THE UNION, not just the tags: a locality that only Montandon knows about
+    # still needs a polygon built for it, or its events light nothing.
+    pcodes = sorted(
+        set(NarrativeTag.objects
+            .exclude(area_id=None).exclude(area_id="")
+            .values_list("area_id", flat=True))
+        | set(HazardEvent.objects
+              .exclude(admin_pcode=None).exclude(admin_pcode="")
+              .values_list("admin_pcode", flat=True)))
     if not pcodes:
         print("    (no tagged areas - skipping theme areas)")
         return
@@ -535,4 +542,173 @@ def run():
     build_seasonal()
     build_aoi()
     build_hsps()
+    build_hazards()
+    build_hazard_events()
     build_theme_areas()
+
+
+# ============================================================ hazards
+def build_hazards():
+    """The hazard vocabulary, filtered to what the data actually holds.
+
+    THE CODEBOOK IS A CLUSTERING METHOD, NOT A LIST TO RENDER. Writing all
+    sixteen of its named hazards out would offer a Sahel operation tsunamis and
+    volcanic eruptions while hiding the convective storms that really happen
+    here. So the categories and the definitions come from the file, and
+    membership comes from the rows: a category with nothing behind it never
+    reaches the dropdown.
+    """
+    from data_track.models import NarrativeTag
+    from external_data import hazards
+    from external_data.models import HazardEvent
+
+    montandon = collections.Counter(
+        HazardEvent.objects.exclude(admin_pcode=None).exclude(admin_pcode="")
+        .values_list("hazard_sub", flat=True))
+    documents = collections.Counter(
+        NarrativeTag.objects.filter(dimension="hazard").exclude(hazard_sub=None)
+        .values_list("hazard_sub", flat=True))
+
+    out = []
+    for cat in hazards.categories():
+        subs = []
+        for sub in cat["sub_hazards"]:
+            m, d = montandon.get(sub["key"], 0), documents.get(sub["key"], 0)
+            if not (m or d):
+                continue
+            # WHICH KIND OF EVIDENCE stands behind this sub-hazard, so the
+            # dashboard can say so rather than leaving a reader to wonder why
+            # Floods and Flooding both appear in one list.
+            subs.append({**sub,
+                         "from": ("both" if m and d else "montandon" if m else "documents"),
+                         "count": m + d})
+        if subs:
+            out.append({"key": cat["key"], "label": cat["label"],
+                        "in_codebook": cat["in_codebook"],
+                        "definition": cat["definition"], "sub_hazards": subs})
+    dump("hazards.json", {"categories": out})
+
+
+def build_hazard_events():
+    """Montandon events as counts per area and month, plus the popup detail.
+
+    NO GEOMETRY. The polygons come from boundaries/areas.geojson exactly as the
+    document tags' do - this file only says which areas to light, and what to
+    say about them, in the same shape a tags.json entry has so renderThemes()
+    can union the two.
+
+    DEDUPLICATED ON corr_id. Three sources publish the same flood; the area is
+    lit once and the popup names all three. The representative row is the one
+    from the most place-specific source, because "North Darfur (Tawila
+    Locality)" beats "Forest fires in Sudan".
+
+    THE COUNTRY IS THE POLYGON'S, not the filing country's. Montandon's tags are
+    loose enough that most of Sudan's events sit in South Sudan; the map filters
+    on country, so it has to be told where the lit area actually is.
+    """
+    from external_data.models import HazardEvent, HazardImpact
+
+    # The order of place-name specificity.
+    PREFERENCE = {"idmc-idu": 0, "pdc": 1, "gdacs": 2}
+
+    events = list(HazardEvent.objects.exclude(admin_pcode=None).exclude(admin_pcode="")
+                  .order_by("event_date", "id"))
+    if not events:
+        print("    (no located hazard events - skipping)")
+        dump("hazard_events.json", {"by_sub": {}, "events": {}})
+        return
+
+    # The office's own country names, from the boundary library, so the strings
+    # match the ones tags.json already carries and the country filter can
+    # compare them without a translation table.
+    with connection.cursor() as cur:
+        cur.execute("SELECT DISTINCT iso3, country_name FROM admin_areas")
+        country_name = dict(cur.fetchall())
+
+    impacts = collections.defaultdict(list)
+    for imp in HazardImpact.objects.all():
+        impacts[imp.corr_id].append(
+            {"type": imp.impact_type, "value": imp.value, "unit": imp.unit,
+             "category": imp.category, "source": imp.collection})
+
+    links = _insight_links(events)
+
+    # One entry per (corr_id, area): the best row, and every source that saw it.
+    best, sources = {}, collections.defaultdict(set)
+    for event in events:
+        key = (event.corr_id or event.event_id, event.admin_pcode)
+        sources[key].add(event.collection)
+        current = best.get(key)
+        if current is None or (PREFERENCE.get(event.collection, 9)
+                               < PREFERENCE.get(current.collection, 9)):
+            best[key] = event
+
+    by_sub = collections.defaultdict(lambda: collections.defaultdict(int))
+    detail = collections.defaultdict(lambda: collections.defaultdict(list))
+    for key, event in best.items():
+        month = event.event_date.strftime("%Y-%m")
+        country = country_name.get(event.admin_iso3 or event.iso3, event.iso3)
+        by_sub[event.hazard_sub][
+            (month, country, event.admin_pcode, event.significance)] += 1
+        detail[event.admin_pcode][month].append({
+            "date": event.event_date.isoformat(),
+            "title": event.title,
+            "sub": event.hazard_sub,
+            "category": event.hazard_category,
+            "significance": event.significance,
+            # ALWAYS WITH ITS UNIT. GDACS 0.5 and PDC 0.1 are different scales,
+            # so a bare number here would invite a meaningless comparison.
+            "severity_label": event.severity_label,
+            "severity_unit": event.severity_unit,
+            "impacts": impacts.get(event.corr_id, []),
+            "sources": sorted(sources[key]),
+            "insight_ids": links.get(event.id, []),
+        })
+
+    dump("hazard_events.json", {
+        "by_sub": {sub: {"monthly": [
+            {"month": m, "country": c, "count": n, "area": a, "significance": s}
+            for (m, c, a, s), n in sorted(rows.items())]}
+            for sub, rows in by_sub.items()},
+        "events": {area: dict(months) for area, months in detail.items()},
+    })
+
+
+def _insight_links(events):
+    """event id -> the published insights that speak to it.
+
+    THREE CONDITIONS, ALL OF THEM. Same hazard category, same place, same month.
+    A country-level insight does not link to every event in the country, and an
+    insight about shelling does not link to a flood.
+
+    MANY EVENTS LINK TO NOTHING, and that is the design rather than a gap: the
+    hazards are the spine, and the insights attach where they exist.
+
+    This READS the insights app and never writes to it. No pipeline step writes
+    to that app, deliberately, and this one does not change that.
+    """
+    from external_data.hazards import for_tag
+    from insights.models import Insight
+
+    coded = collections.defaultdict(list)     # (category, pcode, month) -> [id]
+    rows = (Insight.objects.filter(status="published")
+            .exclude(admin_pcode=None).exclude(admin_pcode="")
+            .exclude(stated_on=None)
+            .values("id", "admin_pcode", "stated_on",
+                    "codings__dimension", "codings__tag"))
+    for row in rows:
+        if row["codings__dimension"] != "hazard":
+            continue
+        category, _sub = for_tag(row["codings__tag"])
+        if not category:
+            continue
+        key = (category, row["admin_pcode"], row["stated_on"].strftime("%Y-%m"))
+        if row["id"] not in coded[key]:
+            coded[key].append(row["id"])
+
+    out = {}
+    for event in events:
+        key = (event.hazard_category, event.admin_pcode,
+               event.event_date.strftime("%Y-%m"))
+        out[event.id] = sorted(coded.get(key, []))
+    return out

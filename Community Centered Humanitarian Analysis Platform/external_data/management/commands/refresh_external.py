@@ -104,11 +104,9 @@ class Command(BaseCommand):
 
         for index, call in enumerate(calls, start=1):
             self.stdout.write(f"GET {call.url}")
-            if call.paginated:
-                from external_data.fetchers.hdx import fetch_all_pages
-                payload = fetch_all_pages(call.url, call.params)
-            else:
-                payload = base.http_get_json(call.url, call.params)
+            # One door. GET or POST, paged or not, is the Call's business -
+            # the runner's business is that they happen ONE AT A TIME.
+            payload = base.fetch(call)
             path = save_payload(call.cache_path, payload)
             self.stdout.write(f"  saved {path}")
 

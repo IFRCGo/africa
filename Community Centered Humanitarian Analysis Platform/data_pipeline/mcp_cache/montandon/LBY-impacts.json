@@ -1,0 +1,5367 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "idmc-idu-impact-45441273405-displaced",
+      "bbox": [
+        10.40218,
+        26.099159,
+        10.40218,
+        26.099159
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.40218,
+          26.099159
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Libya: Flood - Ghat - 01/05/2026",
+        "datetime": "2026-05-01T00:00:00Z",
+        "end_datetime": "2026-05-31T00:00:00Z",
+        "monty:corr_id": "20260501-LBY-1044953-MH0600-1-GCDB",
+        "start_datetime": "2026-05-01T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 1500,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-45441273405-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-45441273092-displaced",
+      "bbox": [
+        10.40218,
+        26.099159,
+        10.40218,
+        26.099159
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.40218,
+          26.099159
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Libya: Flood - Ghat - 01/05/2026",
+        "datetime": "2026-05-01T00:00:00Z",
+        "end_datetime": "2026-05-31T00:00:00Z",
+        "monty:corr_id": "20260501-LBY-1044953-MH0600-1-GCDB",
+        "start_datetime": "2026-05-01T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 500,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-45441273092-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 50900.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total65_Plus-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2478.83,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total65_Plus-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total60_64-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1521.91,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total60_64-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total5_9-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4845.68,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total5_9-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total55_59-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2158.16,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total55_59-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total50_54-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3033.64,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total50_54-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total45_49-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3634.26,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total45_49-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total40_44-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3914.2099999999996,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total40_44-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total35_39-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3730.9700000000003,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total35_39-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total30_34-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3639.35,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total30_34-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total25_29-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3771.69,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total25_29-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total20_24-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4122.900000000001,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total20_24-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total15_19-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4657.349999999999,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total15_19-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total10_14-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4896.58,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total10_14-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total0_4-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4489.38,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-total0_4-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-households-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 9089.285714285716,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-population-households-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-capital-total-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 702871300.0000001,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-capital-total-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-capital-school-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 30.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-capital-school-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-capital-hospital-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 15.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045-1-capital-hospital-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 50900.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total65_Plus-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2478.83,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total65_Plus-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total60_64-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1521.91,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total60_64-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total5_9-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4845.68,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total5_9-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total55_59-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2158.16,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total55_59-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total50_54-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3033.64,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total50_54-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total45_49-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3634.26,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total45_49-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total40_44-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3914.2099999999996,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total40_44-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total35_39-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3730.9700000000003,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total35_39-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total30_34-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3639.35,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total30_34-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total25_29-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3771.69,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total25_29-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total20_24-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4122.900000000001,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total20_24-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total15_19-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4657.349999999999,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total15_19-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total10_14-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4896.58,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total10_14-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total0_4-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4489.38,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-total0_4-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-households-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 9089.285714285716,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-population-households-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-capital-total-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 702871300.0000001,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-capital-total-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-capital-school-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 30.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-capital-school-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-capital-hospital-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 15.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254-1-capital-hospital-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 50900.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total65_Plus-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2478.83,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total65_Plus-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total60_64-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1521.91,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total60_64-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total5_9-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4845.68,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total5_9-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total55_59-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2158.16,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total55_59-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total50_54-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3033.64,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total50_54-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total45_49-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3634.26,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total45_49-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total40_44-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3914.2099999999996,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total40_44-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total35_39-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3730.9700000000003,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total35_39-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total30_34-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3639.35,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total30_34-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total25_29-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3771.69,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total25_29-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total20_24-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4122.900000000001,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total20_24-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total15_19-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4657.349999999999,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total15_19-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total10_14-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4896.58,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total10_14-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total0_4-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4489.38,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-total0_4-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-households-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 9089.285714285716,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-population-households-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-capital-total-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 702871300.0000001,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-capital-total-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-capital-school-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 30.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-capital-school-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-capital-hospital-LBY",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 15.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916-1-capital-hospital-LBY",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-impact-1103597-c-houses-damaged-libya-marawah",
+      "bbox": [
+        21.4096623,
+        32.4833738,
+        21.4096623,
+        32.4833738
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.4096623,
+          32.4833738
+        ]
+      },
+      "collection": "gdacs-impacts",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2025-11-05T01:00:00Z",
+        "end_datetime": "2025-11-07T01:00:00Z",
+        "monty:corr_id": "20251105-LBY-MH0600-1-GCDB",
+        "start_datetime": "2025-11-05T01:00:00Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "damaged",
+          "unit": "sendai",
+          "value": 25,
+          "category": "buildings",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts/items/gdacs-impact-1103597-c-houses-damaged-libya-marawah",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-28451171531-displaced",
+      "bbox": [
+        12.81466,
+        32.721539,
+        12.81466,
+        32.721539
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.81466,
+          32.721539
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Libya: Flood - Tripoli,  Al Jabal Al Gharbi,  Misrata, Al Margeb - 05/12/2024",
+        "datetime": "2024-12-06T00:00:00Z",
+        "end_datetime": "2024-12-10T00:00:00+00:00",
+        "monty:corr_id": "20241205-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-12-06T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 95,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28451171531-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-28451171530-displaced",
+      "bbox": [
+        12.81466,
+        32.721539,
+        12.81466,
+        32.721539
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.81466,
+          32.721539
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Libya: Flood - Tripoli,  Al Jabal Al Gharbi,  Misrata, Al Margeb - 05/12/2024",
+        "datetime": "2024-12-06T00:00:00Z",
+        "end_datetime": "2024-12-10T00:00:00+00:00",
+        "monty:corr_id": "20241205-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-12-06T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 560,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28451171530-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-28451171529-displaced",
+      "bbox": [
+        12.81466,
+        32.721539,
+        12.81466,
+        32.721539
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.81466,
+          32.721539
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Libya: Flood - Tripoli,  Al Jabal Al Gharbi,  Misrata, Al Margeb - 05/12/2024",
+        "datetime": "2024-12-06T00:00:00Z",
+        "end_datetime": "2024-12-10T00:00:00+00:00",
+        "monty:corr_id": "20241205-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-12-06T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 1400,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28451171529-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-28451171007-evacuated",
+      "bbox": [
+        12.81466,
+        32.721539,
+        12.81466,
+        32.721539
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.81466,
+          32.721539
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Libya: Flood - Tripoli,  Al Jabal Al Gharbi,  Misrata, Al Margeb - 05/12/2024",
+        "datetime": "2024-12-06T00:00:00Z",
+        "end_datetime": "2024-12-06T00:00:00+00:00",
+        "monty:corr_id": "20241205-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-12-06T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 11,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28451171007-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1103036-1-B-displaced-Libya-Benghazi",
+      "bbox": [
+        18.6509231,
+        31.0070362,
+        21.3190937,
+        32.7335712
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.6509231,
+              32.7005389
+            ],
+            [
+              19.3800697,
+              31.4110716
+            ],
+            [
+              20.2990398,
+              31.2317371
+            ],
+            [
+              20.5937672,
+              31.0070362
+            ],
+            [
+              21.3190937,
+              31.0351048
+            ],
+            [
+              21.21538,
+              31.5410973
+            ],
+            [
+              20.8087371,
+              31.9645707
+            ],
+            [
+              20.4858394,
+              32.7335712
+            ],
+            [
+              18.6509231,
+              32.7005389
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-impacts",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2024-12-04T01:00:00Z",
+        "end_datetime": "2024-12-05T01:00:00Z",
+        "monty:corr_id": "20241204-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-12-04T01:00:00Z",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "relocated",
+          "unit": "sendai",
+          "value": 50,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts/items/gdacs-hazard-1103036-1-B-displaced-Libya-Benghazi",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102901-1-B-affected-Libya-Sebha",
+      "bbox": [
+        13.9344406,
+        26.2469215,
+        16.2579517,
+        27.7212467
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.9344406,
+              26.2469215
+            ],
+            [
+              14.424387,
+              26.3763103
+            ],
+            [
+              14.8275995,
+              26.7579556
+            ],
+            [
+              16.2579517,
+              27.1517658
+            ],
+            [
+              15.7958603,
+              27.7212467
+            ],
+            [
+              15.0684977,
+              27.6320763
+            ],
+            [
+              14.4211969,
+              27.1727562
+            ],
+            [
+              13.9831467,
+              27.1289635
+            ],
+            [
+              14.1885988,
+              26.8117879
+            ],
+            [
+              13.9344406,
+              26.2469215
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-impacts",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2024-09-13T01:00:00Z",
+        "end_datetime": "2024-09-16T01:00:00Z",
+        "monty:corr_id": "20240913-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-09-13T01:00:00Z",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "unit": "sendai",
+          "value": 33,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts/items/gdacs-hazard-1102901-1-B-affected-Libya-Sebha",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102901-1-A-death-Libya-Sebha",
+      "bbox": [
+        13.9344406,
+        26.2469215,
+        16.2579517,
+        27.7212467
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.9344406,
+              26.2469215
+            ],
+            [
+              14.424387,
+              26.3763103
+            ],
+            [
+              14.8275995,
+              26.7579556
+            ],
+            [
+              16.2579517,
+              27.1517658
+            ],
+            [
+              15.7958603,
+              27.7212467
+            ],
+            [
+              15.0684977,
+              27.6320763
+            ],
+            [
+              14.4211969,
+              27.1727562
+            ],
+            [
+              13.9831467,
+              27.1289635
+            ],
+            [
+              14.1885988,
+              26.8117879
+            ],
+            [
+              13.9344406,
+              26.2469215
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-impacts",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2024-09-13T01:00:00Z",
+        "end_datetime": "2024-09-16T01:00:00Z",
+        "monty:corr_id": "20240913-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-09-13T01:00:00Z",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "death",
+          "unit": "sendai",
+          "value": 2,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts/items/gdacs-hazard-1102901-1-A-death-Libya-Sebha",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-26298159730-displaced",
+      "bbox": [
+        10.242303333333334,
+        25.073656666666665,
+        10.242303333333334,
+        25.073656666666665
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.242303333333334,
+          25.073656666666665
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Libya: Flood - Ghat - 16/08/2024",
+        "datetime": "2024-08-16T00:00:00Z",
+        "end_datetime": "2024-08-16T00:00:00+00:00",
+        "monty:corr_id": "20240816-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-08-16T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 7091,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26298159730-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-26298159249-displaced",
+      "bbox": [
+        10.242303333333334,
+        25.073656666666665,
+        10.242303333333334,
+        25.073656666666665
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.242303333333334,
+          25.073656666666665
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Libya: Flood - Ghat - 16/08/2024",
+        "datetime": "2024-08-16T00:00:00Z",
+        "end_datetime": "2024-08-16T00:00:00+00:00",
+        "monty:corr_id": "20240816-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-08-16T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 5825,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26298159249-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-26123158533-displaced",
+      "bbox": [
+        23.269859,
+        24.223591,
+        23.269859,
+        24.223591
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          23.269859,
+          24.223591
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Libya: Flood - (Kufra) - 11/08/2024",
+        "datetime": "2024-08-11T00:00:00Z",
+        "end_datetime": "2024-08-11T00:00:00+00:00",
+        "monty:corr_id": "20240811-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-08-11T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 3000,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26123158533-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22094139451-evacuated",
+      "bbox": [
+        14.56564,
+        32.46756,
+        14.56564,
+        32.46756
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.56564,
+          32.46756
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Libya: Flood (Groundwater rise) -  Misrata (Zliten) - 31/01/2024",
+        "datetime": "2024-01-30T00:00:00Z",
+        "end_datetime": "2024-02-06T00:00:00+00:00",
+        "monty:corr_id": "20240130-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-01-30T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 140,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22094139451-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-18555123189-displaced",
+      "bbox": [
+        10.17972,
+        24.962629,
+        10.17972,
+        24.962629
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.17972,
+          24.962629
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Libya: Storm - Ghat, Wadi al Hayaa - 30/09/2023",
+        "datetime": "2023-10-01T00:00:00Z",
+        "end_datetime": "2023-10-02T00:00:00+00:00",
+        "monty:corr_id": "20230930-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-10-01T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 22,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18555123189-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-18555123181-evacuated",
+      "bbox": [
+        10.17972,
+        24.962629,
+        10.17972,
+        24.962629
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.17972,
+          24.962629
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Libya: Storm - Ghat, Wadi al Hayaa - 30/09/2023",
+        "datetime": "2023-10-01T00:00:00Z",
+        "end_datetime": "2023-10-02T00:00:00+00:00",
+        "monty:corr_id": "20230930-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-10-01T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 448,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18555123181-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    }
+  ]
+}

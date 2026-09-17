@@ -432,3 +432,156 @@ class HumanitarianServicePoint(models.Model):
 
     def __str__(self):
         return f"{self.service} - {self.location_name} ({self.iso3}, {self.date_reported})"
+
+
+class HazardEvent(models.Model):
+    """One disaster event, as one Montandon source published it.
+
+    SUBJECT-NAMED, LIKE ITS NEIGHBOURS. A hazard event is a hazard event whether
+    GDACS, PDC or IDMC-IDU published it, so which one did is a column here.
+
+    `source` IS ALWAYS 'montandon', AND THAT IS NOT COSMETIC. loaders/base.load()
+    finishes by computing sync.row_count from the SYNC KEY's source. Writing
+    'gdacs' here would make that count zero forever, and the admin would report
+    "0 rows" after every successful pull. Every table in this file already keeps
+    the convention: SeasonalCalendar.source is fewsnet/acaps, MovementPattern's
+    is hdx/unhcr/excel - the publisher of the payload, not of the record.
+
+    THREE SOURCES PUBLISH THE SAME FLOOD. `corr_id` is what ties them together,
+    and it also ties this row to its severity and its impacts, which arrive in
+    separate calls. The dashboard lights an area once per corr_id; the table
+    keeps all three rows, because which agencies saw an event is itself a
+    finding.
+    """
+
+    source = models.TextField(default="montandon", help_text="Always 'montandon'. See above.")
+    collection = models.TextField(
+        db_index=True, help_text="gdacs / pdc / idmc-idu - which collection published it"
+    )
+    event_id = models.TextField(help_text="Montandon's STAC item id")
+    corr_id = models.TextField(
+        db_index=True, help_text="monty:corr_id - ties sources, severity and impacts together"
+    )
+
+    iso3 = models.CharField(max_length=3, db_index=True)
+    event_date = models.DateField(db_index=True)
+    end_date = models.DateField(null=True, blank=True)
+    title = models.TextField(
+        help_text="The item title, verbatim. Montandon writes the place into it, in a "
+                  "shape that varies by source - admin_pcode is the checkable answer."
+    )
+
+    # The raw list as published - HIP code, GLIDE code and UNDRR slug together -
+    # so the clustering below can be audited against what actually arrived.
+    hazard_codes = models.JSONField(default=list, blank=True)
+    hazard_category = models.TextField(
+        db_index=True, default="uncategorised",
+        help_text="An IFRC codebook category key, from hazard_codebook.json",
+    )
+    hazard_sub = models.TextField(default="uncategorised")
+
+    # From the *-hazards item, applied by corr_id after the events load. Null for
+    # every IDMC-IDU row: there is no idmc-idu-hazards collection.
+    #
+    # NEVER SORT OR COMPARE severity_value ACROSS COLLECTIONS. GDACS publishes
+    # 0.5 on a "GDACS Severity Score" and PDC publishes 0.1 on a "PDC Severity
+    # Score"; they are different scales meaning different things. The unit is
+    # stored beside the number so nothing can show one without the other.
+    severity_value = models.FloatField(null=True, blank=True)
+    severity_unit = models.TextField(null=True, blank=True)
+    severity_label = models.TextField(null=True, blank=True, help_text="Green / WATCH / ...")
+    severity_estimate_type = models.TextField(null=True, blank=True)
+
+    significance = models.TextField(
+        default="event", db_index=True,
+        help_text="event / detection. A detection is a machine observation with no "
+                  "evidence of consequence - it draws only under its own sub-hazard, "
+                  "never when a whole category is picked. See hazards.is_detection.",
+    )
+
+    lat = models.FloatField(null=True, blank=True)
+    lon = models.FloatField(null=True, blank=True)
+    admin_pcode = models.TextField(null=True, blank=True)
+    admin_level = models.IntegerField(null=True, blank=True)
+    # WHERE THE POINT ACTUALLY IS, which is not always where Montandon filed it.
+    #
+    # `iso3` above is the country Montandon tagged the event with, and that tag
+    # is loose: a Sudan-filtered query returns fires whose coordinates are in
+    # South Sudan, floods in Ethiopia, and one earthquake in the Red Sea. Two
+    # thirds of Sudan's first pull were like that. Requiring the polygon to be
+    # Sudanese refused to place any of them, so the map lost them entirely.
+    #
+    # So the point is placed against every boundary the library holds, and this
+    # column records whose polygon won. The two columns then say different and
+    # both-true things: iso3 is the filing, admin_iso3 is the geography.
+    admin_iso3 = models.CharField(
+        max_length=3, null=True, blank=True, db_index=True,
+        help_text="The country of the polygon the point fell in. May differ from iso3.",
+    )
+    match_method = models.TextField(
+        default="unmatched", help_text="point-in-polygon / unmatched"
+    )
+    source_url = models.TextField(null=True, blank=True)
+
+    class Meta:
+        db_table = "hazard_events"
+        ordering = ["iso3", "-event_date", "collection"]
+        constraints = [
+            # iso3 IS IN THE KEY. One Montandon item can carry two countries - an
+            # observed wildfire had ["ETH", "SDN"]. With iso3 outside the key,
+            # pulling Chad after Sudan would silently rewrite Sudan's row.
+            models.UniqueConstraint(
+                fields=["collection", "event_id", "iso3"],
+                name="uniq_hazard_event_identity",
+                nulls_distinct=False,
+            ),
+        ]
+        indexes = [
+            models.Index(fields=["iso3", "hazard_category", "event_date"],
+                         name="idx_hazard_country_cat"),
+        ]
+
+    def __str__(self):
+        return f"{self.event_date} {self.iso3} {self.hazard_sub} - {self.title[:50]}"
+
+
+class HazardImpact(models.Model):
+    """One impact figure published against one hazard event.
+
+    ONE ROW PER FIGURE, because Montandon publishes one item per (event, impact
+    type): a flood has a displaced_internal item, an earthquake may have death
+    and injured items.
+
+    JOINED ON corr_id RATHER THAN BY FOREIGN KEY. Impacts and events are pulled
+    in separate calls, and an impact whose event has not loaded is a fact worth
+    keeping rather than an integrity error worth raising.
+    """
+
+    source = models.TextField(default="montandon")
+    collection = models.TextField(db_index=True)
+    impact_id = models.TextField()
+    corr_id = models.TextField(db_index=True, help_text="Joins hazard_events.corr_id")
+    iso3 = models.CharField(max_length=3, db_index=True)
+    event_date = models.DateField(null=True, blank=True)
+
+    impact_type = models.TextField(
+        db_index=True, help_text="displaced_internal / death / potentially_affected / ..."
+    )
+    category = models.TextField(null=True, blank=True, help_text="people / buildings / ...")
+    value = models.FloatField()
+    unit = models.TextField(null=True, blank=True)
+    estimate_type = models.TextField(null=True, blank=True)
+
+    class Meta:
+        db_table = "hazard_impacts"
+        ordering = ["iso3", "-event_date", "impact_type"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["collection", "impact_id", "iso3"],
+                name="uniq_hazard_impact_identity",
+                nulls_distinct=False,
+            ),
+        ]
+
+    def __str__(self):
+        return f"{self.corr_id} {self.impact_type} {self.value:,.0f}"

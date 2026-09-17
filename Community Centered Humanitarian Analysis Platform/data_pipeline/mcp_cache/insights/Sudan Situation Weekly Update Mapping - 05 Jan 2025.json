@@ -1,0 +1,46 @@
+{
+  "source": {
+    "rel_path": "UNHCR Regional Population Movement pdfs/2025/Sudan Situation Weekly Update Mapping - 05 Jan 2025.pdf",
+    "sha1": "b500987cdc1cce1049e8b65873f8231465b2aa47",
+    "report_date": "2025-01-05"
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "Urgent needs include water, food, shelter, health, and core relief items.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "water"
+        },
+        {
+          "dimension": "need",
+          "tag": "food"
+        },
+        {
+          "dimension": "need",
+          "tag": "shelter"
+        },
+        {
+          "dimension": "need",
+          "tag": "health"
+        },
+        {
+          "dimension": "need",
+          "tag": "nfi"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    }
+  ]
+}

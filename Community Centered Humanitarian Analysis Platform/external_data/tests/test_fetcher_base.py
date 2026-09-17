@@ -4,12 +4,13 @@ No test here touches the network. `http_get_json` is exercised with requests.get
 patched, because the thing being tested is our handling, not theirs.
 """
 import json
+from datetime import date
 from pathlib import Path
 from unittest.mock import patch
 
 from django.test import TestCase, override_settings
 
-from external_data.fetchers import FETCHERS, register
+from external_data.fetchers import FETCHERS, base, register
 from external_data.fetchers.base import (Call, FetchError, Fetcher, fetcher_for,
                                          http_get_json, missing_keys, redact,
                                          save_payload)
@@ -98,3 +99,84 @@ class SaveTests(TestCase):
         path = save_payload(Path("testsource/y.json"), [])
         self.addCleanup(path.unlink, True)
         self.assertEqual(path.parent.parent, Path(settings.MCP_CACHE_DIR))
+
+
+class PostAndTokenPaginationTests(TestCase):
+    """STAC pages by a token inside links[rel=next].body, not by an offset.
+
+    A fetcher that takes the first page of a Sudan pull writes 500 events over
+    the top of however many there really are and reports a successful refresh -
+    the same fault fetch_all_pages exists to prevent for HAPI.
+    """
+
+    def test_post_sends_the_body_as_json_and_returns_the_decoded_reply(self):
+        with patch("external_data.fetchers.base.requests.post") as post:
+            post.return_value.json.return_value = {"type": "FeatureCollection",
+                                                   "features": []}
+            post.return_value.raise_for_status.return_value = None
+            out = base.http_post_json("https://example.test/search",
+                                      {"limit": 5}, headers={"Authorization": "x"})
+        self.assertEqual(out["type"], "FeatureCollection")
+        self.assertEqual(post.call_args.kwargs["json"], {"limit": 5})
+        self.assertEqual(post.call_args.kwargs["headers"]["Authorization"], "x")
+
+    def test_a_post_failure_is_a_fetcherror_with_the_token_removed(self):
+        import requests as _requests
+        with override_settings(IFRC_API_TOKEN="SECRETVALUE"),              patch("external_data.fetchers.base.requests.post") as post:
+            post.side_effect = _requests.RequestException("boom Bearer SECRETVALUE")
+            with self.assertRaises(FetchError) as caught:
+                base.http_post_json("https://example.test/search", {})
+        self.assertNotIn("SECRETVALUE", str(caught.exception))
+
+    def test_token_pagination_follows_next_to_the_end_and_combines(self):
+        page1 = {"type": "FeatureCollection",
+                 "features": [{"id": "a"}, {"id": "b"}],
+                 "links": [{"rel": "next", "method": "POST",
+                            "body": {"limit": 2, "token": "next:x"}}]}
+        page2 = {"type": "FeatureCollection", "features": [{"id": "c"}], "links": []}
+        with patch("external_data.fetchers.base.http_post_json",
+                   side_effect=[page1, page2]) as post:
+            out = base.fetch_all_pages_token("https://example.test/search",
+                                             {"limit": 2})
+        self.assertEqual([f["id"] for f in out["features"]], ["a", "b", "c"])
+        self.assertEqual(post.call_count, 2)
+        # The second call is the next link's body, verbatim - the token is the
+        # server's cursor, not ours to construct.
+        self.assertEqual(post.call_args_list[1].args[1], {"limit": 2, "token": "next:x"})
+
+    def test_a_page_with_no_next_link_stops(self):
+        only = {"type": "FeatureCollection", "features": [{"id": "a"}], "links": []}
+        with patch("external_data.fetchers.base.http_post_json",
+                   side_effect=[only]) as post:
+            out = base.fetch_all_pages_token("https://example.test/search", {})
+        self.assertEqual(len(out["features"]), 1)
+        self.assertEqual(post.call_count, 1)
+
+    def test_fetch_dispatches_get_and_post(self):
+        get_call = Call(url="https://example.test/a", params={"x": 1},
+                        cache_path=Path("a.json"), loader_dataset="d")
+        post_call = Call(url="https://example.test/b", params={},
+                         cache_path=Path("b.json"), loader_dataset="d",
+                         method="POST", body={"limit": 1})
+        with patch("external_data.fetchers.base.http_get_json",
+                   return_value={"got": True}) as g,              patch("external_data.fetchers.base.http_post_json",
+                   return_value={"posted": True}) as p:
+            self.assertEqual(base.fetch(get_call), {"got": True})
+            self.assertEqual(base.fetch(post_call), {"posted": True})
+        g.assert_called_once()
+        p.assert_called_once()
+
+    def test_a_paginated_post_call_goes_through_the_token_paginator(self):
+        call = Call(url="https://example.test/search", params={},
+                    cache_path=Path("c.json"), loader_dataset="d",
+                    method="POST", body={"limit": 1}, paginated=True)
+        with patch("external_data.fetchers.base.fetch_all_pages_token",
+                   return_value={"features": []}) as paged:
+            base.fetch(call)
+        paged.assert_called_once()
+
+
+class CrisisFloorTests(TestCase):
+    @override_settings(CRISIS_START="2023-04-15")
+    def test_the_window_floor_is_the_day_fighting_broke_out(self):
+        self.assertEqual(base.crisis_floor(), date(2023, 4, 15))

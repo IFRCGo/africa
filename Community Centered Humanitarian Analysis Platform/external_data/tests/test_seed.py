@@ -10,7 +10,7 @@ the real FEWS NET pull can replace it and the curated rows can then be deleted. 
 existing dict claims to come from get_seasons and does not.
 """
 from django.core.management import call_command
-from django.test import TestCase
+from django.test import TestCase, override_settings
 
 from external_data.models import (BorderCrossing, MovementPattern, SeasonalCalendar,
                                   SourceSync)
@@ -67,3 +67,34 @@ class SeedExternalTests(TestCase):
         self.assertEqual(
             MovementPattern.objects.filter(source="unhcr", metric="refugees").count(), 21
         )
+
+
+class MontandonSourceRowTests(TestCase):
+    """Eight rows, eight buttons - and every one of them pullable.
+
+    pull_button and pullable() both key off the fetcher registry, with no
+    whitelist anywhere, so seeding the rows IS the button. These tests are what
+    say so out loud.
+    """
+
+    def test_one_row_per_country_of_focus(self):
+        rows = SourceSync.objects.filter(source="montandon", dataset="hazard_events")
+        self.assertEqual(
+            sorted(rows.values_list("iso3", flat=True)),
+            ["CAF", "EGY", "ETH", "LBY", "SDN", "SSD", "TCD", "UGA"])
+
+    @override_settings(IFRC_API_TOKEN="TESTTOKEN")
+    def test_every_row_has_a_fetcher_so_every_row_has_a_button(self):
+        from mcp.views import pullable
+        for row in SourceSync.objects.filter(source="montandon"):
+            self.assertIsNone(pullable(row), row.iso3)
+
+    @override_settings(IFRC_API_TOKEN="")
+    def test_without_the_token_the_button_says_so_rather_than_calling(self):
+        from mcp.views import pullable
+        row = SourceSync.objects.filter(source="montandon").first()
+        self.assertEqual(pullable(row), "IFRC_API_TOKEN is not set")
+
+    def test_the_notes_explain_why_the_watermark_never_narrows(self):
+        row = SourceSync.objects.filter(source="montandon").first()
+        self.assertIn("never narrows", row.notes)

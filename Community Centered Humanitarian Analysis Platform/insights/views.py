@@ -25,27 +25,34 @@ def _limit(request):
 
 def insights(request):
     """Published community insights. Filters: ?voice_type= &iso3= &dimension=
-    &tag= &admin_pcode= &from= &to= &q=
+    &tag= &role= &flow_type= &admin_pcode= &from= &to= &q=
     """
     rows = (Insight.objects.filter(status="published")
-            .select_related("document").prefetch_related("codings"))
+            .select_related("document")
+            .prefetch_related("codings", "figures", "movements"))
 
     for field in ("voice_type", "iso3", "admin_pcode"):
         if value := request.GET.get(field):
             rows = rows.filter(**{field: value})
     dimension = request.GET.get("dimension")
     tag = request.GET.get("tag")
-    if dimension and tag:
-        # When both dimension and tag are supplied, apply them in a single
-        # .filter() call so one coding row must match both. Chained .filter()
-        # calls on a to-many relation join the table separately, so a row can
-        # match the dimension in one coding and the tag in another — wrong.
-        rows = rows.filter(codings__dimension=dimension, codings__tag=tag)
-    else:
-        if dimension:
-            rows = rows.filter(codings__dimension=dimension)
-        if tag:
-            rows = rows.filter(codings__tag=tag)
+    role = request.GET.get("role")
+    # Every coding constraint goes into ONE .filter() call so a single coding row
+    # must satisfy all of them. Chained .filter() calls on a to-many relation join
+    # the table separately, so a row could match the dimension in one coding and
+    # the tag in another — wrong, and wrong in a way that quietly over-reports.
+    coding_filters = {}
+    if dimension:
+        coding_filters["codings__dimension"] = dimension
+    if tag:
+        coding_filters["codings__tag"] = tag
+    if role:
+        coding_filters["codings__role"] = role
+    if coding_filters:
+        rows = rows.filter(**coding_filters)
+
+    if flow_type := request.GET.get("flow_type"):
+        rows = rows.filter(movements__flow_type=flow_type)
     if start := request.GET.get("from"):
         rows = rows.filter(stated_on__gte=start)
     if end := request.GET.get("to"):
@@ -78,7 +85,38 @@ def insights(request):
             "lon": row.lon,
             "people_affected": row.people_affected,
             "severity": row.severity,
-            "codings": [{"dimension": c.dimension, "tag": c.tag} for c in row.codings.all()],
+            "codings": [{"dimension": c.dimension, "tag": c.tag, "role": c.role}
+                        for c in row.codings.all()],
+            "figures": [
+                {
+                    "as_written": f.figure_as_written,
+                    "value": f.value,
+                    "unit": f.unit,
+                    "measures": f.measures,
+                    "applies_to": f.applies_to,
+                }
+                for f in row.figures.all()
+            ],
+            "movements": [
+                {
+                    # lat/lon on each side are LABEL POSITIONS from
+                    # AdminArea.center_*, not addresses. Anything drawing these
+                    # must say so, as the subject-place popup already does.
+                    "origin": {"name": m.origin_name_as_written, "iso3": m.origin_iso3,
+                               "pcode": m.origin_pcode, "admin_level": m.origin_admin_level,
+                               "match_method": m.origin_match_method,
+                               "lat": m.origin_lat, "lon": m.origin_lon},
+                    "destination": {"name": m.dest_name_as_written, "iso3": m.dest_iso3,
+                                    "pcode": m.dest_pcode, "admin_level": m.dest_admin_level,
+                                    "match_method": m.dest_match_method,
+                                    "lat": m.dest_lat, "lon": m.dest_lon},
+                    "flow_type": m.flow_type,
+                    "value_as_written": m.value_as_written,
+                    "value": m.value,
+                    "unit": m.unit,
+                }
+                for m in row.movements.all()
+            ],
             "source_document": row.document.file_name if row.document_id else None,
             "page": row.page,
         }

@@ -45,6 +45,8 @@ from data_track.models import (
 )
 
 GAZ = load_gazetteer()
+from external_data import hazards
+
 TAX = load_taxonomy()
 
 # The many ways the reports spell each country.
@@ -665,6 +667,25 @@ def attribute_area(text, start, end, country):
 
 
 # ------------------------------------------------------------ taxonomy tagging
+
+def hazard_columns(dimension, tag):
+    """The two codebook columns for one tag row.
+
+    Stamped here rather than curated in the table because this step deletes and
+    rebuilds narrative_tags on every run - see the note on the columns
+    themselves. The vocabulary lives in data_pipeline/hazard_codebook.json and
+    is read through external_data.hazards, which is what the Montandon loader
+    uses too, so the documents and the events end up speaking one language.
+
+    Null for every dimension but hazard: a need has no hazard category, and an
+    empty string would read as a blank one.
+    """
+    if dimension != "hazard":
+        return {"hazard_category": None, "hazard_sub": None}
+    category, sub = hazards.for_tag(tag)
+    return {"hazard_category": category, "hazard_sub": sub}
+
+
 # Compile every keyword pattern once, grouped by dimension and tag.
 TAX_COMPILED = {
     dim: {tag: [re.compile(p, re.I) for p in pats] for tag, pats in tags.items()}
@@ -714,6 +735,7 @@ def tag_document(sink, doc_id, report_date, country_focus, pages):
                             tag=tag, country=country,
                             area_id=area_id, area_name=area_name, area_level=area_level,
                             snippet=snippet.replace("\n", " ").strip()[:280],
+                            **hazard_columns(dim, tag),
                         )
                         n += 1
     return n

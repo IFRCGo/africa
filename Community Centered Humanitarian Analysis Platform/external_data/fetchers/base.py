@@ -18,7 +18,7 @@ Four guarantees, matching the loaders' four:
 """
 import json
 from dataclasses import dataclass, field
-from datetime import timedelta
+from datetime import date, timedelta
 from pathlib import Path
 
 import requests
@@ -27,7 +27,7 @@ from django.conf import settings
 from external_data.fetchers import fetcher_for  # noqa: F401  (re-exported)
 
 # Every setting whose value must never appear in a log line or an error message.
-SECRET_SETTINGS = ("IPC_API_KEY", "HDX_API_TOKEN")
+SECRET_SETTINGS = ("IPC_API_KEY", "HDX_API_TOKEN", "IFRC_API_TOKEN")
 
 # How far BEHIND the watermark a narrowed request starts.
 #
@@ -37,6 +37,10 @@ SECRET_SETTINGS = ("IPC_API_KEY", "HDX_API_TOKEN")
 # catch a corrected quarter and short enough that a refresh stays an update
 # rather than becoming a re-download.
 LOOKBACK_DAYS = 90
+
+# A runaway `next` chain would page forever. Sudan's whole window is a few
+# thousand events at 500 a page, so this is a guard rail and not a limit.
+MAX_PAGES = 200
 
 
 class FetchError(Exception):
@@ -66,6 +70,13 @@ class Call:
     # in the runner because whether an endpoint paginates is the fetcher's
     # knowledge, not the runner's.
     paginated: bool = False
+    # GET with query params is what every fetcher before Montandon needed.
+    # Montandon's country filter is a CQL2 expression, which only POST /search
+    # accepts, so the verb is a property of the Call for the same reason
+    # `paginated` is: it is the fetcher's knowledge, not the runner's.
+    method: str = "GET"
+    body: dict = None
+    headers: dict = field(default_factory=dict)
 
 
 class Fetcher:
@@ -139,6 +150,81 @@ def http_get_json(url, params, timeout=60):
         # A 200 that is not JSON - an HTML error page, typically. Saying which
         # is worth more than "expecting value: line 1 column 1".
         raise FetchError(redact(f"{url}: response was not JSON ({exc})")) from None
+
+
+def http_post_json(url, body, headers=None, timeout=60):
+    """POST a JSON body and decode, or raise FetchError with secrets removed.
+
+    Montandon's token travels in a header rather than in the URL, which is one
+    fewer place for it to leak - but redact() still runs, because requests puts
+    the request headers into some of its own exception messages.
+    """
+    try:
+        response = requests.post(url, json=body, timeout=timeout,
+                                 headers={"Accept": "application/json",
+                                          "Content-Type": "application/json",
+                                          **(headers or {})})
+        response.raise_for_status()
+        return response.json()
+    except requests.RequestException as exc:
+        raise FetchError(redact(f"{url}: {exc}")) from None
+    except ValueError as exc:
+        raise FetchError(redact(f"{url}: response was not JSON ({exc})")) from None
+
+
+def fetch_all_pages_token(url, body, headers=None):
+    """Follow STAC's `token` to the end, and return one FeatureCollection.
+
+    STAC does not page by offset the way HAPI does: the server hands back a
+    complete next body, token included, in links[rel="next"]. It is sent back
+    VERBATIM - constructing a token here would be guessing at the server's
+    cursor format, which differs between implementations and is not ours to
+    know.
+
+    The combined result has the shape the loader expects, as though it had been
+    one call. Paging is a property of the API, not of the data.
+    """
+    features, next_body, pages = [], body, 0
+    while True:
+        page = http_post_json(url, next_body, headers)
+        features.extend(page.get("features", []))
+        pages += 1
+        link = next((l for l in page.get("links", []) if l.get("rel") == "next"), None)
+        if not link or not link.get("body") or pages >= MAX_PAGES:
+            return {"type": "FeatureCollection", "features": features}
+        next_body = link["body"]
+
+
+def fetch(call):
+    """Make one Call: GET or POST, paged or not. The runner's one door.
+
+    The runner's job is that calls happen ONE AT A TIME - two IPC countries in
+    parallel took that server down for a session. Which verb and whether to
+    page is the Call's business, and gathering it here is what keeps the
+    runner's loop a plain serial for-loop.
+    """
+    if call.method == "POST":
+        return (fetch_all_pages_token(call.url, call.body, call.headers)
+                if call.paginated
+                else http_post_json(call.url, call.body, call.headers))
+    if call.paginated:
+        # Left in hdx.py on purpose: test_fetcher_hdx patches its http_get_json
+        # by name, and moving the function would break four passing tests for
+        # no gain. Imported lazily, exactly as the runner used to do.
+        from external_data.fetchers.hdx import fetch_all_pages
+        return fetch_all_pages(call.url, call.params)
+    return http_get_json(call.url, call.params)
+
+
+def crisis_floor():
+    """CRISIS_START as a date - the day fighting broke out in Khartoum.
+
+    Defined in settings as a string and in data_pipeline.common as a date; a
+    fetcher has no business importing the pipeline, so it parses the setting.
+    Moved here from ipc.py, which now imports it, so there is one copy.
+    """
+    year, month, day = (int(part) for part in settings.CRISIS_START.split("-"))
+    return date(year, month, day)
 
 
 def save_payload(cache_path, payload):

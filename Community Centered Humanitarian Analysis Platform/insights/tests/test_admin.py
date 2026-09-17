@@ -301,3 +301,26 @@ class ResetStuckJobActionTests(TestCase):
         mock_popen.assert_called_once()
         self.job.refresh_from_db()
         self.assertEqual(self.job.status, "running")
+
+
+class ChildInlineTests(TestCase):
+    def test_the_insight_admin_edits_figures_and_corridors(self):
+        """Read-only in the wizard, corrected here. A wrong figure needs a home."""
+        from django.contrib import admin as django_admin
+
+        from insights.models import Insight, InsightFigure, InsightMovement
+
+        inlines = [inline.model for inline in
+                   django_admin.site._registry[Insight].inlines]
+        self.assertIn(InsightFigure, inlines)
+        self.assertIn(InsightMovement, inlines)
+
+    def test_the_coding_inline_exposes_the_role(self):
+        from django.contrib import admin as django_admin
+
+        from insights.models import Insight, InsightCoding
+
+        coding_inline = next(
+            inline for inline in django_admin.site._registry[Insight].inlines
+            if inline.model is InsightCoding)
+        self.assertIn("role", coding_inline.fields)

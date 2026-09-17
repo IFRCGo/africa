@@ -48,6 +48,11 @@ from django.conf import settings
 
 from insights.extractors.base import Extractor
 
+# KEEP IN STEP WITH insights/contract.py AND insights/prompts/extract_insights.md.
+# "additionalProperties": False means a field the contract accepts but this schema
+# omits is FORBIDDEN, not ignored - the model cannot emit it and the run looks
+# healthy while returning nothing new. test_schema_matches_contract.py checks the
+# enums against insights/models.py so this cannot drift silently.
 SCHEMA = {
     "type": "object",
     "properties": {
@@ -69,8 +74,49 @@ SCHEMA = {
                             "properties": {
                                 "dimension": {"type": "string"},
                                 "tag": {"type": "string"},
+                                "role": {"type": "string",
+                                         "enum": ["subject", "driver", "barrier"]},
                             },
                             "required": ["dimension", "tag"],
+                            "additionalProperties": False,
+                        },
+                    },
+                    "figures": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "figure_as_written": {"type": "string"},
+                                "value": {"type": "number"},
+                                "unit": {"type": "string",
+                                         "enum": ["people", "percent", "households"]},
+                                "measures": {"type": "string"},
+                                "applies_to": {"type": ["string", "null"]},
+                            },
+                            "required": ["figure_as_written", "value", "unit", "measures"],
+                            "additionalProperties": False,
+                        },
+                    },
+                    "movements": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "origin_name_as_written": {"type": ["string", "null"]},
+                                "origin_iso3": {"type": ["string", "null"]},
+                                "dest_name_as_written": {"type": ["string", "null"]},
+                                "dest_iso3": {"type": ["string", "null"]},
+                                "flow_type": {
+                                    "type": "string",
+                                    "enum": ["cross_border", "internal", "return", "transit"]},
+                                "value_as_written": {"type": ["string", "null"]},
+                                "value": {"type": ["integer", "null"]},
+                                # people or households only. A corridor's value is a
+                                # BigIntegerField and a share has no honest reading in it.
+                                "unit": {"type": ["string", "null"],
+                                         "enum": ["people", "households", None]},
+                            },
+                            "required": ["flow_type"],
                             "additionalProperties": False,
                         },
                     },

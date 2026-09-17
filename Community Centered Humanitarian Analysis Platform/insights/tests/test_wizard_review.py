@@ -75,3 +75,25 @@ class ReviewStepTests(TestCase):
             {"decision": "publish", "selected": [str(stray.id)]}, follow=True)
         stray.refresh_from_db()
         self.assertEqual(stray.status, "pending")
+
+
+class ReviewRowShowsChildrenTests(TestCase):
+    def test_a_figure_and_a_corridor_are_rendered_under_the_quote(self):
+        from django.template.loader import render_to_string
+
+        from insights.models import Insight, InsightFigure, InsightMovement
+
+        insight = Insight.objects.create(
+            quote="0.7 million Sudanese refugees have been registered in Egypt.",
+            iso3="EGY", stated_on="2026-03-01")
+        InsightFigure.objects.create(
+            insight=insight, figure_as_written="0.7 million", value=700000.0,
+            unit="people", measures="Sudanese refugees registered in Egypt")
+        InsightMovement.objects.create(
+            insight=insight, origin_name_as_written="Sudan", origin_iso3="SDN",
+            dest_name_as_written="Egypt", dest_iso3="EGY", flow_type="cross_border")
+
+        html = render_to_string("insights/_review_row.html", {"insight": insight})
+        self.assertIn("0.7 million", html)
+        self.assertIn("Sudan", html)
+        self.assertIn("cross_border", html)

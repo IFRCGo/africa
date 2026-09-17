@@ -20,7 +20,7 @@ from django.db import transaction
 
 from insights import places
 from insights.contract import ContractError, parse
-from insights.models import Insight, InsightCoding
+from insights.models import Insight, InsightCoding, InsightFigure, InsightMovement
 from insights.verify import quote_is_verbatim, quote_sha1
 
 
@@ -29,6 +29,29 @@ class LoadReport:
     written: int = 0
     rejected_unverifiable: int = 0
     skipped_reviewed: int = 0
+    # Figures and corridors dropped for a wrong vocabulary word or an unquoted
+    # span. Kept apart from rejected_unverifiable, which means "whole insights
+    # that failed the quote gate" and which a reviewer already watches.
+    figures_rejected: int = 0
+    movements_rejected: int = 0
+
+
+def _side(iso3, place_name, prefix):
+    """Resolve one end of a corridor into prefixed columns.
+
+    places.resolve() is called with the SIDE's own iso3, never the parent
+    insight's. On the corridor this exists for - Sudan to Egypt - the parent is
+    one of the two countries and inheriting it would place the other end in the
+    wrong one.
+    """
+    placement = places.resolve(iso3, place_name)
+    return {
+        f"{prefix}_pcode": placement["admin_pcode"],
+        f"{prefix}_admin_level": placement["admin_level"],
+        f"{prefix}_match_method": placement["match_method"],
+        f"{prefix}_lat": placement["lat"],
+        f"{prefix}_lon": placement["lon"],
+    }
 
 
 def _coerce_stated_on(value):
@@ -96,6 +119,10 @@ def load(payload, document=None, job=None, method="llm", model_used=None):
             "or attach it to a document whose report_date is set"
         )
 
+    # A drop must never be silent - a figure nobody is told about is a figure a
+    # reviewer cannot ask for. Counted in the report, named in the job log.
+    drop_messages = []
+
     for row in rows:
         # Gate 1 - only where there is a document to check against.
         if document is not None and not quote_is_verbatim(document.id, row["page"], row["quote"]):
@@ -144,21 +171,60 @@ def load(payload, document=None, job=None, method="llm", model_used=None):
                 setattr(existing, key, value)
             existing.save()
             insight = existing
-            # Codings are replaced wholesale: a re-run's reading of the statement
-            # supersedes its own earlier one, and merging them would accumulate
-            # tags no single reading ever proposed.
+            # Codings, figures and movements are replaced wholesale: a re-run's
+            # reading of the statement supersedes its own earlier one, and merging
+            # them would accumulate rows no single reading ever proposed. Neither
+            # child table has a natural key, so without this a re-run duplicates
+            # every figure and corridor.
             insight.codings.all().delete()
+            insight.figures.all().delete()
+            insight.movements.all().delete()
 
         InsightCoding.objects.bulk_create(
             [InsightCoding(insight=insight, **coding) for coding in row["codings"]]
         )
+        InsightFigure.objects.bulk_create(
+            [InsightFigure(insight=insight, **figure) for figure in row["figures"]]
+        )
+        InsightMovement.objects.bulk_create([
+            InsightMovement(
+                insight=insight,
+                origin_name_as_written=movement["origin_name_as_written"],
+                origin_iso3=movement["origin_iso3"],
+                dest_name_as_written=movement["dest_name_as_written"],
+                dest_iso3=movement["dest_iso3"],
+                flow_type=movement["flow_type"],
+                value_as_written=movement["value_as_written"],
+                value=movement["value"],
+                unit=movement["unit"],
+                # Gate 3, once per side.
+                **_side(movement["origin_iso3"], movement["origin_name_as_written"], "origin"),
+                **_side(movement["dest_iso3"], movement["dest_name_as_written"], "dest"),
+            )
+            for movement in row["movements"]
+        ])
+
+        for drop in row["drops"]:
+            if drop.startswith("corridor"):
+                report.movements_rejected += 1
+            else:
+                report.figures_rejected += 1
+            drop_messages.append(f"{document.file_name if document else 'manual'}: {drop}")
+
         report.written += 1
 
     if job is not None:
         job.insights_proposed += len(rows)
         job.insights_rejected_unverifiable += report.rejected_unverifiable
         job.insights_skipped_reviewed += report.skipped_reviewed
-        job.save(update_fields=["insights_proposed", "insights_rejected_unverifiable",
-                                "insights_skipped_reviewed"])
+        job.figures_rejected += report.figures_rejected
+        job.movements_rejected += report.movements_rejected
+        if drop_messages:
+            job.log = "\n".join(filter(None, [job.log, *drop_messages]))
+        job.save(update_fields=[
+            "insights_proposed", "insights_rejected_unverifiable",
+            "insights_skipped_reviewed", "figures_rejected", "movements_rejected",
+            "log",
+        ])
 
     return report

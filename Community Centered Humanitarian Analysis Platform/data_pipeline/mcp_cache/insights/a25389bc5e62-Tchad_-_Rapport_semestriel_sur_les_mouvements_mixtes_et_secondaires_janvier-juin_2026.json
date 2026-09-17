@@ -1,0 +1,206 @@
+{
+  "source": {
+    "rel_path": "media/a25389bc5e62-Tchad_-_Rapport_semestriel_sur_les_mouvements_mixtes_et_secondaires_janvier-juin_2026.pdf",
+    "sha1": "a25389bc5e620fa6441bd3f19fa24e076571a366",
+    "report_date": null
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "Parmi les réfugiés interrogés, les départs des sites sont principalement motivés par le regroupement familial (39%) et l’insécurité dans le site (30%).",
+      "quote_language": "fr",
+      "page": 5,
+      "voice_type": "community",
+      "place_name_as_written": "Tchad",
+      "iso3": "TCD",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "secondary_movement",
+          "role": "subject"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "family_separation",
+          "role": "driver"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "armed_conflict",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "39%",
+          "value": 39,
+          "unit": "percent",
+          "measures": "départs des sites",
+          "applies_to": "réfugiés interrogés"
+        },
+        {
+          "figure_as_written": "30%",
+          "value": 30,
+          "unit": "percent",
+          "measures": "départs des sites",
+          "applies_to": "réfugiés interrogés"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "L’accès limité aux services de base, la recherche de meilleures conditions de vie et le manque d’opportunités économiques représentent chacun 10%.",
+      "quote_language": "fr",
+      "page": 5,
+      "voice_type": "community",
+      "place_name_as_written": "Tchad",
+      "iso3": "TCD",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "basic_services",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "livelihoods",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "10%",
+          "value": 10,
+          "unit": "percent",
+          "measures": "départs des sites",
+          "applies_to": "réfugiés interrogés"
+        }
+      ],
+      "people_affected": null,
+      "severity": 2,
+      "confidence": "high"
+    },
+    {
+      "quote": "Parmi les difficultés rapportées, les vols constituent le principal incident (9,5%), suivis des mauvais traitements (2,6%), de la destruction ou perte de documents (1,1%) et des détentions (0,5%).",
+      "quote_language": "fr",
+      "page": 6,
+      "voice_type": "community",
+      "place_name_as_written": "Tchad",
+      "iso3": "TCD",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "crime",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "physical_violence",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "arbitrary_detention",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "9,5%",
+          "value": 9.5,
+          "unit": "percent",
+          "measures": "incidents rapportés",
+          "applies_to": "personnes interrogées"
+        },
+        {
+          "figure_as_written": "2,6%",
+          "value": 2.6,
+          "unit": "percent",
+          "measures": "incidents rapportés",
+          "applies_to": "personnes interrogées"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Au premier semestre 2026, les mouvements mixtes observés au Tchad restent principalement portés par des hommes adultes et fortement orientés vers la Libye (80,2 %), confirmant la prédominance du corridor méditerranéen (81,8 %).",
+      "quote_language": "fr",
+      "page": 9,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Tchad",
+      "iso3": "TCD",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "outward_movement",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "80,2 %",
+          "value": 80.2,
+          "unit": "percent",
+          "measures": "mouvements orientés vers la Libye",
+          "applies_to": "mouvements mixtes"
+        },
+        {
+          "figure_as_written": "81,8 %",
+          "value": 81.8,
+          "unit": "percent",
+          "measures": "prédominance du corridor méditerranéen",
+          "applies_to": "mouvements mixtes"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "Tchad",
+          "origin_iso3": "TCD",
+          "dest_name_as_written": "Libye",
+          "dest_iso3": "LBY",
+          "flow_type": "cross_border"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Malgré une majorité de personnes ne signalant aucune difficulté, les vols, mauvais traitements, pertes de documents et détentions témoignent de risques de protection persistants le long des routes migratoires.",
+      "quote_language": "fr",
+      "page": 9,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Tchad",
+      "iso3": "TCD",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence_and_physical_abuse",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "arbitrary_detention",
+          "role": "subject"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "documentation_issues",
+          "role": "subject"
+        }
+      ],
+      "figures": [],
+      "movements": [],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    }
+  ]
+}

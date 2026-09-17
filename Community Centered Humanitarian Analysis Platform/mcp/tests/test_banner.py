@@ -19,6 +19,12 @@ class Base(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_superuser("t", "t@e.org", "pw")
         self.client.force_login(self.user)
+        # Every test below counts the rows it can see, so this fixture owns the
+        # whole table. Migration 0015 seeds eight montandon rows which have
+        # never been pulled and are therefore rightly stale; they are cleared
+        # here rather than counted around, so "2 sources not pulled today" goes
+        # on meaning the two this fixture created.
+        SourceSync.objects.filter(source="montandon").delete()
         self.a = SourceSync.objects.create(source="fewsnet", dataset="seasonal_calendar",
                                            iso3="TCD", variant="")
         self.b = SourceSync.objects.create(source="fewsnet", dataset="seasonal_calendar",
