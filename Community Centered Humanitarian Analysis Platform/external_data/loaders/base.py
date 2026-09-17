@@ -11,6 +11,11 @@ Four guarantees, enforced here rather than left to each parser:
   ordered        source_sync is written LAST, inside that transaction, so the
                  watermark can never claim data the tables do not have
   loud on empty  an MCP error serialised as [] is a failed load, never 'up to date'
+
+Two escape hatches, both used by the Montandon loaders and by nothing else yet:
+`_insert_rows` lets a loader insert nothing and apply its payload onto rows
+another loader wrote, and `after_insert` is where raw SQL goes that needs those
+rows to already exist - parse() is pure, so it cannot reach the database.
 """
 import json
 from dataclasses import dataclass
@@ -42,6 +47,14 @@ class Loader:
     update_fields = []    # everything else, overwritten on conflict
     tool = ""             # the MCP tool this payload came from, for the record
 
+    # Whether load() should write sync.row_count from this loader's model.
+    #
+    # THREE LOADERS SHARE ONE SYNC ROW for Montandon - events, severity and
+    # impacts - and load() overwrites row_count from its own model every time.
+    # Without this flag the last loader to run would win, and the freshness
+    # table would report the impact count as the number of events held.
+    counts_rows = True
+
     def parse(self, payload, iso3, context=None):
         """Return a list of dicts, one per model row. Pure - no database access.
 
@@ -69,6 +82,26 @@ class Loader:
         """Identities now held, for sources with no date filter. Merged, not replaced."""
         return []
 
+    def _insert_rows(self, rows):
+        """The model instances to upsert. Override to insert nothing.
+
+        MontandonSeverityLoader overrides it: a severity item has its own STAC
+        id and is not an event, so upserting them into hazard_events would
+        double every row that has a severity. It applies its payload onto rows
+        another loader already wrote, in after_insert.
+        """
+        return [self.model(**row) for row in rows]
+
+    def after_insert(self, rows):
+        """Optional: raw SQL that needs the rows to already exist.
+
+        Called inside load()'s transaction, after bulk_create and after the
+        geometry pass. This is where work belongs that parse() cannot do,
+        because parse() is pure - resolving a point to a p-code, or applying a
+        severity onto rows keyed by something other than the natural key.
+        """
+        return None
+
 
 @transaction.atomic
 def load(loader, payload, iso3, dry_run=False, context=None):
@@ -91,16 +124,22 @@ def load(loader, payload, iso3, dry_run=False, context=None):
     # invisible to Django, so they are written separately, in SQL.
     geometries = [row.pop("_geometry", None) for row in rows]
 
-    objects = [loader.model(**row) for row in rows]
-    loader.model.objects.bulk_create(
-        objects,
-        update_conflicts=True,
-        unique_fields=loader.unique_fields,
-        update_fields=loader.update_fields,
-    )
+    # A loader that inserts nothing says so by overriding _insert_rows.
+    # Everything else gets the ordinary upsert.
+    objects = loader._insert_rows(rows)
+    if objects:
+        loader.model.objects.bulk_create(
+            objects,
+            update_conflicts=True,
+            unique_fields=loader.unique_fields,
+            update_fields=loader.update_fields,
+        )
 
-    if any(g is not None for g in geometries):
-        _write_geometry(loader, rows, geometries)
+        if any(g is not None for g in geometries):
+            _write_geometry(loader, rows, geometries)
+
+    # After the rows exist, and still inside this transaction.
+    loader.after_insert(rows)
 
     key = loader.sync_key(iso3, context or {})
     sync, _ = SourceSync.objects.get_or_create(**key)
@@ -116,8 +155,10 @@ def load(loader, payload, iso3, dry_run=False, context=None):
     if new_ids:
         sync.known_ids = sorted(set(sync.known_ids or []) | set(new_ids))
 
-    scope = {k: v for k, v in key.items() if k in ("source", "iso3")}
-    sync.row_count = loader.model.objects.filter(**scope).count()
+    # Only the loader that OWNS this sync row writes its count. See counts_rows.
+    if loader.counts_rows:
+        scope = {k: v for k, v in key.items() if k in ("source", "iso3")}
+        sync.row_count = loader.model.objects.filter(**scope).count()
     sync.save()
 
     return LoadResult(written=len(rows), high_water_date=sync.high_water_date, sync=sync)
