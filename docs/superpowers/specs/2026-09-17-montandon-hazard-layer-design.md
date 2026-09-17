@@ -137,7 +137,8 @@ later.
 
 | column | note |
 |---|---|
-| `source` | `gdacs` / `pdc` / `idmc-idu` |
+| `source` | always `montandon` — see below |
+| `collection` | `gdacs` / `pdc` / `idmc-idu` — which Montandon collection published it |
 | `event_id` | Montandon's STAC item id |
 | `corr_id` | `monty:corr_id` — ties the same real flood across sources |
 | `iso3` | one row per country per item |
@@ -163,10 +164,20 @@ never reaches the database.
 are sufficient, exactly as on `BorderCrossing` and `MovementPattern`. This
 removes the raw-SQL geometry migration that `FoodSecurityArea` needed.
 
-**The natural key is `(source, event_id, iso3)`.** One Montandon item can carry
-two countries — an observed wildfire had `["ETH", "SDN"]`. With `iso3` outside
-the key, pulling Chad after Sudan would silently rewrite Sudan's row. One item
-spanning two focus countries becomes two rows, which is also what makes a
+**`source` is `montandon` on every row, and the publisher goes in `collection`.**
+This is not cosmetic. `loaders/base.load()` finishes by computing
+`sync.row_count = model.objects.filter(source=..., iso3=...).count()` from the
+**sync key**, which is `source='montandon'`. Writing `gdacs` into `source` would
+make that count zero forever, and the admin would report "0 rows" after every
+successful pull. Every existing table already follows this convention —
+`SeasonalCalendar.source` is fewsnet/acaps, `MovementPattern.source` is
+hdx/unhcr/excel — and it is the publisher of the *payload*, not of the individual
+record.
+
+**The natural key is `(collection, event_id, iso3)`.** One Montandon item can
+carry two countries — an observed wildfire had `["ETH", "SDN"]`. With `iso3`
+outside the key, pulling Chad after Sudan would silently rewrite Sudan's row. One
+item spanning two focus countries becomes two rows, which is also what makes a
 per-country **Pull now** button honest.
 
 **`match_method`** mirrors `HumanitarianServicePoint`'s column and exists for the
@@ -241,10 +252,41 @@ the runner does today, so both patch targets keep working.
 hazard codes mapped through the codebook, `description` dropped, `high_water()`
 returning the newest `event_date`.
 
-Each point is resolved to a p-code by PostGIS point-in-polygon against
-`admin_areas`, taking the **deepest** matching level — the same "finest first,
-most precise wins" rule `build_theme_areas()` already applies. `lat`/`lon` stay
-on the row as the evidence for the match.
+**`parse()` stays pure.** `loaders/base.py` documents it as *"Pure — no database
+access"*, so the point-in-polygon resolution cannot happen there. `parse()` sets
+`match_method='unmatched'` as the default, and the resolution is a **post-insert
+raw-SQL pass inside `load()`'s transaction**, keyed on the natural key — the same
+shape `_write_geometry` already uses, and for the same reason.
+
+`Loader` therefore gains one optional hook, `after_insert(rows)`, called inside
+`load()` after `bulk_create` and the geometry pass. Loaders that do not implement
+it are unaffected. `MontandonLoader.after_insert` runs a single statement:
+
+```sql
+UPDATE hazard_events h
+   SET admin_pcode  = m.pcode,
+       admin_level  = m.level,
+       match_method = 'point-in-polygon'
+  FROM (SELECT DISTINCT ON (e.id) e.id AS event_id, a.pcode, a.level
+          FROM hazard_events e
+          JOIN admin_areas a
+            ON a.iso3 = e.iso3
+           AND ST_Contains(a.geom, ST_SetSRID(ST_MakePoint(e.lon, e.lat), 4326))
+         WHERE e.collection = %s AND e.iso3 = %s
+         ORDER BY e.id, a.level DESC) m      -- deepest level wins
+ WHERE h.id = m.event_id;
+```
+
+`ORDER BY a.level DESC` is the **deepest** matching level — the same "finest
+first, most precise wins" rule `build_theme_areas()` already applies. The GIST
+index this needs is already on `admin_areas.geom`, from
+`boundaries/migrations/0002_geometry_columns.py`. `lat`/`lon` stay on the row as
+the evidence for the match.
+
+Note that `load_hsps.py` resolves its places *before* the rows reach the model,
+in its own command — it does not go through `loaders/base.load()`, so it is a
+precedent for the matching logic and its `match_method` vocabulary, not for where
+the work happens.
 
 ### Settings
 
@@ -296,13 +338,34 @@ all.
 Those two sets then **resolve down into the existing `state.activeTags` set** as
 `hazard|<tag>` keys, via the codebook's `tags` lookup. Selecting *Hydrological*
 ticks `hazard|flooding`; selecting the sub-hazard *Flooding* ticks that one
-alone. `applyFilters`, the theme-area polygons, Trends, Community Insights and
-Top reported hazards therefore keep working through the machinery they use
-today, **with no change to any of them**. That is what makes "only this change"
-achievable rather than a rewrite.
+alone. Trends, Community Insights and Top reported hazards therefore keep
+working through the machinery they use today, **unchanged**. That is what makes
+"only this change" achievable rather than a rewrite.
 
 Sub-hazards that exist only in Montandon — wildfires, earthquake — have no
 document tag and filter the event feed only.
+
+### The one named change to `applyFilters`
+
+The two feeds are **not merged into `state.data.tags.hazard`**, and this is the
+spec's most easily-got-wrong point. Merging them would light the polygons for
+free, but `monthTagTotals("hazard", …)` reads the same object, so **Top reported
+hazards** would start showing "wildfires: 40" from Montandon events beside
+document mentions — the exact evidence-mixing the vocabulary section above argues
+against.
+
+So: `applyFilters` gains **one change, in one place** — the call that computes
+which areas to light takes the **union of two feeds**, `tags.hazard` and
+`hazard_events.by_sub`. Everything downstream of that call is untouched, and the
+three panels stay document-only:
+
+| reads | fed by |
+|---|---|
+| area fills (the polygons) | document tags **∪** Montandon events |
+| area popup | both, labelled by which |
+| Trends · Top reported hazards · Community Insights | document tags only |
+
+That is the whole JavaScript change beyond building the second dropdown.
 
 ### Montandon events light the same polygons
 
@@ -355,7 +418,10 @@ New, under `external_data/tests/`:
   `["ETH", "SDN"]` becomes two rows and a second country's pull does not
   overwrite the first; an unknown HIP code lands in `uncategorised` rather than
   guessing; `description` never reaches the database; a point inside Tawila
-  resolves to Tawila's p-code and a point in open desert comes back `unmatched`.
+  resolves to Tawila's p-code and a point in open desert comes back `unmatched`;
+  and — the regression this spec exists to prevent — `sync.row_count` is
+  non-zero after a successful load, which it would not be if `source` carried the
+  collection name.
 - **`test_hazard_codebook.py`** — every tag in `taxonomy.json`'s hazard dimension
   has a mapping (this is the test that fails the day someone adds a tag and
   forgets); every category resolves to one of the nine; the seven codebook
@@ -366,12 +432,27 @@ dashboard checked in a real browser rather than assumed.
 
 ## The trap to write into the plan
 
-`HazardEvent` and the two `NarrativeTag` columns are model changes. **`migrate`
-alone is not enough**: gunicorn never autoreloads, `AddField` sets a database
-default only to backfill and then drops it, and a worker that booted before the
-columns existed will raise `NotNullViolation` on the next write — while
-`manage.py test`, which forks a fresh process, stays entirely green.
-`docker compose restart web` is a step in the plan, not an afterthought.
+`docker compose restart web` is a step in the plan, not an afterthought. Gunicorn
+never autoreloads, so without it the new admin registration, the changed
+templates and the changed `app.js` are simply not served.
+
+The sharper form of this trap — `AddField` backfilling a default, then dropping
+it, and a stale worker raising `NotNullViolation` on the next INSERT — **does not
+apply here**, and the plan should not claim it does. The two new `NarrativeTag`
+columns are nullable, and the writers are `s03_parse` and the loader, both of
+which run in a fresh `manage.py` process rather than in a gunicorn worker. The
+restart is still required; it is just required for a duller reason.
+
+## GDACS episodes are not duplicates
+
+GDACS publishes `gdacs-event-1028591-1`, `-2`, `-3` for one wildfire — these are
+**episodes**, and each carries its own `corr_id`
+(`…-EN0205-1-GCDB`, `…-EN0205-2-GCDB`). Deduplication on `corr_id` therefore
+keeps them as separate rows, which is correct when they are separate fire fronts
+on separate days and merely noisy when they are not. The loader keeps them; the
+dedupe step's job is cross-*source* correlation, not collapsing one source's own
+episode series. If the dashboard proves too noisy in practice, collapsing
+episodes is a follow-up change with its own evidence, not a guess made now.
 
 ## Out of scope
 
