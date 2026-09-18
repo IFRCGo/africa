@@ -494,6 +494,23 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 .pp-row { display: flex; justify-content: space-between; gap: 10px; font-size: 11.5px; padding: 1px 0; }
 .pp-n { color: var(--muted); font-variant-numeric: tabular-nums; font-weight: 400; }
 .pp-quote { font-size: 10.5px; font-style: italic; color: var(--muted); margin-top: 3px; line-height: 1.4; }
+/* A labelled fact: "Hazard", "Sub-hazard", "Where", "When" in the gutter and
+   the answer beside it. The gutter is a fixed width so the answers line up
+   down the bubble however many hazards are stacked in it. */
+.pp-kv { display: flex; gap: 8px; font-size: 11.5px; padding: 1px 0; align-items: baseline; }
+.pp-k {
+  flex: 0 0 78px; color: var(--muted); font-weight: 700; white-space: nowrap;
+  font-size: 9px; text-transform: uppercase; letter-spacing: .5px;
+}
+.pp-v { flex: 1 1 auto; font-weight: 600; min-width: 0; }
+/* What a dated event actually carries. Indented one step rather than aligned
+   under the value column: the bubble is capped at 330px, and an 86px gutter
+   left the impact figures wrapping every line. */
+.pp-detail {
+  font-size: 10.5px; color: var(--muted); line-height: 1.45;
+  margin: 1px 0 6px 14px;
+}
+.pp-quote.pp-linked { margin-left: 14px; }
 .pp-water { font-size: 10.5px; color: var(--water); margin-top: 6px; }
 /* Says plainly what the numbers are, so a mention count is never read as a
    population figure. */

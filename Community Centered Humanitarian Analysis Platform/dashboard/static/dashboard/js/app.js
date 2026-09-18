@@ -1131,10 +1131,27 @@ function addLayers(m) {
     const detail = (state.areaDetail || {})[p.id];
     if (!detail) return null;
     const month = monthLabel(state.areaMonth || monthKey(state.current));
-    let html = `<div class="pp-head"><b>${escapeHTML(p.name)}</b>
-      <span class="pp-sub">${escapeHTML(p.country || "IFRC area of interest")}${
-        p.level === "adm2" ? " · locality" : p.level === "adm1" ? " · state" : ""} · ${month}</span></div>`;
+    /* WHERE, SAID ONCE, AND SAID AS A LABEL.
+
+       Every section below is about this one polygon, and the Montandon feed
+       carries no coordinates of its own - an event is attached to the area,
+       not to a point inside it. Repeating the place under each hazard would
+       imply a precision the data does not have, so the bubble names the place
+       at the top and every row beneath it inherits that answer. */
+    const level = p.level === "adm2" ? " · locality" : p.level === "adm1" ? " · state" : "";
+    let html = `<div class="pp-head">
+      <div class="pp-kv"><span class="pp-k">Where</span><span class="pp-v"><b>${escapeHTML(p.name)}</b>${
+        p.country ? " — " + escapeHTML(p.country) : " — IFRC area of interest"}${level}</span></div>
+      <span class="pp-sub">Reporting for ${month}</span></div>`;
     for (const dim of DIM_ORDER) {
+      /* HAZARDS ARE THE PILLAR WITH A CODEBOOK ABOVE THEM and a second kind
+         of evidence underneath: document mentions and Montandon events, which
+         used to be printed as two unrelated blocks at opposite ends of the
+         bubble. hazardSectionHtml() folds both into one category/sub-hazard
+         tree, so picking "Climatological" reads the same whether the area was
+         lit by the event feed, by the corpus, or by both. The other three
+         pillars have no codebook to name and keep the tag-and-count shape. */
+      if (dim === "hazard") { html += hazardSectionHtml(detail, month); continue; }
       const tags = detail[dim];
       if (!tags) continue;
       const rows = Object.entries(tags).sort((a, b) => b[1] - a[1]);
@@ -1151,9 +1168,17 @@ function addLayers(m) {
       if (quote) html += `<div class="pp-quote">“…${escapeHTML(quote.slice(0, 180))}…”</div>`;
       html += `</div>`;
     }
-    html += hazardEventsHtml(detail.hazardEvents);
-    if ((p.water || []).length)
-      html += `<div class="pp-water">Water nearby: ${escapeHTML((p.water || []).slice(0, 4).join(", "))}</div>`;
+    /* WHY THIS IS PARSED. MapLibre serialises a nested feature property to a
+       STRING on the way into the style, so an area that reaches renderThemes()
+       as water: ["Lua","Lobaye"] reaches a popup as the JSON text of that list.
+       The old code called .slice(0,4).join() on it, which on a string is a
+       four-character slice with no .join at all - it threw, the exception left
+       the mousemove handler, and NO bubble appeared on any area with water
+       beside it, whatever else was under the cursor. hsp-dots already guards
+       its own list property this way; this one did not. */
+    const water = typeof p.water === "string" ? JSON.parse(p.water || "[]") : (p.water || []);
+    if (water.length)
+      html += `<div class="pp-water">Water nearby: ${escapeHTML(water.slice(0, 4).join(", "))}</div>`;
     html += `<div class="pp-note">Counts are mentions in the reporting for this month,
       not people affected — the source documents do not give a per-hazard caseload.
       Switch on the IDP or IPC layers for population figures.</div>`;
@@ -1256,7 +1281,18 @@ function sectionsAt(m, point) {
       const key = spec.layer + "|" + (f.id != null ? f.id : JSON.stringify(f.properties));
       if (seen.has(key)) continue;
       seen.add(key);
-      const body = spec.html(f.properties, f, m);
+      /* ONE LAYER MUST NOT SILENCE THE REST. These bodies are built from
+         feature properties, and a property that is not the shape its layer
+         expects used to throw out of the mousemove handler and take the whole
+         bubble with it - every other layer under the cursor included. The
+         failure is still reported, loudly, in the console; it is simply no
+         longer able to make the map look like it has no popups at all. */
+      let body = null;
+      try {
+        body = spec.html(f.properties, f, m);
+      } catch (err) {
+        console.error(`[dashboard] popup for layer "${spec.layer}" failed`, err);
+      }
       if (body) out.push({ title: spec.title, body });
     }
   }
@@ -1500,6 +1536,7 @@ function renderThemes() {
      people actually wrote down. */
   const feed = (state.data.hazardEvents || {}).by_sub || {};
   const bySub = state.activeSubHazards.size > 0;
+  const eventsSeen = new Set();       // see the concat below
   for (const [sub, subData] of Object.entries(feed)) {
     const picked = bySub ? state.activeSubHazards.has(sub)
                          : state.activeHazards.has(hazardCategoryOf(sub));
@@ -1513,9 +1550,26 @@ function renderThemes() {
       (byArea[row.area] = byArea[row.area] || {}).hazard =
         (byArea[row.area].hazard || 0) + row.count;
       const d = (detail[row.area] = detail[row.area] || {});
-      d.hazardEvents = (d.hazardEvents || []).concat(
-        (((state.data.hazardEvents.events || {})[row.area] || {})[mk] || [])
-          .filter((e) => e.sub === sub));
+      /* ONE ROW, ONE COPY OF THE EVENT. by_sub.monthly carries a SEPARATE row
+         per significance, so an area whose month holds both a recorded event
+         and an automated detection of the same sub-hazard arrives here twice -
+         and the event list under it, which is filtered by sub and not by
+         significance, was concatenated twice with it. 86 area/month/sub
+         combinations in the current feed do exactly that, and the popup listed
+         their events in duplicate.
+
+         KEYED ON THE EVENT OBJECT, NOT ON ITS FIELDS. Both passes read the same
+         events[area][month] array, so a duplicate is literally the same object
+         reached twice and identity settles it exactly. A key built from
+         sub/date/title looked equivalent and was not: 24 records in the current
+         feed share all three with a DIFFERENT record in the same list - two PDC
+         flood records for the Logone on 30 July 2025, one carrying 76 impacts
+         and one 152 - and collapsing those would silently drop real events. */
+      for (const ev of (((state.data.hazardEvents.events || {})[row.area] || {})[mk] || [])) {
+        if (ev.sub !== sub || eventsSeen.has(ev)) continue;
+        eventsSeen.add(ev);
+        (d.hazardEvents = d.hazardEvents || []).push(ev);
+      }
     }
   }
 
@@ -2114,36 +2168,141 @@ function goToMonth(mk) {
   setCurrentDate(t);
 }
 
-/* What Montandon recorded here, this month.
+/* ===================== WHAT THE HAZARD BLOCK SAYS =======================
+ * One block, named in the codebook the filters are built from: the category
+ * the reader picked, the sub-hazard under it, and when each piece of evidence
+ * is dated. Two kinds of evidence sit in that tree and are kept apart by what
+ * they are dated to, never merged into one number:
+ *
+ *   a Montandon event    - an exact day, a title, severity, recorded impacts
+ *   a document mention   - a month, and a count of how often it was written
+ *
+ * NOTHING IS INVENTED TO FILL A GAP. An IDMC-IDU flood carries displacement
+ * and no severity; a GDACS fire carries severity and no displacement; an
+ * empty field is left out rather than printed as "unknown".
+ *
+ * SEVERITY IS ALWAYS SHOWN WITH ITS UNIT. GDACS 0.5 "Green" and PDC 0.1
+ * "WATCH" are different scales measuring different things, so a bare number
+ * would invite a comparison that means nothing.
+ * ====================================================================== */
+function hazardSectionHtml(detail, month) {
+  const idx = hazardBookIndex();
+  const cats = new Map();          // category label -> Map(sub key -> entry)
+  /* A sub-hazard the codebook does not hold still has to appear - it is what
+     the reporting said. It is filed under its own name rather than dropped. */
+  const bucket = (subKey) => {
+    const meta = idx[subKey] || {};
+    const catLabel = meta.catLabel || "Not in the hazard codebook";
+    if (!cats.has(catLabel)) cats.set(catLabel, new Map());
+    const subs = cats.get(catLabel);
+    if (!subs.has(subKey))
+      subs.set(subKey, { label: meta.label || subKey.replace(/_/g, " "), mentions: 0, events: [] });
+    return subs.get(subKey);
+  };
+  for (const [tag, n] of Object.entries(detail.hazard || {})) bucket(tag).mentions += n;
+  for (const e of detail.hazardEvents || []) bucket(e.sub).events.push(e);
+  if (!cats.size) return "";
 
-   NOTHING IS INVENTED TO FILL A GAP. An IDMC-IDU flood carries displacement and
-   no severity; a GDACS fire carries severity and no displacement; an empty
-   section is left out rather than printed as "unknown".
+  const colour = DIM_META.hazard.color;
+  let html = `<div class="pp-dim" style="border-color:${colour}">
+    <div class="pp-dim-h" style="color:${colour}">${DIM_META.hazard.label}</div>`;
+  for (const [catLabel, subs] of cats) {
+    html += kvRow("Hazard", escapeHTML(catLabel));
+    for (const [subKey, s] of subs) {
+      html += kvRow("Sub-hazard", escapeHTML(s.label));
+      /* The month, not a day: a mention count is reporting gathered over the
+         month the timeline is on, and dating it to a day would be a fiction. */
+      if (s.mentions) {
+        html += kvRow("When", `${escapeHTML(month)} — <span class="pp-n">${s.mentions} mention${
+          s.mentions === 1 ? "" : "s"} in reporting</span>`);
+        /* AND THE SENTENCE BEHIND THE NUMBER. Every other pillar block offers
+           one, so that the count is never the only thing put forward as
+           evidence; hazards would have lost theirs on the way out of the
+           DIM_ORDER loop, which is where the other three still get it. */
+        const td = (state.data.tags.hazard || {})[subKey];
+        const quote = td && snippetFor(td, state.areaMonth || monthKey(state.current));
+        if (quote)
+          html += `<div class="pp-quote pp-linked">“…${escapeHTML(quote.slice(0, 180))}…”</div>`;
+      }
+      for (const e of s.events.slice(0, 4)) html += hazardEventRows(e);
+      if (s.events.length > 4)
+        html += `<div class="pp-detail">…and ${s.events.length - 4} more recorded event${
+          s.events.length - 4 === 1 ? "" : "s"} here this month</div>`;
+    }
+  }
+  return html + `</div>`;
+}
 
-   SEVERITY IS ALWAYS SHOWN WITH ITS UNIT. GDACS 0.5 "Green" and PDC 0.1
-   "WATCH" are different scales measuring different things, so a bare number
-   would invite a comparison that means nothing. */
-function hazardEventsHtml(events) {
-  if (!events || !events.length) return "";
-  const rows = events.slice(0, 8).map((e) => {
-    const bits = [`<b>${escapeHTML(e.sub.replace(/_/g, " "))}</b> — ${escapeHTML(e.date)}`];
-    if (e.title) bits.push(escapeHTML(e.title.slice(0, 90)));
-    if (e.severity_label)
-      bits.push(`severity ${escapeHTML(e.severity_label)} (${escapeHTML(e.severity_unit || "")})`);
-    for (const i of e.impacts || [])
-      bits.push(`<b>${Number(i.value).toLocaleString()}</b> ${escapeHTML(i.category || "")} ` +
-                `${escapeHTML((i.type || "").replace(/_/g, " "))} (${escapeHTML(i.source)})`);
-    bits.push(`<span style="color:${COLOR_MUTED}">reported by ${escapeHTML((e.sources || []).join(", "))}</span>`);
-    if (e.significance === "detection")
-      bits.push(`<span style="color:${COLOR_MUTED}"><i>automated detection, no recorded impact</i></span>`);
-    const n = (e.insight_ids || []).length;
-    if (n) bits.push(`${n} linked community insight${n === 1 ? "" : "s"}`);
-    return `<div class="pp-row" style="display:block">${bits.join("<br>")}</div>`;
-  });
-  const more = events.length > 8 ? `<div class="pp-row"><span>…and ${events.length - 8} more</span></div>` : "";
-  return `<div class="pp-dim" style="border-color:${DIM_META.hazard.color}">
-    <div class="pp-dim-h" style="color:${DIM_META.hazard.color}">Recorded hazard events
-      <span class="pp-n">${events.length}</span></div>${rows.join("")}${more}</div>`;
+/* One dated event: the day on the labelled row, everything the record actually
+   carries in the smaller line under it. */
+function hazardEventRows(e) {
+  const bits = [];
+  if (e.title) bits.push(escapeHTML(e.title.slice(0, 90)));
+  if (e.severity_label)
+    bits.push(`severity ${escapeHTML(e.severity_label)} (${escapeHTML(e.severity_unit || "")})`);
+  for (const i of e.impacts || [])
+    bits.push(`<b>${Number(i.value).toLocaleString()}</b> ${escapeHTML(i.category || "")} ` +
+              `${escapeHTML((i.type || "").replace(/_/g, " "))} (${escapeHTML(i.source)})`);
+  bits.push(`reported by ${escapeHTML((e.sources || []).join(", "))}`);
+  if (e.significance === "detection")
+    bits.push(`<i>automated detection, no recorded impact</i>`);
+  return kvRow("When", escapeHTML(eventDateLabel(e.date))) +
+    `<div class="pp-detail">${bits.join("<br>")}</div>` +
+    linkedInsightsHtml(e.insight_ids);
+}
+
+/* "2023-04-01" -> "1 Apr 2023". An unparseable date is shown as it was
+   recorded rather than silently dropped or guessed at. */
+function eventDateLabel(iso) {
+  if (!iso) return "date not recorded";
+  const t = Date.parse(iso);
+  return Number.isNaN(t) ? iso
+    : new Date(t).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+}
+
+/* THE COMMUNITY VOICE BEHIND A RECORDED EVENT.
+
+   Montandon events carry insight_ids, and the popup used to print only how
+   many there were - a count of evidence is not evidence. Up to two of the
+   statements themselves are shown instead.
+
+   The id list is resolved against the insights that are LOADED, which is the
+   most recent 2,000. An id that is not among them is reported as a link that
+   exists and is not shown, never passed over in silence. */
+function linkedInsightsHtml(ids) {
+  if (!ids || !ids.length) return "";
+  const byId = insightIndex();
+  const found = ids.map((id) => byId[id]).filter(Boolean);
+  if (!found.length)
+    return `<div class="pp-detail">${ids.length} linked community insight${
+      ids.length === 1 ? "" : "s"}, outside the loaded set</div>`;
+  let html = found.slice(0, 2).map((r) => `<div class="pp-quote pp-linked">“…${
+    escapeHTML((r.quote || "").slice(0, 180))}…”<span class="pp-sub">${
+    escapeHTML([r.place_name, r.date].filter(Boolean).join(" · "))}</span></div>`).join("");
+  if (found.length > 2)
+    html += `<div class="pp-detail">…and ${found.length - 2} more linked insight${
+      found.length - 2 === 1 ? "" : "s"}</div>`;
+  return html;
+}
+
+/* Published insights by id. Rebuilt only when the array itself is replaced,
+   because a popup is written on every mouse move and this must not walk 2,000
+   rows per hover. */
+let insightIndexFor = null, insightIndexCache = {};
+function insightIndex() {
+  const rows = state.data.insights || [];
+  if (insightIndexFor === rows) return insightIndexCache;
+  const idx = {};
+  for (const r of rows) if (r.id != null) idx[r.id] = r;
+  insightIndexFor = rows;
+  insightIndexCache = idx;
+  return idx;
+}
+
+/* A labelled row. The label is the whole point of this popup: "Drought" on
+   its own does not say whether it is the category, the sub-hazard or a tag. */
+function kvRow(key, valueHtml) {
+  return `<div class="pp-kv"><span class="pp-k">${key}</span><span class="pp-v">${valueHtml}</span></div>`;
 }
 
 /* A small bar chart of the six most-mentioned hazards this month. */
@@ -3420,11 +3579,38 @@ function setView(set) {
   };
 }
 
+/* THE CODEBOOK, INDEXED BY SUB-HAZARD.
+
+   hazards.json is a list of categories each holding its sub-hazards, which is
+   the shape the two dropdowns are built from and the wrong way round for a
+   popup: that starts from a sub-hazard key and has to name the category above
+   it. Inverted once per hazards.json, because the popup is rebuilt on every
+   mouse move and a linear scan of the book per hover is not free.
+
+   The asterisk on a category outside the codebook is carried here too, so the
+   popup marks conflict and famine exactly as the dropdown does - this project
+   added them, and neither should be quotable as IFRC codebook categories. */
+let hazardIndexFor = null, hazardIndexCache = {};
+function hazardBookIndex() {
+  const book = ((state.data.hazards || {}).categories) || [];
+  if (hazardIndexFor === book) return hazardIndexCache;
+  const idx = {};
+  for (const c of book)
+    for (const s of c.sub_hazards || [])
+      idx[s.key] = {
+        label: s.label || s.key,
+        catKey: c.key,
+        catLabel: c.in_codebook ? c.label : `${c.label} *`,
+      };
+  hazardIndexFor = book;
+  hazardIndexCache = idx;
+  return idx;
+}
+
 /* Which codebook category holds this sub-hazard. */
 function hazardCategoryOf(sub) {
-  for (const c of ((state.data.hazards || {}).categories || []))
-    if (c.sub_hazards.some((s) => s.key === sub)) return c.key;
-  return null;
+  const e = hazardBookIndex()[sub];
+  return e ? e.catKey : null;
 }
 
 /* The search box on the Community Insights panel. */
