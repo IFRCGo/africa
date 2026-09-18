@@ -807,9 +807,13 @@ body.resizing, body.resizing * { user-select: none !important; cursor: col-resiz
 .voice-tabs { display: flex; gap: 2px; margin: 6px 0; }
 .voice-tab {
   flex: 1; padding: 4px 6px; font-size: 11px; cursor: pointer;
-  border: 1px solid var(--border); background: transparent; color: var(--muted);
+  border: 1px solid var(--ifrc-red); background: var(--ifrc-red); color: #fff;
 }
-.voice-tab.is-active { background: var(--text); color: var(--bg); font-weight: 600; }
+.voice-tab:hover { filter: brightness(1.08); }
+.voice-tab.is-active {
+  background: var(--ifrc-dark-blue); border-color: var(--ifrc-dark-blue);
+  color: #fff; font-weight: 600;
+}
 /* #voice-search lost its .panel-search wrapper when the tabs were added, so
    it needs the same look .panel-search input gave it, applied directly. */
 #voice-search {
