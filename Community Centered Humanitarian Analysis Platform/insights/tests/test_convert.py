@@ -177,3 +177,42 @@ class ConvertDocumentTests(TestCase):
             convert.convert_document(self.document, self.path)
             convert.convert_document(self.document, self.path)
         self.assertEqual(Conversion.objects.filter(document=self.document).count(), 1)
+
+
+class SourcePathTests(TestCase):
+    """Finding the file again, wherever MEDIA_ROOT happens to point.
+
+    This is the quiet failure mode: convert_document turns a missing file into
+    a per-document failure, so getting it wrong badges every upload "Docling
+    failed" and silently keeps the PyMuPDF text, with nothing saying why.
+    """
+
+    def setUp(self):
+        self.media = tempfile.TemporaryDirectory()
+        self.addCleanup(self.media.cleanup)
+        self.document = Document.objects.create(
+            file_name="report.pdf", rel_path="media/abc123456789-report.pdf",
+            source_collection="insights", family="insight_source",
+            sha1="c" * 40, pages=1)
+
+    def test_an_upload_is_found_through_its_own_filefield(self):
+        from django.core.files.base import ContentFile
+
+        from insights.models import InsightUpload
+
+        with override_settings(MEDIA_ROOT=Path(self.media.name)):
+            upload = InsightUpload.objects.create(label="report.pdf", document=self.document)
+            upload.file.save("report.pdf", ContentFile(b"%PDF-1.4 stub"), save=True)
+            self.assertEqual(convert.source_path(self.document),
+                             Path(upload.file.path))
+
+    def test_a_folder_document_resolves_under_source_root(self):
+        with tempfile.TemporaryDirectory() as root:
+            on_disk = Path(root) / "sub" / "r.pdf"
+            on_disk.parent.mkdir(parents=True)
+            write_pdf(on_disk, ["text"])
+            document = Document.objects.create(
+                file_name="r.pdf", rel_path="sub/r.pdf", source_collection="insights",
+                family="insight_source", sha1="d" * 40, pages=1)
+            with override_settings(SOURCE_ROOT=Path(root)):
+                self.assertEqual(convert.source_path(document), on_disk)

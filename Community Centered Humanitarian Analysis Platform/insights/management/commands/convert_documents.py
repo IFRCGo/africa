@@ -16,9 +16,6 @@ the database went away, the disk filled - and that leaves the job at
 "convert_failed" rather than wedged at "converting", which nothing but the
 admin's reset action could recover.
 """
-from pathlib import Path
-
-from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import timezone
 
@@ -42,18 +39,6 @@ class Command(BaseCommand):
         job.log = f"{job.log}\n{line}" if job.log else line
         job.save(update_fields=["log"])
 
-    def _path_of(self, document):
-        """Where this document's file actually is.
-
-        A document catalogued from a registered folder resolves under
-        SOURCE_ROOT, exactly as the pipeline's do. An upload is
-        "media/<sha1>-<name>", which lives under BASE_DIR.
-        """
-        candidate = Path(settings.SOURCE_ROOT) / document.rel_path
-        if candidate.exists():
-            return candidate
-        return Path(settings.BASE_DIR) / document.rel_path
-
     def handle(self, *args, **options):
         job = ExtractionJob.objects.filter(id=options["job"]).first()
         if job is None:
@@ -71,7 +56,7 @@ class Command(BaseCommand):
         try:
             for document in documents:
                 row = convert.convert_document(
-                    document, self._path_of(document), job=job,
+                    document, convert.source_path(document), job=job,
                     reload_only=options["reload_from_cache"])
 
                 detail = f" - {row.message}" if row.message else ""

@@ -24,7 +24,37 @@ from django.utils import timezone
 from data_track.models import DocumentText
 from insights import docling_reader, document_date
 from insights.intake import pdf_metadata
-from insights.models import Conversion, Insight
+from insights.models import Conversion, Insight, InsightUpload
+
+
+def source_path(document):
+    """Where this document's file actually is on disk.
+
+    THE UPLOAD IS ASKED FIRST, AND IT IS ASKED BY ITS OWN FileField. An
+    upload's rel_path is "media/<sha1[:12]>-<name>", which only resolves under
+    BASE_DIR while MEDIA_ROOT sits at its default - and MEDIA_ROOT is a
+    documented .env setting, so that is an assumption, not a fact.
+    InsightUpload.file.path is Django's own answer to the same question and
+    stays right wherever MEDIA_ROOT points.
+
+    Getting this wrong is quiet rather than loud: convert_document turns a
+    FileNotFoundError into a per-document failure, so every upload would be
+    badged "Docling failed" and silently keep its PyMuPDF text.
+    """
+    upload = (InsightUpload.objects.filter(document=document)
+              .exclude(file="").order_by("-id").first())
+    if upload is not None:
+        candidate = Path(upload.file.path)
+        if candidate.exists():
+            return candidate
+
+    # Catalogued from a registered folder: resolves under SOURCE_ROOT exactly
+    # as every pipeline document does.
+    candidate = Path(settings.SOURCE_ROOT) / document.rel_path
+    if candidate.exists():
+        return candidate
+
+    return Path(settings.BASE_DIR) / document.rel_path
 
 
 def cache_paths(document):
