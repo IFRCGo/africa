@@ -1,9 +1,18 @@
-"""Step 2: the page that shows what the model will actually read."""
+"""Step 2: the page that shows what the model will actually read.
+
+MCP_CACHE_DIR IS OVERRIDDEN, AND IT HAS TO BE. log_path() resolves under it,
+so a test that writes a job log without this writes into the REAL cache
+directory beside the actual extraction logs - and a cleanup that deletes the
+file afterwards deletes a real one, because job ids in the test database
+collide with job ids in the live one.
+"""
+import tempfile
+from pathlib import Path
 from unittest import mock
 
 from data_track.models import Document, DocumentText
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from insights import wizard
@@ -12,6 +21,12 @@ from insights.models import Conversion, ExtractionJob
 
 class WizardReadTests(TestCase):
     def setUp(self):
+        self.cache = tempfile.TemporaryDirectory()
+        self.addCleanup(self.cache.cleanup)
+        override = override_settings(MCP_CACHE_DIR=Path(self.cache.name))
+        override.enable()
+        self.addCleanup(override.disable)
+
         self.user = User.objects.create_superuser("reviewer", "r@example.org", "pw")
         self.client.force_login(self.user)
         self.job = ExtractionJob.objects.create(status="collected", documents_total=1)
@@ -85,7 +100,6 @@ class WizardReadTests(TestCase):
         path = wizard.log_path(self.job, "convert")
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text("reading report.pdf", encoding="utf-8")
-        self.addCleanup(path.unlink, True)
         payload = self.client.get(
             reverse("admin:insights_wizard_progress", args=[self.job.id])).json()
         self.assertIn("reading report.pdf", payload["log_tail"])
@@ -97,7 +111,6 @@ class WizardReadTests(TestCase):
         path = wizard.log_path(self.job, "extract")
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text("extracting report.pdf", encoding="utf-8")
-        self.addCleanup(path.unlink, True)
         payload = self.client.get(
             reverse("admin:insights_wizard_progress", args=[self.job.id])).json()
         self.assertIn("extracting report.pdf", payload["log_tail"])
