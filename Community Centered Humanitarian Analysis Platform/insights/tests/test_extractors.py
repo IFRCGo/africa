@@ -334,3 +334,16 @@ class OpenAICompatibleRetryTests(SimpleTestCase):
                     extractor.extract(_document(), [(1, "Some page text.")])
         self.assertEqual(posted.call_count, RETRY_ATTEMPTS)
         self.assertEqual(extractor.problems, [])
+
+
+class PromptMentionsMarkdownTests(SimpleTestCase):
+    """The model is now reading markdown, and its quotes are matched against it.
+
+    verify._fold_markup absorbs the markers on both sides, so a quote carrying
+    them still matches - but a model told nothing may quote a whole table row
+    with its pipes, and the fold cannot rescue a quote that spans a row break.
+    """
+
+    def test_the_prompt_says_the_text_is_markdown(self):
+        body = prompt_text().lower()
+        self.assertIn("markdown", body)

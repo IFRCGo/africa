@@ -52,6 +52,13 @@ Each coding carries a `role`, and this is how a reason is recorded:
    punctuation. Do not paraphrase, tidy, translate or join two separate passages.
    Every quote is checked against the stored page text and a quote that does not
    match is discarded.
+
+   The page text you are given is **markdown** converted from the original PDF or
+   Word file: headings carry `#`, emphasis carries `*`, and a table row is a line
+   of `|` cells. Quote the document's **words**, not its markup — leave the `**`
+   and the `|` out of what you copy. The check folds markup from both sides
+   before comparing, so the words are what has to match. Do not quote across a
+   table row break: each row is its own statement.
 2. **Give the page number the quote is printed on.**
 3. **Never invent a number.** Leave `people_affected` null unless the passage
    states a figure. Most do not.

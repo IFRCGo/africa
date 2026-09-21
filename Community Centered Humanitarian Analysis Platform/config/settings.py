@@ -49,6 +49,33 @@ LLM_API_KEY = os.environ.get("LLM_API_KEY") or ""
 # pipeline only re-reads whatever sits in the folder. See data_pipeline/README.md.
 MCP_CACHE_DIR = env_path("MCP_CACHE_DIR", BASE_DIR / "data_pipeline" / "mcp_cache")
 
+# Reading documents for the insights wizard (spec 2026-09-21 §11). Docling
+# converts a PDF or Word file to per-page markdown before the model sees it;
+# PyMuPDF stays as the per-document fallback.
+# `or` rather than a default argument throughout - an empty value in .env must
+# fall back, not be read as "no languages" or "no pages".
+DOCLING_ENABLED = (os.environ.get("DOCLING_ENABLED") or "true").strip().lower() not in (
+    "0", "false", "no", "off")
+# WHY THIS IS NOT "en,fr,ar", WHICH IS WHAT THE ARCHIVE WOULD WANT. EasyOCR
+# refuses to load Arabic beside any other non-English language - it raises
+# "Arabic is only compatible with English" - and Docling takes exactly one
+# ocr_options, so one pass cannot read an Arabic report and a French one.
+# Arabic wins the default because the loss is asymmetric: French is Latin
+# script, so an English model still reads it and only mangles the accents,
+# while Arabic under a Latin model reads as nothing at all. The weights for
+# both are baked into the image, so a French-heavy deployment switches with
+# DOCLING_OCR_LANGS=en,fr in .env and a restart - no rebuild.
+DOCLING_OCR_LANGS = [
+    part.strip() for part in (os.environ.get("DOCLING_OCR_LANGS") or "en,ar").split(",")
+    if part.strip()
+]
+# The same ceiling s02_extract_text.MAX_PAGES has always held, and it matters
+# far more here: with OCR on, every page is paid for in minutes.
+DOCLING_MAX_PAGES = int(os.environ.get("DOCLING_MAX_PAGES") or 40)
+DOCLING_TIMEOUT_SECONDS = int(os.environ.get("DOCLING_TIMEOUT_SECONDS") or 900)
+# Where the Docker build baked the layout, table and OCR weights.
+DOCLING_ARTIFACTS_PATH = env_path("DOCLING_ARTIFACTS_PATH", Path("/opt/docling/models"))
+
 # The hazard vocabulary: IFRC codebook categories, the HIP codes observed for the
 # countries of focus, and the document tags, all mapped onto one category set.
 # Beside taxonomy.json because it is the same kind of thing - a vocabulary a

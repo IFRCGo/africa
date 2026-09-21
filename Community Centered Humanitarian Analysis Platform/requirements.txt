@@ -13,3 +13,15 @@ anthropic==1.5.0         # optional: in-container insight extraction (insights/e
 pyshp==2.3.1             # reads the OCHA/GADM shapefiles into the boundary library
 shapely==2.1.2           # repairs and measures those polygons; 2.1+ is the first that works with numpy 2
 requests==2.32.3         # the fetchers' HTTP client (external_data/fetchers/)
+# ---------------------------------------------------------------------------
+# Reading documents for the insights wizard. torch and torchvision are pinned
+# HERE to the same versions the Dockerfile installs from PyTorch's CPU-only
+# index. Without the pin, this resolve is free to decide docling or easyocr
+# wants a different torch and replace the CPU wheel with the CUDA one -
+# silently undoing that layer and adding ~2GB of GPU libraries the container
+# can never use.
+# ---------------------------------------------------------------------------
+torch==2.6.0             # the model runtime docling and easyocr both sit on (CPU build)
+torchvision==0.21.0      # easyocr requires it; same CPU-only rule as torch
+docling==2.129.0         # converts PDFs/Word to per-page markdown before the model reads them
+easyocr==1.7.2           # the OCR engine docling is told to use (it reads Arabic; the default does not)

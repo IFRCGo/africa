@@ -67,9 +67,37 @@ does not restate it.
 
 The route in for a person is **Admin → Community insights → Part 1 — Documents →
 insights**: pick files or a folder from a native window on your own machine,
-check the preview, extract (watchable, and it survives the tab closing), then
-review and publish. Part 2 is the statement table, for typing one in by hand and
-for auditing anything ever published.
+**read them** (step 2, below), extract (watchable, and it survives the tab
+closing), then review and publish. Part 2 is the statement table, for typing one
+in by hand and for auditing anything ever published.
+
+**Documents are read with Docling before the model sees them.** Step 2, "Read
+these documents", converts each PDF or Word file to per-page markdown — reading
+order, tables and headings kept, scanned pages OCR'd — and **replaces** the
+PyMuPDF text intake wrote. That replacement is the point: `verify.py` re-matches
+every quote against the same `DocumentText` rows the model read, so the two must
+never diverge. Terminal equivalent, and what the button runs:
+
+    docker compose exec web python manage.py convert_documents --job <N>
+
+Three things about it that are not guessable:
+
+- **A document Docling cannot read keeps its intake text** and is badged "Docling
+  failed" on the preview. A re-read always tries Docling again first — the
+  fallback is never sticky.
+- **A document that already has a non-rejected insight is refused.** Moving the
+  page text under a quote that was verified against it would invalidate that
+  check with nothing left to say so. The practical cost: a batch already
+  extracted from PyMuPDF text cannot be upgraded without rejecting its pending
+  queue first.
+- **OCR languages are not a free combination.** EasyOCR will not load Arabic
+  beside any other non-English language, and one pass has one language list, so
+  `DOCLING_OCR_LANGS` is `en,ar` or `en,fr`, not both. Both sets of weights are
+  in the image; switching is a `.env` edit and a restart.
+
+`ExtractionJob.status` reads `collecting → collected → converting → converted →
+queued → running → loaded`. **`queued` means converted and ready to extract**,
+not "files are in".
 
 An archive already sitting on a mounted share should be registered as an
 `InsightFolder` instead — nothing is copied that way. Which folders may be
