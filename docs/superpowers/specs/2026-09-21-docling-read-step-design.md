@@ -63,6 +63,7 @@ because what will be read is not produced until the model is already being paid.
 |---|---|
 | Docling runs **inside the web image**, not as a sidecar | Operator's call. A plain import, no network hop, no second service to keep alive. Paid for in image size (§11) and in RAM shared with gunicorn. |
 | **OCR is always on** | Operator's call. Scanned reports are the largest silent loss today, and a per-page "was this empty?" retry would convert some documents twice for an inconsistent result. Every page takes the slow path; this is why conversion is a background job and not part of upload. |
+| The OCR engine is **named explicitly as EasyOCR**, not left to Docling's default | Two reasons, both checked against Docling's docs rather than assumed. Docling's default is `OcrAutoOptions`, which probes the machine and picks an engine at pipeline init — and its own documentation states that language settings then fall back to that engine's internal defaults, so a `DOCLING_OCR_LANGS` value would be silently ignored. Worse, the engine auto-selection lands on RapidOCR (PP-OCR) on a CPU-only container like this one, and its supported-language list has **no Arabic**. For Sudan and Chad that is disqualifying. `EasyOcrOptions` takes ISO 639-1 codes including `ar` and `fr`. |
 | Per document, **Docling first, PyMuPDF only if Docling fails** | Operator's call. The fallback is never sticky: re-running the read step attempts Docling again on every document, including ones that fell back last time. |
 | Intake **keeps its PyMuPDF pass** as a placeholder | Not a hedge on the rule above — a hazard fix. `data_pipeline/steps/s02_extract_text.py:31` selects `Document.objects.filter(texts__isnull=True)`, so a document left textless between intake and conversion would be picked up by any pipeline run and fail there on a `media/…` path it cannot resolve. Intake's text is also what `document_date.infer` reads a report date out of. Docling **replaces** those rows; the model never sees them when Docling succeeds. |
 | Conversion is its **own management command, launched detached** | `batch_file` is one synchronous HTTP request per file. With OCR on, a 40-page report is minutes. Conversion inside the upload request would time out the browser and lose the batch. |
@@ -118,7 +119,11 @@ result, in the same spirit as `verify.quote_is_verbatim` returning `False` for a
    `mcp_cache/insights/converted/<sha1>.json` and go straight to step 5. Absent file → recorded
    as a failure, not an exception.
 3. **Convert.** `DocumentConverter` with `PdfPipelineOptions(do_ocr=True)`,
-   `artifacts_path=settings.DOCLING_ARTIFACTS_PATH`, `ocr_options.lang=settings.DOCLING_OCR_LANGS`,
+   `artifacts_path=settings.DOCLING_ARTIFACTS_PATH`,
+   `ocr_options=EasyOcrOptions(lang=settings.DOCLING_OCR_LANGS, download_enabled=False,
+   model_storage_directory=settings.DOCLING_ARTIFACTS_PATH)` — explicit per §4, and
+   `download_enabled=False` so a missing weight fails loudly at convert time instead of
+   quietly reaching for the internet inside a detached subprocess —
    `document_timeout=settings.DOCLING_TIMEOUT_SECONDS`, and
    `page_range=(1, settings.DOCLING_MAX_PAGES)` — the same 40-page ceiling
    `s02_extract_text.MAX_PAGES` has held since the pipeline was built, which matters far more
@@ -198,7 +203,7 @@ The command behind the button is `manage.py convert_documents --job N`, mirrorin
 `docker compose exec` invocation exits non-zero. It takes one extra flag,
 `--reload-from-cache`, which loads `converted/<sha1>.json` for every document instead of
 calling Docling — the "load without re-fetching" half of the rule §4 borrows from the external
-data route, and the fastest way to rebuild `DocumentText` after a database reset.
+data route, and the way to recover from a bad load without paying for OCR a second time.
 
 ## 9. Job states
 
@@ -265,21 +270,30 @@ falls back rather than reading as empty):
 | Setting | Default | For |
 |---|---|---|
 | `DOCLING_ENABLED` | `True` | Off ⇒ the read step reports "Docling is disabled" per document and leaves PyMuPDF text. Keeps the test suite and a thin deployment honest. |
-| `DOCLING_OCR_LANGS` | `en` | Comma-separated, passed to EasyOCR. Arabic and French reports are in scope for this deployment; adding them is a `.env` edit, not a code change. |
+| `DOCLING_OCR_LANGS` | `en,fr,ar` | Comma-separated ISO 639-1 codes, split into the list `EasyOcrOptions.lang` takes. Arabic and French are defaults rather than opt-ins because this deployment's archive is Sudan and Chad. Every language listed costs another recognition model in the image and some speed per page, so a deployment that only reads English should trim it. |
 | `DOCLING_MAX_PAGES` | `40` | Mirrors `s02_extract_text.MAX_PAGES`. |
 | `DOCLING_TIMEOUT_SECONDS` | `900` | Per document. A pathological scan must not hold a batch for ever. |
 | `DOCLING_ARTIFACTS_PATH` | `/opt/docling/models` | Where the build baked the weights. |
 
 `Dockerfile`, in this order so Docker caches the expensive layers:
 
-1. `pip install torch --index-url https://download.pytorch.org/whl/cpu` **before** the
-   requirements file. Docling depends on torch, and the default PyPI wheel drags in the CUDA
-   runtime — around 2GB of GPU libraries that cannot be used in this container.
-2. `docling` added to `requirements.txt`, pinned exactly like every other line there.
-3. `RUN HOME=/opt/docling docling-tools models download` — layout, tableformer and the OCR
-   weights baked into the image, roughly 500MB. Without this the *first* click on "Read these
-   documents" downloads them inside a detached subprocess, with no progress anywhere a person
-   can see it, and fails outright on a machine with no internet.
+1. `pip install torch==<version> --index-url https://download.pytorch.org/whl/cpu` **before**
+   the requirements file. Docling depends on torch, and the default PyPI wheel drags in the
+   CUDA runtime — around 2GB of GPU libraries that cannot be used in this container. **Pin the
+   exact version here, and pin the same version in `requirements.txt`.** Without the pin, the
+   later `pip install -r requirements.txt` resolve is free to decide docling wants a different
+   torch and replace the CPU wheel with the CUDA one — silently undoing step 1 and doubling the
+   image.
+2. `docling` and `easyocr` added to `requirements.txt`, pinned exactly like every other line
+   there. EasyOCR is explicit because §4 names it explicitly; it is not guaranteed to arrive as
+   a docling dependency.
+3. `RUN HOME=/opt/docling docling-tools models download` for the layout, tableformer and
+   picture-classifier weights, then a second `RUN` that loads `easyocr.Reader` once for
+   `DOCLING_OCR_LANGS` with `model_storage_directory=/opt/docling/models`, which is how EasyOCR
+   fetches its own detection and recognition weights. Together, roughly 500MB–1GB depending on
+   how many languages are listed. Without this the *first* click on "Read these documents"
+   downloads them inside a detached subprocess, with no progress anywhere a person can see it,
+   and fails outright on a machine with no internet.
 
 Expect the web image to go from roughly 400MB to 2.5–3.5GB, and a no-cache rebuild to take
 minutes rather than seconds. Code-only rebuilds are unaffected — they land after these layers.
@@ -298,7 +312,18 @@ def _fold_markup(text):
 
 It removes emphasis runs (`**`, `__`, `*`, `_`), leading heading hashes and list bullets,
 table pipes (replaced with a space, so cells do not weld together), and link syntax, keeping
-the link text. Applied to **both** the needle and the page text, after `normalise()`.
+the link text. Applied to **both** the needle and the page text.
+
+**It runs before `normalise()`, and the order is not arbitrary.** `normalise()` does
+`re.sub(r"\s+", " ", …)`, which destroys line boundaries — after it there is no "start of a
+line" for a heading `#` or a `- ` bullet to be anchored to, and stripping those characters
+position-independently instead would eat the hyphen in "Al-Fasher" and in "12–14 June", which
+`normalise()` has by then folded from an en-dash into exactly the same character. So the
+heading and bullet patterns are line-anchored (`^\s{0,3}#{1,6}\s+`, `^\s*[-*+]\s+`, multiline)
+and run on raw text; only the emphasis, pipe and link patterns are position-independent.
+
+The degenerate-fragment guard (3 words, 12 characters) measures the **folded** needle. A quote
+of `**` or `| |` must not buy its way past a length check with markup.
 
 `normalise()` itself, and therefore `quote_sha1()`, is **unchanged** — that is the whole point
 of putting the fold here. `insights/contract.py:86` and `:140`, which compare a written value
@@ -348,10 +373,14 @@ scanned one producing text at all is the result this whole change exists for.
   largest memory consumer in the container. Nothing here serialises them.
 - **A document past `DOCLING_MAX_PAGES` is truncated,** exactly as pipeline documents already
   are, and the preview shows the truncated page count rather than announcing the truncation.
-- **Re-reading a document with published insights is refused, permanently.** The only way to
-  re-read it is to reject its insights first. This is deliberate — the alternative is a
-  published quote whose page text no longer contains it — but it means an early batch
-  extracted from bad PyMuPDF text cannot be silently upgraded.
+- **Re-reading a document is refused while any insight of its own survives — including a
+  merely pending one.** The gate is `.exclude(status="rejected")`, not "published", because a
+  pending row is a row a reviewer is about to judge against a quote, and moving the page text
+  under it would make that judgement meaningless. The practical consequence is worth being
+  clear about: **a batch already extracted from PyMuPDF text cannot be upgraded to Docling
+  text without first rejecting its whole pending queue.** That is deliberate — the alternative
+  is a quote whose page no longer contains it and nothing anywhere saying why — but it is the
+  one workflow a person is most likely to expect to work and find that it does not.
 - **Docling's own version matters to reproducibility.** `Conversion.docling_version` records
   it, because a later version reading the same PDF differently would move quotes out from
   under their page numbers, and nothing else would say why.
