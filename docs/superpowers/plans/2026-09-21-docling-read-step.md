@@ -19,7 +19,7 @@
 - **Never widen `verify.normalise()` or `verify.quote_sha1()`.** They feed the `(document, page, quote_sha1)` unique constraint at `insights/models.py:248`. Changing them would make a re-extraction insert duplicates beside published rows instead of matching them.
 - **The `insights` app is never written to by any pipeline step**, and `data_pipeline/` and `data_track/` are not modified by this plan at all.
 - **Exception reporting is type and message only** — `f"{type(exc).__name__}: {exc}"` — never the repr and never an SDK exception's request object, which can carry `LLM_API_KEY`.
-- Exact pinned values: `DOCLING_OCR_LANGS` defaults to `en,fr,ar`; `DOCLING_MAX_PAGES` defaults to `40`; `DOCLING_TIMEOUT_SECONDS` defaults to `900`; `DOCLING_ARTIFACTS_PATH` defaults to `/opt/docling/models`; `DOCLING_ENABLED` defaults to `True`.
+- Exact pinned values: `DOCLING_OCR_LANGS` defaults to `en,ar` (EasyOCR will not load Arabic beside another non-English language); `DOCLING_MAX_PAGES` defaults to `40`; `DOCLING_TIMEOUT_SECONDS` defaults to `900`; `DOCLING_ARTIFACTS_PATH` defaults to `/opt/docling/models`; `DOCLING_ENABLED` defaults to `True`.
 
 ## File Structure
 

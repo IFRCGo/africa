@@ -63,7 +63,7 @@ because what will be read is not produced until the model is already being paid.
 |---|---|
 | Docling runs **inside the web image**, not as a sidecar | Operator's call. A plain import, no network hop, no second service to keep alive. Paid for in image size (§11) and in RAM shared with gunicorn. |
 | **OCR is always on** | Operator's call. Scanned reports are the largest silent loss today, and a per-page "was this empty?" retry would convert some documents twice for an inconsistent result. Every page takes the slow path; this is why conversion is a background job and not part of upload. |
-| The OCR engine is **named explicitly as EasyOCR**, not left to Docling's default | Two reasons, both checked against Docling's docs rather than assumed. Docling's default is `OcrAutoOptions`, which probes the machine and picks an engine at pipeline init — and its own documentation states that language settings then fall back to that engine's internal defaults, so a `DOCLING_OCR_LANGS` value would be silently ignored. Worse, the engine auto-selection lands on RapidOCR (PP-OCR) on a CPU-only container like this one, and its supported-language list has **no Arabic**. For Sudan and Chad that is disqualifying. `EasyOcrOptions` takes ISO 639-1 codes including `ar` and `fr`. |
+| The OCR engine is **named explicitly as EasyOCR**, not left to Docling's default | Two reasons, both checked against Docling's docs rather than assumed. Docling's default is `OcrAutoOptions`, which probes the machine and picks an engine at pipeline init — and its own documentation states that language settings then fall back to that engine's internal defaults, so a `DOCLING_OCR_LANGS` value would be silently ignored. Worse, the engine auto-selection lands on RapidOCR (PP-OCR) on a CPU-only container like this one, and its supported-language list has **no Arabic**. For Sudan and Chad that is disqualifying. `EasyOcrOptions` takes ISO 639-1 codes including `ar` and `fr` — though not both at once; see §11. |
 | Per document, **Docling first, PyMuPDF only if Docling fails** | Operator's call. The fallback is never sticky: re-running the read step attempts Docling again on every document, including ones that fell back last time. |
 | Intake **keeps its PyMuPDF pass** as a placeholder | Not a hedge on the rule above — a hazard fix. `data_pipeline/steps/s02_extract_text.py:31` selects `Document.objects.filter(texts__isnull=True)`, so a document left textless between intake and conversion would be picked up by any pipeline run and fail there on a `media/…` path it cannot resolve. Intake's text is also what `document_date.infer` reads a report date out of. Docling **replaces** those rows; the model never sees them when Docling succeeds. |
 | Conversion is its **own management command, launched detached** | `batch_file` is one synchronous HTTP request per file. With OCR on, a 40-page report is minutes. Conversion inside the upload request would time out the browser and lose the batch. |
@@ -270,7 +270,7 @@ falls back rather than reading as empty):
 | Setting | Default | For |
 |---|---|---|
 | `DOCLING_ENABLED` | `True` | Off ⇒ the read step reports "Docling is disabled" per document and leaves PyMuPDF text. Keeps the test suite and a thin deployment honest. |
-| `DOCLING_OCR_LANGS` | `en,fr,ar` | Comma-separated ISO 639-1 codes, split into the list `EasyOcrOptions.lang` takes. Arabic and French are defaults rather than opt-ins because this deployment's archive is Sudan and Chad. Every language listed costs another recognition model in the image and some speed per page, so a deployment that only reads English should trim it. |
+| `DOCLING_OCR_LANGS` | `en,ar` | Comma-separated ISO 639-1 codes, split into the list `EasyOcrOptions.lang` takes. **Not `en,fr,ar`, and this is a library constraint, not a choice** (found during implementation): EasyOCR's `Reader.__init__` raises *"Arabic is only compatible with English"*, and Docling takes exactly one `ocr_options`, so a single pass cannot cover both scripts. Arabic wins the default because the loss is asymmetric — French is Latin script, so an English model still reads it and only mangles the accents, while Arabic under a Latin model reads as nothing. The weights for **both** sets are baked into the image, so a French-heavy deployment switches with `DOCLING_OCR_LANGS=en,fr` and a restart, not a rebuild. `docling_reader.check_languages()` refuses an impossible combination at the edge, naming the setting and the fix. |
 | `DOCLING_MAX_PAGES` | `40` | Mirrors `s02_extract_text.MAX_PAGES`. |
 | `DOCLING_TIMEOUT_SECONDS` | `900` | Per document. A pathological scan must not hold a batch for ever. |
 | `DOCLING_ARTIFACTS_PATH` | `/opt/docling/models` | Where the build baked the weights. |
@@ -286,7 +286,10 @@ falls back rather than reading as empty):
    image.
 2. `docling` and `easyocr` added to `requirements.txt`, pinned exactly like every other line
    there. EasyOCR is explicit because §4 names it explicitly; it is not guaranteed to arrive as
-   a docling dependency.
+   a docling dependency. **`python-docx` moves from 1.1.2 to 1.2.0**: docling's floor is
+   `>=1.2.0` and the old pin makes the install unresolvable. The three call sites
+   (`intake._pages_of`, its test, and `docs/build_docs.py`) use only `Document()`,
+   `.paragraphs` and `.add_paragraph`, which are unchanged across that bump.
 3. `RUN HOME=/opt/docling docling-tools models download` for the layout, tableformer and
    picture-classifier weights, then a second `RUN` that loads `easyocr.Reader` once for
    `DOCLING_OCR_LANGS` with `model_storage_directory=/opt/docling/models`, which is how EasyOCR
