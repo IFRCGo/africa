@@ -179,6 +179,45 @@ class ExtractionJob(models.Model):
         return f"job {self.id} ({self.producer}, {self.status})"
 
 
+class Conversion(models.Model):
+    """What happened when we tried to read one document, and with what.
+
+    ONE ROW PER DOCUMENT, not per page: reading is a per-document act, and a
+    re-read overwrites the record of the last one. It lives in `insights`
+    rather than beside DocumentText in `data_track` for the same reason
+    ExtractionJob.documents does - additive, and data_track stays a table the
+    pipeline owns.
+
+    `job` is SET_NULL because how a document was read is evidence about the
+    text now sitting in the database. Deleting the batch it arrived in must
+    not erase it.
+    """
+
+    document = models.OneToOneField("data_track.Document", on_delete=models.CASCADE,
+                                    related_name="conversion")
+    job = models.ForeignKey(ExtractionJob, null=True, blank=True,
+                            on_delete=models.SET_NULL, related_name="conversions")
+    engine = models.TextField(
+        help_text="docling / pymupdf / skipped. 'pymupdf' means Docling was tried "
+                  "and failed on this document, so the intake text was left in place.")
+    ok = models.BooleanField(default=False)
+    pages = models.IntegerField(default=0)
+    markdown_path = models.TextField(null=True, blank=True)
+    docling_version = models.TextField(
+        null=True, blank=True,
+        help_text="A later Docling reading the same PDF differently would move "
+                  "quotes out from under their page numbers. This is what says why.")
+    message = models.TextField(null=True, blank=True)
+    converted_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        db_table = "insight_conversions"
+        ordering = ["-converted_at"]
+
+    def __str__(self):
+        return f"{self.document_id} read by {self.engine}"
+
+
 class Insight(models.Model):
     """One thing a community said, kept whole."""
 
