@@ -75,3 +75,81 @@ class VerbatimTests(TestCase):
         # "We have no water." has 4 words and 17 characters (after normalisation),
         # so it passes both thresholds.
         self.assertTrue(quote_is_verbatim(self.doc.id, 8, "We have no water."))
+
+
+class MarkdownFoldingTests(TestCase):
+    """A quote of the words matches a stored line that carries the markup.
+
+    Docling's text is markdown. The model is asked for a verbatim quote and
+    returns the sentence, not the asterisks around part of it - so the fold
+    has to happen on both the needle and the haystack.
+    """
+
+    def setUp(self):
+        self.document = Document.objects.create(
+            file_name="r.pdf", rel_path="media/abc-r.pdf",
+            source_collection="insights", family="insight_source", sha1="a" * 40)
+
+    def page(self, text, page=1):
+        DocumentText.objects.create(document=self.document, page=page, text=text)
+
+    def test_quote_without_emphasis_matches_a_bolded_line(self):
+        self.page("Families reported that **water points** were destroyed.")
+        self.assertTrue(quote_is_verbatim(
+            self.document.id, 1, "Families reported that water points were destroyed."))
+
+    def test_quote_matches_across_a_table_pipe(self):
+        self.page("| Kulbus | 12,400 displaced since June |")
+        self.assertTrue(quote_is_verbatim(
+            self.document.id, 1, "Kulbus 12,400 displaced since June"))
+
+    def test_quote_matches_a_heading(self):
+        self.page("## Protection concerns in Zalingei\n\nThe clinic closed.")
+        self.assertTrue(quote_is_verbatim(
+            self.document.id, 1, "Protection concerns in Zalingei"))
+
+    def test_quote_matches_a_list_item(self):
+        self.page("- No water has reached the site since March.")
+        self.assertTrue(quote_is_verbatim(
+            self.document.id, 1, "No water has reached the site since March."))
+
+    def test_a_changed_word_still_fails(self):
+        # The whole reason this gate exists. Folding markup must not fold meaning.
+        self.page("Families reported that **water points** were destroyed.")
+        self.assertFalse(quote_is_verbatim(
+            self.document.id, 1, "Families reported that water points were rebuilt."))
+
+    def test_hyphenated_place_names_survive_the_fold(self):
+        # The trap: a position-independent "-" strip would eat this, and
+        # normalise() has already folded en-dashes to the same character.
+        self.page("Displacement from **Al-Fasher** rose between 12-14 June.")
+        self.assertTrue(quote_is_verbatim(
+            self.document.id, 1, "Displacement from Al-Fasher rose between 12-14 June."))
+
+    def test_markup_alone_cannot_pass_the_length_guard(self):
+        # The 3-word/12-character floor must measure the FOLDED needle, or
+        # "** ** **" buys its way past a check meant to stop trivial matches.
+        self.page("| ** | ** | ** | text here to match against |")
+        self.assertFalse(quote_is_verbatim(self.document.id, 1, "** ** ** **"))
+
+
+class NaturalKeyStabilityTests(TestCase):
+    """quote_sha1 must be byte-identical to what it was before the fold existed.
+
+    It is half of the (document, page, quote_sha1) unique constraint. If it
+    moves, a re-extraction inserts duplicates beside published rows instead of
+    matching them, and no error is raised anywhere. These values were captured
+    from the running container before verify.py was touched.
+    """
+
+    FIXED = {
+        "Families reported that water points were destroyed.":
+            "1f122c94fe9b69d4c8f1ab319eb63ff06a1bf596",
+        "**bold** text": "d944e44f723e17b01e6d2dfd7ae99da8d947e7dc",
+        "Al-Fasher, 12-14 June 2026": "de6ca970cc3803669ed69c4d0cbbd45a5b0079df",
+        "the clinic closed in March": "1ffc27beb6e0c2c4d802c3d586bbbd5a9e2fe4e6",
+    }
+
+    def test_hashes_are_unchanged(self):
+        for text, expected in self.FIXED.items():
+            self.assertEqual(quote_sha1(text), expected, f"quote_sha1 moved for {text!r}")

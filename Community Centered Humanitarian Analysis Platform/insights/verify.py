@@ -20,6 +20,40 @@ _QUOTES = dict.fromkeys(map(ord, "\u2018\u2019\u201a\u201b"), "'")
 _QUOTES.update(dict.fromkeys(map(ord, "\u201c\u201d\u201e\u201f"), '"'))
 
 
+# Docling's text is markdown, so the stored page carries markers the model does
+# not quote back. These fold BOTH the needle and the haystack, which is what
+# makes stripping aggressively safe: a character removed from both sides cannot
+# change whether they match. None of these is a word.
+_MD_LINK = re.compile(r"!?\[([^\]]*)\]\([^)]*\)")
+_MD_HEADING = re.compile(r"^[ \t]{0,3}#{1,6}[ \t]+", re.M)
+_MD_BULLET = re.compile(r"^[ \t]{0,3}(?:[-*+]|\d{1,3}[.)])[ \t]+", re.M)
+_MD_RULE = re.compile(r"^[ \t]*\|?[\s:|-]*\|[\s:|-]*$", re.M)
+_MD_EMPHASIS = re.compile(r"\*\*|__|[*_`]")
+
+
+def _fold_markup(text):
+    """Drop the markers Docling's markdown adds, keeping every word.
+
+    ORDER MATTERS, AND IT IS THE OPPOSITE OF THE OBVIOUS ONE: this runs BEFORE
+    normalise(), never after. normalise() does re.sub(r"\\s+", " ", ...), which
+    destroys line boundaries - and after that there is no "start of a line" for
+    a heading's "#" or a bullet's "- " to be anchored to. Stripping those
+    characters position-independently instead would eat the hyphen in
+    "Al-Fasher" and in "12-14 June", which normalise() has by then folded from
+    an en-dash into exactly that character. So the line-shaped patterns are
+    anchored and run on raw text; only emphasis, pipes and links are
+    position-independent.
+    """
+    if not text:
+        return ""
+    folded = _MD_LINK.sub(r"\1", str(text))
+    folded = _MD_RULE.sub(" ", folded)
+    folded = _MD_HEADING.sub("", folded)
+    folded = _MD_BULLET.sub("", folded)
+    folded = _MD_EMPHASIS.sub("", folded)
+    return folded.replace("|", " ")
+
+
 def normalise(text):
     """Fold the differences a PDF introduces, and nothing else."""
     if not text:
@@ -44,11 +78,13 @@ def quote_is_verbatim(document_id, page, quote):
     least 12 characters after normalisation. This is not a quality bar — human
     review filters whether a statement is worth keeping. This is purely a guard
     against "the", "the hospitals", or other trivial substrings that match
-    everywhere and undermine why this gate exists in the first place.
+    everywhere and undermine why this gate exists in the first place. The guard
+    measures the FOLDED needle, so markup cannot pad a degenerate fragment past
+    it.
     """
     from data_track.models import DocumentText
 
-    needle = normalise(quote)
+    needle = normalise(_fold_markup(quote))
     if not needle:
         return False
 
@@ -60,4 +96,4 @@ def quote_is_verbatim(document_id, page, quote):
     row = DocumentText.objects.filter(document_id=document_id, page=page).first()
     if row is None or not row.text:
         return False
-    return needle in normalise(row.text)
+    return needle in normalise(_fold_markup(row.text))
