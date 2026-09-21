@@ -252,3 +252,126 @@ class RerunResetsDocumentsDoneTests(TestCase):
         self.assertEqual(job.insights_proposed, 1)
         self.assertEqual(job.insights_rejected_unverifiable, 0)
         self.assertEqual(job.insights_skipped_reviewed, 0)
+
+
+class RejectedPayloadTests(TestCase):
+    """A payload the contract refuses must not leave the job looking clean.
+
+    Found on a real run against MSF's "Voices from South Darfur"
+    (2026-09-21): the ContractError went to stderr ONLY - not to job.log -
+    and the job still ended "loaded" with insights_proposed=0. On the
+    wizard that is step 4 with an empty review queue and no stated reason,
+    which reads as "this document held no community voice" when what
+    actually happened was that 30 extracted insights were thrown away.
+
+    The status rule is deliberately "did anything load", not "was anything
+    rejected": wizard.job_step sends "loaded" to step 4 (review) and
+    "failed" to step 3, so failing a run that DID write insights for its
+    other documents would hide them behind the extract page.
+    """
+
+    def setUp(self):
+        self.document = _document("report.pdf")
+        DocumentText.objects.create(document=self.document, page=1,
+                                    text=f"Witnesses said: {QUOTE}")
+        self.job = ExtractionJob.objects.create(producer="external", status="queued")
+        self.job.documents.add(self.document)
+
+    def _rejected_payload(self):
+        # severity 9 is a SHAPE error, which the contract still refuses
+        # outright - unlike a bad vocabulary word, which now costs its own row.
+        payload = _payload(self.document, QUOTE)
+        payload["insights"][0]["severity"] = 9
+        return payload
+
+    def test_a_rejected_payload_is_named_in_the_job_log(self):
+        extractor = FakeExtractor({self.document.id: self._rejected_payload()})
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+                with self.assertRaises(CommandError):
+                    call_command("extract_insights", "--job", str(self.job.id))
+
+        self.job.refresh_from_db()
+        self.assertIn("report.pdf", self.job.log)
+        self.assertIn("severity", self.job.log)
+        self.assertEqual(Insight.objects.count(), 0)
+
+    def test_a_run_that_loaded_nothing_ends_failed_not_loaded(self):
+        extractor = FakeExtractor({self.document.id: self._rejected_payload()})
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+                with self.assertRaises(CommandError):
+                    call_command("extract_insights", "--job", str(self.job.id))
+
+        self.job.refresh_from_db()
+        self.assertEqual(self.job.status, "failed")
+        self.assertIsNotNone(self.job.finished_at)
+
+    def test_one_rejected_payload_does_not_hide_another_documents_insights(self):
+        other = _document("second.pdf")
+        DocumentText.objects.create(document=other, page=1, text=f"Witnesses said: {QUOTE}")
+        self.job.documents.add(other)
+
+        extractor = FakeExtractor({
+            self.document.id: self._rejected_payload(),
+            other.id: _payload(other, QUOTE),
+        })
+
+        with tempfile.TemporaryDirectory() as tmp:
+            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+                call_command("extract_insights", "--job", str(self.job.id))
+
+        self.job.refresh_from_db()
+        # Step 4 is still reachable for what did load, and the log still says
+        # what did not.
+        self.assertEqual(self.job.status, "loaded")
+        self.assertIn("severity", self.job.log)
+        self.assertEqual(Insight.objects.filter(document=other).count(), 1)
+        self.assertEqual(Insight.objects.filter(document=self.document).count(), 0)
+
+
+class RerunResetsDropCountersTests(TestCase):
+    """codings_rejected, figures_rejected and movements_rejected are per-run too.
+
+    Seen on the South Darfur job: a re-run whose payload dropped NOTHING still
+    showed codings_rejected=2 and movements_rejected=2, carried over from the
+    previous run. Every one of these is incremented by loader.load(), never
+    set - the same reason documents_done and insights_proposed are reset here
+    (§5 sanctions re-running a job on purpose) - and a stale drop count is
+    worse than an untidy one: these numbers are the evidence a reviewer uses
+    to judge how well a given model reads the vocabulary.
+
+    The reset belongs here and NOT in loader.load(), which is also called once
+    per payload FILE by ExtractionJobAdmin.load_payloads_for_job - accumulating
+    across those is correct.
+    """
+
+    def test_a_rerun_does_not_accumulate_dropped_codings(self):
+        document = _document("report.pdf")
+        DocumentText.objects.create(document=document, page=1,
+                                    text=f"Witnesses said: {QUOTE}")
+        job = ExtractionJob.objects.create(producer="external", status="queued")
+        job.documents.add(document)
+
+        payload = _payload(document, QUOTE)
+        # A ROLE name in the dimension slot: dropped, counted, not fatal.
+        payload["insights"][0]["codings"] = [
+            {"dimension": "barrier", "tag": "lack_of_aid", "role": "barrier"},
+            {"dimension": "need", "tag": "cash", "role": "subject"},
+        ]
+        extractor = FakeExtractor({document.id: payload})
+
+        with tempfile.TemporaryDirectory() as tmp, override_settings(MCP_CACHE_DIR=tmp):
+            with patch(GET_EXTRACTOR, return_value=extractor):
+                call_command("extract_insights", "--job", str(job.id))
+                job.refresh_from_db()
+                self.assertEqual(job.codings_rejected, 1)
+
+                call_command("extract_insights", "--job", str(job.id))
+
+        job.refresh_from_db()
+        self.assertEqual(job.codings_rejected, 1)
+        self.assertEqual(job.figures_rejected, 0)
+        self.assertEqual(job.movements_rejected, 0)

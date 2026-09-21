@@ -10,13 +10,63 @@ that quietly "succeeded" with nothing in it. See the "TRANSPORT VS
 RESPONSE-SHAPE ERRORS" note at the top of each adapter module.
 """
 import json
+from functools import lru_cache
 
 from insights.extractors import prompt_text
+from insights.models import (
+    FIGURE_UNIT_VALUES, FLOW_TYPE_VALUES, MOVEMENT_UNIT_VALUES, ROLE_VALUES,
+)
+from insights.taxonomy import OTHER, tags_by_dimension
 
 # One request per chunk of pages. Chunking rather than sending a whole report
 # keeps the page numbers the model must cite close to the text it is reading,
 # which is the field it most often gets wrong.
 PAGES_PER_REQUEST = 8
+
+
+@lru_cache(maxsize=1)
+def vocabulary_block():
+    """The coding vocabulary, spelled out for a model that cannot read the file.
+
+    insights/prompts/extract_insights.md tells the reader to consult
+    `data_pipeline/taxonomy.json`. A host agent with file access does exactly
+    that; an API model has no filesystem and guesses from memory instead - and
+    the guesses are near-misses against tags that exist (`water` for
+    `water_wash`, `financial_barriers` for `cash`), so they land as `other` with
+    tag_raw preserved and tag-level filtering on the dashboard stops working.
+    Worse, an unguided model puts a ROLE name in the dimension slot, which is
+    what cost MSF's "Voices from South Darfur" all 30 of its insights on
+    2026-09-21 - see the note in contract.parse().
+
+    Sent with each request rather than pasted into the prompt file, because
+    taxonomy.json changes without a migration: read at request time, the asked-
+    for vocabulary and the enforced one cannot drift apart. Cached because it is
+    the same text for every chunk of every document in a run.
+    """
+    lines = [
+        "CODING VOCABULARY. Use these keys exactly as written.",
+        "",
+        "'dimension' is one of these five and nothing else:",
+    ]
+    for dimension, tags in tags_by_dimension().items():
+        lines.append(f"  {dimension}: {', '.join(tags)}")
+    lines += [
+        "",
+        f"If no tag fits, keep the dimension and write your own words in 'tag' - "
+        f"it is recorded as '{OTHER}' with your suggestion kept for a reviewer.",
+        f"'role' is one of {', '.join(sorted(ROLE_VALUES))}, and it belongs in the "
+        f"'role' field. A role name is NEVER a dimension.",
+        "",
+        # The same near-miss one level down, and it costs the corridor:
+        # 'internal_displacement' (a movement_pattern TAG) was proposed as a
+        # flow_type on two South Darfur corridors, and contract._movements
+        # dropped both.
+        f"A corridor's 'flow_type' is one of {', '.join(sorted(FLOW_TYPE_VALUES))}.",
+        f"A figure's 'unit' is one of {', '.join(sorted(FIGURE_UNIT_VALUES))}; a "
+        f"corridor's is {', '.join(sorted(MOVEMENT_UNIT_VALUES))} only - a corridor "
+        f"counts people or households, never a share.",
+    ]
+    return "\n".join(lines)
 
 
 class Extractor:
@@ -48,6 +98,7 @@ class Extractor:
             f"Document: {document.file_name}\n"
             f"rel_path: {document.rel_path}\n"
             f"report_date: {document.report_date or 'unknown'}\n\n"
+            f"{vocabulary_block()}\n\n"
             f"{body}"
         )
 

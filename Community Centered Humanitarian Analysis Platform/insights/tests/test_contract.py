@@ -60,11 +60,41 @@ class ParseTests(SimpleTestCase):
         with self.assertRaises(ContractError):
             parse(payload)
 
-    def test_an_unknown_dimension_is_an_error(self):
+    def test_an_unknown_dimension_drops_its_own_coding_not_the_payload(self):
+        """A ROLE name in the dimension slot cost 25 community voices once.
+
+        MSF's "Voices from South Darfur", 2026-09-21: the model wrote
+        {"dimension": "barrier"} on insight 25 of 30, this raised, and all 30
+        - including the three testimonies on page 9 - were discarded. Every
+        other vocabulary mistake in this module costs only its own row (see
+        _figures and _movements), and an unknown ROLE already degrades to
+        'subject' a few lines below the dimension check. This one now behaves
+        the same way: the coding is dropped, named in `drops`, and counted.
+        """
+        payload = load("payload_ok.json")
+        payload["insights"][0]["codings"] = [
+            {"dimension": "barrier", "tag": "lack_of_aid", "role": "barrier"},
+            {"dimension": "need", "tag": "cash", "role": "subject"},
+        ]
+
+        rows = parse(payload)
+
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(
+            rows[0]["codings"],
+            [{"dimension": "need", "tag": "cash", "tag_raw": None, "role": "subject"}])
+        self.assertTrue(
+            any("barrier" in drop for drop in rows[0]["drops"]), rows[0]["drops"])
+
+    def test_a_dropped_coding_is_labelled_so_the_loader_can_count_it(self):
+        """loader.load() dispatches on the first word of each drop message."""
         payload = load("payload_ok.json")
         payload["insights"][0]["codings"] = [{"dimension": "vibes", "tag": "x"}]
-        with self.assertRaises(ContractError):
-            parse(payload)
+
+        drops = parse(payload)[0]["drops"]
+
+        self.assertEqual(len(drops), 1)
+        self.assertTrue(drops[0].startswith("coding"), drops[0])
 
     def test_severity_outside_one_to_five_is_an_error(self):
         payload = load("payload_ok.json")

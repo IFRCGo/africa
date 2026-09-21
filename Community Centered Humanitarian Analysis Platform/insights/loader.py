@@ -29,9 +29,12 @@ class LoadReport:
     written: int = 0
     rejected_unverifiable: int = 0
     skipped_reviewed: int = 0
-    # Figures and corridors dropped for a wrong vocabulary word or an unquoted
-    # span. Kept apart from rejected_unverifiable, which means "whole insights
-    # that failed the quote gate" and which a reviewer already watches.
+    # Codings, figures and corridors dropped for a wrong vocabulary word or an
+    # unquoted span. Kept apart from rejected_unverifiable, which means "whole
+    # insights that failed the quote gate" and which a reviewer already watches,
+    # and kept apart from each other so the changelist says WHICH kind of
+    # reading the model is getting wrong.
+    codings_rejected: int = 0
     figures_rejected: int = 0
     movements_rejected: int = 0
 
@@ -204,9 +207,13 @@ def load(payload, document=None, job=None, method="llm", model_used=None):
             for movement in row["movements"]
         ])
 
+        # Dispatched on the first word contract.parse() gives each message -
+        # "coding dropped: ...", "corridor ... dropped: ...", "figure ...".
         for drop in row["drops"]:
             if drop.startswith("corridor"):
                 report.movements_rejected += 1
+            elif drop.startswith("coding"):
+                report.codings_rejected += 1
             else:
                 report.figures_rejected += 1
             drop_messages.append(f"{document.file_name if document else 'manual'}: {drop}")
@@ -217,13 +224,15 @@ def load(payload, document=None, job=None, method="llm", model_used=None):
         job.insights_proposed += len(rows)
         job.insights_rejected_unverifiable += report.rejected_unverifiable
         job.insights_skipped_reviewed += report.skipped_reviewed
+        job.codings_rejected += report.codings_rejected
         job.figures_rejected += report.figures_rejected
         job.movements_rejected += report.movements_rejected
         if drop_messages:
             job.log = "\n".join(filter(None, [job.log, *drop_messages]))
         job.save(update_fields=[
             "insights_proposed", "insights_rejected_unverifiable",
-            "insights_skipped_reviewed", "figures_rejected", "movements_rejected",
+            "insights_skipped_reviewed", "codings_rejected", "figures_rejected",
+            "movements_rejected",
             "log",
         ])
 

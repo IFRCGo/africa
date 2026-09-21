@@ -168,6 +168,11 @@ class ExtractionJob(models.Model):
     # insights_rejected_unverifiable: that number means "whole insights that
     # failed the quote gate" and a reviewer already watches it, so it must not
     # quietly change definition.
+    # A coding whose DIMENSION was not one of the five: dropped by
+    # contract.parse() rather than costing the payload, and counted here so the
+    # drop is never silent. Its own column, not folded into figures_rejected,
+    # because these three name three different mistakes a model makes.
+    codings_rejected = models.IntegerField(default=0)
     figures_rejected = models.IntegerField(default=0)
     movements_rejected = models.IntegerField(default=0)
     log = models.TextField(null=True, blank=True)

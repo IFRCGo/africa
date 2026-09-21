@@ -89,10 +89,18 @@ Each coding carries a `role`, and this is how a reason is recorded:
 ## Codings
 
 Each insight carries the themes read out of it. `dimension` must be one of
-`hazard`, `vulnerability`, `need`, `coping`, `movement_pattern`. `tag` should be a
-key from `data_pipeline/taxonomy.json` under that dimension — read that file. If
-nothing fits, put your own words in `tag` anyway: it will be recorded as `other`
-with your suggestion kept for a reviewer, which is how the vocabulary grows.
+`hazard`, `vulnerability`, `need`, `coping`, `movement_pattern` — **never a role
+name**: `barrier` is a `role`, and putting it in `dimension` costs that coding.
+`tag` should be a key from `data_pipeline/taxonomy.json` under that dimension —
+read that file. If nothing fits, put your own words in `tag` anyway: it will be
+recorded as `other` with your suggestion kept for a reviewer, which is how the
+vocabulary grows.
+
+**If the vocabulary is listed in the message you were given, use those keys and
+do not rely on memory.** An in-container model cannot open taxonomy.json, so
+`insights/extractors/base.py` sends the whole vocabulary — dimensions, tags,
+roles, flow types and units — with every document. `water` for `water_wash`, or
+`financial_barriers` for `cash`, is a near-miss that silently becomes `other`.
 
 ## Output
 

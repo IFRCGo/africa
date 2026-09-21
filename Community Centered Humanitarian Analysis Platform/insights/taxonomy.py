@@ -34,6 +34,21 @@ def valid_dimensions():
     return set(_vocabulary())
 
 
+def tags_by_dimension():
+    """{dimension: [tag, ...]} with both levels sorted.
+
+    For SHOWING the vocabulary rather than enforcing it: the in-container
+    adapters send this with every request, because extract_insights.md tells the
+    model to read data_pipeline/taxonomy.json and only a host agent with file
+    access can do that. Sorted so the same taxonomy always produces the same
+    text - a set's iteration order varies between processes, and a prompt that
+    changes shape run to run cannot be cached or compared.
+    """
+    return {
+        dimension: sorted(tags) for dimension, tags in sorted(_vocabulary().items())
+    }
+
+
 def _slug(text):
     """'Water WASH' -> 'water_wash'. Tolerates spacing and case, nothing more."""
     return "_".join(str(text).strip().lower().split()).replace("-", "_")

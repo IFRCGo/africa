@@ -88,6 +88,9 @@ class Command(BaseCommand):
         out_dir.mkdir(parents=True, exist_ok=True)
 
         documents = list(job.documents.order_by("id"))
+        # Payloads this run could not load. A run that rejected everything must
+        # not end up looking like a run that found nothing to say.
+        rejected = []
         job.status = "running"
         job.producer = extractor.name
         job.model_used = extractor.model
@@ -109,6 +112,14 @@ class Command(BaseCommand):
         job.insights_proposed = 0
         job.insights_rejected_unverifiable = 0
         job.insights_skipped_reviewed = 0
+        # The three drop counters are per-run for the same reason, and a stale
+        # one is worse than an untidy one: these are the evidence for how well
+        # a given model reads the vocabulary. A re-run of the South Darfur job
+        # that dropped nothing still reported codings_rejected=2 from the run
+        # before it.
+        job.codings_rejected = 0
+        job.figures_rejected = 0
+        job.movements_rejected = 0
         job.save()
 
         try:
@@ -135,7 +146,24 @@ class Command(BaseCommand):
                             f"{document.file_name}: {report.written} pending, "
                             f"{report.rejected_unverifiable} unverifiable")
                     except ContractError as exc:
-                        self.stderr.write(f"{document.file_name}: {exc}")
+                        # NOT stderr only. A payload the contract refuses is a
+                        # whole document's worth of extraction thrown away, and
+                        # the wizard reads job.log - never this process's
+                        # stderr, which goes to a detached log file nobody
+                        # opens. On MSF's "Voices from South Darfur"
+                        # (2026-09-21) that silence meant 30 insights were
+                        # discarded while the job still reported "loaded" with
+                        # nothing in it: on the wizard, step 4 with an empty
+                        # review queue and no stated reason.
+                        #
+                        # Recorded through _flush_problems rather than written
+                        # here as well: that helper is the one place a problem
+                        # reaches both the terminal and job.log, and writing it
+                        # twice printed every rejection twice.
+                        message = f"{document.file_name}: payload rejected - {exc}"
+                        rejected.append(message)
+                        extractor.problems.append(message)
+                        self._flush_problems(job, extractor)
                 else:
                     self.stdout.write(f"{document.file_name}: nothing to extract")
 
@@ -173,6 +201,23 @@ class Command(BaseCommand):
             # ever reaching the terminal.
             raise CommandError(message) from exc
         else:
-            job.status = "loaded"
+            # "loaded" is what wizard.job_step sends to step 4, the review
+            # queue; "failed" goes to step 3, whose page shows the tail of this
+            # log and says the reason is at the end of it. So a run that
+            # rejected one document's payload and loaded another's stays
+            # "loaded" - failing it would hide the insights that DID load -
+            # while a run that loaded nothing at all is failed, which is the
+            # honest answer and the one that puts the reason in front of a
+            # person.
+            loaded_nothing = bool(rejected) and job.insights_proposed == 0
+            job.status = "failed" if loaded_nothing else "loaded"
             job.finished_at = timezone.now()
             job.save(update_fields=["status", "finished_at"])
+            if loaded_nothing:
+                # Same reason the transport-failure branch above raises: a job
+                # that ends "failed" must also exit non-zero for CLAUDE.md's
+                # documented `manage.py extract_insights --job N`.
+                raise CommandError(
+                    f"job {job.id}: every payload was rejected and nothing was "
+                    f"loaded. The reasons are in the job log: "
+                    + "; ".join(rejected))

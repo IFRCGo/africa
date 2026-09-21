@@ -20,7 +20,12 @@ from django.test import SimpleTestCase, override_settings
 
 from data_track.models import Document
 from insights.extractors import get_extractor, prompt_text
+from insights.extractors.base import Extractor
 from insights.extractors.anthropic_api import AnthropicExtractor
+from insights.models import (
+    FIGURE_UNIT_VALUES, FLOW_TYPE_VALUES, MOVEMENT_UNIT_VALUES,
+)
+from insights.taxonomy import valid_dimensions
 from insights.extractors.openai_compatible import (
     RETRY_ATTEMPTS, OpenAICompatibleExtractor,
 )
@@ -347,3 +352,62 @@ class PromptMentionsMarkdownTests(SimpleTestCase):
     def test_the_prompt_says_the_text_is_markdown(self):
         body = prompt_text().lower()
         self.assertIn("markdown", body)
+
+
+class VocabularyIsSentWithTheDocumentTests(SimpleTestCase):
+    """The taxonomy travels in the request, because the model cannot read it.
+
+    extract_insights.md says "read data_pipeline/taxonomy.json", which a host
+    agent with file access can do and an API model cannot. Left unsent, an
+    in-container model guesses from memory: on MSF's "Voices from South
+    Darfur" it proposed `financial_barriers` for what the vocabulary calls
+    `cash`, and - worse - put the ROLE name `barrier` in the dimension slot,
+    which discarded all 30 insights in that payload.
+
+    Sent per REQUEST rather than appended to the prompt file because the
+    vocabulary is a JSON file that changes without a migration; reading it at
+    request time is what keeps the two from drifting apart.
+    """
+
+    def _message(self):
+        return Extractor().build_user_message(_document(), [(1, "some page text")])
+
+    def test_every_dimension_is_named(self):
+        message = self._message()
+        for dimension in valid_dimensions():
+            self.assertIn(dimension, message)
+
+    def test_the_tags_of_a_dimension_are_listed(self):
+        """'cash' is the tag the South Darfur testimony needed and missed."""
+        message = self._message()
+        self.assertIn("cash", message)
+        self.assertIn("water_wash", message)
+
+    def test_the_three_roles_are_named(self):
+        message = self._message()
+        for role in ("subject", "driver", "barrier"):
+            self.assertIn(role, message)
+
+    def test_the_corridor_and_figure_vocabularies_are_named_too(self):
+        """Same near-miss, same cost, one level down.
+
+        The South Darfur run proposed flow_type 'internal_displacement' for
+        what this project calls 'internal', and both corridors on that quote
+        were dropped for it (contract._movements). A model told the four flow
+        types and the two unit lists cannot miss by a synonym.
+        """
+        # Whole lists, not one value at a time: every flow type is also a
+        # substring of some movement_pattern tag ('internal' of
+        # 'internal_displacement'), so a per-value assertion would pass on the
+        # tag list alone and prove nothing.
+        message = self._message()
+        self.assertIn("flow_type", message)
+        self.assertIn(", ".join(sorted(FLOW_TYPE_VALUES)), message)
+        self.assertIn(", ".join(sorted(FIGURE_UNIT_VALUES)), message)
+        self.assertIn(", ".join(sorted(MOVEMENT_UNIT_VALUES)), message)
+
+    def test_the_page_text_is_still_there(self):
+        message = self._message()
+        self.assertIn("--- page 1 ---", message)
+        self.assertIn("some page text", message)
+        self.assertIn("insights/report.pdf", message)

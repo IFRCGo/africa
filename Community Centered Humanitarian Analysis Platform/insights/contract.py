@@ -207,15 +207,26 @@ def parse(payload):
                 raise ContractError(
                     f"insights[{index}]: people_affected must be a whole number, got {people!r}")
 
-        codings = []
+        codings, coding_drops = [], []
         for coding in item.get("codings") or []:
             if not isinstance(coding, dict):
                 raise ContractError(f"insights[{index}]: each coding must be an object")
             try:
-                # An unknown dimension raises; an unknown tag degrades. See taxonomy.py.
+                # An unknown tag degrades to 'other'; an unknown dimension has no
+                # row to write at all, so taxonomy.py raises. What that COSTS is
+                # decided here, and it costs the coding - not the payload.
+                #
+                # It used to cost the payload. On MSF's "Voices from South
+                # Darfur" (2026-09-21) one coding out of 30 insights put the
+                # role name "barrier" in the dimension slot, and all 30 -
+                # including the three community testimonies on page 9 - were
+                # discarded for it. That is the same silent loss _figures and
+                # _movements exist to prevent, and an unknown ROLE already
+                # degrades six lines below rather than raising.
                 normalised = normalise_coding(coding.get("dimension"), coding.get("tag"))
             except ValueError as exc:
-                raise ContractError(f"insights[{index}]: {exc}") from exc
+                coding_drops.append(f"coding dropped: {exc}")
+                continue
             # A role is an interpretation, so an unknown one degrades to 'subject'
             # the same way an unknown tag degrades to 'other'.
             role = coding.get("role")
@@ -236,7 +247,7 @@ def parse(payload):
             "codings": codings,
             "figures": figures,
             "movements": movements,
-            "drops": figure_drops + movement_drops,
+            "drops": coding_drops + figure_drops + movement_drops,
             "people_affected": people,
             "severity": severity,
             "confidence": confidence,

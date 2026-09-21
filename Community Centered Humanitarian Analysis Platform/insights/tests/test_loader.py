@@ -46,6 +46,35 @@ class LoaderTests(TestCase):
         self.assertIn(("hazard", "flooding"), codings)
         self.assertIn(("need", "other"), codings)
 
+    def test_a_coding_with_an_unknown_dimension_is_dropped_and_counted(self):
+        """The statement survives; only the bad coding is lost.
+
+        Counted apart from figures_rejected and movements_rejected for the
+        reason those two are counted apart from each other: a reviewer reading
+        the changelist needs to know WHICH kind of reading the model is getting
+        wrong. Named in the job log, because a drop nobody is told about is a
+        theme nobody can ask for.
+        """
+        job = ExtractionJob.objects.create(producer="external", status="queued")
+        self.payload["insights"][0]["codings"] = [
+            {"dimension": "barrier", "tag": "lack_of_aid", "role": "barrier"},
+            {"dimension": "need", "tag": "cash", "role": "subject"},
+        ]
+
+        report = load(self.payload, self.doc, job=job)
+
+        self.assertEqual(report.written, 1)
+        self.assertEqual(report.codings_rejected, 1)
+        self.assertEqual(report.figures_rejected, 0)
+        self.assertEqual(report.movements_rejected, 0)
+        self.assertEqual(
+            set(Insight.objects.get().codings.values_list("dimension", "tag")),
+            {("need", "cash")})
+
+        job.refresh_from_db()
+        self.assertEqual(job.codings_rejected, 1)
+        self.assertIn("barrier", job.log)
+
     def test_an_invented_quote_is_rejected_and_counted(self):
         self.payload["insights"][0]["quote"] = "We were promised boreholes and none came."
         report = load(self.payload, self.doc)
