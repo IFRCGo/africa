@@ -62,11 +62,14 @@ def relative_path(path, sha1):
         return f"media/{sha1[:12]}-{path.name}"
 
 
-def _pdf_metadata(path):
+def pdf_metadata(path):
     """The PDF's own /CreationDate etc, or {} for a DOCX or an unreadable file.
 
     Read here rather than in document_date so that module stays testable without
     a file on disk - it arbitrates between dates, it does not open documents.
+
+    Public because convert.py re-runs date inference after a successful
+    conversion and needs the same metadata this one reads.
     """
     if path.suffix.lower() != ".pdf":
         return {}
@@ -125,7 +128,7 @@ def catalogue_file(path, iso3=None, report_date=None):
     # insight in the document on the dashboard timeline. See document_date.py.
     date_source = "intake"
     if report_date is None:
-        guess = document_date.infer(path, pages, _pdf_metadata(path))
+        guess = document_date.infer(path, pages, pdf_metadata(path))
         if guess.date is not None and not guess.needs_person:
             report_date, date_source = guess.date, guess.source
 
