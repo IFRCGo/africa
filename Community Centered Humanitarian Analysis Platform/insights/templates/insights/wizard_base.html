@@ -32,6 +32,19 @@ redirect and stylesheet, so they do not read as a bolted-on second site.
   .wiz-note { padding: .75rem 1rem; border-left: 4px solid #999; background: #fafafa; margin: 1rem 0; }
   .wiz-note.is-bad { border-color: #a41515; background: #fdf0f0; }
   .wiz-note.is-warn { border-color: #c79100; background: #fdf8e8; }
+  /* Step 2's preview: one block per document, its engine, and the stored text. */
+  .wiz-doc { border: 1px solid #e0e0e0; border-radius: 4px; padding: .75rem 1rem; margin: 1rem 0; }
+  .wiz-doc h4 { margin: 0 0 .4rem; }
+  .wiz-badge { display: inline-block; padding: .2rem .6rem; border-radius: 999px;
+               font-size: .8rem; margin: 0 0 .6rem; }
+  .wiz-badge.is-ok { background: #dfeeda; color: #2b5c1e; }
+  .wiz-badge.is-warn { background: #fdf8e8; color: #7a5b00; }
+  .wiz-badge.is-bad { background: #fdf0f0; color: #a41515; }
+  /* Scrolls inside its own box: a 40-page report must not make the page itself
+     scroll horizontally, and a markdown table is wide. */
+  .wiz-doc-text { max-height: 22rem; overflow: auto; background: #fbfbfb;
+                  border: 1px solid #eee; padding: .6rem; font-size: .8rem;
+                  white-space: pre-wrap; word-break: break-word; }
 </style>
 {% endblock %}
 {% block content %}
@@ -40,18 +53,15 @@ Each step is something you can press, not a caption. Which of them actually
 lead anywhere is decided in wizard.step_links() off the batch's status, because
 job_step serves whichever page the status puts the batch at - so a step that is
 not reachable from here carries no href and is rendered inert rather than as a
-link that goes somewhere else. Step 2 is the exception: its preview lives on
-this same intake page, so on step 1 it is a button wizard_intake.js enables the
-moment files are picked.
+link that goes somewhere else. Step 2 used to be an exception - a button that
+scrolled to a preview on the intake page - but it is a page of its own now,
+reached once the batch is closed, so it follows the same rule as the rest.
 {% endcomment %}
 <ol class="wiz-steps">
   {% for step in wizard_steps %}
   <li>
     {% if step.state == "is-current" %}
       <span class="wiz-step is-current" aria-current="step">{{ step.number }}. {{ step.label }}</span>
-    {% elif step.number == 2 and wizard_step == 1 %}
-      <button type="button" class="wiz-step" id="wiz-step-preview" disabled
-              title="Pick files first - the preview appears below.">{{ step.number }}. {{ step.label }}</button>
     {% elif step.url %}
       <a class="wiz-step {{ step.state }}" href="{{ step.url }}">{{ step.number }}. {{ step.label }}</a>
     {% else %}

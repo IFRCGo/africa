@@ -44,10 +44,14 @@ CodingFormSet = inlineformset_factory(
 
 STEPS = (
     (1, "Bring documents in"),
-    (2, "Check what will be read"),
+    (2, "Read these documents"),
     (3, "Extract"),
     (4, "Review and publish"),
 )
+
+# The statuses step 2 owns: files are in, and the reading has not yet been
+# signed off. Named because four call sites test the same membership.
+READ_STATUSES = ("collected", "converting", "converted", "convert_failed")
 
 
 def step_links(job, current):
@@ -60,16 +64,19 @@ def step_links(job, current):
     from here therefore gets no URL and is rendered inert, rather than a link
     that lies about where it goes.
 
-    Step 2 never has one: the preview lives on the intake page itself, revealed
-    by wizard_intake.js once files are picked, so its button is that page's to
-    enable. Step 1 always has one - the way to bring in more documents is a new
-    batch, whatever this one is doing.
+    Step 2 is a page of its own: Docling converts each document to per-page
+    markdown there, and the text it produces is what the model reads and what
+    verify.quote_is_verbatim checks a quote against. It leads somewhere only
+    while the batch is still at that stage - once a batch is extracting, going
+    "back" to the read step would offer to replace the text under insights
+    already being written against it. Step 1 always has one - the way to bring
+    in more documents is a new batch, whatever this one is doing.
     """
     job_url = reverse("admin:insights_wizard_job", args=[job.id]) if job else None
     status = job.status if job else None
     urls = {
         1: job_url if status == "collecting" else reverse("admin:insights_wizard_start"),
-        2: None,
+        2: job_url if status in READ_STATUSES else None,
         3: job_url if status in ("queued", "running", "failed") else None,
         4: job_url if status == "loaded" else None,
     }
@@ -205,6 +212,61 @@ def batch_ready(request, job_id):
     return JsonResponse({"documents_total": job.documents_total})
 
 
+@require_POST
+def read(request, job_id):
+    """Launch the Docling conversion as a detached background process.
+
+    Detached for the same two reasons extraction is: a gunicorn worker
+    recycling mid-run must not kill it, and closing this tab must not either.
+    With OCR on every page this is the LONGER of the two runs, not the shorter.
+    """
+    job = get_object_or_404(ExtractionJob, id=job_id)
+
+    if job.status == "converting":
+        # A double click must not run two conversions of the same job: both
+        # delete and rebuild the same DocumentText rows, and the loser could
+        # commit its delete after the winner's insert - leaving the document
+        # textless, which is the one state s02 cannot recover for an upload.
+        return JsonResponse({"started": False, "message": "This batch is already being read."})
+
+    path = log_path(job, "convert")
+    path.parent.mkdir(parents=True, exist_ok=True)
+
+    # Set and saved BEFORE launching: this request returns at once, and the
+    # child is what moves the job on to "converted" - or leaves it at
+    # "converting" if it dies, which is visible either way.
+    job.status = "converting"
+    job.save(update_fields=["status"])
+
+    with open(path, "wb") as log_file:
+        subprocess.Popen(
+            [sys.executable, "manage.py", "convert_documents", "--job", str(job.id)],
+            cwd=settings.BASE_DIR,
+            stdout=log_file,
+            stderr=log_file,
+            start_new_session=True,
+        )
+
+    return JsonResponse({"started": True, "message": "Reading started."})
+
+
+@require_POST
+def read_done(request, job_id):
+    """The Continue button: the operator has looked at the text, so queue it.
+
+    This, and not the end of the conversion, is what reaches "queued". If the
+    command set it directly, reopening the batch would route straight past this
+    page to the extract step, and step 2 would once again be a step nobody can
+    stand on.
+    """
+    job = get_object_or_404(ExtractionJob, id=job_id)
+    if job.status != "converted":
+        return JsonResponse({"moved": False, "message": "This batch has not been read yet."})
+    job.status = "queued"
+    job.save(update_fields=["status"])
+    return JsonResponse({"moved": True})
+
+
 def start(request):
     """Step 1: the two pickers. No job exists until a file is actually sent."""
     return render(request, "insights/wizard_intake.html", page(request, wizard_step=1))
@@ -220,11 +282,33 @@ def job_step(request, job_id):
     if job.status == "collecting":
         return render(request, "insights/wizard_intake.html",
                       page(request, job=job, wizard_step=1))
+    if job.status in READ_STATUSES:
+        return render(request, "insights/wizard_read.html",
+                      page(request, job=job, wizard_step=2,
+                           documents=_job_documents(job)))
     if job.status in ("queued", "running", "failed"):
         return render(request, "insights/wizard_extract.html",
                       page(request, job=job, wizard_step=3))
     return render(request, "insights/wizard_review.html",
                   page(request, job=job, wizard_step=4, insights=_job_insights(job)))
+
+
+def _job_documents(job):
+    """This batch's documents with how each was read, and the text itself.
+
+    The text is shown AS STORED, not rendered: the promise of this page is
+    "what the model will read", and rendering the markdown to HTML would show
+    something else - the one thing a preview must not do.
+    """
+    documents = (job.documents.select_related("conversion")
+                 .prefetch_related("texts").order_by("file_name"))
+    return [{
+        "document": document,
+        "conversion": getattr(document, "conversion", None),
+        "text": "\n\n".join(
+            f"--- page {row.page} ---\n{row.text or ''}"
+            for row in sorted(document.texts.all(), key=lambda r: r.page)),
+    } for document in documents]
 
 
 def _job_insights(job):
@@ -300,9 +384,21 @@ def edit(request, insight_id):
     })
 
 
-def log_path(job):
-    """Where the detached extraction writes its output."""
-    return Path(settings.MCP_CACHE_DIR) / "insights" / f"job-{job.id}.log"
+def log_path(job, stage="extract"):
+    """Where a detached run writes its output. One file per stage.
+
+    Separate files because the two stages have separate failure stories, and a
+    reader of the extract log should not have to scroll past an OCR run to
+    find where the model refused a chunk. The default keeps every existing
+    caller meaning what it meant.
+    """
+    name = f"job-{job.id}.log" if stage == "extract" else f"job-{job.id}-{stage}.log"
+    return Path(settings.MCP_CACHE_DIR) / "insights" / name
+
+
+def _stage_of(job):
+    """Which run's log this job's page should be watching."""
+    return "convert" if job.status in READ_STATUSES else "extract"
 
 
 def _tail(path):
@@ -343,7 +439,7 @@ def _last_change(path):
 def progress(request, job_id):
     """Everything the extract step redraws itself from."""
     job = get_object_or_404(ExtractionJob, id=job_id)
-    path = log_path(job)
+    path = log_path(job, _stage_of(job))
     return JsonResponse({
         "status": job.status,
         "done": job.documents_done,

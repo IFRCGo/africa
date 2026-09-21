@@ -38,12 +38,20 @@ class WizardStepsTests(TestCase):
         body = self.body(reverse("admin:insights_documentstoinsights_changelist"))
         self.assertIn(reverse("admin:insights_wizard_start"), step(body, 1))
 
-    def test_step_2_is_a_button_the_intake_page_switches_on(self):
-        # Disabled in the markup: wizard_intake.js enables it the moment the
-        # preview it scrolls to exists.
+    def test_step_2_is_inert_before_a_batch_exists(self):
+        # It used to be a button that scrolled to a preview on this page. It is
+        # a page of its own now - reached once the batch is closed - so with no
+        # job yet there is nowhere for it to lead.
         markup = step(self.body(reverse("admin:insights_wizard_start")), 2)
-        self.assertTrue(markup.startswith("<button"))
-        self.assertIn("disabled", markup)
+        self.assertIn('aria-disabled="true"', markup)
+        self.assertNotIn("<a ", markup)
+
+    def test_a_collected_batch_is_at_step_2(self):
+        job = ExtractionJob.objects.create(status="collected")
+        body = self.body(reverse("admin:insights_wizard_job", args=[job.id]))
+        self.assertIn("is-current", step(body, 2))
+        # Step 3 has not been earned yet: nothing has been read.
+        self.assertIn('aria-disabled="true"', step(body, 3))
 
     def test_a_collecting_batch_is_at_step_1(self):
         job = ExtractionJob.objects.create(status="collecting")
