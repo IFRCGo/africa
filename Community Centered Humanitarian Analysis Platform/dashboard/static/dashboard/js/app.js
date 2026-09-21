@@ -450,6 +450,17 @@ function loadAreas() {
   return areasLoading;
 }
 
+/* WHAT EACH HALF CAN SAY ABOUT ITS AREAS, HELD PER MAP.
+
+   renderThemes() works out the per-area detail the "Community reporting"
+   bubble reads, and in split view it runs ONCE PER HALF - each time for a
+   different country. A single shared object did not survive the second pass:
+   the left half's areas were computed, then overwritten by the right half's,
+   so every polygon on the left hovered dead while the right one worked. Keyed
+   by map, the way setSource() keys layer data, each half keeps its own
+   answer. A WeakMap, so a retired map is not held alive by it. */
+const areaDetailByMap = new WeakMap();
+
 /* Keep only the areas in the selected countries. Returns the collection
    unchanged when no filter is on, so the common case copies nothing. */
 function filterFC(fc) {
@@ -1127,10 +1138,15 @@ function addLayers(m) {
   /* The highlighted area. Returns null when nothing was reported here, so
      hovering an unhighlighted state stays silent rather than showing an empty
      box - every one of the 336 polygons is in this layer, only some are lit. */
-  popup(m, "area-wash", (p) => {
-    const detail = (state.areaDetail || {})[p.id];
+  popup(m, "area-wash", (p, feature, hoveredMap) => {
+    /* The third argument is the map UNDER THE CURSOR, not the one this layer
+       was registered on: POPUP_SPECS is built once, from the first map, and
+       serves both halves. Reading a single shared object here is what left
+       the other half with no bubble at all. */
+    const pane = areaDetailByMap.get(hoveredMap) || {};
+    const detail = (pane.detail || {})[p.id];
     if (!detail) return null;
-    const month = monthLabel(state.areaMonth || monthKey(state.current));
+    const month = monthLabel(pane.mk || monthKey(state.current));
     /* WHERE, SAID ONCE, AND SAID AS A LABEL.
 
        Every section below is about this one polygon, and the Montandon feed
@@ -1164,7 +1180,7 @@ function addLayers(m) {
       // A sentence from the reporting behind the biggest tag, so the number is
       // never the only thing offered as evidence.
       const td = (state.data.tags[dim] || {})[rows[0][0]];
-      const quote = td && snippetFor(td, state.areaMonth || monthKey(state.current));
+      const quote = td && snippetFor(td, pane.mk || monthKey(state.current));
       if (quote) html += `<div class="pp-quote">“…${escapeHTML(quote.slice(0, 180))}…”</div>`;
       html += `</div>`;
     }
@@ -1261,7 +1277,12 @@ function popup(m, layer, html, title) {
   if (!popupSpecsBuilt) POPUP_SPECS.push({ layer, html, title });
 }
 
-// Which map, if any, currently has its bubble pinned open.
+/* Which map, if any, currently has its bubble pinned open. At most one is
+   pinned at a time, but the OTHER half must go on hovering normally while it
+   is - so every test below compares it against the map the event came from,
+   never just truthiness. `!pinnedOn` froze the second half of a split view
+   the moment anything was pinned in the first, which reads as "hovering is
+   broken on that map". */
 let pinnedOn = null;
 
 /* Everything under the cursor, as ready-to-show sections. */
@@ -1345,9 +1366,12 @@ function unpin() {
 
 /* One set of handlers per map, replacing the per-layer ones. */
 function bindPopups(m) {
-  m.on("mousemove", (e) => { if (!pinnedOn) showCombined(m, e); });
-  m.on("mouseout", () => { if (!pinnedOn) hoverBubble(m).remove(); });
-  m.on("click", (e) => (pinnedOn ? unpin() : pinBubble(m, e)));
+  m.on("mousemove", (e) => { if (pinnedOn !== m) showCombined(m, e); });
+  m.on("mouseout", () => { if (pinnedOn !== m) hoverBubble(m).remove(); });
+  /* Clicking the pinned half releases it; clicking the other half MOVES the
+     pin there, because pinBubble() unpins whatever held it first. Clicking
+     bare ground on either half just releases, as it always did. */
+  m.on("click", (e) => (pinnedOn === m ? unpin() : pinBubble(m, e)));
 }
 
 // "Draw nothing" - used to clear a layer that is switched off.
@@ -1596,7 +1620,10 @@ function renderThemes() {
     areaStates[areaId] = st;
   }
   setStates("areas", areaStates);
-  state.areaDetail = detail;
+  /* To THIS half when one is being drawn, to every map when a single scope
+     is in force - the same rule setSource() follows, for the same reason. */
+  for (const tm of (renderTarget ? [renderTarget] : maps))
+    areaDetailByMap.set(tm, { detail, mk });
   state.areaMonth = mk;
 
   // ---- the national wash for reporting that named no place ---------------
