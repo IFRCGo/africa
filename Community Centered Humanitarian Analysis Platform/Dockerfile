@@ -32,9 +32,15 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 # "Read these documents" downloads them inside a detached subprocess with no
 # progress anywhere a person can see it, and fails outright on a machine with
 # no internet.
+#
+# -o is what puts them where DOCLING_ARTIFACTS_PATH says. Overriding HOME
+# instead would put them in $HOME/.cache/docling/models - a DIFFERENT
+# directory - and the build would still succeed, leaving artifacts_path
+# pointing at an empty folder and every conversion failing at run time with a
+# missing layout model.
 ENV DOCLING_ARTIFACTS_PATH=/opt/docling/models
 RUN mkdir -p /opt/docling/models \
-    && HOME=/opt/docling docling-tools models download
+    && docling-tools models download -o /opt/docling/models
 
 # EasyOCR fetches its own detection and recognition weights, which
 # docling-tools does not cover. Instantiating a Reader is what pulls them.
