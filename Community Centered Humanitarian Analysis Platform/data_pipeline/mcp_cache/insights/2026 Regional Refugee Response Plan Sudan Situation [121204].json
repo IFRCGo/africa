@@ -19,12 +19,12 @@
       "codings": [
         {
           "dimension": "need",
-          "tag": "food_security",
+          "tag": "nutrition",
           "role": "subject"
         },
         {
-          "dimension": "need",
-          "tag": "nutrition",
+          "dimension": "hazard",
+          "tag": "food_insecurity",
           "role": "subject"
         }
       ],
@@ -37,31 +37,150 @@
           "applies_to": "newly arrived Sudanese refugee children"
         }
       ],
+      "movements": [],
       "people_affected": null,
       "severity": 4,
       "confidence": "high"
     },
     {
-      "quote": "Some are choosing to return to areas of relative calm, while others are compelled by hardship in countries of asylum.",
+      "quote": "By the end of 2025, Chad hosted over 1.3 million Sudanese refugees.",
       "quote_language": "en",
-      "page": 8,
+      "page": 9,
       "voice_type": "secondary_analysis",
-      "place_name_as_written": "Sudan",
-      "iso3": "SDN",
+      "place_name_as_written": "Chad",
+      "iso3": "TCD",
       "codings": [
         {
           "dimension": "movement_pattern",
-          "tag": "return_movement",
+          "tag": "refugee_hosting",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "1.3 million",
+          "value": 1300000,
+          "unit": "people",
+          "applies_to": "Sudanese refugees"
+        }
+      ],
+      "people_affected": 1300000,
+      "severity": null,
+      "confidence": "high"
+    },
+    {
+      "quote": "According to the latest Government estimates, Egypt hosts approximately 1.5 million Sudanese refugees who fled violence in Sudan since 2023.",
+      "quote_language": "en",
+      "page": 9,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "refugee_hosting",
           "role": "subject"
         },
         {
-          "dimension": "need",
-          "tag": "basic_needs",
+          "dimension": "hazard",
+          "tag": "armed_conflict",
           "role": "driver"
         }
       ],
+      "figures": [
+        {
+          "figure_as_written": "1.5 million",
+          "value": 1500000,
+          "unit": "people",
+          "applies_to": "Sudanese refugees"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "Sudan",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": "Egypt",
+          "dest_iso3": "EGY",
+          "flow_type": "cross_border",
+          "value_as_written": "1.5 million",
+          "value": 1500000,
+          "unit": "people"
+        }
+      ],
+      "people_affected": 1500000,
+      "severity": null,
+      "confidence": "high"
+    },
+    {
+      "quote": "Refugees continued to face significant challenges in meeting their basic needs due to administrative barriers, rising living costs and limited access to formal employment opportunities.",
+      "quote_language": "en",
+      "page": 9,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "basic_needs",
+          "role": "subject"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "administrative_barriers",
+          "role": "barrier"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "economic_hardship",
+          "role": "barrier"
+        }
+      ],
       "people_affected": null,
-      "severity": 4,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Libya has received more than 538,000 refugees coming from Sudan since the conflict began in April, with women and children comprising over 80 per cent of arrivals.",
+      "quote_language": "en",
+      "page": 9,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Libya",
+      "iso3": "LBY",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "cross_border_arrival",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "538,000",
+          "value": 538000,
+          "unit": "people",
+          "applies_to": "refugees"
+        },
+        {
+          "figure_as_written": "80 per cent",
+          "value": 80,
+          "unit": "percent",
+          "applies_to": "women and children"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "Sudan",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": "Libya",
+          "dest_iso3": "LBY",
+          "flow_type": "cross_border",
+          "value_as_written": "538,000",
+          "value": 538000,
+          "unit": "people"
+        }
+      ],
+      "people_affected": 538000,
+      "severity": null,
       "confidence": "high"
     },
     {
@@ -76,11 +195,6 @@
           "dimension": "vulnerability",
           "tag": "disability",
           "role": "subject"
-        },
-        {
-          "dimension": "need",
-          "tag": "inclusive_programming",
-          "role": "subject"
         }
       ],
       "figures": [
@@ -88,87 +202,64 @@
           "figure_as_written": "16 per cent",
           "value": 16,
           "unit": "percent",
-          "measures": "population",
           "applies_to": "persons with disabilities"
         }
       ],
-      "movements": [],
       "people_affected": null,
-      "severity": 3,
+      "severity": null,
       "confidence": "high"
     },
     {
-      "quote": "In host communities, market disruption and rising prices, driven by the influx and logistics challenges, deepen the vulnerabilities of both displaced and local populations.",
+      "quote": "As the modality of choice of the people we work for and with, cash assistance will be used as the primary means to meet immediate basic needs and to contribute to protection outcomes.",
       "quote_language": "en",
-      "page": 17,
-      "voice_type": "secondary_analysis",
-      "place_name_as_written": "CAR",
+      "page": 19,
+      "voice_type": "community",
+      "place_name_as_written": "Central African Republic",
       "iso3": "CAF",
       "codings": [
         {
-          "dimension": "vulnerability",
-          "tag": "economic_vulnerability",
+          "dimension": "coping",
+          "tag": "cash_assistance",
           "role": "subject"
         },
         {
-          "dimension": "hazard",
-          "tag": "market_disruption",
-          "role": "driver"
+          "dimension": "need",
+          "tag": "basic_needs",
+          "role": "subject"
         }
       ],
       "people_affected": null,
-      "severity": 3,
+      "severity": null,
       "confidence": "high"
     },
     {
-      "quote": "Refugee arrivals from Sudan into Chad are projected to increase to 1.48 million people in 2026, driven by the unrelenting conflict between the Sudanese Armed Forces and the Rapid Support Forces, with violence showing no sign of abating and Sudan’s humanitarian situation deteriorating with famine-like conditions.",
+      "quote": "As the modality of choice of the people we work for and with, cash assistance will be used as the primary means to meet immediate basic needs and to contribute to protection outcomes.",
       "quote_language": "en",
-      "page": 21,
-      "voice_type": "secondary_analysis",
+      "page": 24,
+      "voice_type": "community",
       "place_name_as_written": "Chad",
       "iso3": "TCD",
       "codings": [
         {
-          "dimension": "movement_pattern",
-          "tag": "cross_border_arrival",
+          "dimension": "coping",
+          "tag": "cash_assistance",
           "role": "subject"
         },
         {
-          "dimension": "hazard",
-          "tag": "armed_conflict",
-          "role": "driver"
+          "dimension": "need",
+          "tag": "basic_needs",
+          "role": "subject"
         }
       ],
-      "figures": [
-        {
-          "figure_as_written": "1.48 million",
-          "value": 1480000,
-          "unit": "people",
-          "measures": "projected refugee population",
-          "applies_to": "refugee arrivals from Sudan into Chad"
-        }
-      ],
-      "movements": [
-        {
-          "origin_name_as_written": "Sudan",
-          "origin_iso3": "SDN",
-          "dest_name_as_written": "Chad",
-          "dest_iso3": "TCD",
-          "flow_type": "cross_border",
-          "value_as_written": "1.48 million",
-          "value": 1480000,
-          "unit": "people"
-        }
-      ],
-      "people_affected": 1480000,
-      "severity": 5,
+      "people_affected": null,
+      "severity": null,
       "confidence": "high"
     },
     {
       "quote": "As the modality of choice of the people we work for and with, cash assistance will be used as the primary means to meet immediate basic needs and to contribute to protection outcomes.",
       "quote_language": "en",
       "page": 30,
-      "voice_type": "community",
+      "voice_type": "secondary_analysis",
       "place_name_as_written": "Egypt",
       "iso3": "EGY",
       "codings": [
@@ -254,7 +345,7 @@
         },
         {
           "dimension": "vulnerability",
-          "tag": "documentation_status",
+          "tag": "documentation_gaps",
           "role": "barrier"
         },
         {

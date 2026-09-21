@@ -10,7 +10,7 @@
   },
   "insights": [
     {
-      "quote": "During the 2023 El Niño event, widespread flooding displaced approximately 1.3 million people in Somalia, 633,000 in Ethiopia, and 546,000 in Kenya between October and December 20237.",
+      "quote": "During the 2023 El Niño event, widespread flooding displaced approximately 1.3 million people in Somalia, 633,000 in Ethiopia, and 546,000 in Kenya between October and December 2023",
       "quote_language": "en",
       "page": 5,
       "voice_type": "secondary_analysis",
@@ -33,22 +33,25 @@
           "figure_as_written": "1.3 million",
           "value": 1300000,
           "unit": "people",
-          "applies_to": "displaced people in Somalia"
+          "measures": "displaced",
+          "applies_to": "Somalia"
         },
         {
           "figure_as_written": "633,000",
           "value": 633000,
           "unit": "people",
-          "applies_to": "displaced people in Ethiopia"
+          "measures": "displaced",
+          "applies_to": "Ethiopia"
         },
         {
           "figure_as_written": "546,000",
           "value": 546000,
           "unit": "people",
-          "applies_to": "displaced people in Kenya"
+          "measures": "displaced",
+          "applies_to": "Kenya"
         }
       ],
-      "people_affected": null,
+      "people_affected": 2479000,
       "severity": 4,
       "confidence": "high"
     },
@@ -62,17 +65,22 @@
       "codings": [
         {
           "dimension": "need",
-          "tag": "humanitarian_assistance",
+          "tag": "food_security",
           "role": "subject"
         },
         {
-          "dimension": "vulnerability",
-          "tag": "malnutrition",
+          "dimension": "need",
+          "tag": "nutrition",
           "role": "subject"
         },
         {
           "dimension": "movement_pattern",
           "tag": "displacement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "disease_outbreak",
           "role": "subject"
         }
       ],

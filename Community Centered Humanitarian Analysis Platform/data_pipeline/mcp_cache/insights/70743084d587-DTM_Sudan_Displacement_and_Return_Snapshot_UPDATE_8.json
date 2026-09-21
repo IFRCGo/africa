@@ -2,7 +2,7 @@
   "source": {
     "rel_path": "media/70743084d587-DTM_Sudan_Displacement_and_Return_Snapshot_UPDATE_8.pdf",
     "sha1": "70743084d58756cdf8636bf1d29ae47c2acbd169",
-    "report_date": null
+    "report_date": "2026-08-20"
   },
   "producer": {
     "agent": "openai_compatible",
@@ -19,13 +19,25 @@
       "codings": [
         {
           "dimension": "hazard",
-          "tag": "flooding"
+          "tag": "floods",
+          "role": "subject"
         },
         {
           "dimension": "movement_pattern",
-          "tag": "displacement"
+          "tag": "displacement",
+          "role": "subject"
         }
       ],
+      "figures": [
+        {
+          "figure_as_written": "115 individuals",
+          "value": 115,
+          "unit": "people",
+          "measures": "displaced",
+          "applies_to": "individuals"
+        }
+      ],
+      "movements": [],
       "people_affected": 115,
       "severity": 2,
       "confidence": "high"
@@ -40,13 +52,32 @@
       "codings": [
         {
           "dimension": "hazard",
-          "tag": "flooding"
+          "tag": "floods",
+          "role": "driver"
         },
         {
           "dimension": "movement_pattern",
-          "tag": "displacement"
+          "tag": "displacement",
+          "role": "subject"
         }
       ],
+      "figures": [
+        {
+          "figure_as_written": "115 individuals",
+          "value": 115,
+          "unit": "people",
+          "measures": "displaced",
+          "applies_to": "individuals"
+        },
+        {
+          "figure_as_written": "23 households",
+          "value": 23,
+          "unit": "households",
+          "measures": "displaced",
+          "applies_to": "households"
+        }
+      ],
+      "movements": [],
       "people_affected": 115,
       "severity": 2,
       "confidence": "high"
@@ -60,12 +91,27 @@
       "iso3": "SDN",
       "codings": [
         {
-          "dimension": "coping",
-          "tag": "return"
+          "dimension": "movement_pattern",
+          "tag": "return_movement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "improved_security",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "87%",
+          "value": 87,
+          "unit": "percent",
+          "measures": "households returned",
+          "applies_to": "returned households"
         }
       ],
       "people_affected": null,
-      "severity": 3,
+      "severity": null,
       "confidence": "high"
     },
     {
@@ -77,58 +123,222 @@
       "iso3": "SDN",
       "codings": [
         {
-          "dimension": "vulnerability",
-          "tag": "lack_of_resources"
+          "dimension": "movement_pattern",
+          "tag": "return_movement",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "lack_of_resources",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "100%",
+          "value": 100,
+          "unit": "percent",
+          "measures": "returnee households",
+          "applies_to": "returnee households in North Darfur"
         }
       ],
       "people_affected": null,
-      "severity": 4,
+      "severity": null,
       "confidence": "high"
     },
     {
-      "quote": "all reportedly returned due to the lack of resources in their area of displacement.",
+      "quote": "Households who returned to Khartoum state reported slightly more diverse reasons for return compared to other states: the majority (89%) of returned households cited improved security at locations of origin, but seven per cent returned primarily for family reunification and two per cent of households reportedly returned due to depleted resources in areas of displacement.",
       "quote_language": "en",
-      "page": 19,
-      "voice_type": "community",
-      "place_name_as_written": "North Darfur",
-      "iso3": "SDN",
-      "codings": [
-        {
-          "dimension": "need",
-          "tag": "livelihoods"
-        },
-        {
-          "dimension": "vulnerability",
-          "tag": "economic_vulnerability"
-        }
-      ],
-      "people_affected": 267761,
-      "severity": 3,
-      "confidence": "high"
-    },
-    {
-      "quote": "the majority (89%) of returned households cited improved security at locations of origin, but seven per cent returned primarily for family reunification and two per cent of households reportedly returned due to depleted resources in areas of displacement.",
-      "quote_language": "en",
-      "page": 18,
+      "page": 21,
       "voice_type": "community",
       "place_name_as_written": "Khartoum",
       "iso3": "SDN",
       "codings": [
         {
           "dimension": "movement_pattern",
-          "tag": "return"
+          "tag": "return_movement",
+          "role": "subject"
         },
         {
-          "dimension": "vulnerability",
-          "tag": "security"
+          "dimension": "hazard",
+          "tag": "armed_conflict",
+          "role": "driver"
         }
       ],
-      "people_affected": 2513328,
-      "severity": 2,
+      "figures": [
+        {
+          "figure_as_written": "89%",
+          "value": 89,
+          "unit": "percent",
+          "measures": "returned households",
+          "applies_to": "improved security at locations of origin"
+        },
+        {
+          "figure_as_written": "seven per cent",
+          "value": 7,
+          "unit": "percent",
+          "measures": "returned households",
+          "applies_to": "family reunification"
+        },
+        {
+          "figure_as_written": "two per cent",
+          "value": 2,
+          "unit": "percent",
+          "measures": "returned households",
+          "applies_to": "depleted resources in areas of displacement"
+        }
+      ],
+      "severity": null,
       "confidence": "high"
     },
     {
-      "quote": "The decrease in IDPs primarily reflected the return movement of South Sudanese IDPs back to South Sudan, alongside continued return movements to Khartoum state.",
+      "quote": "Nearly all recorded returns moved back from other locations within North Darfur state, and all reportedly returned due to the lack of resources in their area of displacement.",
+      "quote_language": "en",
+      "page": 22,
+      "voice_type": "community",
+      "place_name_as_written": "North Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "return_movement",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "livelihoods",
+          "role": "driver"
+        }
+      ],
+      "severity": null,
+      "confidence": "high"
+    },
+    {
+      "quote": "Ninety-five per cent of returnees in River Nile returned due to improved security conditions in their location of origin.",
+      "quote_language": "en",
+      "page": 26,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "River Nile",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "return_movement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "improved_security",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "Ninety-five per cent",
+          "value": 95,
+          "unit": "percent",
+          "measures": "returnees",
+          "applies_to": "returnees in River Nile"
+        }
+      ],
+      "severity": null,
+      "confidence": "high"
+    },
+    {
+      "quote": "An estimated 88 per cent reportedly returned due to improved security conditions in their location of origin.",
+      "quote_language": "en",
+      "page": 27,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sennar",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "return_movement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "improved_security",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "88 per cent",
+          "value": 88,
+          "unit": "percent",
+          "measures": "returnees",
+          "applies_to": "returnees in Sennar"
+        }
+      ],
+      "severity": null,
+      "confidence": "high"
+    },
+    {
+      "quote": "The vast majority (89%) moved back due to improved security conditions at their location of origin, while others moved back primarily to reunite with family members (11%) or due to depleted resources in areas of displacement or returned by national authorities (<1% each).",
+      "quote_language": "en",
+      "page": 28,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "South Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "return_movement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "improved_security",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "89%",
+          "value": 89,
+          "unit": "percent",
+          "measures": "returnees",
+          "applies_to": "returnees in South Darfur"
+        }
+      ],
+      "severity": null,
+      "confidence": "high"
+    },
+    {
+      "quote": "Over half (58%) reportedly returned to their location of origin due to improved security conditions, while others returned primarily due to the availability of services in their area of origin (22%), depleted resources in areas of displacement (11%), or availability of humanitarian assistance (6%).",
+      "quote_language": "en",
+      "page": 30,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "West Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "return_movement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "improved_security",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "58%",
+          "value": 58,
+          "unit": "percent",
+          "measures": "returnees",
+          "applies_to": "returnees in West Darfur"
+        }
+      ],
+      "severity": null,
+      "confidence": "high"
+    },
+    {
+      "quote": "The vast majority of returnee households (97%) moved back to White Nile due to improved security in areas of origin, while two per cent reportedly moved back due to depleted resources in areas of displacement.",
       "quote_language": "en",
       "page": 32,
       "voice_type": "secondary_analysis",
@@ -137,27 +347,91 @@
       "codings": [
         {
           "dimension": "movement_pattern",
-          "tag": "return"
+          "tag": "return_movement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "improved_security",
+          "role": "driver"
         }
       ],
-      "people_affected": null,
-      "severity": 3,
+      "figures": [
+        {
+          "figure_as_written": "97%",
+          "value": 97,
+          "unit": "percent",
+          "measures": "returnee households",
+          "applies_to": "returnee households in White Nile"
+        }
+      ],
+      "severity": null,
       "confidence": "high"
     },
     {
-      "quote": "An additional 1,559,118 individuals may therefore return to Khartoum, depending on security and humanitarian conditions, in addition to hundreds of thousands who were displaced abroad.",
+      "quote": "Since the outbreak of the conflict on 15 April 2023, an estimated 4667,740 individuals crossed borders into neighbouring countries.",
       "quote_language": "en",
-      "page": 34,
+      "page": 33,
       "voice_type": "secondary_analysis",
-      "place_name_as_written": "Khartoum",
+      "place_name_as_written": "Sudan",
       "iso3": "SDN",
       "codings": [
         {
           "dimension": "movement_pattern",
-          "tag": "return"
+          "tag": "cross_border_outflow",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "armed_conflict",
+          "role": "driver"
         }
       ],
-      "people_affected": 1559118,
+      "figures": [
+        {
+          "figure_as_written": "4667,740",
+          "value": 4667740,
+          "unit": "people",
+          "measures": "individuals crossed borders into neighbouring countries"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "Sudan",
+          "origin_iso3": "SDN",
+          "flow_type": "cross_border",
+          "value_as_written": "4667,740",
+          "value": 4667740,
+          "unit": "people"
+        }
+      ],
+      "people_affected": 4667740,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Of the total recorded returns in Sudan, approximately 4,032,452 individuals returned from internal displacement.",
+      "quote_language": "en",
+      "page": 34,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "return_movement",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "4,032,452",
+          "value": 4032452,
+          "unit": "people",
+          "measures": "individuals returned from internal displacement"
+        }
+      ],
+      "people_affected": 4032452,
       "severity": 3,
       "confidence": "high"
     }
