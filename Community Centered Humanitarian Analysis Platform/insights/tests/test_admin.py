@@ -158,7 +158,7 @@ class InsightUploadAdminTests(TestCase):
 
         job = ExtractionJob.objects.get()
         self.assertEqual(job.documents_total, 1)
-        self.assertEqual(job.status, "queued")
+        self.assertEqual(job.status, "collected")
         self.assertEqual(job.producer, "external")
         self.assertEqual(
             list(job.documents.values_list("id", flat=True)), [upload_row.document_id])
@@ -267,7 +267,7 @@ class ResetStuckJobActionTests(TestCase):
     def test_a_running_job_is_reset_to_queued(self):
         response = self._reset([self.job.id])
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "reset to queued")
+        self.assertContains(response, "1 to queued")
         self.job.refresh_from_db()
         self.assertEqual(self.job.status, "queued")
 
@@ -276,7 +276,7 @@ class ResetStuckJobActionTests(TestCase):
         self.job.save(update_fields=["status"])
         response = self._reset([self.job.id])
         self.assertEqual(response.status_code, 200)
-        self.assertContains(response, "were not")
+        self.assertContains(response, "were neither")
         self.job.refresh_from_db()
         self.assertEqual(self.job.status, "loaded")
 

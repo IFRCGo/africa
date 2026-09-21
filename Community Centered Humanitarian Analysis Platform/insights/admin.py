@@ -214,8 +214,10 @@ class InsightFolderAdmin(admin.ModelAdmin):
                 continue
             self.message_user(
                 request,
-                f"{folder.label}: {job.documents_total} documents catalogued, job {job.id} queued. "
-                f"Run your extraction agent, then use 'Load payloads' on the job.",
+                f"{folder.label}: {job.documents_total} documents catalogued, job {job.id} "
+                f"ready to read. Read them on the wizard's step 2 (or "
+                f"`manage.py convert_documents --job {job.id}`), then run your "
+                f"extraction agent and use 'Load payloads' on the job.",
                 messages.SUCCESS,
             )
 
@@ -265,7 +267,7 @@ class InsightUploadAdmin(admin.ModelAdmin):
         # a document uploaded through this one-off screen would have nothing
         # to attach it to and could never be extracted.
         job = ExtractionJob.objects.create(
-            producer="external", status="queued", documents_total=1)
+            producer="external", status="collected", documents_total=1)
         job.documents.add(document)
         self.message_user(
             request,
@@ -324,17 +326,30 @@ class ExtractionJobAdmin(admin.ModelAdmin):
         to solve properly; this is a manual override, not a pre-emption of
         that work.
         """
+        # Two stages can be killed mid-flight, and each goes back to the page
+        # it is launched from. A killed conversion has converted nothing, so it
+        # returns to "collected" - sending it to "queued" would march it past
+        # the read step with intake's PyMuPDF text still in the database.
         stuck = queryset.filter(status="running")
         updated = stuck.count()
         stuck.update(status="queued")
-        skipped = queryset.count() - updated
-        if updated:
+
+        stuck_read = queryset.filter(status="converting")
+        reset_reads = stuck_read.count()
+        stuck_read.update(status="collected")
+
+        moved = updated + reset_reads
+        skipped = queryset.count() - moved
+        if moved:
             self.message_user(
-                request, f"{updated} job(s) reset to queued.", messages.SUCCESS)
+                request,
+                f"{moved} job(s) reset ({updated} to queued, {reset_reads} to collected).",
+                messages.SUCCESS)
         if skipped:
             self.message_user(
                 request,
-                f"{skipped} job(s) were not \"running\" and were left alone.",
+                f"{skipped} job(s) were neither \"running\" nor \"converting\" "
+                f"and were left alone.",
                 messages.WARNING,
             )
 

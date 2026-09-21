@@ -137,7 +137,7 @@ class CatalogueFolderTests(TestCase):
         job = catalogue_folder(folder)
         self.assertEqual(Document.objects.count(), 2)
         self.assertEqual(job.documents_total, 2)
-        self.assertEqual(job.status, "queued")
+        self.assertEqual(job.status, "collected")
         self.assertEqual(job.folder_id, folder.id)
 
     def test_an_unreachable_path_raises_rather_than_opening_an_empty_job(self):

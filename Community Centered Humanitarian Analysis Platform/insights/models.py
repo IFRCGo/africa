@@ -147,11 +147,14 @@ class ExtractionJob(models.Model):
     status = models.TextField(
         default="queued",
         help_text=(
-            "collecting / queued / running / loaded / failed. 'collecting' is a "
-            "wizard batch whose files are still arriving. A job stuck at 'running' "
-            "because its process was killed rather than raising (e.g. docker "
-            "compose restart web) can be recovered with the 'Reset stuck job to "
-            "queued' action below."
+            "collecting / collected / converting / converted / convert_failed / "
+            "queued / running / loaded / failed. 'collecting' is a wizard batch "
+            "whose files are still arriving; 'collected' is one whose files are in "
+            "but not yet read; 'converted' is read and waiting for a person to look "
+            "at the text before paying the model. 'queued' therefore means CONVERTED "
+            "and ready to extract. A job stuck at 'running' or 'converting' because "
+            "its process was killed rather than raising (e.g. docker compose restart "
+            "web) can be recovered with the 'Reset stuck job' action below."
         ),
     )
     documents_total = models.IntegerField(default=0)

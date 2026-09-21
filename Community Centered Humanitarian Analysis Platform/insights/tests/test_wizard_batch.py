@@ -128,4 +128,4 @@ class BatchTests(TestCase):
         job = ExtractionJob.objects.get(id=job_id)
         self.assertEqual(body["documents_total"], 1)
         self.assertEqual(job.documents_total, 1)
-        self.assertEqual(job.status, "queued")
+        self.assertEqual(job.status, "collected")

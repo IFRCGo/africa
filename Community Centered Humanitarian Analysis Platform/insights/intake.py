@@ -169,7 +169,7 @@ def catalogue_folder(folder):
     pattern = "**/*" if folder.recursive else "*"
     files = sorted(p for p in root.glob(pattern) if p.suffix.lower() in SUFFIXES)
 
-    job = ExtractionJob.objects.create(folder=folder, producer="external", status="queued")
+    job = ExtractionJob.objects.create(folder=folder, producer="external", status="collected")
     for path in files:
         document = catalogue_file(path, iso3=folder.default_iso3)
         # A document already catalogued by an earlier job is attached to this

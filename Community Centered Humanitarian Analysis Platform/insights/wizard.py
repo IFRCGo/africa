@@ -200,7 +200,7 @@ def batch_ready(request, job_id):
     """Close the batch and queue it for extraction."""
     job = get_object_or_404(ExtractionJob, id=job_id, status="collecting")
     job.documents_total = job.documents.count()
-    job.status = "queued"
+    job.status = "collected"
     job.save(update_fields=["documents_total", "status"])
     return JsonResponse({"documents_total": job.documents_total})
 
