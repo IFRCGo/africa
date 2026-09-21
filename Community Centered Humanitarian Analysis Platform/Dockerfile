@@ -26,7 +26,26 @@ RUN pip install --no-cache-dir \
     --index-url https://download.pytorch.org/whl/cpu
 
 COPY requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# rapidocr - a docling dependency this project never calls - requires
+# opencv-python, the GUI build. easyocr requires opencv-python-headless. Both
+# distributions install the SAME cv2/ directory and the GUI build wins, so
+# every "import cv2" in the image lands on a wheel linked against libxcb.so.1
+# and libGL, neither of which python:3.11-slim carries. That breaks far more
+# than rapidocr: "import easyocr" raises it too, and the model download below
+# dies at its RapidOCR stage AFTER seventeen minutes of successful downloads.
+#
+# The reinstall is not belt-and-braces. The two distributions share cv2/, so
+# uninstalling opencv-python deletes the directory headless is also recorded
+# as owning and leaves ModuleNotFoundError in its place. The version is read
+# back rather than pinned here so there is no second place to update when the
+# resolve moves. All of it rides in the requirements layer on purpose: a later
+# RUN would delete the GUI wheel without shrinking the image, since the bytes
+# stay in the layer underneath.
+RUN pip install --no-cache-dir -r /app/requirements.txt \
+ && V=$(pip show opencv-python-headless | awk '/^Version:/{print $2}') \
+ && pip uninstall -y opencv-python \
+ && pip install --no-cache-dir --force-reinstall --no-deps "opencv-python-headless==$V"
 
 # Bake the model weights into the image. Without this, the FIRST click on
 # "Read these documents" downloads them inside a detached subprocess with no
