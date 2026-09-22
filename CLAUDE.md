@@ -99,6 +99,35 @@ Three things about it that are not guessable:
 queued → running → loaded`. **`queued` means converted and ready to extract**,
 not "files are in".
 
+**An uploaded document is not kept.** What the platform keeps is the text read
+out of it and the statements published from it, so `insights/retention.py`
+deletes the file under `media/insights/` as soon as the document has no pending
+statement left, and sweeps anything older than
+`INSIGHT_UPLOAD_RETENTION_MINUTES` (default 30) whether it was reviewed or not.
+Releasing blanks `InsightUpload.file` and touches nothing else - the `Document`,
+its `DocumentText` pages and every `Insight` stay. There is no scheduler here,
+so the sweep runs on wizard page loads and from `manage.py prune_uploads`; a
+batch at `converting` is skipped until Docling finishes with it. Re-importing a
+released file stores the bytes again and **moves that document's still-pending
+statements to the new batch**, so the review queue follows the person rather
+than being extracted a second time.
+
+**Retention follows rows, never the folder.** Nothing deletes a file because
+the database does not mention it - a file left behind by deleting an upload in
+Admin stays until a person removes it. An earlier version swept those from the
+wizard's page load and `manage.py test` emptied this deployment's upload
+folder, because the test database legitimately has no rows in it.
+
+**A batch whose files were swept refuses to be read**, rather than badging
+every document "Docling failed" and quietly extracting from the weaker intake
+text: step 2 says the files were released and links to a new import.
+`retention.released_documents(job)` is the check, and a document already read
+successfully is not in it. The rule is not fussiness: "no row claims it" is only as true as the
+database being asked, and asked against an empty one - a test run, a restored
+dump - the answer is every file in the folder. An earlier version swept
+unclaimed files from the wizard's page load, and `manage.py test` emptied this
+deployment's upload folder.
+
 An archive already sitting on a mounted share should be registered as an
 `InsightFolder` instead — nothing is copied that way. Which folders may be
 browsed is `INSIGHT_DOCUMENT_ROOTS`; there is no hardcoded `/work` any more, and

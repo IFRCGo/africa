@@ -30,7 +30,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 
 from data_track.models import Document
-from insights import review, weblink
+from insights import retention, review, weblink
 from insights.extractors import get_extractor
 from insights.forms import InsightInlineEditForm
 from insights.intake import SUFFIXES, catalogue_file
@@ -221,14 +221,23 @@ def _accept(job, upload, label):
 
     existing = Document.objects.filter(sha1=fingerprint).first()
     if existing is not None:
-        # Nothing is written: a second copy on disk of a file already
+        # Normally nothing is written: a second copy on disk of a file already
         # catalogued is pure cost. The document is attached to this batch so
         # it is extracted with the rest of it.
+        #
+        # UNLESS ITS COPY HAS BEEN RELEASED. insights.retention deletes the
+        # uploaded file once the reading is done or the retention cap passes,
+        # and a document with no file left is one step 2 cannot read: Docling
+        # would fail on every page and the document would silently keep
+        # whatever text it already had. So the bytes are stored again here, on
+        # a fresh clock, and this import can be read like any other.
         job.documents.add(existing)
+        restored = _restore_file(existing, upload, label)
+        moved = _adopt_pending(existing, job)
         return {
             "name": label, "outcome": "duplicate", "pages": existing.pages,
             "document_id": existing.id,
-            "message": "Already catalogued - the same file is in the database.",
+            "message": _duplicate_message(restored, moved),
         }
 
     row = InsightUpload.objects.create(file=upload, label=label)
@@ -255,6 +264,45 @@ def _accept(job, upload, label):
         "name": label, "outcome": "catalogued", "pages": document.pages,
         "document_id": document.id, "message": "",
     }
+
+
+def _restore_file(document, upload, label):
+    """Store this document's bytes again if nothing holds them any more.
+
+    The upload was read once already, to fingerprint it; chunks() seeks to 0
+    first, so it is still readable here.
+    """
+    if InsightUpload.objects.filter(document=document).exclude(file="").exists():
+        return False
+    InsightUpload.objects.create(file=upload, label=label, document=document)
+    return True
+
+
+def _adopt_pending(document, job):
+    """Move this document's un-reviewed statements to the batch re-importing it.
+
+    A REVIEW QUEUE BELONGS TO THE BATCH A PERSON IS LOOKING AT. The review step
+    lists Insight.objects.filter(job=job), so statements left pending on an
+    abandoned batch would be invisible to the batch that imported the same
+    document again - and the person would pay the model to extract them a
+    second time, to read the same quotes off the same pages.
+
+    Only pending rows move. A published or rejected statement is a decision,
+    and a decision stays with the run that produced it.
+    """
+    return (Insight.objects.filter(document=document, status="pending")
+            .exclude(job=job).update(job=job))
+
+
+def _duplicate_message(restored, moved):
+    """What the row on the intake screen says about a file already catalogued."""
+    parts = ["Already catalogued - the same file is in the database."]
+    if restored:
+        parts.append("Its copy had been released, so it was stored again for this batch.")
+    if moved:
+        parts.append(f"{moved} statement{'' if moved == 1 else 's'} still awaiting "
+                     f"review moved to this batch.")
+    return " ".join(parts)
 
 
 @require_POST
@@ -304,6 +352,12 @@ def read(request, job_id):
         # textless, which is the one state s02 cannot recover for an upload.
         return JsonResponse({"started": False, "message": "This batch is already being read."})
 
+    # A batch whose files the retention sweep took cannot be read, and the
+    # failure without this is silent: every document would come back badged
+    # "Docling failed" and quietly keep its weaker intake text.
+    if retention.released_documents(job):
+        return JsonResponse({"started": False, "message": retention.released_sentence()})
+
     path = log_path(job, "convert")
     path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -343,7 +397,15 @@ def read_done(request, job_id):
 
 
 def start(request):
-    """Step 1: the two pickers. No job exists until a file is actually sent."""
+    """Step 1: the two pickers. No job exists until a file is actually sent.
+
+    AND THE ONE PLACE THE RETENTION SWEEP IS SURE TO RUN. There is no scheduler
+    in this deployment - compose runs db, web and pgadmin - so the sweep rides
+    on the wizard's own front door, which is the page anybody who uploads
+    documents passes through. `manage.py prune_uploads` is the same sweep for a
+    host cron.
+    """
+    retention.sweep()
     return render(request, "insights/wizard_intake.html", page(request, wizard_step=1))
 
 
@@ -353,6 +415,7 @@ def job_step(request, job_id):
     Read off the job rather than kept in the session, so closing the tab loses
     nothing: the same URL reopens the batch where it actually is.
     """
+    retention.sweep()
     job = get_object_or_404(ExtractionJob, id=job_id)
     if job.status == "collecting":
         return render(request, "insights/wizard_intake.html",
@@ -360,7 +423,9 @@ def job_step(request, job_id):
     if job.status in READ_STATUSES:
         return render(request, "insights/wizard_read.html",
                       page(request, job=job, wizard_step=2,
-                           documents=_job_documents(job)))
+                           documents=_job_documents(job),
+                           released=retention.released_documents(job),
+                           released_sentence=retention.released_sentence()))
     if job.status in ("queued", "running", "failed"):
         return render(request, "insights/wizard_extract.html",
                       page(request, job=job, wizard_step=3))

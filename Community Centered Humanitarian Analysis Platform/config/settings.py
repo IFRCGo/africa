@@ -36,6 +36,16 @@ DASHBOARD_DATA_DIR = env_path("DASHBOARD_DATA_DIR", BASE_DIR / "dashboard" / "da
 MEDIA_ROOT = env_path("MEDIA_ROOT", BASE_DIR / "media")
 MEDIA_URL = "/media/"
 
+# How long an uploaded document stays on disk. It is a courier, not an archive:
+# what this platform keeps is the text read out of it and the statements a
+# person published, so the file is released once a document has no pending
+# statement left, and swept after this many minutes whether anybody reviewed it
+# or not. See insights/retention.py.
+# `or` rather than a default argument - an empty value in .env must fall back,
+# not be read as "delete every upload immediately".
+INSIGHT_UPLOAD_RETENTION_MINUTES = int(
+    os.environ.get("INSIGHT_UPLOAD_RETENTION_MINUTES") or 30)
+
 # The in-container extraction adapter (spec §8.2). Optional: with nothing set,
 # extraction is run by an agent on the host and loaded from mcp_cache/insights/.
 # `or` rather than a default argument - an empty value in .env must fall back.

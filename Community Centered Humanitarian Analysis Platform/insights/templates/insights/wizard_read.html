@@ -17,6 +17,19 @@
     costs money, and you get to look at this text before paying for it.
   </p>
 
+  {% if released %}
+  {% comment %}
+  Shown before the button rather than after the click, because the click is
+  refused: reading a batch whose files have gone badges every document "Docling
+  failed" and keeps the weaker intake text, saying nothing about why.
+  {% endcomment %}
+  <div class="wiz-note is-warn">
+    <p>{{ released_sentence }}</p>
+    <ul>{% for document in released %}<li>{{ document.file_name }}</li>{% endfor %}</ul>
+    <p><a href="{% url 'admin:insights_wizard_start' %}">Start a new import</a></p>
+  </div>
+  {% endif %}
+
   <p><button type="button" id="wiz-start" class="default">Read these documents</button></p>
 
   <div class="wiz-bar"><span id="wiz-bar-fill"></span></div>

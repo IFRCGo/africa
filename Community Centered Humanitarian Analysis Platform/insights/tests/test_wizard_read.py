@@ -16,7 +16,7 @@ from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from insights import wizard
-from insights.models import Conversion, ExtractionJob
+from insights.models import Conversion, ExtractionJob, InsightUpload
 
 
 class WizardReadTests(TestCase):
@@ -137,3 +137,62 @@ class WizardStepTwoLinkTests(TestCase):
 
     def test_step_two_is_inert_with_no_job_at_all(self):
         self.assertIsNone(wizard.step_links(None, current=1)[1]["url"])
+
+
+class ReleasedFilesTests(TestCase):
+    """Step 2 on a batch whose documents no longer have a file.
+
+    THE FAILURE THIS REPLACES WAS SILENT. Retention deletes an upload's file
+    after the cap, and convert_documents turns a missing file into a
+    per-document failure - so clicking Read on a swept batch badged every
+    document "Docling failed", kept the weaker intake text, and let extraction
+    run on it. Nothing said the files had gone, which is the one thing the
+    person needs to know: the way forward is a new import, not another click.
+    """
+
+    def setUp(self):
+        self.cache = tempfile.TemporaryDirectory()
+        self.addCleanup(self.cache.cleanup)
+        override = override_settings(MCP_CACHE_DIR=Path(self.cache.name))
+        override.enable()
+        self.addCleanup(override.disable)
+
+        self.user = User.objects.create_superuser("reviewer", "r@example.org", "pw")
+        self.client.force_login(self.user)
+        self.job = ExtractionJob.objects.create(status="collected", documents_total=1)
+        self.document = Document.objects.create(
+            file_name="report.pdf", rel_path="media/abc-report.pdf",
+            source_collection="insights", family="insight_source", sha1="a" * 40, pages=1)
+        self.job.documents.add(self.document)
+        # An upload row with no file is exactly what retention.release leaves.
+        InsightUpload.objects.create(file="", label="report.pdf", document=self.document)
+
+    def test_reading_a_released_batch_is_refused(self):
+        with mock.patch("insights.wizard.subprocess.Popen") as popen:
+            response = self.client.post(
+                reverse("admin:insights_wizard_read", args=[self.job.id]))
+
+        body = response.json()
+        self.assertFalse(body["started"])
+        self.assertIn("released", body["message"])
+        self.assertIn("new import", body["message"])
+        popen.assert_not_called()
+        self.job.refresh_from_db()
+        self.assertEqual(self.job.status, "collected")
+
+    def test_the_read_page_says_so_before_the_button_is_clicked(self):
+        response = self.client.get(reverse("admin:insights_wizard_job", args=[self.job.id]))
+        self.assertContains(response, "released")
+        self.assertContains(response, "new import")
+
+    def test_a_released_document_already_read_is_not_refused(self):
+        # Its text is Docling's and it is in the database. Nothing about the
+        # missing file stops the batch moving on.
+        Conversion.objects.create(document=self.document, job=self.job,
+                                  engine="docling", ok=True, pages=1)
+        with mock.patch("insights.wizard.subprocess.Popen") as popen:
+            response = self.client.post(
+                reverse("admin:insights_wizard_read", args=[self.job.id]))
+
+        self.assertTrue(response.json()["started"])
+        popen.assert_called_once()
