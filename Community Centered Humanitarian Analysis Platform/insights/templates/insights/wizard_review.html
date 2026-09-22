@@ -20,6 +20,19 @@
   {% endcomment %}
   {% regroup insights by document as by_document %}
   <table class="wiz-files">
+    {% comment %}
+    The header box selects the whole queue. It carries no name and no form
+    attribute - only the row boxes post, and a master that submitted itself
+    would send the decide view an id that is not an insight.
+    {% endcomment %}
+    {% if insights %}
+      <thead>
+        <tr>
+          <th><input type="checkbox" id="wiz-select-all"></th>
+          <th colspan="2"><label for="wiz-select-all">Select all pending statements</label></th>
+        </tr>
+      </thead>
+    {% endif %}
     <tbody>
       {% for group in by_document %}
         <tr><th colspan="3">

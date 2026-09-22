@@ -64,6 +64,29 @@ class ReviewStepTests(TestCase):
         self.assertEqual(self.other.status, "rejected")
         self.assertEqual(self.other.reviewed_by_id, self.user.id)
 
+    def test_a_select_all_box_heads_the_queue(self):
+        """One click selects the whole batch - the common case is publish all."""
+        body = self.client.get(self.url()).content.decode()
+        self.assertIn('id="wiz-select-all"', body)
+
+    def test_the_select_all_box_carries_no_name_of_its_own(self):
+        """It drives the row boxes; it must not post as a selected insight."""
+        body = self.client.get(self.url()).content.decode()
+        head = body[body.index('id="wiz-select-all"') - 120:
+                    body.index('id="wiz-select-all"') + 120]
+        self.assertNotIn('name="selected"', head)
+
+    def test_the_document_headings_carry_no_box_of_their_own(self):
+        """One box, at the head of the table - not one per report."""
+        body = self.client.get(self.url()).content.decode()
+        self.assertNotIn("wiz-select-group", body)
+        self.assertEqual(body.count('type="checkbox"'), 3)  # master + 2 rows
+
+    def test_an_empty_batch_offers_nothing_to_select(self):
+        Insight.objects.filter(job=self.job).delete()
+        body = self.client.get(self.url()).content.decode()
+        self.assertNotIn('id="wiz-select-all"', body)
+
     def test_a_decision_cannot_reach_another_jobs_insights(self):
         stray_job = ExtractionJob.objects.create(status="loaded")
         stray = Insight.objects.create(

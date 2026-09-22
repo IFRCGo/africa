@@ -1,8 +1,8 @@
-/* Step 4: fetch an edit panel into a row, and put the row back after a save.
+/* Step 4: the select-all boxes, and fetching an edit panel into a row.
  *
  * The panel is the same InsightPlaceForm the Insights screen uses, rendered
  * server-side with a per-row prefix. Nothing about place resolution is decided
- * here - this file moves markup around and nothing else.
+ * here - this file moves markup around and ticks boxes, nothing else.
  */
 (function () {
   "use strict";
@@ -17,6 +17,46 @@
   function rowFor(id) {
     return root.querySelector(".wiz-review-row[data-insight='" + id + "']");
   }
+
+  /* ------------------------------------------------------------------ *
+   * Selection.
+   *
+   * One box at the head of the table, over the whole queue. Only pending
+   * rows have an enabled box - an already published or rejected statement
+   * is rendered disabled - so everything below counts
+   * ":not(:disabled)" and nothing else, and "all" always means "all that
+   * can still be decided".
+   * ------------------------------------------------------------------ */
+  var master = document.getElementById("wiz-select-all");
+
+  function selectable() {
+    return Array.prototype.slice.call(
+      root.querySelectorAll("input[name='selected']:not(:disabled)"));
+  }
+
+  function sync() {
+    if (!master) { return; }
+    var boxes = selectable();
+    var ticked = boxes.filter(function (box) { return box.checked; }).length;
+    master.checked = boxes.length > 0 && ticked === boxes.length;
+    master.indeterminate = ticked > 0 && ticked < boxes.length;
+    /* Nothing left to decide in this batch: the box would be a control over
+     * an empty set, so it is turned off rather than lying. */
+    master.disabled = boxes.length === 0;
+  }
+
+  if (master) {
+    master.addEventListener("change", function () {
+      selectable().forEach(function (box) { box.checked = master.checked; });
+      sync();
+    });
+  }
+
+  root.addEventListener("change", function (event) {
+    if (event.target.name === "selected") { sync(); }
+  });
+
+  sync();
 
   function closePanel(row) {
     if (!row) { return; }
@@ -57,6 +97,9 @@
              * one correction. */
             rowFor(id).outerHTML = body.row;
             closePanel(rowFor(id));
+            /* The replacement fires no change event and the fresh row comes
+             * back unticked, so the select-all boxes have to be told. */
+            sync();
             return;
           }
           holder.querySelector("td").innerHTML = body.panel;
