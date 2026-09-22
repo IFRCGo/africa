@@ -507,7 +507,16 @@ function initSidebarResize() {
     const grip = document.createElement("div");
     grip.className = "side-grip";
     grip.title = "Drag to resize · double-click to reset";
-    el.appendChild(grip);
+    grip.dataset.for = id;
+    // Beside the panel, not inside it. A handle inside a panel that scrolls is
+    // laid out against the scroll origin, so it is only as tall as one
+    // screenful and it travels up out of reach as the panel is scrolled - the
+    // left sidebar, the one with enough in it to scroll, is where that shows.
+    // As a sibling the flex row stretches it over the full height, so the two
+    // sides behave alike at any scroll position. See .side-grip in app.css;
+    // the dataset name is what the responsive rules there match on to hide a
+    // grip together with the panel it belongs to.
+    el.insertAdjacentElement(cfg.edge === "right" ? "afterend" : "beforebegin", grip);
 
     let startX = 0, startW = 0;
 

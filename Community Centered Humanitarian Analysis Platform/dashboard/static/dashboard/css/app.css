@@ -667,9 +667,13 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
      1280 -> 1024   the right sidebar no longer fits
       900 ->  720   neither sidebar fits
    Change --ui-scale and these have to be re-multiplied by hand. */
-@media (max-width: 1024px) { #rightbar { display: none; } }
+@media (max-width: 1024px) {
+  /* The grip goes with the panel it resizes - otherwise it is left floating
+     over the map with nothing behind it to drag. */
+  #rightbar, .side-grip[data-for="rightbar"] { display: none; }
+}
 @media (max-width: 720px) {
-  #sidebar { display: none; }
+  #sidebar, .side-grip[data-for="sidebar"] { display: none; }
   #stat-cards .stat { min-width: 100px; }
   /* Two maps side by side need width there is not any of, so stack them. */
   #map-wrap.split #map-panes { flex-direction: column; }
@@ -773,19 +777,41 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 #sidebar  { width: var(--sidebar-w);  min-width: var(--sidebar-w); }
 #rightbar { width: var(--rightbar-w); min-width: var(--rightbar-w); }
 
-/* The handle sits inside the sidebar's inner edge, four pixels wide and
-   invisible until pointed at. A visible divider would be one more line on a
+/* The handle is a zero-width flex item sitting between a panel and the map,
+   a sibling of the panel rather than a child of it. That is the whole trick,
+   and it is worth saying why: inside a panel that scrolls, an absolutely
+   positioned handle is laid out against the padding box at the scroll origin,
+   so it is one screenful tall and it scrolls away with the content. The left
+   sidebar is the one with enough in it to scroll, which is why its grip was
+   the one that stopped answering partway down. As a sibling of the panel the
+   handle is stretched by the flex row itself: full height, at any scroll
+   position, on both sides from the same rule.
+
+   Width zero so it takes nothing from the layout. The 6px hit area is drawn
+   by ::before, centred on the seam and overhanging three pixels into each
+   neighbour - which it can do here, where the old handle could not: a panel
+   with overflow-y: auto also clips horizontally, so the overhang inside the
+   sidebar was never really there and the target was half the width it claimed.
+   Invisible until pointed at; a visible divider would be one more line on a
    page that already has plenty. */
 .side-grip {
-  position: absolute; top: 0; bottom: 0; width: 6px; z-index: 5;
-  cursor: col-resize; background: transparent;
-  transition: background .12s ease;
+  flex: 0 0 0px; width: 0; align-self: stretch;
+  position: relative; z-index: 5;
+  cursor: col-resize; touch-action: none;
 }
-.side-grip:hover, .side-grip.dragging { background: var(--accent, #d22730); opacity: .55; }
+.side-grip::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: -3px; width: 6px;
+  background: transparent; transition: background .12s ease;
+}
+.side-grip:hover::before, .side-grip.dragging::before {
+  background: var(--accent, #d22730); opacity: .55;
+}
+/* These two were added for the grip when it lived inside the panels. Nothing
+   now depends on them - the dropdowns carry their own containing block on .dd -
+   but removing a containing block is a layout change this fix has no reason to
+   make, so they stay. */
 #sidebar  { position: relative; }
 #rightbar { position: relative; }
-#sidebar  .side-grip { right: -3px; }
-#rightbar .side-grip { left: -3px; }
 
 /* While dragging, stop the pointer selecting text across the whole page. */
 body.resizing, body.resizing * { user-select: none !important; cursor: col-resize !important; }
