@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "features": [
     {
-      "id": "idmc-idu-impact-43295254367-displaced",
+      "id": "idmc-idu-impact-43295-254367-displaced",
       "bbox": [
         22.749531,
         4.66562,
@@ -67,7 +67,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-43295254367-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-43295-254367-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-43029252897-displaced",
+      "id": "idmc-idu-impact-43029-252897-displaced",
       "bbox": [
         21.987101,
         6.54289,
@@ -140,7 +140,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-43029252897-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-43029-252897-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -148,7 +148,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-80483511268-displaced",
+      "id": "idmc-idu-impact-80483-511268-displaced",
       "bbox": [
         22.823299,
         4.74353,
@@ -213,7 +213,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-80483511268-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-80483-511268-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -221,7 +221,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-43319254458-displaced",
+      "id": "idmc-idu-impact-43319-254458-displaced",
       "bbox": [
         20.528111,
         8.69855,
@@ -286,7 +286,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-43319254458-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-43319-254458-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -3030,7 +3030,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-43023252822-displaced",
+      "id": "idmc-idu-impact-43023-252822-displaced",
       "bbox": [
         21.353661,
         4.9601,
@@ -3095,7 +3095,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-43023252822-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-43023-252822-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -3103,7 +3103,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-43030252898-displaced",
+      "id": "idmc-idu-impact-43030-252898-displaced",
       "bbox": [
         19.25135,
         7.49892,
@@ -3121,9 +3121,9 @@
       "properties": {
         "title": "Central African Republic: Storm - Nana-Gribizi (Botto) - 14/03/2026",
         "datetime": "2026-03-14T00:00:00Z",
-        "end_datetime": "2026-03-15T00:00:00Z",
+        "end_datetime": "2026-03-15T00:00:00+00:00",
         "monty:corr_id": "20260314-CAF-877597-MH0301-1-GCDB",
-        "start_datetime": "2026-03-14T00:00:00Z",
+        "start_datetime": "2026-03-14T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -3168,7 +3168,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-43030252898-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-43030-252898-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -3176,7 +3176,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-41765246123-sheltered",
+      "id": "idmc-idu-impact-41765-246123-sheltered",
       "bbox": [
         18.27586,
         6.50861,
@@ -3194,9 +3194,9 @@
       "properties": {
         "title": "Central African Republic: Storm - Ouham-Fafa (Bouca) - 13/03/2026",
         "datetime": "2026-03-13T00:00:00Z",
-        "end_datetime": "2026-03-13T00:00:00Z",
+        "end_datetime": "2026-03-13T00:00:00+00:00",
         "monty:corr_id": "20260313-CAF-868592-MH0301-1-GCDB",
-        "start_datetime": "2026-03-13T00:00:00Z",
+        "start_datetime": "2026-03-13T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -3241,7 +3241,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-41765246123-sheltered",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-41765-246123-sheltered",
           "auth:refs": [
             "oidc"
           ]
@@ -8645,7 +8645,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-40753242806-displaced",
+      "id": "idmc-idu-impact-40753-242806-displaced",
       "bbox": [
         18.29109,
         7.30398,
@@ -8663,9 +8663,9 @@
       "properties": {
         "title": "Central African Republic: Wildfire - Ouham Fafa (Bezanga, Ndoubamoudou and Sido) - 27/02/2026",
         "datetime": "2026-02-28T00:00:00Z",
-        "end_datetime": "2026-02-28T00:00:00Z",
+        "end_datetime": "2026-02-28T00:00:00+00:00",
         "monty:corr_id": "20260227-CAF-875792-EN0205-1-GCDB",
-        "start_datetime": "2026-02-28T00:00:00Z",
+        "start_datetime": "2026-02-28T00:00:00+00:00",
         "monty:hazard_codes": [
           "EN0205",
           "WF",
@@ -8710,7 +8710,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-40753242806-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-40753-242806-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -8718,7 +8718,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-40754242810-displaced",
+      "id": "idmc-idu-impact-40754-242810-displaced",
       "bbox": [
         24.93903,
         5.10416,
@@ -8736,9 +8736,9 @@
       "properties": {
         "title": "Central African Republic: Wildfire – Haut-Mbomou (Tabane) – 27/02/2026",
         "datetime": "2026-02-27T00:00:00Z",
-        "end_datetime": "2026-02-27T00:00:00Z",
+        "end_datetime": "2026-02-27T00:00:00+00:00",
         "monty:corr_id": "20260227-CAF-856025-EN0205-1-GCDB",
-        "start_datetime": "2026-02-27T00:00:00Z",
+        "start_datetime": "2026-02-27T00:00:00+00:00",
         "monty:hazard_codes": [
           "EN0205",
           "WF",
@@ -8783,7 +8783,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-40754242810-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-40754-242810-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -8791,7 +8791,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-40753242805-displaced",
+      "id": "idmc-idu-impact-40753-242805-displaced",
       "bbox": [
         18.29109,
         7.30398,
@@ -8809,9 +8809,9 @@
       "properties": {
         "title": "Central African Republic: Wildfire - Ouham Fafa (Bezanga, Ndoubamoudou and Sido) - 27/02/2026",
         "datetime": "2026-02-27T00:00:00Z",
-        "end_datetime": "2026-02-27T00:00:00Z",
+        "end_datetime": "2026-02-27T00:00:00+00:00",
         "monty:corr_id": "20260227-CAF-875792-EN0205-1-GCDB",
-        "start_datetime": "2026-02-27T00:00:00Z",
+        "start_datetime": "2026-02-27T00:00:00+00:00",
         "monty:hazard_codes": [
           "EN0205",
           "WF",
@@ -8856,7 +8856,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-40753242805-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-40753-242805-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -8864,7 +8864,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-40755242811-displaced",
+      "id": "idmc-idu-impact-40755-242811-displaced",
       "bbox": [
         25.35956,
         5.35875,
@@ -8882,9 +8882,9 @@
       "properties": {
         "title": "Central African Republic: Storm – Haut-Mbomou (Kitessa) – 22/02/2026",
         "datetime": "2026-02-22T00:00:00Z",
-        "end_datetime": "2026-02-22T00:00:00Z",
+        "end_datetime": "2026-02-22T00:00:00+00:00",
         "monty:corr_id": "20260222-CAF-857828-MH0301-1-GCDB",
-        "start_datetime": "2026-02-22T00:00:00Z",
+        "start_datetime": "2026-02-22T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -8929,7 +8929,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-40755242811-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-40755-242811-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -8937,7 +8937,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-40750242796-displaced",
+      "id": "idmc-idu-impact-40750-242796-displaced",
       "bbox": [
         19.182301,
         6.99931,
@@ -8955,9 +8955,9 @@
       "properties": {
         "title": "Central African Republic: Storm - Nana-Grébizi (Kaga-Bandoro) - 10/02/2026",
         "datetime": "2026-02-10T00:00:00Z",
-        "end_datetime": "2026-02-11T00:00:00Z",
+        "end_datetime": "2026-02-11T00:00:00+00:00",
         "monty:corr_id": "20260210-CAF-872197-MH0301-1-GCDB",
-        "start_datetime": "2026-02-10T00:00:00Z",
+        "start_datetime": "2026-02-10T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -9002,7 +9002,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-40750242796-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-40750-242796-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -35990,7 +35990,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-40370240826-displaced",
+      "id": "idmc-idu-impact-40370-240826-displaced",
       "bbox": [
         16.63459,
         5.68133,
@@ -36008,9 +36008,9 @@
       "properties": {
         "title": "Central African Republic: Flood - Ouham-Pende (Bossemptele) - 21/01/2026",
         "datetime": "2026-01-21T00:00:00Z",
-        "end_datetime": "2026-01-21T00:00:00Z",
+        "end_datetime": "2026-01-21T00:00:00+00:00",
         "monty:corr_id": "20260121-CAF-861384-MH0600-1-GCDB",
-        "start_datetime": "2026-01-21T00:00:00Z",
+        "start_datetime": "2026-01-21T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -36055,7 +36055,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-40370240826-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-40370-240826-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -209180,7 +209180,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32769190975-displaced",
+      "id": "idmc-idu-impact-32769-190975-displaced",
       "bbox": [
         18.71596,
         8.22336,
@@ -209198,9 +209198,9 @@
       "properties": {
         "title": "Central African Republic: Flood - Ouham-Fafa (Sido/Sido) - 12/08/2025",
         "datetime": "2025-08-12T00:00:00Z",
-        "end_datetime": "2025-08-12T00:00:00Z",
-        "monty:corr_id": "20250812-CAF-MH0600-1-GCDB",
-        "start_datetime": "2025-08-12T00:00:00Z",
+        "end_datetime": "2025-08-12T00:00:00+00:00",
+        "monty:corr_id": "20250812-CAF-882994-MH0600-1-GCDB",
+        "start_datetime": "2025-08-12T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -209245,7 +209245,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32769190975-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32769-190975-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -221465,7 +221465,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-33652195314-displaced",
+      "id": "idmc-idu-impact-33652-195314-displaced",
       "bbox": [
         18.114019,
         4.80895,
@@ -221483,9 +221483,9 @@
       "properties": {
         "title": "Central African Republic: Flood - Ombella-Mpoko (Boali) - 01/07/2025",
         "datetime": "2025-07-01T00:00:00Z",
-        "end_datetime": "2025-08-16T00:00:00Z",
-        "monty:corr_id": "20250701-CAF-MH0600-1-GCDB",
-        "start_datetime": "2025-07-01T00:00:00Z",
+        "end_datetime": "2025-08-16T00:00:00+00:00",
+        "monty:corr_id": "20250701-CAF-852391-MH0600-1-GCDB",
+        "start_datetime": "2025-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -221530,7 +221530,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-33652195314-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-33652-195314-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -221538,7 +221538,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32770190977-displaced",
+      "id": "idmc-idu-impact-32770-190977-displaced",
       "bbox": [
         18.71596,
         8.22336,
@@ -221556,9 +221556,9 @@
       "properties": {
         "title": "Central African Republic: Flood - Ouham-Fafa (Sido/Sido) - 01/07/2025",
         "datetime": "2025-07-01T00:00:00Z",
-        "end_datetime": "2025-08-18T00:00:00Z",
-        "monty:corr_id": "20250701-CAF-MH0600-1-GCDB",
-        "start_datetime": "2025-07-01T00:00:00Z",
+        "end_datetime": "2025-08-18T00:00:00+00:00",
+        "monty:corr_id": "20250701-CAF-882994-MH0600-1-GCDB",
+        "start_datetime": "2025-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -221603,7 +221603,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32770190977-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32770-190977-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -221611,7 +221611,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32770190976-displaced",
+      "id": "idmc-idu-impact-32770-190976-displaced",
       "bbox": [
         18.71596,
         8.22336,
@@ -221629,9 +221629,9 @@
       "properties": {
         "title": "Central African Republic: Flood - Ouham-Fafa (Sido/Sido) - 01/07/2025",
         "datetime": "2025-07-01T00:00:00Z",
-        "end_datetime": "2025-07-31T00:00:00Z",
-        "monty:corr_id": "20250701-CAF-MH0600-1-GCDB",
-        "start_datetime": "2025-07-01T00:00:00Z",
+        "end_datetime": "2025-07-31T00:00:00+00:00",
+        "monty:corr_id": "20250701-CAF-882994-MH0600-1-GCDB",
+        "start_datetime": "2025-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -221676,7 +221676,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32770190976-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32770-190976-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -221684,7 +221684,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32188187839-displaced",
+      "id": "idmc-idu-impact-32188-187839-displaced",
       "bbox": [
         17.743851,
         7.06396,
@@ -221702,9 +221702,9 @@
       "properties": {
         "title": "Central African Republic: Storm - Ouham (Nanga Boguila) - 25/05/2025",
         "datetime": "2025-05-25T00:00:00Z",
-        "end_datetime": "2025-05-25T00:00:00Z",
-        "monty:corr_id": "20250525-CAF-MH0301-1-GCDB",
-        "start_datetime": "2025-05-25T00:00:00Z",
+        "end_datetime": "2025-05-25T00:00:00+00:00",
+        "monty:corr_id": "20250525-CAF-873989-MH0301-1-GCDB",
+        "start_datetime": "2025-05-25T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -221749,7 +221749,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32188187839-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32188-187839-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -221757,7 +221757,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32282188627-displaced",
+      "id": "idmc-idu-impact-32282-188627-displaced",
       "bbox": [
         20.64205,
         6.60347,
@@ -221775,9 +221775,9 @@
       "properties": {
         "title": "Central African Republic: Flood - Countrywide - 15/04/2025",
         "datetime": "2025-04-15T00:00:00Z",
-        "end_datetime": "2025-07-01T00:00:00Z",
-        "monty:corr_id": "20250415-CAF-MH0600-1-GCDB",
-        "start_datetime": "2025-04-15T00:00:00Z",
+        "end_datetime": "2025-07-01T00:00:00+00:00",
+        "monty:corr_id": "20250415-CAF-868604-MH0600-1-GCDB",
+        "start_datetime": "2025-04-15T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -221822,7 +221822,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32282188627-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32282-188627-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -221830,7 +221830,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-31267183499-displaced",
+      "id": "idmc-idu-impact-31267-183499-displaced",
       "bbox": [
         17.10191,
         5.31651,
@@ -221848,10 +221848,12 @@
       "properties": {
         "title": "Central African Republic: Storm - Ombella M'Poko - 01/03/2025",
         "datetime": "2025-03-01T00:00:00Z",
-        "end_datetime": "2025-03-31T00:00:00Z",
-        "monty:corr_id": "20250301-CAF-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-03-01T00:00:00Z",
+        "end_datetime": "2025-03-31T00:00:00+00:00",
+        "monty:corr_id": "20250301-CAF-857786-MH0301-1-GCDB",
+        "start_datetime": "2025-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -221893,7 +221895,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31267183499-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31267-183499-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -221901,7 +221903,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-31267183498-displaced",
+      "id": "idmc-idu-impact-31267-183498-displaced",
       "bbox": [
         17.10191,
         5.31651,
@@ -221919,10 +221921,12 @@
       "properties": {
         "title": "Central African Republic: Storm - Ombella M'Poko - 01/03/2025",
         "datetime": "2025-03-01T00:00:00Z",
-        "end_datetime": "2025-03-31T00:00:00Z",
-        "monty:corr_id": "20250301-CAF-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-03-01T00:00:00Z",
+        "end_datetime": "2025-03-31T00:00:00+00:00",
+        "monty:corr_id": "20250301-CAF-857786-MH0301-1-GCDB",
+        "start_datetime": "2025-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -221964,7 +221968,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31267183498-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31267-183498-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -221972,7 +221976,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-31266183495-displaced",
+      "id": "idmc-idu-impact-31266-183495-displaced",
       "bbox": [
         22.260469,
         4.65223,
@@ -221990,10 +221994,12 @@
       "properties": {
         "title": "Central African Republic: Storm - Mbomou (Gambo) - 01/03/2025",
         "datetime": "2025-03-01T00:00:00Z",
-        "end_datetime": "2025-03-31T00:00:00Z",
-        "monty:corr_id": "20250301-CAF-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-03-01T00:00:00Z",
+        "end_datetime": "2025-03-31T00:00:00+00:00",
+        "monty:corr_id": "20250301-CAF-852412-MH0301-1-GCDB",
+        "start_datetime": "2025-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -222035,7 +222041,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31266183495-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31266-183495-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222043,7 +222049,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-31265183494-displaced",
+      "id": "idmc-idu-impact-31265-183494-displaced",
       "bbox": [
         25.129271,
         5.02475,
@@ -222061,10 +222067,12 @@
       "properties": {
         "title": "Central African Republic: Storm - Haut-Mbomou (Zémio) - 01/03/2025",
         "datetime": "2025-03-01T00:00:00Z",
-        "end_datetime": "2025-03-31T00:00:00Z",
-        "monty:corr_id": "20250301-CAF-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-03-01T00:00:00Z",
+        "end_datetime": "2025-03-31T00:00:00+00:00",
+        "monty:corr_id": "20250301-CAF-854226-MH0301-1-GCDB",
+        "start_datetime": "2025-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -222106,7 +222114,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31265183494-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31265-183494-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222114,7 +222122,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-31264183493-displaced",
+      "id": "idmc-idu-impact-31264-183493-displaced",
       "bbox": [
         21.21093,
         5.04213,
@@ -222132,10 +222140,12 @@
       "properties": {
         "title": "Central African Republic: Storm - Basse-Kotto (Alindao) - 01/03/2025",
         "datetime": "2025-03-01T00:00:00Z",
-        "end_datetime": "2025-03-31T00:00:00Z",
-        "monty:corr_id": "20250301-CAF-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-03-01T00:00:00Z",
+        "end_datetime": "2025-03-31T00:00:00+00:00",
+        "monty:corr_id": "20250301-CAF-854207-MH0301-1-GCDB",
+        "start_datetime": "2025-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -222177,7 +222187,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31264183493-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31264-183493-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222185,7 +222195,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-31263183492-displaced",
+      "id": "idmc-idu-impact-31263-183492-displaced",
       "bbox": [
         20.64847,
         8.41115,
@@ -222203,10 +222213,12 @@
       "properties": {
         "title": "Central African Republic: Storm - Bamingui-Bangoran (Ndélé) - 01/03/2025",
         "datetime": "2025-03-01T00:00:00Z",
-        "end_datetime": "2025-03-31T00:00:00Z",
-        "monty:corr_id": "20250301-CAF-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-03-01T00:00:00Z",
+        "end_datetime": "2025-03-31T00:00:00+00:00",
+        "monty:corr_id": "20250301-CAF-884804-MH0301-1-GCDB",
+        "start_datetime": "2025-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -222248,7 +222260,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31263183492-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31263-183492-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222256,7 +222268,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29058175297-displaced",
+      "id": "idmc-idu-impact-29058-175297-displaced",
       "bbox": [
         16.38064,
         6.31474,
@@ -222275,9 +222287,11 @@
         "title": "Central African Republic: Flood - Ouham Pendé (Bozoum) - 01/09/2024",
         "datetime": "2024-09-28T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-866783-MH0600-1-GCDB",
         "start_datetime": "2024-09-28T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -222319,7 +222333,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29058175297-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29058-175297-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222327,18 +222341,18 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29054175298-displaced",
+      "id": "idmc-idu-impact-29054-175298-displaced",
       "bbox": [
-        21.987101,
-        6.54289,
-        21.987101,
-        6.54289
+        21.99255,
+        6.53311,
+        21.99255,
+        6.53311
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          21.987101,
-          6.54289
+          21.99255,
+          6.53311
         ]
       },
       "collection": "idmc-idu-impacts",
@@ -222346,9 +222360,11 @@
         "title": "Central African Republic: Flood - Haute-Kotto (Bria) - 01/09/2024",
         "datetime": "2024-09-20T00:00:00Z",
         "end_datetime": "2024-09-21T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-868611-MH0600-1-GCDB",
         "start_datetime": "2024-09-20T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -222390,7 +222406,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29054175298-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29054-175298-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222398,7 +222414,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29488175296-displaced",
+      "id": "idmc-idu-impact-29488-175296-displaced",
       "bbox": [
         22.553921,
         4.31256,
@@ -222417,9 +222433,11 @@
         "title": "Central African Republic: Flood - Mbomou (Ouango) - 13/09/2024",
         "datetime": "2024-09-13T00:00:00Z",
         "end_datetime": "2024-09-20T00:00:00+00:00",
-        "monty:corr_id": "20240913-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240913-CAF-848814-MH0600-1-GCDB",
         "start_datetime": "2024-09-13T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -222461,7 +222479,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29488175296-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29488-175296-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222469,7 +222487,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29284174626-displaced",
+      "id": "idmc-idu-impact-29284-174626-displaced",
       "bbox": [
         18.550911,
         4.39072,
@@ -222488,9 +222506,11 @@
         "title": "Central African Republic: Flood - Bangui (Bangui) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-848794-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -222532,7 +222552,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29284174626-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29284-174626-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222540,7 +222560,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29283174625-displaced",
+      "id": "idmc-idu-impact-29283-174625-displaced",
       "bbox": [
         18.525049,
         4.33255,
@@ -222559,9 +222579,11 @@
         "title": "Central African Republic: Flood -  Ombella M'Poko (Bimbo) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-848793-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -222603,7 +222625,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29283174625-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29283-174625-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222611,7 +222633,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29058173172-displaced",
+      "id": "idmc-idu-impact-29058-173172-displaced",
       "bbox": [
         16.38064,
         6.31474,
@@ -222630,9 +222652,11 @@
         "title": "Central African Republic: Flood - Ouham Pendé (Bozoum) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-866783-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -222674,7 +222698,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29058173172-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29058-173172-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222682,18 +222706,18 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29054173168-displaced",
+      "id": "idmc-idu-impact-29054-173168-displaced",
       "bbox": [
-        21.987101,
-        6.54289,
-        21.987101,
-        6.54289
+        21.99255,
+        6.53311,
+        21.99255,
+        6.53311
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          21.987101,
-          6.54289
+          21.99255,
+          6.53311
         ]
       },
       "collection": "idmc-idu-impacts",
@@ -222701,9 +222725,11 @@
         "title": "Central African Republic: Flood - Haute-Kotto (Bria) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-868611-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -222745,7 +222771,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29054173168-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29054-173168-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222753,7 +222779,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29053173167-displaced",
+      "id": "idmc-idu-impact-29053-173167-displaced",
       "bbox": [
         22.780991,
         10.2962,
@@ -222772,9 +222798,11 @@
         "title": "Central African Republic: Flood - Vakaga (Birao) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-902815-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -222816,7 +222844,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29053173167-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29053-173167-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222824,7 +222852,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29051173165-displaced",
+      "id": "idmc-idu-impact-29051-173165-displaced",
       "bbox": [
         22.785219,
         5.69822,
@@ -222843,9 +222871,11 @@
         "title": "Central African Republic: Flood -  Mbomou (Bakouma) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-861415-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -222887,7 +222917,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29051173165-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29051-173165-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222895,7 +222925,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29048173160-displaced",
+      "id": "idmc-idu-impact-29048-173160-displaced",
       "bbox": [
         18.29109,
         7.30398,
@@ -222914,9 +222944,11 @@
         "title": "Central African Republic: Flood - Ouham - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-875792-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -222958,7 +222990,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29048173160-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29048-173160-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -222966,7 +222998,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29048173159-displaced",
+      "id": "idmc-idu-impact-29048-173159-displaced",
       "bbox": [
         18.29109,
         7.30398,
@@ -222985,9 +223017,11 @@
         "title": "Central African Republic: Flood - Ouham - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-875792-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -223029,7 +223063,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29048173159-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29048-173159-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -223037,7 +223071,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29047173158-displaced",
+      "id": "idmc-idu-impact-29047-173158-displaced",
       "bbox": [
         20.64847,
         8.41115,
@@ -223056,9 +223090,11 @@
         "title": "Central African Republic: Flood - Bamingui-Bangoran - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-884804-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -223100,7 +223136,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29047173158-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29047-173158-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -223108,7 +223144,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29047173157-displaced",
+      "id": "idmc-idu-impact-29047-173157-displaced",
       "bbox": [
         20.64847,
         8.41115,
@@ -223127,9 +223163,11 @@
         "title": "Central African Republic: Flood - Bamingui-Bangoran - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-884804-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -223171,7 +223209,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29047173157-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29047-173157-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -224487,7 +224525,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26998163227-displaced",
+      "id": "idmc-idu-impact-26998-163227-displaced",
       "bbox": [
         23.4284,
         5.43178,
@@ -224506,9 +224544,11 @@
         "title": "Central African Republic: Flood - Mbomou - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-CAF-857818-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -224550,7 +224590,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26998163227-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26998-163227-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -224558,7 +224598,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26997163151-displaced",
+      "id": "idmc-idu-impact-26997-163151-displaced",
       "bbox": [
         18.62434,
         7.69208,
@@ -224577,9 +224617,11 @@
         "title": "Central African Republic: Flood - Ouham - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-CAF-879394-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -224621,7 +224663,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26997163151-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26997-163151-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -224629,7 +224671,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26997161018-displaced",
+      "id": "idmc-idu-impact-26997-161018-displaced",
       "bbox": [
         18.62434,
         7.69208,
@@ -224648,9 +224690,11 @@
         "title": "Central African Republic: Flood - Ouham - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-CAF-879394-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -224692,7 +224736,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26997161018-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26997-161018-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -224700,7 +224744,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26594161017-displaced",
+      "id": "idmc-idu-impact-26594-161017-displaced",
       "bbox": [
         20.64205,
         6.60347,
@@ -224719,9 +224763,11 @@
         "title": "Central African Republic: Flood - Countrywide - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-CAF-868604-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -224763,7 +224809,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26594161017-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26594-161017-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -224771,18 +224817,18 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26774161857-displaced",
+      "id": "idmc-idu-impact-26774-161857-displaced",
       "bbox": [
-        16.994551,
-        7.30323,
-        16.994551,
-        7.30323
+        18.440331,
+        7.45344,
+        18.440331,
+        7.45344
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          16.994551,
-          7.30323
+          18.440331,
+          7.45344
         ]
       },
       "collection": "idmc-idu-impacts",
@@ -224790,9 +224836,11 @@
         "title": "Central African Republic: Flood - Ouham - 03/07/2024",
         "datetime": "2024-07-12T00:00:00Z",
         "end_datetime": "2024-07-13T00:00:00+00:00",
-        "monty:corr_id": "20240703-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240703-CAF-877593-MH0600-1-GCDB",
         "start_datetime": "2024-07-12T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -224834,7 +224882,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26774161857-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26774-161857-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -224842,18 +224890,18 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26774161855-displaced",
+      "id": "idmc-idu-impact-26774-161855-displaced",
       "bbox": [
-        16.994551,
-        7.30323,
-        16.994551,
-        7.30323
+        18.440331,
+        7.45344,
+        18.440331,
+        7.45344
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          16.994551,
-          7.30323
+          18.440331,
+          7.45344
         ]
       },
       "collection": "idmc-idu-impacts",
@@ -224861,9 +224909,11 @@
         "title": "Central African Republic: Flood - Ouham - 03/07/2024",
         "datetime": "2024-07-03T00:00:00Z",
         "end_datetime": "2024-07-04T00:00:00+00:00",
-        "monty:corr_id": "20240703-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240703-CAF-877593-MH0600-1-GCDB",
         "start_datetime": "2024-07-03T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -224905,7 +224955,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26774161855-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26774-161855-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -224913,7 +224963,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26595161034-displaced",
+      "id": "idmc-idu-impact-26595-161034-displaced",
       "bbox": [
         20.64205,
         6.60347,
@@ -224932,9 +224982,11 @@
         "title": "Central African Republic: Flood - Countrywide - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-07-31T00:00:00+00:00",
-        "monty:corr_id": "20240701-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240701-CAF-868604-MH0600-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -224976,7 +225028,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26595161034-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26595-161034-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -224984,7 +225036,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-25706156844-displaced",
+      "id": "idmc-idu-impact-25706-156844-displaced",
       "bbox": [
         16.432501,
         7.2407,
@@ -225003,9 +225055,11 @@
         "title": "Central African Republic: Flood - Ouham Pendé (Paoua) - 28/05/2024",
         "datetime": "2024-05-28T00:00:00Z",
         "end_datetime": "2024-06-04T00:00:00+00:00",
-        "monty:corr_id": "20240528-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240528-CAF-873983-MH0600-1-GCDB",
         "start_datetime": "2024-05-28T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -225047,7 +225101,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-25706156844-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-25706-156844-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -225055,7 +225109,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24040148320-displaced",
+      "id": "idmc-idu-impact-24040-148320-displaced",
       "bbox": [
         17.386483666666667,
         5.329636666666667,
@@ -225074,9 +225128,11 @@
         "title": "Central African Republic: Flood - Bangui, Mambéré-Kadéï, Ouham - 12/05/2024",
         "datetime": "2024-05-12T00:00:00Z",
         "end_datetime": "2024-05-15T00:00:00+00:00",
-        "monty:corr_id": "20240512-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240512-CAF-857788-MH0600-1-GCDB",
         "start_datetime": "2024-05-12T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -225118,7 +225174,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24040148320-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24040-148320-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -225126,7 +225182,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-25705156842-displaced",
+      "id": "idmc-idu-impact-25705-156842-displaced",
       "bbox": [
         17.27626,
         6.99102,
@@ -225145,9 +225201,11 @@
         "title": "Central African Republic: Flood - Ouham (Nana-Bakassa) - 05/03/2024",
         "datetime": "2024-03-05T00:00:00Z",
         "end_datetime": "2024-03-06T00:00:00+00:00",
-        "monty:corr_id": "20240305-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240305-CAF-872187-MH0600-1-GCDB",
         "start_datetime": "2024-03-05T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -225189,7 +225247,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-25705156842-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-25705-156842-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -225545,7 +225603,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20844134090-displaced",
+      "id": "idmc-idu-impact-20844-134090-displaced",
       "bbox": [
         22.553921,
         4.31256,
@@ -225564,9 +225622,11 @@
         "title": "Central African Republic: Flood - Mbomou (Ouango) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-CAF-848814-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -225608,7 +225668,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20844134090-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20844-134090-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -225616,7 +225676,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20843134088-displaced",
+      "id": "idmc-idu-impact-20843-134088-displaced",
       "bbox": [
         21.519455,
         4.63485,
@@ -225635,9 +225695,11 @@
         "title": "Central African Republic: Flood - Basse-Kotto - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-CAF-850608-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -225679,7 +225741,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20843134088-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20843-134088-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -225687,7 +225749,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20843134087-displaced",
+      "id": "idmc-idu-impact-20843-134087-displaced",
       "bbox": [
         21.519455,
         4.63485,
@@ -225706,9 +225768,11 @@
         "title": "Central African Republic: Flood - Basse-Kotto - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-CAF-850608-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -225750,7 +225814,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20843134087-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20843-134087-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -225758,7 +225822,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20843134086-displaced",
+      "id": "idmc-idu-impact-20843-134086-displaced",
       "bbox": [
         21.519455,
         4.63485,
@@ -225777,9 +225841,11 @@
         "title": "Central African Republic: Flood - Basse-Kotto - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-CAF-850608-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -225821,7 +225887,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20843134086-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20843-134086-displaced",
           "auth:refs": [
             "oidc"
           ]

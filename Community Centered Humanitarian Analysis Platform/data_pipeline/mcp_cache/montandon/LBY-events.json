@@ -602,16 +602,16 @@
     {
       "id": "idmc-idu-event-28451",
       "bbox": [
-        12.81466,
-        32.721539,
-        12.81466,
-        32.721539
+        13.63968,
+        32.437111,
+        13.63968,
+        32.437111
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          12.81466,
-          32.721539
+          13.63968,
+          32.437111
         ]
       },
       "collection": "idmc-idu-events",
@@ -619,9 +619,11 @@
         "title": "Libya: Flood - Tripoli,  Al Jabal Al Gharbi,  Misrata, Al Margeb - 05/12/2024",
         "datetime": "2024-12-05T00:00:00Z",
         "end_datetime": "2024-12-09T00:00:00+00:00",
-        "monty:corr_id": "20241205-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241205-LBY-1100769-MH0600-1-GCDB",
         "start_datetime": "2024-12-05T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -794,16 +796,16 @@
     {
       "id": "idmc-idu-event-26298",
       "bbox": [
-        10.242303333333334,
-        25.073656666666665,
-        10.242303333333334,
-        25.073656666666665
+        10.242303333333332,
+        25.07365666666667,
+        10.242303333333332,
+        25.07365666666667
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          10.242303333333334,
-          25.073656666666665
+          10.242303333333332,
+          25.07365666666667
         ]
       },
       "collection": "idmc-idu-events",
@@ -811,9 +813,11 @@
         "title": "Libya: Flood - Ghat - 16/08/2024",
         "datetime": "2024-08-16T00:00:00Z",
         "end_datetime": "2024-08-16T00:00:00+00:00",
-        "monty:corr_id": "20240816-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240816-LBY-1035952-MH0600-1-GCDB",
         "start_datetime": "2024-08-16T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -939,9 +943,11 @@
         "title": "Libya: Flood - (Kufra) - 11/08/2024",
         "datetime": "2024-08-11T00:00:00Z",
         "end_datetime": "2024-08-11T00:00:00+00:00",
-        "monty:corr_id": "20240811-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240811-LBY-1027017-MH0600-1-GCDB",
         "start_datetime": "2024-08-11T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -1003,9 +1009,11 @@
         "title": "Libya: Flood (Groundwater rise) -  Misrata (Zliten) - 31/01/2024",
         "datetime": "2024-01-30T00:00:00Z",
         "end_datetime": "2024-01-31T00:00:00+00:00",
-        "monty:corr_id": "20240130-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240130-LBY-1102574-MH0600-1-GCDB",
         "start_datetime": "2024-01-30T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -1131,9 +1139,11 @@
         "title": "Libya: Storm - Ghat, Wadi al Hayaa - 30/09/2023",
         "datetime": "2023-09-30T00:00:00Z",
         "end_datetime": "2023-10-02T00:00:00+00:00",
-        "monty:corr_id": "20230930-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230930-LBY-1034152-MH0600-1-GCDB",
         "start_datetime": "2023-09-30T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -1233,6 +1243,72 @@
           "rel": "self",
           "type": "application/geo+json",
           "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1102204",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-22181",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-02T00:00:00Z",
+        "end_datetime": "2023-09-19T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-02T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-22181",
           "auth:refs": [
             "oidc"
           ]

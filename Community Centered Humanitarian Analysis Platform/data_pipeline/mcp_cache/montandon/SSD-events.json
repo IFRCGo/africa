@@ -26263,9 +26263,9 @@
       "properties": {
         "title": "South Sudan: Flood - Lakes (Rumbek East) - 01/11/2025",
         "datetime": "2025-11-01T00:00:00Z",
-        "end_datetime": "2025-11-30T00:00:00Z",
+        "end_datetime": "2025-11-30T00:00:00+00:00",
         "monty:corr_id": "20251101-SSD-870452-MH0600-1-GCDB",
-        "start_datetime": "2025-11-01T00:00:00Z",
+        "start_datetime": "2025-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -26329,9 +26329,9 @@
       "properties": {
         "title": "South Sudan: Flood - Unity (Guit) - 01/11/2025",
         "datetime": "2025-11-01T00:00:00Z",
-        "end_datetime": "2025-11-30T00:00:00Z",
+        "end_datetime": "2025-11-30T00:00:00+00:00",
         "monty:corr_id": "20251101-SSD-884852-MH0600-1-GCDB",
-        "start_datetime": "2025-11-01T00:00:00Z",
+        "start_datetime": "2025-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -26395,9 +26395,9 @@
       "properties": {
         "title": "South Sudan: Flood - Lakes (Yirol East) - 01/11/2025",
         "datetime": "2025-11-01T00:00:00Z",
-        "end_datetime": "2025-11-30T00:00:00Z",
+        "end_datetime": "2025-11-30T00:00:00+00:00",
         "monty:corr_id": "20251101-SSD-870455-MH0600-1-GCDB",
-        "start_datetime": "2025-11-01T00:00:00Z",
+        "start_datetime": "2025-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -26461,9 +26461,9 @@
       "properties": {
         "title": "South Sudan: Flood - Central Equatoria (Terekeka) - 01/11/2025",
         "datetime": "2025-11-01T00:00:00Z",
-        "end_datetime": "2025-11-30T00:00:00Z",
+        "end_datetime": "2025-11-30T00:00:00+00:00",
         "monty:corr_id": "20251101-SSD-857859-MH0600-1-GCDB",
-        "start_datetime": "2025-11-01T00:00:00Z",
+        "start_datetime": "2025-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -26527,9 +26527,9 @@
       "properties": {
         "title": "South Sudan: Flood - Jonglei (Pibor) - 01/11/2025",
         "datetime": "2025-11-01T00:00:00Z",
-        "end_datetime": "2025-11-30T00:00:00Z",
+        "end_datetime": "2025-11-30T00:00:00+00:00",
         "monty:corr_id": "20251101-SSD-870466-MH0600-1-GCDB",
-        "start_datetime": "2025-11-01T00:00:00Z",
+        "start_datetime": "2025-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -26575,27 +26575,27 @@
       ]
     },
     {
-      "id": "idmc-idu-event-36951",
+      "id": "idmc-idu-event-38848",
       "bbox": [
-        29.951929,
-        6.06013,
-        29.951929,
-        6.06013
+        31.173,
+        6.18471,
+        31.173,
+        6.18471
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          29.951929,
-          6.06013
+          31.173,
+          6.18471
         ]
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "South Sudan: Flood - Western Equatoria - 02/10/2025",
-        "datetime": "2025-10-02T00:00:00Z",
-        "end_datetime": "2025-10-02T00:00:00Z",
-        "monty:corr_id": "20251002-SSD-MH0600-1-GCDB",
-        "start_datetime": "2025-10-02T00:00:00Z",
+        "title": "South Sudan: Flood - Lakes (Awerial) - 30/09/2025",
+        "datetime": "2025-09-30T00:00:00Z",
+        "end_datetime": "2025-10-08T00:00:00+00:00",
+        "monty:corr_id": "20250930-SSD-865057-MH0600-1-GCDB",
+        "start_datetime": "2025-09-30T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -26633,337 +26633,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-36951",
-          "auth:refs": [
-            "oidc"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "idmc-idu-event-36950",
-      "bbox": [
-        28.18019037791353,
-        8.609687879226678,
-        28.18019037791353,
-        8.609687879226678
-      ],
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          28.18019037791353,
-          8.609687879226678
-        ]
-      },
-      "collection": "idmc-idu-events",
-      "properties": {
-        "title": "South Sudan: Flood - Warrap - 02/10/2025",
-        "datetime": "2025-10-02T00:00:00Z",
-        "end_datetime": "2025-10-02T00:00:00Z",
-        "monty:corr_id": "20251002-SSD-MH0600-1-GCDB",
-        "start_datetime": "2025-10-02T00:00:00Z",
-        "monty:hazard_codes": [
-          "MH0600",
-          "FL",
-          "nat-hyd-flo-flo"
-        ],
-        "monty:country_codes": [
-          "SSD"
-        ]
-      },
-      "links": [
-        {
-          "rel": "collection",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "parent",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "root",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "self",
-          "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-36950",
-          "auth:refs": [
-            "oidc"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "idmc-idu-event-36949",
-      "bbox": [
-        32.108341,
-        9.8875,
-        32.108341,
-        9.8875
-      ],
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          32.108341,
-          9.8875
-        ]
-      },
-      "collection": "idmc-idu-events",
-      "properties": {
-        "title": "South Sudan: Flood - Upper Nile - 02/10/2025",
-        "datetime": "2025-10-02T00:00:00Z",
-        "end_datetime": "2025-10-02T00:00:00Z",
-        "monty:corr_id": "20251002-SSD-MH0600-1-GCDB",
-        "start_datetime": "2025-10-02T00:00:00Z",
-        "monty:hazard_codes": [
-          "MH0600",
-          "FL",
-          "nat-hyd-flo-flo"
-        ],
-        "monty:country_codes": [
-          "SSD"
-        ]
-      },
-      "links": [
-        {
-          "rel": "collection",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "parent",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "root",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "self",
-          "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-36949",
-          "auth:refs": [
-            "oidc"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "idmc-idu-event-36948",
-      "bbox": [
-        30.27622,
-        7.53936,
-        30.27622,
-        7.53936
-      ],
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          30.27622,
-          7.53936
-        ]
-      },
-      "collection": "idmc-idu-events",
-      "properties": {
-        "title": "South Sudan: Flood - Unity - 02/10/2025",
-        "datetime": "2025-10-02T00:00:00Z",
-        "end_datetime": "2025-10-02T00:00:00Z",
-        "monty:corr_id": "20251002-SSD-MH0600-1-GCDB",
-        "start_datetime": "2025-10-02T00:00:00Z",
-        "monty:hazard_codes": [
-          "MH0600",
-          "FL",
-          "nat-hyd-flo-flo"
-        ],
-        "monty:country_codes": [
-          "SSD"
-        ]
-      },
-      "links": [
-        {
-          "rel": "collection",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "parent",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "root",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "self",
-          "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-36948",
-          "auth:refs": [
-            "oidc"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "idmc-idu-event-36947",
-      "bbox": [
-        31.741671,
-        5.43667,
-        31.741671,
-        5.43667
-      ],
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          31.741671,
-          5.43667
-        ]
-      },
-      "collection": "idmc-idu-events",
-      "properties": {
-        "title": "South Sudan: Flood - Central Equatoria - 02/10/2025",
-        "datetime": "2025-10-02T00:00:00Z",
-        "end_datetime": "2025-10-02T00:00:00Z",
-        "monty:corr_id": "20251002-SSD-MH0600-1-GCDB",
-        "start_datetime": "2025-10-02T00:00:00Z",
-        "monty:hazard_codes": [
-          "MH0600",
-          "FL",
-          "nat-hyd-flo-flo"
-        ],
-        "monty:country_codes": [
-          "SSD"
-        ]
-      },
-      "links": [
-        {
-          "rel": "collection",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "parent",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "root",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "self",
-          "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-36947",
-          "auth:refs": [
-            "oidc"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "idmc-idu-event-36927",
-      "bbox": [
-        32.066667,
-        7.4,
-        32.066667,
-        7.4
-      ],
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          32.066667,
-          7.4
-        ]
-      },
-      "collection": "idmc-idu-events",
-      "properties": {
-        "title": "South Sudan: Flood - Jonglei - 02/10/2025",
-        "datetime": "2025-10-02T00:00:00Z",
-        "end_datetime": "2025-10-02T00:00:00Z",
-        "monty:corr_id": "20251002-SSD-MH0600-1-GCDB",
-        "start_datetime": "2025-10-02T00:00:00Z",
-        "monty:hazard_codes": [
-          "MH0600",
-          "FL",
-          "nat-hyd-flo-flo"
-        ],
-        "monty:country_codes": [
-          "SSD"
-        ]
-      },
-      "links": [
-        {
-          "rel": "collection",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "parent",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "root",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "self",
-          "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-36927",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-38848",
           "auth:refs": [
             "oidc"
           ]
@@ -26989,9 +26659,9 @@
       "properties": {
         "title": "South Sudan: Flood - Unity (Panyijiar) - 18/08/2025",
         "datetime": "2025-08-18T00:00:00Z",
-        "end_datetime": "2025-08-20T00:00:00Z",
-        "monty:corr_id": "20250818-SSD-MH0600-1-GCDB",
-        "start_datetime": "2025-08-18T00:00:00Z",
+        "end_datetime": "2025-08-20T00:00:00+00:00",
+        "monty:corr_id": "20250818-SSD-895651-MH0600-1-GCDB",
+        "start_datetime": "2025-08-18T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -27055,9 +26725,9 @@
       "properties": {
         "title": "South Sudan: Flood - Western Equatoria (Mvolo) - 08/08/2025",
         "datetime": "2025-08-08T00:00:00Z",
-        "end_datetime": "2025-08-15T00:00:00Z",
-        "monty:corr_id": "20250808-SSD-MH0600-1-GCDB",
-        "start_datetime": "2025-08-08T00:00:00Z",
+        "end_datetime": "2025-08-15T00:00:00+00:00",
+        "monty:corr_id": "20250808-SSD-865051-MH0600-1-GCDB",
+        "start_datetime": "2025-08-08T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -27913,9 +27583,9 @@
       "properties": {
         "title": "South Sudan: Flood - Jonglei (Bor) - 03/06/2025",
         "datetime": "2025-06-03T00:00:00Z",
-        "end_datetime": "2025-06-03T00:00:00Z",
-        "monty:corr_id": "20250603-SSD-MH0600-1-GCDB",
-        "start_datetime": "2025-06-03T00:00:00Z",
+        "end_datetime": "2025-06-03T00:00:00+00:00",
+        "monty:corr_id": "20250603-SSD-865059-MH0600-1-GCDB",
+        "start_datetime": "2025-06-03T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -27979,9 +27649,9 @@
       "properties": {
         "title": "South Sudan: Flood - Northern Bahr El Ghazal (Aweil North) - 31/05/2025",
         "datetime": "2025-05-31T00:00:00Z",
-        "end_datetime": "2025-11-13T00:00:00Z",
+        "end_datetime": "2025-11-13T00:00:00+00:00",
         "monty:corr_id": "20250531-SSD-888438-MH0600-1-GCDB",
-        "start_datetime": "2025-05-31T00:00:00Z",
+        "start_datetime": "2025-05-31T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -28027,27 +27697,27 @@
       ]
     },
     {
-      "id": "idmc-idu-event-33208",
+      "id": "idmc-idu-event-36951",
       "bbox": [
-        32.084221,
-        7.67316,
-        32.084221,
-        7.67316
+        29.951929,
+        6.06013,
+        29.951929,
+        6.06013
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          32.084221,
-          7.67316
+          29.951929,
+          6.06013
         ]
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "South Sudan: Flood - Jonglei - 31/05/2025",
+        "title": "South Sudan: Flood - Western Equatoria - 31/05/2025",
         "datetime": "2025-05-31T00:00:00Z",
-        "end_datetime": "2025-08-27T00:00:00Z",
-        "monty:corr_id": "20250531-SSD-MH0600-1-GCDB",
-        "start_datetime": "2025-05-31T00:00:00Z",
+        "end_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:corr_id": "20250531-SSD-865051-MH0600-1-GCDB",
+        "start_datetime": "2025-05-31T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -28085,7 +27755,337 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-33208",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-36951",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-36950",
+      "bbox": [
+        28.18019037791353,
+        8.609687879226678,
+        28.18019037791353,
+        8.609687879226678
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.18019037791353,
+          8.609687879226678
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "South Sudan: Flood - Warrap - 31/05/2025",
+        "datetime": "2025-05-31T00:00:00Z",
+        "end_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:corr_id": "20250531-SSD-886642-MH0600-1-GCDB",
+        "start_datetime": "2025-05-31T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "SSD"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-36950",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-36949",
+      "bbox": [
+        32.108341,
+        9.8875,
+        32.108341,
+        9.8875
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.108341,
+          9.8875
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "South Sudan: Flood - Upper Nile - 31/05/2025",
+        "datetime": "2025-05-31T00:00:00Z",
+        "end_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:corr_id": "20250531-SSD-899261-MH0600-1-GCDB",
+        "start_datetime": "2025-05-31T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "SSD"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-36949",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-36948",
+      "bbox": [
+        30.27622,
+        7.53936,
+        30.27622,
+        7.53936
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.27622,
+          7.53936
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "South Sudan: Flood - Unity - 31/05/2025",
+        "datetime": "2025-05-31T00:00:00Z",
+        "end_datetime": "2025-10-02T00:00:00+00:00",
+        "monty:corr_id": "20250531-SSD-877652-MH0600-1-GCDB",
+        "start_datetime": "2025-05-31T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "SSD"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-36948",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-36947",
+      "bbox": [
+        31.741671,
+        5.43667,
+        31.741671,
+        5.43667
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.741671,
+          5.43667
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "South Sudan: Flood - Central Equatoria - 31/05/2025",
+        "datetime": "2025-05-31T00:00:00Z",
+        "end_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:corr_id": "20250531-SSD-857859-MH0600-1-GCDB",
+        "start_datetime": "2025-05-31T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "SSD"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-36947",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-36927",
+      "bbox": [
+        32.084221,
+        7.67316,
+        32.084221,
+        7.67316
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.084221,
+          7.67316
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "South Sudan: Flood - Jonglei - 31/05/2025",
+        "datetime": "2025-05-31T00:00:00Z",
+        "end_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:corr_id": "20250531-SSD-879461-MH0600-1-GCDB",
+        "start_datetime": "2025-05-31T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "SSD"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-36927",
           "auth:refs": [
             "oidc"
           ]
@@ -28111,9 +28111,9 @@
       "properties": {
         "title": "South Sudan: Flood - Unity - 20/05/2025",
         "datetime": "2025-05-20T00:00:00Z",
-        "end_datetime": "2025-08-27T00:00:00Z",
-        "monty:corr_id": "20250520-SSD-MH0600-1-GCDB",
-        "start_datetime": "2025-05-20T00:00:00Z",
+        "end_datetime": "2025-08-27T00:00:00+00:00",
+        "monty:corr_id": "20250520-SSD-877652-MH0600-1-GCDB",
+        "start_datetime": "2025-05-20T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -28177,10 +28177,12 @@
       "properties": {
         "title": "South Sudan: Flood - Western Equatoria (Tambura) - 11/05/2025",
         "datetime": "2025-05-11T00:00:00Z",
-        "end_datetime": "2025-05-11T00:00:00Z",
-        "monty:corr_id": "20250511-SSD-NAT-HYD-FLO-FLO-1-GCDB",
-        "start_datetime": "2025-05-11T00:00:00Z",
+        "end_datetime": "2025-05-11T00:00:00+00:00",
+        "monty:corr_id": "20250511-SSD-859638-MH0600-1-GCDB",
+        "start_datetime": "2025-05-11T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -28241,10 +28243,12 @@
       "properties": {
         "title": "South Sudan: Wildfire - Eastern Equatoria (Magwi/Lobone) - 24/02/2025",
         "datetime": "2025-02-24T00:00:00Z",
-        "end_datetime": "2025-03-06T00:00:00Z",
-        "monty:corr_id": "20250224-SSD-NAT-CLI-WIL-WIL-1-GCDB",
-        "start_datetime": "2025-02-24T00:00:00Z",
+        "end_datetime": "2025-03-06T00:00:00+00:00",
+        "monty:corr_id": "20250224-SSD-847062-EN0205-1-GCDB",
+        "start_datetime": "2025-02-24T00:00:00+00:00",
         "monty:hazard_codes": [
+          "EN0205",
+          "WF",
           "nat-cli-wil-wil"
         ],
         "monty:country_codes": [
@@ -28354,26 +28358,28 @@
     {
       "id": "idmc-idu-event-29214",
       "bbox": [
-        28.665171,
-        8.28088,
-        28.665171,
-        8.28088
+        28.025169,
+        9.152,
+        28.025169,
+        9.152
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          28.665171,
-          8.28088
+          28.025169,
+          9.152
         ]
       },
       "collection": "idmc-idu-events",
       "properties": {
         "title": "South Sudan: Flood - Warrap (Twic) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
-        "end_datetime": "2024-12-06T00:00:00+00:00",
-        "monty:corr_id": "20241101-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "end_datetime": "2024-12-13T00:00:00+00:00",
+        "monty:corr_id": "20241101-SSD-892041-MH0600-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -28435,9 +28441,11 @@
         "title": "South Sudan: Flood - Central Equatoria - 28/10/2024",
         "datetime": "2024-10-28T00:00:00Z",
         "end_datetime": "2024-10-28T00:00:00+00:00",
-        "monty:corr_id": "20241028-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241028-SSD-854258-MH0600-1-GCDB",
         "start_datetime": "2024-10-28T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -28499,9 +28507,11 @@
         "title": "South Sudan: Flood - Unity (Panyijar) - 23/10/2024",
         "datetime": "2024-10-23T00:00:00Z",
         "end_datetime": "2024-11-21T00:00:00+00:00",
-        "monty:corr_id": "20241023-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241023-SSD-874054-MH0600-1-GCDB",
         "start_datetime": "2024-10-23T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -28563,9 +28573,11 @@
         "title": "South Sudan: Flood - Jonglei (Duk) - 22/10/2024",
         "datetime": "2024-10-22T00:00:00Z",
         "end_datetime": "2024-10-22T00:00:00+00:00",
-        "monty:corr_id": "20241022-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241022-SSD-874058-MH0600-1-GCDB",
         "start_datetime": "2024-10-22T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -28627,9 +28639,11 @@
         "title": "South Sudan: Flood - Lakes (Yirol East) - 18/10/2024",
         "datetime": "2024-10-18T00:00:00Z",
         "end_datetime": "2024-10-22T00:00:00+00:00",
-        "monty:corr_id": "20241018-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241018-SSD-870455-MH0600-1-GCDB",
         "start_datetime": "2024-10-18T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -28691,9 +28705,11 @@
         "title": "South Sudan: Flood - Unity (Guit) - 17/10/2024",
         "datetime": "2024-10-17T00:00:00Z",
         "end_datetime": "2024-10-17T00:00:00+00:00",
-        "monty:corr_id": "20241017-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241017-SSD-895651-MH0600-1-GCDB",
         "start_datetime": "2024-10-17T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -28755,9 +28771,11 @@
         "title": "South Sudan: Flood - Unity (Panyijar) - 15/10/2024",
         "datetime": "2024-10-15T00:00:00Z",
         "end_datetime": "2024-10-15T00:00:00+00:00",
-        "monty:corr_id": "20241015-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241015-SSD-877652-MH0600-1-GCDB",
         "start_datetime": "2024-10-15T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -28819,9 +28837,11 @@
         "title": "South Sudan: Flood - Warrap (Tonj South) - 15/10/2024",
         "datetime": "2024-10-15T00:00:00Z",
         "end_datetime": "2024-10-20T00:00:00+00:00",
-        "monty:corr_id": "20241015-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241015-SSD-884844-MH0600-1-GCDB",
         "start_datetime": "2024-10-15T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -28883,9 +28903,11 @@
         "title": "South Sudan: Flood - Unity (Rubkona) - 10/10/2024",
         "datetime": "2024-10-10T00:00:00Z",
         "end_datetime": "2024-11-29T00:00:00+00:00",
-        "monty:corr_id": "20241010-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241010-SSD-895651-MH0600-1-GCDB",
         "start_datetime": "2024-10-10T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -28930,16 +28952,16 @@
     {
       "id": "idmc-idu-event-29681",
       "bbox": [
-        29.99555,
-        8.59318,
-        29.99555,
-        8.59318
+        30.024825,
+        8.493694999999999,
+        30.024825,
+        8.493694999999999
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          29.99555,
-          8.59318
+          30.024825,
+          8.493694999999999
         ]
       },
       "collection": "idmc-idu-events",
@@ -28947,9 +28969,11 @@
         "title": "South Sudan: Flood - Unity (Koch) - 09/10/2024",
         "datetime": "2024-10-09T00:00:00Z",
         "end_datetime": "2024-12-03T00:00:00+00:00",
-        "monty:corr_id": "20241009-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241009-SSD-886651-MH0600-1-GCDB",
         "start_datetime": "2024-10-09T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29011,9 +29035,11 @@
         "title": "South Sudan: Flood - Unity (Mayom) - 09/10/2024",
         "datetime": "2024-10-09T00:00:00Z",
         "end_datetime": "2024-11-28T00:00:00+00:00",
-        "monty:corr_id": "20241009-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241009-SSD-892047-MH0600-1-GCDB",
         "start_datetime": "2024-10-09T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29075,9 +29101,11 @@
         "title": "South Sudan: Flood - Jonglei - 07/10/2024",
         "datetime": "2024-10-07T00:00:00Z",
         "end_datetime": "2024-10-07T00:00:00+00:00",
-        "monty:corr_id": "20241007-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241007-SSD-886661-MH0600-1-GCDB",
         "start_datetime": "2024-10-07T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29139,9 +29167,11 @@
         "title": "South Sudan: Flood - Upper Nile (Malakal) - 02/10/2024",
         "datetime": "2024-10-02T00:00:00Z",
         "end_datetime": "2024-10-04T00:00:00+00:00",
-        "monty:corr_id": "20241002-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241002-SSD-895659-MH0600-1-GCDB",
         "start_datetime": "2024-10-02T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29203,9 +29233,11 @@
         "title": "South Sudan: Flood - Warrap (Gogrial West) - 26/09/2024",
         "datetime": "2024-09-26T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240926-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240926-SSD-884844-MH0600-1-GCDB",
         "start_datetime": "2024-09-26T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29267,9 +29299,11 @@
         "title": "South Sudan: Flood - Jonglei (Pigi) - 25/09/2024",
         "datetime": "2024-09-25T00:00:00Z",
         "end_datetime": "2024-10-02T00:00:00+00:00",
-        "monty:corr_id": "20240925-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240925-SSD-879461-MH0600-1-GCDB",
         "start_datetime": "2024-09-25T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29331,9 +29365,11 @@
         "title": "South Sudan: Flood - Lakes (Rumbek East/Pacong) - 23/09/2024",
         "datetime": "2024-09-23T00:00:00Z",
         "end_datetime": "2024-11-17T00:00:00+00:00",
-        "monty:corr_id": "20240923-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240923-SSD-870452-MH0600-1-GCDB",
         "start_datetime": "2024-09-23T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29395,9 +29431,11 @@
         "title": "South Sudan: Flood - Eastern Equatoria (Lafon) - 16/09/2024",
         "datetime": "2024-09-16T00:00:00Z",
         "end_datetime": "2024-09-16T00:00:00+00:00",
-        "monty:corr_id": "20240916-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240916-SSD-854263-MH0600-1-GCDB",
         "start_datetime": "2024-09-16T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29459,9 +29497,11 @@
         "title": "South Sudan: Flood - Jonglei (Ayod) - 13/09/2024",
         "datetime": "2024-09-13T00:00:00Z",
         "end_datetime": "2024-11-30T00:00:00+00:00",
-        "monty:corr_id": "20240913-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240913-SSD-883058-MH0600-1-GCDB",
         "start_datetime": "2024-09-13T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29523,9 +29563,11 @@
         "title": "South Sudan: Flood - Unity (Mayiendit/Tutnyang) - 12/09/2024",
         "datetime": "2024-09-12T00:00:00Z",
         "end_datetime": "2024-11-19T00:00:00+00:00",
-        "monty:corr_id": "20240912-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240912-SSD-884851-MH0600-1-GCDB",
         "start_datetime": "2024-09-12T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29587,9 +29629,11 @@
         "title": "South Sudan: Flood - Upper Nile (Nasir) - 08/09/2024",
         "datetime": "2024-09-08T00:00:00Z",
         "end_datetime": "2024-11-20T00:00:00+00:00",
-        "monty:corr_id": "20240908-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240908-SSD-886666-MH0600-1-GCDB",
         "start_datetime": "2024-09-08T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29651,9 +29695,11 @@
         "title": "South Sudan: Flood - Lakes (Rumbek East) - 05/09/2024",
         "datetime": "2024-09-05T00:00:00Z",
         "end_datetime": "2024-09-07T00:00:00+00:00",
-        "monty:corr_id": "20240905-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240905-SSD-870452-MH0600-1-GCDB",
         "start_datetime": "2024-09-05T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29715,9 +29761,11 @@
         "title": "South Sudan: Flood - Unity (Leer) - 02/09/2024",
         "datetime": "2024-09-02T00:00:00Z",
         "end_datetime": "2024-11-20T00:00:00+00:00",
-        "monty:corr_id": "20240902-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240902-SSD-884851-MH0600-1-GCDB",
         "start_datetime": "2024-09-02T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29779,9 +29827,11 @@
         "title": "South Sudan: Flood - Upper Nile (Fashoda) - 02/09/2024",
         "datetime": "2024-09-02T00:00:00Z",
         "end_datetime": "2024-11-22T00:00:00+00:00",
-        "monty:corr_id": "20240902-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240902-SSD-897461-MH0600-1-GCDB",
         "start_datetime": "2024-09-02T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29843,9 +29893,11 @@
         "title": "South Sudan: Flood - Western Bahr el Ghazal (Jur) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-SSD-874041-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29907,9 +29959,11 @@
         "title": "South Sudan: Flood - Northern Bahr el Ghazal - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-SSD-890235-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -29971,9 +30025,11 @@
         "title": "South Sudan: Flood - Western Equatoria (Nzara) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-07T00:00:00+00:00",
-        "monty:corr_id": "20240901-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-SSD-850642-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30101,9 +30157,11 @@
         "title": "South Sudan: Flood - Eastern Equatoria (Lafon) - 20/08/2024",
         "datetime": "2024-08-20T00:00:00Z",
         "end_datetime": "2024-08-27T00:00:00+00:00",
-        "monty:corr_id": "20240820-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240820-SSD-854263-MH0600-1-GCDB",
         "start_datetime": "2024-08-20T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30165,9 +30223,11 @@
         "title": "South Sudan: Flood - Jonglei (Uror) - 18/08/2024",
         "datetime": "2024-08-18T00:00:00Z",
         "end_datetime": "2024-08-29T00:00:00+00:00",
-        "monty:corr_id": "20240818-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240818-SSD-883061-MH0600-1-GCDB",
         "start_datetime": "2024-08-18T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30229,9 +30289,11 @@
         "title": "South Sudan: Flood - Jonglei (Ayod) - 16/08/2024",
         "datetime": "2024-08-16T00:00:00Z",
         "end_datetime": "2024-08-23T00:00:00+00:00",
-        "monty:corr_id": "20240816-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240816-SSD-883058-MH0600-1-GCDB",
         "start_datetime": "2024-08-16T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30293,9 +30355,11 @@
         "title": "South Sudan: Flood - Jonglei (Twic East/Panyagor) - 14/08/2024",
         "datetime": "2024-08-14T00:00:00Z",
         "end_datetime": "2024-08-21T00:00:00+00:00",
-        "monty:corr_id": "20240814-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240814-SSD-874058-MH0600-1-GCDB",
         "start_datetime": "2024-08-14T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30357,9 +30421,11 @@
         "title": "South Sudan: Flood - Unity (Panyijar/Nyal) - 10/08/2024",
         "datetime": "2024-08-10T00:00:00Z",
         "end_datetime": "2024-08-11T00:00:00+00:00",
-        "monty:corr_id": "20240810-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240810-SSD-879452-MH0600-1-GCDB",
         "start_datetime": "2024-08-10T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30421,9 +30487,11 @@
         "title": "South Sudan: Flood - Upper Nile (Renk) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-SSD-915465-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30485,9 +30553,11 @@
         "title": "South Sudan: Flood - Jonglei (Pochalla) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-SSD-874071-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30549,9 +30619,11 @@
         "title": "South Sudan: Flood - Central Equatoria (Terekeka) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-SSD-857859-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30596,16 +30668,16 @@
     {
       "id": "idmc-idu-event-27210",
       "bbox": [
-        31.558729,
-        6.20399,
-        31.558729,
-        6.20399
+        32.084221,
+        7.67316,
+        32.084221,
+        7.67316
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          31.558729,
-          6.20399
+          32.084221,
+          7.67316
         ]
       },
       "collection": "idmc-idu-events",
@@ -30613,9 +30685,11 @@
         "title": "South Sudan: Flood - Jonglei (Bor South) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-SSD-879461-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30677,9 +30751,11 @@
         "title": "South Sudan: Flood - Northern Bahr el Ghazal - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-SSD-890235-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30741,9 +30817,11 @@
         "title": "South Sudan: Flood - Unity (Mayendit) - 24/07/2024",
         "datetime": "2024-07-24T00:00:00Z",
         "end_datetime": "2024-07-31T00:00:00+00:00",
-        "monty:corr_id": "20240724-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240724-SSD-884851-MH0600-1-GCDB",
         "start_datetime": "2024-07-24T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30805,9 +30883,11 @@
         "title": "South Sudan: Flood - Jonglei (Fangak) - 19/07/2024",
         "datetime": "2024-07-19T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240719-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240719-SSD-879461-MH0600-1-GCDB",
         "start_datetime": "2024-07-19T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30869,9 +30949,11 @@
         "title": "South Sudan: Flood - Western Bahr el Ghazal (Jur) - 13/07/2024",
         "datetime": "2024-07-13T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240713-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240713-SSD-874041-MH0600-1-GCDB",
         "start_datetime": "2024-07-13T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30933,9 +31015,11 @@
         "title": "South Sudan: Flood - Unity - 08/07/2024",
         "datetime": "2024-07-08T00:00:00Z",
         "end_datetime": "2024-07-15T00:00:00+00:00",
-        "monty:corr_id": "20240708-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240708-SSD-879452-MH0600-1-GCDB",
         "start_datetime": "2024-07-08T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -30980,15 +31064,15 @@
     {
       "id": "idmc-idu-event-25888",
       "bbox": [
-        30.196618250000004,
+        30.19661825,
         8.2559525,
-        30.196618250000004,
+        30.19661825,
         8.2559525
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          30.196618250000004,
+          30.19661825,
           8.2559525
         ]
       },
@@ -30997,9 +31081,11 @@
         "title": "South Sudan: Flood - Unity (Leer) - 08/07/2024",
         "datetime": "2024-07-08T00:00:00Z",
         "end_datetime": "2024-07-18T00:00:00+00:00",
-        "monty:corr_id": "20240708-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240708-SSD-884852-MH0600-1-GCDB",
         "start_datetime": "2024-07-08T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31061,9 +31147,11 @@
         "title": "South Sudan: Flood - Unity (Mayom) - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-10-21T00:00:00+00:00",
-        "monty:corr_id": "20240701-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240701-SSD-892047-MH0600-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31108,16 +31196,16 @@
     {
       "id": "idmc-idu-event-27207",
       "bbox": [
-        26.94639,
-        8.92579,
-        26.94639,
-        8.92579
+        27.758181,
+        9.05779,
+        27.758181,
+        9.05779
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          26.94639,
-          8.92579
+          27.758181,
+          9.05779
         ]
       },
       "collection": "idmc-idu-events",
@@ -31125,9 +31213,11 @@
         "title": "South Sudan: Flood - Northern Bahr el Ghazal - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240701-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240701-SSD-892040-MH0600-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31189,9 +31279,11 @@
         "title": "South Sudan: Flood - Warrap - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240701-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240701-SSD-884844-MH0600-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31253,9 +31345,11 @@
         "title": "South Sudan: Flood - Upper Nile (Maiwut) - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240701-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240701-SSD-886670-MH0600-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31317,9 +31411,11 @@
         "title": "South Sudan: Flood - Warrap (Tonj North/Awul) - 17/06/2024",
         "datetime": "2024-06-17T00:00:00Z",
         "end_datetime": "2024-06-25T00:00:00+00:00",
-        "monty:corr_id": "20240617-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240617-SSD-884844-MH0600-1-GCDB",
         "start_datetime": "2024-06-17T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31381,9 +31477,11 @@
         "title": "South Sudan: Flood - Warrap (Tonj North/Akop) - 10/06/2024",
         "datetime": "2024-06-10T00:00:00Z",
         "end_datetime": "2024-06-10T00:00:00+00:00",
-        "monty:corr_id": "20240610-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240610-SSD-884846-MH0600-1-GCDB",
         "start_datetime": "2024-06-10T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31445,9 +31543,11 @@
         "title": "South Sudan: Flood - Jonglei (Ayod) - 01/06/2024",
         "datetime": "2024-06-01T00:00:00Z",
         "end_datetime": "2024-07-12T00:00:00+00:00",
-        "monty:corr_id": "20240601-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240601-SSD-883058-MH0600-1-GCDB",
         "start_datetime": "2024-06-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31509,9 +31609,11 @@
         "title": "South Sudan: Flood - Western Bahr el Ghazal (Wau/Wau) - 21/05/2024",
         "datetime": "2024-05-21T00:00:00Z",
         "end_datetime": "2024-05-21T00:00:00+00:00",
-        "monty:corr_id": "20240521-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240521-SSD-879441-MH0600-1-GCDB",
         "start_datetime": "2024-05-21T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31556,16 +31658,16 @@
     {
       "id": "idmc-idu-event-24823",
       "bbox": [
-        30.0,
-        9.5,
-        30.0,
-        9.5
+        30.241899,
+        7.72707,
+        30.241899,
+        7.72707
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          30,
-          9.5
+          30.241899,
+          7.72707
         ]
       },
       "collection": "idmc-idu-events",
@@ -31573,9 +31675,11 @@
         "title": "South Sudan: Flood - Unity (Panyijar) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-06-17T00:00:00+00:00",
-        "monty:corr_id": "20240501-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-SSD-879452-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31637,9 +31741,11 @@
         "title": "South Sudan: Flood - Upper Nile (Maban) - 02/11/2023",
         "datetime": "2023-11-02T00:00:00Z",
         "end_datetime": "2023-11-02T00:00:00+00:00",
-        "monty:corr_id": "20231102-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231102-SSD-901065-MH0600-1-GCDB",
         "start_datetime": "2023-11-02T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31701,9 +31807,11 @@
         "title": "South Sudan: Flood - Central Equatoria - 01/11/2023",
         "datetime": "2023-11-01T00:00:00Z",
         "end_datetime": "2023-11-30T00:00:00+00:00",
-        "monty:corr_id": "20231101-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231101-SSD-848854-MH0600-1-GCDB",
         "start_datetime": "2023-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31765,9 +31873,11 @@
         "title": "South Sudan: Drought - Central Equatoria - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-SSD-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20230901-SSD-857859-MH0401-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -31812,16 +31922,16 @@
     {
       "id": "idmc-idu-event-18504",
       "bbox": [
-        30.28753266666667,
-        5.370443333333334,
-        30.28753266666667,
-        5.370443333333334
+        30.287532666666664,
+        5.370443333333333,
+        30.287532666666664,
+        5.370443333333333
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          30.28753266666667,
-          5.370443333333334
+          30.287532666666664,
+          5.370443333333333
         ]
       },
       "collection": "idmc-idu-events",
@@ -31829,9 +31939,11 @@
         "title": "South Sudan: Flood - Western Equatoria - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230901-SSD-857852-MH0600-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31876,16 +31988,16 @@
     {
       "id": "idmc-idu-event-18499",
       "bbox": [
-        32.798401000000005,
-        11.834129999999995,
-        32.798401000000005,
-        11.834129999999995
+        32.798401,
+        11.83413,
+        32.798401,
+        11.83413
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          32.798401000000005,
-          11.834129999999995
+          32.798401,
+          11.83413
         ]
       },
       "collection": "idmc-idu-events",
@@ -31893,9 +32005,11 @@
         "title": "South Sudan: Flood - Upper Nile - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230901-SSD-915465-MH0600-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -31957,9 +32071,11 @@
         "title": "South Sudan: Flood - Upper Nile - 01/08/2023",
         "datetime": "2023-08-01T00:00:00Z",
         "end_datetime": "2023-08-31T00:00:00+00:00",
-        "monty:corr_id": "20230801-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230801-SSD-915465-MH0600-1-GCDB",
         "start_datetime": "2023-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -32021,9 +32137,11 @@
         "title": "South Sudan: Flood - Unity - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-SSD-895651-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -32085,9 +32203,11 @@
         "title": "South Sudan: Flood - Unity - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-SSD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230401-SSD-888450-MH0600-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [

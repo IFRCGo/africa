@@ -3848,13 +3848,13 @@
       "properties": {
         "title": "Ethiopia: Landslide/Wet mass movement - Southern (Kemba) - 10/03/2026",
         "datetime": "2026-03-10T00:00:00Z",
-        "end_datetime": "2026-03-11T00:00:00Z",
-        "monty:corr_id": "20260310-ETH-865087-GH0300-1-GCDB",
-        "start_datetime": "2026-03-10T00:00:00Z",
+        "end_datetime": "2026-03-11T00:00:00+00:00",
+        "monty:corr_id": "20260310-ETH-865087-GH0304-1-GCDB",
+        "start_datetime": "2026-03-10T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -7219,11 +7219,11 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Flood - Somali (Shabelle) - 01/10/2025",
+        "title": "Ethiopia: Flood - Somali - 01/10/2025",
         "datetime": "2025-10-01T00:00:00Z",
-        "end_datetime": "2025-10-31T00:00:00Z",
-        "monty:corr_id": "20251001-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-10-01T00:00:00Z",
+        "end_datetime": "2025-10-31T00:00:00+00:00",
+        "monty:corr_id": "20251001-ETH-866913-MH0600-1-GCDB",
+        "start_datetime": "2025-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -7285,11 +7285,11 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Flood - Oromia (West Guji) - 01/10/2025",
+        "title": "Ethiopia: Flood - Oromia - 01/10/2025",
         "datetime": "2025-10-01T00:00:00Z",
-        "end_datetime": "2025-10-31T00:00:00Z",
-        "monty:corr_id": "20251001-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-10-01T00:00:00Z",
+        "end_datetime": "2025-10-31T00:00:00+00:00",
+        "monty:corr_id": "20251001-ETH-892078-MH0600-1-GCDB",
+        "start_datetime": "2025-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -7351,11 +7351,11 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Earthquake - Afar (Zone 2) - 01/10/2025",
+        "title": "Ethiopia: Earthquake - Afar - 01/10/2025",
         "datetime": "2025-10-01T00:00:00Z",
-        "end_datetime": "2025-11-30T00:00:00Z",
-        "monty:corr_id": "20251001-ETH-GH0101-1-GCDB",
-        "start_datetime": "2025-10-01T00:00:00Z",
+        "end_datetime": "2025-10-31T00:00:00+00:00",
+        "monty:corr_id": "20251001-ETH-931704-GH0101-1-GCDB",
+        "start_datetime": "2025-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "GH0101",
           "EQ",
@@ -7551,11 +7551,11 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Flood - Gambela (Nuwer,  Agnewak) - 01/09/2025",
+        "title": "Ethiopia: Flood - Gambela - 01/09/2025",
         "datetime": "2025-09-01T00:00:00Z",
-        "end_datetime": "2025-09-30T00:00:00Z",
-        "monty:corr_id": "20250901-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-09-01T00:00:00Z",
+        "end_datetime": "2025-09-30T00:00:00+00:00",
+        "monty:corr_id": "20250901-ETH-883074-MH0600-1-GCDB",
+        "start_datetime": "2025-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -7617,11 +7617,11 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Flood - Oromia (East Shewa) - 01/09/2025",
+        "title": "Ethiopia: Flood - Oromia - 01/09/2025",
         "datetime": "2025-09-01T00:00:00Z",
-        "end_datetime": "2025-09-30T00:00:00Z",
-        "monty:corr_id": "20250901-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-09-01T00:00:00Z",
+        "end_datetime": "2025-09-30T00:00:00+00:00",
+        "monty:corr_id": "20250901-ETH-883095-MH0600-1-GCDB",
+        "start_datetime": "2025-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -7683,11 +7683,11 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Flood - Afar (Zone 3) - 01/09/2025",
+        "title": "Ethiopia: Flood - Afar - 01/09/2025",
         "datetime": "2025-09-01T00:00:00Z",
-        "end_datetime": "2025-09-30T00:00:00Z",
-        "monty:corr_id": "20250901-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-09-01T00:00:00Z",
+        "end_datetime": "2025-09-30T00:00:00+00:00",
+        "monty:corr_id": "20250901-ETH-899304-MH0600-1-GCDB",
+        "start_datetime": "2025-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -7749,15 +7749,15 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Landslide - Amhara (South Wello) - 01/09/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - Amhara - 01/09/2025",
         "datetime": "2025-09-01T00:00:00Z",
-        "end_datetime": "2025-09-30T00:00:00Z",
-        "monty:corr_id": "20250901-ETH-GH0300-1-GCDB",
-        "start_datetime": "2025-09-01T00:00:00Z",
+        "end_datetime": "2025-09-30T00:00:00+00:00",
+        "monty:corr_id": "20250901-ETH-908297-GH0304-1-GCDB",
+        "start_datetime": "2025-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -8906,11 +8906,11 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Flood - Gambela (Nuwer, Agnewak) - 01/08/2025",
+        "title": "Ethiopia: Flood - Gambela - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-883074-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -8958,25 +8958,25 @@
     {
       "id": "idmc-idu-event-32962",
       "bbox": [
-        37.856892,
-        9.10185,
-        37.856892,
-        9.10185
+        37.04285,
+        9.42792,
+        37.04285,
+        9.42792
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          37.856892,
-          9.10185
+          37.04285,
+          9.42792
         ]
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Flood - Oromia (East Wellega,  West Shewa) - 01/08/2025",
+        "title": "Ethiopia: Flood - Oromia - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-893886-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -9040,9 +9040,9 @@
       "properties": {
         "title": "Ethiopia: Flood - Contested Areas - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-937088-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -9104,11 +9104,11 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Flood - Afar (Zone 1, Zone 3) - 01/08/2025",
+        "title": "Ethiopia: Flood - Afar - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-899304-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -9170,15 +9170,15 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Landslide - South Ethiopia (Wolayita, Gedeo) - 01/08/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - South Ethiopia - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-GH0300-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-870489-GH0304-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -9238,9 +9238,9 @@
       "properties": {
         "title": "Ethiopia: Flood - Oromia (West Shewa) - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-01T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-01T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-892090-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -10288,9 +10288,9 @@
       "properties": {
         "title": "Ethiopia: Storm - Afar (Afdera) - 15/07/2025",
         "datetime": "2025-07-15T00:00:00Z",
-        "end_datetime": "2025-07-15T00:00:00Z",
-        "monty:corr_id": "20250715-ETH-MH0301-1-GCDB",
-        "start_datetime": "2025-07-15T00:00:00Z",
+        "end_datetime": "2025-07-15T00:00:00+00:00",
+        "monty:corr_id": "20250715-ETH-929908-MH0301-1-GCDB",
+        "start_datetime": "2025-07-15T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -10352,15 +10352,15 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Landslide - South West Ethiopia Peoples (Kefa) - 01/07/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - South West Ethiopia Peoples - 01/07/2025",
         "datetime": "2025-07-01T00:00:00Z",
-        "end_datetime": "2025-07-31T00:00:00Z",
-        "monty:corr_id": "20250701-ETH-GH0300-1-GCDB",
-        "start_datetime": "2025-07-01T00:00:00Z",
+        "end_datetime": "2025-07-31T00:00:00+00:00",
+        "monty:corr_id": "20250701-ETH-874082-GH0304-1-GCDB",
+        "start_datetime": "2025-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -10418,15 +10418,15 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Landslide - South Ethiopia (Ari) - 01/07/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - South Ethiopia - 01/07/2025",
         "datetime": "2025-07-01T00:00:00Z",
-        "end_datetime": "2025-07-31T00:00:00Z",
-        "monty:corr_id": "20250701-ETH-GH0300-1-GCDB",
-        "start_datetime": "2025-07-01T00:00:00Z",
+        "end_datetime": "2025-07-31T00:00:00+00:00",
+        "monty:corr_id": "20250701-ETH-866884-GH0304-1-GCDB",
+        "start_datetime": "2025-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -10486,9 +10486,9 @@
       "properties": {
         "title": "Ethiopia: Storm - Afar and Amhara - 30/06/2025",
         "datetime": "2025-06-30T00:00:00Z",
-        "end_datetime": "2025-07-15T00:00:00Z",
-        "monty:corr_id": "20250630-ETH-MH0301-1-GCDB",
-        "start_datetime": "2025-06-30T00:00:00Z",
+        "end_datetime": "2025-07-15T00:00:00+00:00",
+        "monty:corr_id": "20250630-ETH-913699-MH0301-1-GCDB",
+        "start_datetime": "2025-06-30T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -10618,12 +10618,14 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Landslide - South Ethiopia (Gofa) - 01/04/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - South Ethiopia - 01/04/2025",
         "datetime": "2025-04-01T00:00:00Z",
-        "end_datetime": "2025-04-30T00:00:00Z",
-        "monty:corr_id": "20250401-ETH-NAT-HYD-MMW-LAN-1-GCDB",
-        "start_datetime": "2025-04-01T00:00:00Z",
+        "end_datetime": "2025-04-30T00:00:00+00:00",
+        "monty:corr_id": "20250401-ETH-868687-GH0304-1-GCDB",
+        "start_datetime": "2025-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -10685,9 +10687,11 @@
         "title": "Ethiopia: Earthquake - Oromia - 01/01/2025",
         "datetime": "2025-01-01T00:00:00Z",
         "end_datetime": "2025-01-31T00:00:00+00:00",
-        "monty:corr_id": "20250101-ETH-NAT-GEO-EAR-GRO-1-GCDB",
+        "monty:corr_id": "20250101-ETH-872303-GH0101-1-GCDB",
         "start_datetime": "2025-01-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0101",
+          "EQ",
           "nat-geo-ear-gro"
         ],
         "monty:country_codes": [
@@ -10749,9 +10753,11 @@
         "title": "Ethiopia: Earthquake - Afar - 01/01/2025",
         "datetime": "2025-01-01T00:00:00Z",
         "end_datetime": "2025-01-31T00:00:00+00:00",
-        "monty:corr_id": "20250101-ETH-NAT-GEO-EAR-GRO-1-GCDB",
+        "monty:corr_id": "20250101-ETH-915505-GH0101-1-GCDB",
         "start_datetime": "2025-01-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0101",
+          "EQ",
           "nat-geo-ear-gro"
         ],
         "monty:country_codes": [
@@ -10810,12 +10816,14 @@
       },
       "collection": "idmc-idu-events",
       "properties": {
-        "title": "Ethiopia: Landslide - Amhara - 01/01/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - Amhara - 01/01/2025",
         "datetime": "2025-01-01T00:00:00Z",
         "end_datetime": "2025-01-31T00:00:00+00:00",
-        "monty:corr_id": "20250101-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20250101-ETH-910092-GH0304-1-GCDB",
         "start_datetime": "2025-01-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -10877,9 +10885,11 @@
         "title": "Ethiopia: Earthquake - Afar (Zone 3) - 01/12/2024",
         "datetime": "2024-12-01T00:00:00Z",
         "end_datetime": "2024-12-31T00:00:00+00:00",
-        "monty:corr_id": "20241201-ETH-NAT-GEO-EAR-GRO-1-GCDB",
+        "monty:corr_id": "20241201-ETH-899304-GH0101-1-GCDB",
         "start_datetime": "2024-12-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0101",
+          "EQ",
           "nat-geo-ear-gro"
         ],
         "monty:country_codes": [
@@ -10941,9 +10951,11 @@
         "title": "Ethiopia: Landslide - South West (Konta) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
         "end_datetime": "2024-11-30T00:00:00+00:00",
-        "monty:corr_id": "20241101-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20241101-ETH-872284-GH0304-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -11005,9 +11017,11 @@
         "title": "Ethiopia: Flood - Oromia (West Guji) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
         "end_datetime": "2024-11-30T00:00:00+00:00",
-        "monty:corr_id": "20241101-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241101-ETH-892078-MH0600-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11069,9 +11083,11 @@
         "title": "Ethiopia: Landslide - Oromia (West Hararge) - 01/10/2024",
         "datetime": "2024-10-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20241001-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20241001-ETH-888504-GH0304-1-GCDB",
         "start_datetime": "2024-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -11133,9 +11149,11 @@
         "title": "Ethiopia: Flood - Somali (Doolo) - 01/10/2024",
         "datetime": "2024-10-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20241001-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241001-ETH-872326-MH0600-1-GCDB",
         "start_datetime": "2024-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11197,9 +11215,11 @@
         "title": "Ethiopia: Flood - Amhara (Wag Hemra) - 30/09/2024",
         "datetime": "2024-09-30T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240930-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240930-ETH-924495-MH0600-1-GCDB",
         "start_datetime": "2024-09-30T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11261,9 +11281,11 @@
         "title": "Ethiopia: Landslide - Oromia (Kelem Wellega) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240901-ETH-890275-GH0304-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -11325,9 +11347,11 @@
         "title": "Ethiopia: Flood - Gambela (Nuwer) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-ETH-883074-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11389,9 +11413,11 @@
         "title": "Ethiopia: Flood - Tigray (North Western) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-ETH-937088-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11583,9 +11609,11 @@
         "title": "Ethiopia: Landslide - South West Ethiopia (Keffa) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-874082-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -11647,9 +11675,11 @@
         "title": "Ethiopia: Landslide - South Ethiopia (Gofa, Basketo) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-868687-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -11711,9 +11741,11 @@
         "title": "Ethiopia: Landslide - Tigray (Eastern, Southern, Central, South Eastern) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-937098-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -11775,9 +11807,11 @@
         "title": "Ethiopia: Landslide - Oromia (Arsi, Wast Hararge, Kelem Wellega) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-881299-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -11839,9 +11873,11 @@
         "title": "Ethiopia: Landslide - Amhara (North Shewa, North Gonder) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-897499-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -11903,9 +11939,11 @@
         "title": "Ethiopia: Flood - Gambela (Agnewak, Nuwer, Majang) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-883074-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11967,9 +12005,11 @@
         "title": "Ethiopia: Flood - Central Ethiopia (Siltie) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-881292-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12031,9 +12071,11 @@
         "title": "Ethiopia: Flood - South Ethiopia (South Omo) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-859683-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12095,9 +12137,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12159,9 +12203,11 @@
         "title": "Ethiopia: Flood - Tigray (Southern) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-926298-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12223,9 +12269,11 @@
         "title": "Ethiopia: Flood - Oromia (West Arsi) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-877695-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12287,9 +12335,11 @@
         "title": "Ethiopia: Flood - Benishangul Gumuz (Assosa) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-902874-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12351,9 +12401,11 @@
         "title": "Ethiopia: Flood - Amhara (North Gondar) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-922686-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12415,9 +12467,11 @@
         "title": "Ethiopia: Flood - Afar (Zone 2) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-931704-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12479,9 +12533,11 @@
         "title": "Ethiopia: Storm surge - Central Ethiopia (Gurage) - 06/07/2024",
         "datetime": "2024-07-06T00:00:00Z",
         "end_datetime": "2024-07-06T00:00:00+00:00",
-        "monty:corr_id": "20240706-ETH-NAT-MET-STO-SUR-1-GCDB",
+        "monty:corr_id": "20240706-ETH-863284-MH0703-1-GCDB",
         "start_datetime": "2024-07-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0703",
+          "SS",
           "nat-met-sto-sur"
         ],
         "monty:country_codes": [
@@ -12543,9 +12599,11 @@
         "title": "Ethiopia: Landslide - Sidama (Central Zone) - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-07-31T00:00:00+00:00",
-        "monty:corr_id": "20240701-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240701-ETH-870493-GH0304-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -12607,9 +12665,11 @@
         "title": "Ethiopia: Landslide - South Ethiopia (Wolayita, Gofa) - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-07-31T00:00:00+00:00",
-        "monty:corr_id": "20240701-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240701-ETH-870489-GH0304-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -12671,9 +12731,11 @@
         "title": "Ethiopia: Landslide - Amhara (North Gonder) - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-07-31T00:00:00+00:00",
-        "monty:corr_id": "20240701-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240701-ETH-922686-GH0304-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -12735,9 +12797,11 @@
         "title": "Ethiopia: Flood - Tigray (North Western) - 01/06/2024",
         "datetime": "2024-06-01T00:00:00Z",
         "end_datetime": "2024-06-30T00:00:00+00:00",
-        "monty:corr_id": "20240601-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240601-ETH-938891-MH0600-1-GCDB",
         "start_datetime": "2024-06-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12799,9 +12863,11 @@
         "title": "Ethiopia: Flood - Sidama - 20/05/2024",
         "datetime": "2024-05-20T00:00:00Z",
         "end_datetime": "2024-05-20T00:00:00+00:00",
-        "monty:corr_id": "20240520-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240520-ETH-870493-MH0600-1-GCDB",
         "start_datetime": "2024-05-20T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12863,9 +12929,11 @@
         "title": "Ethiopia: Flood - Central Ethiopia (Silti) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-ETH-881292-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12927,9 +12995,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle, Liban) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12991,9 +13061,11 @@
         "title": "Ethiopia: Flood - Oromia (West Guji, Guji) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-ETH-859693-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13055,9 +13127,11 @@
         "title": "Ethiopia: Drought - Amhara (North Gondar) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20240501-ETH-922686-MH0401-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -13183,9 +13257,11 @@
         "title": "Ethiopia: Landslide - South Ethiopia (Gofa and Basketo) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-868687-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13247,9 +13323,11 @@
         "title": "Ethiopia: Flood - Central Ethiopia (East Guraghe) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-883090-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13311,9 +13389,11 @@
         "title": "Ethiopia: Flood - South Ethiopia (South Omo) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-859683-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13375,9 +13455,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13439,9 +13521,11 @@
         "title": "Ethiopia: Flood - Afar (Zones 1, 3, and 6) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-904706-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13503,9 +13587,11 @@
         "title": "Ethiopia: Flood - Afar (Zone 3) - 01/03/2024",
         "datetime": "2024-03-01T00:00:00Z",
         "end_datetime": "2024-03-31T00:00:00+00:00",
-        "monty:corr_id": "20240301-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240301-ETH-899304-MH0600-1-GCDB",
         "start_datetime": "2024-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13567,9 +13653,11 @@
         "title": "Ethiopia: Drought - Tigray (Eastern and Southern) - 01/02/2024",
         "datetime": "2024-02-01T00:00:00Z",
         "end_datetime": "2024-02-29T00:00:00+00:00",
-        "monty:corr_id": "20240201-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20240201-ETH-937098-MH0401-1-GCDB",
         "start_datetime": "2024-02-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -13631,9 +13719,11 @@
         "title": "Ethiopia: Drought - Afar (Zone 5) - 01/02/2024",
         "datetime": "2024-02-01T00:00:00Z",
         "end_datetime": "2024-02-29T00:00:00+00:00",
-        "monty:corr_id": "20240201-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20240201-ETH-904702-MH0401-1-GCDB",
         "start_datetime": "2024-02-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -13695,9 +13785,11 @@
         "title": "Ethiopia: Drought - Tigray (Central, North Western) - 01/12/2023",
         "datetime": "2023-12-01T00:00:00Z",
         "end_datetime": "2023-12-31T00:00:00+00:00",
-        "monty:corr_id": "20231201-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20231201-ETH-935295-MH0401-1-GCDB",
         "start_datetime": "2023-12-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -13759,9 +13851,11 @@
         "title": "Ethiopia: Drought - Amhara (North Gonder) - 01/12/2023",
         "datetime": "2023-12-01T00:00:00Z",
         "end_datetime": "2023-12-31T00:00:00+00:00",
-        "monty:corr_id": "20231201-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20231201-ETH-922686-MH0401-1-GCDB",
         "start_datetime": "2023-12-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -13887,9 +13981,11 @@
         "title": "Ethiopia: Flood - South Ethiopia (Gamo, South Omo) - 01/11/2023",
         "datetime": "2023-11-01T00:00:00Z",
         "end_datetime": "2023-11-30T00:00:00+00:00",
-        "monty:corr_id": "20231101-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231101-ETH-865087-MH0600-1-GCDB",
         "start_datetime": "2023-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13951,9 +14047,11 @@
         "title": "Ethiopia: Flood - Somali (Liben, Shabelle, Jarar, Korahe, Afder, Doolo) - 01/11/2023",
         "datetime": "2023-11-01T00:00:00Z",
         "end_datetime": "2023-11-30T00:00:00+00:00",
-        "monty:corr_id": "20231101-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231101-ETH-850704-MH0600-1-GCDB",
         "start_datetime": "2023-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14015,9 +14113,11 @@
         "title": "Ethiopia: Landslide - South Ethiopia (Gofa) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20231001-ETH-868687-GH0304-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -14079,9 +14179,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle, Liban, Nogob, Jarar, Korahe) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14143,9 +14245,11 @@
         "title": "Ethiopia: Flood - Gambela (Nuwer) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-ETH-883074-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14207,9 +14311,11 @@
         "title": "Ethiopia: Flood - Afar (Zone 3) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-ETH-899304-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14271,9 +14377,11 @@
         "title": "Ethiopia: Drought - Amhara (North Gondar) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20231001-ETH-922686-MH0401-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -14399,9 +14507,11 @@
         "title": "Ethiopia: Flood - Gambela (Itang Special Woreda, Nuwer, Agnewak, Gambela City) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230901-ETH-883072-MH0600-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14463,9 +14573,11 @@
         "title": "Ethiopia: Landslide - Oromia (Jimma) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20230901-ETH-883086-GH0304-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -14527,9 +14639,11 @@
         "title": "Ethiopia: Drought - Amhara (North Gondar) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20230901-ETH-922688-MH0401-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -14591,9 +14705,11 @@
         "title": "Ethiopia: Flood - Gambela (Nuwer) - 01/08/2023",
         "datetime": "2023-08-01T00:00:00Z",
         "end_datetime": "2023-08-31T00:00:00+00:00",
-        "monty:corr_id": "20230801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230801-ETH-883074-MH0600-1-GCDB",
         "start_datetime": "2023-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14655,9 +14771,11 @@
         "title": "Ethiopia: Flood - Oromia (West Arsi, West Shewa, South West Shewa) - 01/08/2023",
         "datetime": "2023-08-01T00:00:00Z",
         "end_datetime": "2023-08-31T00:00:00+00:00",
-        "monty:corr_id": "20230801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230801-ETH-875894-MH0600-1-GCDB",
         "start_datetime": "2023-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14719,9 +14837,11 @@
         "title": "Ethiopia: Drought - Oromia (Borena) - 01/06/2023",
         "datetime": "2023-06-01T00:00:00Z",
         "end_datetime": "2023-06-30T00:00:00+00:00",
-        "monty:corr_id": "20230601-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20230601-ETH-854293-MH0401-1-GCDB",
         "start_datetime": "2023-06-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -14783,9 +14903,11 @@
         "title": "Ethiopia: Flood - Somali - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14847,9 +14969,11 @@
         "title": "Ethiopia: Flood - SNNP - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-ETH-868687-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14911,9 +15035,11 @@
         "title": "Ethiopia: Flood - Oromia - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-ETH-881299-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14975,9 +15101,11 @@
         "title": "Ethiopia: Flood - Gambella - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-ETH-883074-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -15039,9 +15167,11 @@
         "title": "Ethiopia: Flood - Afar - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-ETH-920902-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -15103,9 +15233,11 @@
         "title": "Ethiopia: Landslide - Oromia - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20230501-ETH-881299-GH0304-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -15167,9 +15299,11 @@
         "title": "Ethiopia: Flood - Oromia (Borena) - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230401-ETH-854293-MH0600-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -15231,9 +15365,11 @@
         "title": "Ethiopia: Landslide - Oromia (West Arsi) - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20230401-ETH-875894-GH0304-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -15295,9 +15431,11 @@
         "title": "Ethiopia: Flood - SNNP (Siltie and South Omo) - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230401-ETH-881292-MH0600-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -15359,9 +15497,11 @@
         "title": "Ethiopia: Flood - Afar (Zone 3) - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230401-ETH-899304-MH0600-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -15423,9 +15563,11 @@
         "title": "Ethiopia: Drought - Oromia (Borena) - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20230401-ETH-854293-MH0401-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [

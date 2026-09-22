@@ -6744,9 +6744,9 @@
       "properties": {
         "title": "Chad: Flood - Mandoul, Moyen-Chari - 15/08/2025",
         "datetime": "2025-08-15T00:00:00Z",
-        "end_datetime": "2025-09-15T00:00:00Z",
-        "monty:corr_id": "20250815-TCD-MH0600-1-GCDB",
-        "start_datetime": "2025-08-15T00:00:00Z",
+        "end_datetime": "2025-09-15T00:00:00+00:00",
+        "monty:corr_id": "20250815-TCD-890192-MH0600-1-GCDB",
+        "start_datetime": "2025-08-15T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -14658,9 +14658,11 @@
         "title": "Chad: Flood - Lac (Fouli/Liwa) - 24/12/2024",
         "datetime": "2024-12-24T00:00:00Z",
         "end_datetime": "2024-12-27T00:00:00+00:00",
-        "monty:corr_id": "20241224-TCD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241224-TCD-935172-MH0600-1-GCDB",
         "start_datetime": "2024-12-24T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14722,9 +14724,11 @@
         "title": "Chad: Flood - Hadjer-Lamis & Lac (Dagana & Mamdi)- 18/10/2024",
         "datetime": "2024-10-18T00:00:00Z",
         "end_datetime": "2024-10-24T00:00:00+00:00",
-        "monty:corr_id": "20241018-TCD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241018-TCD-924375-MH0600-1-GCDB",
         "start_datetime": "2024-10-18T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14914,9 +14918,11 @@
         "title": "Chad: Flood - Chari Baguirmi (Chari/ Koundoul) - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-07-01T00:00:00+00:00",
-        "monty:corr_id": "20240701-TCD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240701-TCD-917177-MH0600-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14961,16 +14967,16 @@
     {
       "id": "idmc-idu-event-28772",
       "bbox": [
-        15.000909999999998,
-        12.139045000000001,
-        15.000909999999998,
-        12.139045000000001
+        15.00091,
+        12.139045,
+        15.00091,
+        12.139045
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          15.000909999999998,
-          12.139045000000001
+          15.00091,
+          12.139045
         ]
       },
       "collection": "idmc-idu-events",
@@ -14978,9 +14984,11 @@
         "title": "Chad: Flood -N'Djamena (N'Djamena's districts) & Chari Baguirmi (Chari/ Koundoul)- 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-07-01T00:00:00+00:00",
-        "monty:corr_id": "20240701-TCD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240701-TCD-918976-MH0600-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -15025,16 +15033,16 @@
     {
       "id": "idmc-idu-event-26320",
       "bbox": [
-        18.26487,
-        20.226391,
-        18.26487,
-        20.226391
+        14.17678,
+        13.75097,
+        14.17678,
+        13.75097
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          18.26487,
-          20.226391
+          14.17678,
+          13.75097
         ]
       },
       "collection": "idmc-idu-events",
@@ -15042,9 +15050,11 @@
         "title": "Chad: Flood -Countrywide- 15/05/2024",
         "datetime": "2024-05-15T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240515-TCD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240515-TCD-933372-MH0600-1-GCDB",
         "start_datetime": "2024-05-15T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -15089,15 +15099,15 @@
     {
       "id": "idmc-idu-event-23896",
       "bbox": [
-        16.92796033333333,
+        16.927960333333335,
         8.501136666666667,
-        16.92796033333333,
+        16.927960333333335,
         8.501136666666667
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          16.92796033333333,
+          16.927960333333335,
           8.501136666666667
         ]
       },
@@ -15106,9 +15116,11 @@
         "title": "Chad: Flood - Logone Oriental & Mandoul - 01/03/2024",
         "datetime": "2024-03-01T00:00:00Z",
         "end_datetime": "2024-04-23T00:00:00+00:00",
-        "monty:corr_id": "20240301-TCD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240301-TCD-886585-MH0600-1-GCDB",
         "start_datetime": "2024-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -15298,9 +15310,11 @@
         "title": "Chad: Flood -Lac - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-TCD-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230401-TCD-935172-MH0600-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [

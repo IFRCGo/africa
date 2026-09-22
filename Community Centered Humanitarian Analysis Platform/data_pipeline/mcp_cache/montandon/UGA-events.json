@@ -948,12 +948,12 @@
         "title": "Uganda: Landslide/Wet mass movement - Western Region (Bukimbiri) - 06/05/2026",
         "datetime": "2026-05-06T00:00:00Z",
         "end_datetime": "2026-05-06T00:00:00Z",
-        "monty:corr_id": "20260506-UGA-798449-GH0300-1-GCDB",
+        "monty:corr_id": "20260506-UGA-798449-GH0304-1-GCDB",
         "start_datetime": "2026-05-06T00:00:00Z",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "UGA"
@@ -2262,6 +2262,204 @@
       ]
     },
     {
+      "id": "idmc-idu-event-39305",
+      "bbox": [
+        34.692429,
+        1.25495,
+        34.692429,
+        1.25495
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.692429,
+          1.25495
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Landslide/Wet mass mouvement - Eastern (Bukwo/Kongasis) - 30/10/2025",
+        "datetime": "2025-10-30T00:00:00Z",
+        "end_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:corr_id": "20251030-UGA-821874-GH0304-1-GCDB",
+        "start_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "GH0304",
+          "LS",
+          "nat-hyd-mmw-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39305",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39238",
+      "bbox": [
+        30.004601,
+        0.13102,
+        30.004601,
+        0.13102
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.004601,
+          0.13102
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Western (Kasese/Busongora) - 30/10/2025",
+        "datetime": "2025-10-30T00:00:00Z",
+        "end_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:corr_id": "20251030-UGA-811051-MH0600-1-GCDB",
+        "start_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39238",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39230",
+      "bbox": [
+        33.961109,
+        1.725,
+        33.961109,
+        1.725
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.961109,
+          1.725
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Eastern (Katakwi/Toroma) - 30/10/2025",
+        "datetime": "2025-10-30T00:00:00Z",
+        "end_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:corr_id": "20251030-UGA-825471-MH0600-1-GCDB",
+        "start_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39230",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "idmc-idu-event-37253",
       "bbox": [
         34.6280045,
@@ -2280,13 +2478,13 @@
       "properties": {
         "title": "Uganda: Landslide/Wet mass movement - Eastern (Kween and Bukwo) - 30/10/2025",
         "datetime": "2025-10-30T00:00:00Z",
-        "end_datetime": "2025-10-30T00:00:00Z",
-        "monty:corr_id": "20251030-UGA-GH0300-1-GCDB",
-        "start_datetime": "2025-10-30T00:00:00Z",
+        "end_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:corr_id": "20251030-UGA-821874-GH0304-1-GCDB",
+        "start_datetime": "2025-10-30T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "UGA"
@@ -2386,6 +2584,1128 @@
           "rel": "self",
           "type": "application/geo+json",
           "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-events/items/gdacs-event-1103590",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39306",
+      "bbox": [
+        34.56358,
+        1.35166,
+        34.56358,
+        1.35166
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.56358,
+          1.35166
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Landslide/Wet mass mouvement - Eastern (Kween/Kween) - 29/10/2025",
+        "datetime": "2025-10-29T00:00:00Z",
+        "end_datetime": "2025-10-30T00:00:00+00:00",
+        "monty:corr_id": "20251029-UGA-821874-GH0304-1-GCDB",
+        "start_datetime": "2025-10-29T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "GH0304",
+          "LS",
+          "nat-hyd-mmw-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39306",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39256",
+      "bbox": [
+        30.303129,
+        -0.95375,
+        30.303129,
+        -0.95375
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.303129,
+          -0.95375
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Western (Ntungamo/Ruhaama) - 16/10/2025",
+        "datetime": "2025-10-16T00:00:00Z",
+        "end_datetime": "2025-10-16T00:00:00+00:00",
+        "monty:corr_id": "20251016-UGA-800252-MH0301-1-GCDB",
+        "start_datetime": "2025-10-16T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39256",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39243",
+      "bbox": [
+        31.398069,
+        -0.44735,
+        31.398069,
+        -0.44735
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.398069,
+          -0.44735
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Central (Lwengo/Bukoto) - 16/10/2025",
+        "datetime": "2025-10-16T00:00:00Z",
+        "end_datetime": "2025-10-16T00:00:00+00:00",
+        "monty:corr_id": "20251016-UGA-805658-MH0301-1-GCDB",
+        "start_datetime": "2025-10-16T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39243",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39255",
+      "bbox": [
+        30.004601,
+        0.13102,
+        30.004601,
+        0.13102
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.004601,
+          0.13102
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Western (Kasese/Bukonzo) - 12/10/2025",
+        "datetime": "2025-10-12T00:00:00Z",
+        "end_datetime": "2025-10-12T00:00:00+00:00",
+        "monty:corr_id": "20251012-UGA-811051-MH0301-1-GCDB",
+        "start_datetime": "2025-10-12T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39255",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39249",
+      "bbox": [
+        34.197868,
+        1.00203,
+        34.197868,
+        1.00203
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.197868,
+          1.00203
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Eastern (Mbale/Bungokho) - 08/10/2025",
+        "datetime": "2025-10-08T00:00:00Z",
+        "end_datetime": "2025-10-08T00:00:00+00:00",
+        "monty:corr_id": "20251008-UGA-818272-MH0301-1-GCDB",
+        "start_datetime": "2025-10-08T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39249",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39242",
+      "bbox": [
+        32.60796,
+        0.68668,
+        32.60796,
+        0.68668
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.60796,
+          0.68668
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Central (Luwero/Bamunanika) - 08/10/2025",
+        "datetime": "2025-10-08T00:00:00Z",
+        "end_datetime": "2025-10-08T00:00:00+00:00",
+        "monty:corr_id": "20251008-UGA-816464-MH0301-1-GCDB",
+        "start_datetime": "2025-10-08T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39242",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39311",
+      "bbox": [
+        29.670309,
+        -1.19805,
+        29.670309,
+        -1.19805
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.670309,
+          -1.19805
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Landslide/Wet mass mouvement - Western (Kisoro/Bufumbira) - 07/10/2025",
+        "datetime": "2025-10-07T00:00:00Z",
+        "end_datetime": "2025-10-07T00:00:00+00:00",
+        "monty:corr_id": "20251007-UGA-798449-GH0304-1-GCDB",
+        "start_datetime": "2025-10-07T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "GH0304",
+          "LS",
+          "nat-hyd-mmw-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39311",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39247",
+      "bbox": [
+        31.44631,
+        -0.7141,
+        31.44631,
+        -0.7141
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.44631,
+          -0.7141
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Central (Rakai/Kooki) - 03/10/2025",
+        "datetime": "2025-10-03T00:00:00Z",
+        "end_datetime": "2025-10-03T00:00:00+00:00",
+        "monty:corr_id": "20251003-UGA-803858-MH0301-1-GCDB",
+        "start_datetime": "2025-10-03T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39247",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39251",
+      "bbox": [
+        34.297729,
+        1.18839,
+        34.297729,
+        1.18839
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.297729,
+          1.18839
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Eastern (Sironko/Budadiri) - 01/10/2025",
+        "datetime": "2025-10-01T00:00:00Z",
+        "end_datetime": "2025-10-01T00:00:00+00:00",
+        "monty:corr_id": "20251001-UGA-820072-MH0301-1-GCDB",
+        "start_datetime": "2025-10-01T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39251",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39245",
+      "bbox": [
+        32.489429,
+        1.32044,
+        32.489429,
+        1.32044
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.489429,
+          1.32044
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Central (Nakasongola/Buruli) - 20/09/2025",
+        "datetime": "2025-09-20T00:00:00Z",
+        "end_datetime": "2025-09-20T00:00:00+00:00",
+        "monty:corr_id": "20250920-UGA-821863-MH0301-1-GCDB",
+        "start_datetime": "2025-09-20T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39245",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39277",
+      "bbox": [
+        30.168249,
+        -0.19669,
+        30.168249,
+        -0.19669
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.168249,
+          -0.19669
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Western (Rubirizi/Katerera) - 19/09/2025",
+        "datetime": "2025-09-19T00:00:00Z",
+        "end_datetime": "2025-09-19T00:00:00+00:00",
+        "monty:corr_id": "20250919-UGA-807452-MH0301-1-GCDB",
+        "start_datetime": "2025-09-19T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39277",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39240",
+      "bbox": [
+        32.184361,
+        -0.35945,
+        32.184361,
+        -0.35945
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.184361,
+          -0.35945
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Central (Kalangala/Bujumba) - 10/09/2025",
+        "datetime": "2025-09-10T00:00:00Z",
+        "end_datetime": "2025-09-10T00:00:00+00:00",
+        "monty:corr_id": "20250910-UGA-805662-MH0301-1-GCDB",
+        "start_datetime": "2025-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39240",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39252",
+      "bbox": [
+        32.647671,
+        1.91734,
+        32.647671,
+        1.91734
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.647671,
+          1.91734
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Northern (Apac/Maruzi) - 08/09/2025",
+        "datetime": "2025-09-08T00:00:00Z",
+        "end_datetime": "2025-09-14T00:00:00+00:00",
+        "monty:corr_id": "20250908-UGA-827264-MH0301-1-GCDB",
+        "start_datetime": "2025-09-08T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39252",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39241",
+      "bbox": [
+        33.030781,
+        0.67158,
+        33.030781,
+        0.67158
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.030781,
+          0.67158
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Central (Kayunga/Ntenjeru) - 07/09/2025",
+        "datetime": "2025-09-07T00:00:00Z",
+        "end_datetime": "2025-09-07T00:00:00+00:00",
+        "monty:corr_id": "20250907-UGA-816466-MH0301-1-GCDB",
+        "start_datetime": "2025-09-07T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39241",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39244",
+      "bbox": [
+        31.74658,
+        -0.33903,
+        31.74658,
+        -0.33903
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.74658,
+          -0.33903
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Central (Masaka/Masaka Municipality) - 28/08/2025",
+        "datetime": "2025-08-28T00:00:00Z",
+        "end_datetime": "2025-08-28T00:00:00+00:00",
+        "monty:corr_id": "20250828-UGA-807459-MH0301-1-GCDB",
+        "start_datetime": "2025-08-28T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39244",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39235",
+      "bbox": [
+        31.724489,
+        3.65379,
+        31.724489,
+        3.65379
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.724489,
+          3.65379
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Northern (Moyo/West Moyo) - 25/08/2025",
+        "datetime": "2025-08-25T00:00:00Z",
+        "end_datetime": "2025-08-25T00:00:00+00:00",
+        "monty:corr_id": "20250825-UGA-843459-MH0600-1-GCDB",
+        "start_datetime": "2025-08-25T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39235",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39309",
+      "bbox": [
+        30.042419,
+        0.64933,
+        30.042419,
+        0.64933
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.042419,
+          0.64933
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Landslide/Wet mass mouvement - Western (Bundibugyo/Bughendera) - 21/08/2025",
+        "datetime": "2025-08-21T00:00:00Z",
+        "end_datetime": "2025-08-21T00:00:00+00:00",
+        "monty:corr_id": "20250821-UGA-814651-GH0304-1-GCDB",
+        "start_datetime": "2025-08-21T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "GH0304",
+          "LS",
+          "nat-hyd-mmw-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39309",
           "auth:refs": [
             "oidc"
           ]
@@ -2656,27 +3976,159 @@
       ]
     },
     {
-      "id": "idmc-idu-event-32804",
+      "id": "idmc-idu-event-39229",
       "bbox": [
-        34.216671,
-        1.36667,
-        34.216671,
-        1.36667
+        33.961109,
+        1.725,
+        33.961109,
+        1.725
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          34.216671,
-          1.36667
+          33.961109,
+          1.725
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Eastern (Katakwi/Toroma) - 18/08/2025",
+        "datetime": "2025-08-18T00:00:00Z",
+        "end_datetime": "2025-08-18T00:00:00+00:00",
+        "monty:corr_id": "20250818-UGA-825471-MH0600-1-GCDB",
+        "start_datetime": "2025-08-18T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39229",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39228",
+      "bbox": [
+        34.28038,
+        1.35811,
+        34.28038,
+        1.35811
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.28038,
+          1.35811
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Eastern (Bulambuli/Bulambuli) - 18/08/2025",
+        "datetime": "2025-08-18T00:00:00Z",
+        "end_datetime": "2025-08-18T00:00:00+00:00",
+        "monty:corr_id": "20250818-UGA-821872-MH0600-1-GCDB",
+        "start_datetime": "2025-08-18T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39228",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-32804",
+      "bbox": [
+        34.301682,
+        1.21002,
+        34.301682,
+        1.21002
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.301682,
+          1.21002
         ]
       },
       "collection": "idmc-idu-events",
       "properties": {
         "title": "Uganda: Flood - Eastern (5 Districts) - 17/08/2025",
         "datetime": "2025-08-17T00:00:00Z",
-        "end_datetime": "2025-08-21T00:00:00Z",
-        "monty:corr_id": "20250817-UGA-MH0600-1-GCDB",
-        "start_datetime": "2025-08-17T00:00:00Z",
+        "end_datetime": "2025-08-21T00:00:00+00:00",
+        "monty:corr_id": "20250817-UGA-820072-MH0600-1-GCDB",
+        "start_datetime": "2025-08-17T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -2722,6 +4174,732 @@
       ]
     },
     {
+      "id": "idmc-idu-event-39304",
+      "bbox": [
+        34.39875,
+        1.04212,
+        34.39875,
+        1.04212
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.39875,
+          1.04212
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Landslide/Wet mass mouvement - Eastern (Bududa/Manjiya) - 16/08/2025",
+        "datetime": "2025-08-16T00:00:00Z",
+        "end_datetime": "2025-08-16T00:00:00+00:00",
+        "monty:corr_id": "20250816-UGA-818273-GH0304-1-GCDB",
+        "start_datetime": "2025-08-16T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "GH0304",
+          "LS",
+          "nat-hyd-mmw-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39304",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39239",
+      "bbox": [
+        30.537331,
+        1.05188,
+        30.537331,
+        1.05188
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.537331,
+          1.05188
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Western (Ntoroko/Ntoroko) - 15/08/2025",
+        "datetime": "2025-08-15T00:00:00Z",
+        "end_datetime": "2025-08-15T00:00:00+00:00",
+        "monty:corr_id": "20250815-UGA-820053-MH0600-1-GCDB",
+        "start_datetime": "2025-08-15T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39239",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39234",
+      "bbox": [
+        32.176121,
+        2.84107,
+        32.176121,
+        2.84107
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.176121,
+          2.84107
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Northern (Amuru/Kilak) - 13/08/2025",
+        "datetime": "2025-08-13T00:00:00Z",
+        "end_datetime": "2025-08-13T00:00:00+00:00",
+        "monty:corr_id": "20250813-UGA-834462-MH0600-1-GCDB",
+        "start_datetime": "2025-08-13T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39234",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39233",
+      "bbox": [
+        34.63998,
+        2.61565,
+        34.63998,
+        2.61565
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.63998,
+          2.61565
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Northern (Alebtong/Moroto) - 13/08/2025",
+        "datetime": "2025-08-13T00:00:00Z",
+        "end_datetime": "2025-08-13T00:00:00+00:00",
+        "monty:corr_id": "20250813-UGA-832674-MH0600-1-GCDB",
+        "start_datetime": "2025-08-13T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39233",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39250",
+      "bbox": [
+        33.71167,
+        1.25944,
+        33.71167,
+        1.25944
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.71167,
+          1.25944
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Storm - Eastern (Pallisa/Agule) - 12/08/2025",
+        "datetime": "2025-08-12T00:00:00Z",
+        "end_datetime": "2025-08-12T00:00:00+00:00",
+        "monty:corr_id": "20250812-UGA-821869-MH0301-1-GCDB",
+        "start_datetime": "2025-08-12T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39250",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39232",
+      "bbox": [
+        33.75098,
+        2.80475,
+        33.75098,
+        2.80475
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.75098,
+          2.80475
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Northern (Abim/Labwor) - 12/08/2025",
+        "datetime": "2025-08-12T00:00:00Z",
+        "end_datetime": "2025-08-12T00:00:00+00:00",
+        "monty:corr_id": "20250812-UGA-834470-MH0600-1-GCDB",
+        "start_datetime": "2025-08-12T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39232",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39227",
+      "bbox": [
+        34.044521,
+        1.3474,
+        34.044521,
+        1.3474
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.044521,
+          1.3474
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Eastern (Bukedea/Bukedea) - 11/08/2025",
+        "datetime": "2025-08-11T00:00:00Z",
+        "end_datetime": "2025-08-13T00:00:00+00:00",
+        "monty:corr_id": "20250811-UGA-821871-MH0600-1-GCDB",
+        "start_datetime": "2025-08-11T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39227",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39237",
+      "bbox": [
+        30.042419,
+        0.64933,
+        30.042419,
+        0.64933
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.042419,
+          0.64933
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Western (Bundibugyo/Bughendera) - 09/08/2025",
+        "datetime": "2025-08-09T00:00:00Z",
+        "end_datetime": "2025-08-09T00:00:00+00:00",
+        "monty:corr_id": "20250809-UGA-814651-MH0600-1-GCDB",
+        "start_datetime": "2025-08-09T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39237",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39236",
+      "bbox": [
+        33.39336,
+        2.47843,
+        33.39336,
+        2.47843
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.39336,
+          2.47843
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Northern (Otuke/Otuke) - 09/08/2025",
+        "datetime": "2025-08-09T00:00:00Z",
+        "end_datetime": "2025-08-14T00:00:00+00:00",
+        "monty:corr_id": "20250809-UGA-832668-MH0600-1-GCDB",
+        "start_datetime": "2025-08-09T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39236",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39231",
+      "bbox": [
+        33.971668,
+        1.98833,
+        33.971668,
+        1.98833
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.971668,
+          1.98833
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Eastern (Katakwi/Usuk) - 09/08/2025",
+        "datetime": "2025-08-09T00:00:00Z",
+        "end_datetime": "2025-10-29T00:00:00+00:00",
+        "monty:corr_id": "20250809-UGA-827271-MH0600-1-GCDB",
+        "start_datetime": "2025-08-09T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39231",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-39308",
+      "bbox": [
+        34.197868,
+        1.00203,
+        34.197868,
+        1.00203
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.197868,
+          1.00203
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Landslide/Wet mass mouvement - Eastern (Mbale/Mbale Municipality) - 08/08/2025",
+        "datetime": "2025-08-08T00:00:00Z",
+        "end_datetime": "2025-08-08T00:00:00+00:00",
+        "monty:corr_id": "20250808-UGA-818272-GH0304-1-GCDB",
+        "start_datetime": "2025-08-08T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "GH0304",
+          "LS",
+          "nat-hyd-mmw-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-39308",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "idmc-idu-event-32945",
       "bbox": [
         33.386108,
@@ -2740,9 +4918,9 @@
       "properties": {
         "title": "Uganda: Flood - Northern (Acholi/Agago) - 07/08/2025",
         "datetime": "2025-08-07T00:00:00Z",
-        "end_datetime": "2025-08-14T00:00:00Z",
-        "monty:corr_id": "20250807-UGA-MH0600-1-GCDB",
-        "start_datetime": "2025-08-07T00:00:00Z",
+        "end_datetime": "2025-08-14T00:00:00+00:00",
+        "monty:corr_id": "20250807-UGA-836268-MH0600-1-GCDB",
+        "start_datetime": "2025-08-07T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -2871,9 +5049,9 @@
       "properties": {
         "title": "Uganda: Flood - Eastern (Bugiso/Mbale) - 20/05/2025",
         "datetime": "2025-05-20T00:00:00Z",
-        "end_datetime": "2025-05-25T00:00:00Z",
-        "monty:corr_id": "20250520-UGA-MH0600-1-GCDB",
-        "start_datetime": "2025-05-20T00:00:00Z",
+        "end_datetime": "2025-05-25T00:00:00+00:00",
+        "monty:corr_id": "20250520-UGA-818272-MH0600-1-GCDB",
+        "start_datetime": "2025-05-20T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -2937,10 +5115,12 @@
       "properties": {
         "title": "Uganda: Storm - Central (South Buganda/Kayunga) - 12/05/2025",
         "datetime": "2025-05-12T00:00:00Z",
-        "end_datetime": "2025-05-12T00:00:00Z",
-        "monty:corr_id": "20250512-UGA-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-05-12T00:00:00Z",
+        "end_datetime": "2025-05-12T00:00:00+00:00",
+        "monty:corr_id": "20250512-UGA-814666-MH0301-1-GCDB",
+        "start_datetime": "2025-05-12T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -3001,10 +5181,12 @@
       "properties": {
         "title": "Uganda: Landslide/Wet mass movement - Western (Toro/Kasese) - 06/05/2025",
         "datetime": "2025-05-06T00:00:00Z",
-        "end_datetime": "2025-05-06T00:00:00Z",
-        "monty:corr_id": "20250506-UGA-NAT-HYD-MMW-LAN-1-GCDB",
-        "start_datetime": "2025-05-06T00:00:00Z",
+        "end_datetime": "2025-05-06T00:00:00+00:00",
+        "monty:corr_id": "20250506-UGA-811051-GH0304-1-GCDB",
+        "start_datetime": "2025-05-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -3065,10 +5247,12 @@
       "properties": {
         "title": "Uganda: Flood - Central (South Buganda/Kyotera) - 04/05/2025",
         "datetime": "2025-05-04T00:00:00Z",
-        "end_datetime": "2025-05-04T00:00:00Z",
-        "monty:corr_id": "20250504-UGA-NAT-HYD-FLO-FLO-1-GCDB",
-        "start_datetime": "2025-05-04T00:00:00Z",
+        "end_datetime": "2025-05-04T00:00:00+00:00",
+        "monty:corr_id": "20250504-UGA-812862-MH0600-1-GCDB",
+        "start_datetime": "2025-05-04T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -3129,10 +5313,12 @@
       "properties": {
         "title": "Uganda: Storm - Central (South Buganda/Kalangala) - 28/04/2025",
         "datetime": "2025-04-28T00:00:00Z",
-        "end_datetime": "2025-04-28T00:00:00Z",
-        "monty:corr_id": "20250428-UGA-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-04-28T00:00:00Z",
+        "end_datetime": "2025-04-28T00:00:00+00:00",
+        "monty:corr_id": "20250428-UGA-803863-MH0301-1-GCDB",
+        "start_datetime": "2025-04-28T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -3193,10 +5379,12 @@
       "properties": {
         "title": "Uganda: Storm - Central - 20/04/2025",
         "datetime": "2025-04-20T00:00:00Z",
-        "end_datetime": "2025-04-28T00:00:00Z",
-        "monty:corr_id": "20250420-UGA-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-04-20T00:00:00Z",
+        "end_datetime": "2025-04-28T00:00:00+00:00",
+        "monty:corr_id": "20250420-UGA-816466-MH0301-1-GCDB",
+        "start_datetime": "2025-04-20T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -3257,10 +5445,12 @@
       "properties": {
         "title": "Uganda: Flood - Eastern (Bugiso/Bulambuli) - 16/04/2025",
         "datetime": "2025-04-16T00:00:00Z",
-        "end_datetime": "2025-04-16T00:00:00Z",
-        "monty:corr_id": "20250416-UGA-NAT-HYD-FLO-FLO-1-GCDB",
-        "start_datetime": "2025-04-16T00:00:00Z",
+        "end_datetime": "2025-04-16T00:00:00+00:00",
+        "monty:corr_id": "20250416-UGA-821872-MH0600-1-GCDB",
+        "start_datetime": "2025-04-16T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -3321,10 +5511,12 @@
       "properties": {
         "title": "Uganda: Flood - Western (Toro/Kasese) - 06/04/2025",
         "datetime": "2025-04-06T00:00:00Z",
-        "end_datetime": "2025-04-06T00:00:00Z",
-        "monty:corr_id": "20250406-UGA-NAT-HYD-FLO-FLO-1-GCDB",
-        "start_datetime": "2025-04-06T00:00:00Z",
+        "end_datetime": "2025-04-06T00:00:00+00:00",
+        "monty:corr_id": "20250406-UGA-811051-MH0600-1-GCDB",
+        "start_datetime": "2025-04-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -3385,10 +5577,12 @@
       "properties": {
         "title": "Uganda: Landslide/Wet mass movement - Western (Toro/Ntoroko) - 04/04/2025",
         "datetime": "2025-04-04T00:00:00Z",
-        "end_datetime": "2025-04-04T00:00:00Z",
-        "monty:corr_id": "20250404-UGA-NAT-HYD-MMW-LAN-1-GCDB",
-        "start_datetime": "2025-04-04T00:00:00Z",
+        "end_datetime": "2025-04-04T00:00:00+00:00",
+        "monty:corr_id": "20250404-UGA-820053-GH0304-1-GCDB",
+        "start_datetime": "2025-04-04T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -3449,10 +5643,12 @@
       "properties": {
         "title": "Uganda: Storm - Eastern - 04/04/2025",
         "datetime": "2025-04-04T00:00:00Z",
-        "end_datetime": "2025-04-15T00:00:00Z",
-        "monty:corr_id": "20250404-UGA-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-04-04T00:00:00Z",
+        "end_datetime": "2025-04-15T00:00:00+00:00",
+        "monty:corr_id": "20250404-UGA-818266-MH0301-1-GCDB",
+        "start_datetime": "2025-04-04T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -3513,10 +5709,12 @@
       "properties": {
         "title": "Uganda: Flood - Eastern (Bugiso/Bulambuli) - 24/03/2025",
         "datetime": "2025-03-24T00:00:00Z",
-        "end_datetime": "2025-03-31T00:00:00Z",
-        "monty:corr_id": "20250324-UGA-NAT-HYD-FLO-FLO-1-GCDB",
-        "start_datetime": "2025-03-24T00:00:00Z",
+        "end_datetime": "2025-03-31T00:00:00+00:00",
+        "monty:corr_id": "20250324-UGA-821872-MH0600-1-GCDB",
+        "start_datetime": "2025-03-24T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -3559,6 +5757,138 @@
       ]
     },
     {
+      "id": "idmc-idu-event-31659",
+      "bbox": [
+        32.37545,
+        -0.69327,
+        32.37545,
+        -0.69327
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.37545,
+          -0.69327
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Typhoon/Hurricane/Cyclone - Central (South Buganda/Kalangala) - 15/03/2025",
+        "datetime": "2025-03-15T00:00:00Z",
+        "end_datetime": "2025-03-15T00:00:00+00:00",
+        "monty:corr_id": "20250315-UGA-803863-MH0309-1-GCDB",
+        "start_datetime": "2025-03-15T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0309",
+          "TC",
+          "nat-met-sto-tro"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-31659",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-31646",
+      "bbox": [
+        30.524549,
+        0.44485,
+        30.524549,
+        0.44485
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.524549,
+          0.44485
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Flood - Western (Toro/Bunyangabu) - 12/03/2025",
+        "datetime": "2025-03-12T00:00:00Z",
+        "end_datetime": "2025-03-12T00:00:00+00:00",
+        "monty:corr_id": "20250312-UGA-812853-MH0600-1-GCDB",
+        "start_datetime": "2025-03-12T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-31646",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "idmc-idu-event-30769",
       "bbox": [
         31.441469,
@@ -3577,10 +5907,12 @@
       "properties": {
         "title": "Uganda: Storm - Central (Lwengo) - 10/03/2025",
         "datetime": "2025-03-10T00:00:00Z",
-        "end_datetime": "2025-03-10T00:00:00Z",
-        "monty:corr_id": "20250310-UGA-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-03-10T00:00:00Z",
+        "end_datetime": "2025-03-10T00:00:00+00:00",
+        "monty:corr_id": "20250310-UGA-805658-MH0301-1-GCDB",
+        "start_datetime": "2025-03-10T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -3623,6 +5955,204 @@
       ]
     },
     {
+      "id": "idmc-idu-event-34801",
+      "bbox": [
+        30.086281,
+        0.73499,
+        30.086281,
+        0.73499
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.086281,
+          0.73499
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Landslide/Wet mass movement - Western (Rwenzori/Bundibugyo) - 26/02/2025",
+        "datetime": "2025-02-26T00:00:00Z",
+        "end_datetime": "2025-03-26T00:00:00+00:00",
+        "monty:corr_id": "20250226-UGA-816451-GH0304-1-GCDB",
+        "start_datetime": "2025-02-26T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "GH0304",
+          "LS",
+          "nat-hyd-mmw-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-34801",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-31658",
+      "bbox": [
+        32.04982,
+        1.99358,
+        32.04982,
+        1.99358
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.04982,
+          1.99358
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Wildfire - Western (Bunyoro/Kiryandongo) - 26/02/2025",
+        "datetime": "2025-02-26T00:00:00Z",
+        "end_datetime": "2025-02-26T00:00:00+00:00",
+        "monty:corr_id": "20250226-UGA-827261-EN0205-1-GCDB",
+        "start_datetime": "2025-02-26T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "EN0205",
+          "WF",
+          "nat-cli-wil-wil"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-31658",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-event-31660",
+      "bbox": [
+        32.451241,
+        2.89583,
+        32.451241,
+        2.89583
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.451241,
+          2.89583
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Wildfire - Northern (Acholi/Gulu) - 24/02/2025",
+        "datetime": "2025-02-24T00:00:00Z",
+        "end_datetime": "2025-03-03T00:00:00+00:00",
+        "monty:corr_id": "20250224-UGA-836263-EN0205-1-GCDB",
+        "start_datetime": "2025-02-24T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "EN0205",
+          "WF",
+          "nat-cli-wil-wil"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-31660",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "idmc-idu-event-30987",
       "bbox": [
         30.04381,
@@ -3641,10 +6171,12 @@
       "properties": {
         "title": "Uganda: Storm - Western (Toro/Kasese) - 18/02/2025",
         "datetime": "2025-02-18T00:00:00Z",
-        "end_datetime": "2025-02-18T00:00:00Z",
-        "monty:corr_id": "20250218-UGA-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-02-18T00:00:00Z",
+        "end_datetime": "2025-02-18T00:00:00+00:00",
+        "monty:corr_id": "20250218-UGA-811051-MH0301-1-GCDB",
+        "start_datetime": "2025-02-18T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -3705,10 +6237,12 @@
       "properties": {
         "title": "Uganda: Storm - Central (South Buganda/Bukomansimbi) - 17/02/2025",
         "datetime": "2025-02-17T00:00:00Z",
-        "end_datetime": "2025-02-17T00:00:00Z",
-        "monty:corr_id": "20250217-UGA-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-02-17T00:00:00Z",
+        "end_datetime": "2025-02-17T00:00:00+00:00",
+        "monty:corr_id": "20250217-UGA-807459-MH0301-1-GCDB",
+        "start_datetime": "2025-02-17T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -3770,9 +6304,11 @@
         "title": "Uganda: Storm - Central (South Buganda/Kalangala) - 21/01/2025",
         "datetime": "2025-01-21T00:00:00Z",
         "end_datetime": "2025-01-21T00:00:00+00:00",
-        "monty:corr_id": "20250121-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20250121-UGA-807464-MH0301-1-GCDB",
         "start_datetime": "2025-01-21T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -3815,6 +6351,72 @@
       ]
     },
     {
+      "id": "idmc-idu-event-33573",
+      "bbox": [
+        34.017368,
+        3.64462,
+        34.017368,
+        3.64462
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.017368,
+          3.64462
+        ]
+      },
+      "collection": "idmc-idu-events",
+      "properties": {
+        "title": "Uganda: Wildfire - Northern (Karamoja) - 02/01/2025",
+        "datetime": "2025-01-02T00:00:00Z",
+        "end_datetime": "2025-01-19T00:00:00+00:00",
+        "monty:corr_id": "20250102-UGA-841671-EN0205-1-GCDB",
+        "start_datetime": "2025-01-02T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "EN0205",
+          "WF",
+          "nat-cli-wil-wil"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-events/items/idmc-idu-event-33573",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "idmc-idu-event-28428",
       "bbox": [
         33.805618,
@@ -3834,9 +6436,11 @@
         "title": "Uganda: Storm - Eastern (Kibuku) - 02/12/2024",
         "datetime": "2024-12-02T00:00:00Z",
         "end_datetime": "2024-12-02T00:00:00+00:00",
-        "monty:corr_id": "20241202-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20241202-UGA-820070-MH0301-1-GCDB",
         "start_datetime": "2024-12-02T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -3898,9 +6502,11 @@
         "title": "Uganda: Flood - Western (Toro/Kabarole) - 26/11/2024",
         "datetime": "2024-11-26T00:00:00Z",
         "end_datetime": "2024-11-26T00:00:00+00:00",
-        "monty:corr_id": "20241126-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241126-UGA-814652-MH0600-1-GCDB",
         "start_datetime": "2024-11-26T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4026,9 +6632,11 @@
         "title": "Uganda: Flood - Eastern (Butaeja) - 25/11/2024",
         "datetime": "2024-11-25T00:00:00Z",
         "end_datetime": "2024-12-06T00:00:00+00:00",
-        "monty:corr_id": "20241125-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241125-UGA-818270-MH0600-1-GCDB",
         "start_datetime": "2024-11-25T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4090,9 +6698,11 @@
         "title": "Uganda: Flood - Eastern (Busoga/Namutumba) - 04/11/2024",
         "datetime": "2024-11-04T00:00:00Z",
         "end_datetime": "2024-11-04T00:00:00+00:00",
-        "monty:corr_id": "20241104-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241104-UGA-818269-MH0600-1-GCDB",
         "start_datetime": "2024-11-04T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4154,9 +6764,11 @@
         "title": "Uganda: Flood - Western (Rwenzururu/Kasese) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
         "end_datetime": "2024-12-31T00:00:00+00:00",
-        "monty:corr_id": "20241101-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241101-UGA-811051-MH0600-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4218,9 +6830,11 @@
         "title": "Uganda: Flood - Eastern (Bugisu/Namisindwa) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
         "end_datetime": "2024-12-31T00:00:00+00:00",
-        "monty:corr_id": "20241101-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241101-UGA-816469-MH0600-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4282,9 +6896,11 @@
         "title": "Uganda: Flood - Eastern (Bugisu/Sironko) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
         "end_datetime": "2024-12-31T00:00:00+00:00",
-        "monty:corr_id": "20241101-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241101-UGA-820072-MH0600-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4346,9 +6962,11 @@
         "title": "Uganda: Flood - Eastern (Bugisu/Bududa) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
         "end_datetime": "2024-12-31T00:00:00+00:00",
-        "monty:corr_id": "20241101-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241101-UGA-818273-MH0600-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4410,9 +7028,11 @@
         "title": "Uganda: Flood - Western (Toro/Bunyangabu) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
         "end_datetime": "2024-12-31T00:00:00+00:00",
-        "monty:corr_id": "20241101-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241101-UGA-812853-MH0600-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4474,9 +7094,11 @@
         "title": "Uganda: Flood - Western (Kigezi/Kisoro) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
         "end_datetime": "2024-12-31T00:00:00+00:00",
-        "monty:corr_id": "20241101-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241101-UGA-798449-MH0600-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4538,9 +7160,11 @@
         "title": "Uganda: Flood - Central (Kayunga) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
         "end_datetime": "2024-12-31T00:00:00+00:00",
-        "monty:corr_id": "20241101-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241101-UGA-818265-MH0600-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4602,9 +7226,11 @@
         "title": "Uganda: Flood - Eastern (Bugiso/Bulambuli) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
         "end_datetime": "2024-12-31T00:00:00+00:00",
-        "monty:corr_id": "20241101-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20241101-UGA-820073-GH0304-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -4666,9 +7292,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Western (Kigezi/Kabale) - 29/10/2024",
         "datetime": "2024-10-29T00:00:00Z",
         "end_datetime": "2024-10-29T00:00:00+00:00",
-        "monty:corr_id": "20241029-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20241029-UGA-798451-GH0304-1-GCDB",
         "start_datetime": "2024-10-29T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -4730,9 +7358,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Eastern (Bugisu/Bulambuli) - 26/10/2024",
         "datetime": "2024-10-26T00:00:00Z",
         "end_datetime": "2024-10-26T00:00:00+00:00",
-        "monty:corr_id": "20241026-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20241026-UGA-821872-GH0304-1-GCDB",
         "start_datetime": "2024-10-26T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -4794,9 +7424,11 @@
         "title": "Uganda: Flood - Eastern (Teso/Katakwi) - 21/10/2024",
         "datetime": "2024-10-21T00:00:00Z",
         "end_datetime": "2024-10-21T00:00:00+00:00",
-        "monty:corr_id": "20241021-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241021-UGA-827271-MH0600-1-GCDB",
         "start_datetime": "2024-10-21T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4858,9 +7490,11 @@
         "title": "Uganda: Flood - Northern (Lango/Otukre) - 20/10/2024",
         "datetime": "2024-10-20T00:00:00Z",
         "end_datetime": "2024-10-20T00:00:00+00:00",
-        "monty:corr_id": "20241020-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241020-UGA-832668-MH0600-1-GCDB",
         "start_datetime": "2024-10-20T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4922,9 +7556,11 @@
         "title": "Uganda: Flood - Western (Kigezi/Kabale) - 20/10/2024",
         "datetime": "2024-10-20T00:00:00Z",
         "end_datetime": "2024-10-20T00:00:00+00:00",
-        "monty:corr_id": "20241020-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241020-UGA-818254-MH0600-1-GCDB",
         "start_datetime": "2024-10-20T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4986,9 +7622,11 @@
         "title": "Uganda: Flood - Northern (Acholi/Amuru) - 18/10/2024",
         "datetime": "2024-10-18T00:00:00Z",
         "end_datetime": "2024-10-18T00:00:00+00:00",
-        "monty:corr_id": "20241018-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241018-UGA-834462-MH0600-1-GCDB",
         "start_datetime": "2024-10-18T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -5114,9 +7752,11 @@
         "title": "Uganda: Flood - Eastern (Bugisu/Sironko) - 17/10/2024",
         "datetime": "2024-10-17T00:00:00Z",
         "end_datetime": "2024-10-17T00:00:00+00:00",
-        "monty:corr_id": "20241017-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241017-UGA-820072-MH0600-1-GCDB",
         "start_datetime": "2024-10-17T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -5178,9 +7818,11 @@
         "title": "Uganda: Storm - Eastern (Bugisu/Namisindwa) - 08/10/2024",
         "datetime": "2024-10-08T00:00:00Z",
         "end_datetime": "2024-10-08T00:00:00+00:00",
-        "monty:corr_id": "20241008-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20241008-UGA-818272-MH0301-1-GCDB",
         "start_datetime": "2024-10-08T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -5242,9 +7884,11 @@
         "title": "Uganda: Flood - Eastern (Bugisu/Sironko) - 06/10/2024",
         "datetime": "2024-10-06T00:00:00Z",
         "end_datetime": "2024-10-06T00:00:00+00:00",
-        "monty:corr_id": "20241006-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241006-UGA-820072-MH0600-1-GCDB",
         "start_datetime": "2024-10-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -5306,9 +7950,11 @@
         "title": "Uganda: Flood - Northern (Lango/Apac) - 20/09/2024",
         "datetime": "2024-09-20T00:00:00Z",
         "end_datetime": "2024-09-20T00:00:00+00:00",
-        "monty:corr_id": "20240920-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240920-UGA-827263-MH0600-1-GCDB",
         "start_datetime": "2024-09-20T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -5370,9 +8016,11 @@
         "title": "Uganda: Storm - Western (Kigezi/Rukungiri) - 18/09/2024",
         "datetime": "2024-09-18T00:00:00Z",
         "end_datetime": "2024-09-18T00:00:00+00:00",
-        "monty:corr_id": "20240918-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240918-UGA-803850-MH0301-1-GCDB",
         "start_datetime": "2024-09-18T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -5434,9 +8082,11 @@
         "title": "Uganda: Storm - Western (Toro/Bunyangabu) - 10/09/2024",
         "datetime": "2024-09-10T00:00:00Z",
         "end_datetime": "2024-09-10T00:00:00+00:00",
-        "monty:corr_id": "20240910-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240910-UGA-812852-MH0301-1-GCDB",
         "start_datetime": "2024-09-10T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -5481,16 +8131,16 @@
     {
       "id": "idmc-idu-event-28524",
       "bbox": [
-        33.94907,
-        1.01584,
-        33.94907,
-        1.01584
+        33.900002,
+        0.98333,
+        33.900002,
+        0.98333
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          33.94907,
-          1.01584
+          33.900002,
+          0.98333
         ]
       },
       "collection": "idmc-idu-events",
@@ -5498,9 +8148,11 @@
         "title": "Uganda: Storm - Eastern (Bukedi/Budaka) - 10/09/2024",
         "datetime": "2024-09-10T00:00:00Z",
         "end_datetime": "2024-09-11T00:00:00+00:00",
-        "monty:corr_id": "20240910-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240910-UGA-818270-MH0301-1-GCDB",
         "start_datetime": "2024-09-10T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -5562,9 +8214,11 @@
         "title": "Uganda: Storm - Eastern (Bugisu/Mbale) - 09/09/2024",
         "datetime": "2024-09-09T00:00:00Z",
         "end_datetime": "2024-09-09T00:00:00+00:00",
-        "monty:corr_id": "20240909-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240909-UGA-818272-MH0301-1-GCDB",
         "start_datetime": "2024-09-09T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -5626,9 +8280,11 @@
         "title": "Uganda: Storm - Westerm (Bunyoro/Kagadi) - 08/09/2024",
         "datetime": "2024-09-08T00:00:00Z",
         "end_datetime": "2024-09-08T00:00:00+00:00",
-        "monty:corr_id": "20240908-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240908-UGA-818254-MH0301-1-GCDB",
         "start_datetime": "2024-09-08T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -5690,9 +8346,11 @@
         "title": "Uganda: Flood - Western (Toro/Kasese) - 07/09/2024",
         "datetime": "2024-09-07T00:00:00Z",
         "end_datetime": "2024-09-07T00:00:00+00:00",
-        "monty:corr_id": "20240907-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240907-UGA-811051-MH0600-1-GCDB",
         "start_datetime": "2024-09-07T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -5882,9 +8540,11 @@
         "title": "Uganda: Flood - Northern (Moyo/Laropi) - 25/08/2024",
         "datetime": "2024-08-25T00:00:00Z",
         "end_datetime": "2024-08-25T00:00:00+00:00",
-        "monty:corr_id": "20240825-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240825-UGA-841660-MH0600-1-GCDB",
         "start_datetime": "2024-08-25T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -5946,9 +8606,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Northern (Acholi/Pader) - 17/08/2024",
         "datetime": "2024-08-17T00:00:00Z",
         "end_datetime": "2024-08-17T00:00:00+00:00",
-        "monty:corr_id": "20240817-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240817-UGA-836265-GH0304-1-GCDB",
         "start_datetime": "2024-08-17T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -6010,9 +8672,11 @@
         "title": "Uganda: Storm - Eastern (Bukedi/Tororo) - 12/08/2024",
         "datetime": "2024-08-12T00:00:00Z",
         "end_datetime": "2024-08-19T00:00:00+00:00",
-        "monty:corr_id": "20240812-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240812-UGA-816471-MH0301-1-GCDB",
         "start_datetime": "2024-08-12T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -6074,9 +8738,11 @@
         "title": "Uganda: Flood - Northern (Lango) - 06/08/2024",
         "datetime": "2024-08-06T00:00:00Z",
         "end_datetime": "2024-09-06T00:00:00+00:00",
-        "monty:corr_id": "20240806-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240806-UGA-834465-MH0600-1-GCDB",
         "start_datetime": "2024-08-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -6138,9 +8804,11 @@
         "title": "Uganda: Flood - Northern (Acholi/Agago) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-09-16T00:00:00+00:00",
-        "monty:corr_id": "20240801-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-UGA-836268-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -6202,9 +8870,11 @@
         "title": "Uganda: Flood - Central and Western - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-UGA-818252-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -6330,9 +9000,11 @@
         "title": "Uganda: Flood - Eastern (Teso/Kapelebyong) - 20/07/2024",
         "datetime": "2024-07-20T00:00:00Z",
         "end_datetime": "2024-08-20T00:00:00+00:00",
-        "monty:corr_id": "20240720-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240720-UGA-830870-MH0600-1-GCDB",
         "start_datetime": "2024-07-20T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -6441,16 +9113,16 @@
     {
       "id": "idmc-idu-event-27476",
       "bbox": [
-        33.014439,
-        1.66556,
-        33.014439,
-        1.66556
+        33.157211,
+        1.76384,
+        33.157211,
+        1.76384
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          33.014439,
-          1.66556
+          33.157211,
+          1.76384
         ]
       },
       "collection": "idmc-idu-events",
@@ -6458,9 +9130,11 @@
         "title": "Uganda: Flood - Eastern (Teso/Kaberamaido) - 11/07/2024",
         "datetime": "2024-07-11T00:00:00Z",
         "end_datetime": "2024-07-20T00:00:00+00:00",
-        "monty:corr_id": "20240711-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240711-UGA-825467-MH0600-1-GCDB",
         "start_datetime": "2024-07-11T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -6522,9 +9196,11 @@
         "title": "Uganda: Storm - Western (Kigezi/Rukungiri) - 09/07/2024",
         "datetime": "2024-07-09T00:00:00Z",
         "end_datetime": "2024-07-09T00:00:00+00:00",
-        "monty:corr_id": "20240709-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240709-UGA-803850-MH0301-1-GCDB",
         "start_datetime": "2024-07-09T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -6586,9 +9262,11 @@
         "title": "Uganda: Flood - Eastern (Teso/Katakwi) - 08/07/2024",
         "datetime": "2024-07-08T00:00:00Z",
         "end_datetime": "2024-07-08T00:00:00+00:00",
-        "monty:corr_id": "20240708-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240708-UGA-825471-MH0600-1-GCDB",
         "start_datetime": "2024-07-08T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -6650,9 +9328,11 @@
         "title": "Uganda: Flood - Eastern (Busoga/Buyende) - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-07-15T00:00:00+00:00",
-        "monty:corr_id": "20240701-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240701-UGA-820067-MH0600-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -6714,9 +9394,11 @@
         "title": "Uganda: Storm - Central (South Buganda/Kalangala) - 19/06/2024",
         "datetime": "2024-06-19T00:00:00Z",
         "end_datetime": "2024-06-19T00:00:00+00:00",
-        "monty:corr_id": "20240619-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240619-UGA-805663-MH0301-1-GCDB",
         "start_datetime": "2024-06-19T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -6778,9 +9460,11 @@
         "title": "Uganda: Storm - Western (Kigezi/Kanungu) - 06/06/2024",
         "datetime": "2024-06-06T00:00:00Z",
         "end_datetime": "2024-06-06T00:00:00+00:00",
-        "monty:corr_id": "20240606-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240606-UGA-802050-MH0301-1-GCDB",
         "start_datetime": "2024-06-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -6842,9 +9526,11 @@
         "title": "Uganda: Flood - Eastern (Teso) - 28/05/2024",
         "datetime": "2024-05-28T00:00:00Z",
         "end_datetime": "2024-05-28T00:00:00+00:00",
-        "monty:corr_id": "20240528-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240528-UGA-827271-MH0600-1-GCDB",
         "start_datetime": "2024-05-28T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -6906,9 +9592,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Eastern (Elgon/Manafwa) - 25/05/2024",
         "datetime": "2024-05-25T00:00:00Z",
         "end_datetime": "2024-05-25T00:00:00+00:00",
-        "monty:corr_id": "20240525-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240525-UGA-818272-GH0304-1-GCDB",
         "start_datetime": "2024-05-25T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -6970,9 +9658,11 @@
         "title": "Uganda: Flood - Northern (Lango/Amolatar) - 23/05/2024",
         "datetime": "2024-05-23T00:00:00Z",
         "end_datetime": "2024-05-23T00:00:00+00:00",
-        "monty:corr_id": "20240523-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240523-UGA-825465-MH0600-1-GCDB",
         "start_datetime": "2024-05-23T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -7034,9 +9724,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Western (Toro/Kasese) - 21/05/2024",
         "datetime": "2024-05-21T00:00:00Z",
         "end_datetime": "2024-05-21T00:00:00+00:00",
-        "monty:corr_id": "20240521-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240521-UGA-811051-GH0304-1-GCDB",
         "start_datetime": "2024-05-21T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -7098,9 +9790,11 @@
         "title": "Uganda: Flood - Central (North Buganda/Kayunga) - 12/05/2024",
         "datetime": "2024-05-12T00:00:00Z",
         "end_datetime": "2024-05-12T00:00:00+00:00",
-        "monty:corr_id": "20240512-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240512-UGA-820065-MH0600-1-GCDB",
         "start_datetime": "2024-05-12T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -7162,9 +9856,11 @@
         "title": "Uganda: Flood - Western (Toro/Ntoroko) - 08/05/2024",
         "datetime": "2024-05-08T00:00:00Z",
         "end_datetime": "2024-05-08T00:00:00+00:00",
-        "monty:corr_id": "20240508-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240508-UGA-820053-MH0600-1-GCDB",
         "start_datetime": "2024-05-08T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -7226,9 +9922,11 @@
         "title": "Uganda: Flood - Central (North Buganda/Kayunga) - 05/05/2024",
         "datetime": "2024-05-05T00:00:00Z",
         "end_datetime": "2024-05-05T00:00:00+00:00",
-        "monty:corr_id": "20240505-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240505-UGA-820065-MH0600-1-GCDB",
         "start_datetime": "2024-05-05T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -7290,9 +9988,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Western (Toro/Bunyangabu) - 04/05/2024",
         "datetime": "2024-05-04T00:00:00Z",
         "end_datetime": "2024-05-04T00:00:00+00:00",
-        "monty:corr_id": "20240504-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240504-UGA-812853-GH0304-1-GCDB",
         "start_datetime": "2024-05-04T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -7354,9 +10054,11 @@
         "title": "Uganda: Flood - Eastern (Teso/Katakwi) - 04/05/2024",
         "datetime": "2024-05-04T00:00:00Z",
         "end_datetime": "2024-05-04T00:00:00+00:00",
-        "monty:corr_id": "20240504-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240504-UGA-827271-MH0600-1-GCDB",
         "start_datetime": "2024-05-04T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -7418,9 +10120,11 @@
         "title": "Uganda: Flood - Eastern (Busoga/Kamuli) - 03/05/2024",
         "datetime": "2024-05-03T00:00:00Z",
         "end_datetime": "2024-05-03T00:00:00+00:00",
-        "monty:corr_id": "20240503-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240503-UGA-818266-MH0600-1-GCDB",
         "start_datetime": "2024-05-03T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -7482,9 +10186,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Eastern (Elgon/Mbale) - 02/05/2024",
         "datetime": "2024-05-02T00:00:00Z",
         "end_datetime": "2024-05-02T00:00:00+00:00",
-        "monty:corr_id": "20240502-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240502-UGA-818272-GH0304-1-GCDB",
         "start_datetime": "2024-05-02T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -7546,9 +10252,11 @@
         "title": "Uganda: Flood - Eastern (Elgon/Mbale) - 02/05/2024",
         "datetime": "2024-05-02T00:00:00Z",
         "end_datetime": "2024-05-02T00:00:00+00:00",
-        "monty:corr_id": "20240502-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240502-UGA-820072-MH0600-1-GCDB",
         "start_datetime": "2024-05-02T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -7610,9 +10318,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Western (Toro/Kasese) - 02/05/2024",
         "datetime": "2024-05-02T00:00:00Z",
         "end_datetime": "2024-05-02T00:00:00+00:00",
-        "monty:corr_id": "20240502-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240502-UGA-812851-GH0304-1-GCDB",
         "start_datetime": "2024-05-02T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -7674,9 +10384,11 @@
         "title": "Uganda: Flood - Western (Kigezi/Kanungu) - 02/05/2024",
         "datetime": "2024-05-02T00:00:00Z",
         "end_datetime": "2024-05-02T00:00:00+00:00",
-        "monty:corr_id": "20240502-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240502-UGA-803850-MH0600-1-GCDB",
         "start_datetime": "2024-05-02T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -7802,9 +10514,11 @@
         "title": "Uganda: Flood - Western (Ntoroko) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-UGA-818253-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -7866,9 +10580,11 @@
         "title": "Uganda: Flood - Central (Masaka) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-UGA-805660-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -7930,9 +10646,11 @@
         "title": "Uganda: Flood - Western (Toro/Kasese) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-UGA-811051-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -7994,9 +10712,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Western (Toro/Kasese) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240501-UGA-811051-GH0304-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -8058,9 +10778,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Western (Kisoro) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240501-UGA-798449-GH0304-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -8122,9 +10844,11 @@
         "title": "Uganda: Flood - Western (Kisoro) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-UGA-798449-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -8169,16 +10893,16 @@
     {
       "id": "idmc-idu-event-24037",
       "bbox": [
-        33.242232,
-        0.9296363636363636,
-        33.242232,
-        0.9296363636363636
+        33.87796,
+        0.86125,
+        33.87796,
+        0.86125
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          33.242232,
-          0.9296363636363636
+          33.87796,
+          0.86125
         ]
       },
       "collection": "idmc-idu-events",
@@ -8186,9 +10910,11 @@
         "title": "Uganda: Flood - Eastern, Northern, Western - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-10T00:00:00+00:00",
-        "monty:corr_id": "20240501-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-UGA-818270-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -8250,9 +10976,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Western (Toro/Kasese) - 30/04/2024",
         "datetime": "2024-04-30T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240430-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240430-UGA-811051-GH0304-1-GCDB",
         "start_datetime": "2024-04-30T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -8314,9 +11042,11 @@
         "title": "Uganda: Flood - Northern (Nabilatuk/Nabilatuk) - 27/04/2024",
         "datetime": "2024-04-27T00:00:00Z",
         "end_datetime": "2024-04-28T00:00:00+00:00",
-        "monty:corr_id": "20240427-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240427-UGA-827274-MH0600-1-GCDB",
         "start_datetime": "2024-04-27T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -8378,9 +11108,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Eastern (Elgon/Mbale) - 26/04/2024",
         "datetime": "2024-04-26T00:00:00Z",
         "end_datetime": "2024-04-26T00:00:00+00:00",
-        "monty:corr_id": "20240426-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240426-UGA-818272-GH0304-1-GCDB",
         "start_datetime": "2024-04-26T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -8442,9 +11174,11 @@
         "title": "Uganda: Flood - Eastern (Teso/Bukedea) - 24/04/2024",
         "datetime": "2024-04-24T00:00:00Z",
         "end_datetime": "2024-04-24T00:00:00+00:00",
-        "monty:corr_id": "20240424-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240424-UGA-821871-MH0600-1-GCDB",
         "start_datetime": "2024-04-24T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -8506,9 +11240,11 @@
         "title": "Uganda: Flood - Western (Toro/Kasese) - 24/04/2024",
         "datetime": "2024-04-24T00:00:00Z",
         "end_datetime": "2024-04-24T00:00:00+00:00",
-        "monty:corr_id": "20240424-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240424-UGA-811051-MH0600-1-GCDB",
         "start_datetime": "2024-04-24T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -8570,9 +11306,11 @@
         "title": "Uganda: Storm - Eastern (Elgon/Bulambuli) - 23/04/2024",
         "datetime": "2024-04-23T00:00:00Z",
         "end_datetime": "2024-04-23T00:00:00+00:00",
-        "monty:corr_id": "20240423-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240423-UGA-820073-MH0301-1-GCDB",
         "start_datetime": "2024-04-23T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -8634,9 +11372,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Eastern (Elgon/Bulambuli) - 23/04/2024",
         "datetime": "2024-04-23T00:00:00Z",
         "end_datetime": "2024-04-23T00:00:00+00:00",
-        "monty:corr_id": "20240423-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240423-UGA-820072-GH0304-1-GCDB",
         "start_datetime": "2024-04-23T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -8698,9 +11438,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Eastern (Elgon/Kapchorwa) - 19/04/2024",
         "datetime": "2024-04-19T00:00:00Z",
         "end_datetime": "2024-04-19T00:00:00+00:00",
-        "monty:corr_id": "20240419-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240419-UGA-821873-GH0304-1-GCDB",
         "start_datetime": "2024-04-19T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -8762,9 +11504,11 @@
         "title": "Uganda: Storm - Central (Mpigi) - 18/04/2024",
         "datetime": "2024-04-18T00:00:00Z",
         "end_datetime": "2024-04-18T00:00:00+00:00",
-        "monty:corr_id": "20240418-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240418-UGA-811062-MH0301-1-GCDB",
         "start_datetime": "2024-04-18T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -8826,9 +11570,11 @@
         "title": "Uganda: Flood - Eastern (Elgon/Sironko) - 16/04/2024",
         "datetime": "2024-04-16T00:00:00Z",
         "end_datetime": "2024-04-16T00:00:00+00:00",
-        "monty:corr_id": "20240416-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240416-UGA-820072-MH0600-1-GCDB",
         "start_datetime": "2024-04-16T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -8890,9 +11636,11 @@
         "title": "Uganda: Storm - Central (North Buganda/Buvuma) - 13/04/2024",
         "datetime": "2024-04-13T00:00:00Z",
         "end_datetime": "2024-04-15T00:00:00+00:00",
-        "monty:corr_id": "20240413-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240413-UGA-811067-MH0301-1-GCDB",
         "start_datetime": "2024-04-13T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -8954,9 +11702,11 @@
         "title": "Uganda: Flood - Eastern (Elgon/Bulambuli) - 03/04/2024",
         "datetime": "2024-04-03T00:00:00Z",
         "end_datetime": "2024-04-03T00:00:00+00:00",
-        "monty:corr_id": "20240403-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240403-UGA-821872-MH0600-1-GCDB",
         "start_datetime": "2024-04-03T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -9018,9 +11768,11 @@
         "title": "Uganda: Flood - Eastern (Bukedi/Butaleja) - 03/04/2024",
         "datetime": "2024-04-03T00:00:00Z",
         "end_datetime": "2024-04-03T00:00:00+00:00",
-        "monty:corr_id": "20240403-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240403-UGA-818271-MH0600-1-GCDB",
         "start_datetime": "2024-04-03T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -9146,9 +11898,11 @@
         "title": "Uganda: Flood - Northern (Amuru/Elegu) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-05-08T00:00:00+00:00",
-        "monty:corr_id": "20240401-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-UGA-838061-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -9210,9 +11964,11 @@
         "title": "Uganda: Flood - Central (Kalangala) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-05-08T00:00:00+00:00",
-        "monty:corr_id": "20240401-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-UGA-803863-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -9274,9 +12030,11 @@
         "title": "Uganda: Storm - Central (North Buganda/Buikwe) - 27/03/2024",
         "datetime": "2024-03-27T00:00:00Z",
         "end_datetime": "2024-04-04T00:00:00+00:00",
-        "monty:corr_id": "20240327-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240327-UGA-812864-MH0301-1-GCDB",
         "start_datetime": "2024-03-27T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -9338,9 +12096,11 @@
         "title": "Uganda: Storm - Eastern (Elgon/Namisindwa) - 27/03/2024",
         "datetime": "2024-03-27T00:00:00Z",
         "end_datetime": "2024-03-27T00:00:00+00:00",
-        "monty:corr_id": "20240327-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240327-UGA-818272-MH0301-1-GCDB",
         "start_datetime": "2024-03-27T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -9402,9 +12162,11 @@
         "title": "Uganda: Flood - Northern (Dokolo) - 25/03/2024",
         "datetime": "2024-03-25T00:00:00Z",
         "end_datetime": "2024-05-09T00:00:00+00:00",
-        "monty:corr_id": "20240325-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240325-UGA-827266-MH0600-1-GCDB",
         "start_datetime": "2024-03-25T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -9449,16 +12211,16 @@
     {
       "id": "idmc-idu-event-24173",
       "bbox": [
-        29.68836,
-        -0.82806,
-        29.68836,
-        -0.82806
+        29.63718,
+        -0.91301,
+        29.63718,
+        -0.91301
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          29.68836,
-          -0.82806
+          29.63718,
+          -0.91301
         ]
       },
       "collection": "idmc-idu-events",
@@ -9466,9 +12228,11 @@
         "title": "Uganda: Storm - Western (Kigezi/Kanungu) - 20/03/2024",
         "datetime": "2024-03-20T00:00:00Z",
         "end_datetime": "2024-03-23T00:00:00+00:00",
-        "monty:corr_id": "20240320-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240320-UGA-802049-MH0301-1-GCDB",
         "start_datetime": "2024-03-20T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -9530,9 +12294,11 @@
         "title": "Uganda: Storm - Central (North Buganda/Mubende) - 16/03/2024",
         "datetime": "2024-03-16T00:00:00Z",
         "end_datetime": "2024-03-16T00:00:00+00:00",
-        "monty:corr_id": "20240316-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240316-UGA-814658-MH0301-1-GCDB",
         "start_datetime": "2024-03-16T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -9594,9 +12360,11 @@
         "title": "Uganda: Storm - Central (South Buganda/Wakiso) - 13/03/2024",
         "datetime": "2024-03-13T00:00:00Z",
         "end_datetime": "2024-03-13T00:00:00+00:00",
-        "monty:corr_id": "20240313-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240313-UGA-811063-MH0301-1-GCDB",
         "start_datetime": "2024-03-13T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -9641,16 +12409,16 @@
     {
       "id": "idmc-idu-event-24170",
       "bbox": [
-        30.15807,
-        0.44461,
-        30.15807,
-        0.44461
+        30.192261,
+        0.4777,
+        30.192261,
+        0.4777
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          30.15807,
-          0.44461
+          30.192261,
+          0.4777
         ]
       },
       "collection": "idmc-idu-events",
@@ -9658,9 +12426,11 @@
         "title": "Uganda: Storm - Western (Toro/Bunyangabu) - 10/03/2024",
         "datetime": "2024-03-10T00:00:00Z",
         "end_datetime": "2024-03-11T00:00:00+00:00",
-        "monty:corr_id": "20240310-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240310-UGA-814652-MH0301-1-GCDB",
         "start_datetime": "2024-03-10T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -9722,9 +12492,11 @@
         "title": "Uganda: Storm - Central (Luweero) - 08/03/2024",
         "datetime": "2024-03-08T00:00:00Z",
         "end_datetime": "2024-03-08T00:00:00+00:00",
-        "monty:corr_id": "20240308-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240308-UGA-816464-MH0301-1-GCDB",
         "start_datetime": "2024-03-08T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -9786,9 +12558,11 @@
         "title": "Uganda: Flood - Eastern (Bukedea/Bukedea) - 29/02/2024",
         "datetime": "2024-02-29T00:00:00Z",
         "end_datetime": "2024-02-29T00:00:00+00:00",
-        "monty:corr_id": "20240229-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240229-UGA-821872-MH0600-1-GCDB",
         "start_datetime": "2024-02-29T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -9850,9 +12624,11 @@
         "title": "Uganda: Storm - Central (Kalangala/Bujumba) - 27/02/2024",
         "datetime": "2024-02-27T00:00:00Z",
         "end_datetime": "2024-02-27T00:00:00+00:00",
-        "monty:corr_id": "20240227-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240227-UGA-807462-MH0301-1-GCDB",
         "start_datetime": "2024-02-27T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -9914,9 +12690,11 @@
         "title": "Uganda: Storm - Northern (Lira/Erute) - 10/02/2024",
         "datetime": "2024-02-10T00:00:00Z",
         "end_datetime": "2024-02-10T00:00:00+00:00",
-        "monty:corr_id": "20240210-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240210-UGA-829065-MH0301-1-GCDB",
         "start_datetime": "2024-02-10T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -9978,9 +12756,11 @@
         "title": "Uganda: Storm - (Mbale/Bungokho) - 10/02/2024",
         "datetime": "2024-02-10T00:00:00Z",
         "end_datetime": "2024-02-11T00:00:00+00:00",
-        "monty:corr_id": "20240210-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240210-UGA-818272-MH0301-1-GCDB",
         "start_datetime": "2024-02-10T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -10042,9 +12822,11 @@
         "title": "Uganda: Storm - Central (Kyotera/Kakuuto) - 06/02/2024",
         "datetime": "2024-02-06T00:00:00Z",
         "end_datetime": "2024-02-06T00:00:00+00:00",
-        "monty:corr_id": "20240206-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240206-UGA-803858-MH0301-1-GCDB",
         "start_datetime": "2024-02-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -10106,9 +12888,11 @@
         "title": "Uganda: Storm - Western (Kisoro/Bufumbira) - 31/01/2024",
         "datetime": "2024-01-31T00:00:00Z",
         "end_datetime": "2024-01-31T00:00:00+00:00",
-        "monty:corr_id": "20240131-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20240131-UGA-798449-MH0301-1-GCDB",
         "start_datetime": "2024-01-31T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -10170,9 +12954,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Eastern (Bududa/Manjiya) - 17/01/2024",
         "datetime": "2024-01-17T00:00:00Z",
         "end_datetime": "2024-01-17T00:00:00+00:00",
-        "monty:corr_id": "20240117-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240117-UGA-818273-GH0304-1-GCDB",
         "start_datetime": "2024-01-17T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -10234,9 +13020,11 @@
         "title": "Uganda: Storm - Western (Kanungu) - 29/12/2023",
         "datetime": "2023-12-29T00:00:00Z",
         "end_datetime": "2023-12-29T00:00:00+00:00",
-        "monty:corr_id": "20231229-UGA-NAT-MET-STO-STO-1-GCDB",
+        "monty:corr_id": "20231229-UGA-803850-MH0301-1-GCDB",
         "start_datetime": "2023-12-29T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -10362,9 +13150,11 @@
         "title": "Uganda: Flood - Central (Kayunga) - 24/11/2023",
         "datetime": "2023-11-24T00:00:00Z",
         "end_datetime": "2023-11-24T00:00:00+00:00",
-        "monty:corr_id": "20231124-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231124-UGA-818265-MH0600-1-GCDB",
         "start_datetime": "2023-11-24T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -10426,9 +13216,11 @@
         "title": "Uganda: Flood - Northern (Madi Okollo)- 23/11/2023",
         "datetime": "2023-11-23T00:00:00Z",
         "end_datetime": "2023-11-23T00:00:00+00:00",
-        "monty:corr_id": "20231123-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231123-UGA-834457-MH0600-1-GCDB",
         "start_datetime": "2023-11-23T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -10490,9 +13282,11 @@
         "title": "Uganda: Flood - Northern (Madi Okollo) - 22/11/2023",
         "datetime": "2023-11-22T00:00:00Z",
         "end_datetime": "2023-11-22T00:00:00+00:00",
-        "monty:corr_id": "20231122-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231122-UGA-834457-MH0600-1-GCDB",
         "start_datetime": "2023-11-22T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -10554,9 +13348,11 @@
         "title": "Uganda: Flood - Northern (Madi Okollo) - 21/11/2023",
         "datetime": "2023-11-21T00:00:00Z",
         "end_datetime": "2023-11-21T00:00:00+00:00",
-        "monty:corr_id": "20231121-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231121-UGA-834457-MH0600-1-GCDB",
         "start_datetime": "2023-11-21T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -10618,9 +13414,11 @@
         "title": "Uganda: Flood - Central (Kayunga) - 21/11/2023",
         "datetime": "2023-11-21T00:00:00Z",
         "end_datetime": "2023-11-21T00:00:00+00:00",
-        "monty:corr_id": "20231121-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231121-UGA-818265-MH0600-1-GCDB",
         "start_datetime": "2023-11-21T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -10682,9 +13480,11 @@
         "title": "Uganda: Flood - Northern (Madi Okollo) - 20/11/2023",
         "datetime": "2023-11-20T00:00:00Z",
         "end_datetime": "2023-11-20T00:00:00+00:00",
-        "monty:corr_id": "20231120-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231120-UGA-834457-MH0600-1-GCDB",
         "start_datetime": "2023-11-20T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -10746,9 +13546,11 @@
         "title": "Uganda: Flood - Central (Kayunga) - 19/11/2023",
         "datetime": "2023-11-19T00:00:00Z",
         "end_datetime": "2023-11-19T00:00:00+00:00",
-        "monty:corr_id": "20231119-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231119-UGA-818265-MH0600-1-GCDB",
         "start_datetime": "2023-11-19T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -10810,9 +13612,11 @@
         "title": "Uganda: Flood - Northern (Madi Okollo) - 18/11/2023",
         "datetime": "2023-11-18T00:00:00Z",
         "end_datetime": "2023-11-18T00:00:00+00:00",
-        "monty:corr_id": "20231118-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231118-UGA-834457-MH0600-1-GCDB",
         "start_datetime": "2023-11-18T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -10874,9 +13678,11 @@
         "title": "Uganda: Flood - Northern (Madi Okollo)- 17/11/2023",
         "datetime": "2023-11-17T00:00:00Z",
         "end_datetime": "2023-11-17T00:00:00+00:00",
-        "monty:corr_id": "20231117-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231117-UGA-834457-MH0600-1-GCDB",
         "start_datetime": "2023-11-17T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -10938,9 +13744,11 @@
         "title": "Uganda: Flood - Central (Kayunga) - 17/11/2023",
         "datetime": "2023-11-17T00:00:00Z",
         "end_datetime": "2023-11-17T00:00:00+00:00",
-        "monty:corr_id": "20231117-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231117-UGA-818265-MH0600-1-GCDB",
         "start_datetime": "2023-11-17T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11002,9 +13810,11 @@
         "title": "Uganda: Flood - Northern (Amolatar) - 16/11/2023",
         "datetime": "2023-11-16T00:00:00Z",
         "end_datetime": "2023-11-16T00:00:00+00:00",
-        "monty:corr_id": "20231116-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231116-UGA-823665-MH0600-1-GCDB",
         "start_datetime": "2023-11-16T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11066,9 +13876,11 @@
         "title": "Uganda: Flood - Northern (Madi Okollo) - 15/11/2023",
         "datetime": "2023-11-15T00:00:00Z",
         "end_datetime": "2023-11-15T00:00:00+00:00",
-        "monty:corr_id": "20231115-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231115-UGA-834457-MH0600-1-GCDB",
         "start_datetime": "2023-11-15T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11130,9 +13942,11 @@
         "title": "Uganda: Flood - Western (Ntoroko) - 11/11/2023",
         "datetime": "2023-11-11T00:00:00Z",
         "end_datetime": "2023-11-11T00:00:00+00:00",
-        "monty:corr_id": "20231111-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231111-UGA-818253-MH0600-1-GCDB",
         "start_datetime": "2023-11-11T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11194,9 +14008,11 @@
         "title": "Uganda: Flood - Northern (Madi Okollo) - 10/11/2023",
         "datetime": "2023-11-10T00:00:00Z",
         "end_datetime": "2023-11-10T00:00:00+00:00",
-        "monty:corr_id": "20231110-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231110-UGA-834457-MH0600-1-GCDB",
         "start_datetime": "2023-11-10T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11258,9 +14074,11 @@
         "title": "Uganda: Flood - Western, Central - 10/11/2023",
         "datetime": "2023-11-10T00:00:00Z",
         "end_datetime": "2023-11-22T00:00:00+00:00",
-        "monty:corr_id": "20231110-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231110-UGA-821863-MH0600-1-GCDB",
         "start_datetime": "2023-11-10T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11322,9 +14140,11 @@
         "title": "Uganda: Flood - Western (Ntoroko) - 09/11/2023",
         "datetime": "2023-11-09T00:00:00Z",
         "end_datetime": "2023-11-09T00:00:00+00:00",
-        "monty:corr_id": "20231109-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231109-UGA-818253-MH0600-1-GCDB",
         "start_datetime": "2023-11-09T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11386,9 +14206,11 @@
         "title": "Uganda: Flood - Eastern (Bukedea) - 09/11/2023",
         "datetime": "2023-11-09T00:00:00Z",
         "end_datetime": "2023-11-09T00:00:00+00:00",
-        "monty:corr_id": "20231109-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231109-UGA-821871-MH0600-1-GCDB",
         "start_datetime": "2023-11-09T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11450,9 +14272,11 @@
         "title": "Uganda: Flood - Northern (Madi Okollo) - 07/11/2023",
         "datetime": "2023-11-07T00:00:00Z",
         "end_datetime": "2023-11-07T00:00:00+00:00",
-        "monty:corr_id": "20231107-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231107-UGA-834457-MH0600-1-GCDB",
         "start_datetime": "2023-11-07T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11514,9 +14338,11 @@
         "title": "Uganda: Flood - Northern (Yumbe) - 06/11/2023",
         "datetime": "2023-11-06T00:00:00Z",
         "end_datetime": "2023-11-06T00:00:00+00:00",
-        "monty:corr_id": "20231106-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231106-UGA-841657-MH0600-1-GCDB",
         "start_datetime": "2023-11-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11578,9 +14404,11 @@
         "title": "Uganda: Flood - Central (Kayunga) - 06/11/2023",
         "datetime": "2023-11-06T00:00:00Z",
         "end_datetime": "2023-11-06T00:00:00+00:00",
-        "monty:corr_id": "20231106-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231106-UGA-818265-MH0600-1-GCDB",
         "start_datetime": "2023-11-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11642,9 +14470,11 @@
         "title": "Uganda: Flood - Northern (Madi Okollo) - 05/11/2023",
         "datetime": "2023-11-05T00:00:00Z",
         "end_datetime": "2023-11-05T00:00:00+00:00",
-        "monty:corr_id": "20231105-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231105-UGA-834457-MH0600-1-GCDB",
         "start_datetime": "2023-11-05T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11706,9 +14536,11 @@
         "title": "Uganda: Flood - Northern (Apac) - 05/11/2023",
         "datetime": "2023-11-05T00:00:00Z",
         "end_datetime": "2023-11-05T00:00:00+00:00",
-        "monty:corr_id": "20231105-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231105-UGA-827264-MH0600-1-GCDB",
         "start_datetime": "2023-11-05T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11770,9 +14602,11 @@
         "title": "Uganda: Flood - Northern (Adjumani) - 05/11/2023",
         "datetime": "2023-11-05T00:00:00Z",
         "end_datetime": "2023-11-09T00:00:00+00:00",
-        "monty:corr_id": "20231105-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231105-UGA-839861-MH0600-1-GCDB",
         "start_datetime": "2023-11-05T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11834,9 +14668,11 @@
         "title": "Uganda: Flood - Northern (Amuru) - 05/11/2023",
         "datetime": "2023-11-05T00:00:00Z",
         "end_datetime": "2023-11-06T00:00:00+00:00",
-        "monty:corr_id": "20231105-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231105-UGA-838061-MH0600-1-GCDB",
         "start_datetime": "2023-11-05T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -11898,9 +14734,11 @@
         "title": "Uganda: Flood - Western (Kakumiro) - 04/11/2023",
         "datetime": "2023-11-04T00:00:00Z",
         "end_datetime": "2023-11-04T00:00:00+00:00",
-        "monty:corr_id": "20231104-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231104-UGA-816457-MH0600-1-GCDB",
         "start_datetime": "2023-11-04T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12026,9 +14864,11 @@
         "title": "Uganda: Flood - Northern (Adjumani) - 02/11/2023",
         "datetime": "2023-11-02T00:00:00Z",
         "end_datetime": "2023-11-02T00:00:00+00:00",
-        "monty:corr_id": "20231102-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231102-UGA-838060-MH0600-1-GCDB",
         "start_datetime": "2023-11-02T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12154,9 +14994,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Eastern (Namisindwa) - 12/09/2023",
         "datetime": "2023-09-12T00:00:00Z",
         "end_datetime": "2023-09-13T00:00:00+00:00",
-        "monty:corr_id": "20230912-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20230912-UGA-820074-GH0304-1-GCDB",
         "start_datetime": "2023-09-12T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -12218,9 +15060,11 @@
         "title": "Uganda: Hailstorm - Western (Kasese) - 09/09/2023",
         "datetime": "2023-09-09T00:00:00Z",
         "end_datetime": "2023-09-10T00:00:00+00:00",
-        "monty:corr_id": "20230909-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230909-UGA-811051-MH0404-1-GCDB",
         "start_datetime": "2023-09-09T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -12282,9 +15126,11 @@
         "title": "Uganda: Flood - Eastern (Bukedea) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230901-UGA-821871-MH0600-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -12346,9 +15192,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Western (Kabale) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20230901-UGA-798451-GH0304-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -12410,9 +15258,11 @@
         "title": "Uganda: Hailstorm - Central (Kalangala) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230901-UGA-803863-MH0404-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -12474,9 +15324,11 @@
         "title": "Uganda: Hailstorm - Western (Kanungu) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230901-UGA-803849-MH0404-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -12538,9 +15390,11 @@
         "title": "Uganda: Hailstorm - Central (Lyantonde) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230901-UGA-807457-MH0404-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -12602,9 +15456,11 @@
         "title": "Uganda: Hailstorm - Central (Kalungu) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230901-UGA-809260-MH0404-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -12666,9 +15522,11 @@
         "title": "Uganda: Hailstorm - Northern (Zombo) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230901-UGA-832655-MH0404-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -12730,9 +15588,11 @@
         "title": "Uganda: Hailstorm - Northern (Zombo) - 28/08/2023",
         "datetime": "2023-08-28T00:00:00Z",
         "end_datetime": "2023-08-28T00:00:00+00:00",
-        "monty:corr_id": "20230828-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230828-UGA-832655-MH0404-1-GCDB",
         "start_datetime": "2023-08-28T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -12794,9 +15654,11 @@
         "title": "Uganda: Hailstorm - Northern (Nakapiripirit) - 23/08/2023",
         "datetime": "2023-08-23T00:00:00Z",
         "end_datetime": "2023-08-25T00:00:00+00:00",
-        "monty:corr_id": "20230823-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230823-UGA-827274-MH0404-1-GCDB",
         "start_datetime": "2023-08-23T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -12858,9 +15720,11 @@
         "title": "Uganda: Hailstorm - Northern (Amuru) - 12/08/2023",
         "datetime": "2023-08-12T00:00:00Z",
         "end_datetime": "2023-08-12T00:00:00+00:00",
-        "monty:corr_id": "20230812-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230812-UGA-838061-MH0404-1-GCDB",
         "start_datetime": "2023-08-12T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -12922,9 +15786,11 @@
         "title": "Uganda: Hailstorm - Central (Mubende) - 12/08/2023",
         "datetime": "2023-08-12T00:00:00Z",
         "end_datetime": "2023-08-12T00:00:00+00:00",
-        "monty:corr_id": "20230812-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230812-UGA-814659-MH0404-1-GCDB",
         "start_datetime": "2023-08-12T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -13050,9 +15916,11 @@
         "title": "Uganda: Flood - Eastern (Kapelebyong) - 04/07/2023",
         "datetime": "2023-07-04T00:00:00Z",
         "end_datetime": "2023-07-04T00:00:00+00:00",
-        "monty:corr_id": "20230704-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230704-UGA-830870-MH0600-1-GCDB",
         "start_datetime": "2023-07-04T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13114,9 +15982,11 @@
         "title": "Uganda: Flood - Eastern (Bukedea) - 27/06/2023",
         "datetime": "2023-06-27T00:00:00Z",
         "end_datetime": "2023-06-27T00:00:00+00:00",
-        "monty:corr_id": "20230627-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230627-UGA-821872-MH0600-1-GCDB",
         "start_datetime": "2023-06-27T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13242,9 +16112,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Eastern (Bududa) - 18/06/2023",
         "datetime": "2023-06-18T00:00:00Z",
         "end_datetime": "2023-06-18T00:00:00+00:00",
-        "monty:corr_id": "20230618-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20230618-UGA-818273-GH0304-1-GCDB",
         "start_datetime": "2023-06-18T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -13306,9 +16178,11 @@
         "title": "Uganda: Hailstorm - Western (Kisoro) - 28/05/2023",
         "datetime": "2023-05-28T00:00:00Z",
         "end_datetime": "2023-05-28T00:00:00+00:00",
-        "monty:corr_id": "20230528-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230528-UGA-798449-MH0404-1-GCDB",
         "start_datetime": "2023-05-28T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -13434,9 +16308,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Eastern (Bulambuli) - 25/05/2023",
         "datetime": "2023-05-25T00:00:00Z",
         "end_datetime": "2023-06-01T00:00:00+00:00",
-        "monty:corr_id": "20230525-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20230525-UGA-821872-GH0304-1-GCDB",
         "start_datetime": "2023-05-25T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -13498,9 +16374,11 @@
         "title": "Uganda: Flood - Eastern (Bukedea) - 18/05/2023",
         "datetime": "2023-05-18T00:00:00Z",
         "end_datetime": "2023-05-18T00:00:00+00:00",
-        "monty:corr_id": "20230518-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230518-UGA-821872-MH0600-1-GCDB",
         "start_datetime": "2023-05-18T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13626,9 +16504,11 @@
         "title": "Uganda: Hailstorm - Eastern (Mbale) - 06/05/2023",
         "datetime": "2023-05-06T00:00:00Z",
         "end_datetime": "2023-05-06T00:00:00+00:00",
-        "monty:corr_id": "20230506-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230506-UGA-818272-MH0404-1-GCDB",
         "start_datetime": "2023-05-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -13690,9 +16570,11 @@
         "title": "Uganda: Landslide/Wet mass movement - Western (Kasese) - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-01T00:00:00+00:00",
-        "monty:corr_id": "20230501-UGA-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20230501-UGA-812851-GH0304-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -13754,9 +16636,11 @@
         "title": "Uganda: Flood - Eastern (Bukedea) - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-01T00:00:00+00:00",
-        "monty:corr_id": "20230501-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-UGA-821872-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13818,9 +16702,11 @@
         "title": "Uganda: Flood - Western (Ntoroko) - 30/04/2023",
         "datetime": "2023-04-30T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230430-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230430-UGA-818253-MH0600-1-GCDB",
         "start_datetime": "2023-04-30T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13882,9 +16768,11 @@
         "title": "Uganda: Flood - Western (Kisoro) - 27/04/2023",
         "datetime": "2023-04-27T00:00:00Z",
         "end_datetime": "2023-04-27T00:00:00+00:00",
-        "monty:corr_id": "20230427-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230427-UGA-798449-MH0600-1-GCDB",
         "start_datetime": "2023-04-27T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -13946,9 +16834,11 @@
         "title": "Uganda: Hailstorm - Central (Kayunga) - 25/04/2023",
         "datetime": "2023-04-25T00:00:00Z",
         "end_datetime": "2023-04-25T00:00:00+00:00",
-        "monty:corr_id": "20230425-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230425-UGA-818265-MH0404-1-GCDB",
         "start_datetime": "2023-04-25T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [
@@ -14074,9 +16964,11 @@
         "title": "Uganda: Flood - Eastern (Bulambuli, Buyende, Kamuli) - 24/04/2023",
         "datetime": "2023-04-24T00:00:00Z",
         "end_datetime": "2023-04-24T00:00:00+00:00",
-        "monty:corr_id": "20230424-UGA-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230424-UGA-821872-MH0600-1-GCDB",
         "start_datetime": "2023-04-24T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -14138,9 +17030,11 @@
         "title": "Uganda: Hailstorm - Eastern (Kapelebyong) - 20/04/2023",
         "datetime": "2023-04-20T00:00:00Z",
         "end_datetime": "2023-04-20T00:00:00+00:00",
-        "monty:corr_id": "20230420-UGA-NAT-MET-STO-HAI-1-GCDB",
+        "monty:corr_id": "20230420-UGA-830870-MH0404-1-GCDB",
         "start_datetime": "2023-04-20T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0404",
+          "ST",
           "nat-met-sto-hai"
         ],
         "monty:country_codes": [

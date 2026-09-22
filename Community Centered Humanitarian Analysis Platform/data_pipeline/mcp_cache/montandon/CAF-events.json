@@ -482,9 +482,9 @@
       "properties": {
         "title": "Central African Republic: Storm - Nana-Gribizi (Botto) - 14/03/2026",
         "datetime": "2026-03-14T00:00:00Z",
-        "end_datetime": "2026-03-15T00:00:00Z",
+        "end_datetime": "2026-03-15T00:00:00+00:00",
         "monty:corr_id": "20260314-CAF-877597-MH0301-1-GCDB",
-        "start_datetime": "2026-03-14T00:00:00Z",
+        "start_datetime": "2026-03-14T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -548,9 +548,9 @@
       "properties": {
         "title": "Central African Republic: Storm - Ouham-Fafa (Bouca) - 13/03/2026",
         "datetime": "2026-03-13T00:00:00Z",
-        "end_datetime": "2026-03-13T00:00:00Z",
+        "end_datetime": "2026-03-13T00:00:00+00:00",
         "monty:corr_id": "20260313-CAF-868592-MH0301-1-GCDB",
-        "start_datetime": "2026-03-13T00:00:00Z",
+        "start_datetime": "2026-03-13T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -1336,9 +1336,9 @@
       "properties": {
         "title": "Central African Republic: Wildfire – Haut-Mbomou (Tabane) – 27/02/2026",
         "datetime": "2026-02-27T00:00:00Z",
-        "end_datetime": "2026-02-27T00:00:00Z",
+        "end_datetime": "2026-02-27T00:00:00+00:00",
         "monty:corr_id": "20260227-CAF-856025-EN0205-1-GCDB",
-        "start_datetime": "2026-02-27T00:00:00Z",
+        "start_datetime": "2026-02-27T00:00:00+00:00",
         "monty:hazard_codes": [
           "EN0205",
           "WF",
@@ -1402,9 +1402,9 @@
       "properties": {
         "title": "Central African Republic: Wildfire - Ouham Fafa (Bezanga, Ndoubamoudou and Sido) - 27/02/2026",
         "datetime": "2026-02-27T00:00:00Z",
-        "end_datetime": "2026-02-28T00:00:00Z",
+        "end_datetime": "2026-02-28T00:00:00+00:00",
         "monty:corr_id": "20260227-CAF-875792-EN0205-1-GCDB",
-        "start_datetime": "2026-02-27T00:00:00Z",
+        "start_datetime": "2026-02-27T00:00:00+00:00",
         "monty:hazard_codes": [
           "EN0205",
           "WF",
@@ -4966,9 +4966,9 @@
       "properties": {
         "title": "Central African Republic: Storm – Haut-Mbomou (Kitessa) – 22/02/2026",
         "datetime": "2026-02-22T00:00:00Z",
-        "end_datetime": "2026-02-22T00:00:00Z",
+        "end_datetime": "2026-02-22T00:00:00+00:00",
         "monty:corr_id": "20260222-CAF-857828-MH0301-1-GCDB",
-        "start_datetime": "2026-02-22T00:00:00Z",
+        "start_datetime": "2026-02-22T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -6815,9 +6815,9 @@
       "properties": {
         "title": "Central African Republic: Storm - Nana-Grébizi (Kaga-Bandoro) - 10/02/2026",
         "datetime": "2026-02-10T00:00:00Z",
-        "end_datetime": "2026-02-11T00:00:00Z",
+        "end_datetime": "2026-02-11T00:00:00+00:00",
         "monty:corr_id": "20260210-CAF-872197-MH0301-1-GCDB",
-        "start_datetime": "2026-02-10T00:00:00Z",
+        "start_datetime": "2026-02-10T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -9373,9 +9373,9 @@
       "properties": {
         "title": "Central African Republic: Flood - Ouham-Pende (Bossemptele) - 21/01/2026",
         "datetime": "2026-01-21T00:00:00Z",
-        "end_datetime": "2026-01-21T00:00:00Z",
+        "end_datetime": "2026-01-21T00:00:00+00:00",
         "monty:corr_id": "20260121-CAF-861384-MH0600-1-GCDB",
-        "start_datetime": "2026-01-21T00:00:00Z",
+        "start_datetime": "2026-01-21T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -34136,9 +34136,9 @@
       "properties": {
         "title": "Central African Republic: Flood - Ouham-Fafa (Sido/Sido) - 12/08/2025",
         "datetime": "2025-08-12T00:00:00Z",
-        "end_datetime": "2025-08-12T00:00:00Z",
-        "monty:corr_id": "20250812-CAF-MH0600-1-GCDB",
-        "start_datetime": "2025-08-12T00:00:00Z",
+        "end_datetime": "2025-08-12T00:00:00+00:00",
+        "monty:corr_id": "20250812-CAF-882994-MH0600-1-GCDB",
+        "start_datetime": "2025-08-12T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -34877,9 +34877,9 @@
       "properties": {
         "title": "Central African Republic: Flood - Ombella-Mpoko (Boali) - 01/07/2025",
         "datetime": "2025-07-01T00:00:00Z",
-        "end_datetime": "2025-08-16T00:00:00Z",
-        "monty:corr_id": "20250701-CAF-MH0600-1-GCDB",
-        "start_datetime": "2025-07-01T00:00:00Z",
+        "end_datetime": "2025-08-16T00:00:00+00:00",
+        "monty:corr_id": "20250701-CAF-852391-MH0600-1-GCDB",
+        "start_datetime": "2025-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -34943,9 +34943,9 @@
       "properties": {
         "title": "Central African Republic: Flood - Ouham-Fafa (Sido/Sido) - 01/07/2025",
         "datetime": "2025-07-01T00:00:00Z",
-        "end_datetime": "2025-08-18T00:00:00Z",
-        "monty:corr_id": "20250701-CAF-MH0600-1-GCDB",
-        "start_datetime": "2025-07-01T00:00:00Z",
+        "end_datetime": "2025-08-18T00:00:00+00:00",
+        "monty:corr_id": "20250701-CAF-882994-MH0600-1-GCDB",
+        "start_datetime": "2025-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -35009,9 +35009,9 @@
       "properties": {
         "title": "Central African Republic: Storm - Ouham (Nanga Boguila) - 25/05/2025",
         "datetime": "2025-05-25T00:00:00Z",
-        "end_datetime": "2025-05-25T00:00:00Z",
-        "monty:corr_id": "20250525-CAF-MH0301-1-GCDB",
-        "start_datetime": "2025-05-25T00:00:00Z",
+        "end_datetime": "2025-05-25T00:00:00+00:00",
+        "monty:corr_id": "20250525-CAF-873989-MH0301-1-GCDB",
+        "start_datetime": "2025-05-25T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -35075,9 +35075,9 @@
       "properties": {
         "title": "Central African Republic: Flood - Countrywide - 15/04/2025",
         "datetime": "2025-04-15T00:00:00Z",
-        "end_datetime": "2025-07-01T00:00:00Z",
-        "monty:corr_id": "20250415-CAF-MH0600-1-GCDB",
-        "start_datetime": "2025-04-15T00:00:00Z",
+        "end_datetime": "2025-07-01T00:00:00+00:00",
+        "monty:corr_id": "20250415-CAF-868604-MH0600-1-GCDB",
+        "start_datetime": "2025-04-15T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -35141,10 +35141,12 @@
       "properties": {
         "title": "Central African Republic: Storm - Ombella M'Poko - 01/03/2025",
         "datetime": "2025-03-01T00:00:00Z",
-        "end_datetime": "2025-03-31T00:00:00Z",
-        "monty:corr_id": "20250301-CAF-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-03-01T00:00:00Z",
+        "end_datetime": "2025-03-31T00:00:00+00:00",
+        "monty:corr_id": "20250301-CAF-857786-MH0301-1-GCDB",
+        "start_datetime": "2025-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -35205,10 +35207,12 @@
       "properties": {
         "title": "Central African Republic: Storm - Mbomou (Gambo) - 01/03/2025",
         "datetime": "2025-03-01T00:00:00Z",
-        "end_datetime": "2025-03-31T00:00:00Z",
-        "monty:corr_id": "20250301-CAF-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-03-01T00:00:00Z",
+        "end_datetime": "2025-03-31T00:00:00+00:00",
+        "monty:corr_id": "20250301-CAF-852412-MH0301-1-GCDB",
+        "start_datetime": "2025-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -35269,10 +35273,12 @@
       "properties": {
         "title": "Central African Republic: Storm - Haut-Mbomou (Zémio) - 01/03/2025",
         "datetime": "2025-03-01T00:00:00Z",
-        "end_datetime": "2025-03-31T00:00:00Z",
-        "monty:corr_id": "20250301-CAF-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-03-01T00:00:00Z",
+        "end_datetime": "2025-03-31T00:00:00+00:00",
+        "monty:corr_id": "20250301-CAF-854226-MH0301-1-GCDB",
+        "start_datetime": "2025-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -35333,10 +35339,12 @@
       "properties": {
         "title": "Central African Republic: Storm - Basse-Kotto (Alindao) - 01/03/2025",
         "datetime": "2025-03-01T00:00:00Z",
-        "end_datetime": "2025-03-31T00:00:00Z",
-        "monty:corr_id": "20250301-CAF-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-03-01T00:00:00Z",
+        "end_datetime": "2025-03-31T00:00:00+00:00",
+        "monty:corr_id": "20250301-CAF-854207-MH0301-1-GCDB",
+        "start_datetime": "2025-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -35397,10 +35405,12 @@
       "properties": {
         "title": "Central African Republic: Storm - Bamingui-Bangoran (Ndélé) - 01/03/2025",
         "datetime": "2025-03-01T00:00:00Z",
-        "end_datetime": "2025-03-31T00:00:00Z",
-        "monty:corr_id": "20250301-CAF-NAT-MET-STO-STO-1-GCDB",
-        "start_datetime": "2025-03-01T00:00:00Z",
+        "end_datetime": "2025-03-31T00:00:00+00:00",
+        "monty:corr_id": "20250301-CAF-884804-MH0301-1-GCDB",
+        "start_datetime": "2025-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0301",
+          "VW",
           "nat-met-sto-sto"
         ],
         "monty:country_codes": [
@@ -35462,9 +35472,11 @@
         "title": "Central African Republic: Flood - Mbomou (Ouango) - 13/09/2024",
         "datetime": "2024-09-13T00:00:00Z",
         "end_datetime": "2024-09-20T00:00:00+00:00",
-        "monty:corr_id": "20240913-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240913-CAF-848814-MH0600-1-GCDB",
         "start_datetime": "2024-09-13T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -35526,9 +35538,11 @@
         "title": "Central African Republic: Flood - Bangui (Bangui) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-848794-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -35590,9 +35604,11 @@
         "title": "Central African Republic: Flood -  Ombella M'Poko (Bimbo) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-848793-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -35654,9 +35670,11 @@
         "title": "Central African Republic: Flood - Ouham Pendé (Bozoum) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2025-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-866783-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -35701,16 +35719,16 @@
     {
       "id": "idmc-idu-event-29054",
       "bbox": [
-        21.987101,
-        6.54289,
-        21.987101,
-        6.54289
+        21.99255,
+        6.53311,
+        21.99255,
+        6.53311
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          21.987101,
-          6.54289
+          21.99255,
+          6.53311
         ]
       },
       "collection": "idmc-idu-events",
@@ -35718,9 +35736,11 @@
         "title": "Central African Republic: Flood - Haute-Kotto (Bria) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-868611-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -35782,9 +35802,11 @@
         "title": "Central African Republic: Flood - Vakaga (Birao) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-902815-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -35846,9 +35868,11 @@
         "title": "Central African Republic: Flood -  Mbomou (Bakouma) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-861415-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -35910,9 +35934,11 @@
         "title": "Central African Republic: Flood - Ouham - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-875792-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -35974,9 +36000,11 @@
         "title": "Central African Republic: Flood - Bamingui-Bangoran - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20240901-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-CAF-884804-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -36102,9 +36130,11 @@
         "title": "Central African Republic: Flood - Mbomou - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-CAF-857818-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -36166,9 +36196,11 @@
         "title": "Central African Republic: Flood - Ouham - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-CAF-879394-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -36230,9 +36262,11 @@
         "title": "Central African Republic: Flood - Countrywide - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-CAF-868604-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -36277,16 +36311,16 @@
     {
       "id": "idmc-idu-event-26774",
       "bbox": [
-        16.994551,
-        7.30323,
-        16.994551,
-        7.30323
+        18.440331,
+        7.45344,
+        18.440331,
+        7.45344
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          16.994551,
-          7.30323
+          18.440331,
+          7.45344
         ]
       },
       "collection": "idmc-idu-events",
@@ -36294,9 +36328,11 @@
         "title": "Central African Republic: Flood - Ouham - 03/07/2024",
         "datetime": "2024-07-03T00:00:00Z",
         "end_datetime": "2024-07-13T00:00:00+00:00",
-        "monty:corr_id": "20240703-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240703-CAF-877593-MH0600-1-GCDB",
         "start_datetime": "2024-07-03T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -36358,9 +36394,11 @@
         "title": "Central African Republic: Flood - Countrywide - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-07-31T00:00:00+00:00",
-        "monty:corr_id": "20240701-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240701-CAF-868604-MH0600-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -36422,9 +36460,11 @@
         "title": "Central African Republic: Flood - Ouham Pendé (Paoua) - 28/05/2024",
         "datetime": "2024-05-28T00:00:00Z",
         "end_datetime": "2024-06-04T00:00:00+00:00",
-        "monty:corr_id": "20240528-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240528-CAF-873983-MH0600-1-GCDB",
         "start_datetime": "2024-05-28T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -36486,9 +36526,11 @@
         "title": "Central African Republic: Flood - Bangui, Mambéré-Kadéï, Ouham - 12/05/2024",
         "datetime": "2024-05-12T00:00:00Z",
         "end_datetime": "2024-05-15T00:00:00+00:00",
-        "monty:corr_id": "20240512-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240512-CAF-857788-MH0600-1-GCDB",
         "start_datetime": "2024-05-12T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -36550,9 +36592,11 @@
         "title": "Central African Republic: Flood - Ouham (Nana-Bakassa) - 05/03/2024",
         "datetime": "2024-03-05T00:00:00Z",
         "end_datetime": "2024-03-06T00:00:00+00:00",
-        "monty:corr_id": "20240305-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240305-CAF-872187-MH0600-1-GCDB",
         "start_datetime": "2024-03-05T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -36747,9 +36791,11 @@
         "title": "Central African Republic: Flood - Mbomou (Ouango) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-CAF-848814-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -36811,9 +36857,11 @@
         "title": "Central African Republic: Flood - Basse-Kotto - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-CAF-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-CAF-850608-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [

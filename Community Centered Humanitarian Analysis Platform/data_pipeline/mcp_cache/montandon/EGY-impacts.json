@@ -86186,6 +86186,152 @@
       ]
     },
     {
+      "id": "idmc-idu-impact-39955-233448-evacuated",
+      "bbox": [
+        30.85,
+        30.33333,
+        30.85,
+        30.33333
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.85,
+          30.33333
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Egypt: Sea level rise - Menoufia - 06/10/2025",
+        "datetime": "2025-10-06T00:00:00Z",
+        "end_datetime": "2025-10-06T00:00:00+00:00",
+        "monty:corr_id": "20251004-EGY-1082855-EN0303-1-GCDB",
+        "start_datetime": "2025-10-06T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "EN0303",
+          "OT",
+          "nat-geo-env-slr"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 2,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-39955-233448-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-39955-233450-evacuated",
+      "bbox": [
+        30.85,
+        30.33333,
+        30.85,
+        30.33333
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.85,
+          30.33333
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Egypt: Sea level rise - Menoufia - 06/10/2025",
+        "datetime": "2025-10-04T00:00:00Z",
+        "end_datetime": "2025-10-06T00:00:00+00:00",
+        "monty:corr_id": "20251004-EGY-1082855-EN0303-1-GCDB",
+        "start_datetime": "2025-10-04T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "EN0303",
+          "OT",
+          "nat-geo-env-slr"
+        ],
+        "monty:country_codes": [
+          "EGY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 2,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-39955-233450-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "pdc-impact-870a742e-aa0f-49f1-9426-0581afc02ad9-330283-1748401150-population-total",
       "bbox": [
         31.516353859665756,
@@ -86983,7 +87129,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18881125096-evacuated",
+      "id": "idmc-idu-impact-18881-125096-evacuated",
       "bbox": [
         25.700001,
         31.466669,
@@ -87002,9 +87148,11 @@
         "title": "Egypt: Storm - Matrouh Governorate (Al-Kharouba) - 05/10/2023",
         "datetime": "2023-10-05T00:00:00Z",
         "end_datetime": "2023-10-05T00:00:00+00:00",
-        "monty:corr_id": "20231005-EGY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231005-EGY-1093629-MH0600-1-GCDB",
         "start_datetime": "2023-10-05T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -87046,7 +87194,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18881125096-evacuated",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18881-125096-evacuated",
           "auth:refs": [
             "oidc"
           ]

@@ -66692,7 +66692,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-41582246343-displaced",
+      "id": "idmc-idu-impact-41582-246343-displaced",
       "bbox": [
         37.166672,
         6.06667,
@@ -66710,13 +66710,13 @@
       "properties": {
         "title": "Ethiopia: Landslide/Wet mass movement - Southern (Kemba) - 10/03/2026",
         "datetime": "2026-03-10T00:00:00Z",
-        "end_datetime": "2026-03-11T00:00:00Z",
-        "monty:corr_id": "20260310-ETH-865087-GH0300-1-GCDB",
-        "start_datetime": "2026-03-10T00:00:00Z",
+        "end_datetime": "2026-03-11T00:00:00+00:00",
+        "monty:corr_id": "20260310-ETH-865087-GH0304-1-GCDB",
+        "start_datetime": "2026-03-10T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -66757,7 +66757,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-41582246343-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-41582-246343-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -66765,7 +66765,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-41582245349-displaced",
+      "id": "idmc-idu-impact-41582-245349-displaced",
       "bbox": [
         37.166672,
         6.06667,
@@ -66783,13 +66783,13 @@
       "properties": {
         "title": "Ethiopia: Landslide/Wet mass movement - Southern (Kemba) - 10/03/2026",
         "datetime": "2026-03-10T00:00:00Z",
-        "end_datetime": "2026-03-10T00:00:00Z",
-        "monty:corr_id": "20260310-ETH-865087-GH0300-1-GCDB",
-        "start_datetime": "2026-03-10T00:00:00Z",
+        "end_datetime": "2026-03-10T00:00:00+00:00",
+        "monty:corr_id": "20260310-ETH-865087-GH0304-1-GCDB",
+        "start_datetime": "2026-03-10T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -66830,7 +66830,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-41582245349-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-41582-245349-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -66838,7 +66838,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-41582245346-displaced",
+      "id": "idmc-idu-impact-41582-245346-displaced",
       "bbox": [
         37.166672,
         6.06667,
@@ -66856,13 +66856,13 @@
       "properties": {
         "title": "Ethiopia: Landslide/Wet mass movement - Southern (Kemba) - 10/03/2026",
         "datetime": "2026-03-10T00:00:00Z",
-        "end_datetime": "2026-03-11T00:00:00Z",
-        "monty:corr_id": "20260310-ETH-865087-GH0300-1-GCDB",
-        "start_datetime": "2026-03-10T00:00:00Z",
+        "end_datetime": "2026-03-11T00:00:00+00:00",
+        "monty:corr_id": "20260310-ETH-865087-GH0304-1-GCDB",
+        "start_datetime": "2026-03-10T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -66903,7 +66903,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-41582245346-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-41582-245346-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -84467,7 +84467,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-36905207305-displaced",
+      "id": "idmc-idu-impact-36905-207305-displaced",
       "bbox": [
         42.3908,
         6.33387,
@@ -84483,11 +84483,11 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Flood - Somali (Shabelle) - 01/10/2025",
+        "title": "Ethiopia: Flood - Somali - 01/10/2025",
         "datetime": "2025-10-01T00:00:00Z",
-        "end_datetime": "2025-10-31T00:00:00Z",
-        "monty:corr_id": "20251001-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-10-01T00:00:00Z",
+        "end_datetime": "2025-10-31T00:00:00+00:00",
+        "monty:corr_id": "20251001-ETH-866913-MH0600-1-GCDB",
+        "start_datetime": "2025-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -84532,7 +84532,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-36905207305-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-36905-207305-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -84540,7 +84540,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-36904207301-displaced",
+      "id": "idmc-idu-impact-36904-207301-displaced",
       "bbox": [
         35.5,
         9.06667,
@@ -84556,11 +84556,11 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Flood - Oromia (West Guji) - 01/10/2025",
+        "title": "Ethiopia: Flood - Oromia - 01/10/2025",
         "datetime": "2025-10-01T00:00:00Z",
-        "end_datetime": "2025-10-31T00:00:00Z",
-        "monty:corr_id": "20251001-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-10-01T00:00:00Z",
+        "end_datetime": "2025-10-31T00:00:00+00:00",
+        "monty:corr_id": "20251001-ETH-892078-MH0600-1-GCDB",
+        "start_datetime": "2025-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -84605,7 +84605,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-36904207301-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-36904-207301-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -84613,7 +84613,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-36899207292-displaced",
+      "id": "idmc-idu-impact-36899-207292-displaced",
       "bbox": [
         40.589081,
         13.48555,
@@ -84629,11 +84629,11 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Earthquake - Afar (Zone 2) - 01/10/2025",
+        "title": "Ethiopia: Earthquake - Afar - 01/10/2025",
         "datetime": "2025-10-01T00:00:00Z",
-        "end_datetime": "2025-10-31T00:00:00Z",
-        "monty:corr_id": "20251001-ETH-GH0101-1-GCDB",
-        "start_datetime": "2025-10-01T00:00:00Z",
+        "end_datetime": "2025-10-31T00:00:00+00:00",
+        "monty:corr_id": "20251001-ETH-931704-GH0101-1-GCDB",
+        "start_datetime": "2025-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "GH0101",
           "EQ",
@@ -84678,7 +84678,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-36899207292-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-36899-207292-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -87384,7 +87384,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-33595195144-displaced",
+      "id": "idmc-idu-impact-33595-195144-displaced",
       "bbox": [
         34.58757,
         8.24675,
@@ -87400,11 +87400,11 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Flood - Gambela (Nuwer,  Agnewak) - 01/09/2025",
+        "title": "Ethiopia: Flood - Gambela - 01/09/2025",
         "datetime": "2025-09-01T00:00:00Z",
-        "end_datetime": "2025-09-01T00:00:00Z",
-        "monty:corr_id": "20250901-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-09-01T00:00:00Z",
+        "end_datetime": "2025-09-01T00:00:00+00:00",
+        "monty:corr_id": "20250901-ETH-883074-MH0600-1-GCDB",
+        "start_datetime": "2025-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -87449,7 +87449,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-33595195144-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-33595-195144-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -87457,7 +87457,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-33595195143-displaced",
+      "id": "idmc-idu-impact-33595-195143-displaced",
       "bbox": [
         34.58757,
         8.24675,
@@ -87473,11 +87473,11 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Flood - Gambela (Nuwer,  Agnewak) - 01/09/2025",
+        "title": "Ethiopia: Flood - Gambela - 01/09/2025",
         "datetime": "2025-09-01T00:00:00Z",
-        "end_datetime": "2025-09-01T00:00:00Z",
-        "monty:corr_id": "20250901-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-09-01T00:00:00Z",
+        "end_datetime": "2025-09-01T00:00:00+00:00",
+        "monty:corr_id": "20250901-ETH-883074-MH0600-1-GCDB",
+        "start_datetime": "2025-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -87522,7 +87522,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-33595195143-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-33595-195143-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -87530,7 +87530,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-33593195142-displaced",
+      "id": "idmc-idu-impact-33593-195142-displaced",
       "bbox": [
         38.780201,
         8.07673,
@@ -87546,11 +87546,11 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Flood - Oromia (East Shewa) - 01/09/2025",
+        "title": "Ethiopia: Flood - Oromia - 01/09/2025",
         "datetime": "2025-09-01T00:00:00Z",
-        "end_datetime": "2025-09-01T00:00:00Z",
-        "monty:corr_id": "20250901-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-09-01T00:00:00Z",
+        "end_datetime": "2025-09-01T00:00:00+00:00",
+        "monty:corr_id": "20250901-ETH-883095-MH0600-1-GCDB",
+        "start_datetime": "2025-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -87595,7 +87595,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-33593195142-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-33593-195142-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -87603,7 +87603,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-33592195141-displaced",
+      "id": "idmc-idu-impact-33592-195141-displaced",
       "bbox": [
         40.653149,
         10.0245,
@@ -87619,11 +87619,11 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Flood - Afar (Zone 3) - 01/09/2025",
+        "title": "Ethiopia: Flood - Afar - 01/09/2025",
         "datetime": "2025-09-01T00:00:00Z",
-        "end_datetime": "2025-09-01T00:00:00Z",
-        "monty:corr_id": "20250901-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-09-01T00:00:00Z",
+        "end_datetime": "2025-09-01T00:00:00+00:00",
+        "monty:corr_id": "20250901-ETH-899304-MH0600-1-GCDB",
+        "start_datetime": "2025-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -87668,7 +87668,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-33592195141-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-33592-195141-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -87676,7 +87676,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-33591195138-displaced",
+      "id": "idmc-idu-impact-33591-195138-displaced",
       "bbox": [
         39.277161,
         10.93442,
@@ -87692,15 +87692,15 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Landslide - Amhara (South Wello) - 01/09/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - Amhara - 01/09/2025",
         "datetime": "2025-09-01T00:00:00Z",
-        "end_datetime": "2025-09-01T00:00:00Z",
-        "monty:corr_id": "20250901-ETH-GH0300-1-GCDB",
-        "start_datetime": "2025-09-01T00:00:00Z",
+        "end_datetime": "2025-09-01T00:00:00+00:00",
+        "monty:corr_id": "20250901-ETH-908297-GH0304-1-GCDB",
+        "start_datetime": "2025-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -87741,7 +87741,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-33591195138-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-33591-195138-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -110397,7 +110397,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32963191825-displaced",
+      "id": "idmc-idu-impact-32963-191825-displaced",
       "bbox": [
         34.58757,
         8.24675,
@@ -110413,11 +110413,11 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Flood - Gambela (Nuwer, Agnewak) - 01/08/2025",
+        "title": "Ethiopia: Flood - Gambela - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-883074-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -110462,7 +110462,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32963191825-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32963-191825-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -110470,7 +110470,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32963191824-displaced",
+      "id": "idmc-idu-impact-32963-191824-displaced",
       "bbox": [
         34.58757,
         8.24675,
@@ -110486,11 +110486,11 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Flood - Gambela (Nuwer, Agnewak) - 01/08/2025",
+        "title": "Ethiopia: Flood - Gambela - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-883074-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -110535,7 +110535,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32963191824-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32963-191824-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -110543,27 +110543,27 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32962191823-displaced",
+      "id": "idmc-idu-impact-32962-191823-displaced",
       "bbox": [
-        37.856892,
-        9.10185,
-        37.856892,
-        9.10185
+        37.04285,
+        9.42792,
+        37.04285,
+        9.42792
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          37.856892,
-          9.10185
+          37.04285,
+          9.42792
         ]
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Flood - Oromia (East Wellega,  West Shewa) - 01/08/2025",
+        "title": "Ethiopia: Flood - Oromia - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-893886-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -110608,7 +110608,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32962191823-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32962-191823-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -110616,27 +110616,27 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32962191822-displaced",
+      "id": "idmc-idu-impact-32962-191822-displaced",
       "bbox": [
-        37.856892,
-        9.10185,
-        37.856892,
-        9.10185
+        37.04285,
+        9.42792,
+        37.04285,
+        9.42792
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          37.856892,
-          9.10185
+          37.04285,
+          9.42792
         ]
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Flood - Oromia (East Wellega,  West Shewa) - 01/08/2025",
+        "title": "Ethiopia: Flood - Oromia - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-893886-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -110681,7 +110681,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32962191822-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32962-191822-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -110689,7 +110689,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32961191821-displaced",
+      "id": "idmc-idu-impact-32961-191821-displaced",
       "bbox": [
         37.499779,
         14.12007,
@@ -110707,9 +110707,9 @@
       "properties": {
         "title": "Ethiopia: Flood - Contested Areas - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-937088-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -110754,7 +110754,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32961191821-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32961-191821-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -110762,7 +110762,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32960191820-displaced",
+      "id": "idmc-idu-impact-32960-191820-displaced",
       "bbox": [
         40.653149,
         10.0245,
@@ -110778,11 +110778,11 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Flood - Afar (Zone 1, Zone 3) - 01/08/2025",
+        "title": "Ethiopia: Flood - Afar - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-899304-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -110827,7 +110827,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32960191820-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32960-191820-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -110835,7 +110835,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32960191819-displaced",
+      "id": "idmc-idu-impact-32960-191819-displaced",
       "bbox": [
         40.653149,
         10.0245,
@@ -110851,11 +110851,11 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Flood - Afar (Zone 1, Zone 3) - 01/08/2025",
+        "title": "Ethiopia: Flood - Afar - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-899304-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -110900,7 +110900,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32960191819-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32960-191819-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -110908,7 +110908,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32958191817-displaced",
+      "id": "idmc-idu-impact-32958-191817-displaced",
       "bbox": [
         37.705269,
         6.84924,
@@ -110924,15 +110924,15 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Landslide - South Ethiopia (Wolayita, Gedeo) - 01/08/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - South Ethiopia - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-GH0300-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-870489-GH0304-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -110973,7 +110973,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32958191817-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32958-191817-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -110981,7 +110981,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32958191816-displaced",
+      "id": "idmc-idu-impact-32958-191816-displaced",
       "bbox": [
         37.705269,
         6.84924,
@@ -110997,15 +110997,15 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Landslide - South Ethiopia (Wolayita, Gedeo) - 01/08/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - South Ethiopia - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-31T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-GH0300-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-31T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-870489-GH0304-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -111046,7 +111046,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32958191816-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32958-191816-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -111054,7 +111054,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32485190544-displaced",
+      "id": "idmc-idu-impact-32485-190544-displaced",
       "bbox": [
         37.856892,
         9.10185,
@@ -111072,9 +111072,9 @@
       "properties": {
         "title": "Ethiopia: Flood - Oromia (West Shewa) - 01/08/2025",
         "datetime": "2025-08-01T00:00:00Z",
-        "end_datetime": "2025-08-03T00:00:00Z",
-        "monty:corr_id": "20250801-ETH-MH0600-1-GCDB",
-        "start_datetime": "2025-08-01T00:00:00Z",
+        "end_datetime": "2025-08-03T00:00:00+00:00",
+        "monty:corr_id": "20250801-ETH-892090-MH0600-1-GCDB",
+        "start_datetime": "2025-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0600",
           "FL",
@@ -111119,7 +111119,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32485190544-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32485-190544-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -131305,7 +131305,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32480189492-displaced",
+      "id": "idmc-idu-impact-32480-189492-displaced",
       "bbox": [
         41.435638,
         13.28835,
@@ -131323,9 +131323,9 @@
       "properties": {
         "title": "Ethiopia: Storm - Afar (Afdera) - 15/07/2025",
         "datetime": "2025-07-15T00:00:00Z",
-        "end_datetime": "2025-07-15T00:00:00Z",
-        "monty:corr_id": "20250715-ETH-MH0301-1-GCDB",
-        "start_datetime": "2025-07-15T00:00:00Z",
+        "end_datetime": "2025-07-15T00:00:00+00:00",
+        "monty:corr_id": "20250715-ETH-929908-MH0301-1-GCDB",
+        "start_datetime": "2025-07-15T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -131370,7 +131370,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32480189492-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32480-189492-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -131378,7 +131378,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32724190789-displaced",
+      "id": "idmc-idu-impact-32724-190789-displaced",
       "bbox": [
         36.21637,
         7.16738,
@@ -131394,15 +131394,15 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Landslide - South West Ethiopia Peoples (Kefa) - 01/07/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - South West Ethiopia Peoples - 01/07/2025",
         "datetime": "2025-07-01T00:00:00Z",
-        "end_datetime": "2025-07-31T00:00:00Z",
-        "monty:corr_id": "20250701-ETH-GH0300-1-GCDB",
-        "start_datetime": "2025-07-01T00:00:00Z",
+        "end_datetime": "2025-07-31T00:00:00+00:00",
+        "monty:corr_id": "20250701-ETH-874082-GH0304-1-GCDB",
+        "start_datetime": "2025-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -131443,7 +131443,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32724190789-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32724-190789-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -131451,7 +131451,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32722190788-displaced",
+      "id": "idmc-idu-impact-32722-190788-displaced",
       "bbox": [
         36.57011,
         6.26825,
@@ -131467,15 +131467,15 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Landslide - South Ethiopia (Ari) - 01/07/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - South Ethiopia - 01/07/2025",
         "datetime": "2025-07-01T00:00:00Z",
-        "end_datetime": "2025-07-31T00:00:00Z",
-        "monty:corr_id": "20250701-ETH-GH0300-1-GCDB",
-        "start_datetime": "2025-07-01T00:00:00Z",
+        "end_datetime": "2025-07-31T00:00:00+00:00",
+        "monty:corr_id": "20250701-ETH-866884-GH0304-1-GCDB",
+        "start_datetime": "2025-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
-          "GH0300",
+          "GH0304",
           "LS",
-          "nat-geo-mmd-lan"
+          "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
           "ETH"
@@ -131516,7 +131516,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32722190788-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32722-190788-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -131524,7 +131524,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-32275188596-displaced",
+      "id": "idmc-idu-impact-32275-188596-displaced",
       "bbox": [
         39.689085,
         11.59662,
@@ -131542,9 +131542,9 @@
       "properties": {
         "title": "Ethiopia: Storm - Afar and Amhara - 30/06/2025",
         "datetime": "2025-06-30T00:00:00Z",
-        "end_datetime": "2025-07-15T00:00:00Z",
-        "monty:corr_id": "20250630-ETH-MH0301-1-GCDB",
-        "start_datetime": "2025-06-30T00:00:00Z",
+        "end_datetime": "2025-07-15T00:00:00+00:00",
+        "monty:corr_id": "20250630-ETH-913699-MH0301-1-GCDB",
+        "start_datetime": "2025-06-30T00:00:00+00:00",
         "monty:hazard_codes": [
           "MH0301",
           "VW",
@@ -131589,7 +131589,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32275188596-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-32275-188596-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132023,7 +132023,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-31337183944-displaced",
+      "id": "idmc-idu-impact-31337-183944-displaced",
       "bbox": [
         37.150002,
         6.61667,
@@ -132039,12 +132039,14 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Landslide - South Ethiopia (Gofa) - 01/04/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - South Ethiopia - 01/04/2025",
         "datetime": "2025-04-01T00:00:00Z",
-        "end_datetime": "2025-04-30T00:00:00Z",
-        "monty:corr_id": "20250401-ETH-NAT-HYD-MMW-LAN-1-GCDB",
-        "start_datetime": "2025-04-01T00:00:00Z",
+        "end_datetime": "2025-04-30T00:00:00+00:00",
+        "monty:corr_id": "20250401-ETH-868687-GH0304-1-GCDB",
+        "start_datetime": "2025-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -132086,7 +132088,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31337183944-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-31337-183944-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132094,7 +132096,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-30484179896-displaced",
+      "id": "idmc-idu-impact-30484-179896-displaced",
       "bbox": [
         40.416779,
         6.95227,
@@ -132113,9 +132115,11 @@
         "title": "Ethiopia: Earthquake - Oromia - 01/01/2025",
         "datetime": "2025-01-01T00:00:00Z",
         "end_datetime": "2025-01-31T00:00:00+00:00",
-        "monty:corr_id": "20250101-ETH-NAT-GEO-EAR-GRO-1-GCDB",
+        "monty:corr_id": "20250101-ETH-872303-GH0101-1-GCDB",
         "start_datetime": "2025-01-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0101",
+          "EQ",
           "nat-geo-ear-gro"
         ],
         "monty:country_codes": [
@@ -132157,7 +132161,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-30484179896-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-30484-179896-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132165,7 +132169,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-30483179895-displaced",
+      "id": "idmc-idu-impact-30483-179895-displaced",
       "bbox": [
         40.87817,
         11.69324,
@@ -132184,9 +132188,11 @@
         "title": "Ethiopia: Earthquake - Afar - 01/01/2025",
         "datetime": "2025-01-01T00:00:00Z",
         "end_datetime": "2025-01-31T00:00:00+00:00",
-        "monty:corr_id": "20250101-ETH-NAT-GEO-EAR-GRO-1-GCDB",
+        "monty:corr_id": "20250101-ETH-915505-GH0101-1-GCDB",
         "start_datetime": "2025-01-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0101",
+          "EQ",
           "nat-geo-ear-gro"
         ],
         "monty:country_codes": [
@@ -132228,7 +132234,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-30483179895-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-30483-179895-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132236,7 +132242,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-30482179894-displaced",
+      "id": "idmc-idu-impact-30482-179894-displaced",
       "bbox": [
         38.314411,
         11.24842,
@@ -132252,12 +132258,14 @@
       },
       "collection": "idmc-idu-impacts",
       "properties": {
-        "title": "Ethiopia: Landslide - Amhara - 01/01/2025",
+        "title": "Ethiopia: Landslide/Wet mass movement - Amhara - 01/01/2025",
         "datetime": "2025-01-01T00:00:00Z",
         "end_datetime": "2025-01-31T00:00:00+00:00",
-        "monty:corr_id": "20250101-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20250101-ETH-910092-GH0304-1-GCDB",
         "start_datetime": "2025-01-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -132299,7 +132307,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-30482179894-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-30482-179894-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132307,7 +132315,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-29259174354-displaced",
+      "id": "idmc-idu-impact-29259-174354-displaced",
       "bbox": [
         40.653149,
         10.0245,
@@ -132326,9 +132334,11 @@
         "title": "Ethiopia: Earthquake - Afar (Zone 3) - 01/12/2024",
         "datetime": "2024-12-01T00:00:00Z",
         "end_datetime": "2024-12-31T00:00:00+00:00",
-        "monty:corr_id": "20241201-ETH-NAT-GEO-EAR-GRO-1-GCDB",
+        "monty:corr_id": "20241201-ETH-899304-GH0101-1-GCDB",
         "start_datetime": "2024-12-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0101",
+          "EQ",
           "nat-geo-ear-gro"
         ],
         "monty:country_codes": [
@@ -132370,7 +132380,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29259174354-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-29259-174354-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132378,7 +132388,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-28521171510-displaced",
+      "id": "idmc-idu-impact-28521-171510-displaced",
       "bbox": [
         36.56916,
         6.85812,
@@ -132397,9 +132407,11 @@
         "title": "Ethiopia: Landslide - South West (Konta) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
         "end_datetime": "2024-11-30T00:00:00+00:00",
-        "monty:corr_id": "20241101-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20241101-ETH-872284-GH0304-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -132441,7 +132453,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28521171510-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28521-171510-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132449,7 +132461,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-28520171509-displaced",
+      "id": "idmc-idu-impact-28520-171509-displaced",
       "bbox": [
         35.5,
         9.06667,
@@ -132468,9 +132480,11 @@
         "title": "Ethiopia: Flood - Oromia (West Guji) - 01/11/2024",
         "datetime": "2024-11-01T00:00:00Z",
         "end_datetime": "2024-11-30T00:00:00+00:00",
-        "monty:corr_id": "20241101-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241101-ETH-892078-MH0600-1-GCDB",
         "start_datetime": "2024-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -132512,7 +132526,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28520171509-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28520-171509-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132520,7 +132534,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-28230169887-displaced",
+      "id": "idmc-idu-impact-28230-169887-displaced",
       "bbox": [
         40.631401,
         8.68204,
@@ -132539,9 +132553,11 @@
         "title": "Ethiopia: Landslide - Oromia (West Hararge) - 01/10/2024",
         "datetime": "2024-10-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20241001-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20241001-ETH-888504-GH0304-1-GCDB",
         "start_datetime": "2024-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -132583,7 +132599,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28230169887-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28230-169887-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132591,7 +132607,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-28229169886-displaced",
+      "id": "idmc-idu-impact-28229-169886-displaced",
       "bbox": [
         45.083328,
         6.91667,
@@ -132610,9 +132626,11 @@
         "title": "Ethiopia: Flood - Somali (Doolo) - 01/10/2024",
         "datetime": "2024-10-01T00:00:00Z",
         "end_datetime": "2024-10-31T00:00:00+00:00",
-        "monty:corr_id": "20241001-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241001-ETH-872326-MH0600-1-GCDB",
         "start_datetime": "2024-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -132654,7 +132672,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28229169886-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28229-169886-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132662,7 +132680,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27593166545-displaced",
+      "id": "idmc-idu-impact-27593-166545-displaced",
       "bbox": [
         38.804359,
         12.77985,
@@ -132681,9 +132699,11 @@
         "title": "Ethiopia: Flood - Amhara (Wag Hemra) - 30/09/2024",
         "datetime": "2024-09-30T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240930-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240930-ETH-924495-MH0600-1-GCDB",
         "start_datetime": "2024-09-30T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -132725,7 +132745,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27593166545-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27593-166545-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132733,7 +132753,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27325165445-displaced",
+      "id": "idmc-idu-impact-27325-165445-displaced",
       "bbox": [
         34.833328,
         9.0,
@@ -132752,9 +132772,11 @@
         "title": "Ethiopia: Landslide - Oromia (Kelem Wellega) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240901-ETH-890275-GH0304-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -132796,7 +132818,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27325165445-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27325-165445-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132804,7 +132826,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27324165444-displaced",
+      "id": "idmc-idu-impact-27324-165444-displaced",
       "bbox": [
         34.58757,
         8.24675,
@@ -132823,9 +132845,11 @@
         "title": "Ethiopia: Flood - Gambela (Nuwer) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-ETH-883074-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -132867,7 +132891,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27324165444-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27324-165444-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -132875,7 +132899,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27323165443-displaced",
+      "id": "idmc-idu-impact-27323-165443-displaced",
       "bbox": [
         37.499779,
         14.12007,
@@ -132894,9 +132918,11 @@
         "title": "Ethiopia: Flood - Tigray (North Western) - 01/09/2024",
         "datetime": "2024-09-01T00:00:00Z",
         "end_datetime": "2024-09-30T00:00:00+00:00",
-        "monty:corr_id": "20240901-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240901-ETH-937088-MH0600-1-GCDB",
         "start_datetime": "2024-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -132938,7 +132964,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27323165443-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27323-165443-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133085,7 +133111,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27083163763-displaced",
+      "id": "idmc-idu-impact-27083-163763-displaced",
       "bbox": [
         36.21637,
         7.16738,
@@ -133104,9 +133130,11 @@
         "title": "Ethiopia: Landslide - South West Ethiopia (Keffa) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-874082-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -133148,7 +133176,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27083163763-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27083-163763-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133156,7 +133184,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27082163762-displaced",
+      "id": "idmc-idu-impact-27082-163762-displaced",
       "bbox": [
         37.150002,
         6.61667,
@@ -133175,9 +133203,11 @@
         "title": "Ethiopia: Landslide - South Ethiopia (Gofa, Basketo) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-868687-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -133219,7 +133249,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27082163762-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27082-163762-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133227,7 +133257,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27082163761-displaced",
+      "id": "idmc-idu-impact-27082-163761-displaced",
       "bbox": [
         37.150002,
         6.61667,
@@ -133246,9 +133276,11 @@
         "title": "Ethiopia: Landslide - South Ethiopia (Gofa, Basketo) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-868687-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -133290,7 +133322,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27082163761-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27082-163761-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133298,7 +133330,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27081163760-displaced",
+      "id": "idmc-idu-impact-27081-163760-displaced",
       "bbox": [
         39.539391,
         14.08135,
@@ -133317,9 +133349,11 @@
         "title": "Ethiopia: Landslide - Tigray (Eastern, Southern, Central, South Eastern) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-937098-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -133361,7 +133395,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27081163760-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27081-163760-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133369,7 +133403,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27081163759-displaced",
+      "id": "idmc-idu-impact-27081-163759-displaced",
       "bbox": [
         39.539391,
         14.08135,
@@ -133388,9 +133422,11 @@
         "title": "Ethiopia: Landslide - Tigray (Eastern, Southern, Central, South Eastern) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-937098-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -133432,7 +133468,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27081163759-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27081-163759-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133440,7 +133476,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27081163758-displaced",
+      "id": "idmc-idu-impact-27081-163758-displaced",
       "bbox": [
         39.539391,
         14.08135,
@@ -133459,9 +133495,11 @@
         "title": "Ethiopia: Landslide - Tigray (Eastern, Southern, Central, South Eastern) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-937098-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -133503,7 +133541,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27081163758-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27081-163758-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133511,7 +133549,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27081163757-displaced",
+      "id": "idmc-idu-impact-27081-163757-displaced",
       "bbox": [
         39.539391,
         14.08135,
@@ -133530,9 +133568,11 @@
         "title": "Ethiopia: Landslide - Tigray (Eastern, Southern, Central, South Eastern) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-937098-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -133574,7 +133614,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27081163757-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27081-163757-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133582,7 +133622,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27080163756-displaced",
+      "id": "idmc-idu-impact-27080-163756-displaced",
       "bbox": [
         39.725109,
         7.86372,
@@ -133601,9 +133641,11 @@
         "title": "Ethiopia: Landslide - Oromia (Arsi, Wast Hararge, Kelem Wellega) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-881299-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -133645,7 +133687,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27080163756-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27080-163756-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133653,7 +133695,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27080163755-displaced",
+      "id": "idmc-idu-impact-27080-163755-displaced",
       "bbox": [
         39.725109,
         7.86372,
@@ -133672,9 +133714,11 @@
         "title": "Ethiopia: Landslide - Oromia (Arsi, Wast Hararge, Kelem Wellega) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-881299-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -133716,7 +133760,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27080163755-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27080-163755-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133724,7 +133768,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27080163754-displaced",
+      "id": "idmc-idu-impact-27080-163754-displaced",
       "bbox": [
         39.725109,
         7.86372,
@@ -133743,9 +133787,11 @@
         "title": "Ethiopia: Landslide - Oromia (Arsi, Wast Hararge, Kelem Wellega) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-881299-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -133787,7 +133833,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27080163754-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27080-163754-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133795,7 +133841,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27079163753-displaced",
+      "id": "idmc-idu-impact-27079-163753-displaced",
       "bbox": [
         39.62986,
         9.74006,
@@ -133814,9 +133860,11 @@
         "title": "Ethiopia: Landslide - Amhara (North Shewa, North Gonder) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-897499-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -133858,7 +133906,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27079163753-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27079-163753-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133866,7 +133914,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27079163752-displaced",
+      "id": "idmc-idu-impact-27079-163752-displaced",
       "bbox": [
         39.62986,
         9.74006,
@@ -133885,9 +133933,11 @@
         "title": "Ethiopia: Landslide - Amhara (North Shewa, North Gonder) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240801-ETH-897499-GH0304-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -133929,7 +133979,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27079163752-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27079-163752-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -133937,7 +133987,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27078163751-displaced",
+      "id": "idmc-idu-impact-27078-163751-displaced",
       "bbox": [
         34.58757,
         8.24675,
@@ -133956,9 +134006,11 @@
         "title": "Ethiopia: Flood - Gambela (Agnewak, Nuwer, Majang) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-883074-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -134000,7 +134052,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27078163751-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27078-163751-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134008,7 +134060,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27078163750-displaced",
+      "id": "idmc-idu-impact-27078-163750-displaced",
       "bbox": [
         34.58757,
         8.24675,
@@ -134027,9 +134079,11 @@
         "title": "Ethiopia: Flood - Gambela (Agnewak, Nuwer, Majang) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-883074-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -134071,7 +134125,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27078163750-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27078-163750-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134079,7 +134133,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27078163749-displaced",
+      "id": "idmc-idu-impact-27078-163749-displaced",
       "bbox": [
         34.58757,
         8.24675,
@@ -134098,9 +134152,11 @@
         "title": "Ethiopia: Flood - Gambela (Agnewak, Nuwer, Majang) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-883074-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -134142,7 +134198,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27078163749-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27078-163749-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134150,7 +134206,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27077163748-displaced",
+      "id": "idmc-idu-impact-27077-163748-displaced",
       "bbox": [
         38.283329,
         7.96667,
@@ -134169,9 +134225,11 @@
         "title": "Ethiopia: Flood - Central Ethiopia (Siltie) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-881292-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -134213,7 +134271,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27077163748-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27077-163748-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134221,7 +134279,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27076163747-displaced",
+      "id": "idmc-idu-impact-27076-163747-displaced",
       "bbox": [
         36.500561,
         5.45171,
@@ -134240,9 +134298,11 @@
         "title": "Ethiopia: Flood - South Ethiopia (South Omo) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-859683-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -134284,7 +134344,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27076163747-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27076-163747-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134292,7 +134352,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27075163746-displaced",
+      "id": "idmc-idu-impact-27075-163746-displaced",
       "bbox": [
         44.069981,
         5.63875,
@@ -134311,9 +134371,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -134355,7 +134417,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27075163746-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27075-163746-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134363,7 +134425,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27074163745-displaced",
+      "id": "idmc-idu-impact-27074-163745-displaced",
       "bbox": [
         39.50174,
         12.94916,
@@ -134382,9 +134444,11 @@
         "title": "Ethiopia: Flood - Tigray (Southern) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-926298-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -134426,7 +134490,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27074163745-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27074-163745-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134434,7 +134498,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27073163744-displaced",
+      "id": "idmc-idu-impact-27073-163744-displaced",
       "bbox": [
         38.84225175465272,
         7.4925588082294325,
@@ -134453,9 +134517,11 @@
         "title": "Ethiopia: Flood - Oromia (West Arsi) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-877695-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -134497,7 +134563,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27073163744-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27073-163744-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134505,7 +134571,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27072163743-displaced",
+      "id": "idmc-idu-impact-27072-163743-displaced",
       "bbox": [
         34.744652,
         10.39527,
@@ -134524,9 +134590,11 @@
         "title": "Ethiopia: Flood - Benishangul Gumuz (Assosa) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-902874-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -134568,7 +134636,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27072163743-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27072-163743-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134576,7 +134644,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27071163742-displaced",
+      "id": "idmc-idu-impact-27071-163742-displaced",
       "bbox": [
         37.056042,
         12.59218,
@@ -134595,9 +134663,11 @@
         "title": "Ethiopia: Flood - Amhara (North Gondar) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-922686-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -134639,7 +134709,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27071163742-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27071-163742-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134647,7 +134717,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-27070163741-displaced",
+      "id": "idmc-idu-impact-27070-163741-displaced",
       "bbox": [
         40.589081,
         13.48555,
@@ -134666,9 +134736,11 @@
         "title": "Ethiopia: Flood - Afar (Zone 2) - 01/08/2024",
         "datetime": "2024-08-01T00:00:00Z",
         "end_datetime": "2024-08-31T00:00:00+00:00",
-        "monty:corr_id": "20240801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240801-ETH-931704-MH0600-1-GCDB",
         "start_datetime": "2024-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -134710,7 +134782,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27070163741-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-27070-163741-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134718,7 +134790,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-25725156907-displaced",
+      "id": "idmc-idu-impact-25725-156907-displaced",
       "bbox": [
         36.60585,
         6.03041,
@@ -134737,9 +134809,11 @@
         "title": "Ethiopia: Storm surge - Central Ethiopia (Gurage) - 06/07/2024",
         "datetime": "2024-07-06T00:00:00Z",
         "end_datetime": "2024-07-06T00:00:00+00:00",
-        "monty:corr_id": "20240706-ETH-NAT-MET-STO-SUR-1-GCDB",
+        "monty:corr_id": "20240706-ETH-863284-MH0703-1-GCDB",
         "start_datetime": "2024-07-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0703",
+          "SS",
           "nat-met-sto-sur"
         ],
         "monty:country_codes": [
@@ -134781,7 +134855,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-25725156907-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-25725-156907-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134789,7 +134863,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26182158733-displaced",
+      "id": "idmc-idu-impact-26182-158733-displaced",
       "bbox": [
         38.481571,
         6.65546,
@@ -134808,9 +134882,11 @@
         "title": "Ethiopia: Landslide - Sidama (Central Zone) - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-07-31T00:00:00+00:00",
-        "monty:corr_id": "20240701-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240701-ETH-870493-GH0304-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -134852,7 +134928,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26182158733-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26182-158733-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134860,7 +134936,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26181158732-displaced",
+      "id": "idmc-idu-impact-26181-158732-displaced",
       "bbox": [
         37.705269,
         6.84924,
@@ -134879,9 +134955,11 @@
         "title": "Ethiopia: Landslide - South Ethiopia (Wolayita, Gofa) - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-07-31T00:00:00+00:00",
-        "monty:corr_id": "20240701-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240701-ETH-870489-GH0304-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -134923,7 +135001,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26181158732-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26181-158732-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -134931,7 +135009,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26181158731-displaced",
+      "id": "idmc-idu-impact-26181-158731-displaced",
       "bbox": [
         37.705269,
         6.84924,
@@ -134950,9 +135028,11 @@
         "title": "Ethiopia: Landslide - South Ethiopia (Wolayita, Gofa) - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-07-31T00:00:00+00:00",
-        "monty:corr_id": "20240701-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240701-ETH-870489-GH0304-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -134994,7 +135074,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26181158731-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26181-158731-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135002,7 +135082,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26180158730-displaced",
+      "id": "idmc-idu-impact-26180-158730-displaced",
       "bbox": [
         37.056042,
         12.59218,
@@ -135021,9 +135101,11 @@
         "title": "Ethiopia: Landslide - Amhara (North Gonder) - 01/07/2024",
         "datetime": "2024-07-01T00:00:00Z",
         "end_datetime": "2024-07-31T00:00:00+00:00",
-        "monty:corr_id": "20240701-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20240701-ETH-922686-GH0304-1-GCDB",
         "start_datetime": "2024-07-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -135065,7 +135147,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26180158730-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26180-158730-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135073,7 +135155,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-25155153544-displaced",
+      "id": "idmc-idu-impact-25155-153544-displaced",
       "bbox": [
         38.060692,
         14.4351,
@@ -135092,9 +135174,11 @@
         "title": "Ethiopia: Flood - Tigray (North Western) - 01/06/2024",
         "datetime": "2024-06-01T00:00:00Z",
         "end_datetime": "2024-06-30T00:00:00+00:00",
-        "monty:corr_id": "20240601-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240601-ETH-938891-MH0600-1-GCDB",
         "start_datetime": "2024-06-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -135136,7 +135220,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-25155153544-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-25155-153544-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135144,7 +135228,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24726151501-displaced",
+      "id": "idmc-idu-impact-24726-151501-displaced",
       "bbox": [
         38.481571,
         6.65546,
@@ -135163,9 +135247,11 @@
         "title": "Ethiopia: Flood - Sidama - 20/05/2024",
         "datetime": "2024-05-20T00:00:00Z",
         "end_datetime": "2024-05-20T00:00:00+00:00",
-        "monty:corr_id": "20240520-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240520-ETH-870493-MH0600-1-GCDB",
         "start_datetime": "2024-05-20T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -135207,7 +135293,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24726151501-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24726-151501-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135215,7 +135301,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24531150752-displaced",
+      "id": "idmc-idu-impact-24531-150752-displaced",
       "bbox": [
         38.283329,
         7.96667,
@@ -135234,9 +135320,11 @@
         "title": "Ethiopia: Flood - Central Ethiopia (Silti) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-ETH-881292-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -135278,7 +135366,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24531150752-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24531-150752-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135286,7 +135374,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24530150751-displaced",
+      "id": "idmc-idu-impact-24530-150751-displaced",
       "bbox": [
         44.069981,
         5.63875,
@@ -135305,9 +135393,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle, Liban) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -135349,7 +135439,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24530150751-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24530-150751-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135357,7 +135447,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24530150750-displaced",
+      "id": "idmc-idu-impact-24530-150750-displaced",
       "bbox": [
         44.069981,
         5.63875,
@@ -135376,9 +135466,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle, Liban) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -135420,7 +135512,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24530150750-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24530-150750-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135428,7 +135520,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24529150749-displaced",
+      "id": "idmc-idu-impact-24529-150749-displaced",
       "bbox": [
         38.37358098486138,
         5.566041144422044,
@@ -135447,9 +135539,11 @@
         "title": "Ethiopia: Flood - Oromia (West Guji, Guji) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-ETH-859693-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -135491,7 +135585,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24529150749-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24529-150749-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135499,7 +135593,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24529150748-displaced",
+      "id": "idmc-idu-impact-24529-150748-displaced",
       "bbox": [
         38.37358098486138,
         5.566041144422044,
@@ -135518,9 +135612,11 @@
         "title": "Ethiopia: Flood - Oromia (West Guji, Guji) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240501-ETH-859693-MH0600-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -135562,7 +135658,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24529150748-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24529-150748-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135570,7 +135666,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24526150744-displaced",
+      "id": "idmc-idu-impact-24526-150744-displaced",
       "bbox": [
         37.056042,
         12.59218,
@@ -135589,9 +135685,11 @@
         "title": "Ethiopia: Drought - Amhara (North Gondar) - 01/05/2024",
         "datetime": "2024-05-01T00:00:00Z",
         "end_datetime": "2024-05-31T00:00:00+00:00",
-        "monty:corr_id": "20240501-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20240501-ETH-922686-MH0401-1-GCDB",
         "start_datetime": "2024-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -135633,7 +135731,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24526150744-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24526-150744-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135641,7 +135739,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24396150123-displaced",
+      "id": "idmc-idu-impact-24396-150123-displaced",
       "bbox": [
         37.150002,
         6.61667,
@@ -135660,9 +135758,11 @@
         "title": "Ethiopia: Landslide - South Ethiopia (Gofa and Basketo) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-868687-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -135704,7 +135804,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24396150123-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24396-150123-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135712,7 +135812,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24396150122-displaced",
+      "id": "idmc-idu-impact-24396-150122-displaced",
       "bbox": [
         37.150002,
         6.61667,
@@ -135731,9 +135831,11 @@
         "title": "Ethiopia: Landslide - South Ethiopia (Gofa and Basketo) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-868687-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -135775,7 +135877,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24396150122-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24396-150122-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135783,7 +135885,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24395150121-displaced",
+      "id": "idmc-idu-impact-24395-150121-displaced",
       "bbox": [
         37.936409,
         8.11299,
@@ -135802,9 +135904,11 @@
         "title": "Ethiopia: Flood - Central Ethiopia (East Guraghe) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-883090-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -135846,7 +135950,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24395150121-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24395-150121-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135854,7 +135958,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24394150120-displaced",
+      "id": "idmc-idu-impact-24394-150120-displaced",
       "bbox": [
         36.500561,
         5.45171,
@@ -135873,9 +135977,11 @@
         "title": "Ethiopia: Flood - South Ethiopia (South Omo) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-859683-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -135917,7 +136023,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24394150120-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24394-150120-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135925,7 +136031,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24393150119-displaced",
+      "id": "idmc-idu-impact-24393-150119-displaced",
       "bbox": [
         44.069981,
         5.63875,
@@ -135944,9 +136050,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -135988,7 +136096,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24393150119-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24393-150119-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -135996,7 +136104,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24392150118-displaced",
+      "id": "idmc-idu-impact-24392-150118-displaced",
       "bbox": [
         41.034882,
         10.58689,
@@ -136015,9 +136123,11 @@
         "title": "Ethiopia: Flood - Afar (Zones 1, 3, and 6) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-904706-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -136059,7 +136169,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24392150118-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24392-150118-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -136067,7 +136177,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24392150117-displaced",
+      "id": "idmc-idu-impact-24392-150117-displaced",
       "bbox": [
         41.034882,
         10.58689,
@@ -136086,9 +136196,11 @@
         "title": "Ethiopia: Flood - Afar (Zones 1, 3, and 6) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-904706-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -136130,7 +136242,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24392150117-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24392-150117-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -136138,7 +136250,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-24392150116-displaced",
+      "id": "idmc-idu-impact-24392-150116-displaced",
       "bbox": [
         41.034882,
         10.58689,
@@ -136157,9 +136269,11 @@
         "title": "Ethiopia: Flood - Afar (Zones 1, 3, and 6) - 01/04/2024",
         "datetime": "2024-04-01T00:00:00Z",
         "end_datetime": "2024-04-30T00:00:00+00:00",
-        "monty:corr_id": "20240401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240401-ETH-904706-MH0600-1-GCDB",
         "start_datetime": "2024-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -136201,7 +136315,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24392150116-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-24392-150116-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -136209,7 +136323,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-23869146882-displaced",
+      "id": "idmc-idu-impact-23869-146882-displaced",
       "bbox": [
         40.653149,
         10.0245,
@@ -136228,9 +136342,11 @@
         "title": "Ethiopia: Flood - Afar (Zone 3) - 01/03/2024",
         "datetime": "2024-03-01T00:00:00Z",
         "end_datetime": "2024-03-31T00:00:00+00:00",
-        "monty:corr_id": "20240301-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240301-ETH-899304-MH0600-1-GCDB",
         "start_datetime": "2024-03-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -136272,7 +136388,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-23869146882-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-23869-146882-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -136280,7 +136396,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-22957143421-displaced",
+      "id": "idmc-idu-impact-22957-143421-displaced",
       "bbox": [
         39.539391,
         14.08135,
@@ -136299,9 +136415,11 @@
         "title": "Ethiopia: Drought - Tigray (Eastern and Southern) - 01/02/2024",
         "datetime": "2024-02-01T00:00:00Z",
         "end_datetime": "2024-02-29T00:00:00+00:00",
-        "monty:corr_id": "20240201-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20240201-ETH-937098-MH0401-1-GCDB",
         "start_datetime": "2024-02-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -136343,7 +136461,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22957143421-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22957-143421-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -136351,7 +136469,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-22957143420-displaced",
+      "id": "idmc-idu-impact-22957-143420-displaced",
       "bbox": [
         39.539391,
         14.08135,
@@ -136370,9 +136488,11 @@
         "title": "Ethiopia: Drought - Tigray (Eastern and Southern) - 01/02/2024",
         "datetime": "2024-02-01T00:00:00Z",
         "end_datetime": "2024-02-29T00:00:00+00:00",
-        "monty:corr_id": "20240201-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20240201-ETH-937098-MH0401-1-GCDB",
         "start_datetime": "2024-02-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -136414,7 +136534,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22957143420-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22957-143420-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -136422,7 +136542,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-22956143419-displaced",
+      "id": "idmc-idu-impact-22956-143419-displaced",
       "bbox": [
         40.283001,
         10.47117,
@@ -136441,9 +136561,11 @@
         "title": "Ethiopia: Drought - Afar (Zone 5) - 01/02/2024",
         "datetime": "2024-02-01T00:00:00Z",
         "end_datetime": "2024-02-29T00:00:00+00:00",
-        "monty:corr_id": "20240201-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20240201-ETH-904702-MH0401-1-GCDB",
         "start_datetime": "2024-02-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -136485,7 +136607,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22956143419-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22956-143419-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -136493,7 +136615,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20984134734-displaced",
+      "id": "idmc-idu-impact-20984-134734-displaced",
       "bbox": [
         38.885029,
         13.91716,
@@ -136512,9 +136634,11 @@
         "title": "Ethiopia: Drought - Tigray (Central, North Western) - 01/12/2023",
         "datetime": "2023-12-01T00:00:00Z",
         "end_datetime": "2023-12-31T00:00:00+00:00",
-        "monty:corr_id": "20231201-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20231201-ETH-935295-MH0401-1-GCDB",
         "start_datetime": "2023-12-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -136556,7 +136680,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20984134734-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20984-134734-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -136564,7 +136688,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20984134733-displaced",
+      "id": "idmc-idu-impact-20984-134733-displaced",
       "bbox": [
         38.885029,
         13.91716,
@@ -136583,9 +136707,11 @@
         "title": "Ethiopia: Drought - Tigray (Central, North Western) - 01/12/2023",
         "datetime": "2023-12-01T00:00:00Z",
         "end_datetime": "2023-12-31T00:00:00+00:00",
-        "monty:corr_id": "20231201-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20231201-ETH-935295-MH0401-1-GCDB",
         "start_datetime": "2023-12-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -136627,7 +136753,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20984134733-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20984-134733-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -136635,7 +136761,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20983134732-displaced",
+      "id": "idmc-idu-impact-20983-134732-displaced",
       "bbox": [
         37.056042,
         12.59218,
@@ -136654,9 +136780,11 @@
         "title": "Ethiopia: Drought - Amhara (North Gonder) - 01/12/2023",
         "datetime": "2023-12-01T00:00:00Z",
         "end_datetime": "2023-12-31T00:00:00+00:00",
-        "monty:corr_id": "20231201-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20231201-ETH-922686-MH0401-1-GCDB",
         "start_datetime": "2023-12-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -136698,7 +136826,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20983134732-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20983-134732-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -142495,7 +142623,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20194130772-displaced",
+      "id": "idmc-idu-impact-20194-130772-displaced",
       "bbox": [
         37.25581,
         6.13953,
@@ -142514,9 +142642,11 @@
         "title": "Ethiopia: Flood - South Ethiopia (Gamo, South Omo) - 01/11/2023",
         "datetime": "2023-11-01T00:00:00Z",
         "end_datetime": "2023-11-30T00:00:00+00:00",
-        "monty:corr_id": "20231101-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231101-ETH-865087-MH0600-1-GCDB",
         "start_datetime": "2023-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -142558,7 +142688,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20194130772-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20194-130772-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -142566,7 +142696,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20194130771-displaced",
+      "id": "idmc-idu-impact-20194-130771-displaced",
       "bbox": [
         37.25581,
         6.13953,
@@ -142585,9 +142715,11 @@
         "title": "Ethiopia: Flood - South Ethiopia (Gamo, South Omo) - 01/11/2023",
         "datetime": "2023-11-01T00:00:00Z",
         "end_datetime": "2023-11-30T00:00:00+00:00",
-        "monty:corr_id": "20231101-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231101-ETH-865087-MH0600-1-GCDB",
         "start_datetime": "2023-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -142629,7 +142761,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20194130771-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20194-130771-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -142637,7 +142769,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20193130770-displaced",
+      "id": "idmc-idu-impact-20193-130770-displaced",
       "bbox": [
         40.711788,
         4.54425,
@@ -142656,9 +142788,11 @@
         "title": "Ethiopia: Flood - Somali (Liben, Shabelle, Jarar, Korahe, Afder, Doolo) - 01/11/2023",
         "datetime": "2023-11-01T00:00:00Z",
         "end_datetime": "2023-11-30T00:00:00+00:00",
-        "monty:corr_id": "20231101-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231101-ETH-850704-MH0600-1-GCDB",
         "start_datetime": "2023-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -142700,7 +142834,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20193130770-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20193-130770-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -142708,7 +142842,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20193130769-displaced",
+      "id": "idmc-idu-impact-20193-130769-displaced",
       "bbox": [
         40.711788,
         4.54425,
@@ -142727,9 +142861,11 @@
         "title": "Ethiopia: Flood - Somali (Liben, Shabelle, Jarar, Korahe, Afder, Doolo) - 01/11/2023",
         "datetime": "2023-11-01T00:00:00Z",
         "end_datetime": "2023-11-30T00:00:00+00:00",
-        "monty:corr_id": "20231101-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231101-ETH-850704-MH0600-1-GCDB",
         "start_datetime": "2023-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -142771,7 +142907,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20193130769-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20193-130769-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -142779,7 +142915,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20193130768-displaced",
+      "id": "idmc-idu-impact-20193-130768-displaced",
       "bbox": [
         40.711788,
         4.54425,
@@ -142798,9 +142934,11 @@
         "title": "Ethiopia: Flood - Somali (Liben, Shabelle, Jarar, Korahe, Afder, Doolo) - 01/11/2023",
         "datetime": "2023-11-01T00:00:00Z",
         "end_datetime": "2023-11-30T00:00:00+00:00",
-        "monty:corr_id": "20231101-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231101-ETH-850704-MH0600-1-GCDB",
         "start_datetime": "2023-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -142842,7 +142980,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20193130768-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20193-130768-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -142850,7 +142988,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20193130767-displaced",
+      "id": "idmc-idu-impact-20193-130767-displaced",
       "bbox": [
         40.711788,
         4.54425,
@@ -142869,9 +143007,11 @@
         "title": "Ethiopia: Flood - Somali (Liben, Shabelle, Jarar, Korahe, Afder, Doolo) - 01/11/2023",
         "datetime": "2023-11-01T00:00:00Z",
         "end_datetime": "2023-11-30T00:00:00+00:00",
-        "monty:corr_id": "20231101-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231101-ETH-850704-MH0600-1-GCDB",
         "start_datetime": "2023-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -142913,7 +143053,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20193130767-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20193-130767-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -142921,7 +143061,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20193130766-displaced",
+      "id": "idmc-idu-impact-20193-130766-displaced",
       "bbox": [
         40.711788,
         4.54425,
@@ -142940,9 +143080,11 @@
         "title": "Ethiopia: Flood - Somali (Liben, Shabelle, Jarar, Korahe, Afder, Doolo) - 01/11/2023",
         "datetime": "2023-11-01T00:00:00Z",
         "end_datetime": "2023-11-30T00:00:00+00:00",
-        "monty:corr_id": "20231101-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231101-ETH-850704-MH0600-1-GCDB",
         "start_datetime": "2023-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -142984,7 +143126,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20193130766-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20193-130766-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -142992,7 +143134,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-20193130765-displaced",
+      "id": "idmc-idu-impact-20193-130765-displaced",
       "bbox": [
         40.711788,
         4.54425,
@@ -143011,9 +143153,11 @@
         "title": "Ethiopia: Flood - Somali (Liben, Shabelle, Jarar, Korahe, Afder, Doolo) - 01/11/2023",
         "datetime": "2023-11-01T00:00:00Z",
         "end_datetime": "2023-11-30T00:00:00+00:00",
-        "monty:corr_id": "20231101-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231101-ETH-850704-MH0600-1-GCDB",
         "start_datetime": "2023-11-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -143055,7 +143199,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20193130765-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-20193-130765-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -143063,7 +143207,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-19558127833-displaced",
+      "id": "idmc-idu-impact-19558-127833-displaced",
       "bbox": [
         37.150002,
         6.61667,
@@ -143082,9 +143226,11 @@
         "title": "Ethiopia: Landslide - South Ethiopia (Gofa) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20231001-ETH-868687-GH0304-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -143126,7 +143272,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19558127833-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19558-127833-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -143134,7 +143280,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-19557127832-displaced",
+      "id": "idmc-idu-impact-19557-127832-displaced",
       "bbox": [
         44.069981,
         5.63875,
@@ -143153,9 +143299,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle, Liban, Nogob, Jarar, Korahe) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -143197,7 +143345,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19557127832-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19557-127832-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -143205,7 +143353,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-19557127831-displaced",
+      "id": "idmc-idu-impact-19557-127831-displaced",
       "bbox": [
         44.069981,
         5.63875,
@@ -143224,9 +143372,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle, Liban, Nogob, Jarar, Korahe) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -143268,7 +143418,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19557127831-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19557-127831-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -143276,7 +143426,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-19557127830-displaced",
+      "id": "idmc-idu-impact-19557-127830-displaced",
       "bbox": [
         44.069981,
         5.63875,
@@ -143295,9 +143445,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle, Liban, Nogob, Jarar, Korahe) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -143339,7 +143491,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19557127830-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19557-127830-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -143347,7 +143499,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-19557127829-displaced",
+      "id": "idmc-idu-impact-19557-127829-displaced",
       "bbox": [
         44.069981,
         5.63875,
@@ -143366,9 +143518,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle, Liban, Nogob, Jarar, Korahe) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -143410,7 +143564,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19557127829-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19557-127829-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -143418,7 +143572,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-19557127828-displaced",
+      "id": "idmc-idu-impact-19557-127828-displaced",
       "bbox": [
         44.069981,
         5.63875,
@@ -143437,9 +143591,11 @@
         "title": "Ethiopia: Flood - Somali (Shabelle, Liban, Nogob, Jarar, Korahe) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -143481,7 +143637,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19557127828-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19557-127828-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -143489,7 +143645,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-19556127827-displaced",
+      "id": "idmc-idu-impact-19556-127827-displaced",
       "bbox": [
         34.58757,
         8.24675,
@@ -143508,9 +143664,11 @@
         "title": "Ethiopia: Flood - Gambela (Nuwer) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-ETH-883074-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -143552,7 +143710,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19556127827-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19556-127827-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -143560,7 +143718,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-19555127826-displaced",
+      "id": "idmc-idu-impact-19555-127826-displaced",
       "bbox": [
         40.653149,
         10.0245,
@@ -143579,9 +143737,11 @@
         "title": "Ethiopia: Flood - Afar (Zone 3) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20231001-ETH-899304-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -143623,7 +143783,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19555127826-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19555-127826-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -143631,7 +143791,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-19554127825-displaced",
+      "id": "idmc-idu-impact-19554-127825-displaced",
       "bbox": [
         37.056042,
         12.59218,
@@ -143650,9 +143810,11 @@
         "title": "Ethiopia: Drought - Amhara (North Gondar) - 01/10/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-31T00:00:00+00:00",
-        "monty:corr_id": "20231001-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20231001-ETH-922686-MH0401-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -143694,7 +143856,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19554127825-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-19554-127825-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -143964,7 +144126,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18825124713-displaced",
+      "id": "idmc-idu-impact-18825-124713-displaced",
       "bbox": [
         34.26775,
         8.19687,
@@ -143983,9 +144145,11 @@
         "title": "Ethiopia: Flood - Gambela (Itang Special Woreda, Nuwer, Agnewak, Gambela City) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230901-ETH-883072-MH0600-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -144027,7 +144191,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18825124713-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18825-124713-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144035,7 +144199,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18825124712-displaced",
+      "id": "idmc-idu-impact-18825-124712-displaced",
       "bbox": [
         34.26775,
         8.19687,
@@ -144054,9 +144218,11 @@
         "title": "Ethiopia: Flood - Gambela (Itang Special Woreda, Nuwer, Agnewak, Gambela City) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230901-ETH-883072-MH0600-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -144098,7 +144264,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18825124712-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18825-124712-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144106,7 +144272,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18825124711-displaced",
+      "id": "idmc-idu-impact-18825-124711-displaced",
       "bbox": [
         34.26775,
         8.19687,
@@ -144125,9 +144291,11 @@
         "title": "Ethiopia: Flood - Gambela (Itang Special Woreda, Nuwer, Agnewak, Gambela City) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230901-ETH-883072-MH0600-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -144169,7 +144337,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18825124711-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18825-124711-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144177,7 +144345,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18825124710-displaced",
+      "id": "idmc-idu-impact-18825-124710-displaced",
       "bbox": [
         34.26775,
         8.19687,
@@ -144196,9 +144364,11 @@
         "title": "Ethiopia: Flood - Gambela (Itang Special Woreda, Nuwer, Agnewak, Gambela City) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230901-ETH-883072-MH0600-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -144240,7 +144410,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18825124710-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18825-124710-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144248,7 +144418,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18823124708-displaced",
+      "id": "idmc-idu-impact-18823-124708-displaced",
       "bbox": [
         37.132629,
         8.05109,
@@ -144267,9 +144437,11 @@
         "title": "Ethiopia: Landslide - Oromia (Jimma) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20230901-ETH-883086-GH0304-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -144311,7 +144483,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18823124708-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18823-124708-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144319,7 +144491,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18822124707-displaced",
+      "id": "idmc-idu-impact-18822-124707-displaced",
       "bbox": [
         37.46677,
         12.61037,
@@ -144338,9 +144510,11 @@
         "title": "Ethiopia: Drought - Amhara (North Gondar) - 01/09/2023",
         "datetime": "2023-09-01T00:00:00Z",
         "end_datetime": "2023-09-30T00:00:00+00:00",
-        "monty:corr_id": "20230901-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20230901-ETH-922688-MH0401-1-GCDB",
         "start_datetime": "2023-09-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -144382,7 +144556,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18822124707-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18822-124707-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144390,7 +144564,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18619123552-displaced",
+      "id": "idmc-idu-impact-18619-123552-displaced",
       "bbox": [
         34.58757,
         8.24675,
@@ -144409,9 +144583,11 @@
         "title": "Ethiopia: Flood - Gambela (Nuwer) - 01/08/2023",
         "datetime": "2023-08-01T00:00:00Z",
         "end_datetime": "2023-08-31T00:00:00+00:00",
-        "monty:corr_id": "20230801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230801-ETH-883074-MH0600-1-GCDB",
         "start_datetime": "2023-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -144453,7 +144629,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18619123552-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18619-123552-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144461,7 +144637,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18616123555-displaced",
+      "id": "idmc-idu-impact-18616-123555-displaced",
       "bbox": [
         38.67868,
         7.35396,
@@ -144480,9 +144656,11 @@
         "title": "Ethiopia: Flood - Oromia (West Arsi, West Shewa, South West Shewa) - 01/08/2023",
         "datetime": "2023-08-01T00:00:00Z",
         "end_datetime": "2023-08-31T00:00:00+00:00",
-        "monty:corr_id": "20230801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230801-ETH-875894-MH0600-1-GCDB",
         "start_datetime": "2023-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -144524,7 +144702,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18616123555-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18616-123555-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144532,7 +144710,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18616123554-displaced",
+      "id": "idmc-idu-impact-18616-123554-displaced",
       "bbox": [
         38.67868,
         7.35396,
@@ -144551,9 +144729,11 @@
         "title": "Ethiopia: Flood - Oromia (West Arsi, West Shewa, South West Shewa) - 01/08/2023",
         "datetime": "2023-08-01T00:00:00Z",
         "end_datetime": "2023-08-31T00:00:00+00:00",
-        "monty:corr_id": "20230801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230801-ETH-875894-MH0600-1-GCDB",
         "start_datetime": "2023-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -144595,7 +144775,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18616123554-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18616-123554-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144603,7 +144783,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18616123553-displaced",
+      "id": "idmc-idu-impact-18616-123553-displaced",
       "bbox": [
         38.67868,
         7.35396,
@@ -144622,9 +144802,11 @@
         "title": "Ethiopia: Flood - Oromia (West Arsi, West Shewa, South West Shewa) - 01/08/2023",
         "datetime": "2023-08-01T00:00:00Z",
         "end_datetime": "2023-08-31T00:00:00+00:00",
-        "monty:corr_id": "20230801-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230801-ETH-875894-MH0600-1-GCDB",
         "start_datetime": "2023-08-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -144666,7 +144848,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18616123553-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18616-123553-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144674,7 +144856,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-17599118649-displaced",
+      "id": "idmc-idu-impact-17599-118649-displaced",
       "bbox": [
         38.369068,
         5.04715,
@@ -144693,9 +144875,11 @@
         "title": "Ethiopia: Drought - Oromia (Borena) - 01/06/2023",
         "datetime": "2023-06-01T00:00:00Z",
         "end_datetime": "2023-06-30T00:00:00+00:00",
-        "monty:corr_id": "20230601-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20230601-ETH-854293-MH0401-1-GCDB",
         "start_datetime": "2023-06-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -144737,7 +144921,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-17599118649-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-17599-118649-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144745,7 +144929,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16845114730-displaced",
+      "id": "idmc-idu-impact-16845-114730-displaced",
       "bbox": [
         44.069981,
         5.63875,
@@ -144764,9 +144948,11 @@
         "title": "Ethiopia: Flood - Somali - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-ETH-859721-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -144808,7 +144994,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16845114730-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16845-114730-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144816,7 +145002,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16844114729-displaced",
+      "id": "idmc-idu-impact-16844-114729-displaced",
       "bbox": [
         37.150002,
         6.61667,
@@ -144835,9 +145021,11 @@
         "title": "Ethiopia: Flood - SNNP - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-ETH-868687-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -144879,7 +145067,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16844114729-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16844-114729-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144887,7 +145075,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16843118696-displaced",
+      "id": "idmc-idu-impact-16843-118696-displaced",
       "bbox": [
         39.725109,
         7.86372,
@@ -144906,9 +145094,11 @@
         "title": "Ethiopia: Flood - Oromia - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-ETH-881299-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -144950,7 +145140,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16843118696-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16843-118696-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -144958,7 +145148,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16843114728-displaced",
+      "id": "idmc-idu-impact-16843-114728-displaced",
       "bbox": [
         39.725109,
         7.86372,
@@ -144977,9 +145167,11 @@
         "title": "Ethiopia: Flood - Oromia - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-ETH-881299-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -145021,7 +145213,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16843114728-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16843-114728-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -145029,7 +145221,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16842114727-displaced",
+      "id": "idmc-idu-impact-16842-114727-displaced",
       "bbox": [
         34.58757,
         8.24675,
@@ -145048,9 +145240,11 @@
         "title": "Ethiopia: Flood - Gambella - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-ETH-883074-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -145092,7 +145286,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16842114727-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16842-114727-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -145100,7 +145294,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16841114726-displaced",
+      "id": "idmc-idu-impact-16841-114726-displaced",
       "bbox": [
         40.255699,
         12.33292,
@@ -145119,9 +145313,11 @@
         "title": "Ethiopia: Flood - Afar - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230501-ETH-920902-MH0600-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -145163,7 +145359,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16841114726-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16841-114726-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -145171,7 +145367,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16840118695-displaced",
+      "id": "idmc-idu-impact-16840-118695-displaced",
       "bbox": [
         39.725109,
         7.86372,
@@ -145190,9 +145386,11 @@
         "title": "Ethiopia: Landslide - Oromia - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20230501-ETH-881299-GH0304-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -145234,7 +145432,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16840118695-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16840-118695-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -145242,7 +145440,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16840114725-displaced",
+      "id": "idmc-idu-impact-16840-114725-displaced",
       "bbox": [
         39.725109,
         7.86372,
@@ -145261,9 +145459,11 @@
         "title": "Ethiopia: Landslide - Oromia - 01/05/2023",
         "datetime": "2023-05-01T00:00:00Z",
         "end_datetime": "2023-05-31T00:00:00+00:00",
-        "monty:corr_id": "20230501-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20230501-ETH-881299-GH0304-1-GCDB",
         "start_datetime": "2023-05-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -145305,7 +145505,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16840114725-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16840-114725-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -145313,7 +145513,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-17616118740-displaced",
+      "id": "idmc-idu-impact-17616-118740-displaced",
       "bbox": [
         38.369068,
         5.04715,
@@ -145332,9 +145532,11 @@
         "title": "Ethiopia: Flood - Oromia (Borena) - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230401-ETH-854293-MH0600-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -145376,7 +145578,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-17616118740-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-17616-118740-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -145384,7 +145586,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16356118738-displaced",
+      "id": "idmc-idu-impact-16356-118738-displaced",
       "bbox": [
         38.67868,
         7.35396,
@@ -145403,9 +145605,11 @@
         "title": "Ethiopia: Landslide - Oromia (West Arsi) - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-ETH-NAT-HYD-MMW-LAN-1-GCDB",
+        "monty:corr_id": "20230401-ETH-875894-GH0304-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "GH0304",
+          "LS",
           "nat-hyd-mmw-lan"
         ],
         "monty:country_codes": [
@@ -145447,7 +145651,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16356118738-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16356-118738-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -145455,7 +145659,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16355118737-displaced",
+      "id": "idmc-idu-impact-16355-118737-displaced",
       "bbox": [
         38.283329,
         7.96667,
@@ -145474,9 +145678,11 @@
         "title": "Ethiopia: Flood - SNNP (Siltie and South Omo) - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230401-ETH-881292-MH0600-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -145518,7 +145724,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16355118737-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16355-118737-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -145526,7 +145732,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16355118736-displaced",
+      "id": "idmc-idu-impact-16355-118736-displaced",
       "bbox": [
         38.283329,
         7.96667,
@@ -145545,9 +145751,11 @@
         "title": "Ethiopia: Flood - SNNP (Siltie and South Omo) - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230401-ETH-881292-MH0600-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -145589,7 +145797,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16355118736-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16355-118736-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -145597,7 +145805,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16354118735-displaced",
+      "id": "idmc-idu-impact-16354-118735-displaced",
       "bbox": [
         40.653149,
         10.0245,
@@ -145616,9 +145824,11 @@
         "title": "Ethiopia: Flood - Afar (Zone 3) - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-ETH-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230401-ETH-899304-MH0600-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -145660,7 +145870,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16354118735-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16354-118735-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -145668,7 +145878,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-16353118734-displaced",
+      "id": "idmc-idu-impact-16353-118734-displaced",
       "bbox": [
         38.369068,
         5.04715,
@@ -145687,9 +145897,11 @@
         "title": "Ethiopia: Drought - Oromia (Borena) - 01/04/2023",
         "datetime": "2023-04-01T00:00:00Z",
         "end_datetime": "2023-04-30T00:00:00+00:00",
-        "monty:corr_id": "20230401-ETH-NAT-CLI-DRO-DRO-1-GCDB",
+        "monty:corr_id": "20230401-ETH-854293-MH0401-1-GCDB",
         "start_datetime": "2023-04-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0401",
+          "DR",
           "nat-cli-dro-dro"
         ],
         "monty:country_codes": [
@@ -145731,7 +145943,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16353118734-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-16353-118734-displaced",
           "auth:refs": [
             "oidc"
           ]

@@ -2,7 +2,7 @@
   "type": "FeatureCollection",
   "features": [
     {
-      "id": "idmc-idu-impact-45441273405-displaced",
+      "id": "idmc-idu-impact-45441-273405-displaced",
       "bbox": [
         10.40218,
         26.099159,
@@ -67,7 +67,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-45441273405-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-45441-273405-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-45441273092-displaced",
+      "id": "idmc-idu-impact-45441-273092-displaced",
       "bbox": [
         10.40218,
         26.099159,
@@ -140,7 +140,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-45441273092-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-45441-273092-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -4325,18 +4325,18 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-28451171531-displaced",
+      "id": "idmc-idu-impact-28451-171531-displaced",
       "bbox": [
-        12.81466,
-        32.721539,
-        12.81466,
-        32.721539
+        13.63968,
+        32.437111,
+        13.63968,
+        32.437111
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          12.81466,
-          32.721539
+          13.63968,
+          32.437111
         ]
       },
       "collection": "idmc-idu-impacts",
@@ -4344,9 +4344,11 @@
         "title": "Libya: Flood - Tripoli,  Al Jabal Al Gharbi,  Misrata, Al Margeb - 05/12/2024",
         "datetime": "2024-12-06T00:00:00Z",
         "end_datetime": "2024-12-10T00:00:00+00:00",
-        "monty:corr_id": "20241205-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241205-LBY-1100769-MH0600-1-GCDB",
         "start_datetime": "2024-12-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4388,7 +4390,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28451171531-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28451-171531-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -4396,18 +4398,18 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-28451171530-displaced",
+      "id": "idmc-idu-impact-28451-171530-displaced",
       "bbox": [
-        12.81466,
-        32.721539,
-        12.81466,
-        32.721539
+        13.63968,
+        32.437111,
+        13.63968,
+        32.437111
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          12.81466,
-          32.721539
+          13.63968,
+          32.437111
         ]
       },
       "collection": "idmc-idu-impacts",
@@ -4415,9 +4417,11 @@
         "title": "Libya: Flood - Tripoli,  Al Jabal Al Gharbi,  Misrata, Al Margeb - 05/12/2024",
         "datetime": "2024-12-06T00:00:00Z",
         "end_datetime": "2024-12-10T00:00:00+00:00",
-        "monty:corr_id": "20241205-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241205-LBY-1100769-MH0600-1-GCDB",
         "start_datetime": "2024-12-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4459,7 +4463,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28451171530-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28451-171530-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -4467,18 +4471,18 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-28451171529-displaced",
+      "id": "idmc-idu-impact-28451-171529-displaced",
       "bbox": [
-        12.81466,
-        32.721539,
-        12.81466,
-        32.721539
+        13.63968,
+        32.437111,
+        13.63968,
+        32.437111
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          12.81466,
-          32.721539
+          13.63968,
+          32.437111
         ]
       },
       "collection": "idmc-idu-impacts",
@@ -4486,9 +4490,11 @@
         "title": "Libya: Flood - Tripoli,  Al Jabal Al Gharbi,  Misrata, Al Margeb - 05/12/2024",
         "datetime": "2024-12-06T00:00:00Z",
         "end_datetime": "2024-12-10T00:00:00+00:00",
-        "monty:corr_id": "20241205-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241205-LBY-1100769-MH0600-1-GCDB",
         "start_datetime": "2024-12-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4530,7 +4536,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28451171529-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28451-171529-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -4538,18 +4544,18 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-28451171007-evacuated",
+      "id": "idmc-idu-impact-28451-171007-evacuated",
       "bbox": [
-        12.81466,
-        32.721539,
-        12.81466,
-        32.721539
+        13.63968,
+        32.437111,
+        13.63968,
+        32.437111
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          12.81466,
-          32.721539
+          13.63968,
+          32.437111
         ]
       },
       "collection": "idmc-idu-impacts",
@@ -4557,9 +4563,11 @@
         "title": "Libya: Flood - Tripoli,  Al Jabal Al Gharbi,  Misrata, Al Margeb - 05/12/2024",
         "datetime": "2024-12-06T00:00:00Z",
         "end_datetime": "2024-12-06T00:00:00+00:00",
-        "monty:corr_id": "20241205-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20241205-LBY-1100769-MH0600-1-GCDB",
         "start_datetime": "2024-12-06T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -4601,7 +4609,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28451171007-evacuated",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-28451-171007-evacuated",
           "auth:refs": [
             "oidc"
           ]
@@ -4938,18 +4946,18 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26298159730-displaced",
+      "id": "idmc-idu-impact-26298-159730-displaced",
       "bbox": [
-        10.242303333333334,
-        25.073656666666665,
-        10.242303333333334,
-        25.073656666666665
+        10.242303333333332,
+        25.07365666666667,
+        10.242303333333332,
+        25.07365666666667
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          10.242303333333334,
-          25.073656666666665
+          10.242303333333332,
+          25.07365666666667
         ]
       },
       "collection": "idmc-idu-impacts",
@@ -4957,9 +4965,11 @@
         "title": "Libya: Flood - Ghat - 16/08/2024",
         "datetime": "2024-08-16T00:00:00Z",
         "end_datetime": "2024-08-16T00:00:00+00:00",
-        "monty:corr_id": "20240816-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240816-LBY-1035952-MH0600-1-GCDB",
         "start_datetime": "2024-08-16T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -5001,7 +5011,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26298159730-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26298-159730-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -5009,18 +5019,18 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26298159249-displaced",
+      "id": "idmc-idu-impact-26298-159249-displaced",
       "bbox": [
-        10.242303333333334,
-        25.073656666666665,
-        10.242303333333334,
-        25.073656666666665
+        10.242303333333332,
+        25.07365666666667,
+        10.242303333333332,
+        25.07365666666667
       ],
       "geometry": {
         "type": "Point",
         "coordinates": [
-          10.242303333333334,
-          25.073656666666665
+          10.242303333333332,
+          25.07365666666667
         ]
       },
       "collection": "idmc-idu-impacts",
@@ -5028,9 +5038,11 @@
         "title": "Libya: Flood - Ghat - 16/08/2024",
         "datetime": "2024-08-16T00:00:00Z",
         "end_datetime": "2024-08-16T00:00:00+00:00",
-        "monty:corr_id": "20240816-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240816-LBY-1035952-MH0600-1-GCDB",
         "start_datetime": "2024-08-16T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -5072,7 +5084,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26298159249-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26298-159249-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -5080,7 +5092,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-26123158533-displaced",
+      "id": "idmc-idu-impact-26123-158533-displaced",
       "bbox": [
         23.269859,
         24.223591,
@@ -5099,9 +5111,11 @@
         "title": "Libya: Flood - (Kufra) - 11/08/2024",
         "datetime": "2024-08-11T00:00:00Z",
         "end_datetime": "2024-08-11T00:00:00+00:00",
-        "monty:corr_id": "20240811-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240811-LBY-1027017-MH0600-1-GCDB",
         "start_datetime": "2024-08-11T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -5143,7 +5157,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26123158533-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-26123-158533-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -5151,7 +5165,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-22094139451-evacuated",
+      "id": "idmc-idu-impact-22094-139451-evacuated",
       "bbox": [
         14.56564,
         32.46756,
@@ -5170,9 +5184,11 @@
         "title": "Libya: Flood (Groundwater rise) -  Misrata (Zliten) - 31/01/2024",
         "datetime": "2024-01-30T00:00:00Z",
         "end_datetime": "2024-02-06T00:00:00+00:00",
-        "monty:corr_id": "20240130-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20240130-LBY-1102574-MH0600-1-GCDB",
         "start_datetime": "2024-01-30T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -5214,7 +5230,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22094139451-evacuated",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22094-139451-evacuated",
           "auth:refs": [
             "oidc"
           ]
@@ -5222,7 +5238,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18555123189-displaced",
+      "id": "idmc-idu-impact-18555-123189-displaced",
       "bbox": [
         10.17972,
         24.962629,
@@ -5241,9 +5257,11 @@
         "title": "Libya: Storm - Ghat, Wadi al Hayaa - 30/09/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-02T00:00:00+00:00",
-        "monty:corr_id": "20230930-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230930-LBY-1034152-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -5285,7 +5303,7 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18555123189-displaced",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18555-123189-displaced",
           "auth:refs": [
             "oidc"
           ]
@@ -5293,7 +5311,7 @@
       ]
     },
     {
-      "id": "idmc-idu-impact-18555123181-evacuated",
+      "id": "idmc-idu-impact-18555-123181-evacuated",
       "bbox": [
         10.17972,
         24.962629,
@@ -5312,9 +5330,11 @@
         "title": "Libya: Storm - Ghat, Wadi al Hayaa - 30/09/2023",
         "datetime": "2023-10-01T00:00:00Z",
         "end_datetime": "2023-10-02T00:00:00+00:00",
-        "monty:corr_id": "20230930-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "monty:corr_id": "20230930-LBY-1034152-MH0600-1-GCDB",
         "start_datetime": "2023-10-01T00:00:00+00:00",
         "monty:hazard_codes": [
+          "MH0600",
+          "FL",
           "nat-hyd-flo-flo"
         ],
         "monty:country_codes": [
@@ -5356,7 +5376,2854 @@
         {
           "rel": "self",
           "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18555123181-evacuated",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-18555-123181-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-130207-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 25,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-130207-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-130206-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 250,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-130206-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-130205-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 40,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-130205-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-130204-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 260,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-130204-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-130203-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 103,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-130203-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-130202-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 825,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-130202-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-130201-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 47,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-130201-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-130200-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 20,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-130200-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-130199-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 130,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-130199-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-130198-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 15,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-130198-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-130197-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 5669,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-130197-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121685-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 125,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121685-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121684-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 150,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121684-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121683-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 1555,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121683-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121682-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 250,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121682-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121681-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 1200,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121681-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121680-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 1820,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121680-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121679-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 350,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121679-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121678-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 1500,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121678-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121677-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 80,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121677-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121676-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 850,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121676-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121675-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 30000,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121675-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121674-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 2500,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121674-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121673-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 102,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121673-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121672-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 1500,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121672-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121671-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 785,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121671-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121670-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 3000,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121670-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121669-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 300,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121669-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121423-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 1000,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121423-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121421-displaced",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-10T00:00:00Z",
+        "end_datetime": "2023-09-11T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-10T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "displaced_internal",
+          "unit": "count",
+          "value": 3000,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121421-displaced",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-122002-evacuated",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-05T00:00:00Z",
+        "end_datetime": "2023-09-05T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-05T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 130,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-122002-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121143-evacuated",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-05T00:00:00Z",
+        "end_datetime": "2023-09-07T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-05T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 9,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121143-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121142-evacuated",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-05T00:00:00Z",
+        "end_datetime": "2023-09-07T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-05T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 20,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121142-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121141-evacuated",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-05T00:00:00Z",
+        "end_datetime": "2023-09-07T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-05T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 40,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121141-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121139-evacuated",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-05T00:00:00Z",
+        "end_datetime": "2023-09-07T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-05T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 70,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121139-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121138-evacuated",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-05T00:00:00Z",
+        "end_datetime": "2023-09-07T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-05T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 90,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121138-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121147-evacuated",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-03T00:00:00Z",
+        "end_datetime": "2023-09-03T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-03T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 86,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121147-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121155-evacuated",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-02T00:00:00Z",
+        "end_datetime": "2023-09-04T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-02T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 25,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121155-evacuated",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "idmc-idu-impact-22181-121154-evacuated",
+      "bbox": [
+        21.757721,
+        32.760948,
+        21.757721,
+        32.760948
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.757721,
+          32.760948
+        ]
+      },
+      "collection": "idmc-idu-impacts",
+      "properties": {
+        "title": "Greece, Türkiye, Libya, Bulgaria: Tropical Storm Daniel -  02/09/2023",
+        "datetime": "2023-09-02T00:00:00Z",
+        "end_datetime": "2023-09-04T00:00:00+00:00",
+        "monty:corr_id": "20230902-LBY-1104410-MH0301-1-GCDB",
+        "start_datetime": "2023-09-02T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0301",
+          "VW",
+          "nat-met-sto-sto"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:impact_detail": {
+          "type": "evacuated",
+          "unit": "count",
+          "value": 4,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/idmc-idu-impacts/items/idmc-idu-impact-22181-121154-evacuated",
           "auth:refs": [
             "oidc"
           ]
