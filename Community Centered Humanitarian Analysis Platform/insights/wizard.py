@@ -21,6 +21,7 @@ from pathlib import Path
 from django.conf import settings
 from django.contrib import admin as django_admin
 from django.contrib import messages
+from django.core.files.base import ContentFile
 from django.forms import inlineformset_factory
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
@@ -29,7 +30,7 @@ from django.urls import reverse
 from django.views.decorators.http import require_POST
 
 from data_track.models import Document
-from insights import review
+from insights import review, weblink
 from insights.extractors import get_extractor
 from insights.forms import InsightInlineEditForm
 from insights.intake import SUFFIXES, catalogue_file
@@ -150,15 +151,69 @@ def batch_file(request, job_id):
             "message": f"{suffix or 'no extension'} is not a PDF or Word document.",
         })
 
-    # HASHED BEFORE IT IS SAVED, AND MATCHED ON THE HASH. catalogue_file
-    # de-duplicates on rel_path, which for an upload is
-    # "media/<sha1[:12]>-<stored name>" - and the STORED name is whatever
-    # Django's storage settled on, which uniquifies a collision to
-    # "report_AbCdEf.pdf". So the same report sent twice, or sent under two
-    # names, lands on two rel_paths and is catalogued twice. Matching on
-    # Document.sha1 is what actually answers "is this file already in the
-    # database". File.chunks() seeks to 0 first, so the upload is still
-    # readable afterwards.
+    return JsonResponse(_accept(job, upload, label))
+
+
+@require_POST
+def batch_url(request, job_id):
+    """Take exactly one link, fetch what is behind it, and catalogue that.
+
+    THE SAME BATCH AS THE FILE PICKERS, and the same row shape back, so a
+    batch can mix documents off the operator's disk with documents off the web
+    and the preview table needs no second way to draw a result.
+
+    Fetched server-side rather than in the browser because the browser cannot:
+    a cross-origin PDF is not readable by script, and the file has to reach
+    this container to be catalogued at all. weblink.fetch is what decides the
+    document's type, from the bytes - see that module.
+    """
+    job = get_object_or_404(ExtractionJob, id=job_id, status="collecting")
+    url = (request.POST.get("url") or "").strip()
+    if not url:
+        return JsonResponse({"error": "No link was sent."}, status=400)
+
+    try:
+        name, payload = weblink.fetch(url)
+    except weblink.NotADocument as exc:
+        # Not a failure: the same outcome as a photograph inside a chosen
+        # folder, and reported the same way.
+        return JsonResponse({"name": url, "outcome": "skipped", "message": str(exc)})
+    except weblink.BadLink as exc:
+        # Already a sentence for a person, so it is not prefixed with a type.
+        return JsonResponse({"name": url, "outcome": "failed", "message": str(exc)})
+    except Exception as exc:                      # noqa: BLE001 - reported per link
+        # A refused connection or a 404 is an expected input here, not an
+        # exceptional one: one dead link in a pasted list of thirty must not
+        # take the other twenty-nine down.
+        return JsonResponse({
+            "name": url, "outcome": "failed",
+            "message": f"{type(exc).__name__}: {exc}",
+        })
+
+    # THE LINK IS THE LABEL. Where a document came from is the whole provenance
+    # story for a link, and `label` is already the column that means that - so
+    # this needs no column of its own, and therefore no migration.
+    return JsonResponse(_accept(job, ContentFile(payload, name=name), url))
+
+
+def _accept(job, upload, label):
+    """Store, catalogue and attach one document. Returns the row to report.
+
+    THE ONE PLACE A DOCUMENT JOINS A BATCH, whether it was picked off the
+    operator's disk or fetched from a link. Shared rather than written twice
+    because the de-duplication below is a guarantee, and a guarantee kept in
+    two places is a guarantee kept in one of them.
+
+    HASHED BEFORE IT IS SAVED, AND MATCHED ON THE HASH. catalogue_file
+    de-duplicates on rel_path, which for an upload is
+    "media/<sha1[:12]>-<stored name>" - and the STORED name is whatever
+    Django's storage settled on, which uniquifies a collision to
+    "report_AbCdEf.pdf". So the same report sent twice, or sent under two
+    names, lands on two rel_paths and is catalogued twice. Matching on
+    Document.sha1 is what actually answers "is this file already in the
+    database". File.chunks() seeks to 0 first, so the upload is still
+    readable afterwards.
+    """
     digest = hashlib.sha1()
     for chunk in upload.chunks():
         digest.update(chunk)
@@ -170,11 +225,11 @@ def batch_file(request, job_id):
         # catalogued is pure cost. The document is attached to this batch so
         # it is extracted with the rest of it.
         job.documents.add(existing)
-        return JsonResponse({
+        return {
             "name": label, "outcome": "duplicate", "pages": existing.pages,
             "document_id": existing.id,
             "message": "Already catalogued - the same file is in the database.",
-        })
+        }
 
     row = InsightUpload.objects.create(file=upload, label=label)
     stored = Path(row.file.path)
@@ -187,29 +242,49 @@ def batch_file(request, job_id):
         # the other 199 down. Type and message only, never the repr.
         row.delete()
         stored.unlink(missing_ok=True)
-        return JsonResponse({
+        return {
             "name": label, "outcome": "failed",
             "message": f"{type(exc).__name__}: {exc}",
-        })
+        }
 
     row.document = document
     row.save(update_fields=["document"])
     job.documents.add(document)
 
-    return JsonResponse({
+    return {
         "name": label, "outcome": "catalogued", "pages": document.pages,
         "document_id": document.id, "message": "",
-    })
+    }
 
 
 @require_POST
 def batch_ready(request, job_id):
-    """Close the batch and queue it for extraction."""
+    """Close the batch and queue it for extraction.
+
+    A BATCH WITH NOTHING IN IT IS NOT CLOSED. Every file skipped, or - far more
+    likely now that links are a source - every link a web page rather than the
+    attachment on it, leaves a job with no documents. Closed anyway, that job
+    walks the whole wizard looking like a real one and has nothing in it to
+    read, while the per-item reasons it is empty are gone: they were rows on a
+    page that has navigated away. Refused here as well as in the browser,
+    because this is what makes that state unreachable from any client.
+
+    A duplicate counts. _accept attaches an already-catalogued document to this
+    job, so a batch of nothing but duplicates is a full batch.
+    """
     job = get_object_or_404(ExtractionJob, id=job_id, status="collecting")
-    job.documents_total = job.documents.count()
+    total = job.documents.count()
+    if total == 0:
+        return JsonResponse({
+            "closed": False, "documents_total": 0,
+            "message": ("Nothing in this batch could be read, so it was not "
+                        "started. Each row above says why."),
+        })
+
+    job.documents_total = total
     job.status = "collected"
     job.save(update_fields=["documents_total", "status"])
-    return JsonResponse({"documents_total": job.documents_total})
+    return JsonResponse({"closed": True, "documents_total": job.documents_total})
 
 
 @require_POST

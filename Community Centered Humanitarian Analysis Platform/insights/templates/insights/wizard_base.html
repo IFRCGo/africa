@@ -25,6 +25,11 @@ redirect and stylesheet, so they do not read as a bolted-on second site.
   .wiz-files td, .wiz-files th { padding: .4rem .6rem; border-bottom: 1px solid #eee; text-align: left; }
   .wiz-files tr.is-skipped { color: #999; }
   .wiz-files tr.is-failed td { color: #a41515; }
+  /* A pasted link is long and has no spaces, so it must be allowed to break
+     inside itself or it forces the whole table wider than the page. */
+  .wiz-files td.wiz-name { overflow-wrap: anywhere; }
+  .wiz-links { margin: 0 0 1rem; }
+  .wiz-links textarea { width: 100%; max-width: 48rem; font-family: monospace; font-size: .85rem; }
   .wiz-bar { height: 1.25rem; background: #f0f0f0; border-radius: 999px; overflow: hidden; }
   .wiz-bar span { display: block; height: 100%; background: #417690; width: 0; transition: width .3s; }
   .wiz-log { background: #1f1f1f; color: #ddd; padding: .75rem; height: 16rem; overflow-y: auto;

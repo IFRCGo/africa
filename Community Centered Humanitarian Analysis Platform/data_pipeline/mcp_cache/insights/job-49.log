@@ -1,0 +1,2 @@
+25th_REF_Meeting_Report_-_FINAL.pdf: payload rejected - payload has no usable date: set source.report_date (YYYY-MM-DD), or attach it to a document whose report_date is set
+CommandError: job 49: every payload was rejected and nothing was loaded. The reasons are in the job log: 25th_REF_Meeting_Report_-_FINAL.pdf: payload rejected - payload has no usable date: set source.report_date (YYYY-MM-DD), or attach it to a document whose report_date is set

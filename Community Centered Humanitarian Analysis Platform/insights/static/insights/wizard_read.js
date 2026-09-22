@@ -51,6 +51,18 @@
   }
 
   function draw(body) {
+    /* WHETHER THIS PAGE WAS WATCHING A RUN, captured before stop() clears it.
+     * It is the whole difference between "a conversion just finished, so the
+     * preview below is stale" and "this page was opened on a batch that was
+     * already converted, and the preview below is the current one". Reloading
+     * in the second case reloads forever: the new page polls on load, is told
+     * "converted" again, and reloads again.
+     *
+     * Deliberately NOT the status the page was rendered at. A converted batch
+     * can be read again - the Start button is on this page for exactly that -
+     * and when that re-read finishes the preview really is stale and really
+     * must be reloaded, even though the page was rendered "converted". */
+    var wasWatching = timer !== null;
     var pct = body.total ? Math.round(body.done * 100 / body.total) : 0;
     fill.style.width = pct + "%";
     counters.textContent = body.done + " of " + body.total + " documents read";
@@ -63,6 +75,7 @@
     if (body.status === "converted") {
       stop();
       stall.hidden = true;
+      if (!wasWatching) { return; }
       say("Reading finished. Showing what the model will read…", null);
       window.location.reload();
       return;

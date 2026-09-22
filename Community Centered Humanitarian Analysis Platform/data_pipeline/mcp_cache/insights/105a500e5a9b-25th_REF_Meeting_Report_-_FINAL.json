@@ -1,0 +1,161 @@
+{
+  "source": {
+    "rel_path": "media/105a500e5a9b-25th_REF_Meeting_Report_-_FINAL.pdf",
+    "sha1": "105a500e5a9ba4276006db7615f42f7f74e0c132",
+    "report_date": null
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "89% of respondents rate the REF as representing refugee voices very well — pioneering in Africa.",
+      "quote_language": "en",
+      "page": 6,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Uganda",
+      "iso3": "UGA",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "host_community_support",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "89%",
+          "value": 89,
+          "unit": "percent",
+          "measures": "rate the REF as representing refugee voices very well"
+        }
+      ],
+      "people_affected": null,
+      "severity": null,
+      "confidence": "high"
+    },
+    {
+      "quote": "If the REF closes, refugee voices will not be heard at national level.",
+      "quote_language": "en",
+      "page": 7,
+      "voice_type": "community",
+      "place_name_as_written": "Uganda",
+      "iso3": "UGA",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "protection",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Community perception of Ebola: some people do not believe the disease exists — saying it is witchcraft or a political disease, that government uses it to steal resources, or that it is politics to get money from donors.",
+      "quote_language": "en",
+      "page": 8,
+      "voice_type": "community",
+      "place_name_as_written": "Uganda",
+      "iso3": "UGA",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "disease_outbreak",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "In Palabek, in the month of June there have been two suicide cases. With the prevailing livelihood and economic challenges, people are going through a lot and at times, having lost hope, end up committing suicide.",
+      "quote_language": "en",
+      "page": 11,
+      "voice_type": "community",
+      "place_name_as_written": "Palabek",
+      "iso3": "UGA",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "famine_food_crisis",
+          "role": "driver"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "psychosocial_distress",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "two",
+          "value": 2,
+          "unit": "people",
+          "measures": "suicide cases",
+          "applies_to": "Palabek"
+        }
+      ],
+      "people_affected": 2,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "61% Of refugees are unemployed",
+      "quote_language": "en",
+      "page": 12,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Uganda",
+      "iso3": "UGA",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "61%",
+          "value": 61,
+          "unit": "percent",
+          "measures": "unemployed",
+          "applies_to": "refugees"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "91% Cannot access their educational certificates",
+      "quote_language": "en",
+      "page": 12,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Uganda",
+      "iso3": "UGA",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "registration_documentation",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "91%",
+          "value": 91,
+          "unit": "percent",
+          "measures": "cannot access educational certificates",
+          "applies_to": "refugees"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    }
+  ]
+}

@@ -119,6 +119,38 @@ class BatchTests(TestCase):
         self.assertNotIn("..", upload.file.name)
         self.assertEqual(upload.file.name.count("/"), 1)   # "insights/<name>"
 
+    def test_a_batch_with_nothing_in_it_does_not_close(self):
+        # Every file skipped, or every link a web page, leaves a batch with no
+        # documents. Closing it anyway produces a job that reads as a real one
+        # all the way to step 2 and has nothing in it to read - and the reasons
+        # each item was left out are gone by then, because the page has moved on.
+        with override_settings(MEDIA_ROOT=self.media.name):
+            job_id = self.open_batch()
+            self.send(job_id, "notes.txt", b"hello")
+            body = self.client.post(
+                reverse("admin:insights_wizard_batch_ready", args=[job_id])).json()
+
+        self.assertFalse(body["closed"])
+        self.assertIn("Nothing", body["message"])
+        self.assertEqual(ExtractionJob.objects.get(id=job_id).status, "collecting")
+
+    def test_a_batch_of_nothing_but_duplicates_still_closes(self):
+        # A duplicate IS a document on the batch - it is attached to the job so
+        # it is extracted with the rest of it - so this must not be caught by
+        # the empty-batch guard.
+        payload = a_pdf()
+        with override_settings(MEDIA_ROOT=self.media.name):
+            first = self.open_batch()
+            self.send(first, "report.pdf", payload)
+            second = self.open_batch()
+            self.assertEqual(self.send(second, "report.pdf", payload).json()["outcome"],
+                             "duplicate")
+            body = self.client.post(
+                reverse("admin:insights_wizard_batch_ready", args=[second])).json()
+
+        self.assertTrue(body["closed"])
+        self.assertEqual(ExtractionJob.objects.get(id=second).status, "collected")
+
     def test_ready_queues_the_batch(self):
         with override_settings(MEDIA_ROOT=self.media.name):
             job_id = self.open_batch()

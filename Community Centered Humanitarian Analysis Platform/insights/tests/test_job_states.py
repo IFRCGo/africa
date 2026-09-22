@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase
 from django.urls import reverse
 
+from data_track.models import Document
 from insights.models import ExtractionJob, InsightFolder
 
 
@@ -23,6 +24,12 @@ class BatchReadyTests(TestCase):
 
     def test_closing_a_batch_leaves_it_ready_to_read_not_to_extract(self):
         job = ExtractionJob.objects.create(status="collecting")
+        # It needs a document to close at all - an empty batch is refused and
+        # stays "collecting" - and what this asserts is the destination.
+        job.documents.add(Document.objects.create(
+            file_name="r.pdf", rel_path="media/abc123456789-r.pdf",
+            source_collection="insights", family="insight_source",
+            pages=1, file_size=1, sha1="a" * 40))
         self.client.post(reverse("admin:insights_wizard_batch_ready", args=[job.id]))
         job.refresh_from_db()
         self.assertEqual(job.status, "collected")
