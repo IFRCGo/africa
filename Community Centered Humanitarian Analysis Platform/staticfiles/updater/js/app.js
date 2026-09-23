@@ -29,6 +29,13 @@ async function refreshStatus() {
     $("btn-update").disabled = s.running;
     $("btn-rebuild").disabled = s.running;
     $("btn-update").textContent = s.new_count === 0 ? "Rebuild anyway" : "Update now";
+    // Say what is in the way. The buttons are disabled whenever anything holds
+    // the tables these runs rewrite - including a pull started from Admin, which
+    // this page cannot see any other way.
+    if (s.running) {
+      $("count-sub").textContent =
+        `Waiting: ${s.running_detail || "another run"} is still going.`;
+    }
   } catch (e) {
     $("count-sub").textContent = "Could not reach the updater service.";
   }
