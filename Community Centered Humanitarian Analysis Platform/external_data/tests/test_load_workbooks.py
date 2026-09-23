@@ -9,6 +9,7 @@ the trap run_rebuild.py's docstring describes. Both paths are tested below.
 import tempfile
 from datetime import date
 from pathlib import Path
+from unittest.mock import patch
 
 import openpyxl
 from django.core.management import call_command
@@ -168,6 +169,22 @@ class FileChangedTests(WorkbookTestCase):
         row = self._row(params=_fingerprint(self.path))
         with override_settings(SOURCE_ROOT=self.root):
             self.assertFalse(file_changed(row))
+
+    def test_a_file_that_will_not_open_does_not_take_the_page_down(self):
+        """This runs on every render of the data sources list, and it is the only
+        thing on that page that touches /work.
+
+        That is a OneDrive share mounted into the container: a Files-On-Demand
+        placeholder that has not hydrated raises OSError out of open(). Letting it
+        escape would 500 the whole list and disable every other source's button,
+        over a file nobody had asked to load.
+        """
+        from external_data.management.commands.load_workbooks import (
+            _fingerprint, file_changed)
+        row = self._row(params=_fingerprint(self.path))
+        with override_settings(SOURCE_ROOT=self.root), \
+                patch("builtins.open", side_effect=OSError("cloud file not available")):
+            self.assertTrue(file_changed(row))
 
     def test_resaving_the_workbook_with_a_new_column_is_a_change(self):
         from external_data.management.commands.load_workbooks import (

@@ -159,7 +159,15 @@ class PullTests(AdminTestCase):
         reading."""
         response = self.client.get(self._url(self.workbook_row))
         self.assertContains(response, "workbook")
-        self.assertNotContains(response, "fetches from the source&#x27;s API")
+        # Literal template text, so it is NOT autoescaped - the apostrophe has to
+        # be the real one here or this assertion passes against both branches and
+        # proves nothing.
+        self.assertNotContains(response, "fetches from the source's API")
+
+    def test_the_confirmation_page_for_an_api_row_still_talks_about_the_api(self):
+        """The guard on the assertion above: it must be able to fail."""
+        response = self.client.get(self._url(self.api_row))
+        self.assertContains(response, "fetches from the source's API")
 
     @override_settings(IPC_API_KEY="")
     def test_a_keyless_source_is_refused_without_launching(self):

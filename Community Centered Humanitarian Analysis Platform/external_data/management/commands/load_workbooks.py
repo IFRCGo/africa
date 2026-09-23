@@ -119,11 +119,23 @@ def file_changed(sync):
 
     A missing file, and a row never loaded, both count as changed: each is
     something a refresh should look at and report, not silently skip.
+
+    AND SO DOES A FILE THAT WILL NOT OPEN. This runs on every render of the data
+    sources page, and it is the only thing on that page that touches /work - a
+    OneDrive share, mounted into the container, where a Files-On-Demand
+    placeholder that has not hydrated raises OSError out of open(). Letting that
+    escape would 500 the whole list and take every other source's Pull now button
+    down with it, over a file nobody had asked to load.
     """
     path = workbook_path(sync.variant)
-    if path is None or not path.is_file():
+    if path is None:
         return True
-    return (sync.params or {}).get("sha1") != _fingerprint(path)["sha1"]
+    try:
+        if not path.is_file():
+            return True
+        return (sync.params or {}).get("sha1") != _fingerprint(path)["sha1"]
+    except OSError:
+        return True
 
 
 def _fingerprint(path):

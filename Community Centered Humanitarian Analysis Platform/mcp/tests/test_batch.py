@@ -103,6 +103,37 @@ class SerialTests(TestCase):
         self.assertEqual(argv[argv.index("--only") + 1], "sudan-idps-workbook")
 
 
+class ArgvReallyParsesTests(TestCase):
+    """The argv refresh_argv builds, put through the REAL parser.
+
+    Every other test here patches call_command, so the switch from keyword
+    arguments to positional option strings is otherwise proven only against a
+    mock - which would accept anything. These two ask argparse itself.
+    """
+
+    def _parsed(self, row):
+        from django.core.management import load_command_class
+        from mcp.views import refresh_argv
+        argv = refresh_argv(row, 42)
+        app = {"refresh_external": "external_data",
+               "load_workbooks": "external_data"}[argv[0]]
+        parser = load_command_class(app, argv[0]).create_parser("manage.py", argv[0])
+        return parser.parse_args(argv[1:])
+
+    def test_an_api_rows_argv_carries_its_country_and_job(self):
+        row = SourceSync.objects.create(source="fewsnet", dataset="seasonal_calendar",
+                                        iso3="TCD", variant="")
+        opts = self._parsed(row)
+        self.assertEqual((opts.source, opts.dataset, opts.iso3, opts.job),
+                         ("fewsnet", "seasonal_calendar", "TCD", 42))
+
+    def test_a_workbook_rows_argv_carries_its_variant_and_job(self):
+        row = SourceSync.objects.create(source="excel", dataset="idps", iso3="SDN",
+                                        variant="sudan-idps-workbook")
+        opts = self._parsed(row)
+        self.assertEqual((opts.only, opts.job), ("sudan-idps-workbook", 42))
+
+
 class StaleSelectionTests(TestCase):
     """"Pull everything out of date" must mean that, or pressing it twice is
     a second full download."""
