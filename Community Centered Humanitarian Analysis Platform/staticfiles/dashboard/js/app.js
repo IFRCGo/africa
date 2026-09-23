@@ -693,6 +693,75 @@ const HOME_BOUNDS = [[8.0, -3.0], [56.0, 34.5]];
    no rewriting: the tile list Mapbox sends back already carries the token. */
 const MAPBOX_API = "https://api.mapbox.com";
 
+/* ---- When the basemap is not there -------------------------------------
+
+   THE BASEMAP IS THE ONLY PART OF THIS PAGE OWNED BY SOMEBODY ELSE, and it used
+   to be able to take the whole page down with it. initMap resolved only on
+   MapLibre's `load` event, so a style that answered 401 left boot() awaiting a
+   promise that would never settle: no layers, no timeline, no controls, no
+   renderAll(). Every figure on the page had already downloaded and none of it
+   was ever drawn.
+
+   Recorded incident, 23 Sep 2026: the public IFRC GO Mapbox token - the one
+   go.ifrc.org sends to every visitor, and this project's default - was revoked
+   upstream. The dashboard went blank with nothing wrong in it.
+
+   So a dead basemap now costs the backdrop and nothing else. The country
+   outlines, state lines and AOI polygons are this app's OWN GeoJSON, drawn from
+   dashboard/data/, so the operation is still perfectly legible on a plain
+   ground. */
+const BASEMAP_FALLBACK = {
+  version: 8,
+  // A glyph server that needs no key. Without one the four symbol layers draw
+  // no text at all - MapLibre does not fall back to a system font.
+  glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+  sources: {},
+  layers: [{
+    id: "background", type: "background",
+    paint: { "background-color": "#e8eef3" },
+  }],
+};
+
+/* Which fontstack the symbol layers ask for. ONE PLACE, because a fontstack the
+   glyph server does not hold renders nothing - silently. The GO basemap serves
+   Open Sans; the token-free fallback above serves Noto. */
+let LABEL_FONTS = { bold: ["Open Sans Bold"], regular: ["Open Sans Regular"] };
+const FALLBACK_FONTS = { bold: ["Noto Sans Bold"], regular: ["Noto Sans Regular"] };
+
+// Set once, by the first map that fails, and read by every map made afterwards
+// so the split view does not go back to asking for a style already known dead.
+let basemapFailed = false;
+
+/* Say so, once, in the corner. A missing basemap is not an error the operator
+   caused and cannot fix from here, but a map that silently loses its backdrop
+   invites the reading that the DATA is missing - which is the one thing it is
+   not. */
+function noteBasemapUnavailable() {
+  if (document.getElementById("basemap-notice")) return;
+  const el = document.createElement("div");
+  el.id = "basemap-notice";
+  el.textContent = "Basemap unavailable — showing boundaries only. "
+                 + "Check MAPBOX_ACCESS_TOKEN in .env.";
+  el.style.cssText = "position:fixed;bottom:8px;left:8px;z-index:9999;"
+    + "background:rgba(0,0,0,.72);color:#fff;font:11px/1.4 system-ui,sans-serif;"
+    + "padding:5px 9px;border-radius:4px;max-width:min(92vw,360px);cursor:pointer";
+  el.title = "Click to dismiss";
+  el.addEventListener("click", () => el.remove());
+  document.body.appendChild(el);
+}
+
+/* Swap one map onto the plain style and let boot() carry on. */
+function useFallbackBasemap(m, done) {
+  basemapFailed = true;
+  LABEL_FONTS = FALLBACK_FONTS;
+  console.warn("basemap unavailable - drawing boundaries without it");
+  noteBasemapUnavailable();
+  // `styledata`, not `load`: `load` has already been missed on this map, and
+  // MapLibre does not fire it again for a style set afterwards.
+  m.once("styledata", done);
+  m.setStyle(BASEMAP_FALLBACK);
+}
+
 /* Rewrite one "mapbox://" address into the https one it stands for. Anything
    that is not a mapbox:// address (our own GeoJSON, the tile requests) comes
    back untouched. */
@@ -728,7 +797,10 @@ function initMap(containerId) {
   const basemap = window.BASEMAP || {};
   const m = new maplibregl.Map({
     container: containerId,
-    style: basemap.style,
+    // A second map opened into a split view must not ask again for a style the
+    // first one already found dead: it would sit through the whole timeout
+    // below before showing anything.
+    style: (basemapFailed || !basemap.style) ? BASEMAP_FALLBACK : basemap.style,
     transformRequest: (url) => ({ url: mapboxUrl(url, basemap.token) }),
     center: [29.5, 15.2],
     zoom: 4.35,
@@ -739,7 +811,31 @@ function initMap(containerId) {
     attributionControl: { compact: true },
   });
   m.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
-  return new Promise((resolve) => m.on("load", () => resolve(m)));
+
+  /* THIS PROMISE MUST ALWAYS SETTLE. boot() awaits it before adding a single
+     layer, so a path that leaves it pending is a blank page, not a degraded
+     one. There are three ways out and all of them resolve. */
+  return new Promise((resolve) => {
+    let settled = false;
+    const done = () => { if (!settled) { settled = true; resolve(m); } };
+
+    m.on("load", done);
+
+    m.on("error", (e) => {
+      if (settled || m.isStyleLoaded()) return;
+      // A SOURCE or TILE error is survivable and must not swap the basemap:
+      // one missing tile would otherwise pull the whole backdrop out from under
+      // a map that was working. Only a failure with no sourceId - the style
+      // document itself - means there will never be a `load`.
+      if (e && e.sourceId) return;
+      useFallbackBasemap(m, done);
+    });
+
+    // And a style request that HANGS never fires `error` at all - a blocked
+    // host, a captive portal, a proxy swallowing the connection. Nothing on
+    // this page is worth more than ten seconds of a blank screen.
+    setTimeout(() => { if (!settled) useFallbackBasemap(m, done); }, 10000);
+  });
 }
 
 /* Hand one layer's shapes to EVERY live map. This is the single choke point
@@ -927,7 +1023,7 @@ function addLayers(m) {
       "symbol-spacing": 60,
       "text-field": ">",
       "text-size": ["get", "arrowSize"],
-      "text-font": ["Open Sans Bold"],
+      "text-font": LABEL_FONTS.bold,
       "text-keep-upright": false,
       "text-allow-overlap": true,
       "text-rotation-alignment": "map",
@@ -942,7 +1038,7 @@ function addLayers(m) {
     layout: {
       "text-field": ["get", "label"],
       "text-size": 12,
-      "text-font": ["Open Sans Bold"],
+      "text-font": LABEL_FONTS.bold,
       "text-anchor": "center",
       "text-allow-overlap": true,
     },
@@ -1074,7 +1170,7 @@ function addLayers(m) {
   m.addLayer({
     id: "crossing-labels", type: "symbol", source: "crossings",
     layout: {
-      "text-field": ["get", "name"], "text-size": 10, "text-font": ["Open Sans Bold"],
+      "text-field": ["get", "name"], "text-size": 10, "text-font": LABEL_FONTS.bold,
       "text-offset": [0, 1.1], "text-anchor": "top", "text-optional": true,
     },
     paint: { "text-color": COLOR_INK, "text-halo-color": WHITE, "text-halo-width": 1.6 },
@@ -1120,7 +1216,13 @@ function addLayers(m) {
   m.addLayer({
     id: "insight-cluster-count", type: "symbol", source: "insight-bubbles",
     filter: ["has", "point_count"],
-    layout: { "text-field": ["get", "point_count_abbreviated"], "text-size": 11 },
+    // Named rather than left to MapLibre's default, which is an Open Sans stack
+    // the fallback basemap's glyph server does not hold - the cluster counts
+    // would vanish exactly when the basemap did.
+    layout: {
+      "text-field": ["get", "point_count_abbreviated"], "text-size": 11,
+      "text-font": LABEL_FONTS.regular,
+    },
     paint: { "text-color": "#fff" },
   });
   /* The map-to-panel link. This ONLY toggles the matching card's highlight -
