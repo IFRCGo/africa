@@ -19,11 +19,11 @@ from datetime import datetime, timezone as dt_timezone
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 
-from external_data.fetchers import fetcher_for
-from external_data.fetchers.base import missing_keys, redact
+from external_data.fetchers.base import redact
 from external_data.models import SourceSync
 from mcp.locks import JobBusy, claim
 from mcp.models import ACTIVE
+from mcp.views import pullable, refresh_argv
 
 
 class Command(BaseCommand):
@@ -90,10 +90,18 @@ class Command(BaseCommand):
                     continue
 
                 try:
-                    # In-process, so refresh_external's own guarantees apply -
-                    # fetch, save, load, watermark last, redact on the way out.
-                    call_command("refresh_external", row.source, row.dataset,
-                                 iso3=row.iso3, variant=row.variant, job=row_job.id)
+                    # In-process, so the command's own guarantees apply - for an
+                    # API row, refresh_external's fetch, save, load, watermark
+                    # last, redact on the way out; for a workbook row,
+                    # load_workbooks' one transaction and its file fingerprint.
+                    #
+                    # WHICH command comes from mcp.views.refresh_argv, the same
+                    # answer the button on the list uses. Hard-coding
+                    # refresh_external here is how an excel row admitted by
+                    # stale_rows() would fail inside every batch while its own
+                    # button worked.
+                    argv = refresh_argv(row, row_job.id)
+                    call_command(*argv)
                     pulled += 1
                 except Exception as exc:
                     failed += 1
@@ -121,14 +129,13 @@ class Command(BaseCommand):
             self.stdout.write(", ".join(parts))
 
     def _unpullable(self, row):
-        """Why this row cannot be pulled, or None if it can."""
-        fetcher_cls = fetcher_for(row.source, row.dataset, row.variant)
-        if fetcher_cls is None:
-            return "file-based, no API"
-        absent = missing_keys(fetcher_cls)
-        if absent:
-            return f"{absent[0]} is not set"
-        return None
+        """Why this row cannot be refreshed, or None if it can.
+
+        mcp.views.pullable, not a copy of it. The admin filters a selection with
+        that function before launching; a second rule here that disagreed would
+        skip rows the operator had just been told would be pulled.
+        """
+        return pullable(row)
 
     def _progress(self, job, done, note):
         if not job:

@@ -2,6 +2,7 @@
 
     docker compose exec web python manage.py load_workbooks
     docker compose exec web python manage.py load_workbooks --dry-run
+    docker compose exec web python manage.py load_workbooks --only sudan-idps-workbook
 
 These two files are maintained by hand beside the PDFs, so they have no MCP call
 behind them and no date to ask a server for. Their watermark is the file itself:
@@ -10,6 +11,18 @@ run can tell "unchanged since last load" from "never loaded".
 
 Both are read in full every time. They are small, and a full re-read is the only
 way to notice that somebody corrected a figure in an old sheet.
+
+`--only` AND `--job` EXIST FOR THE ADMIN BUTTON. The data sources page lists one
+row per workbook, so its "Reload file" button has to be able to reload ONE of
+them: without `--only`, pressing it on the Sudan IDPs row would also reload the
+neighbours workbook, and would fail outright if that file happened to be absent.
+
+`--job` is the contract refresh_external keeps - mark running, do the work, mark
+succeeded or failed - and the job bookkeeping is kept OUTSIDE the transaction on
+purpose. A failure recorded inside an atomic block is rolled back along with
+everything else, leaving the job at 'queued'; 'queued' is an ACTIVE status, so
+that row would then hold the 'excel' source against every future press. The
+docstring of mcp/management/commands/run_rebuild.py describes the same trap.
 """
 import hashlib
 from datetime import datetime, timezone
@@ -87,6 +100,32 @@ def resolve_pcodes(rows):
     return sorted(unmatched)
 
 
+def workbook_path(variant):
+    """The file behind one workbook variant, or None if that is not a variant."""
+    for filename, _parse, _all_sheets, key in WORKBOOKS:
+        if key["variant"] == variant:
+            return settings.SOURCE_ROOT / filename
+    return None
+
+
+def file_changed(sync):
+    """Has this workbook moved since the row was last loaded?
+
+    THE WATERMARK FOR A FILE IS THE FILE, not a date. "Pull everything out of
+    date" skips anything already pulled today, which is right for an API - asking
+    twice in a day gets the same answer. It is wrong here: an analyst who saves a
+    corrected figure an hour after the last load would be told there is nothing to
+    do. The sha1 already recorded in `params` answers the question properly.
+
+    A missing file, and a row never loaded, both count as changed: each is
+    something a refresh should look at and report, not silently skip.
+    """
+    path = workbook_path(sync.variant)
+    if path is None or not path.is_file():
+        return True
+    return (sync.params or {}).get("sha1") != _fingerprint(path)["sha1"]
+
+
 def _fingerprint(path):
     """sha1 and mtime - the workbook equivalent of a high-water date."""
     digest = hashlib.sha1()
@@ -108,11 +147,55 @@ class Command(BaseCommand):
             "--dry-run", action="store_true", dest="dry_run",
             help="Report what would change and write nothing.",
         )
+        parser.add_argument(
+            "--only", default="",
+            help="Load one workbook by its source_sync variant, e.g. "
+                 "sudan-idps-workbook. Default: both.",
+        )
+        parser.add_argument(
+            "--job", type=int, default=None,
+            help="PullJob id to record progress against (the admin button).",
+        )
 
-    @transaction.atomic
     def handle(self, *args, **options):
+        from mcp.models import PullJob
+
+        job = PullJob.objects.filter(pk=options["job"]).first() if options["job"] else None
+        if job:
+            job.status = "running"
+            job.started_at = datetime.now(timezone.utc)
+            job.save(update_fields=["status", "started_at"])
+
+        try:
+            rows_written, summary = self._run(options, job)
+        except Exception as exc:
+            # One place writes a failure onto the job, so there is one place
+            # that has to remember to close it. Outside the transaction, so the
+            # rollback of the load cannot take this record with it.
+            self._finish(job, "failed", message=str(exc))
+            raise
+
+        self._finish(job, "succeeded", rows=rows_written, message="; ".join(summary))
+        return None
+
+    # ONE TRANSACTION AROUND BOTH WORKBOOKS, as before. A run that reads two
+    # files and commits only the first leaves the table in a state no single
+    # press produced, and the freshness row would then disagree with it.
+    @transaction.atomic
+    def _run(self, options, job=None):
         root = settings.SOURCE_ROOT
-        for filename, parse, all_sheets, key in WORKBOOKS:
+        wanted = options["only"] or ""
+        books = [w for w in WORKBOOKS if not wanted or w[3]["variant"] == wanted]
+        if not books:
+            raise CommandError(
+                f"--only {wanted}: no such workbook. Known variants: "
+                + ", ".join(w[3]["variant"] for w in WORKBOOKS)
+            )
+
+        rows_written, summary = 0, []
+        self._progress(job, done=0, total=len(books), note="starting")
+
+        for index, (filename, parse, all_sheets, key) in enumerate(books, start=1):
             path = root / filename
             if not path.is_file():
                 raise CommandError(
@@ -155,7 +238,17 @@ class Command(BaseCommand):
                     + ", ".join(unmatched)
                 )
             if options["dry_run"]:
+                self._progress(job, done=index, note=f"{filename}: dry run")
+                summary.append(f"{filename}: {len(rows)} rows (dry run)")
                 continue
+
+            sync, _ = SourceSync.objects.get_or_create(**key)
+            # Whether the file itself moved since the last load, read BEFORE the
+            # new fingerprint overwrites it. "0 new figures" and "somebody has
+            # not saved the workbook yet" look identical on the page otherwise,
+            # and they call for completely different next steps.
+            fingerprint = _fingerprint(path)
+            unchanged = (sync.params or {}).get("sha1") == fingerprint["sha1"]
 
             MovementPattern.objects.bulk_create(
                 [MovementPattern(**r) for r in rows],
@@ -164,9 +257,8 @@ class Command(BaseCommand):
                 update_fields=UPDATE_FIELDS,
             )
 
-            sync, _ = SourceSync.objects.get_or_create(**key)
             sync.tool = "openpyxl"
-            sync.params = _fingerprint(path)
+            sync.params = fingerprint
             sync.last_pulled_at = datetime.now(timezone.utc)
             latest = max(r["date"] for r in rows)
             if sync.high_water_date is None or latest > sync.high_water_date:
@@ -177,3 +269,49 @@ class Command(BaseCommand):
             sync.notes = "maintained by hand; re-read in full on every load"
             sync.save()
             self.stdout.write(f"  data now held to {sync.high_water_date}")
+            if unchanged:
+                self.stdout.write("  the file itself is unchanged since the last load")
+
+            rows_written += len(rows)
+            note = f"{len(rows)} rows, data to {sync.high_water_date}"
+            if unchanged:
+                note += " - file unchanged since the last load"
+            summary.append(f"{filename}: {note}")
+            self._progress(job, done=index, note=f"{filename}: {len(rows)} rows")
+
+        return rows_written, summary
+
+    def _progress(self, job, done=None, total=None, note=""):
+        """How far along, on the row rather than scraped out of the log.
+
+        The same reasoning as refresh_external._progress: a banner that parses
+        stdout breaks the first time a message is reworded.
+
+        These writes happen inside _run's transaction, so the banner does not see
+        them until it commits - unlike a pull, where each call commits as it goes.
+        That is tolerable only because reading two small local files takes seconds;
+        'running' is set outside the transaction, so the banner still appears.
+        """
+        if not job:
+            return
+        fields = []
+        if done is not None:
+            job.progress_done = done
+            fields.append("progress_done")
+        if total is not None:
+            job.progress_total = total
+            fields.append("progress_total")
+        if note:
+            job.progress_note = note[:200]
+            fields.append("progress_note")
+        if fields:
+            job.save(update_fields=fields)
+
+    def _finish(self, job, status, rows=0, message=""):
+        if not job:
+            return
+        job.status = status
+        job.finished_at = datetime.now(timezone.utc)
+        job.rows_written = rows
+        job.message = str(message)[:4000]
+        job.save(update_fields=["status", "finished_at", "rows_written", "message"])

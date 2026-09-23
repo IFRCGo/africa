@@ -44,7 +44,7 @@ class BatchRecordsEachRowTests(TestCase):
         """Without --job the command has nothing to write its outcome onto."""
         _, ran = self._run()
         for c in ran.call_args_list:
-            self.assertIn("job", c.kwargs)
+            self.assertIn("--job", c.args)
 
     def test_a_row_job_is_closed_before_the_next_row_starts(self):
         """One active job per source is a database constraint. Eight FEWS NET

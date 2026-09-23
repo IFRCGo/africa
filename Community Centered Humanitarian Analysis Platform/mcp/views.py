@@ -20,11 +20,24 @@ from django.utils import timezone
 
 from external_data.fetchers import fetcher_for
 from external_data.fetchers.base import missing_keys
+from external_data.management.commands.load_workbooks import WORKBOOKS, file_changed
 from external_data.models import SourceSync
 from mcp.locks import JobBusy, claim
 from django.db.models import Q
 
 from mcp.models import ACTIVE, PullJob
+
+# Which source_sync variants name a workbook load_workbooks knows how to read.
+# Taken FROM the command rather than retyped here: a third workbook added there
+# gets a working button with no edit to this file, and a variant renamed there
+# cannot leave a button pointing at a --only value the command would reject.
+WORKBOOK_VARIANTS = {key["variant"] for *_, key in WORKBOOKS}
+
+# Sources refreshed from a file on disk instead of an API. What this changes is
+# only the wording - "re-read the workbook" rather than "fetch from the API" -
+# but a confirmation page that promises an API call for a file read is a page an
+# operator learns to stop reading.
+FILE_SOURCES = {"excel"}
 
 
 def _log_path(job):
@@ -64,29 +77,51 @@ def _launch(job, argv):
         raise
 
 
+def refresh_argv(row, job_id):
+    """The management command that refreshes this row, or None if nothing does.
+
+    THE ONE PLACE THAT DECIDES. Three callers need the same answer - the button
+    on the list, the confirmation view, and pull_batch - and when that answer was
+    "does fetcher_for() return something?" repeated in each of them, adding a
+    second kind of refresh meant finding all three. A row now either names a
+    command or it does not.
+
+    An Excel row is refreshed from the WORKBOOK ON DISK, under /work, not from an
+    API: the two files are maintained by hand, so "pull the latest" means re-read
+    the file the analyst has just saved. `--only` is what keeps one row's button
+    to one workbook; see load_workbooks.
+    """
+    if fetcher_for(row.source, row.dataset, row.variant) is not None:
+        argv = ["refresh_external", row.source, row.dataset, "--job", str(job_id)]
+        if row.iso3:
+            argv += ["--iso3", row.iso3]
+        if row.variant:
+            argv += ["--variant", row.variant]
+        return argv
+
+    if row.source == "excel" and row.variant in WORKBOOK_VARIANTS:
+        return ["load_workbooks", "--only", row.variant, "--job", str(job_id)]
+
+    return None
+
+
 def pull(request, pk):
     """Start a pull for one source_sync row."""
     row = SourceSync.objects.filter(pk=pk).first()
     if row is None:
         raise Http404("no such data source")
 
-    fetcher_cls = fetcher_for(row.source, row.dataset, row.variant)
-    if fetcher_cls is None:
-        messages.error(request, f"{row.source}/{row.dataset} is file-based - "
-                                "there is no API to pull from.")
-        return redirect("admin:mcp_datasource_changelist")
-
-    absent = missing_keys(fetcher_cls)
-    if absent:
-        messages.error(request, f"{', '.join(absent)} is not set in .env, so this "
-                                "source cannot be pulled yet.")
+    why = pullable(row)
+    if why:
+        messages.error(request, f"{row.source}/{row.dataset} cannot be refreshed: {why}")
         return redirect("admin:mcp_datasource_changelist")
 
     if request.method != "POST":
         # A pull changes the database and an IPC one moves 8-15 MB per analysis,
         # so it is never started by following a link. The GET is a confirmation
         # page whose form POSTs back here with a CSRF token.
-        return render(request, "mcp/confirm.html", {"row": row})
+        return render(request, "mcp/confirm.html",
+                      {"row": row, "from_file": row.source in FILE_SOURCES})
 
     try:
         job = claim("pull", source=row.source, dataset=row.dataset, iso3=row.iso3,
@@ -95,18 +130,15 @@ def pull(request, pk):
         messages.warning(request, str(exc))
         return redirect("admin:mcp_datasource_changelist")
 
-    argv = ["refresh_external", row.source, row.dataset, "--job", str(job.id)]
-    if row.iso3:
-        argv += ["--iso3", row.iso3]
-    if row.variant:
-        argv += ["--variant", row.variant]
+    argv = refresh_argv(row, job.id)
     try:
         _launch(job, argv)
     except Exception as exc:
         messages.error(request, f"job {job.id} could not start: {exc}")
         return redirect("admin:mcp_datasource_changelist")
 
-    messages.success(request, f"job {job.id}: pulling {row.source}/{row.dataset} "
+    verb = "re-reading" if row.source in FILE_SOURCES else "pulling"
+    messages.success(request, f"job {job.id}: {verb} {row.source}/{row.dataset} "
                               f"{row.iso3 or 'global'} in the background.")
     return redirect("admin:mcp_datasource_changelist")
 
@@ -132,13 +164,19 @@ def job_status(request, job_id):
 
 
 def pullable(row):
-    """Can this row be pulled right now? Returns None, or the reason it cannot."""
+    """Can this row be refreshed right now? Returns None, or the reason it cannot.
+
+    A KEY IS ONLY EVER ASKED OF A FETCHER. `missing_keys` reads a fetcher class's
+    own list of required settings, so a workbook row - which has no fetcher - must
+    not be put through it.
+    """
     fetcher_cls = fetcher_for(row.source, row.dataset, row.variant)
-    if fetcher_cls is None:
-        return "file-based, no API"
-    absent = missing_keys(fetcher_cls)
-    if absent:
-        return f"{absent[0]} is not set"
+    if fetcher_cls is not None:
+        absent = missing_keys(fetcher_cls)
+        return f"{absent[0]} is not set" if absent else None
+
+    if refresh_argv(row, 0) is None:
+        return "no API and no file command for this row"
     return None
 
 
@@ -148,13 +186,26 @@ def stale_rows():
     OUT OF DATE, NOT SIMPLY PULLABLE. Anything already pulled today is left
     alone, so pressing the button twice in a row costs nothing the second time -
     which is the difference between a refresh button and a re-download button.
-    Rows with no API, and rows whose key is missing, are never included: there is
-    nothing to ask.
+    Rows with no API and no file command, and rows whose key is missing, are never
+    included: there is nothing to ask.
+
+    A WORKBOOK ROW IS JUDGED BY ITS FILE, not by that date. An API asked twice in
+    one day gives the same answer; a workbook saved an hour after the last load
+    does not, and the date rule would skip exactly the edit the operator pressed
+    the button for. `file_changed` compares the sha1 already held in `params`.
     """
     today = timezone.now().date()
-    return [row for row in SourceSync.objects.all()
-            if pullable(row) is None
-            and not (row.last_pulled_at and row.last_pulled_at.date() >= today)]
+    out = []
+    for row in SourceSync.objects.all():
+        if pullable(row) is not None:
+            continue
+        if row.source in FILE_SOURCES:
+            if file_changed(row):
+                out.append(row)
+            continue
+        if not (row.last_pulled_at and row.last_pulled_at.date() >= today):
+            out.append(row)
+    return out
 
 
 def start_batch(request, rows):

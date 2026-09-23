@@ -26,9 +26,9 @@ SOURCE_LABELS = {
 }
 
 # Why a source has no button. Naming the command that DOES load it turns a dead
-# end into an instruction.
+# end into an instruction. `excel` is no longer here: its two workbook rows have
+# a button of their own, which re-reads the file under /work.
 FILE_BASED = {
-    "excel": "file-based — manage.py load_workbooks",
     "kobo": "file-based — manage.py load_hsps",
     "acaps": "CSV export — manage.py load_external acaps_seasonal",
 }
@@ -166,23 +166,40 @@ class DataSourceAdmin(admin.ModelAdmin):
     @admin.display(description="")
     def pull_button(self, obj):
         fetcher_cls = fetcher_for(obj.source, obj.dataset, obj.variant)
-        if fetcher_cls is None:
+        from_file = obj.source in views.FILE_SOURCES
+
+        if fetcher_cls is None and not from_file:
             return mark_safe(
                 '<span style="color:#888">'
                 f'{FILE_BASED.get(obj.source, "no API behind this source")}</span>')
 
-        absent = missing_keys(fetcher_cls)
-        if absent:
-            return format_html(
-                '<span style="color:#888" title="Add it to .env and restart the '
-                'web container">needs {} in .env</span>', absent[0])
+        if fetcher_cls is not None:
+            absent = missing_keys(fetcher_cls)
+            if absent:
+                return format_html(
+                    '<span style="color:#888" title="Add it to .env and restart the '
+                    'web container">needs {} in .env</span>', absent[0])
 
         if PullJob.objects.filter(source=obj.source, status__in=ACTIVE).exists():
+            # Both workbook rows share source='excel', so the one active job per
+            # source constraint makes them queue behind each other. That is
+            # correct rather than merely tolerated: they are read by the same
+            # command, in one transaction.
             return mark_safe('<span style="color:#888">source busy</span>')
 
-        # A link to a confirmation page, whose form POSTs. The pull itself is
+        # A link to a confirmation page, whose form POSTs. The refresh itself is
         # never a GET: it changes the database, and an IPC one moves 8-15 MB per
         # analysis, so nothing should be able to start one by prefetching a link.
+        #
+        # A WORKBOOK ROW SAYS WHAT IT ACTUALLY DOES. "Pull now" on a row whose
+        # data comes off a file on the share invites the reading that the button
+        # goes and finds newer figures somewhere; it re-reads what has been saved
+        # into /work, and nothing else.
+        if from_file:
+            return format_html(
+                '<a class="button" href="pull/{}/" title="Re-read the workbook '
+                'from the source folder (/work) and load it">Reload file</a>',
+                obj.pk)
         return format_html('<a class="button" href="pull/{}/">Pull now</a>', obj.pk)
 
 

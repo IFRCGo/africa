@@ -1,11 +1,26 @@
 {% extends "admin/base_site.html" %}
 {% block content %}
-  <h1>Pull {{ row.source }}/{{ row.dataset }} {{ row.iso3|default:"global" }}?</h1>
-  <p>
-    This fetches from the source's API, saves the raw response under
-    <code>mcp_cache/</code>, and loads it into the database. It does not rebuild
-    the dashboard — that is a separate button on the data sources list.
-  </p>
+  {% if from_file %}
+    <h1>Reload {{ row.dataset }} {{ row.iso3|default:"global" }} from its workbook?</h1>
+    <p>
+      This re-reads the Excel workbook in the source folder
+      (<code>/work</code>) and loads it into the database. There is no API behind
+      this row — what it picks up is whatever has been <strong>saved into the
+      file</strong>, so save and close the workbook before pressing this.
+    </p>
+    <p>
+      The whole file is read, not just the newest column: a figure corrected in
+      an older sheet is picked up too. It does not rebuild the dashboard — that is
+      a separate button on the data sources list.
+    </p>
+  {% else %}
+    <h1>Pull {{ row.source }}/{{ row.dataset }} {{ row.iso3|default:"global" }}?</h1>
+    <p>
+      This fetches from the source's API, saves the raw response under
+      <code>mcp_cache/</code>, and loads it into the database. It does not rebuild
+      the dashboard — that is a separate button on the data sources list.
+    </p>
+  {% endif %}
   {% if row.notes %}<p><strong>Note on this row:</strong> {{ row.notes }}</p>{% endif %}
   {% if row.skipped_ids %}
     <p><strong>Deliberately skipped, and not pulled by this:</strong></p>
@@ -15,7 +30,7 @@
   {% endif %}
   <form method="post">
     {% csrf_token %}
-    <button type="submit" class="default">Pull now</button>
+    <button type="submit" class="default">{% if from_file %}Reload file{% else %}Pull now{% endif %}</button>
     <a href="{% url 'admin:mcp_datasource_changelist' %}" class="button cancel-link">Cancel</a>
   </form>
 {% endblock %}

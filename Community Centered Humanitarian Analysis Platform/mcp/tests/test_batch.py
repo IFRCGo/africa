@@ -5,11 +5,13 @@ recorded incident, the connection closed and the server stayed down for the rest
 of the session. A "pull everything" button spanning six IPC countries is exactly
 how that happens again, so the batch is serial by construction and tested to be.
 """
+import tempfile
 from datetime import timedelta
+from pathlib import Path
 from unittest.mock import call as mock_call, patch
 
 from django.core.management import call_command
-from django.test import TestCase
+from django.test import TestCase, override_settings
 from django.utils import timezone
 
 from external_data.models import SourceSync
@@ -30,7 +32,10 @@ class SerialTests(TestCase):
         with patch("mcp.management.commands.pull_batch.call_command") as ran:
             call_command("pull_batch", "--job", str(job.id),
                          "--rows", ",".join(str(r.pk) for r in self.rows))
-        countries = [c.kwargs["iso3"] for c in ran.call_args_list]
+        # Positional argv, because ONE function now decides which command
+        # refreshes a row - refresh_argv - and it has to return something both
+        # call_command here and subprocess.Popen in the view can take.
+        countries = [c.args[c.args.index("--iso3") + 1] for c in ran.call_args_list]
         self.assertEqual(countries, ["TCD", "SDN", "ETH"])
 
     def test_the_batch_job_reports_progress_as_it_goes(self):
@@ -47,7 +52,7 @@ class SerialTests(TestCase):
         """A 503 from one agency must not cost you the other five sources."""
         job = PullJob.objects.create(kind="batch", status="queued")
         def maybe_fail(*args, **kwargs):
-            if kwargs.get("iso3") == "SDN":
+            if "SDN" in args:
                 raise Exception("503 Service Unavailable")
         with patch("mcp.management.commands.pull_batch.call_command",
                    side_effect=maybe_fail) as ran:
@@ -72,15 +77,30 @@ class SerialTests(TestCase):
         # And a second batch may now start.
         self.assertIsNotNone(claim("batch"))
 
-    def test_a_row_with_no_fetcher_is_skipped_not_attempted(self):
+    def test_a_row_with_neither_an_api_nor_a_command_is_skipped(self):
+        kobo = SourceSync.objects.create(source="kobo", dataset="service_points",
+                                         iso3="TCD", variant="")
+        job = PullJob.objects.create(kind="batch", status="queued")
+        with patch("mcp.management.commands.pull_batch.call_command") as ran:
+            call_command("pull_batch", "--job", str(job.id), "--rows", str(kobo.pk))
+        ran.assert_not_called()
+        job.refresh_from_db()
+        self.assertIn("skipped", job.message)
+
+    def test_a_workbook_row_in_a_batch_runs_load_workbooks(self):
+        """The batch and the button must choose the same command.
+
+        Hard-coding refresh_external here is how an excel row admitted by
+        stale_rows() fails inside every batch while its own button works.
+        """
         excel = SourceSync.objects.create(source="excel", dataset="idps", iso3="SDN",
                                           variant="sudan-idps-workbook")
         job = PullJob.objects.create(kind="batch", status="queued")
         with patch("mcp.management.commands.pull_batch.call_command") as ran:
             call_command("pull_batch", "--job", str(job.id), "--rows", str(excel.pk))
-        ran.assert_not_called()
-        job.refresh_from_db()
-        self.assertIn("skipped", job.message)
+        argv = ran.call_args.args
+        self.assertEqual(argv[0], "load_workbooks")
+        self.assertEqual(argv[argv.index("--only") + 1], "sudan-idps-workbook")
 
 
 class StaleSelectionTests(TestCase):
@@ -108,12 +128,50 @@ class StaleSelectionTests(TestCase):
             last_pulled_at=timezone.now() - timedelta(days=1))
         self.assertIn(row.pk, [r.pk for r in stale_rows()])
 
-    def test_file_based_rows_are_never_stale(self):
-        """They have no API. Offering to refresh them is offering nothing."""
+    def test_rows_with_no_api_and_no_command_are_never_stale(self):
+        """Nothing refreshes them. Offering to is offering nothing."""
         from mcp.views import stale_rows
-        row = SourceSync.objects.create(source="excel", dataset="idps", iso3="SDN",
-                                        variant="sudan-idps-workbook")
+        row = SourceSync.objects.create(source="kobo", dataset="service_points",
+                                        iso3="TCD", variant="")
         self.assertNotIn(row.pk, [r.pk for r in stale_rows()])
+
+    def _workbook_row(self, tmp, **kwargs):
+        """A Sudan IDPs row and a stand-in file for it under a temporary root.
+
+        file_changed only hashes the bytes, so the file need not be a real
+        workbook - which keeps this test about the staleness rule.
+        """
+        (tmp / "Sudan IDPs.xlsx").write_bytes(b"august figures")
+        return SourceSync.objects.create(
+            source="excel", dataset="idps", iso3="SDN",
+            variant="sudan-idps-workbook", **kwargs)
+
+    def test_a_workbook_saved_after_the_last_load_is_stale(self):
+        """THE WATERMARK FOR A FILE IS THE FILE.
+
+        The date rule would skip exactly the edit the operator pressed the button
+        for: an analyst who adds the August column an hour after the morning load
+        would be told there is nothing to do.
+        """
+        from mcp.views import stale_rows
+        with tempfile.TemporaryDirectory() as d:
+            tmp = Path(d)
+            row = self._workbook_row(
+                tmp, last_pulled_at=timezone.now(), params={"sha1": "july"})
+            with override_settings(SOURCE_ROOT=tmp):
+                self.assertIn(row.pk, [r.pk for r in stale_rows()])
+
+    def test_a_workbook_nobody_has_touched_is_not_stale(self):
+        """Pressing twice must cost nothing the second time."""
+        from external_data.management.commands.load_workbooks import _fingerprint
+        from mcp.views import stale_rows
+        with tempfile.TemporaryDirectory() as d:
+            tmp = Path(d)
+            row = self._workbook_row(tmp)
+            with override_settings(SOURCE_ROOT=tmp):
+                row.params = _fingerprint(tmp / "Sudan IDPs.xlsx")
+                row.save(update_fields=["params"])
+                self.assertNotIn(row.pk, [r.pk for r in stale_rows()])
 
     def test_rows_missing_their_key_are_not_stale(self):
         from django.test import override_settings

@@ -16,8 +16,13 @@ class AdminTestCase(TestCase):
         self.client.force_login(self.user)
         self.api_row = SourceSync.objects.create(
             source="fewsnet", dataset="seasonal_calendar", iso3="TCD", variant="")
-        self.file_row = SourceSync.objects.create(
+        # A workbook row: no API, but a command that re-reads the file, so it
+        # does get a button.
+        self.workbook_row = SourceSync.objects.create(
             source="excel", dataset="idps", iso3="SDN", variant="sudan-idps-workbook")
+        # A row with neither an API nor a command wired to the button.
+        self.file_row = SourceSync.objects.create(
+            source="kobo", dataset="service_points", iso3="TCD", variant="")
 
 
 class ListTests(AdminTestCase):
@@ -46,7 +51,23 @@ class ListTests(AdminTestCase):
 
     def test_a_file_based_row_names_the_command_that_loads_it(self):
         response = self.client.get(reverse("admin:mcp_datasource_changelist"))
-        self.assertContains(response, "load_workbooks")
+        self.assertContains(response, "load_hsps")
+
+    def test_a_workbook_row_offers_a_button(self):
+        """The workbook has no API, but it does have a newer file on the share.
+
+        This is the whole point of the button: the analyst saves a new dated
+        column into Sudan IDPs.xlsx and the platform must have a way to pick it up
+        that is not a terminal.
+        """
+        response = self.client.get(reverse("admin:mcp_datasource_changelist"))
+        self.assertContains(response, f"pull/{self.workbook_row.pk}/")
+
+    def test_a_workbook_button_says_it_reads_a_file(self):
+        """"Pull now" on a workbook row invites the reading that it goes looking
+        for newer figures somewhere. It re-reads what has been saved."""
+        response = self.client.get(reverse("admin:mcp_datasource_changelist"))
+        self.assertContains(response, "Reload file")
 
 
 class PullTests(AdminTestCase):
@@ -106,6 +127,39 @@ class PullTests(AdminTestCase):
             self.client.post(self._url(self.file_row))
         popen.assert_not_called()
         self.assertEqual(PullJob.objects.count(), 0)
+
+    def test_a_workbook_row_launches_load_workbooks_for_its_own_file(self):
+        """--only, or one row's button reloads both workbooks.
+
+        The neighbours workbook would be re-read as a side effect of pressing
+        Reload on the Sudan IDPs row - and, worse, a missing neighbours file would
+        fail a press that had nothing to do with it.
+        """
+        with patch("mcp.views.subprocess.Popen") as popen:
+            response = self.client.post(self._url(self.workbook_row))
+        self.assertEqual(response.status_code, 302)
+        argv = popen.call_args.args[0]
+        self.assertIn("load_workbooks", argv)
+        self.assertEqual(argv[argv.index("--only") + 1], "sudan-idps-workbook")
+        job = PullJob.objects.get()
+        self.assertEqual(argv[argv.index("--job") + 1], str(job.id))
+        self.assertEqual(job.source, "excel")
+
+    def test_a_workbook_row_is_never_asked_for_an_api_key(self):
+        """missing_keys reads a fetcher class's own list. A workbook has none, and
+        putting it through that check is how the button starts asking for a token
+        no file read could use."""
+        with override_settings(IPC_API_KEY="", HDX_API_TOKEN=""), \
+                patch("mcp.views.subprocess.Popen") as popen:
+            self.client.post(self._url(self.workbook_row))
+        popen.assert_called_once()
+
+    def test_the_confirmation_page_for_a_workbook_talks_about_the_file(self):
+        """A page promising an API call for a file read is a page people stop
+        reading."""
+        response = self.client.get(self._url(self.workbook_row))
+        self.assertContains(response, "workbook")
+        self.assertNotContains(response, "fetches from the source&#x27;s API")
 
     @override_settings(IPC_API_KEY="")
     def test_a_keyless_source_is_refused_without_launching(self):

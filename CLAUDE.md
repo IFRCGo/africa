@@ -20,6 +20,30 @@ under `data_pipeline/mcp_cache/`, and loads it. Rebuilding the dashboard
 afterwards is a **separate** button on that page, so the database and the map
 move only when you say so.
 
+**The two Excel rows have a button too, labelled Reload file**, because their
+newer data arrives as a saved workbook rather than an API response. It runs
+`load_workbooks --only <variant>` against the file under `/work` — so it picks up
+whatever has been *saved*, and `--only` is what keeps one row's press to one
+workbook. The label differs from "Pull now" on purpose: nothing is fetched, and a
+row that said "Pull now" would invite the reading that the platform goes looking
+for figures the file does not yet contain.
+
+**A workbook row's staleness is its sha1, not its date.** "Pull everything out of
+date" skips anything already pulled today, which is right for an API and wrong for
+a file: an analyst who saves a corrected figure an hour after the morning load
+would be told there is nothing to do. `load_workbooks.file_changed()` compares the
+fingerprint already held in `params`, and `mcp/views.stale_rows()` uses it for
+`FILE_SOURCES` instead of the date rule.
+
+**One function decides which command refreshes a row**: `mcp/views.refresh_argv()`.
+The button, the confirmation view and `pull_batch` all ask it, and it returns a
+positional argv that both `subprocess.Popen` and `call_command` accept. A second
+rule anywhere else is how an excel row admitted by `stale_rows()` starts failing
+inside every batch while its own button works.
+
+`kobo` and `acaps` still have no button — they take different inputs
+(`load_hsps`, a CSV export path) and the list names the command for each.
+
 From a terminal, the same thing, and this is what the button runs:
 
     docker compose exec web python manage.py refresh_external <source> <dataset> --iso3 <ISO3>
@@ -44,9 +68,8 @@ retries the known-empty analyses forever.
 `fewsnet`, `ifrc-go`, `unhcr-refugees`, `ipc`. Claude Code reads it
 automatically; nothing else needs configuring.
 
-**For an agent, and for the sources with no fetcher** (`excel`, `kobo`,
-`acaps`), the rule is unchanged — **fetch, save, then load**, never fetch
-straight into the database:
+**For an agent, and for the sources with no fetcher** (`kobo`, `acaps`), the rule
+is unchanged — **fetch, save, then load**, never fetch straight into the database:
 
 1. Check what is already held: `manage.py external_status`.
 2. Call the MCP tool for what is missing or newer.
