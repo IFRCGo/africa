@@ -118,9 +118,19 @@ services:
       MONTANDON_STAC_URL: ${MONTANDON_STAC_URL:-}
 
       # The basemap drawn under the dashboard: the shared IFRC GO style on
-      # Mapbox. Both defaults are the public values published by GO itself
-      # (https://go-wiki.ifrc.org/en/user_guide/Maps), so this works untouched;
-      # set them in .env only to point at a different style or a rotated token.
+      # Mapbox, whose defaults are the public values published by GO itself
+      # (https://go-wiki.ifrc.org/en/user_guide/Maps), so this works untouched.
+      #
+      # THE DEFAULTS LIVE IN config/settings.py, NOT HERE. These two pass an
+      # EMPTY STRING through when .env does not set them, which is why settings
+      # reads them as `get(X) or default` - see the comment there. Setting one
+      # here to a literal would silently win over that and is how the dashboard
+      # ended up on a revoked token for a day.
+      #
+      # Set them in .env only to point at a different style or a rotated token -
+      # and note that `docker compose restart web` does NOT re-read .env. A
+      # changed value needs `docker compose up -d web`, which recreates the
+      # container; restart reuses the environment it was created with.
       MAPBOX_STYLE_URL: ${MAPBOX_STYLE_URL:-}
       MAPBOX_ACCESS_TOKEN: ${MAPBOX_ACCESS_TOKEN:-}
 
