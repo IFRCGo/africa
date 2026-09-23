@@ -18,7 +18,8 @@ credentials
 # committed by accident.
 # Community Centered Humanitarian Analysis Platform/media/
 Community_Centered_Humanitarian_Analysis_Documentation.docx
-
+AGENTS.md
+CLAUDE.md
 # Subagent-driven-development scratch: ledgers, briefs, review packages.
 # Recreated per plan run; the git history is the real record.
 .superpowers/

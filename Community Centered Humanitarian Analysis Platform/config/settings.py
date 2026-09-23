@@ -351,12 +351,8 @@ CRISIS_START = "2023-04-15"
 # it would never load. Same shape as env_path() above.
 MAPBOX_STYLE_URL = (
     os.environ.get("MAPBOX_STYLE_URL")
-    or "mapbox://styles/go-ifrc/ckrfe16ru4c8718phmckdfjh0"
 )
-MAPBOX_ACCESS_TOKEN = os.environ.get("MAPBOX_ACCESS_TOKEN") or (
-    "pk.eyJ1IjoiZ28taWZyYyIsImEiOiJjbWNkN2w1YjUwNmt4MmpxemZkYmRubDJjIn0"
-    ".riUripexhLbliR3Q1Z99rA"
-)
+MAPBOX_ACCESS_TOKEN = os.environ.get("MAPBOX_ACCESS_TOKEN")
 
 # Send log lines to the container console so "docker compose logs" shows them.
 LOGGING = {

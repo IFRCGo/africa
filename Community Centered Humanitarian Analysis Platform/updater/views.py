@@ -28,20 +28,34 @@ import os
 import re
 import subprocess
 import sys
-import threading
 from pathlib import Path
 
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 from django.http import JsonResponse, StreamingHttpResponse
 from django.shortcuts import render
+from django.utils import timezone
 
 from data_pipeline.management.commands.run_pipeline import STEPS as PIPELINE_STEPS
 from data_track.models import Document
+from mcp.locks import JobBusy, claim
+from mcp.models import ACTIVE, PullJob
 
-# Only one update may run at a time. A lock is a flag that a second request
-# cannot take while the first one holds it.
-_lock = threading.Lock()
+# Only one update may run at a time - and "one" has to mean one across the whole
+# deployment, not one per web worker.
+#
+# WHY NOT threading.Lock, WHICH IS WHAT THIS USED TO BE. gunicorn runs two
+# workers (see the Dockerfile), and a module-level lock lives in one process. Two
+# browsers landing on two workers each took their own copy of it and both started
+# a pipeline, whose first act is to delete every row in population_figures. The
+# lock could not be seen from mcp/locks.py either, so an Admin -> MCP rebuild and
+# an "Update now" rebuilt the same tables at the same time.
+#
+# A PullJob claimed through mcp.locks.claim() is the gate every other route into
+# those tables already uses: a PostgreSQL advisory lock serialises the claim, and
+# the uniq_active_rebuild constraint is the database's own guarantee behind it.
+# "rebuild" is the right kind for both buttons here, because both read and write
+# every table a pull writes, so both must wait for the pulls and block them.
 
 # run_pipeline prints "=== sNN_name ===" between steps. Each step is given a
 # slice of the 0-100% bar, so the bar moves smoothly through the whole run.
@@ -181,37 +195,72 @@ def _stream_command(args, band_lookup=None, outcome=None):
     yield _sse({"type": "progress", "pct": 100, "msg": "complete"})
 
 
+def _close_job(job, status, message):
+    """Mark a job finished. Called once, from the stream's finally block."""
+    job.status = status
+    job.finished_at = timezone.now()
+    job.message = message[:4000]
+    job.save(update_fields=["status", "finished_at", "message"])
+
+
+def _gated_stream(argv, scope, done_message, preamble=None):
+    """Claim the rebuild gate, stream the command, and always close the job.
+
+    The finally block matters more here than in run_rebuild: this generator is
+    driven by a browser, and Django closes it when the client goes away. Without
+    the release, one navigation away mid-run would leave a job at 'running'
+    holding every table against every later press - with nobody watching the run
+    it is protecting. A worker killed outright still leaves the row behind, which
+    is what PullJob.is_stale and the reset affordance exist for.
+    """
+    try:
+        job = claim("rebuild", dataset=scope)
+    except JobBusy as exc:
+        yield _sse({"type": "error", "msg": str(exc)})
+        return
+
+    job.status = "running"
+    job.started_at = timezone.now()
+    job.save(update_fields=["status", "started_at"])
+
+    # Only now that the run is actually going. Counting the waiting PDFs before
+    # the claim told the browser a run was starting that was then refused.
+    if preamble is not None:
+        yield _sse(preamble())
+
+    outcome = {}
+    try:
+        yield from _stream_command(argv, STEP_BANDS.get, outcome)
+        if outcome["ok"]:
+            yield _sse({"type": "done", "msg": done_message})
+    finally:
+        if outcome.get("ok"):
+            _close_job(job, "succeeded", done_message)
+        else:
+            _close_job(job, "failed", "the run did not finish - see the log")
+
+
 def run_pipeline_stream():
     """Full update: ingest new PDFs, re-parse, rebuild every dashboard file."""
-    if not _lock.acquire(blocking=False):
-        yield _sse({"type": "error", "msg": "An update is already running."})
-        return
-    try:
-        new = list_new_files()
-        yield _sse({"type": "progress", "pct": 0,
-                    "msg": f"Starting - {len(new)} new PDF(s) to ingest"})
-        outcome = {}
-        yield from _stream_command(_manage_py() + ["run_pipeline"], STEP_BANDS.get, outcome)
-        if outcome["ok"]:
-            yield _sse({"type": "done", "msg": "Update complete - dashboard refreshed."})
-    finally:
-        _lock.release()
+    def starting():
+        return {"type": "progress", "pct": 0,
+                "msg": f"Starting - {len(list_new_files())} new PDF(s) to ingest"}
+
+    yield from _gated_stream(
+        _manage_py() + ["run_pipeline"],
+        "full pipeline",
+        "Update complete - dashboard refreshed.",
+        preamble=starting,
+    )
 
 
 def rebuild_external_stream():
     """Rebuild only the external map layers from the caches already on disk."""
-    if not _lock.acquire(blocking=False):
-        yield _sse({"type": "error", "msg": "An update is already running."})
-        return
-    try:
-        outcome = {}
-        yield from _stream_command(
-            _manage_py() + ["run_pipeline", "--only", "s06,s07"], STEP_BANDS.get, outcome
-        )
-        if outcome["ok"]:
-            yield _sse({"type": "done", "msg": "External layers rebuilt - dashboard refreshed."})
-    finally:
-        _lock.release()
+    yield from _gated_stream(
+        _manage_py() + ["run_pipeline", "--only", "s06,s07"],
+        "external layers",
+        "External layers rebuilt - dashboard refreshed.",
+    )
 
 
 def _event_stream(generator):
@@ -229,15 +278,25 @@ def index(request):
 
 
 def status(request):
-    """How many new PDFs are waiting, and how many documents are already stored."""
+    """How many new PDFs are waiting, and how many documents are already stored.
+
+    `running` is read from the job table, not from a flag in this process. The
+    two workers do not share memory, so the old _lock.locked() answered "idle"
+    from whichever worker had not started the run - the page said nothing was
+    happening while a pipeline was halfway through. Any active job counts, not
+    only a rebuild: while a pull holds its source, pressing Update now is refused
+    by claim(), so reporting idle would be a lie the button then contradicts.
+    """
     new = list_new_files()
+    blocker = PullJob.objects.filter(status__in=ACTIVE).order_by("requested_at").first()
     return JsonResponse(
         {
             "new_count": len(new),
             "new_files": [Path(p).name for p in new[:60]],
             "more": max(0, len(new) - 60),
             "db_total": Document.objects.count(),
-            "running": _lock.locked(),
+            "running": blocker is not None,
+            "running_detail": blocker.target if blocker else "",
         }
     )
 
