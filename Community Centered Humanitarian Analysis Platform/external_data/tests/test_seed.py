@@ -85,13 +85,13 @@ class MontandonSourceRowTests(TestCase):
 
     @override_settings(IFRC_API_TOKEN="TESTTOKEN")
     def test_every_row_has_a_fetcher_so_every_row_has_a_button(self):
-        from mcp.views import pullable
+        from api_calls.views import pullable
         for row in SourceSync.objects.filter(source="montandon"):
             self.assertIsNone(pullable(row), row.iso3)
 
     @override_settings(IFRC_API_TOKEN="")
     def test_without_the_token_the_button_says_so_rather_than_calling(self):
-        from mcp.views import pullable
+        from api_calls.views import pullable
         row = SourceSync.objects.filter(source="montandon").first()
         self.assertEqual(pullable(row), "IFRC_API_TOKEN is not set")
 

@@ -632,7 +632,7 @@ def attribute_country(text, start, end, page_focus, fallback):
 # The names come from the polygons the map can actually draw, so a match here
 # always has something to highlight:
 #   boundaries/admin1.geojson   133 states across the eight countries
-#   mcp_cache/sdn_adm2.geojson  189 Sudanese localities - the finest level we
+#   api_cache/sdn_adm2.geojson  189 Sudanese localities - the finest level we
 #                               hold, which is why "El Bauga" works in Sudan
 #   boundaries/aoi.geojson      the IFRC Areas of Interest, which cover places
 #                               like Kiryandongo that are not an ADM1 anywhere

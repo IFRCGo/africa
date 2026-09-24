@@ -5,7 +5,7 @@
     <p>
       {{ rows|length }} source{{ rows|length|pluralize }} will be pulled
       <strong>one at a time</strong>, in this order. Each fetches from its API,
-      saves the raw response under <code>mcp_cache/</code>, and loads it into the
+      saves the raw response under <code>api_cache/</code>, and loads it into the
       database. The dashboard is not rebuilt — that is a separate button.
     </p>
     <ol>
@@ -18,10 +18,10 @@
     <form method="post">
       {% csrf_token %}
       <button type="submit" class="default">Pull them</button>
-      <a href="{% url 'admin:mcp_datasource_changelist' %}" class="button cancel-link">Cancel</a>
+      <a href="{% url 'admin:api_calls_datasource_changelist' %}" class="button cancel-link">Cancel</a>
     </form>
   {% else %}
     <p>Nothing to pull: everything with an API was already pulled today.</p>
-    <p><a href="{% url 'admin:mcp_datasource_changelist' %}">Back to data sources</a></p>
+    <p><a href="{% url 'admin:api_calls_datasource_changelist' %}">Back to data sources</a></p>
   {% endif %}
 {% endblock %}

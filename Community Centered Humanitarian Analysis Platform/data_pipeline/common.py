@@ -25,7 +25,7 @@ PIPELINE_DIR = settings.BASE_DIR / "data_pipeline"
 SOURCE_ROOT = settings.SOURCE_ROOT                  # the SUDAN Ops folder
 SOURCE_COLLECTIONS = settings.SOURCE_COLLECTIONS    # the two PDF folders
 DASHBOARD_DATA = settings.DASHBOARD_DATA_DIR        # dashboard/data/, served by the dashboard app
-MCP_CACHE = settings.MCP_CACHE_DIR        # raw MCP pulls
+MCP_CACHE = settings.API_CACHE_DIR        # raw MCP pulls
 
 # The day fighting broke out in Khartoum - the start of every timeline.
 CRISIS_START = date(2023, 4, 15)

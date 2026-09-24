@@ -1,11 +1,11 @@
 """`python manage.py load_external <dataset> <file.json>` - cache into database.
 
 The assistant pulls through MCP on the host and drops the raw response into
-data_pipeline/mcp_cache/. This command is the other half: it reads one of those
+data_pipeline/api_cache/. This command is the other half: it reads one of those
 files and upserts it into the subject tables, writing the watermark as it goes.
 
-    load_external seasonal_calendar mcp_cache/seasonal/TCD.json --iso3 TCD
-    load_external food_security     mcp_cache/ipc/TCD-89623970.geojson --iso3 TCD --dry-run
+    load_external seasonal_calendar api_cache/seasonal/TCD.json --iso3 TCD
+    load_external food_security     api_cache/ipc/TCD-89623970.geojson --iso3 TCD --dry-run
 
 The cache file is staging, not truth. Keeping it on disk means any load can be
 replayed without going back to a single MCP server.

@@ -23,7 +23,7 @@ STATUS_CHOICES = [
 
 
 class DataSource(SourceSync):
-    """The freshness table, listed under the MCP heading.
+    """The freshness table, listed under the Data Refresh via API heading.
 
     A PROXY, NOT A COPY. Django's admin groups the sidebar by app, so a separate
     heading needs a model in this app - but the facts belong to `source_sync` and
@@ -79,7 +79,11 @@ class PullJob(models.Model):
     log_path = models.TextField(null=True, blank=True)
 
     class Meta:
-        db_table = "mcp_pull_job"
+        # PINNED, because the default off `api_calls` would be `api_calls_pulljob`
+        # and this table is read by hand often enough to be worth a name a person
+        # would write. It was `mcp_pull_job` until 2026-09-24; migration 0003
+        # renamed it, and rewrote the cache paths the rows below hold.
+        db_table = "api_pull_job"
         ordering = ["-requested_at"]
         constraints = [
             # The database's own guarantee, behind claim(). One active job per
@@ -117,7 +121,7 @@ class PullJob(models.Model):
         shows this and offers a reset - the same affordance, and the same reason,
         as reset_stuck_job in insights/admin.py.
         """
-        from mcp.locks import STALE_AFTER
+        from api_calls.locks import STALE_AFTER
         if self.status not in ACTIVE:
             return False
         started = self.started_at or self.requested_at

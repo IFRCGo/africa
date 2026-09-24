@@ -16,14 +16,14 @@ from django.contrib.auth import get_user_model
 from django.core.management import call_command
 from django.test import TestCase
 
-from mcp.locks import claim
-from mcp.models import PullJob
+from api_calls.locks import claim
+from api_calls.models import PullJob
 
 
 class RunRebuildCommandTests(TestCase):
     def test_a_successful_rebuild_marks_the_job_succeeded(self):
         job = PullJob.objects.create(kind="rebuild", status="queued")
-        with patch("mcp.management.commands.run_rebuild.call_command") as pipeline:
+        with patch("api_calls.management.commands.run_rebuild.call_command") as pipeline:
             call_command("run_rebuild", "--job", str(job.id))
         job.refresh_from_db()
         self.assertEqual(job.status, "succeeded")
@@ -33,7 +33,7 @@ class RunRebuildCommandTests(TestCase):
 
     def test_a_failing_rebuild_marks_the_job_failed(self):
         job = PullJob.objects.create(kind="rebuild", status="queued")
-        with patch("mcp.management.commands.run_rebuild.call_command",
+        with patch("api_calls.management.commands.run_rebuild.call_command",
                    side_effect=RuntimeError("s06 blew up")):
             with self.assertRaises(Exception):
                 call_command("run_rebuild", "--job", str(job.id))
@@ -44,7 +44,7 @@ class RunRebuildCommandTests(TestCase):
     def test_a_finished_rebuild_releases_every_source(self):
         """THE REGRESSION. One press must not brick every Pull button."""
         job = claim("rebuild")
-        with patch("mcp.management.commands.run_rebuild.call_command"):
+        with patch("api_calls.management.commands.run_rebuild.call_command"):
             call_command("run_rebuild", "--job", str(job.id))
         # No JobBusy: a pull is claimable again.
         self.assertIsNotNone(
@@ -52,7 +52,7 @@ class RunRebuildCommandTests(TestCase):
 
     def test_a_failed_rebuild_also_releases_every_source(self):
         job = claim("rebuild")
-        with patch("mcp.management.commands.run_rebuild.call_command",
+        with patch("api_calls.management.commands.run_rebuild.call_command",
                    side_effect=RuntimeError("boom")):
             with self.assertRaises(Exception):
                 call_command("run_rebuild", "--job", str(job.id))
@@ -67,16 +67,16 @@ class RebuildViewTests(TestCase):
 
     def test_the_view_launches_the_wrapper_not_the_pipeline_directly(self):
         """run_pipeline cannot report back; the wrapper is what closes the job."""
-        with patch("mcp.views.subprocess.Popen") as popen:
-            self.client.post("/admin/mcp/datasource/rebuild/")
+        with patch("api_calls.views.subprocess.Popen") as popen:
+            self.client.post("/admin/api_calls/datasource/rebuild/")
         argv = popen.call_args.args[0]
         self.assertIn("run_rebuild", argv)
         self.assertIn("--job", argv)
 
     def test_a_launch_failure_does_not_leave_the_job_holding_everything(self):
         """If Popen itself raises, the job must not sit queued forever."""
-        with patch("mcp.views.subprocess.Popen", side_effect=OSError("no fork")):
-            self.client.post("/admin/mcp/datasource/rebuild/")
+        with patch("api_calls.views.subprocess.Popen", side_effect=OSError("no fork")):
+            self.client.post("/admin/api_calls/datasource/rebuild/")
         job = PullJob.objects.get()
         self.assertEqual(job.status, "failed")
 
@@ -89,8 +89,8 @@ class ResetTests(TestCase):
         self.client.force_login(self.user)
 
     def test_resetting_a_stuck_job_releases_its_source(self):
-        from mcp.admin import PullJobAdmin
-        from mcp.models import PullJob as Model
+        from api_calls.admin import PullJobAdmin
+        from api_calls.models import PullJob as Model
         stuck = PullJob.objects.create(kind="pull", source="ipc",
                                        dataset="food_security", iso3="SDN",
                                        status="running")
@@ -103,8 +103,8 @@ class ResetTests(TestCase):
             claim("pull", source="ipc", dataset="food_security", iso3="TCD"))
 
     def test_the_reset_says_who_did_it(self):
-        from mcp.admin import PullJobAdmin
-        from mcp.models import PullJob as Model
+        from api_calls.admin import PullJobAdmin
+        from api_calls.models import PullJob as Model
         stuck = PullJob.objects.create(kind="pull", source="ipc",
                                        dataset="food_security", iso3="SDN",
                                        status="running")
@@ -117,8 +117,8 @@ class ResetTests(TestCase):
     def test_a_finished_job_is_not_touched_by_a_reset(self):
         done = PullJob.objects.create(kind="pull", source="ipc", status="succeeded",
                                       rows_written=12)
-        from mcp.admin import PullJobAdmin
-        from mcp.models import PullJob as Model
+        from api_calls.admin import PullJobAdmin
+        from api_calls.models import PullJob as Model
         request = type("R", (), {"user": self.user, "_messages": None})()
         PullJobAdmin(Model, None).reset_stuck_job(
             request, PullJob.objects.filter(pk=done.pk))

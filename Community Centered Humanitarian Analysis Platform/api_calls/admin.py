@@ -1,4 +1,4 @@
-"""The Model Context Protocol section: what is held, and the button to refresh it.
+"""The Data Refresh via API section: what is held, and the button to refresh it.
 
 READ-ONLY APART FROM THE BUTTONS, and for the reason external_data/admin.py
 already gives: every row here is written by a loader, so a row hand-edited in the
@@ -12,9 +12,9 @@ from django.utils.safestring import mark_safe
 
 from external_data.fetchers import fetcher_for
 from external_data.fetchers.base import missing_keys
-from mcp import views
-from mcp.locks import JobBusy
-from mcp.models import ACTIVE, DataSource, PullJob
+from api_calls import views
+from api_calls.locks import JobBusy
+from api_calls.models import ACTIVE, DataSource, PullJob
 
 # What each source is CALLED, as opposed to what its column says. The office says
 # "FEWS NET", not "fewsnet".
@@ -40,7 +40,7 @@ class DataSourceAdmin(admin.ModelAdmin):
                     "high_water_date", "row_count", "job_status", "pull_button")
     list_filter = ("source", "dataset", "iso3")
     search_fields = ("source", "dataset", "variant", "tool", "notes")
-    change_list_template = "admin/mcp/datasource/change_list.html"
+    change_list_template = "admin/api_calls/datasource/change_list.html"
     actions = ["pull_selected"]
 
     def has_add_permission(self, request):

@@ -13,10 +13,11 @@ Everything runs in Docker. There is no Django environment on the host:
 
 ### 1. Pull external data
 
-**For a person, the route in is Admin → Model Context Protocol (MCP) → Data
-sources.** Each row carries its last pull and its newest data date, and every
+**For a person, the route in is Admin → Data Refresh via API → Data
+sources**, at `/admin/api_calls/datasource/`. Each row carries its last pull
+and its newest data date, and every
 API-backed row has a **Pull now** button that fetches, saves the raw response
-under `data_pipeline/mcp_cache/`, and loads it. Rebuilding the dashboard
+under `data_pipeline/api_cache/`, and loads it. Rebuilding the dashboard
 afterwards is a **separate** button on that page, so the database and the map
 move only when you say so.
 
@@ -32,10 +33,10 @@ for figures the file does not yet contain.
 date" skips anything already pulled today, which is right for an API and wrong for
 a file: an analyst who saves a corrected figure an hour after the morning load
 would be told there is nothing to do. `load_workbooks.file_changed()` compares the
-fingerprint already held in `params`, and `mcp/views.stale_rows()` uses it for
+fingerprint already held in `params`, and `api_calls/views.stale_rows()` uses it for
 `FILE_SOURCES` instead of the date rule.
 
-**One function decides which command refreshes a row**: `mcp/views.refresh_argv()`.
+**One function decides which command refreshes a row**: `api_calls/views.refresh_argv()`.
 The button, the confirmation view and `pull_batch` all ask it, and it returns a
 positional argv that both `subprocess.Popen` and `call_command` accept. A second
 rule anywhere else is how an excel row admitted by `stale_rows()` starts failing
@@ -64,6 +65,19 @@ that came back empty. Without the second list a refresh re-pulls every
 exclusion — Chad's March 2024 displaced-population analysis among them — and
 retries the known-empty analyses forever.
 
+**The app is `api_calls` throughout** - package, label, URL and heading. It was
+`mcp` until 2026-09-24, renamed because nothing here speaks the Model Context
+Protocol; the pulls are plain HTTPS. Imports read `from api_calls.models import
+...`. The table is `api_pull_job` (pinned in `Meta.db_table`) and job logs land in
+`api_cache/api/`. **Both were renamed by migrations, not by hand**, because
+`PullJob.log_path` and `Conversion.markdown_path` hold ABSOLUTE paths into the
+cache: `api_calls/0003` and `insights/0009` rewrite them, and moving that folder
+again without extending those two is how a job page starts showing an empty log
+with nothing raised. Renaming a
+label again means updating `django_migrations.app` and
+`django_content_type.app_label` by hand; no migration can do it, and
+MAINTENANCE.md §6 has the two statements.
+
 `.mcp.json` in this folder configures five humanitarian MCP servers — `hdx`,
 `fewsnet`, `ifrc-go`, `unhcr-refugees`, `ipc`. Claude Code reads it
 automatically; nothing else needs configuring.
@@ -73,7 +87,7 @@ is unchanged — **fetch, save, then load**, never fetch straight into the datab
 
 1. Check what is already held: `manage.py external_status`.
 2. Call the MCP tool for what is missing or newer.
-3. Save the raw response under `data_pipeline/mcp_cache/`.
+3. Save the raw response under `data_pipeline/api_cache/`.
 4. Load it: `manage.py load_external <dataset> <path> --iso3 <ISO3>`.
 
 Loaders live in `external_data/loaders/`; `external_data/loaders/base.py` states

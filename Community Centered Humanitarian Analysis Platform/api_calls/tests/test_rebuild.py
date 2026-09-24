@@ -6,8 +6,8 @@ from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
 
-from mcp.models import PullJob
-from mcp.views import pulls_since_last_rebuild
+from api_calls.models import PullJob
+from api_calls.views import pulls_since_last_rebuild
 
 
 class RebuildTests(TestCase):
@@ -19,28 +19,28 @@ class RebuildTests(TestCase):
         """run_rebuild, not run_pipeline directly: the pipeline takes no --job,
         so a job launched straight at it never leaves 'queued' - and a queued
         rebuild blocks every pull on every source, forever. The wrapper is what
-        closes the job. See mcp/tests/test_rebuild_job.py."""
-        with patch("mcp.views.subprocess.Popen") as popen:
-            self.client.post("/admin/mcp/datasource/rebuild/")
+        closes the job. See api_calls/tests/test_rebuild_job.py."""
+        with patch("api_calls.views.subprocess.Popen") as popen:
+            self.client.post("/admin/api_calls/datasource/rebuild/")
         argv = popen.call_args.args[0]
         self.assertIn("run_rebuild", argv)
         self.assertIn("--job", argv)
 
     def test_it_creates_a_rebuild_job(self):
-        with patch("mcp.views.subprocess.Popen"):
-            self.client.post("/admin/mcp/datasource/rebuild/")
+        with patch("api_calls.views.subprocess.Popen"):
+            self.client.post("/admin/api_calls/datasource/rebuild/")
         self.assertEqual(PullJob.objects.get().kind, "rebuild")
 
     def test_it_is_refused_while_a_pull_runs(self):
         PullJob.objects.create(kind="pull", source="ipc", dataset="food_security",
                                iso3="SDN", status="running")
-        with patch("mcp.views.subprocess.Popen") as popen:
-            self.client.post("/admin/mcp/datasource/rebuild/")
+        with patch("api_calls.views.subprocess.Popen") as popen:
+            self.client.post("/admin/api_calls/datasource/rebuild/")
         popen.assert_not_called()
 
     def test_a_get_starts_nothing(self):
-        with patch("mcp.views.subprocess.Popen") as popen:
-            response = self.client.get("/admin/mcp/datasource/rebuild/")
+        with patch("api_calls.views.subprocess.Popen") as popen:
+            response = self.client.get("/admin/api_calls/datasource/rebuild/")
         popen.assert_not_called()
         self.assertEqual(response.status_code, 200)
 
@@ -73,11 +73,11 @@ class CounterTests(TestCase):
         self.client.force_login(user)
         PullJob.objects.create(kind="pull", source="ipc", status="succeeded",
                                finished_at=timezone.now())
-        response = self.client.get(reverse("admin:mcp_datasource_changelist"))
+        response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
         self.assertContains(response, "1 pull")
 
     def test_the_changelist_says_so_when_there_is_nothing_to_rebuild_for(self):
         user = get_user_model().objects.create_superuser("v", "v@e.org", "pw")
         self.client.force_login(user)
-        response = self.client.get(reverse("admin:mcp_datasource_changelist"))
+        response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
         self.assertContains(response, "No pulls since the last rebuild")

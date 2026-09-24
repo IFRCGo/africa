@@ -21,9 +21,9 @@ from django.core.management.base import BaseCommand
 
 from external_data.fetchers.base import redact
 from external_data.models import SourceSync
-from mcp.locks import JobBusy, claim
-from mcp.models import ACTIVE
-from mcp.views import pullable, refresh_argv
+from api_calls.locks import JobBusy, claim
+from api_calls.models import ACTIVE
+from api_calls.views import pullable, refresh_argv
 
 
 class Command(BaseCommand):
@@ -36,7 +36,7 @@ class Command(BaseCommand):
                             help="Comma-separated source_sync ids, in order")
 
     def handle(self, *args, **options):
-        from mcp.models import PullJob
+        from api_calls.models import PullJob
 
         job = PullJob.objects.filter(pk=options["job"]).first() if options["job"] else None
         ids = [int(i) for i in options["rows"].split(",") if i.strip()]
@@ -95,7 +95,7 @@ class Command(BaseCommand):
                     # last, redact on the way out; for a workbook row,
                     # load_workbooks' one transaction and its file fingerprint.
                     #
-                    # WHICH command comes from mcp.views.refresh_argv, the same
+                    # WHICH command comes from api_calls.views.refresh_argv, the same
                     # answer the button on the list uses. Hard-coding
                     # refresh_external here is how an excel row admitted by
                     # stale_rows() would fail inside every batch while its own
@@ -131,7 +131,7 @@ class Command(BaseCommand):
     def _unpullable(self, row):
         """Why this row cannot be refreshed, or None if it can.
 
-        mcp.views.pullable, not a copy of it. The admin filters a selection with
+        api_calls.views.pullable, not a copy of it. The admin filters a selection with
         that function before launching; a second rule here that disagreed would
         skip rows the operator had just been told would be pulled.
         """

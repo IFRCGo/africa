@@ -1,6 +1,15 @@
 # Model Context Protocol (MCP): a data-sources section in the admin, and a button that pulls
 
 **Date:** 2026-09-15
+**Renamed 2026-09-24:** the section this spec designs is now headed **Data Refresh
+via API** and lives at `/admin/api_calls/datasource/`. §2 of this document argues
+for the MCP name and §15 records the caveat that the pulls are plain HTTPS - the
+rename is that caveat winning. Everything else here still describes the code, but
+read `mcp` as `api_calls` throughout - the Python package, the app label and the
+URL all moved, and on the same day so did the table (`mcp_pull_job` →
+`api_pull_job`) and the cache (`mcp_cache/` → `api_cache/`, job logs in
+`api/`). The setting is `API_CACHE_DIR`. Every `/admin/mcp/` path below should be read as
+`/admin/api_calls/`, and every `mcp/<file>.py` as `api_calls/<file>.py`.
 **Status:** designed, not yet implemented
 **Supersedes one decision:** the 2026-09-09 external-data-persistence spec listed "no new
 fetching mechanism" as a non-goal, and said in the same breath that "a scheduled REST

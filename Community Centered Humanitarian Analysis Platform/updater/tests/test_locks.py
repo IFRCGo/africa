@@ -4,7 +4,7 @@ WHY THIS FILE EXISTS. The updater used to guard its runs with a module-level
 threading.Lock. gunicorn runs two workers (see the Dockerfile), so that lock only
 ever covered one of them: two browsers could start two pipelines, each of which
 begins by deleting every row in population_figures. Worse, the lock was invisible
-to mcp/locks.py, so an Admin -> MCP rebuild and an "Update now" could rebuild the
+to api_calls/locks.py, so an Admin -> MCP rebuild and an "Update now" could rebuild the
 same tables at the same time, and the status endpoint reported "idle" from
 whichever worker was not holding the lock.
 
@@ -17,8 +17,8 @@ from unittest.mock import patch
 from django.test import TestCase
 from django.urls import reverse
 
-from mcp.locks import JobBusy, claim
-from mcp.models import ACTIVE, PullJob
+from api_calls.locks import JobBusy, claim
+from api_calls.models import ACTIVE, PullJob
 from updater import views
 
 
@@ -46,7 +46,7 @@ def messages(generator):
 
 class RebuildGateTests(TestCase):
     def test_the_updater_is_refused_while_an_mcp_pull_runs(self):
-        """A rebuild reads every table a pull writes - the rule mcp/locks.py keeps."""
+        """A rebuild reads every table a pull writes - the rule api_calls/locks.py keeps."""
         held = claim("pull", source="ipc", dataset="food_security", iso3="SDN")
 
         with patch.object(views.subprocess, "Popen") as popen:

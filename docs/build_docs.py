@@ -328,8 +328,8 @@ def chapter_env(doc):
            ["SOURCE_ROOT", "Folder holding the UNHCR PDF collections", "/work"],
            ["DASHBOARD_DATA_DIR", "Where the pipeline writes the dashboard files",
             "/app/dashboard/data"],
-           ["MCP_CACHE_DIR", "Cached pulls from the MCP servers",
-            "/app/data_pipeline/mcp_cache"],
+           ["API_CACHE_DIR", "Cached pulls from the MCP servers",
+            "/app/data_pipeline/api_cache"],
            ["POP_MOVEMENT_XLSX", "The neighbouring-countries Excel workbook",
             "(in /work)"],
            ["DASHBOARD_URL", "Link the updater page uses", "/"],
@@ -381,7 +381,7 @@ def chapter_layout(doc):
         "|   |- data_pipeline/   -- no web address        HOW THE DATA IS BUILT",
         "|   |   |- README.md         the steps, and which half is NOT automatic",
         "|   |   |- steps/s01..s07    the seven pipeline steps",
-        "|   |   |- mcp_cache/        raw MCP pulls, refreshed by an analyst",
+        "|   |   |- api_cache/        raw MCP pulls, refreshed by an analyst",
         "|   |   |- gazetteer.json    ~90 places and the corridors between them",
         "|   |   |- taxonomy.json     the keyword lists behind the theme toggles",
         "|   |   |- common.py         paths, report families, date/number parsing",
@@ -653,7 +653,7 @@ def chapter_updater(doc):
          "Fetching brand-new data from the humanitarian MCP servers (HDX, IPC, "
          "FEWS NET, UNHCR) cannot happen inside the container. It needs the Claude "
          "Code client and API keys, so an analyst runs it on the host; that step "
-         "refreshes the files in data_pipeline/mcp_cache/. The button on this page "
+         "refreshes the files in data_pipeline/api_cache/. The button on this page "
          "only re-applies whatever is already cached. The dates in the freshness "
          "table tell you when each cache was last refreshed.",
          bold=True)
@@ -756,7 +756,7 @@ def chapter_maintenance(doc):
     heading(doc, "12.2 Refreshing the external layers", 2)
     bullets(doc, [
         "New numbers from the MCP servers are pulled by an analyst in Claude Code "
-        "and written into Community Centered Humanitarian Analysis Platform/data_pipeline/mcp_cache/.",
+        "and written into Community Centered Humanitarian Analysis Platform/data_pipeline/api_cache/.",
         "Then press Rebuild external layers on the updater page, or run "
         "run_pipeline --only s06,s07.",
         "Updating the Excel workbooks needs only step 7.",

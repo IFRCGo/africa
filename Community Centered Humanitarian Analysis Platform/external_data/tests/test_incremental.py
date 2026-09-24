@@ -16,7 +16,7 @@ from django.test import TestCase, override_settings
 from external_data.fetchers import fetcher_for
 from external_data.fetchers.base import LOOKBACK_DAYS, Fetcher
 from external_data.models import SeasonalCalendar, SourceSync
-from mcp.models import PullJob
+from api_calls.models import PullJob
 
 
 class SinceTests(TestCase):

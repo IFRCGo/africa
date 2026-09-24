@@ -1,7 +1,7 @@
 """IPC and Cadre Harmonise -> food security areas.
 
 THE ONE WITH REAL LOGIC, and three traps that reconnaissance found rather than
-review. The listings behind them are saved at mcp_cache/ipc/analyses-CAF.json and
+review. The listings behind them are saved at api_cache/ipc/analyses-CAF.json and
 analyses-TCD.json; the CAF one is this module's test fixture.
 
 1. THE LISTING GOES BACK TO 2013. CAF returns 22 analyses; four are held. A diff
@@ -115,7 +115,7 @@ class FoodSecurityFetcher(Fetcher):
                 url=f"{BASE}/areas/{analysis_id}/C",
                 params={"format": "geojson", "key": settings.IPC_API_KEY},
                 # The existing naming, unchanged: every file already in
-                # mcp_cache/ipc/ is <ISO3>-<id>-C.geojson.
+                # api_cache/ipc/ is <ISO3>-<id>-C.geojson.
                 cache_path=Path("ipc") / f"{sync.iso3}-{analysis_id}-C.geojson",
                 loader_dataset="food_security",
                 context={"analysis_id": analysis_id, "analysis_title": title,

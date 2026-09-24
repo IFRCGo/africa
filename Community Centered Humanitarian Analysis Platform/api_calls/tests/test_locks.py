@@ -11,8 +11,8 @@ from django.db import IntegrityError, transaction
 from django.test import TestCase
 from django.utils import timezone
 
-from mcp.locks import JobBusy, STALE_AFTER, claim
-from mcp.models import PullJob
+from api_calls.locks import JobBusy, STALE_AFTER, claim
+from api_calls.models import PullJob
 
 
 class ClaimTests(TestCase):

@@ -104,7 +104,7 @@ roles, flow types and units — with every document. `water` for `water_wash`, o
 
 ## Output
 
-Write one JSON file per document to `data_pipeline/mcp_cache/insights/<stem>.json`:
+Write one JSON file per document to `data_pipeline/api_cache/insights/<stem>.json`:
 
 ```json
 {

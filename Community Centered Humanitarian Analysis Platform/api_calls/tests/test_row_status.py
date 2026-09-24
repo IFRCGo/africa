@@ -14,7 +14,7 @@ from django.urls import reverse
 from django.utils import timezone
 
 from external_data.models import SourceSync
-from mcp.models import PullJob
+from api_calls.models import PullJob
 
 
 class BatchRecordsEachRowTests(TestCase):
@@ -27,7 +27,7 @@ class BatchRecordsEachRowTests(TestCase):
 
     def _run(self):
         batch = PullJob.objects.create(kind="batch", status="queued")
-        with patch("mcp.management.commands.pull_batch.call_command") as ran:
+        with patch("api_calls.management.commands.pull_batch.call_command") as ran:
             call_command("pull_batch", "--job", str(batch.id),
                          "--rows", ",".join(str(r.pk) for r in self.rows))
         return batch, ran
@@ -74,7 +74,7 @@ class StatusColumnTests(TestCase):
                                              iso3="TCD", variant="")
 
     def _html(self):
-        return self.client.get(reverse("admin:mcp_datasource_changelist")).content.decode()
+        return self.client.get(reverse("admin:api_calls_datasource_changelist")).content.decode()
 
     def test_a_successful_pull_shows_as_succeeded_with_its_row_count(self):
         PullJob.objects.create(kind="pull", source="fewsnet",

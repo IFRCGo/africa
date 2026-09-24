@@ -47,7 +47,7 @@ INSIGHT_UPLOAD_RETENTION_MINUTES = int(
     os.environ.get("INSIGHT_UPLOAD_RETENTION_MINUTES") or 30)
 
 # The in-container extraction adapter (spec §8.2). Optional: with nothing set,
-# extraction is run by an agent on the host and loaded from mcp_cache/insights/.
+# extraction is run by an agent on the host and loaded from api_cache/insights/.
 # `or` rather than a default argument - an empty value in .env must fall back.
 LLM_PROVIDER = os.environ.get("LLM_PROVIDER") or "anthropic"
 LLM_MODEL = os.environ.get("LLM_MODEL") or "claude-opus-5"
@@ -57,7 +57,7 @@ LLM_API_KEY = os.environ.get("LLM_API_KEY") or ""
 # Raw pulls from the humanitarian MCP servers (HDX, IPC, FEWS NET, UNHCR).
 # These are fetched by an analyst in Claude Code, NOT by this app; the
 # pipeline only re-reads whatever sits in the folder. See data_pipeline/README.md.
-MCP_CACHE_DIR = env_path("MCP_CACHE_DIR", BASE_DIR / "data_pipeline" / "mcp_cache")
+API_CACHE_DIR = env_path("API_CACHE_DIR", BASE_DIR / "data_pipeline" / "api_cache")
 
 # Reading documents for the insights wizard (spec 2026-09-21 §11). Docling
 # converts a PDF or Word file to per-page markdown before the model sees it;
@@ -214,7 +214,7 @@ INSTALLED_APPS = [
     "data_track",                    # the seven database tables + the JSON API
     "boundaries",                    # the map itself: admin areas and features
     "external_data",                 # IPC, FEWS NET, DTM, UNHCR + their freshness
-    "mcp",                           # pulling those sources, and the job record
+    "api_calls",                     # pulling those sources, and the job record
     "insights",                      # what communities said, and who reviewed it
     "data_pipeline",                 # the ETL steps, as manage.py commands
     "dashboard",                     # serves the MapLibre dashboard

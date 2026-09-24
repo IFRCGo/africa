@@ -12,7 +12,7 @@ of its zone. That is a weaker statement than IPC's shaded areas and it is drawn 
 a dot precisely so nobody reads it as a boundary.
 
     docker compose exec web python manage.py load_fewsnet_units \\
-        data_pipeline/mcp_cache/fewsnet_units/ETH.json --iso3 ETH
+        data_pipeline/api_cache/fewsnet_units/ETH.json --iso3 ETH
 """
 import json
 from pathlib import Path

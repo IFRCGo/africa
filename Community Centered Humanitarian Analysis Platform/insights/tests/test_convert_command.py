@@ -46,7 +46,7 @@ class ConvertCommandTests(TestCase):
         self.job.save()
 
     def run_command(self, **kwargs):
-        with override_settings(MCP_CACHE_DIR=Path(self.cache.name)):
+        with override_settings(API_CACHE_DIR=Path(self.cache.name)):
             call_command("convert_documents", job=self.job.id, **kwargs)
         self.job.refresh_from_db()
 

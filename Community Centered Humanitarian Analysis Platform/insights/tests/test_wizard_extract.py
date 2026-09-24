@@ -21,7 +21,7 @@ class ExtractProgressTests(TestCase):
             insights_proposed=7, insights_rejected_unverifiable=2)
 
     def progress(self):
-        with override_settings(MCP_CACHE_DIR=self.cache.name):
+        with override_settings(API_CACHE_DIR=self.cache.name):
             return self.client.get(
                 reverse("admin:insights_wizard_progress", args=[self.job.id])).json()
 
@@ -59,7 +59,7 @@ class ExtractProgressTests(TestCase):
 
     def test_launching_says_so_when_no_extractor_is_configured(self):
         # The normal state for the route CLAUDE.md documents first: extraction
-        # run by an agent on the host, loaded from mcp_cache/insights/.
+        # run by an agent on the host, loaded from api_cache/insights/.
         self.job.status = "queued"
         self.job.save(update_fields=["status"])
         with patch("insights.wizard.get_extractor",
@@ -99,7 +99,7 @@ class ExtractProgressTests(TestCase):
     def test_launching_marks_the_job_running_before_it_returns(self):
         self.job.status = "queued"
         self.job.save(update_fields=["status"])
-        with override_settings(MCP_CACHE_DIR=self.cache.name), \
+        with override_settings(API_CACHE_DIR=self.cache.name), \
              patch("insights.wizard.get_extractor"), \
              patch("insights.wizard.subprocess.Popen") as popen:
             body = self.client.post(

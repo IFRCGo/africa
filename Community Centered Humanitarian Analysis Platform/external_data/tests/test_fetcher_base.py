@@ -94,11 +94,11 @@ class SaveTests(TestCase):
         self.assertTrue(path.is_file())
         self.assertEqual(json.loads(path.read_text(encoding="utf-8")), {"hello": "world"})
 
-    def test_the_path_is_relative_to_mcp_cache_dir(self):
+    def test_the_path_is_relative_to_api_cache_dir(self):
         from django.conf import settings
         path = save_payload(Path("testsource/y.json"), [])
         self.addCleanup(path.unlink, True)
-        self.assertEqual(path.parent.parent, Path(settings.MCP_CACHE_DIR))
+        self.assertEqual(path.parent.parent, Path(settings.API_CACHE_DIR))
 
 
 class PostAndTokenPaginationTests(TestCase):

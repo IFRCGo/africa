@@ -3,7 +3,7 @@
 This file is a tripwire, not a feature test. Everything the comprehensive
 extraction adds - codings[].role, figures[], movements[] - is optional, and the
 day one of them stops being optional is the day every payload already sitting in
-data_pipeline/mcp_cache/insights/ becomes unloadable. That failure would be
+data_pipeline/api_cache/insights/ becomes unloadable. That failure would be
 silent: a re-run would simply write fewer rows.
 
 payload_legacy.json is frozen on purpose. Do not add new fields to it.

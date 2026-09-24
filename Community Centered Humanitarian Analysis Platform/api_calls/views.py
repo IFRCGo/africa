@@ -22,10 +22,10 @@ from external_data.fetchers import fetcher_for
 from external_data.fetchers.base import missing_keys
 from external_data.management.commands.load_workbooks import WORKBOOKS, file_changed
 from external_data.models import SourceSync
-from mcp.locks import JobBusy, claim
+from api_calls.locks import JobBusy, claim
 from django.db.models import Q
 
-from mcp.models import ACTIVE, PullJob
+from api_calls.models import ACTIVE, PullJob
 
 # Which source_sync variants name a workbook load_workbooks knows how to read.
 # Taken FROM the command rather than retyped here: a third workbook added there
@@ -42,7 +42,11 @@ FILE_SOURCES = {"excel"}
 
 def _log_path(job):
     """Where this job's output goes. Under /app, because /work is read-only."""
-    directory = Path(settings.MCP_CACHE_DIR) / "mcp"
+    # `PullJob.log_path` stores the ABSOLUTE path, so this folder cannot be moved
+    # by a `mv` alone - the rows already written would point at nothing. It was
+    # api_cache/mcp/ until 2026-09-24; migration 0003 rewrote the 17 rows that
+    # named it, and must be extended the same way if it moves again.
+    directory = Path(settings.API_CACHE_DIR) / "api"
     # Created here rather than by the command: on a fresh setup the very first
     # press would otherwise fail opening the file before the command could run.
     directory.mkdir(parents=True, exist_ok=True)
@@ -114,13 +118,13 @@ def pull(request, pk):
     why = pullable(row)
     if why:
         messages.error(request, f"{row.source}/{row.dataset} cannot be refreshed: {why}")
-        return redirect("admin:mcp_datasource_changelist")
+        return redirect("admin:api_calls_datasource_changelist")
 
     if request.method != "POST":
         # A pull changes the database and an IPC one moves 8-15 MB per analysis,
         # so it is never started by following a link. The GET is a confirmation
         # page whose form POSTs back here with a CSRF token.
-        return render(request, "mcp/confirm.html",
+        return render(request, "api_calls/confirm.html",
                       {"row": row, "from_file": row.source in FILE_SOURCES})
 
     try:
@@ -128,19 +132,19 @@ def pull(request, pk):
                     variant=row.variant, user=request.user)
     except JobBusy as exc:
         messages.warning(request, str(exc))
-        return redirect("admin:mcp_datasource_changelist")
+        return redirect("admin:api_calls_datasource_changelist")
 
     argv = refresh_argv(row, job.id)
     try:
         _launch(job, argv)
     except Exception as exc:
         messages.error(request, f"job {job.id} could not start: {exc}")
-        return redirect("admin:mcp_datasource_changelist")
+        return redirect("admin:api_calls_datasource_changelist")
 
     verb = "re-reading" if row.source in FILE_SOURCES else "pulling"
     messages.success(request, f"job {job.id}: {verb} {row.source}/{row.dataset} "
                               f"{row.iso3 or 'global'} in the background.")
-    return redirect("admin:mcp_datasource_changelist")
+    return redirect("admin:api_calls_datasource_changelist")
 
 
 def job_page(request, job_id):
@@ -151,7 +155,7 @@ def job_page(request, job_id):
     log = ""
     if job.log_path and Path(job.log_path).is_file():
         log = Path(job.log_path).read_text(encoding="utf-8", errors="replace")
-    return render(request, "mcp/job.html", {"job": job, "log": log})
+    return render(request, "api_calls/job.html", {"job": job, "log": log})
 
 
 def job_status(request, job_id):
@@ -222,24 +226,24 @@ def pull_all(request):
     """One press: bring every out-of-date source up to date, one at a time."""
     rows = stale_rows()
     if request.method != "POST":
-        return render(request, "mcp/confirm_batch.html",
+        return render(request, "api_calls/confirm_batch.html",
                       {"rows": rows, "heading": "Pull everything out of date"})
 
     if not rows:
         messages.info(request, "Everything with an API was already pulled today.")
-        return redirect("admin:mcp_datasource_changelist")
+        return redirect("admin:api_calls_datasource_changelist")
 
     try:
         job = start_batch(request, rows)
     except JobBusy as exc:
         messages.warning(request, str(exc))
-        return redirect("admin:mcp_datasource_changelist")
+        return redirect("admin:api_calls_datasource_changelist")
     except Exception as exc:
         messages.error(request, f"could not start: {exc}")
-        return redirect("admin:mcp_datasource_changelist")
+        return redirect("admin:api_calls_datasource_changelist")
 
     messages.success(request, f"job {job.id}: pulling {len(rows)} sources, one at a time.")
-    return redirect("admin:mcp_datasource_changelist")
+    return redirect("admin:api_calls_datasource_changelist")
 
 
 def activity(request):
@@ -302,23 +306,23 @@ def rebuild(request):
     The steps are s06 and s07 - the same pair the updater page's own rebuild runs.
     """
     if request.method != "POST":
-        return render(request, "mcp/confirm_rebuild.html",
+        return render(request, "api_calls/confirm_rebuild.html",
                       {"pulls": pulls_since_last_rebuild()})
 
     try:
         job = claim("rebuild", user=request.user)
     except JobBusy as exc:
         messages.warning(request, str(exc))
-        return redirect("admin:mcp_datasource_changelist")
+        return redirect("admin:api_calls_datasource_changelist")
 
     # run_rebuild, NOT run_pipeline: the pipeline takes no --job and would leave
     # this row at 'queued' forever, blocking every pull on every source. See the
-    # docstring of mcp/management/commands/run_rebuild.py.
+    # docstring of api_calls/management/commands/run_rebuild.py.
     try:
         _launch(job, ["run_rebuild", "--job", str(job.id)])
     except Exception as exc:
         messages.error(request, f"job {job.id} could not start: {exc}")
-        return redirect("admin:mcp_datasource_changelist")
+        return redirect("admin:api_calls_datasource_changelist")
 
     messages.success(request, f"job {job.id}: rebuilding the dashboard layers.")
-    return redirect("admin:mcp_datasource_changelist")
+    return redirect("admin:api_calls_datasource_changelist")

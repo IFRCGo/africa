@@ -7,7 +7,7 @@ instead of in five.
 
 Four guarantees, matching the loaders' four:
 
-  saved before loaded  the raw response is written to mcp_cache/ and only then
+  saved before loaded  the raw response is written to api_cache/ and only then
                        parsed, so a payload that breaks a loader is still on disk
   one call at a time   plan() is a generator; the runner consumes it serially and
                        never gathers, maps or threads it
@@ -51,7 +51,7 @@ class FetchError(Exception):
 class Call:
     """One upstream request, and what to do with what comes back.
 
-    `cache_path` is RELATIVE to MCP_CACHE_DIR, so a fetcher never has to know
+    `cache_path` is RELATIVE to API_CACHE_DIR, so a fetcher never has to know
     where the cache lives. `loader_dataset` names the loader that parses the
     result, which is not always the row's own dataset - see the registry note.
     """
@@ -228,13 +228,13 @@ def crisis_floor():
 
 
 def save_payload(cache_path, payload):
-    """Write the raw response under MCP_CACHE_DIR and return the full path.
+    """Write the raw response under API_CACHE_DIR and return the full path.
 
     Saved BEFORE the loader sees it, on purpose: a payload that breaks a parser
     is then still on disk to look at, which is the whole reason this project
     keeps a cache at all.
     """
-    path = Path(settings.MCP_CACHE_DIR) / cache_path
+    path = Path(settings.API_CACHE_DIR) / cache_path
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
     return path

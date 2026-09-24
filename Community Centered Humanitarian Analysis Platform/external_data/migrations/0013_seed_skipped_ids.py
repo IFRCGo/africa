@@ -4,7 +4,7 @@ Each one is already written in `notes`, where a person can read it and a fetcher
 cannot. The reasons below are copied from those notes rather than paraphrased, so
 the two say the same thing. The analysis ids were confirmed against IPC's own
 `list_analyses` on 2026-09-15; the listings are saved beside the areas, at
-mcp_cache/ipc/analyses-CAF.json and analyses-TCD.json.
+api_cache/ipc/analyses-CAF.json and analyses-TCD.json.
 
 THIS IS A TRANSCRIPTION OF SOMEBODY'S JUDGEMENT. If a reading here is wrong, a
 real analysis stays out of the database and nothing complains - which is why the

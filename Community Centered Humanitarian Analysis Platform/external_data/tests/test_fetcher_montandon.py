@@ -86,7 +86,7 @@ class CallShapeTests(TestCase):
 
     def test_the_html_description_is_excluded_from_every_call(self):
         """One item carries kilobytes of Word-exported HTML. Excluding it is
-        what keeps a pull a sane size on disk and in mcp_cache/."""
+        what keeps a pull a sane size on disk and in api_cache/."""
         for call in self.calls:
             self.assertIn("properties.description", call.body["fields"]["exclude"])
 

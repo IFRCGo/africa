@@ -6,7 +6,7 @@ from django.test import TestCase, override_settings
 from django.urls import reverse
 
 from external_data.models import SourceSync
-from mcp.models import PullJob
+from api_calls.models import PullJob
 
 
 class AdminTestCase(TestCase):
@@ -27,30 +27,30 @@ class AdminTestCase(TestCase):
 
 class ListTests(AdminTestCase):
     def test_the_section_is_reachable(self):
-        response = self.client.get(reverse("admin:mcp_datasource_changelist"))
+        response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
         self.assertEqual(response.status_code, 200)
 
     def test_the_source_is_shown_by_its_display_name(self):
-        response = self.client.get(reverse("admin:mcp_datasource_changelist"))
+        response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
         self.assertContains(response, "FEWS NET")
 
     @override_settings(IPC_API_KEY="", HDX_API_TOKEN="")
     def test_a_row_whose_key_is_missing_says_which_one(self):
         SourceSync.objects.create(source="ipc", dataset="food_security", iso3="SDN")
-        response = self.client.get(reverse("admin:mcp_datasource_changelist"))
+        response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
         self.assertContains(response, "IPC_API_KEY")
 
     def test_a_file_based_row_offers_no_button(self):
         """A button that cannot work is worse than no button."""
-        response = self.client.get(reverse("admin:mcp_datasource_changelist"))
+        response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
         self.assertNotContains(response, f"pull/{self.file_row.pk}/")
 
     def test_an_api_row_offers_one(self):
-        response = self.client.get(reverse("admin:mcp_datasource_changelist"))
+        response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
         self.assertContains(response, f"pull/{self.api_row.pk}/")
 
     def test_a_file_based_row_names_the_command_that_loads_it(self):
-        response = self.client.get(reverse("admin:mcp_datasource_changelist"))
+        response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
         self.assertContains(response, "load_hsps")
 
     def test_a_workbook_row_offers_a_button(self):
@@ -60,22 +60,22 @@ class ListTests(AdminTestCase):
         column into Sudan IDPs.xlsx and the platform must have a way to pick it up
         that is not a terminal.
         """
-        response = self.client.get(reverse("admin:mcp_datasource_changelist"))
+        response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
         self.assertContains(response, f"pull/{self.workbook_row.pk}/")
 
     def test_a_workbook_button_says_it_reads_a_file(self):
         """"Pull now" on a workbook row invites the reading that it goes looking
         for newer figures somewhere. It re-reads what has been saved."""
-        response = self.client.get(reverse("admin:mcp_datasource_changelist"))
+        response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
         self.assertContains(response, "Reload file")
 
 
 class PullTests(AdminTestCase):
     def _url(self, row):
-        return f"/admin/mcp/datasource/pull/{row.pk}/"
+        return f"/admin/api_calls/datasource/pull/{row.pk}/"
 
     def test_pressing_the_button_creates_a_queued_job_and_launches_it(self):
-        with patch("mcp.views.subprocess.Popen") as popen:
+        with patch("api_calls.views.subprocess.Popen") as popen:
             response = self.client.post(self._url(self.api_row))
         self.assertEqual(response.status_code, 302)
         job = PullJob.objects.get()
@@ -86,13 +86,13 @@ class PullTests(AdminTestCase):
     def test_the_command_is_launched_detached(self):
         """start_new_session, or a child that outlives its worker reparents to
         gunicorn's arbiter, which misreads its exit code and halts the server."""
-        with patch("mcp.views.subprocess.Popen") as popen:
+        with patch("api_calls.views.subprocess.Popen") as popen:
             self.client.post(self._url(self.api_row))
         self.assertTrue(popen.call_args.kwargs["start_new_session"])
         self.assertIn("refresh_external", popen.call_args.args[0])
 
     def test_the_country_and_variant_reach_the_command(self):
-        with patch("mcp.views.subprocess.Popen") as popen:
+        with patch("api_calls.views.subprocess.Popen") as popen:
             self.client.post(self._url(self.api_row))
         argv = popen.call_args.args[0]
         self.assertIn("--iso3", argv)
@@ -100,7 +100,7 @@ class PullTests(AdminTestCase):
 
     def test_a_get_does_not_start_anything(self):
         """A pull is a change. It must not be triggerable by following a link."""
-        with patch("mcp.views.subprocess.Popen") as popen:
+        with patch("api_calls.views.subprocess.Popen") as popen:
             response = self.client.get(self._url(self.api_row))
         popen.assert_not_called()
         self.assertEqual(PullJob.objects.count(), 0)
@@ -108,7 +108,7 @@ class PullTests(AdminTestCase):
 
     def test_an_anonymous_visitor_is_refused(self):
         self.client.logout()
-        with patch("mcp.views.subprocess.Popen") as popen:
+        with patch("api_calls.views.subprocess.Popen") as popen:
             response = self.client.post(self._url(self.api_row))
         popen.assert_not_called()
         self.assertEqual(response.status_code, 302)
@@ -118,12 +118,12 @@ class PullTests(AdminTestCase):
         PullJob.objects.create(kind="pull", source="fewsnet",
                                dataset="seasonal_calendar", iso3="TCD",
                                status="running")
-        with patch("mcp.views.subprocess.Popen") as popen:
+        with patch("api_calls.views.subprocess.Popen") as popen:
             self.client.post(self._url(self.api_row))
         popen.assert_not_called()
 
     def test_a_file_based_row_is_refused(self):
-        with patch("mcp.views.subprocess.Popen") as popen:
+        with patch("api_calls.views.subprocess.Popen") as popen:
             self.client.post(self._url(self.file_row))
         popen.assert_not_called()
         self.assertEqual(PullJob.objects.count(), 0)
@@ -135,7 +135,7 @@ class PullTests(AdminTestCase):
         Reload on the Sudan IDPs row - and, worse, a missing neighbours file would
         fail a press that had nothing to do with it.
         """
-        with patch("mcp.views.subprocess.Popen") as popen:
+        with patch("api_calls.views.subprocess.Popen") as popen:
             response = self.client.post(self._url(self.workbook_row))
         self.assertEqual(response.status_code, 302)
         argv = popen.call_args.args[0]
@@ -150,7 +150,7 @@ class PullTests(AdminTestCase):
         putting it through that check is how the button starts asking for a token
         no file read could use."""
         with override_settings(IPC_API_KEY="", HDX_API_TOKEN=""), \
-                patch("mcp.views.subprocess.Popen") as popen:
+                patch("api_calls.views.subprocess.Popen") as popen:
             self.client.post(self._url(self.workbook_row))
         popen.assert_called_once()
 
@@ -173,7 +173,7 @@ class PullTests(AdminTestCase):
     def test_a_keyless_source_is_refused_without_launching(self):
         row = SourceSync.objects.create(source="ipc", dataset="food_security",
                                         iso3="SDN")
-        with patch("mcp.views.subprocess.Popen") as popen:
+        with patch("api_calls.views.subprocess.Popen") as popen:
             self.client.post(self._url(row))
         popen.assert_not_called()
         self.assertEqual(PullJob.objects.count(), 0)
@@ -184,12 +184,12 @@ class JobPageTests(AdminTestCase):
         job = PullJob.objects.create(kind="pull", source="fewsnet",
                                      dataset="seasonal_calendar", iso3="TCD",
                                      status="failed", message="503 from fdw.fews.net")
-        response = self.client.get(f"/admin/mcp/datasource/job/{job.id}/")
+        response = self.client.get(f"/admin/api_calls/datasource/job/{job.id}/")
         self.assertContains(response, "503 from fdw.fews.net")
 
     def test_the_status_endpoint_reports_the_job(self):
         job = PullJob.objects.create(kind="pull", source="fewsnet",
                                      dataset="seasonal_calendar", iso3="TCD",
                                      status="running")
-        response = self.client.get(f"/admin/mcp/datasource/job/{job.id}/status/")
+        response = self.client.get(f"/admin/api_calls/datasource/job/{job.id}/status/")
         self.assertEqual(response.json()["status"], "running")

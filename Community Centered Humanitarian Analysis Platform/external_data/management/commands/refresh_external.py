@@ -40,7 +40,7 @@ class Command(BaseCommand):
         parser.add_argument("--dry-run", action="store_true", dest="dry_run")
 
     def handle(self, *args, **options):
-        from mcp.models import PullJob
+        from api_calls.models import PullJob
 
         job = PullJob.objects.filter(pk=options["job"]).first() if options["job"] else None
         if job:

@@ -15,7 +15,7 @@ from datetime import timedelta
 
 from django.db import connection, transaction
 
-from mcp.models import ACTIVE, PullJob
+from api_calls.models import ACTIVE, PullJob
 
 # Any stable pair. Namespace 8123 is this application's; 1 is "the claim lock".
 CLAIM_LOCK = (8123, 1)

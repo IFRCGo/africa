@@ -1,28 +1,32 @@
 {% extends "admin/change_list.html" %}
 {% load static %}
 {% block object-tools %}
-  <div class="mcp-bar">
+  <div class="api-calls-bar">
     <a class="button" href="pull-all/">Pull everything out of date</a>
-    <span class="mcp-bar-note">
+    <span class="api-calls-bar-note">
       {% if stale_count %}{{ stale_count }} source{{ stale_count|pluralize }} not pulled today.
       {% else %}Everything with an API was pulled today.{% endif %}
     </span>
     <a class="button" href="rebuild/" style="margin-left:1em">Rebuild dashboard layers</a>
-    <span class="mcp-bar-note">
+    <span class="api-calls-bar-note">
       {% if pulls_since_rebuild %}{{ pulls_since_rebuild }} pull{{ pulls_since_rebuild|pluralize }} since the last rebuild.
       {% else %}No pulls since the last rebuild.{% endif %}
       A pull updates the database only; the map changes when you rebuild.
     </span>
   </div>
 
-  {# Filled by mcp/activity.js. Hidden until there is something to say, so the
-     page does not carry an empty box around all day. #}
-  <div id="mcp-activity" hidden></div>
+  {% comment %}
+    Filled by api_calls/activity.js. Hidden until there is something to say, so
+    the page does not carry an empty box around all day.
+    A block comment, not the short hash form: that one is single-line only,
+    so the two lines this used to span were served to the browser as text.
+  {% endcomment %}
+  <div id="api-calls-activity" hidden></div>
 
   {{ block.super }}
 {% endblock %}
 
 {% block extrahead %}{{ block.super }}
-  <link rel="stylesheet" href="{% static 'mcp/activity.css' %}">
-  <script src="{% static 'mcp/activity.js' %}" defer></script>
+  <link rel="stylesheet" href="{% static 'api_calls/activity.css' %}">
+  <script src="{% static 'api_calls/activity.js' %}" defer></script>
 {% endblock %}

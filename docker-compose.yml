@@ -144,7 +144,7 @@ services:
       # Everything the dashboard serves is inside Django itself, under /app.
       SOURCE_ROOT: ${SOURCE_ROOT:-/work}
       DASHBOARD_DATA_DIR: ${DASHBOARD_DATA_DIR:-/app/dashboard/data}
-      MCP_CACHE_DIR: ${MCP_CACHE_DIR:-/app/data_pipeline/mcp_cache}
+      API_CACHE_DIR: ${API_CACHE_DIR:-/app/data_pipeline/api_cache}
       POP_MOVEMENT_XLSX: ${POP_MOVEMENT_XLSX:-/work/neighbouring countries Pop movement data.xlsx}
 
       # Where the boundary library reads its source files from, inside the

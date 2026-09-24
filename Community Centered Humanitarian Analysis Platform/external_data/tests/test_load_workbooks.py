@@ -17,7 +17,7 @@ from django.core.management.base import CommandError
 from django.test import TestCase, override_settings
 
 from external_data.models import MovementPattern, SourceSync
-from mcp.models import ACTIVE, PullJob
+from api_calls.models import ACTIVE, PullJob
 
 
 def write_idp_workbook(directory, dates=("31 Jul 2026", "31 Aug 2026")):

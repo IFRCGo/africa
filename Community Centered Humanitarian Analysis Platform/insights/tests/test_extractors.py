@@ -51,7 +51,7 @@ class PromptTests(SimpleTestCase):
         text = prompt_text()
         self.assertIn("community insight", text.lower())
         self.assertIn("verbatim", text.lower())
-        self.assertIn("mcp_cache/insights", text)
+        self.assertIn("api_cache/insights", text)
 
 
 def _document():

@@ -228,7 +228,7 @@ Community Centered Humanitarian Analysis/
 │   ├── data_pipeline/        ── no web address              HOW THE DATA IS BUILT
 │   │   ├── README.md         the seven steps, and which half is NOT automatic
 │   │   ├── steps/s01..s07    catalogue → text → parse → events → export → MCP → Excel
-│   │   ├── mcp_cache/        raw MCP pulls, refreshed by an analyst (see README)
+│   │   ├── api_cache/        raw MCP pulls, refreshed by an analyst (see README)
 │   │   ├── gazetteer.json    ~90 places and the corridors between them
 │   │   ├── taxonomy.json     the keyword lists behind the theme toggles
 │   │   └── management/commands/run_pipeline.py
@@ -273,7 +273,7 @@ produced it.
 
 > **Fetching new data from the MCP servers cannot run inside Docker.** It needs
 > the Claude Code client and API keys, so an analyst runs it on the host and it
-> refreshes `Community Centered Humanitarian Analysis Platform/data_pipeline/mcp_cache/`. The **Rebuild external
+> refreshes `Community Centered Humanitarian Analysis Platform/data_pipeline/api_cache/`. The **Rebuild external
 > layers** button only re-applies what is already cached. See `MAINTENANCE.md`.
 
 ## Known limitations

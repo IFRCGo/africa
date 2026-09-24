@@ -15,8 +15,8 @@ from django.test import TestCase, override_settings
 from django.utils import timezone
 
 from external_data.models import SourceSync
-from mcp.locks import JobBusy, claim
-from mcp.models import PullJob
+from api_calls.locks import JobBusy, claim
+from api_calls.models import PullJob
 
 
 class SerialTests(TestCase):
@@ -29,7 +29,7 @@ class SerialTests(TestCase):
 
     def test_each_row_is_refreshed_once_in_order(self):
         job = PullJob.objects.create(kind="batch", status="queued")
-        with patch("mcp.management.commands.pull_batch.call_command") as ran:
+        with patch("api_calls.management.commands.pull_batch.call_command") as ran:
             call_command("pull_batch", "--job", str(job.id),
                          "--rows", ",".join(str(r.pk) for r in self.rows))
         # Positional argv, because ONE function now decides which command
@@ -40,7 +40,7 @@ class SerialTests(TestCase):
 
     def test_the_batch_job_reports_progress_as_it_goes(self):
         job = PullJob.objects.create(kind="batch", status="queued")
-        with patch("mcp.management.commands.pull_batch.call_command"):
+        with patch("api_calls.management.commands.pull_batch.call_command"):
             call_command("pull_batch", "--job", str(job.id),
                          "--rows", ",".join(str(r.pk) for r in self.rows))
         job.refresh_from_db()
@@ -54,7 +54,7 @@ class SerialTests(TestCase):
         def maybe_fail(*args, **kwargs):
             if "SDN" in args:
                 raise Exception("503 Service Unavailable")
-        with patch("mcp.management.commands.pull_batch.call_command",
+        with patch("api_calls.management.commands.pull_batch.call_command",
                    side_effect=maybe_fail) as ran:
             call_command("pull_batch", "--job", str(job.id),
                          "--rows", ",".join(str(r.pk) for r in self.rows))
@@ -67,7 +67,7 @@ class SerialTests(TestCase):
         """A batch left active would hold nothing itself, but the constraint
         would refuse every later batch. It must close, whatever happens."""
         job = PullJob.objects.create(kind="batch", status="queued")
-        with patch("mcp.management.commands.pull_batch.call_command",
+        with patch("api_calls.management.commands.pull_batch.call_command",
                    side_effect=Exception("everything is broken")):
             call_command("pull_batch", "--job", str(job.id),
                          "--rows", ",".join(str(r.pk) for r in self.rows))
@@ -81,7 +81,7 @@ class SerialTests(TestCase):
         kobo = SourceSync.objects.create(source="kobo", dataset="service_points",
                                          iso3="TCD", variant="")
         job = PullJob.objects.create(kind="batch", status="queued")
-        with patch("mcp.management.commands.pull_batch.call_command") as ran:
+        with patch("api_calls.management.commands.pull_batch.call_command") as ran:
             call_command("pull_batch", "--job", str(job.id), "--rows", str(kobo.pk))
         ran.assert_not_called()
         job.refresh_from_db()
@@ -96,7 +96,7 @@ class SerialTests(TestCase):
         excel = SourceSync.objects.create(source="excel", dataset="idps", iso3="SDN",
                                           variant="sudan-idps-workbook")
         job = PullJob.objects.create(kind="batch", status="queued")
-        with patch("mcp.management.commands.pull_batch.call_command") as ran:
+        with patch("api_calls.management.commands.pull_batch.call_command") as ran:
             call_command("pull_batch", "--job", str(job.id), "--rows", str(excel.pk))
         argv = ran.call_args.args
         self.assertEqual(argv[0], "load_workbooks")
@@ -113,7 +113,7 @@ class ArgvReallyParsesTests(TestCase):
 
     def _parsed(self, row):
         from django.core.management import load_command_class
-        from mcp.views import refresh_argv
+        from api_calls.views import refresh_argv
         argv = refresh_argv(row, 42)
         app = {"refresh_external": "external_data",
                "load_workbooks": "external_data"}[argv[0]]
@@ -139,7 +139,7 @@ class StaleSelectionTests(TestCase):
     a second full download."""
 
     def test_rows_pulled_today_are_not_stale(self):
-        from mcp.views import stale_rows
+        from api_calls.views import stale_rows
         row = SourceSync.objects.create(source="fewsnet", dataset="seasonal_calendar",
                                         iso3="TCD", last_pulled_at=timezone.now())
         # The row under test, not the whole list: migration 0015 seeds eight
@@ -147,13 +147,13 @@ class StaleSelectionTests(TestCase):
         self.assertNotIn(row.pk, [r.pk for r in stale_rows()])
 
     def test_a_row_never_pulled_is_stale(self):
-        from mcp.views import stale_rows
+        from api_calls.views import stale_rows
         row = SourceSync.objects.create(source="fewsnet", dataset="seasonal_calendar",
                                         iso3="SDN")
         self.assertIn(row.pk, [r.pk for r in stale_rows()])
 
     def test_a_row_pulled_yesterday_is_stale(self):
-        from mcp.views import stale_rows
+        from api_calls.views import stale_rows
         row = SourceSync.objects.create(
             source="fewsnet", dataset="seasonal_calendar", iso3="ETH",
             last_pulled_at=timezone.now() - timedelta(days=1))
@@ -161,7 +161,7 @@ class StaleSelectionTests(TestCase):
 
     def test_rows_with_no_api_and_no_command_are_never_stale(self):
         """Nothing refreshes them. Offering to is offering nothing."""
-        from mcp.views import stale_rows
+        from api_calls.views import stale_rows
         row = SourceSync.objects.create(source="kobo", dataset="service_points",
                                         iso3="TCD", variant="")
         self.assertNotIn(row.pk, [r.pk for r in stale_rows()])
@@ -184,7 +184,7 @@ class StaleSelectionTests(TestCase):
         for: an analyst who adds the August column an hour after the morning load
         would be told there is nothing to do.
         """
-        from mcp.views import stale_rows
+        from api_calls.views import stale_rows
         with tempfile.TemporaryDirectory() as d:
             tmp = Path(d)
             row = self._workbook_row(
@@ -195,7 +195,7 @@ class StaleSelectionTests(TestCase):
     def test_a_workbook_nobody_has_touched_is_not_stale(self):
         """Pressing twice must cost nothing the second time."""
         from external_data.management.commands.load_workbooks import _fingerprint
-        from mcp.views import stale_rows
+        from api_calls.views import stale_rows
         with tempfile.TemporaryDirectory() as d:
             tmp = Path(d)
             row = self._workbook_row(tmp)
@@ -206,7 +206,7 @@ class StaleSelectionTests(TestCase):
 
     def test_rows_missing_their_key_are_not_stale(self):
         from django.test import override_settings
-        from mcp.views import stale_rows
+        from api_calls.views import stale_rows
         row = SourceSync.objects.create(source="ipc", dataset="food_security", iso3="SDN")
         with override_settings(IPC_API_KEY=""):
             self.assertNotIn(row.pk, [r.pk for r in stale_rows()])

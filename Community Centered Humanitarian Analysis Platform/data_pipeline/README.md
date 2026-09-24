@@ -20,7 +20,7 @@ The pipeline has **two halves, and only one of them is automatic.**
 
 **The MCP calls are not made by this application.** MCP tools can only be called
 by the assistant at runtime, so they cannot run inside a web container. An
-analyst runs them in Claude Code, saves the results into `mcp_cache/`, and the
+analyst runs them in Claude Code, saves the results into `api_cache/`, and the
 pipeline only ever *re-reads that folder*. Pressing "Rebuild external layers" on
 the updater page rebuilds the map layers from whatever is already cached — it
 does **not** go and fetch anything new.
@@ -38,11 +38,11 @@ data_pipeline/
 │   ├── s03_parse.py          pull out figures, corridors and themes
 │   ├── s04_events.py         rebuild the timeline
 │   ├── s05_export.py         write the dashboard's JSON files
-│   ├── s06_mcp_layers.py     rebuild the map layers from mcp_cache/  ← the MCP half
+│   ├── s06_mcp_layers.py     rebuild the map layers from api_cache/  ← the MCP half
 │   ├── s07_xlsx.py           merge in the Excel workbook
 │   └── _build_aoi_ipc.py     helper for s06: match IFRC Areas of Interest to IPC phases
 │
-├── mcp_cache/                THE RAW MCP PULLS - refreshed by an analyst, not by this app
+├── api_cache/                THE RAW MCP PULLS - refreshed by an analyst, not by this app
 ├── gazetteer.json            ~90 place names, coordinates and the corridors between them
 ├── taxonomy.json             the keyword lists behind the dashboard's theme toggles
 ├── common.py                 shared folder paths, report families, date/number parsing

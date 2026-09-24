@@ -22,7 +22,7 @@ succeeded or failed - and the job bookkeeping is kept OUTSIDE the transaction on
 purpose. A failure recorded inside an atomic block is rolled back along with
 everything else, leaving the job at 'queued'; 'queued' is an ACTIVE status, so
 that row would then hold the 'excel' source against every future press. The
-docstring of mcp/management/commands/run_rebuild.py describes the same trap.
+docstring of api_calls/management/commands/run_rebuild.py describes the same trap.
 """
 import hashlib
 from datetime import datetime, timezone
@@ -170,7 +170,7 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        from mcp.models import PullJob
+        from api_calls.models import PullJob
 
         job = PullJob.objects.filter(pk=options["job"]).first() if options["job"] else None
         if job:

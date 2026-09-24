@@ -40,7 +40,7 @@ class ConvertDocumentTests(TestCase):
             DocumentText.objects.create(document=self.document, page=number, text=text)
 
     def settings_override(self):
-        return override_settings(MCP_CACHE_DIR=Path(self.cache.name))
+        return override_settings(API_CACHE_DIR=Path(self.cache.name))
 
     def fake_read(self, pages=None, version="2.129.0"):
         pages = pages or [(1, "## One\n\nmarkdown page one"), (2, "markdown page two")]
@@ -58,7 +58,7 @@ class ConvertDocumentTests(TestCase):
     def test_the_markdown_is_written_to_disk_before_it_is_loaded(self):
         with self.settings_override(), self.fake_read():
             convert.convert_document(self.document, self.path)
-            # Inside the override: cache_paths reads MCP_CACHE_DIR, so asking
+            # Inside the override: cache_paths reads API_CACHE_DIR, so asking
             # for the paths outside it points at the real cache directory and
             # the file is looked for in the wrong place.
             json_path, md_path = convert.cache_paths(self.document)

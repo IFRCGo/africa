@@ -30,7 +30,7 @@ class Command(BaseCommand):
         parser.add_argument("--job", type=int, required=True)
         parser.add_argument(
             "--reload-from-cache", action="store_true", dest="reload_from_cache",
-            help="Load mcp_cache/insights/converted/<sha1>.json instead of calling Docling.")
+            help="Load api_cache/insights/converted/<sha1>.json instead of calling Docling.")
 
     def _log(self, job, message):
         self.stdout.write(message)

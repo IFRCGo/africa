@@ -1,4 +1,4 @@
-"""Load one payload file, or every payload in mcp_cache/insights/.
+"""Load one payload file, or every payload in api_cache/insights/.
 
     manage.py load_insights                       # everything not yet loaded
     manage.py load_insights path/to/one.json      # just this one
@@ -16,7 +16,7 @@ from insights.models import ExtractionJob
 
 
 def payload_dir():
-    return Path(settings.MCP_CACHE_DIR) / "insights"
+    return Path(settings.API_CACHE_DIR) / "insights"
 
 
 class Command(BaseCommand):

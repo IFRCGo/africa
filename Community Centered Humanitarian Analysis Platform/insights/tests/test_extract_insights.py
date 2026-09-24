@@ -108,7 +108,7 @@ class ExtractOnlyTheJobsOwnDocumentsTests(TestCase):
         extractor = FakeExtractor({self.in_job.id: _payload(self.in_job, QUOTE)})
 
         with tempfile.TemporaryDirectory() as tmp:
-            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+            with override_settings(API_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
                 call_command("extract_insights", "--job", str(self.job.id))
 
         self.assertEqual(extractor.extracted_document_ids, [self.in_job.id])
@@ -134,7 +134,7 @@ class RefusalsAndParseFailuresReachTheJobLogTests(TestCase):
         )
 
         with tempfile.TemporaryDirectory() as tmp:
-            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+            with override_settings(API_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
                 call_command("extract_insights", "--job", str(self.job.id))
 
         self.job.refresh_from_db()
@@ -148,7 +148,7 @@ class RefusalsAndParseFailuresReachTheJobLogTests(TestCase):
         )
 
         with tempfile.TemporaryDirectory() as tmp:
-            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+            with override_settings(API_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
                 call_command("extract_insights", "--job", str(self.job.id))
 
         self.job.refresh_from_db()
@@ -182,7 +182,7 @@ class TransportFailureTests(TestCase):
             raise_by_document_id={self.document.id: ConnectionError("connection reset")})
 
         with tempfile.TemporaryDirectory() as tmp:
-            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+            with override_settings(API_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
                 with self.assertRaises(CommandError):
                     call_command("extract_insights", "--job", str(self.job.id))
 
@@ -211,7 +211,7 @@ class TransportFailureTests(TestCase):
         )
 
         with tempfile.TemporaryDirectory() as tmp:
-            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+            with override_settings(API_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
                 with self.assertRaises(CommandError):
                     call_command("extract_insights", "--job", str(self.job.id))
 
@@ -237,7 +237,7 @@ class RerunResetsDocumentsDoneTests(TestCase):
 
         extractor = FakeExtractor({document.id: _payload(document, QUOTE)})
 
-        with tempfile.TemporaryDirectory() as tmp, override_settings(MCP_CACHE_DIR=tmp):
+        with tempfile.TemporaryDirectory() as tmp, override_settings(API_CACHE_DIR=tmp):
             with patch(GET_EXTRACTOR, return_value=extractor):
                 call_command("extract_insights", "--job", str(job.id))
                 job.refresh_from_db()
@@ -288,7 +288,7 @@ class RejectedPayloadTests(TestCase):
         extractor = FakeExtractor({self.document.id: self._rejected_payload()})
 
         with tempfile.TemporaryDirectory() as tmp:
-            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+            with override_settings(API_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
                 with self.assertRaises(CommandError):
                     call_command("extract_insights", "--job", str(self.job.id))
 
@@ -301,7 +301,7 @@ class RejectedPayloadTests(TestCase):
         extractor = FakeExtractor({self.document.id: self._rejected_payload()})
 
         with tempfile.TemporaryDirectory() as tmp:
-            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+            with override_settings(API_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
                 with self.assertRaises(CommandError):
                     call_command("extract_insights", "--job", str(self.job.id))
 
@@ -320,7 +320,7 @@ class RejectedPayloadTests(TestCase):
         })
 
         with tempfile.TemporaryDirectory() as tmp:
-            with override_settings(MCP_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
+            with override_settings(API_CACHE_DIR=tmp), patch(GET_EXTRACTOR, return_value=extractor):
                 call_command("extract_insights", "--job", str(self.job.id))
 
         self.job.refresh_from_db()
@@ -363,7 +363,7 @@ class RerunResetsDropCountersTests(TestCase):
         ]
         extractor = FakeExtractor({document.id: payload})
 
-        with tempfile.TemporaryDirectory() as tmp, override_settings(MCP_CACHE_DIR=tmp):
+        with tempfile.TemporaryDirectory() as tmp, override_settings(API_CACHE_DIR=tmp):
             with patch(GET_EXTRACTOR, return_value=extractor):
                 call_command("extract_insights", "--job", str(job.id))
                 job.refresh_from_db()

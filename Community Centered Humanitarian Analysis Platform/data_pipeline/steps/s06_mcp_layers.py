@@ -1,6 +1,6 @@
 """Step 6 of 7 - the external humanitarian layers, built FROM THE DATABASE.
 
-This step used to read JSON files out of data_pipeline/mcp_cache/ and flatten them
+This step used to read JSON files out of data_pipeline/api_cache/ and flatten them
 into dashboard/data/. It no longer does. Everything it needs now lives in the
 external_data tables, and the cache is only the staging area a pull lands in before
 `manage.py load_external` puts it in the database.

@@ -13,7 +13,7 @@ from django.core.management.base import CommandError
 from django.test import TestCase, override_settings
 
 from external_data.models import SeasonalCalendar, SourceSync
-from mcp.models import PullJob
+from api_calls.models import PullJob
 
 FIXTURES = Path(__file__).parent / "fixtures"
 
@@ -39,7 +39,7 @@ class SuccessTests(TestCase):
         with patch("external_data.fetchers.base.http_get_json",
                    return_value=_seasons_payload()):
             call_command("refresh_external", "fewsnet", "seasonal_calendar", "--iso3", "TCD")
-        saved = Path(settings.MCP_CACHE_DIR) / "fewsnet_seasons" / "TCD.json"
+        saved = Path(settings.API_CACHE_DIR) / "fewsnet_seasons" / "TCD.json"
         self.addCleanup(saved.unlink, True)
         self.assertTrue(saved.is_file())
 
@@ -214,7 +214,7 @@ class MontandonEndToEndTests(TestCase):
         with patch("external_data.fetchers.base.http_post_json", side_effect=pages):
             call_command("refresh_external", "montandon", "hazard_events",
                          "--iso3", "SDN")
-        cache = Path(settings.MCP_CACHE_DIR) / "montandon"
+        cache = Path(settings.API_CACHE_DIR) / "montandon"
         for kind in ("events", "hazards", "impacts"):
             path = cache / f"SDN-{kind}.json"
             self.addCleanup(path.unlink, True)

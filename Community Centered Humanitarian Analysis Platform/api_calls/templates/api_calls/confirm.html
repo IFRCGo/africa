@@ -17,7 +17,7 @@
     <h1>Pull {{ row.source }}/{{ row.dataset }} {{ row.iso3|default:"global" }}?</h1>
     <p>
       This fetches from the source's API, saves the raw response under
-      <code>mcp_cache/</code>, and loads it into the database. It does not rebuild
+      <code>api_cache/</code>, and loads it into the database. It does not rebuild
       the dashboard — that is a separate button on the data sources list.
     </p>
   {% endif %}
@@ -31,6 +31,6 @@
   <form method="post">
     {% csrf_token %}
     <button type="submit" class="default">{% if from_file %}Reload file{% else %}Pull now{% endif %}</button>
-    <a href="{% url 'admin:mcp_datasource_changelist' %}" class="button cancel-link">Cancel</a>
+    <a href="{% url 'admin:api_calls_datasource_changelist' %}" class="button cancel-link">Cancel</a>
   </form>
 {% endblock %}

@@ -1,6 +1,6 @@
 """Step 2: the page that shows what the model will actually read.
 
-MCP_CACHE_DIR IS OVERRIDDEN, AND IT HAS TO BE. log_path() resolves under it,
+API_CACHE_DIR IS OVERRIDDEN, AND IT HAS TO BE. log_path() resolves under it,
 so a test that writes a job log without this writes into the REAL cache
 directory beside the actual extraction logs - and a cleanup that deletes the
 file afterwards deletes a real one, because job ids in the test database
@@ -23,7 +23,7 @@ class WizardReadTests(TestCase):
     def setUp(self):
         self.cache = tempfile.TemporaryDirectory()
         self.addCleanup(self.cache.cleanup)
-        override = override_settings(MCP_CACHE_DIR=Path(self.cache.name))
+        override = override_settings(API_CACHE_DIR=Path(self.cache.name))
         override.enable()
         self.addCleanup(override.disable)
 
@@ -153,7 +153,7 @@ class ReleasedFilesTests(TestCase):
     def setUp(self):
         self.cache = tempfile.TemporaryDirectory()
         self.addCleanup(self.cache.cleanup)
-        override = override_settings(MCP_CACHE_DIR=Path(self.cache.name))
+        override = override_settings(API_CACHE_DIR=Path(self.cache.name))
         override.enable()
         self.addCleanup(override.disable)
 

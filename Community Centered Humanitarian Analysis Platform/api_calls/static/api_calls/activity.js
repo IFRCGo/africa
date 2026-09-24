@@ -8,7 +8,7 @@
 (function () {
   "use strict";
 
-  var box = document.getElementById("mcp-activity");
+  var box = document.getElementById("api-calls-activity");
   if (!box) return;
 
   var IDLE_MS = 15000;   // nothing running: check rarely
@@ -24,23 +24,23 @@
   function bar(job) {
     if (!job.total) return "";
     var pct = Math.round((job.done / job.total) * 100);
-    return '<div class="mcp-track"><div class="mcp-fill" style="width:' + pct + '%"></div></div>' +
-           '<span class="mcp-note">' + job.done + " of " + job.total + "</span>";
+    return '<div class="api-calls-track"><div class="api-calls-fill" style="width:' + pct + '%"></div></div>' +
+           '<span class="api-calls-note">' + job.done + " of " + job.total + "</span>";
   }
 
   function line(job) {
     var right;
     if (job.status === "succeeded") {
-      right = '<span class="mcp-note">' + esc(job.message || "done") + "</span>";
+      right = '<span class="api-calls-note">' + esc(job.message || "done") + "</span>";
     } else if (job.status === "failed") {
-      right = '<span class="mcp-note">' + esc(job.message || "failed") + "</span>";
+      right = '<span class="api-calls-note">' + esc(job.message || "failed") + "</span>";
     } else {
-      right = bar(job) + (job.note ? ' <span class="mcp-note">' + esc(job.note) + "</span>" : "");
+      right = bar(job) + (job.note ? ' <span class="api-calls-note">' + esc(job.note) + "</span>" : "");
     }
-    return '<div class="mcp-job ' + esc(job.status) + '">' +
-             '<span class="mcp-target">' + esc(job.target) + "</span>" +
-             '<span class="mcp-note">' + esc(job.status) + "</span>" +
-             '<span class="mcp-spacer"></span>' + right +
+    return '<div class="api-calls-job ' + esc(job.status) + '">' +
+             '<span class="api-calls-target">' + esc(job.target) + "</span>" +
+             '<span class="api-calls-note">' + esc(job.status) + "</span>" +
+             '<span class="api-calls-spacer"></span>' + right +
              ' <a href="' + esc(job.url) + '">log</a>' +
            "</div>";
   }

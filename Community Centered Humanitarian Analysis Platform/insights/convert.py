@@ -59,7 +59,7 @@ def source_path(document):
 
 def cache_paths(document):
     """(json, markdown). Content-addressed, so the same file re-read is the same pair."""
-    root = Path(settings.MCP_CACHE_DIR) / "insights" / "converted"
+    root = Path(settings.API_CACHE_DIR) / "insights" / "converted"
     return root / f"{document.sha1}.json", root / f"{document.sha1}.md"
 
 

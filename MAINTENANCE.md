@@ -104,7 +104,7 @@ The workflow is two halves:
 > refugee country totals."
 
 Claude makes the MCP calls and overwrites the caches in
-`Community Centered Humanitarian Analysis Platform/data_pipeline/mcp_cache/`.
+`Community Centered Humanitarian Analysis Platform/data_pipeline/api_cache/`.
 
 **Half 2 — rebuild (in Docker).** Press **Rebuild external layers from latest
 cache** on the updater page, or:
@@ -132,11 +132,11 @@ Detail for the cache-driven layers:
 - **IDP localities** — call HDX `get_idps` for `SDN`, `admin_level=2`, paginating
   with `offset` (0, 4000, …) until all ~185 localities are covered; keep rows
   where `operation == "Armed Clashes in Sudan (Overview)"`; overwrite
-  `mcp_cache/idps_admin2_overview.json` with the deduped Overview rows.
+  `api_cache/idps_admin2_overview.json` with the deduped Overview rows.
   Centroids come from `sdn_adm2.geojson` (geoBoundaries) and rarely change.
 - **Food security (IPC)** — call IPC `list_analyses` (country `SD`, type `A`),
   then `get_areas_by_analysis` (`format=geojson`) for each analysis period, saving
-  each as `mcp_cache/ipc_area_<YYYY-MM>.geojson`. Use period `C` (Current);
+  each as `api_cache/ipc_area_<YYYY-MM>.geojson`. Use period `C` (Current);
   if empty try `P`, then `A`. Step 6 reads every `ipc_area_*.geojson`, simplifies
   the geometry and rebuilds the layer.
 - **IFRC Areas of Interest** — the AOI polygons and the country/state outlines are
@@ -149,7 +149,7 @@ Detail for the cache-driven layers:
   ```
 
   which point-in-polygons each IPC area centroid into the AOIs and writes
-  `mcp_cache/aoi_ipc_phases.json`. Step 6 merges that cache onto the
+  `api_cache/aoi_ipc_phases.json`. Step 6 merges that cache onto the
   polygons.
 
 ## 5. Auditing a number
@@ -207,6 +207,64 @@ docker compose exec -T db psql -U sudan sudan_neighbouring_pop_movement < backup
   pre-migration SQLite archive was removed once PostgreSQL had absorbed it).
 - The source PDFs can be archived at any time — the full text stays in
   `document_text`.
+
+### Renaming a Django app label
+
+`/admin/<app_label>/` is built from `AppConfig.label`, so renaming a section in
+the sidebar renames its URL — and Django keys **migration history and content
+types by that label**, not by the package name. Neither is reachable by a
+migration: the executor plans `0001_initial` before any `RunPython` you could
+put in front of it, so on the live database it would try to create tables that
+already exist.
+
+The fix is two UPDATEs, run **before** the next `web` restart (the entrypoint
+runs `migrate` on every start, so a restart first leaves the container in a
+crash loop):
+
+```powershell
+docker compose exec db psql -U sudan sudan_neighbouring_pop_movement -c "UPDATE django_migrations SET app='api_calls' WHERE app='mcp'; UPDATE django_content_type SET app_label='api_calls' WHERE app_label='mcp';"
+docker compose restart web
+```
+
+Updating `django_content_type` rather than letting `migrate --fake` create
+fresh rows is the point: permissions and `django_admin_log` entries hang off
+the content type, and `remove_stale_contenttypes` would delete them along with
+the orphan. Fresh databases have no `mcp` rows, so the statements are a no-op
+there and the test suite is unaffected.
+
+The rename done on 2026-09-24 was `mcp` → `api_calls` ("Data Refresh via
+API"). It was applied in two steps: first the label alone, then the Python
+package, so the second step needed no database work - once the package is
+`api_calls`, the label defaults to it and already matches the rows above.
+
+The table and the cache followed on the same day: `mcp_pull_job` →
+`api_pull_job` (`api_calls/0003`, an `AlterModelTable`) and
+`data_pipeline/mcp_cache/` → `data_pipeline/api_cache/`, with the job-log
+subfolder `mcp/` → `api/`.
+
+**Moving that cache folder is never just a `mv`.** `PullJob.log_path`,
+`PullJob.payload_path` and `insights.Conversion.markdown_path` hold ABSOLUTE
+paths into it, and a path that no longer resolves raises nothing - the job page
+shows an empty log, and a conversion is silently redone with Docling. The same
+migrations rewrite those rows; extend them if the folder moves again. Check with:
+
+```powershell
+docker compose exec db pg_dump -U sudan sudan_neighbouring_pop_movement --data-only | grep -c mcp_cache
+```
+
+Zero is the answer you want. The env var is `API_CACHE_DIR` (it was
+`MCP_CACHE_DIR`); a stale `MCP_CACHE_DIR=` line in `.env` is now inert and can
+be deleted. Note that `docker compose restart` does **not** re-read the
+`environment:` block - changing it needs `docker compose up -d web`.
+
+Postgres keeps the old names for the primary key, sequence and constraints
+(`mcp_pull_job_pkey`, `mcp_pull_job_id_seq`). Django never refers to them, so
+they are cosmetic.
+
+Specs and plans under `docs/superpowers/` written before 2026-09-24 say `mcp`,
+`mcp_cache/` and `mcp_pull_job` throughout. They are dated records of what was
+built at the time and were deliberately not rewritten - read them with this
+section in hand.
 
 To change the table structure:
 

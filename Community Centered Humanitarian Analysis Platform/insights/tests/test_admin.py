@@ -86,7 +86,7 @@ class LoadPayloadsActionTests(TestCase):
         self.job = ExtractionJob.objects.create(producer="external", status="queued")
 
     def _run_action(self, cache_dir):
-        with override_settings(MCP_CACHE_DIR=str(cache_dir)):
+        with override_settings(API_CACHE_DIR=str(cache_dir)):
             return self.client.post(reverse("admin:insights_extractionjob_changelist"), {
                 "action": "load_payloads_for_job",
                 "_selected_action": [str(self.job.id)],
@@ -184,7 +184,7 @@ class RunExtractionNowActionTests(TestCase):
     @override_settings(LLM_PROVIDER="anthropic", LLM_MODEL="claude-opus-5")
     def test_launches_extract_insights_with_the_right_argv_and_cwd(self):
         with tempfile.TemporaryDirectory() as tmp:
-            with override_settings(MCP_CACHE_DIR=tmp), \
+            with override_settings(API_CACHE_DIR=tmp), \
                     patch("insights.admin.subprocess.Popen") as mock_popen:
                 response = self._run_action([self.job.id])
 
@@ -226,7 +226,7 @@ class RunExtractionNowActionTests(TestCase):
 
     @override_settings(LLM_PROVIDER="anthropic", LLM_MODEL="claude-opus-5")
     def test_the_log_directory_is_created_before_the_log_file_is_opened(self):
-        """On a fresh setup <MCP_CACHE_DIR>/insights/ does not exist yet - it
+        """On a fresh setup <API_CACHE_DIR>/insights/ does not exist yet - it
         is only ever created by something writing a payload into it. The very
         first click of this action must not fail opening the log file before
         the command underneath ever gets a chance to create the directory
@@ -234,7 +234,7 @@ class RunExtractionNowActionTests(TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             cache_dir = Path(tmp) / "cache"  # exists; its insights/ child does not
             cache_dir.mkdir()
-            with override_settings(MCP_CACHE_DIR=str(cache_dir)), \
+            with override_settings(API_CACHE_DIR=str(cache_dir)), \
                     patch("insights.admin.subprocess.Popen") as mock_popen:
                 response = self._run_action([self.job.id])
             self.assertTrue((cache_dir / "insights").is_dir())
@@ -289,7 +289,7 @@ class ResetStuckJobActionTests(TestCase):
         self.assertEqual(self.job.status, "queued")
 
         with tempfile.TemporaryDirectory() as tmp:
-            with override_settings(MCP_CACHE_DIR=tmp), \
+            with override_settings(API_CACHE_DIR=tmp), \
                     patch("insights.admin.subprocess.Popen") as mock_popen:
                 response = self.client.post(
                     reverse("admin:insights_extractionjob_changelist"), {

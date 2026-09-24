@@ -1,0 +1,33 @@
+/* The banner. Deliberately plain: it sits inside Django's admin and should read
+   as part of it, not as something bolted on. */
+.api-calls-bar {
+  margin: 0 0 1em; padding: .75em 1em;
+  background: #f6f6f6; border: 1px solid #ddd;
+}
+.api-calls-bar-note { margin-left: .75em; color: #555; }
+
+#api-calls-activity { margin: 0 0 1em; }
+.api-calls-job {
+  display: flex; align-items: center; gap: .75em;
+  padding: .6em .9em; margin-bottom: .4em;
+  border: 1px solid #ccc; border-left-width: 4px; background: #fff;
+}
+.api-calls-job.running   { border-left-color: #2b7cd3; }
+.api-calls-job.succeeded { border-left-color: #2e7d32; }
+.api-calls-job.failed    { border-left-color: #c62828; }
+.api-calls-job.stuck     { border-left-color: #ef6c00; }
+
+.api-calls-target { font-weight: 600; }
+.api-calls-note   { color: #555; }
+.api-calls-spacer { flex: 1; }
+
+/* A real bar, because the job records real counts - not a spinner pretending. */
+.api-calls-track { width: 140px; height: 6px; background: #e4e4e4; border-radius: 3px; }
+.api-calls-fill  { height: 6px; background: #2b7cd3; border-radius: 3px; transition: width .3s; }
+
+@media (prefers-color-scheme: dark) {
+  .api-calls-bar { background: #2b2b2b; border-color: #444; }
+  .api-calls-bar-note, .api-calls-note { color: #bbb; }
+  .api-calls-job { background: #2b2b2b; border-color: #444; }
+  .api-calls-track { background: #444; }
+}

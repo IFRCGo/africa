@@ -27,7 +27,7 @@ class Command(BaseCommand):
                             help="PullJob id to record progress against")
 
     def handle(self, *args, **options):
-        from mcp.models import PullJob
+        from api_calls.models import PullJob
 
         job = PullJob.objects.filter(pk=options["job"]).first() if options["job"] else None
         if job:

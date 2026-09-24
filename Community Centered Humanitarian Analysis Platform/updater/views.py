@@ -19,7 +19,7 @@ returning once.
 
 Important: fetching *brand new* data from the humanitarian MCP servers cannot
 happen in this container. It needs the Claude Code client and API keys, so it is
-run by an analyst on the host; that step refreshes mcp_cache/. The button
+run by an analyst on the host; that step refreshes api_cache/. The button
 here only re-applies whatever is already in that cache.
 """
 import datetime
@@ -38,8 +38,8 @@ from django.utils import timezone
 
 from data_pipeline.management.commands.run_pipeline import STEPS as PIPELINE_STEPS
 from data_track.models import Document
-from mcp.locks import JobBusy, claim
-from mcp.models import ACTIVE, PullJob
+from api_calls.locks import JobBusy, claim
+from api_calls.models import ACTIVE, PullJob
 
 # Only one update may run at a time - and "one" has to mean one across the whole
 # deployment, not one per web worker.
@@ -48,10 +48,10 @@ from mcp.models import ACTIVE, PullJob
 # workers (see the Dockerfile), and a module-level lock lives in one process. Two
 # browsers landing on two workers each took their own copy of it and both started
 # a pipeline, whose first act is to delete every row in population_figures. The
-# lock could not be seen from mcp/locks.py either, so an Admin -> MCP rebuild and
+# lock could not be seen from api_calls/locks.py either, so an Admin -> MCP rebuild and
 # an "Update now" rebuilt the same tables at the same time.
 #
-# A PullJob claimed through mcp.locks.claim() is the gate every other route into
+# A PullJob claimed through api_calls.locks.claim() is the gate every other route into
 # those tables already uses: a PostgreSQL advisory lock serialises the claim, and
 # the uniq_active_rebuild constraint is the database's own guarantee behind it.
 # "rebuild" is the right kind for both buttons here, because both read and write
@@ -116,7 +116,7 @@ def _modified_date(path: Path):
 
 def external_layers():
     """Freshness of every external map layer: when it was pulled, when it was built."""
-    cache = Path(settings.MCP_CACHE_DIR)
+    cache = Path(settings.API_CACHE_DIR)
     data = Path(settings.DASHBOARD_DATA_DIR)
     ipc_files = sorted(cache.glob("ipc_area_*.geojson"))
     periods = [m.group(1) for f in ipc_files if (m := re.search(r"(\d{4}-\d{2})", f.name))]

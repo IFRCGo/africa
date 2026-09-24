@@ -533,7 +533,7 @@ def log_path(job, stage="extract"):
     caller meaning what it meant.
     """
     name = f"job-{job.id}.log" if stage == "extract" else f"job-{job.id}-{stage}.log"
-    return Path(settings.MCP_CACHE_DIR) / "insights" / name
+    return Path(settings.API_CACHE_DIR) / "insights" / name
 
 
 def _stage_of(job):
@@ -617,7 +617,7 @@ def extract(request, job_id):
         get_extractor()
     except ValueError as exc:
         # The normal state for the route CLAUDE.md documents first: extraction
-        # run by an agent on the host, writing payloads into mcp_cache/insights/
+        # run by an agent on the host, writing payloads into api_cache/insights/
         # for "Load payloads" to pick up. Not an error, so it is not reported
         # as one.
         return JsonResponse({

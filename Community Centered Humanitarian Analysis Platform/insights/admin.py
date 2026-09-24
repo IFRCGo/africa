@@ -391,7 +391,7 @@ class ExtractionJobAdmin(admin.ModelAdmin):
                 )
                 continue
 
-            log_dir = Path(settings.MCP_CACHE_DIR) / "insights"
+            log_dir = Path(settings.API_CACHE_DIR) / "insights"
             # This directory only exists once something has written a payload
             # into it, so on a fresh setup the very first click here would
             # otherwise fail opening the log file below - before the command
@@ -425,7 +425,7 @@ class ExtractionJobAdmin(admin.ModelAdmin):
 
     @admin.action(description="Load payloads written by the agent")
     def load_payloads_for_job(self, request, queryset):
-        folder = Path(settings.MCP_CACHE_DIR) / "insights"
+        folder = Path(settings.API_CACHE_DIR) / "insights"
         files = sorted(folder.glob("*.json"))
         if not files:
             self.message_user(request, f"No payloads in {folder}.", messages.WARNING)

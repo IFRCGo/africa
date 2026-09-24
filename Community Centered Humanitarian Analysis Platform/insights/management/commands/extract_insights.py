@@ -2,7 +2,7 @@
 
     manage.py extract_insights --job 4
 
-Every payload is still written to mcp_cache/insights/ before it is loaded, so an
+Every payload is still written to api_cache/insights/ before it is loaded, so an
 in-container run leaves exactly the same evidence on disk as an agent on the host
 does, and can be re-loaded without re-paying for the model.
 
@@ -84,7 +84,7 @@ class Command(BaseCommand):
             raise CommandError(f"no ExtractionJob with id {options['job']}")
 
         extractor = get_extractor()
-        out_dir = Path(settings.MCP_CACHE_DIR) / "insights"
+        out_dir = Path(settings.API_CACHE_DIR) / "insights"
         out_dir.mkdir(parents=True, exist_ok=True)
 
         documents = list(job.documents.order_by("id"))

@@ -13,7 +13,7 @@ s06 rebuilds the layers that change: displacement figures, IPC phases, prices.
 These two do not. State boundaries move once a decade and the Nile has not
 moved at all, so re-downloading them on every pipeline run would be a slow way
 to fetch the same bytes. This runs on its own, when the geometry needs
-refreshing, and caches what it pulls in mcp_cache/.
+refreshing, and caches what it pulls in api_cache/.
 
 SOURCES
   geoBoundaries (gbOpen, CC-BY 4.0) - the same source the project already uses
