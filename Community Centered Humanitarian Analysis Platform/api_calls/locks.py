@@ -28,8 +28,15 @@ class JobBusy(Exception):
     """Something is already running that this job would collide with."""
 
 
-def claim(kind, *, source=None, dataset=None, iso3=None, variant="", user=None):
-    """Create a queued job, or raise JobBusy naming what is in the way."""
+def claim(kind, *, source=None, dataset=None, iso3=None, variant="", user=None,
+          parent=None):
+    """Create a queued job, or raise JobBusy naming what is in the way.
+
+    `parent` is the batch claiming this row, and is recorded rather than worked
+    out later: it is what lets the banner draw one bar for a press of "pull
+    everything" instead of one per source. It changes nothing about the lock -
+    a batch's row job holds its source exactly as a hand-pressed one does.
+    """
     with transaction.atomic():
         with connection.cursor() as cursor:
             cursor.execute("SELECT pg_advisory_xact_lock(%s, %s)", list(CLAIM_LOCK))
@@ -57,4 +64,5 @@ def claim(kind, *, source=None, dataset=None, iso3=None, variant="", user=None):
         return PullJob.objects.create(
             kind=kind, source=source, dataset=dataset, iso3=iso3,
             variant=variant or "", requested_by=user, status="queued",
+            parent=parent,
         )

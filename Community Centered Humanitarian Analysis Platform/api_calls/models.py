@@ -51,6 +51,20 @@ class PullJob(models.Model):
     variant = models.TextField(default="", blank=True)
 
     status = models.CharField(max_length=16, choices=STATUS_CHOICES, default="queued")
+
+    # The batch this job was claimed by, if any. WHAT THE BANNER FOLDS ON: a
+    # batch claims a job per row - it must, or the status column on the data
+    # sources page has nothing to read - and drawing all of them turns one press
+    # into nine bars. Matching children to their batch by time instead would
+    # swallow a Pull now somebody pressed while the batch was running.
+    #
+    # SET_NULL, not CASCADE: this table is an audit trail, and deleting one
+    # batch row from the job list must not take the record of the eight pulls it
+    # ran with it. An orphaned child simply goes back to being drawn on its own.
+    parent = models.ForeignKey(
+        "self", null=True, blank=True, on_delete=models.SET_NULL,
+        related_name="children", help_text="The batch job that claimed this one",
+    )
     requested_by = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, blank=True, on_delete=models.SET_NULL,
     )
@@ -66,6 +80,18 @@ class PullJob(models.Model):
     progress_done = models.IntegerField(default=0)
     progress_total = models.IntegerField(default=0)
     progress_note = models.TextField(default="", blank=True)
+    # A batch's plan and how far it got: one entry per row, each
+    # {"label", "status", "message"}. Written FULL AND PENDING at launch rather
+    # than grown as rows are reached, so the bar cites what is coming as well as
+    # what is done - and says so in the seconds before the command has booted.
+    #
+    # Not derived from the child jobs, because a skipped row never gets one:
+    # inferring per-row state from `progress_done` indices is how a skip reason
+    # that only ever reached stdout stays unreadable.
+    items = models.JSONField(
+        default=list, blank=True,
+        help_text="For a batch: [{label, status, message}] per row",
+    )
     payload_path = models.TextField(
         null=True, blank=True, help_text="Where the raw response was saved"
     )

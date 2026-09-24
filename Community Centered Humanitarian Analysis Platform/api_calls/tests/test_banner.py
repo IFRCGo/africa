@@ -61,6 +61,62 @@ class ActivityEndpointTests(Base):
         data = self.client.get("/admin/api_calls/datasource/activity/").json()
         self.assertEqual(data["finished"], [])
 
+    def test_a_batchs_row_jobs_are_not_drawn_beside_it(self):
+        """ONE BAR PER PRESS. A batch claims a job per row so the status column
+        has something to read; drawing all of them turns one press into nine
+        bars, each lingering half an hour after it ends."""
+        batch = PullJob.objects.create(kind="batch", status="running",
+                                       progress_total=2)
+        PullJob.objects.create(kind="pull", source="fewsnet", iso3="TCD",
+                               status="running", parent=batch)
+        data = self.client.get("/admin/api_calls/datasource/activity/").json()
+        self.assertEqual([j["kind"] for j in data["running"]], ["batch"])
+
+    def test_a_pull_pressed_by_hand_during_a_batch_is_still_drawn(self):
+        """Only the batch's OWN rows are folded in. Somebody else's press is
+        theirs, and hiding it would leave them watching nothing."""
+        batch = PullJob.objects.create(kind="batch", status="running")
+        PullJob.objects.create(kind="pull", source="fewsnet", status="running",
+                               parent=batch)
+        PullJob.objects.create(kind="pull", source="ipc", status="running")
+        data = self.client.get("/admin/api_calls/datasource/activity/").json()
+        self.assertEqual(sorted(j["kind"] for j in data["running"]),
+                         ["batch", "pull"])
+
+    def test_a_long_batch_is_still_reported(self):
+        """Children are requested AFTER the batch, so a newest-first slice of
+        twelve drops the one bar the page is there to draw."""
+        batch = PullJob.objects.create(kind="batch", status="running",
+                                       progress_total=20)
+        for n in range(20):
+            PullJob.objects.create(kind="pull", source=f"s{n}", status="succeeded",
+                                   parent=batch, finished_at=timezone.now())
+        data = self.client.get("/admin/api_calls/datasource/activity/").json()
+        self.assertEqual([j["kind"] for j in data["running"]], ["batch"])
+
+    def test_a_batch_names_every_source_it_covers(self):
+        """The plan, not just a count: the bar cites what is being pulled."""
+        batch = PullJob.objects.create(
+            kind="batch", status="running", progress_total=2,
+            items=[{"label": "fewsnet/seasonal_calendar TCD", "status": "succeeded",
+                    "message": "41 rows"},
+                   {"label": "fewsnet/seasonal_calendar SDN", "status": "pending",
+                    "message": ""}])
+        job = self.client.get("/admin/api_calls/datasource/activity/").json()["running"][0]
+        self.assertEqual([i["label"] for i in job["items"]],
+                         ["fewsnet/seasonal_calendar TCD",
+                          "fewsnet/seasonal_calendar SDN"])
+        self.assertEqual([i["status"] for i in job["items"]],
+                         ["succeeded", "pending"])
+
+    def test_a_finished_job_reports_when_it_finished(self):
+        """The result list hides itself a couple of minutes after the batch
+        ends, and the browser cannot work out when that is without this."""
+        PullJob.objects.create(kind="batch", status="succeeded",
+                               finished_at=timezone.now() - timedelta(minutes=1))
+        job = self.client.get("/admin/api_calls/datasource/activity/").json()["finished"][0]
+        self.assertTrue(job["finished_at"])
+
     def test_it_is_staff_only(self):
         self.client.logout()
         response = self.client.get("/admin/api_calls/datasource/activity/")
@@ -130,6 +186,18 @@ class PullAllTests(Base):
         job = PullJob.objects.get(kind="batch")
         self.assertEqual(job.progress_total, 2)      # the two fewsnet rows
         popen.assert_called_once()
+
+    def test_the_batch_names_its_rows_before_the_command_boots(self):
+        """Pressing the button must put the plan on the page at once. The
+        command takes seconds to start, and a bar that says only "2 data
+        sources" for those seconds is a bar that looks stuck."""
+        with patch("api_calls.views.subprocess.Popen"):
+            self.client.post("/admin/api_calls/datasource/pull-all/")
+        job = PullJob.objects.get(kind="batch")
+        self.assertEqual({i["status"] for i in job.items}, {"pending"})
+        self.assertEqual(sorted(i["label"] for i in job.items),
+                         ["fewsnet/seasonal_calendar SDN",
+                          "fewsnet/seasonal_calendar TCD"])
 
     def test_a_get_shows_what_would_be_pulled_and_starts_nothing(self):
         with patch("api_calls.views.subprocess.Popen") as popen:

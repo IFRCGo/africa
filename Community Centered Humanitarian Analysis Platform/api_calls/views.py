@@ -212,11 +212,33 @@ def stale_rows():
     return out
 
 
+def row_label(row):
+    """'fewsnet/seasonal_calendar TCD' - how one source is named on the banner.
+
+    HERE, not in pull_batch and again in the view. The batch writes its plan at
+    launch and rewrites each entry as it goes; two spellings of the same row
+    would read on the page as two different sources.
+
+    The variant is part of it, exactly as in `PullJob.target`, and that is not
+    tidiness: the two workbook rows differ only by variant, and a batch covering
+    both would otherwise list one line twice.
+    """
+    where = row.iso3 or "global"
+    return f"{row.source}/{row.dataset} {where} {row.variant}".strip()
+
+
 def start_batch(request, rows):
-    """Claim a batch job for these rows and launch it detached."""
+    """Claim a batch job for these rows and launch it detached.
+
+    The plan is written BEFORE the launch, every row pending. Popen plus a
+    Django boot is a few seconds, and a bar that says only "8 data sources" for
+    those seconds is a bar an operator reads as stuck.
+    """
     job = claim("batch", user=request.user)
     job.progress_total = len(rows)
-    job.save(update_fields=["progress_total"])
+    job.items = [{"label": row_label(r), "status": "pending", "message": ""}
+                 for r in rows]
+    job.save(update_fields=["progress_total", "items"])
     _launch(job, ["pull_batch", "--job", str(job.id),
                   "--rows", ",".join(str(r.pk) for r in rows)])
     return job
@@ -255,9 +277,14 @@ def activity(request):
     go to read a log, not somewhere you go to find out whether anything worked.
     """
     cutoff = timezone.now() - timedelta(minutes=30)
+    # A BATCH'S OWN ROW JOBS ARE NOT DRAWN. They are folded into its bar, which
+    # reads its `items`. Excluded BEFORE the slice, not after: children are
+    # requested after the batch that claimed them, so a newest-first twelve
+    # would drop the one bar this page exists to draw the moment a batch spans
+    # more than eleven sources.
     jobs = PullJob.objects.filter(
         Q(status__in=ACTIVE) | Q(finished_at__gte=cutoff)
-    ).order_by("-requested_at")[:12]
+    ).filter(parent__isnull=True).order_by("-requested_at")[:12]
 
     def one(job):
         return {
@@ -270,6 +297,10 @@ def activity(request):
             "note": job.progress_note,
             "rows": job.rows_written,
             "message": job.message[:200],
+            # The result list hides itself a couple of minutes after the batch
+            # ends; the browser cannot work out when that is without this.
+            "finished_at": job.finished_at.isoformat() if job.finished_at else None,
+            "items": job.items or [],
             "url": f"job/{job.id}/",
         }
 

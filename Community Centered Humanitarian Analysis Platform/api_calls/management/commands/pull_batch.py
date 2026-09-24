@@ -23,7 +23,7 @@ from external_data.fetchers.base import redact
 from external_data.models import SourceSync
 from api_calls.locks import JobBusy, claim
 from api_calls.models import ACTIVE
-from api_calls.views import pullable, refresh_argv
+from api_calls.views import pullable, refresh_argv, row_label
 
 
 class Command(BaseCommand):
@@ -52,14 +52,18 @@ class Command(BaseCommand):
         pulled = failed = skipped = 0
         try:
             for index, row in enumerate(rows, start=1):
-                label = f"{row.source}/{row.dataset} {row.iso3 or 'global'}"
+                label = row_label(row)
                 self._progress(job, index - 1, f"{label} ...")
+                self._item(job, index - 1, "running")
 
                 why = self._unpullable(row)
                 if why:
                     skipped += 1
                     self.stdout.write(f"skip {label}: {why}")
                     self._progress(job, index, f"skipped {label}")
+                    # The reason, which until now reached stdout and nowhere a
+                    # person looks.
+                    self._item(job, index - 1, "skipped", why)
                     continue
 
                 self.stdout.write(f"--- {label}")
@@ -78,7 +82,7 @@ class Command(BaseCommand):
                 try:
                     row_job = claim("pull", source=row.source, dataset=row.dataset,
                                     iso3=row.iso3, variant=row.variant,
-                                    user=batch_user)
+                                    user=batch_user, parent=job)
                 except JobBusy as exc:
                     # Somebody pressed Pull on this source while the batch was
                     # running. Their job is doing the work; skipping is right,
@@ -87,6 +91,7 @@ class Command(BaseCommand):
                     skipped += 1
                     self.stdout.write(f"    skipped: {exc}")
                     self._progress(job, index, f"skipped {label}")
+                    self._item(job, index - 1, "skipped", str(exc))
                     continue
 
                 try:
@@ -103,9 +108,13 @@ class Command(BaseCommand):
                     argv = refresh_argv(row, row_job.id)
                     call_command(*argv)
                     pulled += 1
+                    self._item(job, index - 1, "succeeded")
                 except Exception as exc:
                     failed += 1
                     self.stdout.write(self.style.WARNING(f"    failed: {redact(exc)}"))
+                    # Redacted on the way out, like every other message this
+                    # command writes: `items` is served to a browser.
+                    self._item(job, index - 1, "failed", str(redact(exc)))
                 finally:
                     # refresh_external closes the job itself on both paths, but
                     # a crash before it got that far would leave the row job
@@ -136,6 +145,25 @@ class Command(BaseCommand):
         skip rows the operator had just been told would be pulled.
         """
         return pullable(row)
+
+    def _item(self, job, index, status, message=""):
+        """Mark one row of the plan: pending -> running -> what became of it.
+
+        A batch launched before this column existed, or one whose plan is short
+        of a row, is simply left alone - the tally at the end still tells the
+        truth, and a missing entry is not worth an exception inside a loop whose
+        whole design is that one row's trouble costs no other row. Hence the
+        re-read: `items` is asked for rather than assumed.
+        """
+        if not job:
+            return
+        job.refresh_from_db(fields=["items"])
+        items = job.items or []
+        if not 0 <= index < len(items):
+            return
+        items[index] = dict(items[index], status=status, message=message[:200])
+        job.items = items
+        job.save(update_fields=["items"])
 
     def _progress(self, job, done, note):
         if not job:

@@ -77,6 +77,75 @@ class SerialTests(TestCase):
         # And a second batch may now start.
         self.assertIsNotNone(claim("batch"))
 
+    def test_two_workbook_rows_are_told_apart_on_the_banner(self):
+        """They share nothing an operator can see but their variant. Listing
+        both as "excel/refugees global" is a plan that reads as one row twice."""
+        from api_calls.views import row_label
+        a = SourceSync.objects.create(source="excel", dataset="refugees",
+                                      variant="neighbours-workbook")
+        b = SourceSync.objects.create(source="excel", dataset="refugees",
+                                      variant="older-workbook")
+        self.assertNotEqual(row_label(a), row_label(b))
+        self.assertIn("neighbours-workbook", row_label(a))
+
+    def test_every_row_job_names_the_batch_that_claimed_it(self):
+        """What lets the banner fold nine bars into one. Without it the page
+        can only guess, and guessing by time swallows a press of somebody
+        else's Pull now button."""
+        job = PullJob.objects.create(kind="batch", status="queued")
+        with patch("api_calls.management.commands.pull_batch.call_command"):
+            call_command("pull_batch", "--job", str(job.id),
+                         "--rows", ",".join(str(r.pk) for r in self.rows))
+        children = PullJob.objects.filter(kind="pull")
+        self.assertEqual(children.count(), 3)
+        self.assertEqual(set(children.values_list("parent_id", flat=True)), {job.id})
+
+    def test_each_row_is_marked_done_as_the_batch_reaches_it(self):
+        job = PullJob.objects.create(kind="batch", status="queued")
+        job.items = [{"label": f"fewsnet/seasonal_calendar {r.iso3}",
+                      "status": "pending", "message": ""} for r in self.rows]
+        job.save(update_fields=["items"])
+        with patch("api_calls.management.commands.pull_batch.call_command"):
+            call_command("pull_batch", "--job", str(job.id),
+                         "--rows", ",".join(str(r.pk) for r in self.rows))
+        job.refresh_from_db()
+        self.assertEqual([i["status"] for i in job.items],
+                         ["succeeded"] * 3)
+
+    def test_a_failed_row_is_marked_failed_and_says_why(self):
+        """The tally at the end says "1 failed"; this says WHICH, without
+        anyone opening a log."""
+        job = PullJob.objects.create(kind="batch", status="queued")
+        job.items = [{"label": f"fewsnet/seasonal_calendar {r.iso3}",
+                      "status": "pending", "message": ""} for r in self.rows]
+        job.save(update_fields=["items"])
+        def maybe_fail(*args, **kwargs):
+            if "SDN" in args:
+                raise Exception("503 Service Unavailable")
+        with patch("api_calls.management.commands.pull_batch.call_command",
+                   side_effect=maybe_fail):
+            call_command("pull_batch", "--job", str(job.id),
+                         "--rows", ",".join(str(r.pk) for r in self.rows))
+        job.refresh_from_db()
+        failed = [i for i in job.items if i["status"] == "failed"]
+        self.assertEqual([i["label"] for i in failed],
+                         ["fewsnet/seasonal_calendar SDN"])
+        self.assertIn("503", failed[0]["message"])
+
+    def test_a_skipped_row_says_why_it_was_skipped(self):
+        """Today that reason reaches stdout and nowhere a person looks."""
+        kobo = SourceSync.objects.create(source="kobo", dataset="service_points",
+                                         iso3="TCD", variant="")
+        job = PullJob.objects.create(kind="batch", status="queued")
+        job.items = [{"label": "kobo/service_points TCD", "status": "pending",
+                      "message": ""}]
+        job.save(update_fields=["items"])
+        with patch("api_calls.management.commands.pull_batch.call_command"):
+            call_command("pull_batch", "--job", str(job.id), "--rows", str(kobo.pk))
+        job.refresh_from_db()
+        self.assertEqual(job.items[0]["status"], "skipped")
+        self.assertIn("no API", job.items[0]["message"])
+
     def test_a_row_with_neither_an_api_nor_a_command_is_skipped(self):
         kobo = SourceSync.objects.create(source="kobo", dataset="service_points",
                                          iso3="TCD", variant="")
