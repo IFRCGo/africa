@@ -170,6 +170,14 @@ const state = {
   countries: new Set(),
   voiceSearch: "",         // text typed into the Community Insights search box
   voiceTab: "community",   // which Community Insights tab is showing
+  /* THE STATEMENTS PICKED BY CLICKING A MAP BUBBLE - a Set of insight ids, or
+     null for "nothing selected, show the month". Deliberately plain state and
+     not keyed by map, unlike areaDetailByMap: this is one selection for the
+     one sidebar panel, so a click in either half of a split view replaces it
+     rather than each half owning its own. It narrows WITHIN the month; it
+     never widens past it, because the bubble that produced it is itself
+     filtered to the month (see insightInMonth). */
+  voiceSelection: null,
   /* The three lines of the Movement trends graph, worked out once per FILTER
      change rather than per timeline move - see computeTrendSeries(). */
   trend: { series: [], vmax: 1 },
@@ -1068,26 +1076,62 @@ function addLayers(m) {
      popup() call in this function (Task 12 R4b): POPUP_SPECS order is
      display order, and the community's own words should lead the combined
      bubble, not trail behind an IPC phase or an IDP count. Registering here
-     does not require the insight-bubbles/insight-clusters LAYERS to exist
-     yet - popup() only records a layer id string, and sectionsAt() does not
-     look anything up until a user actually hovers, long after addLayers()
-     has finished. The layers themselves are added further down (search
-     "Quote bubbles"), deliberately LAST in the stack so they draw on top of
-     everything else this map shows (R1). */
-  popup(m, "insight-bubbles", (p) => {
+     does not require the insight-bubbles LAYER to exist yet - popup() only
+     records a layer id string, and sectionsAt() does not look anything up
+     until a user actually hovers, long after addLayers() has finished. The
+     layer itself is added further down (search "Quote bubbles"),
+     deliberately LAST in the stack so it draws on top of everything else
+     this map shows (R1).
+
+     ONE BUBBLE CARRIES EVERY STATEMENT AT ITS POINT, and that is the whole
+     reason this reads the way it does. An insight is located to an admin
+     AREA and drawn at that area's label position, so every statement about
+     the same area lands on the SAME coordinate to the last decimal - 18 of
+     them on Egypt's centroid in this deployment. MapLibre clustering cannot
+     separate coincident points at any zoom, so the cluster layer this
+     replaced said "zoom in to read them" and no zoom ever obliged.
+     renderInsightBubbles() therefore groups by coordinate itself and hands
+     one feature per PLACE, carrying its statements in `items`. Nothing here
+     depends on the camera. */
+  popup(m, "insight-bubbles", (p, feature, hoveredMap, pinned) => {
+    // MapLibre stringifies feature properties, so `items` arrives as JSON
+    // text however it was set. Parse defensively: a malformed value must not
+    // take the rest of the combined bubble down with it.
+    let items = [];
+    try { items = JSON.parse(p.items || "[]"); } catch (err) { return null; }
+    if (!items.length) return null;
+
+    /* WHERE, SAID ONCE. Every statement in this feature shares the point,
+       so it shares the place - repeating it under each quote would imply
+       the statements were placed separately, which is exactly what the
+       label-position match method does not do. */
     const placed = p.matchMethod === "unmatched" ? "" :
       `<div class="ip-place">Located to ${escapeHTML(p.place)}${
         p.matchMethod === "name" ? " (named area, label position)" : " (p-code)"}</div>`;
+
+    /* A hover bubble follows the mouse and cannot be scrolled (.hover-popup
+       is pointer-events: none until pinned), so it shows the first few and
+       says how to read the rest. The pinned bubble takes the pointer, gains
+       a close button and scrolls, so it shows all of them. */
+    const CAP = 3;
+    const shown = pinned ? items : items.slice(0, CAP);
+    const head = items.length === 1 ? "" :
+      `<div class="ip-count">${items.length} statements here</div>`;
+    const more = pinned || items.length <= CAP ? "" :
+      `<div class="ip-more">…and ${items.length - CAP} more — click to pin and read all ${items.length}</div>`;
+
     return `<div class="insight-popup">
-        <div class="ip-voice">${p.voice === "community" ? "Community" : "Analyst"}</div>
-        <blockquote>${escapeHTML(p.quote)}</blockquote>
+        ${head}
         ${placed}
-        <div class="ip-meta">${escapeHTML(p.date)}${p.source ? ` · ${escapeHTML(p.source)}` : ""}</div>
+        ${shown.map((it) => `<div class="ip-item">
+          <div class="ip-voice">${it.voice === "community" ? "Community" : "Analyst"}</div>
+          <blockquote>${escapeHTML(it.quote)}</blockquote>
+          <div class="ip-meta">${escapeHTML(it.date || "")}${
+            it.source ? ` · ${escapeHTML(it.source)}` : ""}</div>
+        </div>`).join("")}
+        ${more}
       </div>`;
-  }, "Community insight");
-  popup(m, "insight-clusters", (p) =>
-    `<div class="insight-popup">${p.point_count} community statement${
-      p.point_count === 1 ? "" : "s"} here — zoom in to read them</div>`, "Community insights");
+  }, "Community insights");
 
   // Events and corridors read on hover like every other layer.
   popup(m, "event-dots", (p) =>
@@ -1183,19 +1227,25 @@ function addLayers(m) {
      the comment there for why the two are split.
 
      Seeded with empty(), like every other layer here; renderInsightBubbles()
-     fills it. Deliberately NOT sized by anything (R7): a single statement is
-     not a quantity, and scaling it would imply one. */
-  m.addSource("insight-bubbles", {
-    type: "geojson",
-    data: empty(),
-    cluster: true,
-    clusterRadius: 28,
-  });
+     fills it.
+
+     NOT CLUSTERED, and not by oversight. MapLibre clustering was here and had
+     to go: insights are placed at an admin area's LABEL POSITION, so every
+     statement about one area shares a coordinate exactly, and coincident
+     points never separate however far you zoom. The cluster bubble's own text
+     was "zoom in to read them", which was advice the map could not honour.
+     renderInsightBubbles() groups by coordinate instead and emits one feature
+     per place carrying its statements, so the popup reads them where they are.
+
+     SIZE IS A TWO-STATE STEP, NOT A SCALE (R7): 6px for one statement, 11px
+     for several - large enough to hold the count glyph, and the same 11px
+     whether there are two statements or twenty. A statement is not a
+     quantity and a radius that grew with the count would say it was. */
+  m.addSource("insight-bubbles", { type: "geojson", data: empty() });
   m.addLayer({
     id: "insight-bubbles", type: "circle", source: "insight-bubbles",
-    filter: ["!", ["has", "point_count"]],
     paint: {
-      "circle-radius": 6,
+      "circle-radius": ["case", [">", ["get", "n"], 1], 11, 6],
       "circle-color": ["get", "colour"],
       "circle-stroke-width": 1.5,
       "circle-stroke-color": "#fff",
@@ -1203,39 +1253,38 @@ function addLayers(m) {
     },
   });
   m.addLayer({
-    id: "insight-clusters", type: "circle", source: "insight-bubbles",
-    filter: ["has", "point_count"],
-    paint: {
-      "circle-radius": 12,
-      "circle-color": "#555",
-      "circle-stroke-width": 1.5,
-      "circle-stroke-color": "#fff",
-      "circle-opacity": 0.85,
-    },
-  });
-  m.addLayer({
-    id: "insight-cluster-count", type: "symbol", source: "insight-bubbles",
-    filter: ["has", "point_count"],
+    id: "insight-count", type: "symbol", source: "insight-bubbles",
+    filter: [">", ["get", "n"], 1],
     // Named rather than left to MapLibre's default, which is an Open Sans stack
-    // the fallback basemap's glyph server does not hold - the cluster counts
-    // would vanish exactly when the basemap did.
+    // the fallback basemap's glyph server does not hold - the counts would
+    // vanish exactly when the basemap did.
     layout: {
-      "text-field": ["get", "point_count_abbreviated"], "text-size": 11,
+      "text-field": ["to-string", ["get", "n"]], "text-size": 11,
       "text-font": LABEL_FONTS.regular,
+      "text-allow-overlap": true,
     },
     paint: { "text-color": "#fff" },
   });
-  /* The map-to-panel link. This ONLY toggles the matching card's highlight -
-     it is a side effect, not a popup, so it coexists with bindPopups()'s
-     click-to-pin handler on the same click (Task 12 R5). Registered once per
-     map because addLayers() runs once per map. If the card is not currently
-     rendered in the panel (wrong tab, filtered out, off the visible page),
-     the click simply highlights nothing - it does not switch tabs or search
-     to go find it. */
+  /* THE MAP-TO-PANEL LINK. A side effect, not a popup, so it coexists with
+     bindPopups()'s click-to-pin handler on the same click (Task 12 R5).
+     Registered once per map because addLayers() runs once per map.
+
+     It used to only toggle a highlight on a card that happened to be on
+     screen already, on the stated grounds that it "does not switch tabs or
+     search to go find it". That rationale no longer holds: the panel showed
+     the timeline's month while the bubbles ignored the date entirely, so the
+     card to highlight was usually not rendered at all and the click did
+     visibly nothing. Both halves now share one date rule (insightInMonth),
+     which means every statement in this feature IS in the panel's month, and
+     a click can simply narrow the panel to them. Tab and search are still
+     left alone - renderInsightBubbles() applies voiceOnTab(), so a bubble
+     that can be clicked is on the active tab by construction. */
   m.on("click", "insight-bubbles", (e) => {
-    const id = String(e.features[0].properties.id);
-    for (const node of document.querySelectorAll("#voices .voice"))
-      node.classList.toggle("is-selected", node.dataset.id === id);
+    let ids = [];
+    try { ids = JSON.parse(e.features[0].properties.ids || "[]"); } catch (err) { return; }
+    if (!ids.length) return;
+    state.voiceSelection = new Set(ids.map(String));
+    renderVoices();
   });
 
   popup(m, "idp-circles", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.state})</span><br>
@@ -1396,8 +1445,17 @@ function popup(m, layer, html, title) {
    broken on that map". */
 let pinnedOn = null;
 
-/* Everything under the cursor, as ready-to-show sections. */
-function sectionsAt(m, point) {
+/* Everything under the cursor, as ready-to-show sections.
+
+   `pinned` says which of the two bubbles is being built, and is passed on to
+   every section body as its FOURTH argument. Almost no layer cares: a section
+   normally reads the same either way. The one that does is the community
+   insights bubble, where a place can hold twenty statements - far more than a
+   bubble that merely follows the mouse can show, and it cannot be scrolled
+   because .hover-popup is pointer-events: none until it is pinned. It shows
+   the first few on hover and all of them once pinned. Builders that ignore
+   the argument are unaffected, which is why it was added at the end. */
+function sectionsAt(m, point, pinned) {
   const ids = POPUP_SPECS.map((s) => s.layer).filter((id) => m.getLayer(id));
   let feats = [];
   try {
@@ -1421,7 +1479,7 @@ function sectionsAt(m, point) {
          longer able to make the map look like it has no popups at all. */
       let body = null;
       try {
-        body = spec.html(f.properties, f, m);
+        body = spec.html(f.properties, f, m, !!pinned);
       } catch (err) {
         console.error(`[dashboard] popup for layer "${spec.layer}" failed`, err);
       }
@@ -1432,7 +1490,7 @@ function sectionsAt(m, point) {
 }
 
 function showCombined(m, e) {
-  const sections = sectionsAt(m, e.point);
+  const sections = sectionsAt(m, e.point, false);
   const bubble = hoverBubble(m);
   if (!sections.length) { bubble.remove(); m.getCanvas().style.cursor = ""; return; }
   m.getCanvas().style.cursor = "pointer";
@@ -1449,7 +1507,7 @@ function showCombined(m, e) {
 
 /* Pin the bubble where it is, so it can be read and scrolled. */
 function pinBubble(m, e) {
-  const sections = sectionsAt(m, e.point);
+  const sections = sectionsAt(m, e.point, true);
   if (!sections.length) { unpin(); return; }
   unpin();
   pinnedOn = m;
@@ -1481,8 +1539,34 @@ function bindPopups(m) {
   m.on("mouseout", () => { if (pinnedOn !== m) hoverBubble(m).remove(); });
   /* Clicking the pinned half releases it; clicking the other half MOVES the
      pin there, because pinBubble() unpins whatever held it first. Clicking
-     bare ground on either half just releases, as it always did. */
-  m.on("click", (e) => (pinnedOn === m ? unpin() : pinBubble(m, e)));
+     bare ground on either half just releases, as it always did.
+
+     A click that MISSED every insight bubble also drops the sidebar's map
+     selection: clicking away closes the bubble, and a panel still narrowed to
+     statements whose bubble is no longer open is a state a person cannot
+     account for. The layer test is not decoration and must not become an
+     unconditional clear. addLayers() registers the insight-bubbles click
+     handler before it calls bindPopups(), MapLibre fires same-event listeners
+     in registration order, so this generic handler runs immediately AFTER the
+     one that just set the selection - clearing unconditionally here would
+     wipe every selection at the instant it was made, and would look exactly
+     like the click doing nothing. */
+  m.on("click", (e) => {
+    if (!hitTest(m, e.point, "insight-bubbles").length) clearVoiceSelection();
+    return pinnedOn === m ? unpin() : pinBubble(m, e);
+  });
+}
+
+/* Features of one layer under a point, or [] if the layer is not on this map
+   yet. Guarded like sectionsAt(): queryRenderedFeatures throws while the
+   style is still loading, and a click during boot must not raise. */
+function hitTest(m, point, layer) {
+  if (!m.getLayer(layer)) return [];
+  try {
+    return m.queryRenderedFeatures(point, { layers: [layer] });
+  } catch (err) {
+    return [];
+  }
 }
 
 // "Draw nothing" - used to clear a layer that is switched off.
@@ -2062,11 +2146,38 @@ const monthLabel = (mk) =>
    the same rule the comment on monthTagTotals states for the analyst
    snippets. Deliberately independent of tags.json and of the current month:
    a statement's country and theme do not change with the date, and Task 12
-   calls this once per slider tick. */
+   calls this once per slider tick. THE DATE IS NOT MISSING FROM HERE, IT IS
+   ELSEWHERE ON PURPOSE - insightInMonth() below is its companion, and both
+   halves call both functions. Do not fold the month into this one: search
+   mode in renderVoices() deliberately looks across every month and still
+   needs the country and theme test. */
 function insightPasses(row) {
   if (!countryOn(ISO3_TO_COUNTRY[row.iso3])) return false;
   if (!state.activeTags.size) return true;
   return (row.codings || []).some((c) => state.activeTags.has(`${c.dimension}|${c.tag}`));
+}
+
+/* Whether one statement belongs to the month the timeline is on.
+
+   THE PANEL AND THE MAP MUST AGREE ABOUT WHEN, and this is the single place
+   that says so. They did not: the panel has always shown the timeline's month
+   and the bubbles showed every published statement regardless of date, so a
+   bubble sat on the map at every position of the slider while the panel
+   underneath it said "No community statement recorded for this month" - and
+   the bubble was, on almost every date, showing a statement from the wrong
+   period. One predicate, called by renderInsightBubbles() and by
+   renderVoices(), makes "a bubble is here" and "a card is here" the same
+   claim in both directions.
+
+   An undated statement matches no month. /api/insights/ emits date: null for
+   a row with no stated_on (views.py's own choice), whose month key is "" and
+   cannot equal a real one. That is not a special case bolted on: the panel
+   has always excluded such a row from every month for exactly this reason,
+   and the bubble now follows it rather than parking the statement on an
+   arbitrary date. Such a row is still reachable through the search box,
+   which looks across all months. */
+function insightInMonth(row, mk) {
+  return (row.date || "").slice(0, 7) === mk;
 }
 
 /* Every quote the panel can show, from both sources, in one shape.
@@ -2172,11 +2283,21 @@ function codingChips(codings) {
    only a handful, so a search confined to one month would almost always come
    back empty - and confined to the tab, so Community search never surfaces
    analyst prose. Each result is labelled with its month and clicking it
-   moves the timeline there. */
+   moves the timeline there.
+
+   THERE ARE THREE MODES NOW, not two, and they are tested in this order:
+   search, then a map selection, then the plain month. A selection is the
+   statements behind one bubble that was clicked, and it NARROWS the month
+   rather than replacing it - the bubble it came from is itself filtered to
+   the month by insightInMonth(), so every selected id is in the month
+   already and nothing here has to widen past it. Search beats selection
+   because typing is a fresh question; the selection is cleared when it
+   happens, in initVoiceSearch(). */
 function renderVoices() {
   const el = $("#voices"), q = state.voiceSearch.trim().toLowerCase();
   const searching = q.length > 0;
   const pool = voicesForTab();
+  const selection = state.voiceSelection;
   let picks;
 
   if (searching) {
@@ -2194,6 +2315,14 @@ function renderVoices() {
             (DIM_META[c.dimension] ? DIM_META[c.dimension].label : "").toLowerCase().includes(q))
         : v.tag.replace(/_/g, " ").toLowerCase().includes(q) ||
           DIM_META[v.dim].label.toLowerCase().includes(q))).slice(0, 40);
+  } else if (selection) {
+    /* Exactly the statements behind the clicked bubble, in the panel's own
+       sort order. No month test and no cap: the ids came from a bubble that
+       insightInMonth() already confined to this month, and a place holding
+       twenty statements is precisely the case a click exists to open up -
+       truncating it here would put back the "there is more you cannot see"
+       problem the bubble had. */
+    picks = pool.filter((v) => v.id != null && selection.has(String(v.id)));
   } else {
     const mk = monthKey(state.current);
     const month = pool.filter((v) => v.mk === mk);
@@ -2209,23 +2338,49 @@ function renderVoices() {
     }
   }
 
+  /* The banner above a selection, with the way out of it. A selection is the
+     only one of the three modes a person can enter by accident - a click on
+     the map, which is also how bubbles get pinned - so it always says what it
+     is doing and always offers the month back. */
+  const selBanner = selection
+    ? `<div class="voices-selected">Showing the ${picks.length} statement${
+        picks.length === 1 ? "" : "s"} you clicked on the map.
+        <button type="button" class="voices-clear">Show the whole month</button></div>`
+    : "";
+  const wireClear = () => {
+    const btn = el.querySelector(".voices-clear");
+    if (btn) btn.addEventListener("click", clearVoiceSelection);
+  };
+
   if (!picks.length) {
-    el.innerHTML = `<div class="voices-empty">${searching
+    /* An empty selection should not be reachable - the ids came from a bubble
+       built out of this same pool. It is handled rather than assumed away
+       because the two are rebuilt by different events, and a selection left
+       stale by a filter change must not present itself as "this month is
+       empty" when the month is not. */
+    el.innerHTML = selBanner + `<div class="voices-empty">${searching
       ? `No quote matches “${escapeHTML(state.voiceSearch)}” in this tab.`
-      : state.voiceTab === "community"
-        ? "No community statement recorded for this month."
-        : "No narrative reporting captured for this month."}</div>`;
+      : selection
+        ? "Those statements are no longer in scope under the current filters."
+        : state.voiceTab === "community"
+          ? "No community statement recorded for this month."
+          : "No narrative reporting captured for this month."}</div>`;
     $("#voice-count").textContent = "";
+    wireClear();
     return;
   }
 
   $("#voice-count").textContent = searching
-    ? `${picks.length}${picks.length === 40 ? "+" : ""} across all months` : "";
+    ? `${picks.length}${picks.length === 40 ? "+" : ""} across all months`
+    // Short on purpose: this span floats into the panel heading, and the
+    // banner below it is where the selection explains itself at length.
+    : selection ? `${picks.length} selected` : "";
 
   const unmapped = picks.filter((v) => v.voice === "community" && v.lat == null).length;
 
-  el.innerHTML = picks.map((p, i) => `<div class="voice${
-      p.voice === "community" ? " is-community" : ""}${searching ? " voice-hit" : ""}"
+  el.innerHTML = selBanner + picks.map((p, i) => `<div class="voice${
+      p.voice === "community" ? " is-community" : ""}${searching ? " voice-hit" : ""}${
+      selection && p.id != null && selection.has(String(p.id)) ? " is-selected" : ""}"
       style="border-color:${DIM_META[p.dim].color}"
       data-month="${p.mk}" data-i="${i}" data-id="${p.id || ""}">
       <div class="v-full">${searching ? highlight(p.full, q) : escapeHTML(p.full)}</div>
@@ -2242,9 +2397,26 @@ function renderVoices() {
       ? `<div class="voices-unmapped">${unmapped} of these could not be placed on the map.</div>`
       : "");
 
+  wireClear();
+
   if (searching)
     for (const node of el.querySelectorAll(".voice-hit"))
       node.addEventListener("click", () => goToMonth(node.dataset.month));
+}
+
+/* Drop a map selection and go back to showing the month.
+
+   Called from the banner's own button, from the search box and the tabs (see
+   initVoiceSearch), and from the map's bare-ground click - clicking away
+   releases a pinned bubble, and leaving the panel narrowed to statements
+   whose bubble is no longer open is the kind of state a person cannot explain
+   to themselves. Returns whether anything changed, so the map's click handler
+   can avoid a redraw it does not need. */
+function clearVoiceSelection() {
+  if (!state.voiceSelection) return false;
+  state.voiceSelection = null;
+  renderVoices();
+  return true;
 }
 
 /* Quote text comes from PDFs, so it can contain anything. Everything drawn
@@ -2279,7 +2451,18 @@ function setCurrentDate(t) {
      trends graph, which still spans everything - respect the filter without
      each of them having to know about it. */
   const days = Math.round((clamp(t, rangeLo(), rangeHi()) - START) / DAY);
+  const was = monthKey(state.current);
   state.current = START + days * DAY;
+  /* MOVING TO ANOTHER MONTH DROPS A MAP SELECTION. The selection is the
+     statements behind one bubble, and the bubbles about to be redrawn are a
+     different month's. Left standing it would survive as ids with no bubble,
+     and the panel would explain itself with "no longer in scope under the
+     current filters" when what actually changed was the date. Set directly
+     rather than through clearVoiceSelection(): renderAll() below renders the
+     panel anyway. Compared by month, not by timestamp, because dragging the
+     slider within one month does not change which statements are in scope and
+     should not throw away what a person just clicked. */
+  if (monthKey(state.current) !== was) state.voiceSelection = null;
   $("#time-slider").value = days;
   renderAll();
 }
@@ -2838,19 +3021,34 @@ function renderSeasonal() {
 
    A row passes when insightPasses() says its country and theme are in scope
    (the same predicate the panel uses - see its comment for why that matters),
-   voiceOnTab() says the active tab wants its voice, and it has a resolved
-   point: camps, settlements and neighbourhoods are not in the boundary
-   library and never will be, so an unplaced statement is simply absent
-   rather than guessed at. One feature per insight id, never per coding - a
-   statement coded twice is still one thing someone said. */
+   voiceOnTab() says the active tab wants its voice, insightInMonth() says it
+   belongs to the month the timeline is on, and it has a resolved point:
+   camps, settlements and neighbourhoods are not in the boundary library and
+   never will be, so an unplaced statement is simply absent rather than
+   guessed at. One feature per PLACE, and within it one entry per insight id,
+   never per coding - a statement coded twice is still one thing someone said.
+
+   GROUPED BY COORDINATE, which is the fix for the bubble that could not be
+   read. A statement is located to an admin area and drawn at that area's
+   label position, so "the point" is the area's point: 18 statements about
+   Egypt are 18 statements on one pixel, to the last decimal. MapLibre
+   clustering used to cover for that and could not - coincident points do not
+   separate at any zoom, so its "zoom in to read them" bubble was permanent.
+   Grouping here is not a rendering trick; it matches what the data says,
+   which is that these statements share a place rather than merely crowd each
+   other. Keyed on the raw lon/lat pair: both come from the same boundary
+   library lookup, so statements about one area carry byte-identical values
+   and no rounding tolerance is needed to bring them together. */
 function renderInsightBubbles() {
   const seen = new Set();
-  const feats = [];
+  const groups = new Map();
+  const mk = monthKey(state.current);
   for (const row of state.data.insights || []) {
     if (row.id == null || row.lat == null || row.lon == null) continue;
     if (seen.has(row.id)) continue;
     seen.add(row.id);
     if (!insightPasses(row)) continue;
+    if (!insightInMonth(row, mk)) continue;
     if (!voiceOnTab(row.voice_type)) continue;
     const codings = row.codings || [];
     // Colour by the SAME rule allVoices() uses for the card's border: the
@@ -2862,21 +3060,52 @@ function renderInsightBubbles() {
     // prevent, and colour is the most visible place for it to show.
     const first = codings.find((c) => DIM_META[c.dimension] && state.activeTags.has(`${c.dimension}|${c.tag}`))
       || codings.find((c) => DIM_META[c.dimension]);
-    feats.push({
-      type: "Feature",
-      geometry: { type: "Point", coordinates: [row.lon, row.lat] },
-      properties: {
-        id: row.id,
+    const key = `${row.lon},${row.lat}`;
+    let g = groups.get(key);
+    if (!g) {
+      /* The place, the match method and the colour come from the FIRST
+         statement at this point and stand for the group. Place and match
+         method are properties of the point itself, so they are the same for
+         every member by construction. Colour is not: a place can hold a
+         hazard statement and a needs statement. One dot cannot be two
+         colours, so it takes the first, and the popup names each statement
+         individually - which is where a reader distinguishes them anyway. */
+      g = {
+        lon: row.lon, lat: row.lat,
         colour: first ? DIM_META[first.dimension].color : COLOR_MUTED,
-        quote: row.quote,
         place: row.place_name || "",
-        date: row.date || "",
-        source: row.source_document || "",
         matchMethod: row.match_method || "unmatched",
-        voice: row.voice_type,
-      },
+        items: [],
+      };
+      groups.set(key, g);
+    }
+    g.items.push({
+      id: row.id,
+      quote: row.quote,
+      date: row.date || "",
+      source: row.source_document || "",
+      voice: row.voice_type,
     });
   }
+
+  const feats = [];
+  for (const g of groups.values())
+    feats.push({
+      type: "Feature",
+      geometry: { type: "Point", coordinates: [g.lon, g.lat] },
+      properties: {
+        // Serialised deliberately, not left as arrays: MapLibre stringifies
+        // feature properties on the way through, so an array would reach the
+        // popup as "[object Object]" text. JSON in, JSON.parse out, at both
+        // readers - the popup builder and the click handler.
+        items: JSON.stringify(g.items),
+        ids: JSON.stringify(g.items.map((it) => it.id)),
+        n: g.items.length,
+        colour: g.colour,
+        place: g.place,
+        matchMethod: g.matchMethod,
+      },
+    });
   setSource("insight-bubbles", { type: "FeatureCollection", features: feats });
 }
 
@@ -3754,16 +3983,27 @@ function hazardCategoryOf(sub) {
 /* The search box on the Community Insights panel. */
 function initVoiceSearch() {
   const input = $("#voice-search");
+  /* Typing is a fresh question, so it drops a map selection rather than
+     fighting it: with both live, a search that matched nothing inside the
+     selection would report "no quote matches" about the whole tab. Cleared
+     directly, not through clearVoiceSelection(), because renderVoices() is
+     about to run anyway and doing both would render the panel twice. */
   input.addEventListener("input", () => {
     state.voiceSearch = input.value;
+    state.voiceSelection = null;
     renderVoices();
   });
   input.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") { input.value = ""; state.voiceSearch = ""; renderVoices(); }
+    if (e.key === "Escape") {
+      input.value = ""; state.voiceSearch = ""; state.voiceSelection = null; renderVoices();
+    }
   });
   for (const tab of document.querySelectorAll(".voice-tab"))
     tab.addEventListener("click", () => {
       state.voiceTab = tab.dataset.tab;
+      // The selection was made against the old tab's bubbles, which are about
+      // to be redrawn for a different set of voices.
+      state.voiceSelection = null;
       for (const other of document.querySelectorAll(".voice-tab"))
         other.classList.toggle("is-active", other === tab);
       renderVoices();
