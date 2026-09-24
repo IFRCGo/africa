@@ -152,6 +152,41 @@
     <div id="map-panes">
       <div class="map-pane"><div class="map-canvas" id="map-a"></div><div class="pane-label" id="map-a-label"></div></div>
       <div class="map-pane" id="pane-b"><div class="map-canvas" id="map-b"></div><div class="pane-label" id="map-b-label"></div></div>
+
+      <!-- The disclaimer chip, bottom-left of the map. It is one of the very
+           few ids on this page that app.js does NOT fill in: the wording is
+           written here and nowhere else, so searching app.js for it finds
+           nothing. Edit the paragraph below to change what it says.
+
+           It sits inside #map-panes and not #map-wrap on purpose. The legend
+           is in the flow at the bottom of #map-wrap, so "bottom: 14px"
+           measured against #map-wrap would land the chip on top of the legend
+           rather than on the map. #map-panes ends where the legend begins.
+
+           Hovering the chip - or giving it keyboard focus, or tapping it on a
+           touch screen - opens the panel above it. That is done in CSS with
+           :hover and :focus-within; there is no JavaScript behind it. -->
+      <div id="map-disclaimer">
+        <div class="disclaimer-panel" id="disclaimer-text" role="tooltip">
+          <p>The <b>Community Centered Humanitarian Analysis Platform</b> is a pilot
+            initiative supported by the International Federation of Red Cross and Red
+            Crescent Societies (IFRC). It consolidates publicly available information
+            using automated artificial intelligence agents. The platform can be alittle bit outdated,
+             and it is not a substitute for official sources.It is intended to provide a broad overview of the humanitarian situation, 
+             but it does not replace the need for on-the-ground;
+            however, some of the information and analysis it provides are not systematically
+            verified by human analysts. As a result, there may be inaccuracies,
+            omissions, or misinterpretations of data. Users are strongly advised to
+            independently verify all content before using it for humanitarian
+            decision-making. IFRC and its partners accept no liability for any actions
+            taken based on the information presented through this platform.</p>
+        </div>
+        <button type="button" class="disclaimer-chip" aria-describedby="disclaimer-text">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m1 15h-2v-6h2zm0-8h-2V7h2z"></path>
+          </svg>Disclaimer
+        </button>
+      </div>
     </div>
     <div id="event-banner" class="hidden"></div>
     <!-- The legend is written by hand here because it never changes. Keep

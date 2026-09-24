@@ -604,8 +604,61 @@ input.switch:checked::after { left: 18px; background: var(--ifrc-white); }
 .trigger-bar { height: 6px; border-radius: 3px; background: rgba(0,0,0,.08); overflow: hidden; }
 .trigger-bar > div { height: 100%; border-radius: 3px; background: var(--out); }
 
+/* ---------- the disclaimer chip in the map's bottom-left corner --------
+   A small red pill over the map that opens a paragraph when it is hovered,
+   focused or tapped. The wording is in index.html, not here and not in
+   app.js.
+
+   Two things in here are deliberate and easy to undo by accident:
+
+     * The gap between the panel and the chip is the panel's own transparent
+       padding-bottom, NOT a margin. A margin would leave a dead strip that
+       the pointer crosses on its way up, closing the panel before it could
+       be read.
+
+     * The whole thing is one hover target, #map-disclaimer, which is exactly
+       the size of the chip until the panel opens; the panel is absolutely
+       placed out of the flow, so a closed disclaimer never covers the map
+       beyond its own pill. */
+#map-disclaimer {
+  position: absolute; bottom: 14px; left: 14px;
+  /* Above the legend (4) and the pane labels and event banner (5). */
+  z-index: 6;
+}
+.disclaimer-chip {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--accent); color: var(--ifrc-white);
+  border: none; border-radius: 14px; padding: 5px 12px 5px 9px;
+  font-family: "Open Sans", Arial, sans-serif; font-size: 11.5px; font-weight: 600;
+  letter-spacing: .2px; cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,.28);
+}
+.disclaimer-chip svg { width: 15px; height: 15px; fill: currentColor; flex-shrink: 0; }
+.disclaimer-panel {
+  position: absolute; bottom: 100%; left: 0;
+  /* A flat width, deliberately not a vw one: a media query and a vw unit are
+     both measured against the REAL viewport, and this page is laid out at
+     1/--ui-scale of it, so "46vw" here would be 57 layout-vw and would not
+     hold the panel where it was told to. 320px is narrower than the map at
+     every width the page is used at. */
+  width: 320px;
+  /* The bottom padding is the gap to the chip - see the note above. */
+  padding-bottom: 8px;
+  visibility: hidden; opacity: 0; transition: opacity .12s ease, visibility .12s;
+}
+.disclaimer-panel p {
+  margin: 0; background: var(--panel); color: var(--text);
+  border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px;
+  font-size: 11.5px; line-height: 1.5;
+  box-shadow: 0 6px 22px rgba(0,0,0,.22);
+}
+#map-disclaimer:hover .disclaimer-panel,
+#map-disclaimer:focus-within .disclaimer-panel { visibility: visible; opacity: 1; }
+
 /* ---------- the legend strip along the bottom of the map --------------- */
-/* It used to float over the map as a card, which covered whatever was beneath
+/* The chip above floats over this strip's top edge; if either moves, check
+   they still clear one another.
+   It used to float over the map as a card, which covered whatever was beneath
    it - and what is beneath the middle-bottom of this map is southern Sudan.
    It is now the map's bottom boundary: a full-width strip in the flow, so it
    hides nothing and the map ends where the legend begins. It wraps to as many
