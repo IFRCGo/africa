@@ -300,4 +300,4 @@ produced it.
 | Nothing at :2026 | `docker compose logs -f web` |
 | Password change had no effect | Editing `.env` alone never changes an existing password — see [Rotating the passwords](#rotating-the-passwords). Do **not** use `down -v`: it deletes the database |
 
-More in chapter 14 of the Word document.
+More in chapter 16 of the Word document.
