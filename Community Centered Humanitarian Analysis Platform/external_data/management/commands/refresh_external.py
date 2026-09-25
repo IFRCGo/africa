@@ -102,6 +102,25 @@ class Command(BaseCommand):
         calls = list(fetcher.plan(sync))
         self._progress(job, done=0, total=len(calls), note="starting")
 
+        # A PLAN THAT YIELDS NOTHING IS A THIRD OUTCOME, and it belongs here
+        # rather than at the bottom. An id-keyed source - DTM's snapshots -
+        # asks the catalogue what exists, finds every id already in known_ids,
+        # and has nothing to fetch. That is a successful, complete refresh.
+        #
+        # It still has to be RECORDED as an attempt. last_pulled_at is written
+        # by the loader, inside load(), and the loader never runs when there is
+        # nothing to load - so without this the row reads "never pulled" for
+        # ever and views.stale_rows() puts it back in every batch. SourceSync's
+        # own docstring states that last_pulled_at moves on every attempt; this
+        # is what keeps that true for a source with nothing to do.
+        if not calls:
+            if not options["dry_run"]:
+                SourceSync.objects.filter(pk=sync.pk).update(
+                    last_pulled_at=datetime.now(timezone.utc),
+                    params=fetcher.params_record())
+            self._uptodate = True
+            return 0
+
         for index, call in enumerate(calls, start=1):
             self.stdout.write(f"GET {call.url}")
             # One door. GET or POST, paged or not, is the Call's business -

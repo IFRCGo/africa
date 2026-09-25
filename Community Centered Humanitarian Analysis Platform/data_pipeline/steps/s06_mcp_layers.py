@@ -30,10 +30,21 @@ import json
 
 from django.db import connection
 
+from django.conf import settings
+
 from data_pipeline.common import DASHBOARD_DATA
-from external_data.models import (BorderCrossing, FoodSecurityArea,
-                                  HumanitarianServicePoint, MovementPattern,
-                                  SeasonalCalendar)
+# The day fighting broke out in Khartoum, as a string so it compares
+# directly against the ISO dates in these series.
+CRISIS_START = settings.CRISIS_START
+
+# Where the office's refugee figures are read from by hand. Named and linked
+# rather than called "the workbook": it is UNHCR's own operational portal for
+# this situation, so the figures on it are UNHCR's, not a local derivation.
+UNHCR_PORTAL = "https://data.unhcr.org/en/situations/sudansituation"
+
+from external_data.models import (BorderCrossing, DisplacementBreakdown,
+                                  FoodSecurityArea, HumanitarianServicePoint,
+                                  MovementPattern, SeasonalCalendar)
 
 
 def dump(name, obj):
@@ -116,6 +127,175 @@ def build_idp_localities():
     print(f"    {len(out)} localities ({unmatched} without a polygon)")
 
 
+# ============================================================ returnees
+def build_returnee_localities():
+    """Where returnees went inside Sudan, and where they came back from.
+
+    The layer this project could not draw before. flows.json's return corridors
+    all stop at the border; these bubbles are what is on the other side of it.
+
+    THE OUTSIDE-SUDAN SHARE IS SPLIT OUT HERE, not left in `from`. Every other
+    key is a state p-code the map can join to a centroid and draw a line from;
+    OUTSIDE_SDN has no centroid because it is not a place. A builder that
+    joined every key to `states` would silently drop the single number this
+    layer exists to show.
+    """
+    # ADMIN2 ONLY, and that is not a detail. DTM publishes a state total AND
+    # the localities that make it up, and both carry a p-code - so an
+    # unfiltered query draws Khartoum's 2.5m state bubble on top of the
+    # Khartoum localities it is the sum of, counting the same people twice on
+    # the same map. The admin1 rows stay in the database for anyone querying
+    # it; they are simply not this layer's to draw.
+    rows = (MovementPattern.objects
+            .filter(source="dtm", metric="returnees", admin_level=2)
+            .exclude(admin_pcode=None)
+            .order_by("admin_pcode", "date"))
+    if not rows.exists():
+        dump("returnee_localities.json", {
+            "source": "IOM DTM Sudan Displacement and Return Snapshots via HDX. "
+                      "No rows held yet - pull the dtm/displacement_snapshot row.",
+            "metric": "Returnee individuals (IOM DTM)",
+            "states": {}, "localities": []})
+        print("    0 localities (nothing pulled yet)")
+        return
+
+    with connection.cursor() as cur:
+        cur.execute("""
+            SELECT pcode, name, center_lon, center_lat
+              FROM admin_areas
+             WHERE iso3 = 'SDN' AND kind = 'admin' AND level IN (1, 2)
+        """)
+        places = {p: (n, lon, lat) for p, n, lon, lat in cur.fetchall()}
+
+    # Every matrix cell, keyed by the locality and date it belongs to.
+    # Households are kept apart: they are a second UNIT of the same
+    # observation, not an origin, and putting them in `from` would list
+    # "total" beside White Nile as though it were a place.
+    cells = collections.defaultdict(dict)
+    households = {}
+    for cell in (DisplacementBreakdown.objects
+                 .filter(source="dtm", metric="returnees")):
+        if cell.dimension == "households":
+            households[(cell.dest_pcode, cell.date)] = int(cell.value)
+        else:
+            cells[(cell.dest_pcode, cell.date)][cell.key] = int(cell.value)
+
+    localities, unmatched, states_used = [], 0, set()
+    by_place = collections.defaultdict(list)
+    for row in rows:
+        by_place[row.admin_pcode].append(row)
+
+    for pcode, series_rows in by_place.items():
+        place = places.get(pcode)
+        if not place:
+            unmatched += 1
+            continue
+        name, lon, lat = place
+        series = []
+        for row in sorted(series_rows, key=lambda r: r.date):
+            breakdown = cells.get((pcode, row.date), {})
+            origins = {k: v for k, v in breakdown.items() if k != "OUTSIDE_SDN"}
+            states_used.update(origins)
+            series.append({
+                "date": row.date.isoformat(),
+                "value": int(row.value),
+                "outside": breakdown.get("OUTSIDE_SDN", 0),
+                "households": households.get((pcode, row.date), 0),
+                "from": dict(sorted(origins.items(), key=lambda kv: -kv[1])),
+            })
+        if not series:
+            continue
+        localities.append({
+            "name": series_rows[-1].place_name or name, "pcode": pcode,
+            "state": places.get(pcode[:4], ("", 0, 0))[0],
+            "lon": round(lon, 4), "lat": round(lat, 4),
+            "peak": max(p["value"] for p in series),
+            "peak_outside": max(p["outside"] for p in series),
+            "series": series,
+        })
+    localities.sort(key=lambda x: -x["peak"])
+
+    # Only the states that actually appear as an origin, so the file carries no
+    # centroid nothing draws.
+    states = {p: {"name": places[p][0], "lon": round(places[p][1], 4),
+                  "lat": round(places[p][2], 4)}
+              for p in sorted(states_used) if p in places}
+
+    dump("returnee_localities.json", {
+        "source": "IOM DTM Sudan Displacement and Return Snapshots via HDX "
+                  "(admin2 Returnee Master Lists), held in movement_patterns and "
+                  "displacement_breakdown; placed on OCHA p-codes from the "
+                  "boundary library. Figures are preliminary and subject to "
+                  "revision by DTM. Citation: International Organization for "
+                  "Migration (IOM). DTM Sudan Displacement and Return Snapshot. "
+                  "IOM, Sudan.",
+        "metric": "Returnee individuals (IOM DTM)",
+        "states": states,
+        "localities": localities,
+    })
+    print(f"    {len(localities)} localities ({unmatched} without a centroid), "
+          f"{len(states)} origin states")
+
+
+# ============================================ UNHCR asylum-country context
+def build_unhcr_asylum():
+    """Sudanese refugees by country of asylum - the other end of the returns.
+
+    THIS IS CONTEXT, NOT ATTRIBUTION, and the distinction is the whole reason
+    the file exists. IOM DTM says how many people returned to each Sudanese
+    locality from outside the country and never says from where. UNHCR says how
+    many Sudanese are held in each country of asylum and never says where in
+    Sudan any of them went. Neither join exists, so this is published as a
+    national-level panel and never as a line to a locality.
+
+    It is also not a mirror image: over the window held, every asylum stock is
+    RISING while DTM records returns. Both are true - people are leaving and
+    coming back at once - and a panel that implied otherwise would be
+    editorialising over the data.
+    """
+    rows = (MovementPattern.objects
+            .filter(source="unhcr-odp", metric="refugees")
+            .exclude(place_name=None)
+            .order_by("place_name", "date"))
+
+    by_country = collections.defaultdict(list)
+    for r in rows:
+        by_country[r.place_name].append({"date": r.date.isoformat(),
+                                         "value": int(r.value)})
+
+    countries = []
+    for name, series in by_country.items():
+        # A single reading, or a series that never leaves zero, is a stub row
+        # UNHCR keeps for completeness (Somalia 2020, Tanzania 2019). Drawing
+        # it would put an empty country in a panel about where people went.
+        if len(series) < 2 or not any(p["value"] for p in series):
+            continue
+        countries.append({
+            "country": name,
+            "anchor": REF_ANCHORS.get(name),
+            "latest": series[-1]["value"],
+            "latest_date": series[-1]["date"],
+            "change": series[-1]["value"] - series[0]["value"],
+            "series": series,
+        })
+    countries.sort(key=lambda c: -c["latest"])
+
+    dump("unhcr_asylum.json", {
+        "source": "UNHCR Operational Data Portal via HDX (unhcr-situations), "
+                  "Sudanese refugees and asylum-seekers by country of asylum, "
+                  "held in movement_patterns under source 'unhcr-odp'. The two "
+                  "population types are collapsed, not summed: UNHCR publishes "
+                  "both labels for the same people on a reclassification date.",
+        "metric": "Sudanese refugees and asylum-seekers, by country of asylum",
+        "caveat": "Context for the returnee layer, not an attribution. DTM does "
+                  "not publish which country its cross-border returnees came "
+                  "from, and nothing here may be read as saying so.",
+        "countries": countries,
+    })
+    total = sum(c["latest"] for c in countries)
+    print(f"    {len(countries)} asylum countries, {total:,} people at latest")
+
+
 # ============================================================ refugees
 # Curated camps / transit centres (coords approximate, from UNHCR RRP reporting).
 # These stay in code: they are a handful of operational points with no API behind
@@ -155,36 +335,106 @@ def build_refugees():
     file, and whichever ran last decided what the dashboard showed. Now the table
     holds both and this function reads them together.
     """
+    # TWO QUANTITIES, TWO SERIES, AND THEY MUST NOT SHARE A LINE.
+    #
+    # This function used to merge every refugee source into one series per
+    # country, preferring the Excel reading wherever the dates collided. That
+    # was wrong, and Chad showed it plainly: the line ran 1,330,950 at
+    # 2025-07-01 (UNHCR's annual stock - EVERY Sudanese refugee in Chad) and
+    # then 919,187 at 2026-04-10 (the office workbook - arrivals SINCE
+    # 15 April 2023 only). A reader saw 411,763 people leave Chad. Nobody left.
+    # The definition changed mid-series.
+    #
+    #   series    what the bubble draws and animates. THE OFFICE WORKBOOK
+    #             LEADS: it is hand-maintained from UNHCR's Sudan situation
+    #             portal (data.unhcr.org/en/situations/sudansituation), it is
+    #             the freshest reading the office has, and it is the number
+    #             this operation works to. HDX fills the dates behind it.
+    #   current   UNHCR's ODP operational reading of the TOTAL caseload.
+    #   arrivals  the workbook on its own, so its series is readable apart.
+    #   pre_war   the caseload the country already held on 15 Apr 2023.
+    #
+    # EVERY POINT CARRIES THE SOURCE IT CAME FROM, and that is what stops the
+    # join lying. The workbook counts people who arrived SINCE 15 April 2023;
+    # UNHCR's annual stock counts EVERY Sudanese refugee in the country,
+    # pre-war caseload included. Chad's line therefore used to run 1,330,950
+    # at 2025-07-01 straight into 919,187 at 2026-04-10 - a 411,763 fall a
+    # reader took for people leaving. Nobody left. The popup now names the
+    # source and the basis of whichever point the timeline is sitting on, so
+    # a step in the line is explained where it is seen rather than guessed at.
     rows = (MovementPattern.objects
-            .filter(metric="refugees")
+            .filter(metric="refugees", source__in=["unhcr", "unhcr-odp", "excel"])
             .exclude(place_name=None)
             .order_by("place_name", "date"))
 
-    by_country = collections.defaultdict(dict)
+    annual = collections.defaultdict(dict)
+    current = {}
+    arrivals = collections.defaultdict(dict)
     sources = collections.defaultdict(set)
     for r in rows:
-        # A date reported by both sources keeps the Excel figure: it is the more
-        # recent reading of the same quantity.
         key = r.date.isoformat()
-        if key not in by_country[r.place_name] or r.source == "excel":
-            by_country[r.place_name][key] = int(r.value)
+        if r.source == "excel":
+            arrivals[r.place_name][key] = int(r.value)
+        elif r.source == "unhcr":
+            annual[r.place_name][key] = int(r.value)
+        elif r.source == "unhcr-odp":
+            # Only the latest is needed here; build_unhcr_asylum() publishes
+            # the whole ODP series for the asylum panel.
+            if r.place_name not in current or key > current[r.place_name]["date"]:
+                current[r.place_name] = {"date": key, "value": int(r.value)}
         sources[r.place_name].add(r.source)
 
     countries = []
-    for name, series in sorted(by_country.items()):
+    for name in sorted(set(annual) | set(arrivals) | set(current)):
+        # THE THREE BASES, IN THE ORDER THE TIMELINE MEETS THEM.
+        #
+        #   prewar  HDX's annual stock at a date BEFORE 15 Apr 2023 - the
+        #           caseload the country already held. What a reader sees when
+        #           the timeline is parked at its start.
+        #   hdx     HDX's annual stock during the war: all Sudanese refugees,
+        #           pre-war caseload included. Covers the years before the
+        #           portal series begins.
+        #   portal  UNHCR's Sudan situation portal, read by the office. Wins
+        #           any date it reports, being both the freshest reading and
+        #           the one this operation works to.
+        merged = {d: (v, "prewar" if d < CRISIS_START else "hdx")
+                  for d, v in annual[name].items()}
+        merged.update({d: (v, "portal") for d, v in arrivals[name].items()})
+        series = [{"date": d, "value": v, "basis": basis}
+                  for d, (v, basis) in sorted(merged.items())]
+        arrival_series = [{"date": d, "value": v}
+                          for d, v in sorted(arrivals[name].items())]
+
+        before = [p for p in series if p["basis"] == "prewar"]
         countries.append({
             "country": name,
             "anchor": REF_ANCHORS.get(name),
-            "series": [{"date": d, "value": v} for d, v in sorted(series.items())],
+            "series": series,
+            "current": current.get(name),
+            "arrivals": arrival_series,
+            "pre_war": before[-1] if before else None,
             "sources": sorted(sources[name]),
         })
     dump("refugee_camps.json", {
-        "source": "Country totals from movement_patterns: UNHCR annual stocks via HDX plus "
-                  "the biweekly Excel series. Camp markers curated from UNHCR RRP "
-                  "operational reporting (coordinates approximate).",
+        "source": "Country figures from movement_patterns. `series` is what the map "
+                  "draws, by priority: UNHCR's Sudan situation portal "
+                  "(data.unhcr.org/en/situations/sudansituation, arrivals since "
+                  "15 Apr 2023, read by the office) wherever it reports, "
+                  "and UNHCR's annual stock via HDX (all Sudanese refugees, pre-2023 "
+                  "caseload included) for the dates behind it - every point carries "
+                  "its `basis` - prewar, hdx or portal - so the popup can say which "
+                  "footing it is on. `current` is "
+                  "UNHCR's ODP operational total, fresher still and a different count "
+                  "again: it and the annual series disagree by up to 380,209 (South "
+                  "Sudan, Jun/Jul 2025), so they are never drawn on one line. "
+                  "`arrivals` is the workbook alone; `pre_war` the last annual total "
+                  "before the war. Camp markers curated from UNHCR RRP operational "
+                  "reporting (coordinates approximate).",
+        "crisis_start": CRISIS_START,
+        "portal_url": UNHCR_PORTAL,
         "countries": countries, "camps": REF_CAMPS,
     })
-    n_points = sum(len(c["series"]) for c in countries)
+    n_points = sum(len(c["series"]) + len(c["arrivals"]) for c in countries)
     print(f"    {len(countries)} host countries, {n_points} figures")
 
 
@@ -537,6 +787,8 @@ def run():
     print("== external layers, from the database")
     build_crossings()
     build_idp_localities()
+    build_returnee_localities()
+    build_unhcr_asylum()
     build_refugees()
     build_foodsec()
     build_seasonal()

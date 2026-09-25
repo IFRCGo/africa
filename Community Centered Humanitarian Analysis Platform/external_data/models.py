@@ -325,6 +325,66 @@ class MovementPattern(models.Model):
         return f"{self.date} {self.iso3} {self.metric} {self.value:,}"
 
 
+class DisplacementBreakdown(models.Model):
+    """One cell of an IOM-DTM matrix: of the people counted at this place on
+    this date, how many came from there.
+
+    SEPARATE FROM movement_patterns BECAUSE IT IS A DIFFERENT SHAPE, not a
+    different source. A MovementPattern row answers "how many"; this answers
+    "of whom, from where". Folding the origin into population_group would make
+    every total a special case of a breakdown, and would break the
+    one-value-per-place-per-date assumption s06's builders are written on.
+
+    HOUSEHOLDS LIVE HERE TOO, as dimension='households'. They are a second unit
+    of the same observation, and uniq_movement_observation does not include
+    `unit` - so an individuals row and a households row for one locality and
+    date would collide there and the second would silently overwrite the first.
+    Adding `unit` to that constraint was the alternative; it is shared with
+    three other loaders and its comment records a bug that took 234 rows to 6.
+    """
+
+    date = models.DateField(db_index=True)
+    iso3 = models.CharField(max_length=3, db_index=True)
+    metric = models.TextField(help_text="idps / returnees - matches movement_patterns.metric")
+    dest_pcode = models.TextField(help_text="Where the people are now. Joins admin_areas.pcode.")
+    dest_level = models.IntegerField()
+
+    dimension = models.TextField(help_text=(
+        "origin - the state an IDP was displaced FROM; "
+        "displaced_in - the state a returnee was displaced IN; "
+        "nationality - SUDANESE / NON_SUDANESE; "
+        "households - the household count for the same total"))
+
+    # A state p-code, or a sentinel. NEVER NULL - which is why this constraint
+    # needs no nulls_distinct=False, unlike uniq_movement_observation.
+    key = models.TextField(help_text=(
+        "A state p-code, or: OUTSIDE_SDN ('Returned from outside Sudan'), "
+        "SUDANESE / NON_SUDANESE, or 'total' for the households row."))
+
+    value = models.BigIntegerField()
+    source = models.TextField(default="dtm")
+    source_dataset = models.TextField(null=True, blank=True)
+
+    class Meta:
+        db_table = "displacement_breakdown"
+        ordering = ["iso3", "metric", "date", "dest_pcode", "dimension", "key"]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["source", "metric", "iso3", "dest_pcode", "date",
+                        "dimension", "key"],
+                name="uniq_displacement_breakdown",
+            ),
+        ]
+        indexes = [
+            models.Index(fields=["metric", "dimension", "date"],
+                         name="idx_breakdown_series"),
+            models.Index(fields=["dest_pcode", "date"], name="idx_breakdown_place"),
+        ]
+
+    def __str__(self):
+        return f"{self.date} {self.dest_pcode} {self.dimension}={self.key} {self.value:,}"
+
+
 class BorderCrossing(models.Model):
     """The crossings people actually move through, tagged to movement corridors.
 

@@ -105,6 +105,7 @@ const WHITE = paletteColor("--ifrc-white", "#ffffff");
 const COLOR_IDP_LOCALITY = paletteColor("--idp-locality", "#ffb25b");
 const COLOR_IDP_STATE = paletteColor("--idp-state", "#958dbe");
 const COLOR_IN_HOST = paletteColor("--refugees", "#8dcde2");
+const COLOR_RETURNEE = paletteColor("--returnee", "#00ab84");
 // Humanitarian service points. Deliberately not one of the pillar colours:
 // a service is a response, not a finding about a place.
 const COLOR_HSP = paletteColor("--hsp", "#6b3a90");
@@ -183,7 +184,8 @@ const state = {
   trend: { series: [], vmax: 1 },
   // Which layers are switched on. These match the checkboxes in index.html.
   showFlows: true, showReturns: true, showEvents: true,
-  showIDP: false, showIDPStates: false, showRefugees: false,
+  showIDP: false, showIDPStates: false, showReturnees: false,
+  showRefugees: false,
   showRefugeeCamps: false, showFoodsec: false,
   showCrossings: true, showAOI: false, showHSP: false,
 };
@@ -594,7 +596,8 @@ function safeSet(key, value) {
    Promise.all downloads them all at the same time rather than one by one. */
 async function loadData() {
   const names = ["meta", "flows", "headline", "events", "tags", "documents",
-                 "crossings", "idp_localities", "idp_states", "refugee_camps", "seasonal"];
+                 "crossings", "idp_localities", "idp_states", "refugee_camps",
+                 "seasonal", "returnee_localities", "unhcr_asylum"];
   const res = await Promise.all(names.map((n) => fetch(`data/${n}.json`).then((r) => r.json())));
   names.forEach((n, i) => (state.data[n] = res[i]));
   // boundary context layers (country outlines, state lines, IFRC Areas of Operation + IPC)
@@ -1161,6 +1164,62 @@ function addLayers(m) {
     },
   });
 
+  // ---- return lines: origin state -> locality of return --------------
+  // BELOW the bubbles deliberately, so a line never covers the thing it
+  // points at. Filled by the returnee click handler, emptied on a miss.
+  m.addSource("return-lines", { type: "geojson", data: empty() });
+  /* EVERY LINE HERE GOES STATE -> LOCALITY, because those are the only
+     origins DTM publishes. The cross-border share has no line at all; see the
+     click handler for why.
+
+     Do not be tempted to distinguish a line by `line-dasharray` driven off a
+     feature property. MapLibre 4.7.1 declares that property "cross-faded"
+     with expression.parameters ["zoom"] and no "feature", so a data-driven
+     value is REJECTED - and addLayer() does not throw. It fires an error
+     event and returns having added nothing, the source still accepts data,
+     and the layer simply never draws. A dashed-vs-solid split shipped that
+     way once and is what dashboard/tests.py now guards. Two layers with a
+     static dasharray each, split by `filter`, is the supported way. */
+  m.addLayer({
+    id: "return-line-layer", type: "line", source: "return-lines",
+    paint: {
+      "line-color": COLOR_RETURNEE,
+      "line-width": ["get", "width"],
+      "line-opacity": 0.7,
+    },
+  });
+
+  /* ---- returnee localities (IOM-DTM snapshots, admin2) ----------------
+     ONE SOURCE, TWO CIRCLES, AND THAT IS THE WHOLE BREAKDOWN. The outer
+     circle is everyone who returned to this locality; the inner one is the
+     share of them who came from OUTSIDE Sudan. Both are areas over the same
+     centre, so the ring between them reads as "returned from within Sudan"
+     without needing a second toggle or a second legend entry.
+
+     Both radii are sqrt(value)/45, so the two areas are proportional to their
+     two counts and to each other - a locality whose returns are mostly
+     cross-border shows a nearly solid inner disc, one whose returns are
+     internal shows a thin core in a wide ring. */
+  m.addSource("returnees", { type: "geojson", data: empty() });
+  m.addLayer({
+    id: "returnee-circles", type: "circle", source: "returnees",
+    paint: {
+      "circle-radius": ["get", "radius"],
+      "circle-color": COLOR_RETURNEE, "circle-opacity": 0.28,
+      "circle-stroke-color": COLOR_RETURNEE, "circle-stroke-width": 1,
+    },
+  });
+  m.addLayer({
+    id: "returnee-abroad-core", type: "circle", source: "returnees",
+    // A locality with no cross-border returns has no core to draw.
+    filter: [">", ["get", "radiusAbroad"], 0],
+    paint: {
+      "circle-radius": ["get", "radiusAbroad"],
+      "circle-color": COLOR_RETURNEE, "circle-opacity": 0.75,
+      "circle-stroke-width": 0,
+    },
+  });
+
   // ---- refugees: host-country totals + curated camp markers ----
   m.addSource("refcountry", { type: "geojson", data: empty() });
   m.addLayer({
@@ -1291,8 +1350,113 @@ function addLayers(m) {
     <b style="color:${COLOR_IDP_LOCALITY}">${p.valFull}</b> IDPs · ${p.dateLabel}<br><span style="color:${COLOR_MUTED}">IOM-DTM via HDX</span>`, "IDPs — locality");
   popup(m, "idp-state-circles", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(Sudan — state level)</span><br>
     <b style="color:${COLOR_IDP_STATE}">${p.valFull}</b> IDPs · ${p.dateLabel}<br><span style="color:${COLOR_MUTED}">IOM-DTM / UNHCR (Sudan IDPs.xlsx)</span>`, "IDPs — state");
-  popup(m, "ref-country", (p) => `<b style="color:${COLOR_IN_HOST}">${p.country}</b><br>
-    <b>${p.valFull}</b> Sudanese refugees · ${p.dateLabel}<br><span style="color:${COLOR_MUTED}">UNHCR${p.note ? " · " + p.note : ""}</span>`, "Refugees — country total");
+
+  popup(m, "returnee-circles", (p) => {
+    /* Sectioned on purpose: the two halves of this number answer different
+       questions and come with different confidence. "From outside Sudan" is
+       a single published figure DTM does not break down by country; "from
+       within Sudan" is a matrix it publishes state by state. Running them
+       together as one list would imply the first is as detailed as the second.
+
+       Its own try/catch: a section that throws kills the whole bubble, and
+       this is the only section on the map that parses JSON out of a property
+       - MapLibre stringifies every feature property on the way in. */
+    const rule = `border-top:1px solid ${COLOR_MUTED}33;margin:5px 0;`;
+    const head = (text) => `<div style="${rule}"></div>
+      <div style="font-size:10px;letter-spacing:.06em;color:${COLOR_MUTED};
+                  text-transform:uppercase;margin-bottom:2px">${text}</div>`;
+
+    let within = "";
+    try {
+      const from = JSON.parse(p.from || "{}");
+      const states = (state.data.returnee_localities || {}).states || {};
+      const rows = Object.entries(from)
+        .map(([code, n]) => `<div style="display:flex;justify-content:space-between;gap:12px">
+             <span>${(states[code] || {}).name || code}</span><b>${n.toLocaleString()}</b></div>`);
+      within = rows.length
+        ? rows.join("")
+        : `<span style="color:${COLOR_MUTED}">no state breakdown published</span>`;
+    } catch (e) {
+      within = `<span style="color:${COLOR_MUTED}">breakdown unavailable</span>`;
+    }
+
+    /* The outside section is shown even when zero: a locality whose returnees
+       are entirely internal is a finding, not a blank. */
+    return `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.state})</span><br>
+      <span style="color:${COLOR_MUTED}">${p.dateLabel}</span>
+      <div style="${rule}"></div>
+      <div style="font-size:15px"><b style="color:${COLOR_RETURNEE}">${p.valFull}</b> returnees</div>
+
+      ${head(`From outside Sudan · ${p.outsidePct}%`)}
+      <div style="display:flex;justify-content:space-between;gap:12px">
+        <span>All countries</span><b style="color:${COLOR_RETURNEE}">${p.outsideFull}</b></div>
+      <div style="color:${COLOR_MUTED};font-size:11px">DTM does not disaggregate this by country</div>
+      ${unhcrContext()}
+
+      ${head(`From within Sudan · ${100 - p.outsidePct}%`)}
+      <div style="display:flex;justify-content:space-between;gap:12px">
+        <span>All states</span><b style="color:${COLOR_RETURNEE}">${p.withinFull}</b></div>
+      ${within}
+
+      <div style="${rule}"></div>
+      <span style="color:${COLOR_MUTED};font-size:11px">
+        ${p.households ? p.households + " households · " : ""}IOM-DTM snapshot via HDX · preliminary</span>`;
+  }, "Returnees — locality");
+  /* THREE READINGS IN THE ORDER THE TIMELINE MEETS THEM, AND NEVER AN ADDITION.
+     A reader who sees them stacked will add them, so this must not imply the
+     sum is a total. Usually it is not: Egypt's portal figure (1,500,000, a
+     government estimate of Sudanese present) is forty times its HDX registered
+     total, and Libya's portal figure exceeds its HDX one too. Each line
+     carries its own date and counter, and the footnote names the
+     contradiction where it exists.
+
+     The headline is whichever basis the timeline is sitting on, so the bubble
+     and the words under it can never disagree. */
+  popup(m, "ref-country", (p) => {
+    const rule = `border-top:1px solid ${COLOR_MUTED}33;margin:5px 0;`;
+    const portalLink = `<a href="${(state.data.refugee_camps || {}).portal_url
+      || "https://data.unhcr.org/en/situations/sudansituation"}"
+      target="_blank" rel="noopener" style="color:${COLOR_IN_HOST}">
+      UNHCR Sudan Situation portal</a>`;
+    const line = (label, value, when, who, lead) => !value ? "" : `
+      <div style="${rule}"></div>
+      <div style="display:flex;justify-content:space-between;gap:14px">
+        <span>${label}</span>
+        <b style="color:${COLOR_IN_HOST};${lead ? "font-size:15px" : ""}">${value}</b></div>
+      <div style="color:${COLOR_MUTED};font-size:11px">${who}${when ? " · " + when : ""}</div>`;
+
+    const SHOWING = `<span style="color:${COLOR_MUTED}"> — shown</span>`;
+    const mismatch = p.arrRaw && p.totalRaw && Number(p.arrRaw) > Number(p.totalRaw);
+
+    return `<b style="color:${COLOR_IN_HOST}">${p.country}</b>
+      <span style="color:${COLOR_MUTED}">· ${p.dateLabel}</span>
+
+      ${line("Arrived since 15 Apr 2023" + (p.basis === "portal" ? SHOWING : ""),
+             p.basis === "portal" ? p.valFull : p.arrFull,
+             p.basis === "portal" ? p.dateLabel : p.arrDate,
+             portalLink + ", read by the office",
+             p.basis === "portal")}
+
+      ${line("All Sudanese refugees" + (p.basis === "hdx" ? SHOWING : ""),
+             p.basis === "hdx" ? p.valFull : p.curFull,
+             p.basis === "hdx" ? p.dateLabel : p.curDate,
+             p.basis === "hdx"
+               ? "UNHCR annual stock via HDX — includes the pre-2023 caseload"
+               : "UNHCR operational data via HDX — a different count from the annual",
+             p.basis === "hdx")}
+
+      ${line("Present before 15 Apr 2023" + (p.basis === "prewar" ? SHOWING : ""),
+             p.basis === "prewar" ? p.valFull : p.preFull,
+             p.basis === "prewar" ? p.dateLabel : p.preDate,
+             "UNHCR via HDX — last count before the war",
+             p.basis === "prewar")}
+
+      <div style="${rule}"></div>
+      <span style="color:${COLOR_MUTED};font-size:11px">
+        ${mismatch
+          ? "Different counts on different bases, and they do not reconcile: the portal figure here exceeds the registered total on HDX."
+          : "Three separate counts, not parts of one — they do not sum."}</span>`;
+  }, "Refugees — country");
   popup(m, "ref-camps", (p) => `<b style="color:${COLOR_IN_HOST}">${p.name}</b><br>${p.type} · ${p.country}<br>
     Opened ${p.opened}<br><span style="color:${COLOR_MUTED}">Location curated (UNHCR RRP); magnitude shown by country total</span>`, "Refugee site");
   /* The highlighted area. Returns null when nothing was reported here, so
@@ -1389,6 +1553,63 @@ function addLayers(m) {
      s06_mcp_layers.build_aoi); it is simply not this layer's to tell. */
   popup(m, "aoi-fill", (p) => `<b>${p.name}</b> <span style="color:${COLOR_MUTED}">(${p.country || ""})</span><br>
     <b style="color:${COLOR_EVENT}">IFRC Area of Operation</b>`, "IFRC area of operation");
+
+  /* Clicking a returnee bubble draws where those people came back FROM: one
+     line per origin state, from that state's centroid, width by its share.
+
+     Registered BEFORE bindPopups() for the same reason the insight-bubbles
+     handler is: MapLibre fires same-event listeners in registration order, so
+     bindPopups()'s generic click handler would otherwise run first and this
+     one would be setting lines that nothing had cleared. Ordering it here
+     keeps "clear on a miss" the last word. */
+  m.on("click", (e) => {
+    /* SCOPED TO THE MAP THAT WAS CLICKED. setSource() writes to every live map
+       unless renderTarget names one, and renderTarget is null during a click -
+       so without this, clicking a bubble on the Sudan half of a split view
+       draws its origin lines across the Chad half too, which renderReturnees()
+       has deliberately left empty. Same failure the render globals comment
+       upstream describes; the scope is always put back. */
+    const draw = (fc) => {
+      const previous = renderTarget;
+      renderTarget = m;
+      try { setSource("return-lines", fc); } finally { renderTarget = previous; }
+    };
+    const hit = hitTest(m, e.point, "returnee-circles");
+    if (!hit.length) { draw(empty()); return; }
+    const p = hit[0].properties;
+    const [lon, lat] = hit[0].geometry.coordinates;
+    const states = (state.data.returnee_localities || {}).states || {};
+    let from = {};
+    try { from = JSON.parse(p.from || "{}"); } catch (err) { from = {}; }
+
+    const abroad = Number(p.outsideRaw) || 0;
+    const total = Object.values(from).reduce((a, b) => a + b, 0) + abroad || 1;
+    const feats = [];
+    for (const [code, n] of Object.entries(from)) {
+      const origin = states[code];
+      if (!origin) continue;
+      feats.push({
+        type: "Feature",
+        geometry: { type: "LineString",
+                    coordinates: [[origin.lon, origin.lat], [lon, lat]] },
+        properties: { width: Math.max(1, Math.min(9, (n / total) * 14)),
+                      abroad: false },
+      });
+    }
+    /* THE OUTSIDE-SUDAN SHARE GETS NO LINE, and that is the point.
+       DTM publishes one undifferentiated column - "Returned from outside
+       Sudan" - and never says which country those people came from. An
+       earlier version drew it as a dashed line from a fixed anchor east of
+       Sudan; it was meant to read as "from elsewhere" and instead read as a
+       direction, which is a claim the source does not make. Splitting it
+       across the four return corridors would be worse: a number DTM never
+       published, drawn as though it had.
+
+       That share is carried by the bubble's inner disc and by its own popup
+       section instead, and the UNHCR panel gives the national-level context
+       for where people have been returning FROM. */
+    draw({ type: "FeatureCollection", features: feats });
+  });
 
   // Every layer has now said what it would show. From here the registry is
   // closed, and one handler per map serves all of them from a single bubble.
@@ -2766,6 +2987,128 @@ function renderIDPStates() {
   setSource("idp-states", { type: "FeatureCollection", features: feats });
 }
 
+/* Where returnees went inside Sudan. One bubble per locality of return, and a
+   second sizing that counts only the people who came back from ABROAD - which
+   is the question flows.json could never answer, because its return corridors
+   all stop at the border.
+
+   Every locality here is inside Sudan, so the layer empties when the country
+   filter excludes Sudan, exactly as renderIDP() does. */
+function renderReturnees() {
+  /* THE LINES ARE CLEARED ON EVERY RENDER, including the drawing path. They
+     describe one locality's breakdown AT ONE DATE, and this function runs on
+     every timeline move - so lines left standing would keep July's shares
+     while the bubble beside them shrank to November's, or point at a locality
+     whose bubble has vanished because the slider went back before its first
+     reading. A click redraws them; anything else retires them. */
+  setSource("return-lines", empty());
+
+  if (!state.showReturnees || !state.data.returnee_localities
+      || !countryOn(SUDAN_ONLY)) {
+    setSource("returnees", empty());
+    return;
+  }
+  const radius = (v) => Math.max(3, Math.min(38, Math.sqrt(v) / 45));
+  const t = state.current, feats = [];
+  for (const L of state.data.returnee_localities.localities) {
+    const point = pointAt(L.series, t);
+    if (!point || !point.value) continue;
+    const within = point.value - point.outside;
+    feats.push({
+      type: "Feature", geometry: { type: "Point", coordinates: [L.lon, L.lat] },
+      properties: {
+        radius: radius(point.value),
+        // 0 when nobody came from abroad, which the core layer filters out.
+        radiusAbroad: point.outside ? radius(point.outside) : 0,
+        name: L.name, state: L.state, pcode: L.pcode,
+        valRaw: point.value, valFull: point.value.toLocaleString(),
+        outsideRaw: point.outside, outsideFull: point.outside.toLocaleString(),
+        withinRaw: within, withinFull: within.toLocaleString(),
+        outsidePct: point.value ? Math.round((point.outside / point.value) * 100) : 0,
+        households: point.households ? point.households.toLocaleString() : "",
+        dateLabel: fmtDate(Date.parse(point.date)),
+        // MapLibre stringifies feature properties, so this arrives in the
+        // popup builder as JSON text and must be parsed there.
+        from: JSON.stringify(point.from || {}),
+      },
+    });
+  }
+  setSource("returnees", { type: "FeatureCollection", features: feats });
+}
+
+/* The series entry in force at time t - the whole object, not just its value,
+   because this layer needs the breakdown that travels with it. seriesAt()
+   returns a number and cannot say which reading it came from. */
+function pointAt(series, t) {
+  let found = null;
+  for (const p of series) {
+    if (Date.parse(p.date) <= t) found = p; else break;
+  }
+  return found;
+}
+
+/* The reading to draw for a country at time t, BY BASIS AND THEN BY DATE.
+   Not simply the latest point: the three bases are a priority ladder, and a
+   stale reading on a lower rung must not displace a better one just for
+   carrying a later date.
+
+   Egypt is why. Its portal figure - 1,500,000, the government's estimate of
+   Sudanese present - is dated 2025-01-31, and UNHCR's annual registered stock
+   of 37,684 is dated 2025-07-01. Picking the latest point by date drew Egypt
+   as one of the smallest bubbles on the map while its popup reported 1.5m.
+
+   So: the best PORTAL reading on or before t, else the best HDX reading, else
+   the pre-war caseload. Playing the timeline from the start therefore shows
+   the pre-war figures, then HDX as it begins, then the portal once it does -
+   and never falls back to a lower rung once a higher one has data. */
+const BASIS_RANK = { portal: 3, hdx: 2, prewar: 1 };
+
+function readingAt(series, t) {
+  let best = null;
+  for (const p of series || []) {
+    if (Date.parse(p.date) > t) break;
+    const rank = BASIS_RANK[p.basis] || 0;
+    const bestRank = best ? (BASIS_RANK[best.basis] || 0) : -1;
+    // A later date wins only within the same rung.
+    if (rank > bestRank || (rank === bestRank && p.date >= best.date)) best = p;
+  }
+  return best;
+}
+
+/* The last reading on or before t, as the whole point. seriesAt() returns a
+   bare number and lastDateOnOrBefore() a bare date; this layer needs both at
+   once, for a series that may be empty. */
+function lastOnOrBefore(series, t) {
+  let found = null;
+  for (const p of series || []) {
+    if (Date.parse(p.date) <= t) found = p; else break;
+  }
+  return found;
+}
+
+/* Where the Sudanese who left are still held, from UNHCR's own count.
+
+   CONTEXT, NOT ATTRIBUTION. DTM never says which country its cross-border
+   returnees came from, so this cannot be a breakdown of the figure above it -
+   it is the population that figure is drawn from, at national level, and the
+   heading says so. Shown inside the outside-Sudan section because that is
+   where a reader asks the question; kept to the four largest so a hover bubble
+   stays a bubble. */
+function unhcrContext() {
+  const data = state.data.unhcr_asylum;
+  if (!data || !data.countries || !data.countries.length) return "";
+  const rows = data.countries.slice(0, 4).map((c) => {
+    const arrow = c.change > 0 ? "▲" : c.change < 0 ? "▼" : "·";
+    return `<div style="display:flex;justify-content:space-between;gap:12px">
+      <span>${c.country}</span>
+      <span><b>${c.latest.toLocaleString()}</b>
+        <span style="color:${COLOR_MUTED}">${arrow}</span></span></div>`;
+  }).join("");
+  return `<div style="margin-top:4px;color:${COLOR_MUTED};font-size:10px;
+                      letter-spacing:.04em">SUDANESE STILL IN ASYLUM (UNHCR)</div>
+    ${rows}`;
+}
+
 /* Two layers, switched independently: a big bubble per host country sized by
    its refugee total (the only level at which a time series exists), and small
    dots for individual camps, which appear on the map from the month they
@@ -2779,15 +3122,28 @@ function renderRefugees() {
     const cfeats = [];
     for (const c of state.data.refugee_camps.countries) {
       if (!countryOn(c.country)) continue;
-      const v = seriesAt(c.series, t);
-      if (!v) continue;
-      const dl = lastDateOnOrBefore(c.series, t);
+      const at = readingAt(c.series, t);
+      if (!at || !at.value) continue;
+      const v = at.value, dl = at.date;
+      /* The bubble is sized by the TOTAL series - every Sudanese refugee the
+         country holds - and the popup names the two readings separately. They
+         are different measurements, not parts of one: see the popup. */
+      const arr = lastOnOrBefore(c.arrivals, t);
       cfeats.push({
         type: "Feature", geometry: { type: "Point", coordinates: c.anchor },
         properties: {
           radius: Math.max(8, Math.min(58, Math.sqrt(v) / 22)),
           country: c.country, valFull: v.toLocaleString(),
           dateLabel: dl ? fmtDate(Date.parse(dl)) : "",
+          basis: at ? at.basis : "",
+          curFull: c.current ? c.current.value.toLocaleString() : "",
+          curDate: c.current ? fmtDate(Date.parse(c.current.date)) : "",
+          arrFull: arr ? arr.value.toLocaleString() : "",
+          arrDate: arr ? fmtDate(Date.parse(arr.date)) : "",
+          arrRaw: arr ? arr.value : 0,
+          preFull: c.pre_war ? c.pre_war.value.toLocaleString() : "",
+          preDate: c.pre_war ? fmtDate(Date.parse(c.pre_war.date)) : "",
+          totalRaw: v,
           note: c.note || "",
         },
       });
@@ -3117,6 +3473,7 @@ function drawMapLayers() {
   renderHSP();
   renderIDP();
   renderIDPStates();
+  renderReturnees();
   renderRefugees();
   renderEvents();
   renderThemes();
@@ -3614,6 +3971,7 @@ function initControls() {
   layer("#toggle-events", "showEvents");
   layer("#toggle-idp", "showIDP");
   layer("#toggle-idp-states", "showIDPStates");
+  layer("#toggle-returnees", "showReturnees");
   layer("#toggle-refugees", "showRefugees");
   layer("#toggle-refugee-camps", "showRefugeeCamps");
   layer("#toggle-crossings", "showCrossings");

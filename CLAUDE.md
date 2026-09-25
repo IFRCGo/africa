@@ -45,6 +45,38 @@ inside every batch while its own button works.
 `kobo` and `acaps` still have no button — they take different inputs
 (`load_hsps`, a CSV export path) and the list names the command for each.
 
+**`dtm` is the first source whose payload is not JSON.** The HDX resources
+behind `sudan-displacement-situation-countrywide-idps-iom-dtm` are `.xlsx`
+workbooks, so `Call.format="xlsx"` sends them through
+`external_data/fetchers/workbook.py`, which transcribes **any** workbook to
+`{"sheets": {name: [[cell, …], …]}}` and saves the raw bytes beside the JSON —
+a transcription is not the response, and the bytes are what settles an argument
+about whether the parser or the publisher was wrong. The transcriber knows
+nothing about DTM; every scrap of that lives in `loaders/dtm_snapshot.py`, which
+anchors on **HXL tags** because sheet names and header offsets drift between
+snapshots — and because snapshot 004's IDP sheets are titled "Return Master
+List". Its watermark is `known_ids` (resource ids), not a date: DTM publishes
+each snapshot as a new resource. A first pull that finds no snapshot resources
+raises rather than reporting "up to date".
+
+**DTM's IDP totals sit BESIDE the HAPI series, not over it.** `hdx/idps` runs
+from Aug 2023 and the snapshots from Nov 2025; they are the same programme
+counted on different dates, and `date` is in `uniq_movement_observation`, so
+sharing a `source` would add rows rather than merge them and inflate the IDP
+bubbles. The snapshots are `source='dtm'`, and `build_idp_localities()` still
+filters `source='hdx'`.
+
+**The matrix is its own table.** `displacement_breakdown` holds one row per
+cell — of the people at this place on this date, how many came from there —
+keyed `(dimension, key)` where `key` is a state p-code or `OUTSIDE_SDN`.
+Household counts ride here as `dimension='households'` because
+`uniq_movement_observation` has no `unit`, so an individuals row and a
+households row for one locality and date would overwrite each other.
+`build_returnee_localities()` draws **admin2 only** — DTM publishes a state
+total *and* the localities inside it, and drawing both puts Khartoum's 2.5m
+bubble on top of the localities it is the sum of. Design:
+`docs/superpowers/specs/2026-09-25-dtm-displacement-snapshots-design.md`.
+
 From a terminal, the same thing, and this is what the button runs:
 
     docker compose exec web python manage.py refresh_external <source> <dataset> --iso3 <ISO3>

@@ -92,6 +92,17 @@ class Loader:
         """
         return [self.model(**row) for row in rows]
 
+    def count_scope(self, key):
+        """Which rows row_count counts for this source.
+
+        Source and country by default, which is right for every per-country
+        pull. A source whose sync row has NO country - one file covering every
+        country of asylum, say - must drop iso3 or it counts rows whose iso3 is
+        null, of which there are none, and the admin page reads 0 beside a
+        table full of data.
+        """
+        return {k: v for k, v in key.items() if k in ("source", "iso3")}
+
     def after_insert(self, rows):
         """Optional: raw SQL that needs the rows to already exist.
 
@@ -157,8 +168,7 @@ def load(loader, payload, iso3, dry_run=False, context=None):
 
     # Only the loader that OWNS this sync row writes its count. See counts_rows.
     if loader.counts_rows:
-        scope = {k: v for k, v in key.items() if k in ("source", "iso3")}
-        sync.row_count = loader.model.objects.filter(**scope).count()
+        sync.row_count = loader.model.objects.filter(**loader.count_scope(key)).count()
     sync.save()
 
     return LoadResult(written=len(rows), high_water_date=sync.high_water_date, sync=sync)

@@ -19,12 +19,17 @@ class Base(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_superuser("t", "t@e.org", "pw")
         self.client.force_login(self.user)
-        # Every test below counts the rows it can see, so this fixture owns the
-        # whole table. Migration 0015 seeds eight montandon rows which have
-        # never been pulled and are therefore rightly stale; they are cleared
-        # here rather than counted around, so "2 sources not pulled today" goes
-        # on meaning the two this fixture created.
-        SourceSync.objects.filter(source="montandon").delete()
+        # EVERY TEST BELOW COUNTS THE ROWS IT CAN SEE, so this fixture owns the
+        # whole table and starts by emptying it.
+        #
+        # Seed migrations run against the test database too - 0015 adds eight
+        # montandon rows, 0018 a dtm row, 0019 a unhcr-odp row - and each has
+        # never been pulled, so each is rightly stale and joins every count and
+        # every batch here. Naming them one by one meant this fixture had to be
+        # edited every time a source was added, and the failure when it was not
+        # reads as an off-by-one in the banner rather than a new row in the
+        # table. Clearing the lot cannot go stale.
+        SourceSync.objects.all().delete()
         self.a = SourceSync.objects.create(source="fewsnet", dataset="seasonal_calendar",
                                            iso3="TCD", variant="")
         self.b = SourceSync.objects.create(source="fewsnet", dataset="seasonal_calendar",

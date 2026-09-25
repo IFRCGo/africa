@@ -126,6 +126,11 @@
   --idp-state:    var(--ifrc-purple-light);   /* IDP admin1 - the coarser aggregate */
   --refugees:     var(--ifrc-blue-medium);    /* host-country totals and camps */
   --hsp:          #7b4ea3;                    /* humanitarian service points */
+  /* Returnee localities. Green because --return (dark green) is already
+     "movement back into Sudan" for the corridor arrows; this is that same
+     movement at its DESTINATION, one step lighter so the two read as related
+     and still separate from each other. */
+  --returnee:     var(--ifrc-green-medium);   /* returnees by locality (IOM-DTM) */
   /* Rivers and lakes. Not a brand colour: it has to read as water, and it has
      to stay separate from --refugees, which is the other blue on this map. */
   --water:        #1f9ad6;

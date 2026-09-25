@@ -77,6 +77,13 @@ class Call:
     method: str = "GET"
     body: dict = None
     headers: dict = field(default_factory=dict)
+    # What comes back on the wire, and therefore how to turn it into a payload.
+    # 'json' is every Call written before the DTM snapshots. 'xlsx' downloads
+    # bytes and transcribes them; 'csv' does the same for a delimited table.
+    #
+    # It lives on the Call for the same reason `paginated` and `method` do:
+    # what an endpoint serves is the fetcher's knowledge, not the runner's.
+    format: str = "json"
 
 
 class Fetcher:
@@ -195,14 +202,37 @@ def fetch_all_pages_token(url, body, headers=None):
         next_body = link["body"]
 
 
+def fetch_csv(call):
+    """Download and transcribe a .csv Call. Thin: the work is in workbook.py."""
+    from external_data.fetchers import workbook
+    return workbook.fetch_csv(call)
+
+
+def fetch_workbook(call):
+    """Download and transcribe an .xlsx Call. Thin: the work is in workbook.py.
+
+    Imported inside the body rather than at module scope because workbook.py
+    imports FetchError and redact from THIS module, and a top-level import the
+    other way would be circular. Having the name on this module is also what
+    lets the runner's tests patch the workbook path in one place - the same
+    "one door" reasoning the `from ... import base` comment in the runner gives.
+    """
+    from external_data.fetchers import workbook
+    return workbook.fetch_workbook(call)
+
+
 def fetch(call):
-    """Make one Call: GET or POST, paged or not. The runner's one door.
+    """Make one Call: GET or POST, paged or not, JSON or workbook. The runner's one door.
 
     The runner's job is that calls happen ONE AT A TIME - two IPC countries in
-    parallel took that server down for a session. Which verb and whether to
-    page is the Call's business, and gathering it here is what keeps the
-    runner's loop a plain serial for-loop.
+    parallel took that server down for a session. Which verb, whether to page
+    and what format comes back is the Call's business, and gathering it here is
+    what keeps the runner's loop a plain serial for-loop.
     """
+    if call.format == "xlsx":
+        return fetch_workbook(call)
+    if call.format == "csv":
+        return fetch_csv(call)
     if call.method == "POST":
         return (fetch_all_pages_token(call.url, call.body, call.headers)
                 if call.paginated
