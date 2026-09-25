@@ -44,3 +44,24 @@ def _documents_in(queryset):
     afterwards would ask about rows that no longer match.
     """
     return list(queryset.values_list("document_id", flat=True))
+
+
+def unpublish(queryset):
+    """Send published insights back to the queue. Returns how many moved.
+
+    The way out of a publish that should not have happened: Part 3 is
+    view-only, so a typo in a published quote is repaired by putting the row
+    back to "pending", where Part 2 lists it and the normal edit screen
+    applies.
+
+    The reviewer stamp is CLEARED, not kept. Those two columns say who the
+    standing decision belongs to, and a pending row carrying yesterday's
+    reviewer reads as reviewed to every screen that shows them.
+
+    It does not bring the source file back: retention released it the moment
+    the document had no pending statement left, and nothing here undoes a
+    delete. The quote, its page text and the verification behind it are all
+    still in the database, which is what a re-review reads.
+    """
+    return queryset.filter(status="published").update(
+        status="pending", reviewed_by=None, reviewed_at=None)

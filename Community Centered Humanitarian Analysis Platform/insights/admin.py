@@ -25,7 +25,7 @@ from insights.intake import catalogue_file, catalogue_folder
 from insights.loader import load
 from insights.models import (
     DocumentsToInsights, ExtractionJob, Insight, InsightCoding, InsightFigure,
-    InsightFolder, InsightMovement, InsightUpload,
+    InsightFolder, InsightMovement, InsightUpload, PublishedInsight,
 )
 
 
@@ -59,7 +59,9 @@ class InsightAdmin(admin.ModelAdmin):
     form = InsightPlaceForm
     list_display = ("opening", "iso3", "place_name_as_written", "voice_type",
                     "themes", "status", "stated_on", "method")
-    list_filter = ("status", "voice_type", "channel", "method", "iso3", "match_method", "job")
+    # No "status" here: a choices filter lists every choice whatever the
+    # queryset holds, so "Published" would be an option returning nothing.
+    list_filter = ("voice_type", "channel", "method", "iso3", "match_method", "job")
     search_fields = ("quote", "quote_translated", "place_name_as_written")
     date_hierarchy = "stated_on"
     actions = ["publish_selected", "reject_selected"]
@@ -101,7 +103,14 @@ class InsightAdmin(admin.ModelAdmin):
         ] + super().get_urls()
 
     def get_queryset(self, request):
-        return super().get_queryset(request).select_related("document").prefetch_related("codings")
+        # Part 2 is a QUEUE, and a published row is a decision already taken.
+        # Left here they are most of the table within a week of going live, and
+        # the rows still waiting for a decision are buried under them. Nothing
+        # is hidden: every published statement is listed, whole, on Part 3 -
+        # see PublishedInsightAdmin at the foot of this file.
+        return (super().get_queryset(request)
+                .select_related("document").prefetch_related("codings")
+                .exclude(status="published"))
 
     @admin.display(description="Resolved to")
     def resolved_to(self, obj):
@@ -163,6 +172,69 @@ class InsightAdmin(admin.ModelAdmin):
             request,
             f"{updated} rejected. Add a reason on each one - a rejected extraction is "
             f"evidence about the model, not rubbish.",
+            messages.WARNING,
+        )
+
+
+@admin.register(PublishedInsight)
+class PublishedInsightAdmin(InsightAdmin):
+    """Part 3: everything ever published, read-only.
+
+    The same screen as Part 2 - same fieldsets, same inlines, quote first -
+    because a reviewer auditing a published statement wants to see exactly
+    what the reviewer who published it saw. What it does not have is a save
+    button: a published quote has been matched against the page text it was
+    read from (insights/verify.py), and an edit here would invalidate that
+    check with nothing left on the row to say so.
+
+    The way back is `unpublish_selected`, which returns a row to "pending"
+    where Part 2 lists it and the ordinary edit screen applies. That is one
+    visible status change rather than a silent rewrite of a verified quote.
+    """
+
+    actions = ["unpublish_selected"]
+    # "status" would be a filter with one value on it.
+    list_filter = ("voice_type", "channel", "method", "iso3", "match_method", "job")
+
+    def get_queryset(self, request):
+        # NOT super(): InsightAdmin's excludes exactly the rows this screen is
+        # for. This is the same table, sliced the other way.
+        return (admin.ModelAdmin.get_queryset(self, request)
+                .select_related("document").prefetch_related("codings")
+                .filter(status="published"))
+
+    def get_urls(self):
+        """The admin's own URLs, without InsightAdmin's place-options route.
+
+        That view is registered once, by Part 2, under the name every picker
+        reverses. Inheriting get_urls() would register a second URL under the
+        same name - and reverse() answers with the last one registered, so the
+        dropdowns on the EDITABLE screen would start calling through a proxy
+        whose admin exists to be read-only.
+        """
+        return admin.ModelAdmin.get_urls(self)
+
+    def has_add_permission(self, request):
+        # Nothing is published by typing it here; it is published by reviewing
+        # it on Part 2.
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        # False with view permission left intact is what renders the change
+        # form read-only, inlines included, instead of hiding it.
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+    @admin.action(description="Un-publish (send back to Part 2 for review)")
+    def unpublish_selected(self, request, queryset):
+        moved = review.unpublish(queryset)
+        self.message_user(
+            request,
+            f"{moved} sent back to pending. They are on Part 2 now, editable, "
+            f"and out of the insights API at once - the hazard layer built by "
+            f"the pipeline keeps them until the dashboard is rebuilt.",
             messages.WARNING,
         )
 

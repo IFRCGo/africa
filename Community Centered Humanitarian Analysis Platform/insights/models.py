@@ -285,7 +285,9 @@ class Insight(models.Model):
         ordering = ["-stated_on", "id"]
         # How this table is named on the admin index. "Part 2" because the
         # wizard is Part 1 and the two are read in that order; the admin sorts
-        # the index by name, so the numbers do the ordering.
+        # the index by name, so the numbers do the ordering. Part 3 is the
+        # PublishedInsight proxy at the foot of this file - the same rows,
+        # listed where a decision is no longer wanted.
         verbose_name_plural = "Part 2 — Insights"
         constraints = [
             # nulls_distinct=False because a manual insight has a null document and
@@ -456,3 +458,23 @@ class DocumentsToInsights(ExtractionJob):
         proxy = True
         verbose_name = "Documents → insights"
         verbose_name_plural = "Part 1 — Documents → insights"
+
+
+class PublishedInsight(Insight):
+    """The archive, on the index beside the two screens that do the work.
+
+    Same table, same rows - a proxy only so the admin can list published
+    statements somewhere other than Part 2. Part 2 is a queue: a reviewer opens
+    it to decide something, and a published row there is a decision already
+    made, burying the ones that are not. The split is presentational, and
+    nothing outside the admin should filter on this class rather than on
+    `Insight.status`.
+
+    "Part 3" because the admin index sorts by name - see the note on
+    Insight.Meta.
+    """
+
+    class Meta:
+        proxy = True
+        verbose_name = "Published insight"
+        verbose_name_plural = "Part 3 — Published insights"

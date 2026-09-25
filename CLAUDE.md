@@ -106,7 +106,17 @@ The route in for a person is **Admin → Community insights → Part 1 — Docum
 insights**: pick files or a folder from a native window on your own machine,
 **read them** (step 2, below), extract (watchable, and it survives the tab
 closing), then review and publish. Part 2 is the statement table, for typing one
-in by hand and for auditing anything ever published.
+in by hand and for deciding the ones still pending.
+
+**Part 2 lists everything except published; Part 3 lists nothing else.** Parts 1
+and 2 are for actions, so a decision already taken leaves the queue —
+`InsightAdmin.get_queryset()` excludes `published`, and the `PublishedInsight`
+proxy (`Part 3 — Published insights`) is where they are read, whole and
+view-only. Read-only because the quote on a published row was matched against
+the page text it came from and an edit would invalidate that check silently; the
+way back is the **Un-publish** action, which returns a row to `pending` and
+clears the reviewer stamp so Part 2 picks it up. It does not restore the source
+file — retention released that at publication, and nothing undoes a delete.
 
 **Documents are read with Docling before the model sees them.** Step 2, "Read
 these documents", converts each PDF or Word file to per-page markdown — reading
