@@ -2,6 +2,172 @@
   "type": "FeatureCollection",
   "features": [
     {
+      "id": "pdc-hazard-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501"
+        ],
+        "monty:country_codes": [
+          "SOM",
+          "NGA",
+          "TCD",
+          "CAF",
+          "CMR",
+          "SDN",
+          "COD",
+          "UGA",
+          "NER",
+          "KEN",
+          "SSD",
+          "DJI",
+          "ERI",
+          "ETH"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WARNING",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501"
+        ],
+        "monty:country_codes": [
+          "NER",
+          "SSD",
+          "CMR",
+          "CAF",
+          "KEN",
+          "ETH",
+          "SDN",
+          "COD",
+          "SOM",
+          "ERI",
+          "TCD",
+          "NGA",
+          "DJI",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WARNING",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "pdc-hazard-ba96d8a8-224a-413b-a559-8ee9a2b1fed9-414176-1775040401179",
       "bbox": [
         23.9459466,

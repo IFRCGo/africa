@@ -2,6 +2,296 @@
   "type": "FeatureCollection",
   "features": [
     {
+      "id": "pdc-event-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "SOM",
+          "NGA",
+          "TCD",
+          "CAF",
+          "CMR",
+          "SDN",
+          "COD",
+          "UGA",
+          "NER",
+          "KEN",
+          "SSD",
+          "DJI",
+          "ERI",
+          "ETH"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "NER",
+          "SSD",
+          "CMR",
+          "CAF",
+          "KEN",
+          "ETH",
+          "SDN",
+          "COD",
+          "SOM",
+          "ERI",
+          "TCD",
+          "NGA",
+          "DJI",
+          "UGA"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-event-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-events",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ]
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-events/items/pdc-event-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "pdc-event-8e35eb70-fb7b-459f-92d5-ed90b3c17e13-533964-1789023979216",
       "bbox": [
         38.82784108982414,

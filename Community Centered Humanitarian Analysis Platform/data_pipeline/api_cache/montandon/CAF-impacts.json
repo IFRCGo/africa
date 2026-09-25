@@ -2,6 +2,2742 @@
   "type": "FeatureCollection",
   "features": [
     {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 54900.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total65_Plus-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1147.4099999999999,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total65_Plus-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total60_64-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 834.48,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total60_64-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total5_9-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 8740.08,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total5_9-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total55_59-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1032.1200000000001,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total55_59-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total50_54-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1169.37,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total50_54-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total45_49-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1169.37,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total45_49-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total40_44-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1476.81,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total40_44-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total35_39-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1970.91,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total35_39-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total30_34-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2755.98,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total30_34-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total25_29-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3991.23,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total25_29-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total20_24-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 5539.41,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total20_24-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total15_19-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 6818.58,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total15_19-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total10_14-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 8224.019999999999,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total10_14-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total0_4-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 10024.74,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total0_4-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-households-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 9821.109123434706,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-households-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-total-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 54839099.99999999,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-total-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-school-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-school-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-hospital-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 0.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-hospital-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 54900.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total65_Plus-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1147.4099999999999,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total65_Plus-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total60_64-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 834.48,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total60_64-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total5_9-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 8740.08,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total5_9-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total55_59-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1032.1200000000001,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total55_59-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total50_54-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1169.37,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total50_54-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total45_49-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1169.37,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total45_49-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total40_44-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1476.81,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total40_44-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total35_39-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1970.91,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total35_39-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total30_34-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2755.98,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total30_34-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total25_29-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3991.23,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total25_29-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total20_24-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 5539.41,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total20_24-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total15_19-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 6818.58,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total15_19-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total10_14-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 8224.019999999999,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total10_14-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total0_4-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 10024.74,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total0_4-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-households-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 9821.109123434706,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-households-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-total-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 54839099.99999998,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-total-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-school-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-school-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-hospital-CAF",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "CAF"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 0.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-hospital-CAF",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "idmc-idu-impact-43295-254367-displaced",
       "bbox": [
         22.749531,

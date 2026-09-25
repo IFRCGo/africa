@@ -2,6 +2,314 @@
   "type": "FeatureCollection",
   "features": [
     {
+      "id": "pdc-hazard-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501"
+        ],
+        "monty:country_codes": [
+          "SOM",
+          "NGA",
+          "TCD",
+          "CAF",
+          "CMR",
+          "SDN",
+          "COD",
+          "UGA",
+          "NER",
+          "KEN",
+          "SSD",
+          "DJI",
+          "ERI",
+          "ETH"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WARNING",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501"
+        ],
+        "monty:country_codes": [
+          "NER",
+          "SSD",
+          "CMR",
+          "CAF",
+          "KEN",
+          "ETH",
+          "SDN",
+          "COD",
+          "SOM",
+          "ERI",
+          "TCD",
+          "NGA",
+          "DJI",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WARNING",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300"
+        ],
+        "monty:country_codes": [
+          "UGA",
+          "COD"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300"
+        ],
+        "monty:country_codes": [
+          "UGA",
+          "COD"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "pdc-hazard-cbecce64-3df7-4e6c-a352-5d53e1fd816e-533965-1788984532223",
       "bbox": [
         33.19342179515258,

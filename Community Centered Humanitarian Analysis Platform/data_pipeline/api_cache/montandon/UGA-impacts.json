@@ -2,6 +2,5478 @@
   "type": "FeatureCollection",
   "features": [
     {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4000000.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total65_Plus-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 85600.00000000001,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total65_Plus-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total60_64-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 50400.0,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total60_64-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total5_9-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 578000.0,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total5_9-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total55_59-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 71200.0,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total55_59-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total50_54-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 94800.0,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total50_54-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total45_49-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 117200.0,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total45_49-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total40_44-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 147200.0,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total40_44-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total35_39-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 198800.0,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total35_39-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total30_34-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 267200.0,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total30_34-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total25_29-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 338000.0,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total25_29-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total20_24-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 403600.0,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total20_24-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total15_19-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 468000.0,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total15_19-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total10_14-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 526800.0,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total10_14-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total0_4-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 652800.0,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total0_4-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-households-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 888888.8888888889,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-households-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-total-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 4269146000.0,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-total-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-school-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1915.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-school-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-hospital-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 46.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-hospital-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4000000.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total65_Plus-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 85600.00000000001,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total65_Plus-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total60_64-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 50400.0,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total60_64-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total5_9-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 578000.0,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total5_9-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total55_59-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 71200.0,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total55_59-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total50_54-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 94800.0,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total50_54-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total45_49-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 117200.0,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total45_49-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total40_44-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 147200.0,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total40_44-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total35_39-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 198800.0,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total35_39-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total30_34-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 267200.0,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total30_34-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total25_29-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 338000.0,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total25_29-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total20_24-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 403600.0,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total20_24-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total15_19-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 468000.0,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total15_19-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total10_14-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 526800.0,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total10_14-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total0_4-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 652800.0,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total0_4-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-households-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 888888.8888888889,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-households-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-total-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 4269146000.0,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-total-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-school-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1915.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-school-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-hospital-UGA",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 46.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-hospital-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 29300.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total65_Plus-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 627.0200000000001,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total65_Plus-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total60_64-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 369.18,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total60_64-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total5_9-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4233.849999999999,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total5_9-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total55_59-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 521.54,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total55_59-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total50_54-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 694.41,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total50_54-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total45_49-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 858.49,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total45_49-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total40_44-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1078.24,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total40_44-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total35_39-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1456.21,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total35_39-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total30_34-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1957.24,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total30_34-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total25_29-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2475.8500000000004,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total25_29-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total20_24-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2956.37,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total20_24-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total15_19-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3428.1000000000004,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total15_19-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total10_14-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3858.8100000000004,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total10_14-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total0_4-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4781.76,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-total0_4-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-households-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 6511.111111111111,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-population-households-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-capital-total-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 56866400.0,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-capital-total-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-capital-school-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 13.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-capital-school-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-capital-hospital-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 0.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790173384160-1-capital-hospital-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 31900.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total65_Plus-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 682.6600000000001,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total65_Plus-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total60_64-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 401.94,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total60_64-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total5_9-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4609.549999999999,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total5_9-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total55_59-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 567.82,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total55_59-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total50_54-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 756.03,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total50_54-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total45_49-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 934.67,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total45_49-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total40_44-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1173.92,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total40_44-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total35_39-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1585.43,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total35_39-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total30_34-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2130.92,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total30_34-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total25_29-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2695.55,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total25_29-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total20_24-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3218.71,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total20_24-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total15_19-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3732.3,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total15_19-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total10_14-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4201.2300000000005,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total10_14-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total0_4-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 5206.08,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-total0_4-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-households-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 7088.888888888889,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-population-households-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-capital-total-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 43126100.0,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-capital-total-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-capital-school-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 14.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-capital-school-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-capital-hospital-UGA",
+      "bbox": [
+        29.921489715576172,
+        0.5078083276748657,
+        29.921489715576172,
+        0.5078083276748657
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.921489715576172,
+          0.5078083276748657
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Albertine Rift Mountains, Oicha, Nord-Kivu, Democratic Republic of the Congo",
+        "datetime": "2026-09-23T02:15:31Z",
+        "end_datetime": "2026-09-24T02:53:14Z",
+        "monty:corr_id": "20260923-UGA-814650-GH0300-1-GCDB",
+        "start_datetime": "2026-09-23T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 0.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f55acd7f-1812-4e66-9fb5-fd38e58e5e2e-541596-1790130139658-1-capital-hospital-UGA",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "pdc-impact-cbecce64-3df7-4e6c-a352-5d53e1fd816e-533965-1788984532223-1-population-total-UGA",
       "bbox": [
         33.19342179515258,

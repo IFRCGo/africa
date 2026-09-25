@@ -2,6 +2,5478 @@
   "type": "FeatureCollection",
   "features": [
     {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 35200000.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total65_Plus-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1108800.0,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total65_Plus-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total60_64-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 661760.0,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total60_64-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total5_9-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4509120.0,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total5_9-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total55_59-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 865920.0,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total55_59-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total50_54-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1048960.0,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total50_54-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total45_49-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1267200.0,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total45_49-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total40_44-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1527680.0,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total40_44-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total35_39-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1907840.0,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total35_39-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total30_34-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2474560.0,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total30_34-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total25_29-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3023680.0,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total25_29-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total20_24-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3505920.0,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total20_24-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total15_19-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3942400.0,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total15_19-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total10_14-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4132480.0,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total10_14-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total0_4-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 5216640.0,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total0_4-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-households-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 7521367.521367522,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-households-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-total-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 20808659100.0,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-total-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-school-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 290.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-school-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-hospital-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-SOM-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 83.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-capital-hospital-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 35200000.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total65_Plus-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1108800.0,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total65_Plus-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total60_64-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 661760.0,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total60_64-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total5_9-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4509120.0,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total5_9-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total55_59-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 865920.0,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total55_59-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total50_54-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1048960.0,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total50_54-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total45_49-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1267200.0,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total45_49-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total40_44-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1527680.0,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total40_44-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total35_39-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1907840.0,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total35_39-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total30_34-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2474560.0,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total30_34-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total25_29-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3023680.0,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total25_29-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total20_24-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3505920.0,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total20_24-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total15_19-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3942400.0,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total15_19-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total10_14-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4132480.0,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total10_14-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total0_4-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 5216640.0,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-total0_4-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-households-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 7521367.521367522,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-population-households-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-total-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 20808659100.0,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-total-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-school-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 290.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-school-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-hospital-ETH",
+      "bbox": [
+        27.94969,
+        12.9257,
+        27.94969,
+        12.9257
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          27.94969,
+          12.9257
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Heat - Central Africa",
+        "datetime": "2026-09-24T14:40:08Z",
+        "end_datetime": "2026-10-02T02:36:05Z",
+        "monty:corr_id": "20260924-NER-926240-MH0501-1-GCDB",
+        "start_datetime": "2026-09-24T14:40:08Z",
+        "monty:hazard_codes": [
+          "MH0501",
+          "HT",
+          "nat-met-ext-hea"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 83.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790260808644-1-capital-hospital-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 19200.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total65_Plus-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 604.8,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total65_Plus-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total60_64-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 360.96000000000004,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total60_64-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total5_9-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2459.52,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total5_9-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total55_59-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 472.32,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total55_59-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total50_54-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 572.16,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total50_54-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total45_49-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 691.1999999999999,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total45_49-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total40_44-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 833.28,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total40_44-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total35_39-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1040.6399999999999,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total35_39-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total30_34-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1349.76,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total30_34-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total25_29-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1649.28,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total25_29-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total20_24-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1912.32,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total20_24-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total15_19-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2150.4,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total15_19-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total10_14-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2254.08,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total10_14-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total0_4-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2845.44,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-total0_4-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-households-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4102.5641025641025,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-population-households-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-capital-total-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 6003500.0,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-capital-total-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-capital-school-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 0.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-capital-school-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-capital-hospital-ETH",
+      "bbox": [
+        43.18178974573607,
+        5.942757666705184,
+        43.18178974573607,
+        5.942757666705184
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.18178974573607,
+          5.942757666705184
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Somali, Ethiopia",
+        "datetime": "2026-09-23T19:45:04Z",
+        "end_datetime": "2026-09-25T20:09:27Z",
+        "monty:corr_id": "20260923-ETH-863317-MH0600-1-GCDB",
+        "start_datetime": "2026-09-23T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 0.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f21db00b-d998-44b3-9540-66bba5126fa8-541942-1790305944317-1-capital-hospital-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 38900.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total65_Plus-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1225.35,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total65_Plus-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total60_64-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 731.32,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total60_64-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total5_9-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4983.089999999999,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total5_9-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total55_59-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 956.94,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total55_59-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total50_54-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1159.22,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total50_54-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total45_49-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1400.3999999999999,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total45_49-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total40_44-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 1688.26,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total40_44-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total35_39-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2108.38,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total35_39-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total30_34-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2734.67,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total30_34-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total25_29-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3341.51,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total25_29-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total20_24-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 3874.4399999999996,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total20_24-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total15_19-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4356.8,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total15_19-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total10_14-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 4566.860000000001,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total10_14-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total0_4-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 5764.98,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-total0_4-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-households-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 8311.965811965812,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-population-households-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-capital-total-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 24454900.0,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-capital-total-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-capital-school-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 0.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-capital-school-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-capital-hospital-ETH",
+      "bbox": [
+        38.132137298583984,
+        11.178078651428223,
+        38.132137298583984,
+        11.178078651428223
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.132137298583984,
+          11.178078651428223
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Landslide - Northwest Ethiopian Highlands, SE of Bahir Dar, Amhara, Ethiopia",
+        "datetime": "2026-09-22T02:15:31Z",
+        "end_datetime": "2026-09-22T14:54:42Z",
+        "monty:corr_id": "20260922-ETH-910091-GH0300-1-GCDB",
+        "start_datetime": "2026-09-22T02:15:31Z",
+        "monty:hazard_codes": [
+          "GH0300",
+          "LS",
+          "nat-geo-mmd-lan"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 0.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-aebb1f7c-005d-4601-84d5-d0b00856a6f7-541148-1790043874623-1-capital-hospital-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "pdc-impact-8e35eb70-fb7b-459f-92d5-ed90b3c17e13-533964-1789023979216-1-population-total-ETH",
       "bbox": [
         38.82784108982414,
