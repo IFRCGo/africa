@@ -6,11 +6,19 @@ PDFs and the three that make up the map. The six below - the ones pulled from IP
 FEWS NET, ACAPS, HDX, UNHCR and Kobo - existed in the database and were invisible
 from the browser.
 
-Read-only, for the same reason boundaries is. Every one of these tables is written
-by a loader (`seed_external`, `load_hsps`, `load_workbooks`, `loaders/base`), so a
-row hand-edited here is a row the next refresh silently overwrites. The way to
-change a phase or a crossing's coordinates is to fix the source and re-run the
-loader, not to leave the database disagreeing with the thing that fills it.
+Read-only, for the same reason boundaries is. Almost every one of these tables is
+written by a loader (`seed_external`, `load_hsps`, `load_workbooks`,
+`loaders/base`), so a row hand-edited here is a row the next refresh silently
+overwrites. The way to change a phase or a crossing's coordinates is to fix the
+source and re-run the loader, not to leave the database disagreeing with the
+thing that fills it.
+
+PlaceCoordinate IS THE EXCEPTION, AND BY THE SAME RULE. No loader writes it -
+it is a person's answer to "where is this place, since no polygon knows", and
+load_hsps only reads it. There is nothing here for a refresh to overwrite, so the
+reason for read-only does not apply, and making it read-only would leave the one
+table on this page that is meant to be typed into uneditable. (`seed_external`
+uses get_or_create on it, so re-seeding cannot undo an edit made here either.)
 """
 from django.contrib import admin
 
@@ -21,6 +29,7 @@ from .models import (
     HazardImpact,
     HumanitarianServicePoint,
     MovementPattern,
+    PlaceCoordinate,
     SeasonalCalendar,
     SourceSync,
 )
@@ -84,6 +93,21 @@ class BorderCrossingAdmin(ReadOnly):
                     "lat", "lon")
     list_filter = ("country", "corridor")
     search_fields = ("name",)
+
+
+@admin.register(PlaceCoordinate)
+class PlaceCoordinateAdmin(admin.ModelAdmin):
+    """Editable, unlike everything else here - see the note at the top.
+
+    Adding a row is how a place the boundary library does not carry gets onto
+    the map: type the name exactly as the source spells it, then re-run the
+    loader that reads it (`load_hsps` today) and rebuild the dashboard. Nothing
+    picks the row up on its own.
+    """
+
+    list_display = ("name", "iso3", "lat", "lon", "source", "note")
+    list_filter = ("iso3", "source")
+    search_fields = ("name", "note")
 
 
 @admin.register(HumanitarianServicePoint)

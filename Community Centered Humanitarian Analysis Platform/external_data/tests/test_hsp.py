@@ -9,12 +9,15 @@ key, so a later export sits beside the earlier one instead of overwriting it. Th
 is what makes "did this district stop offering health?" answerable.
 """
 from datetime import date
+from io import StringIO
 
+from django.core.management import call_command
 from django.test import TestCase
 
 from external_data.loaders.hsp import (export_date, parse_country_rows,
                                        parse_location_rows)
-from external_data.models import HumanitarianServicePoint
+from external_data.management.commands.load_hsps import resolve_places
+from external_data.models import HumanitarianServicePoint, PlaceCoordinate
 
 SVC = "Services offered (applies to ALL locations)/"
 DIS = "Districts where these services are offered/"
@@ -129,3 +132,97 @@ class HistoryTests(TestCase):
 
         self.assertEqual(services_on(date(2026, 9, 8)), {"Health", "Shelter"})
         self.assertEqual(services_on(date(2026, 12, 1)), {"Health"})
+
+
+class PlaceCoordinateTests(TestCase):
+    """Two of Egypt's 'districts' are border reception points, not polygons.
+
+    Qustul and Arkeen are the Egyptian side of the two Sudan crossings. Nothing
+    in the boundary library carries either name, so pcode and name lookups can
+    never place them and the rows sat at lat=None - which build_hsps() excludes,
+    so neither had ever been drawn.
+
+    place_coordinates is the last fallback, and it has to be a TABLE rather than
+    a coordinate on the service-point row: lat/lon are in UPDATE_FIELDS, so a
+    value written onto the row would be nulled by the next load_hsps, and a
+    newer export makes fresh rows under a new date_reported with nothing on them
+    at all.
+    """
+
+    def setUp(self):
+        PlaceCoordinate.objects.create(
+            iso3="EGY", name="Qustul", lat=22.233333, lon=31.616667,
+            note="Border reception point, not a district.",
+        )
+
+    def _row(self, name):
+        return {
+            "iso3": "EGY", "location_name": name, "admin_pcode": None,
+            "admin_level": None, "match_method": "unmatched",
+            "lat": None, "lon": None,
+        }
+
+    def test_a_place_with_a_coordinate_row_is_placed_from_it(self):
+        rows = [self._row("Qustul")]
+        unmatched = resolve_places(rows)
+
+        self.assertEqual(unmatched, [])
+        self.assertAlmostEqual(rows[0]["lat"], 22.233333, places=5)
+        self.assertAlmostEqual(rows[0]["lon"], 31.616667, places=5)
+
+    def test_the_placement_says_it_is_a_point_not_a_polygon(self):
+        """match_method is what stops the popup calling these district centroids."""
+        rows = [self._row("Qustul")]
+        resolve_places(rows)
+        self.assertEqual(rows[0]["match_method"], "manual")
+        self.assertIsNone(rows[0]["admin_pcode"])
+        self.assertIsNone(rows[0]["admin_level"])
+
+    def test_the_name_matches_however_the_export_cases_it(self):
+        """The form's spelling is not guaranteed to match the typed-in row's."""
+        rows = [self._row("QUSTUL")]
+        self.assertEqual(resolve_places(rows), [])
+        self.assertAlmostEqual(rows[0]["lat"], 22.233333, places=5)
+
+    def test_a_correction_typed_into_the_table_reaches_the_next_load(self):
+        """The whole reason this is a table: the loader rewrites lat/lon every run."""
+        PlaceCoordinate.objects.filter(name="Qustul").update(lat=22.5, lon=31.5)
+        rows = [self._row("Qustul")]
+        resolve_places(rows)
+        self.assertEqual((rows[0]["lat"], rows[0]["lon"]), (22.5, 31.5))
+
+    def test_a_place_with_no_row_is_still_reported_unmatched(self):
+        """The fallback is the table's contents, not a blanket 'stop complaining'."""
+        rows = [self._row("Arkeen")]
+        self.assertEqual(resolve_places(rows), ["EGY:Arkeen"])
+        self.assertIsNone(rows[0]["lat"])
+
+    def test_a_coordinate_does_not_leak_across_countries(self):
+        """iso3 is half the key: a Sudanese 'Qustul' is not this one."""
+        rows = [dict(self._row("Qustul"), iso3="SDN")]
+        self.assertEqual(resolve_places(rows), ["SDN:Qustul"])
+        self.assertIsNone(rows[0]["lat"])
+
+
+class PlaceCoordinateSeedTests(TestCase):
+    """Re-seeding must not undo a coordinate corrected in the admin.
+
+    The other three seeds in seed_external restore their dictionary over the
+    table, which is right for rows a loader owns. This table exists so a person
+    can fix a coordinate, so the dictionary cannot be allowed to win - otherwise
+    it is the authority again and the table is only a cache of it.
+    """
+
+    def test_seeding_fills_an_empty_table(self):
+        call_command("seed_external", stdout=StringIO())
+        self.assertTrue(
+            PlaceCoordinate.objects.filter(iso3="EGY", name="Qustul").exists())
+
+    def test_seeding_again_leaves_a_corrected_coordinate_alone(self):
+        call_command("seed_external", stdout=StringIO())
+        PlaceCoordinate.objects.filter(name="Qustul").update(lat=22.5, lon=31.5)
+
+        call_command("seed_external", stdout=StringIO())
+
+        p = PlaceCoordinate.objects.get(iso3="EGY", name="Qustul")
+        self.assertEqual((p.lat, p.lon), (22.5, 31.5))

@@ -644,6 +644,12 @@ def build_hsps():
     offered somewhere in this district". The popup says so too - it would be very
     easy for a reader to take these for addresses.
 
+    THE EXCEPTION IS match_method='manual'. A few of the form's "districts" are
+    border reception points that no polygon carries, so they were placed by hand
+    from a real site coordinate held in place_coordinates. Those markers are
+    points, and the property travels with them so the popup can say which it is
+    rather than telling a reader the opposite of the truth.
+
     The newest export wins. Older ones stay in the table so a later reader can see
     what changed, but the map shows the current picture.
     """
@@ -667,6 +673,12 @@ def build_hsps():
             "country": r.country, "iso3": r.iso3, "place": r.location_name,
             "pcode": r.admin_pcode, "lon": r.lon, "lat": r.lat,
             "scope": r.scope, "services": [],
+            # pcode / name / manual. Carried so the popup can tell a district's
+            # point-on-surface from the handful of places that have no polygon
+            # and were given a real site coordinate by hand - see
+            # the place_coordinates table. Saying "district-level" over one of those
+            # would be precisely backwards.
+            "match_method": r.match_method,
         })
         if r.service not in p["services"]:
             p["services"].append(r.service)

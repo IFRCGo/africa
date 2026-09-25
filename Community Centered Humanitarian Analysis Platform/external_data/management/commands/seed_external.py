@@ -17,15 +17,21 @@ They are not all the same kind of thing, and the seeding treats them differently
                  source='curated' so the real pull can replace it, after which
                  these rows are deleted.
 
-Idempotent - update_or_create throughout, so running it twice is a no-op.
+A fourth list joined them later, PLACE_COORDINATES, which was never in s06: it
+is the starting content of the place_coordinates table - coordinates for places
+that have no polygon at all. See the comment above it.
+
+Idempotent - update_or_create throughout, so running it twice is a no-op. The
+exception is PLACE_COORDINATES, which uses get_or_create so that running it
+twice cannot undo a coordinate corrected in the admin.
 """
 from datetime import date
 
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
-from external_data.models import (BorderCrossing, MovementPattern, SeasonalCalendar,
-                                  SourceSync)
+from external_data.models import (BorderCrossing, MovementPattern, PlaceCoordinate,
+                                  SeasonalCalendar, SourceSync)
 
 # ---------------------------------------------------------------------------
 # THE THREE DICTIONARIES, MOVED HERE FROM s06_mcp_layers.py.
@@ -56,6 +62,33 @@ CROSSINGS = [
      "corridor": "sudan-ethiopia", "return_corridor": None},
     {"name": "Hamdayet", "country": "Ethiopia", "lon": 36.35, "lat": 14.30,
      "corridor": "sudan-ethiopia", "return_corridor": None},
+]
+
+# ---------------------------------------------------------------------------
+# NOT ONE OF THE THREE. These arrived later and for a different reason: they are
+# the FIRST rows of place_coordinates, seeded here because this command is where
+# this project puts curated starting values.
+#
+# Egypt's Kobo submission lists Qustul and Arkeen under "Districts where these
+# services are offered", and neither is a district - they are the Egyptian side
+# of the two Sudan crossings. No p-code exists for either, so load_hsps left both
+# at lat=None and the dashboard, which draws only rows that have a coordinate,
+# showed neither. These two points are what fixes that.
+#
+# THE TABLE IS WHERE THEY LIVE NOW, not this list: PlaceCoordinate is editable at
+# /admin/external_data/placecoordinate/ precisely because no loader writes it, so
+# a corrected coordinate is typed there and picked up by the next load_hsps. This
+# list only seeds a database that has never had them - see _seed_place_coordinates
+# for why it is the one seed here that will not overwrite an existing row.
+PLACE_COORDINATES = [
+    {"iso3": "EGY", "name": "Qustul", "lat": 22.233333, "lon": 31.616667,
+     "note": "22°14'00\" N, 31°37'00\" E. Border reception point at the "
+             "Sudan frontier, not an administrative district, so no polygon "
+             "carries it."},
+    {"iso3": "EGY", "name": "Arkeen", "lat": 22.004175, "lon": 31.146239,
+     "note": "22°00'15.03\" N, 31°08'46.46\" E. Also spelled Argeen. "
+             "Border reception point at the Sudan frontier, not an "
+             "administrative district."},
 ]
 
 REF_COUNTRIES = {
@@ -101,6 +134,7 @@ class Command(BaseCommand):
         self.stdout.write(f"border crossings: {self._seed_crossings()}")
         self.stdout.write(f"seasonal bands:   {self._seed_seasonal()}")
         self.stdout.write(f"refugee rows:     {self._seed_refugees()}")
+        self.stdout.write(f"place coords:     {self._seed_place_coordinates()}")
 
     def _seed_crossings(self):
         for c in CROSSINGS:
@@ -119,6 +153,28 @@ class Command(BaseCommand):
                 },
             )
         return BorderCrossing.objects.count()
+
+    def _seed_place_coordinates(self):
+        """get_or_create, NOT update_or_create - the one seed here that differs.
+
+        The other three restore their dictionary over whatever is in the table,
+        which is right for them: a loader owns those rows and the dictionary is
+        the record of what was typed. place_coordinates is the opposite. It
+        exists so a coordinate can be corrected in the admin, and re-seeding over
+        a correction would make this list the authority again - the table would
+        be a cache of the code rather than its own record, which is precisely the
+        arrangement it was created to avoid.
+
+        So: this fills an empty table and then never touches it. Deleting a row
+        and re-running is how you get the seeded value back.
+        """
+        for p in PLACE_COORDINATES:
+            PlaceCoordinate.objects.get_or_create(
+                iso3=p["iso3"], name=p["name"],
+                defaults={"lat": p["lat"], "lon": p["lon"],
+                          "note": p["note"], "source": "curated"},
+            )
+        return PlaceCoordinate.objects.count()
 
     def _seed_seasonal(self):
         for i, item in enumerate(SEASONAL["items"]):

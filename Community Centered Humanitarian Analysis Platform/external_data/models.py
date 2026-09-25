@@ -416,6 +416,63 @@ class BorderCrossing(models.Model):
         return f"{self.name} ({self.country})"
 
 
+class PlaceCoordinate(models.Model):
+    """A coordinate for a place the boundary library does not carry.
+
+    THE BOUNDARY LIBRARY IS STILL THE FIRST ANSWER. Almost every place a source
+    names is an administrative unit, and admin_areas holds the polygon and the
+    point inside it. This table is the short list of places that are not units
+    at all and never will be: Egypt's Qustul and Arkeen arrive in the Kobo
+    service-point form under "Districts where these services are offered", but
+    they are border reception points at the Sudan frontier. No p-code exists for
+    either, so the name lookup in load_hsps.resolve_places could only ever leave
+    them at lat=None - and a row with no coordinate is a row the dashboard does
+    not draw.
+
+    WHY A TABLE RATHER THAN A DICTIONARY IN THE LOADER. The coordinate has to
+    outlive the rows it lands on. lat and lon are in load_hsps.UPDATE_FIELDS, so
+    every load recomputes them, and a newer export writes new rows under a new
+    date_reported with nothing in them at all. Putting the coordinate on the
+    service-point row is therefore writing it in sand; putting it here is the
+    same arrangement the other 129 rows already have, with this table standing
+    in for admin_areas. It is also why this is the one table in
+    external_data/admin.py that is editable: no loader writes it, so a corrected
+    coordinate typed there is picked up by the next load_hsps and by nothing
+    else. seed_external fills this table with get_or_create rather than
+    update_or_create for the same reason - re-seeding must not undo a
+    correction, or the list in that command would be the authority again.
+
+    SOURCE, AND WHAT A ROW IS WORTH. 'curated' means a person entered it from
+    operational geography and put their reasoning in `note`. These are site
+    coordinates, not label positions - the opposite of what a row placed from a
+    polygon means - which is why load_hsps records match_method='manual' and the
+    dashboard popup says so rather than repeating "district-level".
+    """
+
+    iso3 = models.CharField(max_length=3, db_index=True)
+    name = models.TextField(
+        db_index=True, help_text="The place name as the source spells it - this is the match key"
+    )
+    lat = models.FloatField()
+    lon = models.FloatField()
+    note = models.TextField(
+        null=True, blank=True,
+        help_text="Where the coordinate came from, and why this place has no polygon",
+    )
+    source = models.TextField(default="curated")
+
+    class Meta:
+        db_table = "place_coordinates"
+        ordering = ["iso3", "name"]
+        constraints = [
+            # The match key. One country, one spelling, one point.
+            models.UniqueConstraint(fields=["iso3", "name"], name="uniq_place_coordinate"),
+        ]
+
+    def __str__(self):
+        return f"{self.name} ({self.iso3})"
+
+
 class HumanitarianServicePoint(models.Model):
     """Which service a National Society offers, in which district, as reported.
 
@@ -429,6 +486,15 @@ class HumanitarianServicePoint(models.Model):
 
     That is the finest truthful placement the source supports, and saying so here
     is cheaper than someone later reading these dots as building locations.
+
+    match_method='manual' IS THE ONE EXCEPTION, and it reads the other way round.
+    A few of the form's "districts" are border reception points that no polygon
+    carries - Egypt's Qustul and Arkeen are both crossings, not districts - so
+    they can only be placed from a site coordinate a person entered. Those rows
+    have a real point and no admin_pcode, and the coordinate comes from
+    PlaceCoordinate above rather than from here: lat and lon are rewritten by
+    every load, so a coordinate typed onto one of these rows would not survive
+    the next one.
 
     South Sudan is the one country that answered "no" to "same services at every
     HSP", so it carries three named locations with their own service lists; those

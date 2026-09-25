@@ -1535,10 +1535,18 @@ function addLayers(m) {
     ${sourceLine(p.src)}`, "Food security");
   popup(m, "hsp-dots", (p) => {
     const services = (typeof p.services === "string" ? JSON.parse(p.services) : p.services) || [];
+    /* Almost every marker is a district's point-on-surface, and saying so is the
+       whole reason this line exists. The exception is a place no polygon carries
+       - a border reception point - which was placed from a real site coordinate
+       by hand; telling a reader THAT one is district-level would be the one
+       false thing in the bubble. */
+    const byHand = p.match_method === "manual";
     return `<b>${escapeHTML(p.place)}</b> <span style="color:${COLOR_MUTED}">(${escapeHTML(p.country || "")})</span><br>
-      <b>${p.n_services}</b> service${p.n_services === 1 ? "" : "s"} offered in this district<br>
+      <b>${p.n_services}</b> service${p.n_services === 1 ? "" : "s"} offered ${byHand ? "here" : "in this district"}<br>
       <span style="color:${COLOR_MUTED}">${services.map(escapeHTML).join(" · ")}</span><br>
-      <span style="color:${COLOR_MUTED}">District-level: the source publishes no site coordinates.</span><br>
+      <span style="color:${COLOR_MUTED}">${byHand
+        ? "Site coordinate, entered by hand: the source publishes none."
+        : "District-level: the source publishes no site coordinates."}</span><br>
       ${sourceLine("kobo", "reported " + (p.date_reported || ""))}`;
   }, "Humanitarian service points");
   /* WHERE IFRC WORKS, AND NOTHING ELSE. This bubble used to go on to report the

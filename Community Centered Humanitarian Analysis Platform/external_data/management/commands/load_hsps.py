@@ -25,7 +25,8 @@ from django.db import transaction
 from boundaries.models import AdminArea
 from external_data.loaders.hsp import (export_date, parse_country_rows,
                                        parse_location_rows)
-from external_data.models import HumanitarianServicePoint, SourceSync
+from external_data.models import (HumanitarianServicePoint, PlaceCoordinate,
+                                  SourceSync)
 
 UNIQUE_FIELDS = ["date_reported", "iso3", "service", "location_name"]
 UPDATE_FIELDS = [
@@ -42,11 +43,19 @@ def resolve_places(rows):
     """Fill admin_pcode, level and centroid from the boundary library.
 
     Tried in order: a known p-code, then an exact name match within the country,
-    then the polygon's alternate spellings. Anything still unplaced keeps
-    match_method='unmatched' and is reported by name - a district nobody can see is
-    a district nobody reconciles.
+    then the polygon's alternate spellings, and last the place_coordinates table
+    for the places no polygon carries - Egypt's Qustul and Arkeen are border
+    reception points, not districts, so nothing in admin_areas will ever match
+    them. Anything still unplaced keeps match_method='unmatched' and is reported
+    by name - a district nobody can see is a district nobody reconciles.
+
+    A place_coordinates hit is the one case where lat/lon is a real site point
+    rather than a polygon's label position, so it is recorded as
+    match_method='manual' and carries no p-code: see PlaceCoordinate's docstring.
     """
     isos = {r["iso3"] for r in rows if r["iso3"]}
+    by_point = {(p.iso3, p.name.strip().lower()): (p.lat, p.lon)
+                for p in PlaceCoordinate.objects.filter(iso3__in=isos)}
     by_name, by_pcode = {}, {}
     for area in AdminArea.objects.filter(iso3__in=isos, kind=AdminArea.KIND_ADMIN):
         by_pcode[(area.iso3, area.pcode)] = area
@@ -70,6 +79,13 @@ def resolve_places(rows):
             area = by_name.get((r["iso3"], r["location_name"].strip().lower()))
             method = "name" if area else "unmatched"
         if area is None:
+            point = by_point.get((r["iso3"], r["location_name"].strip().lower()))
+            if point:
+                # No polygon, so no p-code and no level: the coordinate is the
+                # whole of what is known about where this one is.
+                r["match_method"] = "manual"
+                r["lat"], r["lon"] = point
+                continue
             unmatched.add(f'{r["iso3"]}:{r["location_name"]}')
             continue
         r["admin_pcode"] = area.pcode
@@ -136,7 +152,13 @@ class Command(BaseCommand):
         self.stdout.write(f"  date reported: {reported} (export timestamp)")
         self.stdout.write(f"  {len(rows)} service/place rows")
         placed = sum(1 for r in rows if r["admin_pcode"])
-        self.stdout.write(f"  {placed} placed on a polygon, {len(rows) - placed} not")
+        # Counted apart from the polygon total on purpose: a hand-placed row has
+        # no p-code, so folding it into "not placed" would report a row that IS
+        # on the map as one that is not.
+        by_hand = sum(1 for r in rows if r["match_method"] == "manual")
+        nowhere = len(rows) - placed - by_hand
+        self.stdout.write(f"  {placed} placed on a polygon, {by_hand} by hand, "
+                          f"{nowhere} not placed at all")
         if unmatched:
             self.stdout.write("  unmatched: " + ", ".join(unmatched))
 
