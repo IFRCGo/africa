@@ -2,6 +2,1374 @@
   "type": "FeatureCollection",
   "features": [
     {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 2350.0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total65_Plus-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 74.025,
+          "category": "elderly",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total65_Plus-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total60_64-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 44.18,
+          "category": "adult_60_64",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total60_64-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total5_9-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 301.03499999999997,
+          "category": "children_5_9",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total5_9-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total55_59-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 57.81,
+          "category": "adult_55_59",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total55_59-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total50_54-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 70.03,
+          "category": "adult_50_54",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total50_54-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total45_49-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 84.6,
+          "category": "adult_45_49",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total45_49-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total40_44-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 101.99000000000001,
+          "category": "adult_40_44",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total40_44-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total35_39-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 127.36999999999999,
+          "category": "adult_35_39",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total35_39-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total30_34-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 165.205,
+          "category": "adult_30_34",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total30_34-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total25_29-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 201.865,
+          "category": "adult_25_29",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total25_29-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total20_24-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 234.05999999999997,
+          "category": "adult_20_24",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total20_24-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total15_19-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 263.2,
+          "category": "children_15_19",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total15_19-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total10_14-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 275.89,
+          "category": "children_10_14",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total10_14-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total0_4-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 348.27,
+          "category": "children_0_4",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-total0_4-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-households-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 502.1367521367522,
+          "category": "households",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-population-households-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-capital-total-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "cost",
+          "value": 1086600.0,
+          "category": "global_currency",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-capital-total-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-capital-school-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 0.0,
+          "category": "schools",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-capital-school-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-capital-hospital-ETH",
+      "bbox": [
+        45.01555099111364,
+        4.897328324052135,
+        45.01555099111364,
+        4.897328324052135
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01555099111364,
+          4.897328324052135
+        ]
+      },
+      "collection": "pdc-impacts",
+      "properties": {
+        "title": "Flood - SW of Shabelle River, Jubba Basin, Hiiraan, Somalia",
+        "datetime": "2026-09-26T19:45:04Z",
+        "end_datetime": "2026-09-27T20:11:52Z",
+        "monty:corr_id": "20260926-ETH-854326-MH0600-1-GCDB",
+        "start_datetime": "2026-09-26T19:45:04Z",
+        "monty:hazard_codes": [
+          "MH0600",
+          "FL",
+          "nat-hyd-flo-flo"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "affected_total",
+          "value": 0.0,
+          "category": "hospitals",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-71a8ff07-9c88-42e7-abac-542d132f92ef-543257-1790453505300-1-capital-hospital-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "pdc-impact-89d784aa-2df2-4952-bf1d-2f6957740971-542278-1790261399594-1-population-total-ETH",
       "bbox": [
         27.94969,
@@ -31459,6 +32827,79 @@
           "rel": "self",
           "type": "application/geo+json",
           "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-impacts/items/pdc-impact-f10afae0-fb01-4f60-bb2b-687d4ece6ac4-524271-1787750948075-1-capital-hospital-ETH",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-impact-1031529-1wf_202609091914511232",
+      "bbox": [
+        35.3113,
+        6.1611,
+        35.3113,
+        6.1611
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.3113,
+          6.1611
+        ]
+      },
+      "collection": "gdacs-impacts",
+      "properties": {
+        "title": "Forest fires in Ethiopia",
+        "datetime": "2026-08-25T00:00:00Z",
+        "end_datetime": "2026-09-02T00:00:00Z",
+        "monty:corr_id": "20260825-ETH-865077-EN0205-1-GCDB",
+        "start_datetime": "2026-08-25T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205",
+          "WF",
+          "nat-cli-wil-wil"
+        ],
+        "monty:country_codes": [
+          "ETH"
+        ],
+        "monty:impact_detail": {
+          "type": "potentially_affected",
+          "unit": "GDACS WF",
+          "value": 479,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts/items/gdacs-impact-1031529-1wf_202609091914511232",
           "auth:refs": [
             "oidc"
           ]

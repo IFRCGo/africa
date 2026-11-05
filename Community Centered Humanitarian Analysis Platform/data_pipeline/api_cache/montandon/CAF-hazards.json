@@ -168,6 +168,366 @@
       ]
     },
     {
+      "id": "gdacs-hazard-1027567-2",
+      "bbox": [
+        12.0,
+        7.0,
+        18.0,
+        15.0
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                17,
+                11
+              ],
+              [
+                15,
+                11
+              ],
+              [
+                15,
+                10
+              ],
+              [
+                16,
+                10
+              ],
+              [
+                16,
+                7
+              ],
+              [
+                17,
+                7
+              ],
+              [
+                17,
+                11
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                18,
+                14
+              ],
+              [
+                17,
+                14
+              ],
+              [
+                17,
+                15
+              ],
+              [
+                14,
+                15
+              ],
+              [
+                14,
+                13
+              ],
+              [
+                18,
+                13
+              ],
+              [
+                18,
+                14
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                13,
+                14
+              ],
+              [
+                12,
+                14
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                13,
+                12
+              ],
+              [
+                13,
+                14
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Central African Republic, Cameroon, Niger, Nigeria, Chad",
+        "datetime": "2026-06-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260621-NGA-893782-MH0401-2-GCDB",
+        "start_datetime": "2026-06-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "NGA",
+          "NER",
+          "TCD",
+          "CMR",
+          "CAF"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027567-2",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027567-1",
+      "bbox": [
+        12.0,
+        7.0,
+        18.0,
+        15.0
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                17,
+                11
+              ],
+              [
+                16,
+                11
+              ],
+              [
+                16,
+                12
+              ],
+              [
+                14,
+                12
+              ],
+              [
+                14,
+                11
+              ],
+              [
+                15,
+                11
+              ],
+              [
+                15,
+                10
+              ],
+              [
+                16,
+                10
+              ],
+              [
+                16,
+                7
+              ],
+              [
+                17,
+                7
+              ],
+              [
+                17,
+                11
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                17,
+                15
+              ],
+              [
+                14,
+                15
+              ],
+              [
+                14,
+                13
+              ],
+              [
+                16,
+                13
+              ],
+              [
+                16,
+                14
+              ],
+              [
+                17,
+                14
+              ],
+              [
+                17,
+                15
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                18,
+                14
+              ],
+              [
+                17,
+                14
+              ],
+              [
+                17,
+                13
+              ],
+              [
+                18,
+                13
+              ],
+              [
+                18,
+                14
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                12,
+                14
+              ],
+              [
+                12,
+                13
+              ],
+              [
+                13,
+                13
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                12,
+                14
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Central African Republic, Cameroon, Niger, Nigeria, Chad",
+        "datetime": "2026-06-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260621-NGA-893782-MH0401-1-GCDB",
+        "start_datetime": "2026-06-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "NGA",
+          "NER",
+          "TCD",
+          "CMR",
+          "CAF"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027567-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "pdc-hazard-ba96d8a8-224a-413b-a559-8ee9a2b1fed9-414176-1775040401179",
       "bbox": [
         23.9459466,

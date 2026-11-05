@@ -6915,6 +6915,152 @@
       ]
     },
     {
+      "id": "gdacs-impact-1031574-2wf_202609102159274848",
+      "bbox": [
+        31.3159,
+        9.235,
+        31.3159,
+        9.235
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.3159,
+          9.235
+        ]
+      },
+      "collection": "gdacs-impacts",
+      "properties": {
+        "title": "Forest fires in Sudan",
+        "datetime": "2026-08-26T00:00:00Z",
+        "end_datetime": "2026-09-04T00:00:00Z",
+        "monty:corr_id": "20260826-SDN-892057-EN0205-2-GCDB",
+        "start_datetime": "2026-08-26T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205",
+          "WF",
+          "nat-cli-wil-wil"
+        ],
+        "monty:country_codes": [
+          "SDN"
+        ],
+        "monty:impact_detail": {
+          "type": "potentially_affected",
+          "unit": "GDACS WF",
+          "value": 0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts/items/gdacs-impact-1031574-2wf_202609102159274848",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-impact-1031574-1wf_202609041943259428",
+      "bbox": [
+        31.3159,
+        9.235,
+        31.3159,
+        9.235
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.3159,
+          9.235
+        ]
+      },
+      "collection": "gdacs-impacts",
+      "properties": {
+        "title": "Forest fires in Sudan",
+        "datetime": "2026-08-26T00:00:00Z",
+        "end_datetime": "2026-09-04T00:00:00Z",
+        "monty:corr_id": "20260826-SDN-892057-EN0205-1-GCDB",
+        "start_datetime": "2026-08-26T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205",
+          "WF",
+          "nat-cli-wil-wil"
+        ],
+        "monty:country_codes": [
+          "SDN"
+        ],
+        "monty:impact_detail": {
+          "type": "potentially_affected",
+          "unit": "GDACS WF",
+          "value": 0,
+          "category": "people",
+          "estimate_type": "primary"
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-impacts/items/gdacs-impact-1031574-1wf_202609041943259428",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "idmc-idu-impact-80532-511435-displaced",
       "bbox": [
         30.79482,

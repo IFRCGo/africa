@@ -1150,6 +1150,1531 @@
       ]
     },
     {
+      "id": "gdacs-hazard-1031497-6",
+      "bbox": [
+        31.8078,
+        -0.0819,
+        31.9455,
+        0.0272
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.9102,
+              -0.0819
+            ],
+            [
+              31.9455,
+              -0.0737
+            ],
+            [
+              31.9333,
+              -0.0325
+            ],
+            [
+              31.8733,
+              0.0194
+            ],
+            [
+              31.8078,
+              0.0272
+            ],
+            [
+              31.9102,
+              -0.0819
+            ]
+          ],
+          [
+            [
+              31.9342,
+              -0.0659
+            ],
+            [
+              31.9342,
+              -0.0649
+            ],
+            [
+              31.9354,
+              -0.0651
+            ],
+            [
+              31.9342,
+              -0.0659
+            ]
+          ],
+          [
+            [
+              31.9073,
+              -0.0568
+            ],
+            [
+              31.9044,
+              -0.0559
+            ],
+            [
+              31.9069,
+              -0.054
+            ],
+            [
+              31.9073,
+              -0.0568
+            ]
+          ],
+          [
+            [
+              31.866,
+              0.0051
+            ],
+            [
+              31.8527,
+              0.0014
+            ],
+            [
+              31.8542,
+              0.0049
+            ],
+            [
+              31.866,
+              0.0051
+            ]
+          ],
+          [
+            [
+              31.8479,
+              -0.0006
+            ],
+            [
+              31.8476,
+              -0.0005
+            ],
+            [
+              31.8478,
+              0.0002
+            ],
+            [
+              31.8479,
+              -0.0006
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Uganda",
+        "datetime": "2026-08-23T00:00:00Z",
+        "end_datetime": "2026-09-05T00:00:00Z",
+        "monty:corr_id": "20260823-UGA-809260-EN0205-6-GCDB",
+        "start_datetime": "2026-08-23T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1031497-6",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1031497-5",
+      "bbox": [
+        31.8078,
+        -0.0819,
+        31.9455,
+        0.0272
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.9102,
+              -0.0819
+            ],
+            [
+              31.9455,
+              -0.0737
+            ],
+            [
+              31.9333,
+              -0.0325
+            ],
+            [
+              31.8733,
+              0.0194
+            ],
+            [
+              31.8078,
+              0.0272
+            ],
+            [
+              31.9102,
+              -0.0819
+            ]
+          ],
+          [
+            [
+              31.934,
+              -0.0662
+            ],
+            [
+              31.9342,
+              -0.0649
+            ],
+            [
+              31.9354,
+              -0.0651
+            ],
+            [
+              31.934,
+              -0.0662
+            ]
+          ],
+          [
+            [
+              31.9073,
+              -0.0568
+            ],
+            [
+              31.9037,
+              -0.0564
+            ],
+            [
+              31.9065,
+              -0.0545
+            ],
+            [
+              31.9073,
+              -0.0568
+            ]
+          ],
+          [
+            [
+              31.866,
+              0.0051
+            ],
+            [
+              31.8527,
+              0.0014
+            ],
+            [
+              31.8542,
+              0.0049
+            ],
+            [
+              31.866,
+              0.0051
+            ]
+          ],
+          [
+            [
+              31.8479,
+              -0.0006
+            ],
+            [
+              31.8476,
+              -0.0005
+            ],
+            [
+              31.8478,
+              0.0002
+            ],
+            [
+              31.8479,
+              -0.0006
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Uganda",
+        "datetime": "2026-08-23T00:00:00Z",
+        "end_datetime": "2026-09-05T00:00:00Z",
+        "monty:corr_id": "20260823-UGA-809260-EN0205-5-GCDB",
+        "start_datetime": "2026-08-23T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1031497-5",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1031497-4",
+      "bbox": [
+        31.8078,
+        -0.0819,
+        31.9455,
+        0.0272
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.9102,
+              -0.0819
+            ],
+            [
+              31.9455,
+              -0.0737
+            ],
+            [
+              31.9333,
+              -0.0325
+            ],
+            [
+              31.9179,
+              -0.0435
+            ],
+            [
+              31.8722,
+              0.0145
+            ],
+            [
+              31.8078,
+              0.0272
+            ],
+            [
+              31.9102,
+              -0.0819
+            ]
+          ],
+          [
+            [
+              31.934,
+              -0.0662
+            ],
+            [
+              31.9342,
+              -0.0649
+            ],
+            [
+              31.9354,
+              -0.0651
+            ],
+            [
+              31.934,
+              -0.0662
+            ]
+          ],
+          [
+            [
+              31.9073,
+              -0.0568
+            ],
+            [
+              31.9037,
+              -0.0564
+            ],
+            [
+              31.9065,
+              -0.0545
+            ],
+            [
+              31.9073,
+              -0.0568
+            ]
+          ],
+          [
+            [
+              31.866,
+              0.0051
+            ],
+            [
+              31.8527,
+              0.0014
+            ],
+            [
+              31.8542,
+              0.0049
+            ],
+            [
+              31.866,
+              0.0051
+            ]
+          ],
+          [
+            [
+              31.8479,
+              -0.0006
+            ],
+            [
+              31.8476,
+              -0.0005
+            ],
+            [
+              31.8478,
+              0.0002
+            ],
+            [
+              31.8479,
+              -0.0006
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Uganda",
+        "datetime": "2026-08-23T00:00:00Z",
+        "end_datetime": "2026-09-05T00:00:00Z",
+        "monty:corr_id": "20260823-UGA-809260-EN0205-4-GCDB",
+        "start_datetime": "2026-08-23T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1031497-4",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1031497-3",
+      "bbox": [
+        31.8078,
+        -0.0819,
+        31.9471,
+        0.0272
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.9102,
+              -0.0819
+            ],
+            [
+              31.9428,
+              -0.0764
+            ],
+            [
+              31.9471,
+              -0.0511
+            ],
+            [
+              31.8722,
+              0.0145
+            ],
+            [
+              31.8078,
+              0.0272
+            ],
+            [
+              31.9102,
+              -0.0819
+            ]
+          ],
+          [
+            [
+              31.9342,
+              -0.0659
+            ],
+            [
+              31.934,
+              -0.0648
+            ],
+            [
+              31.9354,
+              -0.0651
+            ],
+            [
+              31.9342,
+              -0.0659
+            ]
+          ],
+          [
+            [
+              31.9073,
+              -0.0568
+            ],
+            [
+              31.9037,
+              -0.0564
+            ],
+            [
+              31.9069,
+              -0.054
+            ],
+            [
+              31.9073,
+              -0.0568
+            ]
+          ],
+          [
+            [
+              31.866,
+              0.0051
+            ],
+            [
+              31.8519,
+              0.0015
+            ],
+            [
+              31.8446,
+              -0.0026
+            ],
+            [
+              31.8539,
+              0.0051
+            ],
+            [
+              31.866,
+              0.0051
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Uganda",
+        "datetime": "2026-08-23T00:00:00Z",
+        "end_datetime": "2026-09-05T00:00:00Z",
+        "monty:corr_id": "20260823-UGA-809260-EN0205-3-GCDB",
+        "start_datetime": "2026-08-23T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1031497-3",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1031497-2",
+      "bbox": [
+        31.8078,
+        -0.0819,
+        31.9471,
+        0.0272
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.9102,
+              -0.0819
+            ],
+            [
+              31.9428,
+              -0.0764
+            ],
+            [
+              31.9471,
+              -0.0511
+            ],
+            [
+              31.8722,
+              0.0145
+            ],
+            [
+              31.8078,
+              0.0272
+            ],
+            [
+              31.9102,
+              -0.0819
+            ]
+          ],
+          [
+            [
+              31.9342,
+              -0.0659
+            ],
+            [
+              31.934,
+              -0.0648
+            ],
+            [
+              31.9354,
+              -0.0651
+            ],
+            [
+              31.9342,
+              -0.0659
+            ]
+          ],
+          [
+            [
+              31.9073,
+              -0.0568
+            ],
+            [
+              31.9037,
+              -0.0564
+            ],
+            [
+              31.9065,
+              -0.0545
+            ],
+            [
+              31.9073,
+              -0.0568
+            ]
+          ],
+          [
+            [
+              31.866,
+              0.0051
+            ],
+            [
+              31.8519,
+              0.0015
+            ],
+            [
+              31.8446,
+              -0.0026
+            ],
+            [
+              31.8539,
+              0.0051
+            ],
+            [
+              31.866,
+              0.0051
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Uganda",
+        "datetime": "2026-08-23T00:00:00Z",
+        "end_datetime": "2026-09-05T00:00:00Z",
+        "monty:corr_id": "20260823-UGA-809260-EN0205-2-GCDB",
+        "start_datetime": "2026-08-23T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1031497-2",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1031497-1",
+      "bbox": [
+        31.8119,
+        -0.0816,
+        31.9442,
+        0.027
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              31.9082,
+              -0.0816
+            ],
+            [
+              31.9442,
+              -0.0549
+            ],
+            [
+              31.8722,
+              0.0145
+            ],
+            [
+              31.8119,
+              0.027
+            ],
+            [
+              31.9082,
+              -0.0816
+            ]
+          ],
+          [
+            [
+              31.9073,
+              -0.0568
+            ],
+            [
+              31.9037,
+              -0.0564
+            ],
+            [
+              31.9069,
+              -0.054
+            ],
+            [
+              31.9073,
+              -0.0568
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Forest fires in Uganda",
+        "datetime": "2026-08-23T00:00:00Z",
+        "end_datetime": "2026-09-05T00:00:00Z",
+        "monty:corr_id": "20260823-UGA-809260-EN0205-1-GCDB",
+        "start_datetime": "2026-08-23T00:00:00Z",
+        "monty:hazard_codes": [
+          "EN0205"
+        ],
+        "monty:country_codes": [
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1031497-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027465-6",
+      "bbox": [
+        31.0,
+        -2.0,
+        37.0,
+        3.0
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37,
+              2
+            ],
+            [
+              36,
+              2
+            ],
+            [
+              36,
+              3
+            ],
+            [
+              34,
+              3
+            ],
+            [
+              34,
+              2
+            ],
+            [
+              31,
+              2
+            ],
+            [
+              31,
+              -2
+            ],
+            [
+              32,
+              -2
+            ],
+            [
+              32,
+              0
+            ],
+            [
+              37,
+              0
+            ],
+            [
+              37,
+              2
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Democratic Republic of Congo, Kenya, Tanzania, Uganda",
+        "datetime": "2026-05-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260521-UGA-818270-MH0401-6-GCDB",
+        "start_datetime": "2026-05-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "UGA",
+          "TZA",
+          "KEN",
+          "COD"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027465-6",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027465-5",
+      "bbox": [
+        31.0,
+        -2.0,
+        37.0,
+        3.0
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37,
+              2
+            ],
+            [
+              36,
+              2
+            ],
+            [
+              36,
+              3
+            ],
+            [
+              34,
+              3
+            ],
+            [
+              34,
+              2
+            ],
+            [
+              31,
+              2
+            ],
+            [
+              31,
+              -2
+            ],
+            [
+              32,
+              -2
+            ],
+            [
+              32,
+              0
+            ],
+            [
+              37,
+              0
+            ],
+            [
+              37,
+              2
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Democratic Republic of Congo, Kenya, Tanzania, Uganda",
+        "datetime": "2026-05-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260521-UGA-818270-MH0401-5-GCDB",
+        "start_datetime": "2026-05-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "UGA",
+          "TZA",
+          "KEN",
+          "COD"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027465-5",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027465-4",
+      "bbox": [
+        31.0,
+        -2.0,
+        36.0,
+        3.0
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              36,
+              3
+            ],
+            [
+              34,
+              3
+            ],
+            [
+              34,
+              2
+            ],
+            [
+              31,
+              2
+            ],
+            [
+              31,
+              -2
+            ],
+            [
+              32,
+              -2
+            ],
+            [
+              32,
+              0
+            ],
+            [
+              36,
+              0
+            ],
+            [
+              36,
+              3
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Democratic Republic of Congo, Kenya, Tanzania, Uganda",
+        "datetime": "2026-05-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260521-UGA-818270-MH0401-4-GCDB",
+        "start_datetime": "2026-05-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "UGA",
+          "TZA",
+          "KEN",
+          "COD"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027465-4",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027465-3",
+      "bbox": [
+        31.0,
+        -1.0,
+        36.0,
+        3.0
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              36,
+              3
+            ],
+            [
+              34,
+              3
+            ],
+            [
+              34,
+              2
+            ],
+            [
+              31,
+              2
+            ],
+            [
+              31,
+              -1
+            ],
+            [
+              32,
+              -1
+            ],
+            [
+              32,
+              0
+            ],
+            [
+              36,
+              0
+            ],
+            [
+              36,
+              3
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Democratic Republic of Congo, Kenya, Tanzania, Uganda",
+        "datetime": "2026-05-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260521-UGA-818270-MH0401-3-GCDB",
+        "start_datetime": "2026-05-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "UGA",
+          "TZA",
+          "KEN",
+          "COD"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027465-3",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027465-2",
+      "bbox": [
+        30.0,
+        -1.0,
+        36.0,
+        3.0
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                31,
+                3
+              ],
+              [
+                30,
+                3
+              ],
+              [
+                30,
+                2
+              ],
+              [
+                31,
+                2
+              ],
+              [
+                31,
+                3
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                36,
+                2
+              ],
+              [
+                35,
+                2
+              ],
+              [
+                35,
+                3
+              ],
+              [
+                32,
+                3
+              ],
+              [
+                32,
+                2
+              ],
+              [
+                31,
+                2
+              ],
+              [
+                31,
+                -1
+              ],
+              [
+                32,
+                -1
+              ],
+              [
+                32,
+                0
+              ],
+              [
+                34,
+                0
+              ],
+              [
+                34,
+                -1
+              ],
+              [
+                35,
+                -1
+              ],
+              [
+                35,
+                0
+              ],
+              [
+                36,
+                0
+              ],
+              [
+                36,
+                2
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Democratic Republic of Congo, Kenya, Tanzania, Uganda",
+        "datetime": "2026-05-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260521-UGA-818270-MH0401-2-GCDB",
+        "start_datetime": "2026-05-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "UGA",
+          "TZA",
+          "KEN",
+          "COD"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027465-2",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "gdacs-hazard-1027465-1",
       "bbox": [
         30.0,
@@ -1238,17 +2763,17 @@
       "properties": {
         "title": "Drought in Democratic Republic of Congo, Kenya, Tanzania, Uganda",
         "datetime": "2026-05-21T00:00:00Z",
-        "end_datetime": "2026-08-02T00:00:00Z",
-        "monty:corr_id": "20260521-KEN-821867-MH0401-1-GCDB",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260521-UGA-818270-MH0401-1-GCDB",
         "start_datetime": "2026-05-21T00:00:00Z",
         "monty:hazard_codes": [
           "MH0401"
         ],
         "monty:country_codes": [
-          "KEN",
           "UGA",
-          "COD",
-          "TZA"
+          "TZA",
+          "KEN",
+          "COD"
         ],
         "monty:hazard_detail": {
           "estimate_type": "primary",
@@ -1380,6 +2905,2619 @@
           "rel": "self",
           "type": "application/geo+json",
           "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1103869-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027450-9",
+      "bbox": [
+        29.0,
+        1.0,
+        47.0,
+        17.0
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                33,
+                10
+              ],
+              [
+                34,
+                10
+              ],
+              [
+                34,
+                12
+              ],
+              [
+                33,
+                12
+              ],
+              [
+                33,
+                10
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                44,
+                9
+              ],
+              [
+                45,
+                9
+              ],
+              [
+                45,
+                10
+              ],
+              [
+                44,
+                10
+              ],
+              [
+                44,
+                9
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                29,
+                8
+              ],
+              [
+                31,
+                8
+              ],
+              [
+                31,
+                10
+              ],
+              [
+                29,
+                10
+              ],
+              [
+                29,
+                8
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                31,
+                7
+              ],
+              [
+                32,
+                7
+              ],
+              [
+                32,
+                8
+              ],
+              [
+                31,
+                8
+              ],
+              [
+                31,
+                7
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                32,
+                6
+              ],
+              [
+                33,
+                6
+              ],
+              [
+                33,
+                7
+              ],
+              [
+                32,
+                7
+              ],
+              [
+                32,
+                6
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                37,
+                5
+              ],
+              [
+                38,
+                5
+              ],
+              [
+                38,
+                6
+              ],
+              [
+                37,
+                6
+              ],
+              [
+                37,
+                5
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                41,
+                4
+              ],
+              [
+                43,
+                4
+              ],
+              [
+                43,
+                5
+              ],
+              [
+                41,
+                5
+              ],
+              [
+                41,
+                4
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                33,
+                4
+              ],
+              [
+                35,
+                4
+              ],
+              [
+                35,
+                5
+              ],
+              [
+                36,
+                5
+              ],
+              [
+                36,
+                6
+              ],
+              [
+                37,
+                6
+              ],
+              [
+                37,
+                7
+              ],
+              [
+                38,
+                7
+              ],
+              [
+                38,
+                6
+              ],
+              [
+                42,
+                6
+              ],
+              [
+                42,
+                8
+              ],
+              [
+                43,
+                8
+              ],
+              [
+                43,
+                9
+              ],
+              [
+                41,
+                9
+              ],
+              [
+                41,
+                10
+              ],
+              [
+                42,
+                10
+              ],
+              [
+                42,
+                11
+              ],
+              [
+                39,
+                11
+              ],
+              [
+                39,
+                12
+              ],
+              [
+                40,
+                12
+              ],
+              [
+                40,
+                13
+              ],
+              [
+                39,
+                13
+              ],
+              [
+                39,
+                14
+              ],
+              [
+                40,
+                14
+              ],
+              [
+                40,
+                15
+              ],
+              [
+                39,
+                15
+              ],
+              [
+                39,
+                17
+              ],
+              [
+                38,
+                17
+              ],
+              [
+                38,
+                16
+              ],
+              [
+                37,
+                16
+              ],
+              [
+                37,
+                15
+              ],
+              [
+                38,
+                15
+              ],
+              [
+                38,
+                13
+              ],
+              [
+                37,
+                13
+              ],
+              [
+                37,
+                11
+              ],
+              [
+                36,
+                11
+              ],
+              [
+                36,
+                10
+              ],
+              [
+                37,
+                10
+              ],
+              [
+                37,
+                8
+              ],
+              [
+                36,
+                8
+              ],
+              [
+                36,
+                7
+              ],
+              [
+                35,
+                7
+              ],
+              [
+                35,
+                6
+              ],
+              [
+                33,
+                6
+              ],
+              [
+                33,
+                4
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                46,
+                3
+              ],
+              [
+                46.603,
+                3
+              ],
+              [
+                47,
+                3.435
+              ],
+              [
+                47,
+                5
+              ],
+              [
+                46,
+                5
+              ],
+              [
+                46,
+                3
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                43,
+                1
+              ],
+              [
+                44,
+                1.077
+              ],
+              [
+                44,
+                3
+              ],
+              [
+                45,
+                3
+              ],
+              [
+                45,
+                4
+              ],
+              [
+                43,
+                4
+              ],
+              [
+                43,
+                1
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Djibouti, Eritrea, Ethiopia, Kenya, Sudan, Somalia, South Sudan, Uganda",
+        "datetime": "2026-04-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260421-SSD-890291-MH0401-9-GCDB",
+        "start_datetime": "2026-04-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "SDN",
+          "KEN",
+          "ETH",
+          "SOM",
+          "ERI",
+          "DJI",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027450-9",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027450-8",
+      "bbox": [
+        36.0,
+        1.0,
+        45.0,
+        17.0
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                44,
+                9
+              ],
+              [
+                45,
+                9
+              ],
+              [
+                45,
+                10
+              ],
+              [
+                44,
+                10
+              ],
+              [
+                44,
+                9
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                36,
+                5
+              ],
+              [
+                37,
+                5
+              ],
+              [
+                37,
+                7
+              ],
+              [
+                38,
+                7
+              ],
+              [
+                38,
+                8
+              ],
+              [
+                39,
+                8
+              ],
+              [
+                39,
+                9
+              ],
+              [
+                41,
+                9
+              ],
+              [
+                41,
+                7
+              ],
+              [
+                39,
+                7
+              ],
+              [
+                39,
+                6
+              ],
+              [
+                42,
+                6
+              ],
+              [
+                42,
+                8
+              ],
+              [
+                43,
+                8
+              ],
+              [
+                43,
+                10
+              ],
+              [
+                41,
+                10
+              ],
+              [
+                41,
+                11
+              ],
+              [
+                39,
+                11
+              ],
+              [
+                39,
+                12
+              ],
+              [
+                40,
+                12
+              ],
+              [
+                40,
+                13
+              ],
+              [
+                39,
+                13
+              ],
+              [
+                39,
+                14
+              ],
+              [
+                40,
+                14
+              ],
+              [
+                40,
+                15
+              ],
+              [
+                39,
+                15
+              ],
+              [
+                39,
+                17
+              ],
+              [
+                38,
+                17
+              ],
+              [
+                38,
+                16
+              ],
+              [
+                37,
+                16
+              ],
+              [
+                37,
+                15
+              ],
+              [
+                38,
+                15
+              ],
+              [
+                38,
+                13
+              ],
+              [
+                37,
+                13
+              ],
+              [
+                37,
+                11
+              ],
+              [
+                36,
+                11
+              ],
+              [
+                36,
+                9
+              ],
+              [
+                37,
+                9
+              ],
+              [
+                37,
+                8
+              ],
+              [
+                36,
+                8
+              ],
+              [
+                36,
+                5
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                41,
+                3
+              ],
+              [
+                42,
+                3
+              ],
+              [
+                42,
+                5
+              ],
+              [
+                40,
+                5
+              ],
+              [
+                40,
+                4
+              ],
+              [
+                41,
+                4
+              ],
+              [
+                41,
+                3
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                39,
+                3
+              ],
+              [
+                40,
+                3
+              ],
+              [
+                40,
+                4
+              ],
+              [
+                39,
+                4
+              ],
+              [
+                39,
+                3
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                43,
+                1
+              ],
+              [
+                44,
+                1.077
+              ],
+              [
+                44,
+                3
+              ],
+              [
+                43,
+                3
+              ],
+              [
+                43,
+                1
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Djibouti, Eritrea, Ethiopia, Kenya, Sudan, Somalia, South Sudan, Uganda",
+        "datetime": "2026-04-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260421-SSD-890291-MH0401-8-GCDB",
+        "start_datetime": "2026-04-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "SDN",
+          "KEN",
+          "ETH",
+          "SOM",
+          "ERI",
+          "DJI",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027450-8",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027450-7",
+      "bbox": [
+        36.0,
+        1.0,
+        45.0,
+        17.0
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                44,
+                9
+              ],
+              [
+                45,
+                9
+              ],
+              [
+                45,
+                10
+              ],
+              [
+                44,
+                10
+              ],
+              [
+                44,
+                9
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                36,
+                6
+              ],
+              [
+                37,
+                6
+              ],
+              [
+                37,
+                7
+              ],
+              [
+                38,
+                7
+              ],
+              [
+                38,
+                8
+              ],
+              [
+                39,
+                8
+              ],
+              [
+                39,
+                9
+              ],
+              [
+                41,
+                9
+              ],
+              [
+                41,
+                7
+              ],
+              [
+                39,
+                7
+              ],
+              [
+                39,
+                6
+              ],
+              [
+                42,
+                6
+              ],
+              [
+                42,
+                8
+              ],
+              [
+                43,
+                8
+              ],
+              [
+                43,
+                10
+              ],
+              [
+                41,
+                10
+              ],
+              [
+                41,
+                11
+              ],
+              [
+                39,
+                11
+              ],
+              [
+                39,
+                12
+              ],
+              [
+                40,
+                12
+              ],
+              [
+                40,
+                13
+              ],
+              [
+                39,
+                13
+              ],
+              [
+                39,
+                14
+              ],
+              [
+                40,
+                14
+              ],
+              [
+                40,
+                15
+              ],
+              [
+                39,
+                15
+              ],
+              [
+                39,
+                17
+              ],
+              [
+                38,
+                17
+              ],
+              [
+                38,
+                16
+              ],
+              [
+                37,
+                16
+              ],
+              [
+                37,
+                15
+              ],
+              [
+                38,
+                15
+              ],
+              [
+                38,
+                13
+              ],
+              [
+                37,
+                13
+              ],
+              [
+                37,
+                11
+              ],
+              [
+                36,
+                11
+              ],
+              [
+                36,
+                9
+              ],
+              [
+                37,
+                9
+              ],
+              [
+                37,
+                8
+              ],
+              [
+                36,
+                8
+              ],
+              [
+                36,
+                6
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                41,
+                3
+              ],
+              [
+                42,
+                3
+              ],
+              [
+                42,
+                5
+              ],
+              [
+                40,
+                5
+              ],
+              [
+                40,
+                4
+              ],
+              [
+                41,
+                4
+              ],
+              [
+                41,
+                3
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                39,
+                3
+              ],
+              [
+                40,
+                3
+              ],
+              [
+                40,
+                4
+              ],
+              [
+                39,
+                4
+              ],
+              [
+                39,
+                3
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                43,
+                1
+              ],
+              [
+                44,
+                1.077
+              ],
+              [
+                44,
+                3
+              ],
+              [
+                43,
+                3
+              ],
+              [
+                43,
+                1
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Djibouti, Eritrea, Ethiopia, Kenya, Sudan, Somalia, South Sudan, Uganda",
+        "datetime": "2026-04-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260421-SSD-890291-MH0401-7-GCDB",
+        "start_datetime": "2026-04-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "SDN",
+          "KEN",
+          "ETH",
+          "SOM",
+          "ERI",
+          "DJI",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027450-7",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027450-6",
+      "bbox": [
+        36.0,
+        1.0,
+        49.0,
+        17.0
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                37,
+                7
+              ],
+              [
+                38,
+                7
+              ],
+              [
+                38,
+                8
+              ],
+              [
+                39,
+                8
+              ],
+              [
+                39,
+                9
+              ],
+              [
+                41,
+                9
+              ],
+              [
+                41,
+                7
+              ],
+              [
+                42,
+                7
+              ],
+              [
+                42,
+                8
+              ],
+              [
+                43,
+                8
+              ],
+              [
+                43,
+                10
+              ],
+              [
+                41,
+                10
+              ],
+              [
+                41,
+                11
+              ],
+              [
+                39,
+                11
+              ],
+              [
+                39,
+                12
+              ],
+              [
+                40,
+                12
+              ],
+              [
+                40,
+                13
+              ],
+              [
+                39,
+                13
+              ],
+              [
+                39,
+                14
+              ],
+              [
+                40,
+                14
+              ],
+              [
+                40,
+                15
+              ],
+              [
+                39,
+                15
+              ],
+              [
+                39,
+                17
+              ],
+              [
+                38,
+                17
+              ],
+              [
+                38,
+                16
+              ],
+              [
+                37,
+                16
+              ],
+              [
+                37,
+                15
+              ],
+              [
+                38,
+                15
+              ],
+              [
+                38,
+                13
+              ],
+              [
+                37,
+                13
+              ],
+              [
+                37,
+                11
+              ],
+              [
+                36,
+                11
+              ],
+              [
+                36,
+                10
+              ],
+              [
+                37,
+                10
+              ],
+              [
+                37,
+                7
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                47,
+                6
+              ],
+              [
+                48.987,
+                6.048
+              ],
+              [
+                49,
+                10
+              ],
+              [
+                44,
+                10
+              ],
+              [
+                44,
+                8
+              ],
+              [
+                45,
+                8
+              ],
+              [
+                45,
+                9
+              ],
+              [
+                48,
+                9
+              ],
+              [
+                48,
+                8
+              ],
+              [
+                47,
+                8
+              ],
+              [
+                47,
+                6
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                43,
+                6
+              ],
+              [
+                45,
+                6
+              ],
+              [
+                45,
+                7
+              ],
+              [
+                44,
+                7
+              ],
+              [
+                44,
+                8
+              ],
+              [
+                43,
+                8
+              ],
+              [
+                43,
+                6
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                39,
+                6
+              ],
+              [
+                40,
+                6
+              ],
+              [
+                40,
+                7
+              ],
+              [
+                39,
+                7
+              ],
+              [
+                39,
+                6
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                41,
+                4
+              ],
+              [
+                42,
+                4
+              ],
+              [
+                42,
+                5
+              ],
+              [
+                41,
+                5
+              ],
+              [
+                41,
+                4
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                43,
+                1
+              ],
+              [
+                44,
+                1.077
+              ],
+              [
+                44,
+                3
+              ],
+              [
+                42,
+                3
+              ],
+              [
+                42,
+                2
+              ],
+              [
+                43,
+                2
+              ],
+              [
+                43,
+                1
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Djibouti, Eritrea, Ethiopia, Kenya, Sudan, Somalia, South Sudan, Uganda",
+        "datetime": "2026-04-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260421-SSD-890291-MH0401-6-GCDB",
+        "start_datetime": "2026-04-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "SDN",
+          "KEN",
+          "ETH",
+          "SOM",
+          "ERI",
+          "DJI",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027450-6",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027450-5",
+      "bbox": [
+        37.0,
+        1.0,
+        49.0,
+        11.0
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                49,
+                10
+              ],
+              [
+                44,
+                10
+              ],
+              [
+                44,
+                8
+              ],
+              [
+                43,
+                8
+              ],
+              [
+                43,
+                9
+              ],
+              [
+                41,
+                9
+              ],
+              [
+                41,
+                4
+              ],
+              [
+                43,
+                4
+              ],
+              [
+                43,
+                5
+              ],
+              [
+                44,
+                5
+              ],
+              [
+                44,
+                3
+              ],
+              [
+                42,
+                3
+              ],
+              [
+                42,
+                2
+              ],
+              [
+                43,
+                2
+              ],
+              [
+                43,
+                1
+              ],
+              [
+                43.938,
+                1.012
+              ],
+              [
+                44,
+                2
+              ],
+              [
+                45,
+                2
+              ],
+              [
+                45,
+                4
+              ],
+              [
+                46,
+                4
+              ],
+              [
+                46,
+                7
+              ],
+              [
+                47,
+                7
+              ],
+              [
+                47,
+                6
+              ],
+              [
+                48.959,
+                6
+              ],
+              [
+                49,
+                10
+              ]
+            ],
+            [
+              [
+                47,
+                9
+              ],
+              [
+                48,
+                9
+              ],
+              [
+                48,
+                8
+              ],
+              [
+                47,
+                8
+              ],
+              [
+                47,
+                9
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                40,
+                9
+              ],
+              [
+                39,
+                9
+              ],
+              [
+                39,
+                10
+              ],
+              [
+                38,
+                10
+              ],
+              [
+                38,
+                11
+              ],
+              [
+                37,
+                11
+              ],
+              [
+                37,
+                7
+              ],
+              [
+                38,
+                7
+              ],
+              [
+                38,
+                8
+              ],
+              [
+                39,
+                8
+              ],
+              [
+                39,
+                6
+              ],
+              [
+                40,
+                6
+              ],
+              [
+                40,
+                9
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Djibouti, Eritrea, Ethiopia, Kenya, Sudan, Somalia, South Sudan, Uganda",
+        "datetime": "2026-04-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260421-SSD-890291-MH0401-5-GCDB",
+        "start_datetime": "2026-04-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "SDN",
+          "KEN",
+          "ETH",
+          "SOM",
+          "ERI",
+          "DJI",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027450-5",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027450-4",
+      "bbox": [
+        41.0,
+        1.0,
+        49.0,
+        10.0
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              49,
+              10
+            ],
+            [
+              44,
+              10
+            ],
+            [
+              44,
+              8
+            ],
+            [
+              43,
+              8
+            ],
+            [
+              43,
+              9
+            ],
+            [
+              41,
+              9
+            ],
+            [
+              41,
+              4
+            ],
+            [
+              43,
+              4
+            ],
+            [
+              43,
+              5
+            ],
+            [
+              44,
+              5
+            ],
+            [
+              44,
+              3
+            ],
+            [
+              42,
+              3
+            ],
+            [
+              42,
+              2
+            ],
+            [
+              43,
+              2
+            ],
+            [
+              43,
+              1
+            ],
+            [
+              43.938,
+              1.012
+            ],
+            [
+              44,
+              2
+            ],
+            [
+              45,
+              2
+            ],
+            [
+              45,
+              4
+            ],
+            [
+              46,
+              4
+            ],
+            [
+              46,
+              7
+            ],
+            [
+              47,
+              7
+            ],
+            [
+              47,
+              6
+            ],
+            [
+              48.959,
+              6
+            ],
+            [
+              49,
+              10
+            ]
+          ],
+          [
+            [
+              47,
+              9
+            ],
+            [
+              48,
+              9
+            ],
+            [
+              48,
+              8
+            ],
+            [
+              47,
+              8
+            ],
+            [
+              47,
+              9
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Djibouti, Eritrea, Ethiopia, Kenya, Sudan, Somalia, South Sudan, Uganda",
+        "datetime": "2026-04-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260421-SSD-890291-MH0401-4-GCDB",
+        "start_datetime": "2026-04-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "SDN",
+          "KEN",
+          "ETH",
+          "SOM",
+          "ERI",
+          "DJI",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027450-4",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027450-3",
+      "bbox": [
+        41.0,
+        1.0,
+        49.0,
+        10.0
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              49,
+              10
+            ],
+            [
+              44,
+              10
+            ],
+            [
+              44,
+              8
+            ],
+            [
+              43,
+              8
+            ],
+            [
+              43,
+              9
+            ],
+            [
+              41,
+              9
+            ],
+            [
+              41,
+              4
+            ],
+            [
+              43,
+              4
+            ],
+            [
+              43,
+              5
+            ],
+            [
+              44,
+              5
+            ],
+            [
+              44,
+              3
+            ],
+            [
+              42,
+              3
+            ],
+            [
+              42,
+              2
+            ],
+            [
+              43,
+              2
+            ],
+            [
+              43,
+              1
+            ],
+            [
+              43.938,
+              1.012
+            ],
+            [
+              44,
+              2
+            ],
+            [
+              45,
+              2
+            ],
+            [
+              45,
+              4
+            ],
+            [
+              46,
+              4
+            ],
+            [
+              46,
+              7
+            ],
+            [
+              47,
+              7
+            ],
+            [
+              47,
+              6
+            ],
+            [
+              48.959,
+              6
+            ],
+            [
+              49,
+              10
+            ]
+          ],
+          [
+            [
+              47,
+              9
+            ],
+            [
+              48,
+              9
+            ],
+            [
+              48,
+              8
+            ],
+            [
+              47,
+              8
+            ],
+            [
+              47,
+              9
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Djibouti, Eritrea, Ethiopia, Kenya, Sudan, Somalia, South Sudan, Uganda",
+        "datetime": "2026-04-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260421-SSD-890291-MH0401-3-GCDB",
+        "start_datetime": "2026-04-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "SDN",
+          "KEN",
+          "ETH",
+          "SOM",
+          "ERI",
+          "DJI",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Orange",
+          "severity_value": 1.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027450-3",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027450-2",
+      "bbox": [
+        41.0,
+        1.0,
+        49.0,
+        10.0
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              49,
+              10
+            ],
+            [
+              44,
+              10
+            ],
+            [
+              44,
+              8
+            ],
+            [
+              43,
+              8
+            ],
+            [
+              43,
+              9
+            ],
+            [
+              41,
+              9
+            ],
+            [
+              41,
+              4
+            ],
+            [
+              43,
+              4
+            ],
+            [
+              43,
+              5
+            ],
+            [
+              44,
+              5
+            ],
+            [
+              44,
+              3
+            ],
+            [
+              42,
+              3
+            ],
+            [
+              42,
+              2
+            ],
+            [
+              43,
+              2
+            ],
+            [
+              43,
+              1
+            ],
+            [
+              43.938,
+              1.012
+            ],
+            [
+              44,
+              2
+            ],
+            [
+              45,
+              2
+            ],
+            [
+              45,
+              4
+            ],
+            [
+              46,
+              4
+            ],
+            [
+              46,
+              7
+            ],
+            [
+              47,
+              7
+            ],
+            [
+              47,
+              6
+            ],
+            [
+              48.959,
+              6
+            ],
+            [
+              49,
+              10
+            ]
+          ],
+          [
+            [
+              47,
+              9
+            ],
+            [
+              48,
+              9
+            ],
+            [
+              48,
+              8
+            ],
+            [
+              47,
+              8
+            ],
+            [
+              47,
+              9
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Djibouti, Eritrea, Ethiopia, Kenya, Sudan, Somalia, South Sudan, Uganda",
+        "datetime": "2026-04-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260421-SSD-890291-MH0401-2-GCDB",
+        "start_datetime": "2026-04-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "SDN",
+          "KEN",
+          "ETH",
+          "SOM",
+          "ERI",
+          "DJI",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.75
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027450-2",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027450-1",
+      "bbox": [
+        41.0,
+        1.0,
+        49.0,
+        10.0
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              49,
+              10
+            ],
+            [
+              44,
+              10
+            ],
+            [
+              44,
+              8
+            ],
+            [
+              43,
+              8
+            ],
+            [
+              43,
+              9
+            ],
+            [
+              41,
+              9
+            ],
+            [
+              41,
+              4
+            ],
+            [
+              43,
+              4
+            ],
+            [
+              43,
+              5
+            ],
+            [
+              44,
+              5
+            ],
+            [
+              44,
+              3
+            ],
+            [
+              42,
+              3
+            ],
+            [
+              42,
+              2
+            ],
+            [
+              43,
+              2
+            ],
+            [
+              43,
+              1
+            ],
+            [
+              43.938,
+              1.012
+            ],
+            [
+              44,
+              2
+            ],
+            [
+              45,
+              2
+            ],
+            [
+              45,
+              4
+            ],
+            [
+              46,
+              4
+            ],
+            [
+              46,
+              7
+            ],
+            [
+              47,
+              7
+            ],
+            [
+              47,
+              6
+            ],
+            [
+              48.959,
+              6
+            ],
+            [
+              49,
+              10
+            ]
+          ],
+          [
+            [
+              47,
+              9
+            ],
+            [
+              48,
+              9
+            ],
+            [
+              48,
+              8
+            ],
+            [
+              47,
+              8
+            ],
+            [
+              47,
+              9
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Djibouti, Eritrea, Ethiopia, Kenya, Sudan, Somalia, South Sudan, Uganda",
+        "datetime": "2026-04-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260421-SSD-890291-MH0401-1-GCDB",
+        "start_datetime": "2026-04-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "SSD",
+          "SDN",
+          "KEN",
+          "ETH",
+          "SOM",
+          "ERI",
+          "DJI",
+          "UGA"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027450-1",
           "auth:refs": [
             "oidc"
           ]

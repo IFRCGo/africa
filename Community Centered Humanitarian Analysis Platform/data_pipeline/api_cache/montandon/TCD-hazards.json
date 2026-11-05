@@ -239,6 +239,366 @@
       ]
     },
     {
+      "id": "gdacs-hazard-1027567-2",
+      "bbox": [
+        12.0,
+        7.0,
+        18.0,
+        15.0
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                17,
+                11
+              ],
+              [
+                15,
+                11
+              ],
+              [
+                15,
+                10
+              ],
+              [
+                16,
+                10
+              ],
+              [
+                16,
+                7
+              ],
+              [
+                17,
+                7
+              ],
+              [
+                17,
+                11
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                18,
+                14
+              ],
+              [
+                17,
+                14
+              ],
+              [
+                17,
+                15
+              ],
+              [
+                14,
+                15
+              ],
+              [
+                14,
+                13
+              ],
+              [
+                18,
+                13
+              ],
+              [
+                18,
+                14
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                13,
+                14
+              ],
+              [
+                12,
+                14
+              ],
+              [
+                12,
+                12
+              ],
+              [
+                13,
+                12
+              ],
+              [
+                13,
+                14
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Central African Republic, Cameroon, Niger, Nigeria, Chad",
+        "datetime": "2026-06-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260621-NGA-893782-MH0401-2-GCDB",
+        "start_datetime": "2026-06-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "NGA",
+          "NER",
+          "TCD",
+          "CMR",
+          "CAF"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027567-2",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1027567-1",
+      "bbox": [
+        12.0,
+        7.0,
+        18.0,
+        15.0
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                17,
+                11
+              ],
+              [
+                16,
+                11
+              ],
+              [
+                16,
+                12
+              ],
+              [
+                14,
+                12
+              ],
+              [
+                14,
+                11
+              ],
+              [
+                15,
+                11
+              ],
+              [
+                15,
+                10
+              ],
+              [
+                16,
+                10
+              ],
+              [
+                16,
+                7
+              ],
+              [
+                17,
+                7
+              ],
+              [
+                17,
+                11
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                17,
+                15
+              ],
+              [
+                14,
+                15
+              ],
+              [
+                14,
+                13
+              ],
+              [
+                16,
+                13
+              ],
+              [
+                16,
+                14
+              ],
+              [
+                17,
+                14
+              ],
+              [
+                17,
+                15
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                18,
+                14
+              ],
+              [
+                17,
+                14
+              ],
+              [
+                17,
+                13
+              ],
+              [
+                18,
+                13
+              ],
+              [
+                18,
+                14
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                12,
+                14
+              ],
+              [
+                12,
+                13
+              ],
+              [
+                13,
+                13
+              ],
+              [
+                13,
+                14
+              ],
+              [
+                12,
+                14
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Central African Republic, Cameroon, Niger, Nigeria, Chad",
+        "datetime": "2026-06-21T00:00:00Z",
+        "end_datetime": "2026-09-25T00:00:00Z",
+        "monty:corr_id": "20260621-NGA-893782-MH0401-1-GCDB",
+        "start_datetime": "2026-06-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "NGA",
+          "NER",
+          "TCD",
+          "CMR",
+          "CAF"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.25
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027567-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
       "id": "pdc-hazard-6588ff69-5c36-4765-99c1-d2f08e9c43e2-436322-1778192605382",
       "bbox": [
         14.35557984553895,
@@ -1709,534 +2069,6 @@
           "rel": "self",
           "type": "application/geo+json",
           "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-bdd999b7-4e06-47e7-8f5b-0bb26fc4ad0a-404451-1772922553",
-          "auth:refs": [
-            "oidc"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "gdacs-hazard-1027450-6",
-      "bbox": [
-        19.76013,
-        13.8777306023374,
-        19.8277793976626,
-        14.0240893976626
-      ],
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              19.7731565828382,
-              13.8777306023374
-            ],
-            [
-              19.8277793976626,
-              13.9313165828382
-            ],
-            [
-              19.8072734171618,
-              14.0240893976626
-            ],
-            [
-              19.7683906023374,
-              14.0116034171618
-            ],
-            [
-              19.8017254573194,
-              14.0118344655777
-            ],
-            [
-              19.7677606023374,
-              13.9978834171618
-            ],
-            [
-              19.7836929183616,
-              13.9888205491133
-            ],
-            [
-              19.76013,
-              13.90933
-            ],
-            [
-              19.7731565828382,
-              13.8777306023374
-            ]
-          ],
-          [
-            [
-              19.7736677566795,
-              13.8934143477476
-            ],
-            [
-              19.7719646474905,
-              13.8991676072526
-            ],
-            [
-              19.7764718681016,
-              13.897054160856
-            ],
-            [
-              19.7736677566795,
-              13.8934143477476
-            ]
-          ],
-          [
-            [
-              19.79387,
-              13.94016
-            ],
-            [
-              19.7799254198278,
-              13.9397188944172
-            ],
-            [
-              19.782556981176,
-              13.9428877150791
-            ],
-            [
-              19.79387,
-              13.94016
-            ]
-          ],
-          [
-            [
-              19.7839464893862,
-              13.9518609297864
-            ],
-            [
-              19.7837763991713,
-              13.9527160310408
-            ],
-            [
-              19.7851457493833,
-              13.9526391774964
-            ],
-            [
-              19.7839464893862,
-              13.9518609297864
-            ]
-          ],
-          [
-            [
-              19.7893741256045,
-              13.9574096472345
-            ],
-            [
-              19.7891163991713,
-              13.9590660310408
-            ],
-            [
-              19.7913999999235,
-              13.9581373812782
-            ],
-            [
-              19.7893741256045,
-              13.9574096472345
-            ]
-          ],
-          [
-            [
-              19.8008015995211,
-              13.9584309806966
-            ],
-            [
-              19.799672149134,
-              13.9603056335175
-            ],
-            [
-              19.8063356256813,
-              13.959810435053
-            ],
-            [
-              19.8008015995211,
-              13.9584309806966
-            ]
-          ],
-          [
-            [
-              19.7848910845931,
-              13.9754354991455
-            ],
-            [
-              19.7850138596834,
-              13.9756192450531
-            ],
-            [
-              19.7872926194687,
-              13.9762494334121
-            ],
-            [
-              19.7848910845931,
-              13.9754354991455
-            ]
-          ],
-          [
-            [
-              19.7953136672986,
-              13.9804097192167
-            ],
-            [
-              19.7958846197632,
-              13.9811715366336
-            ],
-            [
-              19.7987806781782,
-              13.9809550920147
-            ],
-            [
-              19.7953136672986,
-              13.9804097192167
-            ]
-          ],
-          [
-            [
-              19.8087530649469,
-              13.9818294133408
-            ],
-            [
-              19.8096396171254,
-              13.9826953473962
-            ],
-            [
-              19.8091706023374,
-              13.9819934171618
-            ],
-            [
-              19.8087530649469,
-              13.9818294133408
-            ]
-          ],
-          [
-            [
-              19.8062684414872,
-              14.0012072562478
-            ],
-            [
-              19.8068717187981,
-              14.0021101245478
-            ],
-            [
-              19.8095526945829,
-              14.0020712429471
-            ],
-            [
-              19.8062684414872,
-              14.0012072562478
-            ]
-          ]
-        ]
-      },
-      "collection": "gdacs-hazards",
-      "properties": {
-        "title": "Forest fires in Chad",
-        "datetime": "2026-02-17T00:00:00Z",
-        "end_datetime": "2026-02-21T00:00:00Z",
-        "monty:corr_id": "20260217-TCD-EN0205-6-GCDB",
-        "start_datetime": "2026-02-17T00:00:00Z",
-        "monty:hazard_codes": [
-          "EN0205"
-        ],
-        "monty:country_codes": [
-          "TCD"
-        ],
-        "monty:hazard_detail": {
-          "estimate_type": "primary",
-          "severity_unit": "GDACS Severity Score",
-          "severity_label": "Green",
-          "severity_value": 0.5
-        }
-      },
-      "links": [
-        {
-          "rel": "collection",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "parent",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "root",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "self",
-          "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027450-6",
-          "auth:refs": [
-            "oidc"
-          ]
-        }
-      ]
-    },
-    {
-      "id": "gdacs-hazard-1027450-5",
-      "bbox": [
-        19.76013,
-        13.8777306023374,
-        19.8265834171618,
-        14.0084093976626
-      ],
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              19.7731565828382,
-              13.8777306023374
-            ],
-            [
-              19.8261793976626,
-              13.9276765828382
-            ],
-            [
-              19.8265834171618,
-              14.0084093976626
-            ],
-            [
-              19.7677606023374,
-              13.9978834171618
-            ],
-            [
-              19.7836929183616,
-              13.9888205491133
-            ],
-            [
-              19.76013,
-              13.90933
-            ],
-            [
-              19.7731565828382,
-              13.8777306023374
-            ]
-          ],
-          [
-            [
-              19.7736677566795,
-              13.8934143477476
-            ],
-            [
-              19.7719646474905,
-              13.8991676072526
-            ],
-            [
-              19.7764718681016,
-              13.897054160856
-            ],
-            [
-              19.7736677566795,
-              13.8934143477476
-            ]
-          ],
-          [
-            [
-              19.79387,
-              13.94016
-            ],
-            [
-              19.7799254198278,
-              13.9397188944172
-            ],
-            [
-              19.782556981176,
-              13.9428877150791
-            ],
-            [
-              19.79387,
-              13.94016
-            ]
-          ],
-          [
-            [
-              19.7839464893862,
-              13.9518609297864
-            ],
-            [
-              19.78441,
-              13.95259
-            ],
-            [
-              19.7851658743955,
-              13.9527403527655
-            ],
-            [
-              19.7839464893862,
-              13.9518609297864
-            ]
-          ],
-          [
-            [
-              19.7913999999235,
-              13.9581373812782
-            ],
-            [
-              19.7891163991713,
-              13.9590660310408
-            ],
-            [
-              19.7916146008973,
-              13.9588490620058
-            ],
-            [
-              19.7913999999235,
-              13.9581373812782
-            ]
-          ],
-          [
-            [
-              19.8008015995211,
-              13.9584309806966
-            ],
-            [
-              19.799672149134,
-              13.9603056335175
-            ],
-            [
-              19.8063356256813,
-              13.959810435053
-            ],
-            [
-              19.8008015995211,
-              13.9584309806966
-            ]
-          ],
-          [
-            [
-              19.7868074417933,
-              13.9755233137071
-            ],
-            [
-              19.7859058848388,
-              13.9759761590689
-            ],
-            [
-              19.7872926194687,
-              13.9762494334121
-            ],
-            [
-              19.7868074417933,
-              13.9755233137071
-            ]
-          ],
-          [
-            [
-              19.7953136672986,
-              13.9804097192167
-            ],
-            [
-              19.7958846197632,
-              13.9811715366336
-            ],
-            [
-              19.7987806781782,
-              13.9809550920147
-            ],
-            [
-              19.7953136672986,
-              13.9804097192167
-            ]
-          ],
-          [
-            [
-              19.809096971672,
-              13.9816232508098
-            ],
-            [
-              19.8087530649469,
-              13.9818294133408
-            ],
-            [
-              19.8092844600093,
-              13.9826247022535
-            ],
-            [
-              19.809096971672,
-              13.9816232508098
-            ]
-          ],
-          [
-            [
-              19.8062684414872,
-              14.0012072562478
-            ],
-            [
-              19.8068717187981,
-              14.0021101245478
-            ],
-            [
-              19.8095526945829,
-              14.0020712429471
-            ],
-            [
-              19.8062684414872,
-              14.0012072562478
-            ]
-          ]
-        ]
-      },
-      "collection": "gdacs-hazards",
-      "properties": {
-        "title": "Forest fires in Chad",
-        "datetime": "2026-02-17T00:00:00Z",
-        "end_datetime": "2026-02-21T00:00:00Z",
-        "monty:corr_id": "20260217-TCD-EN0205-5-GCDB",
-        "start_datetime": "2026-02-17T00:00:00Z",
-        "monty:hazard_codes": [
-          "EN0205"
-        ],
-        "monty:country_codes": [
-          "TCD"
-        ],
-        "monty:hazard_detail": {
-          "estimate_type": "primary",
-          "severity_unit": "GDACS Severity Score",
-          "severity_label": "Green",
-          "severity_value": 0.5
-        }
-      },
-      "links": [
-        {
-          "rel": "collection",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "parent",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "root",
-          "type": "application/json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
-          "auth:refs": [
-            "oidc"
-          ]
-        },
-        {
-          "rel": "self",
-          "type": "application/geo+json",
-          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1027450-5",
           "auth:refs": [
             "oidc"
           ]
