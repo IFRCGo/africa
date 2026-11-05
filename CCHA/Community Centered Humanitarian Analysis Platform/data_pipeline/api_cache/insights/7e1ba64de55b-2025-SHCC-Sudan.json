@@ -1,0 +1,68 @@
+{
+  "source": {
+    "rel_path": "media/7e1ba64de55b-2025-SHCC-Sudan.pdf",
+    "sha1": "7e1ba64de55b105cdbbe1dcd107f447daf994917",
+    "report_date": null
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "psychologically we are all sick, but we try as much as we can to push through.",
+      "quote_language": "en",
+      "page": 8,
+      "voice_type": "community",
+      "place_name_as_written": "El Fasher",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "mental_health"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "People cannot donate blood when they cannot find anything to eat. We started using mosquito nets and bed sheets as gauze. We use medicine that has expired for years, that pharmacists test before giving. Some days I see 20 patients; other days, after a missile or a drone hits, 200.",
+      "quote_language": "en",
+      "page": 8,
+      "voice_type": "community",
+      "place_name_as_written": "El Fasher",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health"
+        },
+        {
+          "dimension": "need",
+          "tag": "food_security"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "The SHCC’s 2024 Annual Report cited 244 incidents of violence against or obstruction of health care in Sudan in 2024 and 271 in 2023.",
+      "quote_language": "en",
+      "page": 9,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence_against_health_care"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    }
+  ]
+}

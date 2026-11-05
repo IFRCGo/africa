@@ -1,0 +1,622 @@
+{
+  "source": {
+    "rel_path": "media/45c04d21d5cb-EVAR_2025_FINAL_March_2026_-_EN.pdf",
+    "sha1": "45c04d21d5cbc5875762905853dee8eae22a431a",
+    "report_date": "2026-03-15"
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "Since the escalation of conflict in Sudan in April 2023, 0.7 million Sudanese refugees have been registered in Egypt - over a tenfold increase compared with pre-crisis levels.",
+      "quote_language": "en",
+      "page": 6,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "cross_border_arrival",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "armed_conflict",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "0.7 million",
+          "value": 700000,
+          "unit": "people",
+          "measures": "Sudanese refugees registered",
+          "applies_to": "Sudanese refugees"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "Sudan",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": "Egypt",
+          "dest_iso3": "EGY",
+          "flow_type": "cross_border",
+          "value_as_written": "0.7 million",
+          "value": 700000,
+          "unit": "people"
+        }
+      ],
+      "people_affected": 700000,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "About 65 percent of refugees are highly or extremely vulnerable and unable to meet their basic needs due to limited livelihoods, food insecurity and poor living conditions.",
+      "quote_language": "en",
+      "page": 6,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "other",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "65 percent",
+          "value": 65,
+          "unit": "percent",
+          "measures": "highly or extremely vulnerable",
+          "applies_to": "refugees"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Almost all refugee in Egypt (92 percent) were found to adopt food consumption-based coping strategies reducing meal portion and frequency and restricting consumption of adult in favor of children.",
+      "quote_language": "en",
+      "page": 6,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "meal_reduction",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "92 percent",
+          "value": 92,
+          "unit": "percent",
+          "measures": "adopt food consumption-based coping strategies",
+          "applies_to": "refugee households"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Around 73,000 refugees from Sudan are awaiting registration with UNHCR.",
+      "quote_language": "en",
+      "page": 10,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "registration_documentation",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "73,000",
+          "value": 73000,
+          "unit": "people",
+          "measures": "refugees from Sudan awaiting registration",
+          "applies_to": "refugees from Sudan"
+        }
+      ],
+      "people_affected": 73000,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "On average, only around one-third have a valid passport, falling to just 13 percent of non-Arabic speaking refugees.",
+      "quote_language": "en",
+      "page": 10,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "statelessness_documentation",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "one-third",
+          "value": 33,
+          "unit": "percent",
+          "measures": "have a valid passport",
+          "applies_to": "refugees"
+        },
+        {
+          "figure_as_written": "13 percent",
+          "value": 13,
+          "unit": "percent",
+          "measures": "have a valid passport",
+          "applies_to": "non-Arabic speaking refugees"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Since early 2025, relative stabilization in Al Jazirah, Khartoum, and Sennar states has enabled around 320,000 Sudanese nationals to cross back into Sudan—mostly from Egypt and South Sudan.",
+      "quote_language": "en",
+      "page": 10,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "return_movement",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "320,000",
+          "value": 320000,
+          "unit": "people",
+          "measures": "Sudanese nationals returning to Sudan",
+          "applies_to": "Sudanese nationals"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "Egypt",
+          "origin_iso3": "EGY",
+          "dest_name_as_written": "Sudan",
+          "dest_iso3": "SDN",
+          "flow_type": "return",
+          "value_as_written": "320,000",
+          "value": 320000,
+          "unit": "people"
+        }
+      ],
+      "people_affected": 320000,
+      "severity": 2,
+      "confidence": "high"
+    },
+    {
+      "quote": "About one-quarter of refugees in Egypt (26 percent) indicated that the existing feedback and complaints mechanisms are not accessible to all refugees, especially for the elderly, women and illiterate people",
+      "quote_language": "en",
+      "page": 15,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "other",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "26 percent",
+          "value": 26,
+          "unit": "percent",
+          "measures": "feedback and complaints mechanisms are not accessible",
+          "applies_to": "refugees"
+        }
+      ],
+      "people_affected": null,
+      "severity": 2,
+      "confidence": "high"
+    },
+    {
+      "quote": "Focus group participants also noted that high food prices have forced them to significantly reduce or entirely stop consuming animal-based proteins.",
+      "quote_language": "en",
+      "page": 17,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "meal_reduction",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "other",
+          "role": "driver"
+        }
+      ],
+      "figures": [],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "One FGD participant stated: “Business and factory owners hire refugees for a very low salary and say, “take it or leave it”.",
+      "quote_language": "en",
+      "page": 20,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "other",
+          "role": "subject"
+        }
+      ],
+      "figures": [],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Many said they reduced food consumption, eating only one meal a day, or sold personal belongings, moved to cheaper housing or withdrew children from school.",
+      "quote_language": "en",
+      "page": 23,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "meal_reduction",
+          "role": "subject"
+        },
+        {
+          "dimension": "coping",
+          "tag": "asset_depletion",
+          "role": "subject"
+        },
+        {
+          "dimension": "coping",
+          "tag": "self_relocation",
+          "role": "subject"
+        }
+      ],
+      "figures": [],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Many rely on community support systems or remittances, but these are limited and unreliable.",
+      "quote_language": "en",
+      "page": 23,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "host_community_support",
+          "role": "subject"
+        },
+        {
+          "dimension": "coping",
+          "tag": "remittances_informal_work",
+          "role": "subject"
+        }
+      ],
+      "figures": [],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "The majority of refugee households in Egypt experience high levels of vulnerability, with 65 percent falling into the highly or extremely vulnerable categories due to severe economic constraints, poor food consumption and low livelihood resilience (see Fig. 19).",
+      "quote_language": "en",
+      "page": 29,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "other",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "65 percent",
+          "value": 65,
+          "unit": "percent",
+          "measures": "highly or extremely vulnerable",
+          "applies_to": "refugee households"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "The majority (58 percent) of refugees in Egypt are moderately or severely food insecure, with half (51 percent) moderately food insecure and 7.2 percent severely food insecure (see Fig. 20).",
+      "quote_language": "en",
+      "page": 30,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "58 percent",
+          "value": 58,
+          "unit": "percent",
+          "measures": "moderately or severely food insecure",
+          "applies_to": "refugees"
+        },
+        {
+          "figure_as_written": "51 percent",
+          "value": 51,
+          "unit": "percent",
+          "measures": "moderately food insecure",
+          "applies_to": "refugees"
+        },
+        {
+          "figure_as_written": "7.2 percent",
+          "value": 7.2,
+          "unit": "percent",
+          "measures": "severely food insecure",
+          "applies_to": "refugees"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Among food-insecure refugee households, 38 percent report at least one child under 5 years old needing urgent nutrition support.",
+      "quote_language": "en",
+      "page": 30,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "nutrition",
+          "role": "subject"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "child_protection",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "38 percent",
+          "value": 38,
+          "unit": "percent",
+          "measures": "needing urgent nutrition support",
+          "applies_to": "child under 5 years old"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Despite high needs, cost is the main reason why many refugees in Egypt do not seek needed health services.",
+      "quote_language": "en",
+      "page": 33,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "barrier"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "The chief reason across all refugee population groups and locations for not seeking needed health services is the expected high cost (94 percent).",
+      "quote_language": "en",
+      "page": 33,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "barrier"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "94 percent",
+          "value": 94,
+          "unit": "percent",
+          "measures": "expected high cost",
+          "applies_to": "refugee households not seeking needed health services"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "High costs are the main reason why many refugee households do not enrol their children in school.",
+      "quote_language": "en",
+      "page": 34,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "education",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "barrier"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "The issue of inadequate access to education was strongly emphasized during the FGDs.",
+      "quote_language": "en",
+      "page": 34,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "education",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "The rising cost of rent, risk of eviction and poor quality of shelter were raised as key concerns in the FGDs.",
+      "quote_language": "en",
+      "page": 35,
+      "voice_type": "community",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "shelter",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "barrier"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "About 65 percent of refugees are highly or extremely vulnerable and unable to meet their basic needs due to limited livelihoods, food insecurity and poor living conditions.",
+      "quote_language": "en",
+      "page": 41,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "other",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "65 percent",
+          "value": 65,
+          "unit": "percent",
+          "measures": "highly or extremely vulnerable",
+          "applies_to": "refugees"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Almost all refugees in Egypt (92 percent) were found to adopt food consumption-based coping strategies reducing meal portion and frequency and restricting consumption of adult in favor of children.",
+      "quote_language": "en",
+      "page": 41,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "meal_reduction",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "92 percent",
+          "value": 92,
+          "unit": "percent",
+          "measures": "adopt food consumption-based coping strategies",
+          "applies_to": "refugees in Egypt"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    }
+  ]
+}

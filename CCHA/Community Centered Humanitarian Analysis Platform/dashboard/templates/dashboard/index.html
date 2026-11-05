@@ -1,0 +1,319 @@
+{% load static %}<!DOCTYPE html>
+<!--
+  =========================================================================
+  Community Centered Humanitarian Analysis - the dashboard page
+  =========================================================================
+
+  This file is only the SKELETON of the page. It contains no data at all:
+  every number, dot and line you see is put here by js/app.js after it
+  downloads the files in data/.
+
+  How to read it:
+    * Each element with an id (for example id="map-a" or id="event-list") is
+      a slot that app.js fills in. Search app.js for that same id to find the
+      code behind it.
+    * The page is laid out in five parts, in this order:
+        header  id="topbar"    IFRC logo, title, and the four big numbers
+        aside   id="sidebar"   left column: country filter, layers, themes
+        main    id="map-wrap"  the map panes, the banner and the legend
+        aside   id="rightbar"  right column: trends, quotes, hazards, graph
+        footer  id="timebar"   the timeline slider and play button
+
+    * There are TWO map panes, id="map-a" and id="map-b". Only the first is
+      used until someone selects exactly two countries in the country filter,
+      at which point the map splits and shows one country in each.
+
+  This page is a Django template, served by dashboard/views.py at "/".
+  The stylesheet and script are collected by Django's staticfiles app from
+  dashboard/static/dashboard/, so they are addressed with the "static" template
+  tag rather than by a relative path. The data/ files are served separately by
+  dashboard.views.data_file, which reads them straight off disk so the pipeline
+  can rewrite them without a restart.
+
+  Note: Django parses template tags inside HTML comments as well, so a literal
+  tag must never be written in this block.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudan &amp; Neighbouring Countries</title>
+<!-- MapLibre GL: the free, open-source map library that draws the map. -->
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<!-- Our own styling. All colours and layout rules live in this one file. -->
+<link href="{% static 'dashboard/css/app.css' %}" rel="stylesheet">
+</head>
+<body>
+<!-- ===================== TOP BAR: title + headline figures ============= -->
+<!-- The four "-" placeholders are replaced by renderStats() in app.js every
+     time the timeline moves. -->
+<header id="topbar">
+  <div id="title-block">
+    <!-- The logo sits in a plate, and the plate is what you see. IFRC's
+         horizontal SVG carries its own white background rectangle, but that
+         rectangle covers only the middle of the file's viewBox - so dropped
+         straight onto the red bar it read as a small white chip with red all
+         round it. #ifrc-logo-plate crops the transparent margin away and pins
+         what is left flush into the top-left corner; see app.css for the
+         arithmetic that turns the file's proportions into those offsets. -->
+    <div id="ifrc-logo-plate">
+      <img id="ifrc-logo" src="https://www.ifrc.org/themes/custom/ifrc_theme/dist/images/Logo-Horizontal-RGB.svg" alt="IFRC Logo">
+    </div>
+    <h1>Sudan &amp; Neighbouring countries <span>- Community Centered Humanitarian Analysis</span></h1>
+  </div>
+  <div id="stat-cards">
+    <div class="stat" id="stat-displaced"><div class="stat-value">–</div><div class="stat-label">Total forcibly displaced</div></div>
+    <div class="stat" id="stat-idps"><div class="stat-value">–</div><div class="stat-label">IDPs inside Sudan</div></div>
+    <div class="stat" id="stat-crossborder"><div class="stat-value">–</div><div class="stat-label">Fled to neighbouring countries</div></div>
+    <div class="stat stat-return" id="stat-returns"><div class="stat-value">–</div><div class="stat-label">Returns to Sudan</div></div>
+  </div>
+</header>
+
+<div id="layout">
+  <!-- ===================== LEFT SIDEBAR ============================== -->
+  <aside id="sidebar">
+    <!-- The country filter, first in the sidebar because it governs
+         everything below it. initCountryFilter() in app.js puts a searchable
+         multi-select into #country-filter and the chips for what is chosen
+         into #country-chips. Choosing countries filters EVERY panel on the
+         page, not only the map, and moves the map: one country zooms to it,
+         two split the map in half, three or more zoom out to fit them all. -->
+    <section class="panel" id="country-panel">
+      <h2>Country filter</h2>
+      <div id="filter-bar">
+        <div id="country-filter"></div>
+        <div id="country-chips"></div>
+        <div id="filter-mode"></div>
+      </div>
+    </section>
+
+    <!-- Every checkbox here switches one map layer on or off. Its id is
+         matched to a handler in initControls() in app.js. -->
+    <section class="panel" id="layers-panel">
+      <h2>Layer control</h2>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-flows" checked>
+        <span class="swatch arrow-swatch" style="color:var(--out)">→</span>Movement out of Sudan</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-returns" checked>
+        <span class="swatch arrow-swatch" style="color:var(--return)">→</span>Movement back into Sudan</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-events" checked>
+        <span class="swatch dot-swatch" style="background:var(--event)"></span>Key events</label>
+      <!-- Below this line the layers come from external humanitarian
+           open-data servers rather than from the UNHCR reports. -->
+      <div class="layer-sep">Data Layers</div>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-idp">
+        <span class="swatch dot-swatch" style="background:var(--idp-locality)"></span>IDP by admin2 localities (IOM-DTM)</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-idp-states">
+        <span class="swatch dot-swatch" style="background:var(--idp-state)"></span>IDP by admin1 State (IOM-DTM)</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-returnees">
+        <span class="swatch dot-swatch swatch-ring" style="background:var(--returnee)"></span>Returnees breakdown (IOM-DTM)</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-refugees">
+        <span class="swatch dot-swatch" style="background:var(--refugees)"></span>Refugee totals by country (UNHCR)</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-refugee-camps">
+        <span class="swatch dot-swatch" style="background:var(--refugees);border:1px solid #0e1116;width:8px;height:8px"></span>Settlements and camps (UNHCR RRP)</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-foodsec">
+        <span class="swatch" style="background:linear-gradient(90deg,#cdfacd,#fae61e,#e67800,#c80000,#640000)"></span>Food insecurity — IPC phase, by area (IPC)</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-crossings" checked>
+        <span class="swatch dot-swatch" style="background:var(--ifrc-white);border:1px solid var(--muted)"></span>Border crossings</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-aoi">
+        <span class="swatch" style="background:transparent;border:1px solid var(--event)"></span>Areas of Operation (IFRC)</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-hsps">
+        <span class="swatch dot-swatch" style="background:var(--hsp)"></span>Humanitarian Service Points (IFRC)</label>
+    </section>
+
+    <section class="panel" id="seasonal-panel">
+      <h2>Seasonal calendar <span class="src-tag">ACAPS</span></h2>
+      <div id="seasonal-cal"></div>
+    </section>
+
+    <!-- The theme filters are NOT written out here: initThemeControls() in
+         app.js builds one searchable dropdown per dimension from tags.json, so
+         new tags appear by themselves. Inside a dropdown, ticking a box adds a
+         tag and clicking a tag's name selects only that one. -->
+    <section class="panel" id="themes-panel">
+      <h2>What the documents tell us</h2>
+      <div id="dim-groups"></div>
+      <div id="theme-detail"></div>
+    </section>
+
+    <section class="panel" id="events-panel">
+      <h2>Timeline of events</h2>
+      <div id="event-list"></div>
+    </section>
+  </aside>
+
+  <!-- ===================== THE MAP ================================== -->
+  <!-- Two map panes, not one. The second is empty and hidden until the user
+       picks exactly two countries in the filter; #map-wrap then gains the
+       class "split" and the panes sit side by side, one country in each.
+       app.js builds the second map the first time it is needed and keeps both
+       fed with identical data - only their viewports differ. -->
+  <main id="map-wrap">
+    <div id="map-panes">
+      <div class="map-pane"><div class="map-canvas" id="map-a"></div><div class="pane-label" id="map-a-label"></div></div>
+      <div class="map-pane" id="pane-b"><div class="map-canvas" id="map-b"></div><div class="pane-label" id="map-b-label"></div></div>
+
+      <!-- The disclaimer chip, bottom-left of the map. It is one of the very
+           few ids on this page that app.js does NOT fill in: the wording is
+           written here and nowhere else, so searching app.js for it finds
+           nothing. Edit the paragraph below to change what it says.
+
+           It sits inside #map-panes and not #map-wrap on purpose. The legend
+           is in the flow at the bottom of #map-wrap, so "bottom: 14px"
+           measured against #map-wrap would land the chip on top of the legend
+           rather than on the map. #map-panes ends where the legend begins.
+
+           Hovering the chip - or giving it keyboard focus, or tapping it on a
+           touch screen - opens the panel above it. That is done in CSS with
+           :hover and :focus-within; there is no JavaScript behind it. -->
+      <div id="map-disclaimer">
+        <div class="disclaimer-panel" id="disclaimer-text" role="tooltip">
+          <p>The <b>Community Centered Humanitarian Analysis Platform</b> is a pilot
+            initiative supported by the International Federation of Red Cross and Red
+            Crescent Societies (IFRC). It consolidates publicly available information
+            using automated artificial intelligence agents. The platform can be alittle bit outdated,
+             and it is not a substitute for official sources.It is intended to provide a broad overview of the humanitarian situation, 
+             but it does not replace the need for on-the-ground;
+            however, some of the information and analysis it provides are not systematically
+            verified by human analysts. As a result, there may be inaccuracies,
+            omissions, or misinterpretations of data. Users are strongly advised to
+            independently verify all content before using it for humanitarian
+            decision-making. IFRC and its partners accept no liability for any actions
+            taken based on the information presented through this platform.</p>
+        </div>
+        <button type="button" class="disclaimer-chip" aria-describedby="disclaimer-text">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m1 15h-2v-6h2zm0-8h-2V7h2z"></path>
+          </svg>Disclaimer
+        </button>
+      </div>
+    </div>
+    <div id="event-banner" class="hidden"></div>
+    <!-- The legend is written by hand here because it never changes. Keep
+         its colours in step with COLOR_OUT / COLOR_IN / DIM_META at the top of
+         app.js, and its ROWS in step with DIM_META too: a pillar dropped from
+         that object disappears from the page but not from this list.
+
+         It is the bottom boundary of the map rather than a card floating over
+         it, so it covers nothing. See #map-legend in app.css. -->
+    <div id="map-legend">
+      <span class="leg"><span class="leg-arrow" style="color:var(--out)">›››</span> Out of Sudan</span>
+      <span class="leg"><span class="leg-arrow" style="color:var(--return)">›››</span> Into Sudan / returns</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--event)"></span> Key event</span>
+      <!-- The pillars are drawn as a fill on the area they were reported in,
+           the highest-precedence one taking the colour and the rest named in
+           the area's popup. -->
+      <span class="leg"><span class="leg-band" style="background:var(--dim-hazard)"></span> Hazards</span>
+      <span class="leg"><span class="leg-band" style="background:var(--dim-vulnerability)"></span> Vulnerabilities</span>
+      <span class="leg"><span class="leg-band" style="background:var(--dim-coping)"></span> Coping</span>
+      <span class="leg"><span class="leg-band" style="background:var(--dim-need)"></span> Needs</span>
+      <span class="leg"><span class="leg-tint"></span> Reported, but no place named</span>
+      <span class="leg"><span class="leg-water"></span> River / lake beside flood or water reporting</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--idp-locality)"></span> IDP locality / admin2</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--idp-state)"></span> IDP state / admin1</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--refugees)"></span> Refugee total</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--refugees);border:1px solid #0e1116;width:7px;height:7px"></span> Settlement / camp</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--ifrc-white);border:1px solid var(--muted)"></span> Border crossing</span>
+      <span class="leg"><span class="leg-dot" style="background:transparent;border:1px solid var(--event);border-radius:2px"></span> IFRC Area of Operation</span>
+      <span class="leg"><span class="leg-dot" style="background:var(--hsp)"></span> Service point district</span>
+      <span class="leg leg-ipc">IPC:
+        <span class="ipc-sw" style="background:#cdfacd;border:1px solid var(--border)"></span>1
+        <span class="ipc-sw" style="background:#fae61e"></span>2
+        <span class="ipc-sw" style="background:#e67800"></span>3
+        <span class="ipc-sw" style="background:#c80000"></span>4
+        <span class="ipc-sw" style="background:#640000"></span>5
+        <span class="ipc-sw" style="border:2px solid var(--accent);background:transparent"></span>famine</span>
+    </div>
+  </main>
+
+  <!-- ===================== RIGHT SIDEBAR ============================= -->
+  <!-- Automatically written commentary about the month the timeline is showing,
+       and under it the Movement trends graph, which is the one panel here that
+       covers the whole period rather than a single month. -->
+  <aside id="rightbar">
+    <section class="panel" id="insights-panel">
+      <h2>Trends</h2>
+      <div id="insight-list"></div>
+    </section>
+    <!-- Community Insights: three tabs (Community / Analyst / Both) over one
+         list. With the search box empty this shows the quotes for the month
+         the timeline is on, scoped to the active tab; type in it and app.js
+         searches every quote IN THAT TAB across the archive instead, because
+         any one month holds only a handful. Clicking a result moves the
+         timeline to that month. -->
+    <section class="panel" id="voices-panel">
+      <h2>Community Insights <span id="voice-count" class="panel-count"></span></h2>
+      <div class="voice-tabs" role="tablist">
+        <button class="voice-tab is-active" data-tab="community" role="tab">Community</button>
+        <button class="voice-tab" data-tab="analyst" role="tab">Analyst</button>
+        <button class="voice-tab" data-tab="both" role="tab">Both</button>
+      </div>
+      <label class="sr-only" for="voice-search">Search community quotes</label>
+      <input type="search" id="voice-search" placeholder="Search the selected tab…"
+             autocomplete="off">
+      <div id="voices"></div>
+    </section>
+    <section class="panel" id="triggers-panel">
+      <h2>Top reported hazards</h2>
+      <div id="triggers"></div>
+    </section>
+    <!-- The three headline population series over the whole war, drawn by
+         drawMovementTrends() in app.js. This used to be a sparkline squeezed
+         behind the timeline slider; it has its own panel now, and the timeline
+         is just a timeline. The key underneath is written by
+         renderTrendLegend() and carries each line's figure for the current
+         date, so the graph can be read as numbers and not only as a shape. -->
+    <section class="panel" id="trends-graph-panel">
+      <h2>Movement trends</h2>
+      <canvas id="movement-trends" height="176"></canvas>
+      <div id="trend-key"></div>
+      <div class="graph-note">Cumulative totals since 15 April 2023. Ticks on the
+        baseline mark the defining events. <b>Click the graph</b> to move the whole
+        dashboard to that date.</div>
+    </section>
+  </aside>
+</div>
+
+<!-- ===================== THE TIMELINE ================================= -->
+<!-- Dragging the slider is the main way to use this dashboard: it sets the
+     date, and everything above redraws for that date. Either side of it sits
+     the pair of date pickers that says how much of the war the slider spans;
+     the trend chart that used to be drawn behind the slider is now the
+     Movement trends panel in the right sidebar. -->
+<footer id="timebar">
+  <button id="play-btn" title="Play / pause the story">▶</button>
+  <!-- The window of time the timeline covers. Narrowing it narrows the slider
+       itself, not only the play loop: dragging cannot leave the window either.
+       app.js keeps end >= start by pushing whichever picker was not touched. -->
+  <label class="range-field" for="range-start">From
+    <input type="date" id="range-start" title="First date the timeline covers">
+  </label>
+  <div id="slider-wrap">
+    <input type="range" id="time-slider" min="0" max="100" value="0" step="1">
+    <div id="slider-ticks"></div>
+  </div>
+  <label class="range-field" for="range-end">To
+    <input type="date" id="range-end" title="Last date the timeline covers">
+  </label>
+  <div id="current-date">15 Apr 2023</div>
+</footer>
+
+<footer id="page-footer">The story of displacement since 15 April 2023, told by <b id="doc-count">…</b> UNHCR situation documents · Last report: <span id="last-updated">…</span></footer>
+
+<!-- Which basemap to draw under everything else. Set in config/settings.py
+     (MAPBOX_STYLE_URL / MAPBOX_ACCESS_TOKEN) so it can be changed from .env
+     without touching app.js. The token is a public "pk." Mapbox token, the
+     same one go.ifrc.org sends to every visitor. -->
+<script>
+  window.BASEMAP = {
+    style: "{{ mapbox_style_url|escapejs }}",
+    token: "{{ mapbox_access_token|escapejs }}",
+  };
+</script>
+<!-- Load the map library first, then our code, which needs it. -->
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="{% static 'dashboard/js/app.js' %}"></script>
+</body>
+</html>

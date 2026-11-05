@@ -1,0 +1,98 @@
+{
+  "source": {
+    "rel_path": "UNHCR Regional Population Movement pdfs/2026/TCD_Dashboard_Preliminary results Monitoring_Sdn Emergency_August 2026_en. [123974].pdf",
+    "sha1": "c6176aff0bcece6ce4dc76c41a4410a9779cc4ad",
+    "report_date": "2026-08-15"
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "53% of households surveyed fled Sudan because of insecurity while 6% and 7% respectively cited reasons relating to lack of access to economic opportunities and basic services and preventive flight.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "TCD",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "insecurity"
+        }
+      ],
+      "people_affected": 4707,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "47% declared that they had been victims of human rights violations during their flight to Chad, including 21% physical attacks, 19% extortion of property, 3% arbitrary arrests.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "community",
+      "place_name_as_written": "Chad",
+      "iso3": "TCD",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence"
+        }
+      ],
+      "people_affected": 4707,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "83% of households don’t have documents and claimed that their documents were lost or burnt (94%) or confiscated during their flight to Chad (5%)",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "community",
+      "place_name_as_written": "Chad",
+      "iso3": "TCD",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "documentation"
+        }
+      ],
+      "people_affected": 4707,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "64% of households indicated that their children dropped out of school due to the crisis.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "TCD",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "education"
+        }
+      ],
+      "people_affected": 4707,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Priority household needs * Sleeping material 52% Kitchen utensils 36% Household items 10% Personal hygiene items 1% Construction materials 1%",
+      "quote_language": "en",
+      "page": 3,
+      "voice_type": "community",
+      "place_name_as_written": "Chad",
+      "iso3": "TCD",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "nfi"
+        }
+      ],
+      "people_affected": 4707,
+      "severity": 4,
+      "confidence": "high"
+    }
+  ]
+}

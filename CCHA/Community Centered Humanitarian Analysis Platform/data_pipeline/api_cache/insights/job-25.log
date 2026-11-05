@@ -1,0 +1,3 @@
+978-3-032-03953-8.pdf pages 1-8: the model's response could not be read (the model's JSON had no "insights" list)
+HTTPError: HTTP Error 503: Service Unavailable
+CommandError: HTTPError: HTTP Error 503: Service Unavailable

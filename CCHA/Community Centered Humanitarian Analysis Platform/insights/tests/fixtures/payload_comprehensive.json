@@ -1,0 +1,48 @@
+{
+  "source": {"rel_path": "insights/evar.pdf", "sha1": "def", "report_date": "2026-03-01"},
+  "producer": {"agent": "claude-code", "model": "claude-opus-5"},
+  "insights": [
+    {
+      "quote": "Since the escalation of conflict in Sudan in April 2023, 0.7 million Sudanese refugees have been registered in Egypt - over a tenfold increase compared with pre-crisis levels.",
+      "quote_language": "en",
+      "page": 6,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Egypt",
+      "iso3": "EGY",
+      "codings": [
+        {"dimension": "movement_pattern", "tag": "cross_border_arrival", "role": "subject"},
+        {"dimension": "hazard", "tag": "armed_conflict", "role": "driver"}
+      ],
+      "figures": [
+        {
+          "figure_as_written": "0.7 million",
+          "value": 700000,
+          "unit": "people",
+          "measures": "Sudanese refugees registered in Egypt"
+        },
+        {
+          "figure_as_written": "over a tenfold increase",
+          "value": 10,
+          "unit": "percent",
+          "measures": "increase compared with pre-crisis levels",
+          "applies_to": "Sudanese refugees"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "Sudan",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": "Egypt",
+          "dest_iso3": "EGY",
+          "flow_type": "cross_border",
+          "value_as_written": "0.7 million",
+          "value": 700000,
+          "unit": "people"
+        }
+      ],
+      "people_affected": 700000,
+      "severity": 4,
+      "confidence": "high"
+    }
+  ]
+}

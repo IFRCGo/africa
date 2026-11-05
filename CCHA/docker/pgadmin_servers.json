@@ -1,0 +1,15 @@
+{
+  "_comment": "Pre-registers the project database in pgAdmin's sidebar. pgAdmin reads this once, the first time the container starts. The password is not stored here: you type it at first connect and tick 'Save password'.",
+  "Servers": {
+    "1": {
+      "Name": "Sudan and Neighbouring countries population movement",
+      "Group": "Sudan and Neighbouring Countries",
+      "Host": "db",
+      "Port": 5432,
+      "MaintenanceDB": "sudan_neighbouring_pop_movement",
+      "Username": "sudan",
+      "SSLMode": "prefer",
+      "Comment": "PostgreSQL container defined in docker-compose.yml"
+    }
+  }
+}

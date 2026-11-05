@@ -1,0 +1,27 @@
+# ---------------------------------------------------------------------------
+# Python packages the platform needs.
+# "==" pins an exact version so the app behaves the same on every machine.
+# ---------------------------------------------------------------------------
+Django==5.0.6            # the web framework: URLs, database models, admin site
+psycopg[binary]==3.1.19  # the driver Django uses to talk to PostgreSQL
+gunicorn==22.0.0         # production web server that runs Django inside Docker
+whitenoise==6.6.0        # lets Django serve CSS/JS itself (no separate nginx needed)
+PyMuPDF==1.24.10         # reads text out of the UNHCR PDF reports (pipeline step 2/3)
+openpyxl==3.1.5          # reads the Excel layers (pipeline step 7)
+python-docx==1.2.0      # reads DOCX uploads, and builds the Word documentation (docs/build_docs.py); 1.2+ is docling's floor
+anthropic==1.5.0         # optional: in-container insight extraction (insights/extractors/)
+pyshp==2.3.1             # reads the OCHA/GADM shapefiles into the boundary library
+shapely==2.1.2           # repairs and measures those polygons; 2.1+ is the first that works with numpy 2
+requests==2.32.3         # the fetchers' HTTP client (external_data/fetchers/)
+# ---------------------------------------------------------------------------
+# Reading documents for the insights wizard. torch and torchvision are pinned
+# HERE to the same versions the Dockerfile installs from PyTorch's CPU-only
+# index. Without the pin, this resolve is free to decide docling or easyocr
+# wants a different torch and replace the CPU wheel with the CUDA one -
+# silently undoing that layer and adding ~2GB of GPU libraries the container
+# can never use.
+# ---------------------------------------------------------------------------
+torch==2.6.0             # the model runtime docling and easyocr both sit on (CPU build)
+torchvision==0.21.0      # easyocr requires it; same CPU-only rule as torch
+docling==2.129.0         # converts PDFs/Word to per-page markdown before the model reads them
+easyocr==1.7.2           # the OCR engine docling is told to use (it reads Arabic; the default does not)

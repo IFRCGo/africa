@@ -1,0 +1,4 @@
+IntegrityError: duplicate key value violates unique constraint "uniq_insight_coding"
+DETAIL:  Key (insight_id, dimension, tag, role)=(29, vulnerability, other, barrier) already exists.
+CommandError: IntegrityError: duplicate key value violates unique constraint "uniq_insight_coding"
+DETAIL:  Key (insight_id, dimension, tag, role)=(29, vulnerability, other, barrier) already exists.

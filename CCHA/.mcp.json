@@ -1,0 +1,26 @@
+# more on this documentation at https://github.com/GeorMurk/HUMANITARIAN-MCP
+
+{
+  "mcpServers": {
+    "hdx": {
+      "command": "node",
+      "args": ["C:/Users/Admin/OneDrive - KENYA RED CROSS SOCIETY/Apps/Git-Hub/Claude/IFRC-GO-MCP/hdx-mcp/server.js"]
+    },
+    "fewsnet": {
+      "command": "node",
+      "args": ["C:/Users/Admin/OneDrive - KENYA RED CROSS SOCIETY/Apps/Git-Hub/Claude/IFRC-GO-MCP/fewsnet-mcp/server.js"]
+    },
+    "ifrc-go": {
+      "command": "node",
+      "args": ["C:/Users/Admin/OneDrive - KENYA RED CROSS SOCIETY/Apps/Git-Hub/Claude/IFRC-GO-MCP/ifrc-mcp/server.js"]
+    },
+    "unhcr-refugees": {
+      "command": "node",
+      "args": ["C:/Users/Admin/OneDrive - KENYA RED CROSS SOCIETY/Apps/Git-Hub/Claude/IFRC-GO-MCP/unhcr-refugees-mcp/server.js"]
+    },
+    "ipc": {
+      "command": "node",
+      "args": ["C:/Users/Admin/OneDrive - KENYA RED CROSS SOCIETY/Apps/Git-Hub/Claude/IFRC-GO-MCP/ipc-mcp/server.js"]
+    }
+  }
+}

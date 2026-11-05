@@ -1,0 +1,52 @@
+[
+  {
+    "id": "25133691",
+    "title": "Ethiopia - Acute Food Insecurity May 2021 (Merged)",
+    "link": "https://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1154897/?iso3=ETH",
+    "country": "ET",
+    "year": 2021,
+    "condition": "A",
+    "created": "2022-05-05",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "24026108",
+    "title": "Ethiopia - Acute Food Insecurity May 2021 (Afar/Amh/Tigray)",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1154897/",
+    "country": "ET",
+    "year": 2021,
+    "condition": "A",
+    "created": "2021-06-11",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "19423617",
+    "title": "Ethiopia - Acute Food Insecurity October 2020 (Belg+Meher)",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1152948/?iso3=ETH",
+    "country": "ET",
+    "year": 2020,
+    "condition": "A",
+    "created": "2020-11-27",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "18549989",
+    "title": "Ethiopia - Acute Food Insecurity August 2020 (Belg areas)",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1152818/?iso3=ETH",
+    "country": "ET",
+    "year": 2020,
+    "condition": "A",
+    "created": "2020-09-09",
+    "modified": "2025-12-02"
+  },
+  {
+    "id": "13963677",
+    "title": "Ethiopia - Acute Food Insecurity September 2019 (6 regions)",
+    "link": "http://www.ipcinfo.org/ipc-country-analysis/details-map/en/c/1152225/?iso3=ETH",
+    "country": "ET",
+    "year": 2019,
+    "condition": "A",
+    "created": "2019-11-20",
+    "modified": "2025-12-02"
+  }
+]

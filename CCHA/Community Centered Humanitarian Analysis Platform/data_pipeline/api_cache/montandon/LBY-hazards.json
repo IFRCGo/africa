@@ -1,0 +1,1993 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "id": "pdc-hazard-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774854013045",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774839692254",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pdc-hazard-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916",
+      "bbox": [
+        14.774767406554432,
+        29.55729326526545,
+        14.774767406554432,
+        29.55729326526545
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          14.774767406554432,
+          29.55729326526545
+        ]
+      },
+      "collection": "pdc-hazards",
+      "properties": {
+        "title": "Flood - Al Jabal al Gharbi, Libya",
+        "datetime": "2026-03-29T19:45:16Z",
+        "end_datetime": "2026-03-31T07:00:45Z",
+        "monty:corr_id": "20260329-LBY-MH0600-1-GCDB",
+        "start_datetime": "2026-03-29T19:45:16Z",
+        "monty:hazard_codes": [
+          "MH0600"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "PDC Severity Score",
+          "severity_label": "WATCH",
+          "severity_value": 0.1
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/pdc-hazards/items/pdc-hazard-6728601a-8d64-44f3-88d7-e9adacc2c4b2-412804-1774814522916",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1018406-4",
+      "bbox": [
+        11.0,
+        32.0,
+        15.356,
+        33.85
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                11.14,
+                33.392
+              ],
+              [
+                11.122,
+                33.409
+              ],
+              [
+                11.137,
+                33.382
+              ],
+              [
+                11.14,
+                33.392
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                11.066,
+                33.783
+              ],
+              [
+                11,
+                33.85
+              ],
+              [
+                11,
+                33.753
+              ],
+              [
+                11.066,
+                33.783
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                15.212,
+                32.386
+              ],
+              [
+                13.39,
+                32.9
+              ],
+              [
+                12.313,
+                32.835
+              ],
+              [
+                11.345,
+                33.265
+              ],
+              [
+                11.45,
+                33.184
+              ],
+              [
+                11.184,
+                33.21
+              ],
+              [
+                11.141,
+                33.318
+              ],
+              [
+                11.298,
+                33.28
+              ],
+              [
+                11.105,
+                33.361
+              ],
+              [
+                11,
+                33.64
+              ],
+              [
+                11,
+                32
+              ],
+              [
+                15.356,
+                32.001
+              ],
+              [
+                15.212,
+                32.386
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Libya, Tunisia",
+        "datetime": "2026-01-21T00:00:00Z",
+        "end_datetime": "2026-05-04T00:00:00Z",
+        "monty:corr_id": "20260121-LBY-1102565-MH0401-4-GCDB",
+        "start_datetime": "2026-01-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "LBY",
+          "TUN"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1018406-4",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1018406-3",
+      "bbox": [
+        11.0,
+        32.0,
+        14.0,
+        33.85
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                11.14,
+                33.392
+              ],
+              [
+                11.122,
+                33.409
+              ],
+              [
+                11.137,
+                33.382
+              ],
+              [
+                11.14,
+                33.392
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                13.955,
+                32.768
+              ],
+              [
+                13.277,
+                32.913
+              ],
+              [
+                12.313,
+                32.835
+              ],
+              [
+                11.345,
+                33.265
+              ],
+              [
+                11.45,
+                33.184
+              ],
+              [
+                11.184,
+                33.21
+              ],
+              [
+                11.141,
+                33.318
+              ],
+              [
+                11.298,
+                33.28
+              ],
+              [
+                11.105,
+                33.361
+              ],
+              [
+                11,
+                33.64
+              ],
+              [
+                11,
+                32
+              ],
+              [
+                14,
+                32
+              ],
+              [
+                13.955,
+                32.768
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                11.066,
+                33.783
+              ],
+              [
+                11,
+                33.85
+              ],
+              [
+                11,
+                33.753
+              ],
+              [
+                11.066,
+                33.783
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Libya, Tunisia",
+        "datetime": "2026-01-21T00:00:00Z",
+        "end_datetime": "2026-05-04T00:00:00Z",
+        "monty:corr_id": "20260121-LBY-1102565-MH0401-3-GCDB",
+        "start_datetime": "2026-01-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "LBY",
+          "TUN"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1018406-3",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1018406-2",
+      "bbox": [
+        11.0,
+        29.0,
+        33.0,
+        33.85
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                11.14,
+                33.392
+              ],
+              [
+                11.122,
+                33.409
+              ],
+              [
+                11.137,
+                33.382
+              ],
+              [
+                11.14,
+                33.392
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                13.955,
+                32.768
+              ],
+              [
+                13.277,
+                32.913
+              ],
+              [
+                12.313,
+                32.835
+              ],
+              [
+                11.345,
+                33.265
+              ],
+              [
+                11.45,
+                33.184
+              ],
+              [
+                11.184,
+                33.21
+              ],
+              [
+                11.141,
+                33.318
+              ],
+              [
+                11.298,
+                33.28
+              ],
+              [
+                11.105,
+                33.361
+              ],
+              [
+                11,
+                33.64
+              ],
+              [
+                11,
+                32
+              ],
+              [
+                14,
+                32
+              ],
+              [
+                13.955,
+                32.768
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                11.066,
+                33.783
+              ],
+              [
+                11,
+                33.85
+              ],
+              [
+                11,
+                33.753
+              ],
+              [
+                11.066,
+                33.783
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                27.87,
+                31.233
+              ],
+              [
+                27.443,
+                31.216
+              ],
+              [
+                27.345,
+                31.37
+              ],
+              [
+                26,
+                31.608
+              ],
+              [
+                26,
+                31
+              ],
+              [
+                28,
+                31
+              ],
+              [
+                27.87,
+                31.233
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                32.57,
+                30.001
+              ],
+              [
+                32,
+                30
+              ],
+              [
+                32,
+                29
+              ],
+              [
+                32.631,
+                29.016
+              ],
+              [
+                32.593,
+                29.338
+              ],
+              [
+                32.341,
+                29.588
+              ],
+              [
+                32.57,
+                30.001
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                32,
+                31
+              ],
+              [
+                29.594,
+                31.001
+              ],
+              [
+                29.093,
+                30.817
+              ],
+              [
+                28.712,
+                31.001
+              ],
+              [
+                28,
+                31
+              ],
+              [
+                28,
+                30
+              ],
+              [
+                32,
+                30
+              ],
+              [
+                32,
+                31
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                33,
+                29.159
+              ],
+              [
+                33,
+                30
+              ],
+              [
+                32.572,
+                30.001
+              ],
+              [
+                32.747,
+                29.447
+              ],
+              [
+                33,
+                29.159
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Libya, Tunisia",
+        "datetime": "2026-01-21T00:00:00Z",
+        "end_datetime": "2026-05-04T00:00:00Z",
+        "monty:corr_id": "20260121-LBY-1102565-MH0401-2-GCDB",
+        "start_datetime": "2026-01-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "LBY",
+          "TUN"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.75
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1018406-2",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1018406-1",
+      "bbox": [
+        12.0,
+        29.0,
+        33.0,
+        32.999
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                13.955,
+                32.768
+              ],
+              [
+                13.277,
+                32.913
+              ],
+              [
+                12.549,
+                32.8
+              ],
+              [
+                12,
+                32.999
+              ],
+              [
+                12,
+                32
+              ],
+              [
+                14,
+                32
+              ],
+              [
+                13.955,
+                32.768
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                27.87,
+                31.233
+              ],
+              [
+                27.443,
+                31.216
+              ],
+              [
+                27.345,
+                31.37
+              ],
+              [
+                26,
+                31.608
+              ],
+              [
+                26,
+                31
+              ],
+              [
+                28,
+                31
+              ],
+              [
+                27.87,
+                31.233
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                32.57,
+                30.001
+              ],
+              [
+                32,
+                30
+              ],
+              [
+                32,
+                29
+              ],
+              [
+                32.631,
+                29.016
+              ],
+              [
+                32.593,
+                29.338
+              ],
+              [
+                32.341,
+                29.588
+              ],
+              [
+                32.57,
+                30.001
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                32,
+                31
+              ],
+              [
+                29.594,
+                31.001
+              ],
+              [
+                29.093,
+                30.817
+              ],
+              [
+                28.712,
+                31.001
+              ],
+              [
+                28,
+                31
+              ],
+              [
+                28,
+                30
+              ],
+              [
+                32,
+                30
+              ],
+              [
+                32,
+                31
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                33,
+                29.159
+              ],
+              [
+                33,
+                30
+              ],
+              [
+                32.572,
+                30.001
+              ],
+              [
+                32.747,
+                29.447
+              ],
+              [
+                33,
+                29.159
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Libya, Tunisia",
+        "datetime": "2026-01-21T00:00:00Z",
+        "end_datetime": "2026-05-04T00:00:00Z",
+        "monty:corr_id": "20260121-LBY-1102565-MH0401-1-GCDB",
+        "start_datetime": "2026-01-21T00:00:00Z",
+        "monty:hazard_codes": [
+          "MH0401"
+        ],
+        "monty:country_codes": [
+          "LBY",
+          "TUN"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.75
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1018406-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1103597-1",
+      "bbox": [
+        21.4096623,
+        32.4833738,
+        21.4096623,
+        32.4833738
+      ],
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.4096623,
+          32.4833738
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2025-11-05T01:00:00Z",
+        "end_datetime": "2025-11-08T01:00:00Z",
+        "monty:corr_id": "20251105-LBY-MH0600-1-GCDB",
+        "start_datetime": "2025-11-05T01:00:00Z",
+        "monty:hazard_codes": [
+          "MH0600"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:hazard_detail": {
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1103597-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1103036-1",
+      "bbox": [
+        18.6509231,
+        31.0070362,
+        21.3190937,
+        32.7335712
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              18.6509231,
+              32.7005389
+            ],
+            [
+              19.3800697,
+              31.4110716
+            ],
+            [
+              20.2990398,
+              31.2317371
+            ],
+            [
+              20.5937672,
+              31.0070362
+            ],
+            [
+              21.3190937,
+              31.0351048
+            ],
+            [
+              21.21538,
+              31.5410973
+            ],
+            [
+              20.8087371,
+              31.9645707
+            ],
+            [
+              20.4858394,
+              32.7335712
+            ],
+            [
+              18.6509231,
+              32.7005389
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2024-12-04T01:00:00Z",
+        "end_datetime": "2024-12-06T01:00:00+00:00",
+        "monty:corr_id": "20241204-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-12-04T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1103036-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102901-1",
+      "bbox": [
+        13.9344406,
+        26.2469215,
+        16.2579517,
+        27.7212467
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              13.9344406,
+              26.2469215
+            ],
+            [
+              14.424387,
+              26.3763103
+            ],
+            [
+              14.8275995,
+              26.7579556
+            ],
+            [
+              16.2579517,
+              27.1517658
+            ],
+            [
+              15.7958603,
+              27.7212467
+            ],
+            [
+              15.0684977,
+              27.6320763
+            ],
+            [
+              14.4211969,
+              27.1727562
+            ],
+            [
+              13.9831467,
+              27.1289635
+            ],
+            [
+              14.1885988,
+              26.8117879
+            ],
+            [
+              13.9344406,
+              26.2469215
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2024-09-13T01:00:00Z",
+        "end_datetime": "2024-09-15T01:00:00+00:00",
+        "monty:corr_id": "20240913-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-09-13T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102901-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102829-1",
+      "bbox": [
+        9.391081,
+        19.4999907,
+        25.3770629,
+        33.3545898
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              23.9999879,
+              19.4999907
+            ],
+            [
+              23.9999977,
+              19.9999911
+            ],
+            [
+              25.001111,
+              20.01
+            ],
+            [
+              24.997778,
+              29.248889
+            ],
+            [
+              24.6499112,
+              30.1263685
+            ],
+            [
+              25.0107462,
+              30.7764611
+            ],
+            [
+              24.8520613,
+              31.3934907
+            ],
+            [
+              25.3770629,
+              31.721822
+            ],
+            [
+              25.2161716,
+              32.0642807
+            ],
+            [
+              23.4790821,
+              32.3863821
+            ],
+            [
+              23.2394031,
+              32.8012821
+            ],
+            [
+              22.1748689,
+              33.1373447
+            ],
+            [
+              21.5625937,
+              33.1189442
+            ],
+            [
+              20.4221979,
+              32.7005068
+            ],
+            [
+              14.6308561,
+              32.7005389
+            ],
+            [
+              13.4266372,
+              33.0951265
+            ],
+            [
+              12.4908878,
+              33.017288
+            ],
+            [
+              11.6675779,
+              33.3545898
+            ],
+            [
+              11.4955006,
+              32.917861
+            ],
+            [
+              11.5949999,
+              32.4544524
+            ],
+            [
+              10.2762621,
+              31.6723962
+            ],
+            [
+              10.1339119,
+              31.4787471
+            ],
+            [
+              10.245941,
+              30.7494582
+            ],
+            [
+              9.9080363,
+              30.3562462
+            ],
+            [
+              9.391081,
+              30.167268
+            ],
+            [
+              9.779948,
+              29.424757
+            ],
+            [
+              9.962578,
+              27.866574
+            ],
+            [
+              9.783926,
+              27.35363
+            ],
+            [
+              9.913332,
+              26.646871
+            ],
+            [
+              9.398983,
+              26.195638
+            ],
+            [
+              10.032093,
+              25.359573
+            ],
+            [
+              10.216372,
+              24.650641
+            ],
+            [
+              10.899041,
+              24.555136
+            ],
+            [
+              11.422523,
+              24.200501
+            ],
+            [
+              11.604258,
+              24.264727
+            ],
+            [
+              11.997337,
+              23.517178
+            ],
+            [
+              13.543611,
+              23.168333
+            ],
+            [
+              14.234444,
+              22.613611
+            ],
+            [
+              16.0000107,
+              23.4507957
+            ],
+            [
+              18.984167,
+              22.090833
+            ],
+            [
+              23.9999879,
+              19.4999907
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2024-08-11T01:00:00Z",
+        "end_datetime": "2024-08-13T01:00:00+00:00",
+        "monty:corr_id": "20240811-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2024-08-11T01:00:00+00:00",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102829-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1016906-1",
+      "bbox": [
+        15.0,
+        29.0,
+        29.0,
+        32.422
+      ],
+      "geometry": {
+        "type": "MultiPolygon",
+        "coordinates": [
+          [
+            [
+              [
+                25,
+                29
+              ],
+              [
+                25,
+                30
+              ],
+              [
+                23,
+                30
+              ],
+              [
+                23,
+                29
+              ],
+              [
+                25,
+                29
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                27.87,
+                31.233
+              ],
+              [
+                27.443,
+                31.216
+              ],
+              [
+                27.345,
+                31.37
+              ],
+              [
+                25.916,
+                31.624
+              ],
+              [
+                25.276,
+                31.504
+              ],
+              [
+                24.983,
+                31.967
+              ],
+              [
+                24,
+                32
+              ],
+              [
+                24,
+                31
+              ],
+              [
+                25,
+                31
+              ],
+              [
+                25,
+                30
+              ],
+              [
+                27,
+                30
+              ],
+              [
+                27,
+                29
+              ],
+              [
+                29,
+                29
+              ],
+              [
+                29,
+                30
+              ],
+              [
+                28,
+                30
+              ],
+              [
+                28,
+                31.091
+              ],
+              [
+                27.87,
+                31.233
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                17,
+                30
+              ],
+              [
+                17,
+                31
+              ],
+              [
+                16,
+                31
+              ],
+              [
+                16,
+                29
+              ],
+              [
+                18,
+                29
+              ],
+              [
+                18,
+                30
+              ],
+              [
+                17,
+                30
+              ]
+            ]
+          ],
+          [
+            [
+              [
+                15.212,
+                32.386
+              ],
+              [
+                15,
+                32.422
+              ],
+              [
+                15,
+                31
+              ],
+              [
+                16,
+                31
+              ],
+              [
+                16,
+                31.294
+              ],
+              [
+                15.522,
+                31.626
+              ],
+              [
+                15.212,
+                32.386
+              ]
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Drought in Libya",
+        "datetime": "2023-11-21T00:00:00Z",
+        "end_datetime": "2024-08-07T00:00:00+00:00",
+        "monty:corr_id": "20231121-LBY-NAT-CLI-DRO-DRO-1-GCDB",
+        "start_datetime": "2023-11-21T00:00:00+00:00",
+        "monty:hazard_codes": [
+          "MH0035"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-cli-dro-dro",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Green",
+          "severity_value": 0.75
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1016906-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102204-2",
+      "bbox": [
+        22.5567585,
+        32.7400541,
+        22.6817313,
+        32.7845186
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.6817313,
+              32.7400541
+            ],
+            [
+              22.644939,
+              32.7730418
+            ],
+            [
+              22.5567585,
+              32.7845186
+            ],
+            [
+              22.6336724,
+              32.7488215
+            ],
+            [
+              22.6817313,
+              32.7400541
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2023-09-08T01:00:00Z",
+        "end_datetime": "2023-09-14T00:00:00Z",
+        "monty:corr_id": "20230908-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-09-08T01:00:00Z",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Red",
+          "severity_value": 2.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102204-2",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "gdacs-hazard-1102204-1",
+      "bbox": [
+        22.5567585,
+        32.7400541,
+        22.6817313,
+        32.7845186
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              22.6817313,
+              32.7400541
+            ],
+            [
+              22.644939,
+              32.7730418
+            ],
+            [
+              22.5567585,
+              32.7845186
+            ],
+            [
+              22.6336724,
+              32.7488215
+            ],
+            [
+              22.6817313,
+              32.7400541
+            ]
+          ]
+        ]
+      },
+      "collection": "gdacs-hazards",
+      "properties": {
+        "title": "Flood in Libya",
+        "datetime": "2023-09-08T01:00:00Z",
+        "end_datetime": "2023-09-14T00:00:00Z",
+        "monty:corr_id": "20230908-LBY-NAT-HYD-FLO-FLO-1-GCDB",
+        "start_datetime": "2023-09-08T01:00:00Z",
+        "monty:hazard_codes": [
+          "FL"
+        ],
+        "monty:country_codes": [
+          "LBY"
+        ],
+        "monty:hazard_detail": {
+          "cluster": "nat-hyd-flo-flo",
+          "estimate_type": "primary",
+          "severity_unit": "GDACS Severity Score",
+          "severity_label": "Red",
+          "severity_value": 2.5
+        }
+      },
+      "links": [
+        {
+          "rel": "collection",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "parent",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "root",
+          "type": "application/json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/",
+          "auth:refs": [
+            "oidc"
+          ]
+        },
+        {
+          "rel": "self",
+          "type": "application/geo+json",
+          "href": "https://montandon-eoapi-stage.ifrc.org/stac/collections/gdacs-hazards/items/gdacs-hazard-1102204-1",
+          "auth:refs": [
+            "oidc"
+          ]
+        }
+      ]
+    }
+  ]
+}

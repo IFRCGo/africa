@@ -1,0 +1,4 @@
+# Shell scripts must keep Unix (LF) line endings even when checked out on
+# Windows. entrypoint.sh runs inside a Linux container and is read straight
+# from the host folder, so CRLF here would stop the web container from starting.
+*.sh text eol=lf

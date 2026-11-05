@@ -1,0 +1,79 @@
+{% extends "admin/base_site.html" %}
+{% comment %}
+The wizard's chrome: the four steps, with the current one marked. Extending
+admin/base_site.html is what gives these pages the admin's own header, login
+redirect and stylesheet, so they do not read as a bolted-on second site.
+{% endcomment %}
+{% block extrastyle %}{{ block.super }}
+<style>
+  .wiz-steps { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; padding: 0; margin: 0 0 1.5rem; }
+  .wiz-steps li { display: flex; }
+  .wiz-step { display: inline-block; padding: .4rem .9rem; border-radius: 999px; background: #f0f0f0;
+              color: #555; font-size: .85rem; font-family: inherit; line-height: 1.4;
+              border: 1px solid transparent; text-decoration: none; }
+  a.wiz-step, button.wiz-step:not([disabled]) { cursor: pointer; border-color: #ccc; }
+  a.wiz-step:hover, button.wiz-step:not([disabled]):hover { background: #e3edf2; color: #205067; }
+  a.wiz-step:focus-visible, button.wiz-step:focus-visible { outline: 2px solid #417690; outline-offset: 2px; }
+  .wiz-step.is-current { background: #417690; color: #fff; font-weight: 600; border-color: #417690; }
+  .wiz-step.is-done { background: #dfeeda; color: #2b5c1e; }
+  a.wiz-step.is-done:hover { background: #cde5c4; color: #22491a; }
+  /* :not(.is-done) so a step that is finished but no longer reachable keeps the
+     green it earned - muting it onto the green pill is what loses the contrast. */
+  .wiz-step[aria-disabled="true"]:not(.is-done), .wiz-step[disabled] { color: #9a9a9a; }
+  .wiz-step[aria-disabled="true"], .wiz-step[disabled] { cursor: default; }
+  .wiz-files { width: 100%; border-collapse: collapse; }
+  .wiz-files td, .wiz-files th { padding: .4rem .6rem; border-bottom: 1px solid #eee; text-align: left; }
+  .wiz-files tr.is-skipped { color: #999; }
+  .wiz-files tr.is-failed td { color: #a41515; }
+  /* A pasted link is long and has no spaces, so it must be allowed to break
+     inside itself or it forces the whole table wider than the page. */
+  .wiz-files td.wiz-name { overflow-wrap: anywhere; }
+  .wiz-links { margin: 0 0 1rem; }
+  .wiz-links textarea { width: 100%; max-width: 48rem; font-family: monospace; font-size: .85rem; }
+  .wiz-bar { height: 1.25rem; background: #f0f0f0; border-radius: 999px; overflow: hidden; }
+  .wiz-bar span { display: block; height: 100%; background: #417690; width: 0; transition: width .3s; }
+  .wiz-log { background: #1f1f1f; color: #ddd; padding: .75rem; height: 16rem; overflow-y: auto;
+             white-space: pre-wrap; font-family: monospace; font-size: .8rem; }
+  .wiz-note { padding: .75rem 1rem; border-left: 4px solid #999; background: #fafafa; margin: 1rem 0; }
+  .wiz-note.is-bad { border-color: #a41515; background: #fdf0f0; }
+  .wiz-note.is-warn { border-color: #c79100; background: #fdf8e8; }
+  /* Step 2's preview: one block per document, its engine, and the stored text. */
+  .wiz-doc { border: 1px solid #e0e0e0; border-radius: 4px; padding: .75rem 1rem; margin: 1rem 0; }
+  .wiz-doc h4 { margin: 0 0 .4rem; }
+  .wiz-badge { display: inline-block; padding: .2rem .6rem; border-radius: 999px;
+               font-size: .8rem; margin: 0 0 .6rem; }
+  .wiz-badge.is-ok { background: #dfeeda; color: #2b5c1e; }
+  .wiz-badge.is-warn { background: #fdf8e8; color: #7a5b00; }
+  .wiz-badge.is-bad { background: #fdf0f0; color: #a41515; }
+  /* Scrolls inside its own box: a 40-page report must not make the page itself
+     scroll horizontally, and a markdown table is wide. */
+  .wiz-doc-text { max-height: 22rem; overflow: auto; background: #fbfbfb;
+                  border: 1px solid #eee; padding: .6rem; font-size: .8rem;
+                  white-space: pre-wrap; word-break: break-word; }
+</style>
+{% endblock %}
+{% block content %}
+{% comment %}
+Each step is something you can press, not a caption. Which of them actually
+lead anywhere is decided in wizard.step_links() off the batch's status, because
+job_step serves whichever page the status puts the batch at - so a step that is
+not reachable from here carries no href and is rendered inert rather than as a
+link that goes somewhere else. Step 2 used to be an exception - a button that
+scrolled to a preview on the intake page - but it is a page of its own now,
+reached once the batch is closed, so it follows the same rule as the rest.
+{% endcomment %}
+<ol class="wiz-steps">
+  {% for step in wizard_steps %}
+  <li>
+    {% if step.state == "is-current" %}
+      <span class="wiz-step is-current" aria-current="step">{{ step.number }}. {{ step.label }}</span>
+    {% elif step.url %}
+      <a class="wiz-step {{ step.state }}" href="{{ step.url }}">{{ step.number }}. {{ step.label }}</a>
+    {% else %}
+      <span class="wiz-step {{ step.state }}" aria-disabled="true">{{ step.number }}. {{ step.label }}</span>
+    {% endif %}
+  </li>
+  {% endfor %}
+</ol>
+{% block wizard_body %}{% endblock %}
+{% endblock %}
