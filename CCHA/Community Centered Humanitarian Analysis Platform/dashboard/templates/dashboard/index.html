@@ -119,6 +119,8 @@
         <span class="swatch dot-swatch" style="background:var(--ifrc-white);border:1px solid var(--muted)"></span>Border crossings</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-aoi">
         <span class="swatch" style="background:transparent;border:1px solid var(--event)"></span>Areas of Operation (IFRC)</label>
+      <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-field-data" checked>
+        <span class="swatch dot-swatch" style="background:var(--ifrc-white);border:3px solid var(--field-data);width:8px;height:8px"></span>Field data — household surveys (IFRC)</label>
       <label class="layer-toggle"><input type="checkbox" class="switch" id="toggle-hsps">
         <span class="swatch dot-swatch" style="background:var(--hsp)"></span>Humanitarian Service Points (IFRC)</label>
     </section>
@@ -300,7 +302,7 @@
   <div id="current-date">15 Apr 2023</div>
 </footer>
 
-<footer id="page-footer">The story of displacement since 15 April 2023, told by <b id="doc-count">…</b> UNHCR situation documents · Last report: <span id="last-updated">…</span></footer>
+<footer id="page-footer">The story of displacement since 15 April 2023, told by <b id="doc-count">…</b> UNHCR situation documents· Last report: <span id="last-updated">…</span></footer>
 
 <!-- Which basemap to draw under everything else. Set in config/settings.py
      (MAPBOX_STYLE_URL / MAPBOX_ACCESS_TOKEN) so it can be changed from .env
@@ -312,6 +314,9 @@
     token: "{{ mapbox_access_token|escapejs }}",
   };
 </script>
+<!-- The countries the picker may offer: the dashboard's eight minus any
+     switched off in Admin → Countries shown on the dashboard. -->
+{{ shown_countries|json_script:"shown-countries" }}
 <!-- Load the map library first, then our code, which needs it. -->
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="{% static 'dashboard/js/app.js' %}"></script>
