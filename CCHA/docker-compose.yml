@@ -80,6 +80,11 @@ services:
     # WORKER_BOOT_ERROR / APP_LOAD_ERROR codes, misread off a pid that was
     # never gunicorn's. See task-13-rulings.md §6b (R13c) for the full trace.
     init: true
+    # Every key in .env reaches the container, so a new key needs no line
+    # below. The "environment:" list still wins over env_file for the keys it
+    # names, which is where the defaults for a blank or missing key live.
+    env_file:
+      - .env
     environment:
       # Database connection. Inside Docker the host is always the "db" service.
       POSTGRES_DB: ${POSTGRES_DB:-sudan_neighbouring_pop_movement}
@@ -107,6 +112,16 @@ services:
       LLM_BASE_URL: ${LLM_BASE_URL:-}
       LLM_API_KEY: ${LLM_API_KEY:-}
 
+      # Reading documents with Docling, and how long an upload is kept. Empty
+      # falls back to the defaults in config/settings.py (see env.example).
+      # DOCLING_ARTIFACTS_PATH is not passed: the image sets it (Dockerfile).
+      DOCLING_ENABLED: ${DOCLING_ENABLED:-}
+      DOCLING_OCR_LANGS: ${DOCLING_OCR_LANGS:-}
+      DOCLING_MAX_PAGES: ${DOCLING_MAX_PAGES:-}
+      DOCLING_TIMEOUT_SECONDS: ${DOCLING_TIMEOUT_SECONDS:-}
+      INSIGHT_DOCUMENT_ROOTS: ${INSIGHT_DOCUMENT_ROOTS:-}
+      INSIGHT_UPLOAD_RETENTION_MINUTES: ${INSIGHT_UPLOAD_RETENTION_MINUTES:-}
+
       # Keys for the MCP pull buttons. Unset is fine: those buttons are then
       # disabled and say so. See env.example for where each one comes from.
       IPC_API_KEY: ${IPC_API_KEY:-}
@@ -116,6 +131,11 @@ services:
       # defaults to staging; production wants IFRC GO OIDC credentials.
       IFRC_API_TOKEN: ${IFRC_API_TOKEN:-}
       MONTANDON_STAC_URL: ${MONTANDON_STAC_URL:-}
+      # Kobo: the account token, and one named key per form pulled.
+      KOBO_URL: ${KOBO_URL:-}
+      KOBO_TOKEN: ${KOBO_TOKEN:-}
+      HSPs_FORM_ID: ${HSPs_FORM_ID:-}
+      UGANDA_CCHA_FORM_ID: ${UGANDA_CCHA_FORM_ID:-}
 
       # The basemap drawn under the dashboard: the shared IFRC GO style on
       # Mapbox, whose defaults are the public values published by GO itself

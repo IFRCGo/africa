@@ -42,8 +42,79 @@ positional argv that both `subprocess.Popen` and `call_command` accept. A second
 rule anywhere else is how an excel row admitted by `stale_rows()` starts failing
 inside every batch while its own button works.
 
-`kobo` and `acaps` still have no button — they take different inputs
-(`load_hsps`, a CSV export path) and the list names the command for each.
+`acaps` still has no button. It takes a CSV export path, and the list names the
+command.
+
+**Kobo is primary data, and it has buttons.** The Data sources page has a
+Category column, with `kobo` rows listed first under *Primary data*. Each Kobo form
+has its own `.env` key: `KOBO_TOKEN` for the account, plus `HSPs_FORM_ID` and
+`UGANDA_CCHA_FORM_ID`. The `web` service loads the whole `.env` through
+`env_file`, so a new key needs no `docker-compose.yml` line; the `environment:`
+list there still overrides it for the keys it names. After editing `.env`, run
+`docker compose up -d web`; `restart` does not re-read it. Fetchers are in
+`fetchers/kobo.py`. `plan()` fetches the form definition first, because `/data/`
+answers in codes and the labels live in the definition. The definition reaches
+the loader through `call.context`.
+- **HSPs come from Kobo now** (`loaders/kobo_hsp.py`), on the same
+  `kobo/humanitarian_service_points/hsp-mapping` row. Questions are found by
+  label, through `loaders/kobo_form.FormMap`, and the rows are built exactly as
+  the Excel parser builds them, through `load_hsps.resolve_places`. On
+  2026-11-16 the Kobo result matched the Excel set exactly, 139 of 139 rows.
+  `date_reported` is the pull date: Kobo sends no edit timestamp, and the
+  newest submission is older than the Excel set. `load_hsps` still reads a
+  workbook when one is handed over.
+- **The CCHA primary-data interviews are stored in readable tables**
+  (`loaders/ccha_primary_data.py`), as George asked so the data can be
+  understood by looking at it. **The tables are named for the form, not a
+  country.** The same CCHA form collects data in several countries (Uganda
+  first). That means:
+  - one regional Data sources row (`kobo/primary_data`, iso3 NULL, variant
+    `ccha_primary_data`);
+  - the country is a column;
+  - the `.env` key keeps its first name, `UGANDA_CCHA_FORM_ID`.
+  - `ccha_primary_data` has one row per interview (household, FGD or KII), with one
+    column per question. Values are labels, not codes, and multiple choices are
+    joined with `"; "`.
+  - Each `<question>_other` column holds the "Other (specify)" text for that
+    question.
+  - The audio columns hold Kobo links; no audio is downloaded.
+  - The two repeats are child tables: `ccha_primary_data_hazard_details` and
+    `ccha_primary_data_coping_challenges`.
+  - `loaders/ccha_primary_data.COLUMNS` maps each column to its xpath. A question
+    added to the form later lands in `unmapped` until it gets a column (a
+    model field plus a `COLUMNS` entry).
+  - The latest form definition is in `kobo_form`.
+
+  **Not Approved submissions never
+  arrive**, because they are filtered on Kobo's side. A submission rejected after
+  it was stored is deleted on the next pull, together with its repeat rows. This is the one deliberate exception
+  to "never delete because upstream stopped mentioning it". Approved, On Hold and
+  never-reviewed submissions are kept, and `validation_status` records which.
+- **The household survey reaches the dashboard as "Field data"**
+  (`insights/field_data.py`). It arrives in two ways:
+  - **Statements.** Each pull ends by writing households' follow-up text into the review
+    queue as PENDING insights with `channel="primary"`, displayed as "Field data". The text
+    covered is "Please elaborate", "Other (specify)" and the gaps listed per hazard.
+    Statements typed by hand in Admin are `manual`, displayed as "Primary input".
+    - Each statement is coded to the dimension of the question it follows and is keyed
+      `(field_interview, field_question, field_item)`, because two households can write
+      the same words.
+    - A re-pull never touches a published or rejected statement.
+    - Survey labels are coded to taxonomy tags through the editable
+      `FieldDataTagMap` table. A label with no row is coded `other`.
+    - This pull is the one writer to `insights` besides extraction. It is not a
+      `data_pipeline` step.
+  - **The summary card.** Rebuild writes `dashboard/data/field_surveys.json` from
+    `s06.build_field_surveys()`: households only, counted per district, and only for a
+    place with at least 5 households. The card is drawn in the Community Insights
+    panel (Community and Both tabs), not in a map popup. Clicking the marker opens
+    the card there.
+  - Household GPS never leaves the server. It is used only to find the district
+    when its name is blank. Design:
+    `docs/superpowers/specs/2026-11-17-field-data-household-survey-design.md`.
+- `api_cache/kobo/` holds interview answers and must stay out of git: it
+  belongs in `.gitignore`, unlike the rest of `api_cache`.
+  Design: `docs/superpowers/specs/2026-11-16-kobo-primary-data-design.md`.
 
 **`dtm` is the first source whose payload is not JSON.** The HDX resources
 behind `sudan-displacement-situation-countrywide-idps-iom-dtm` are `.xlsx`
@@ -114,7 +185,7 @@ MAINTENANCE.md §6 has the two statements.
 `fewsnet`, `ifrc-go`, `unhcr-refugees`, `ipc`. Claude Code reads it
 automatically; nothing else needs configuring.
 
-**For an agent, and for the sources with no fetcher** (`kobo`, `acaps`), the rule
+**For an agent, and for the source with no fetcher** (`acaps`), the rule
 is unchanged — **fetch, save, then load**, never fetch straight into the database:
 
 1. Check what is already held: `manage.py external_status`.
@@ -211,6 +282,36 @@ An archive already sitting on a mounted share should be registered as an
 `InsightFolder` instead — nothing is copied that way. Which folders may be
 browsed is `INSIGHT_DOCUMENT_ROOTS`; there is no hardcoded `/work` any more, and
 the host folder behind the mount is `SOURCE_HOST_DIR`.
+
+## Hiding a country from the public dashboard
+
+**Admin → Dashboard → Countries shown on the dashboard** has one tick box per
+country, detected from the level-0 boundaries (nobody types a name). Unticking
+one hides it from the map, the picker, the panels and every public `/api/`
+response, **on the server**, so nothing of it reaches the browser, not even
+DevTools. Nothing is deleted. The data on disk and in PostgreSQL stays complete,
+and ticking the box again restores the country on the next page load, with no
+rebuild. Design: `docs/superpowers/specs/2026-11-16-country-visibility-switch-design.md`.
+
+- **The switch is `country_visibility`, and no pipeline step writes it.** A data
+  pull or rebuild can never turn a country back on. `sync_countries` only adds
+  missing rows.
+- **`dashboard/views.data_file()` is fail-closed while anything is hidden.** A
+  data file with no entry in `dashboard/scrubbers.REGISTRY` is refused (404).
+  For the core files `loadData()` fetches, that stops the whole dashboard. So
+  **a new file under `dashboard/data/` needs a scrubber line**, and
+  `test_every_file_in_data_dir_has_a_scrubber` fails until it has one.
+- **A new `/api/` view must be listed in `dashboard/gated.py`**, either GATED
+  (it filters hidden countries) or REGIONAL. `test_every_api_url_is_gated_or_regional`
+  enforces this.
+- Structured rows are dropped and free text is never edited. A statement located in
+  a shown country is sent as it is, including a movement leg into a hidden one.
+  Regional totals (`headline`, `meta`) are not split.
+- **Sudan cannot be switched off** (`visibility.NEVER_HIDDEN`). The corridors and
+  IDP layers are Sudan's, so hiding it would only half-work.
+- `manage.py test` runs with `API_CACHE_DIR` pointed at a temporary folder
+  (`config/test_runner.py`), because the refresh tests used to rewrite and
+  delete the real, git-tracked cache files.
 
 ## Things worth knowing before changing anything
 
