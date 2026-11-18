@@ -1,0 +1,119 @@
+{
+  "source": {
+    "rel_path": "media/14dbbe42040d-Sudan_Inter-Agency_Rapid_Need_Assessment_IRNA-Gharb_Jabal_Marrah_Locality_Centr_bYi8KY7.pdf",
+    "sha1": "14dbbe42040d36c7bb090365eb80e70ee07d5e3f",
+    "report_date": "2026-07-22"
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "Community members recommended that: - organizations hold community mobilization and sensitization meetings that reach all community groups - women and men alike - rather than relying only on community leaders or sheikhs; - beneficiary registration be carried out directly by organization staff; - verification also be done by organization staff so that assistance reaches the most vulnerable and eligible households;",
+      "quote_language": "en",
+      "page": 8,
+      "voice_type": "community",
+      "place_name_as_written": "Gharb Jabal Marrah Locality",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "registration_documentation",
+          "role": "subject"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "other",
+          "role": "barrier"
+        }
+      ],
+      "figures": [],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Health and nutrition: only one functioning facility, supported by IMC, with limited services; residents reported that no other organization has operated in their area since 2010.",
+      "quote_language": "en",
+      "page": 10,
+      "voice_type": "community",
+      "place_name_as_written": "Gharb Jabal Marrah",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Referral: severe medical cases are transferred to Nertiti by road without dedicated transport - a journey of up to eight hours.",
+      "quote_language": "en",
+      "page": 10,
+      "voice_type": "community",
+      "place_name_as_written": "Gharb Jabal Marrah",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "transport_relocation",
+          "role": "barrier"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Water: most residents drink from open wells or springs, and the water is reported to be salty.",
+      "quote_language": "en",
+      "page": 10,
+      "voice_type": "community",
+      "place_name_as_written": "Gharb Jabal Marrah",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "water_wash",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Markets: there is no substantial local market; households move goods to and from Nertiti by camel and donkey, a journey of around eight hours.",
+      "quote_language": "en",
+      "page": 10,
+      "voice_type": "community",
+      "place_name_as_written": "Gharb Jabal Marrah",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "transport_relocation",
+          "role": "barrier"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    }
+  ]
+}

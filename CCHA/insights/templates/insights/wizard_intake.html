@@ -1,0 +1,52 @@
+{% extends "insights/wizard_base.html" %}
+{% load static %}
+{% block wizard_body %}
+<div id="wiz-intake"
+     data-batch-url="{% url 'admin:insights_wizard_batch' %}"
+     data-batch-file-url="{% url 'admin:insights_wizard_batch_file' 0 %}"
+     data-batch-ready-url="{% url 'admin:insights_wizard_batch_ready' 0 %}"
+     data-link-url="{% url 'admin:insights_wizard_batch_url' 0 %}"
+     data-job-url="{% url 'admin:insights_wizard_job' 0 %}">
+  {% csrf_token %}
+
+  <p>Pick the reports to read. The first two buttons open a window on your own
+     computer; the third takes documents published on the web. Only PDF and
+     Word (.docx) files are sent; anything else in a folder is left where it
+     is. The three can be mixed in one batch.</p>
+
+  <p>
+    <label class="button" for="wiz-files">Choose files</label>
+    <input id="wiz-files" type="file" multiple accept=".pdf,.docx" hidden>
+
+    <label class="button" for="wiz-folder">Choose a folder</label>
+    <input id="wiz-folder" type="file" webkitdirectory hidden>
+
+    <button type="button" class="button" id="wiz-link-toggle"
+            aria-expanded="false" aria-controls="wiz-link-box">Paste web links</button>
+  </p>
+
+  <div id="wiz-link-box" class="wiz-links" hidden>
+    <p>One link per line. Each must end at the document itself — the PDF or Word
+       file — not the page it sits on. A link to a page is reported as such and
+       left out.</p>
+    <textarea id="wiz-link-text" rows="4" aria-label="Web links, one per line"
+              placeholder="https://reliefweb.int/attachments/…/sudan-report.pdf"></textarea>
+    <p><button type="button" id="wiz-add-links">Add these links</button></p>
+  </div>
+
+  <div id="wiz-preview" hidden>
+    <h2>What will be read <small id="wiz-count"></small></h2>
+    <table class="wiz-files"><tbody id="wiz-rows"></tbody></table>
+    <p>
+      <button type="button" id="wiz-send" class="default">Read these documents</button>
+      <button type="button" id="wiz-clear">Start again</button>
+    </p>
+  </div>
+
+  <div id="wiz-progress" hidden>
+    <div class="wiz-bar"><span id="wiz-bar-fill"></span></div>
+    <p id="wiz-progress-text"></p>
+  </div>
+</div>
+<script src="{% static 'insights/wizard_intake.js' %}" defer></script>
+{% endblock %}

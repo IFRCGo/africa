@@ -1,0 +1,70 @@
+{
+  "source": {
+    "rel_path": "media/d4634dc99c58-89.-01-15-September-2026-Attacks-on-Health-Care-in-Sudan.pdf",
+    "sha1": "d4634dc99c58b940cf366f4c6e716814bd1a10c4",
+    "report_date": "2026-09-15"
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "since fighting started between the SAF and RSF in April 2023 and 31 August 2026 at least 786 incidents of violence against or obstruction of access to health care took place across Sudan",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "armed_conflict",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "786",
+          "value": 786,
+          "unit": "people",
+          "measures": "incidents of violence against or obstruction of access to health care"
+        }
+      ],
+      "movements": [],
+      "people_affected": 786,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "In Kulbus town and district, West Darfur state, the vicinity of a rural hospital, a market and a customs office were struck by a suspected SAF drone strike.",
+      "quote_language": "en",
+      "page": 2,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Kulbus town and district, West Darfur state",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "shelling_airstrikes",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        }
+      ],
+      "figures": [],
+      "movements": [],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "source": {
+    "rel_path": "UNHCR Regional Population Movement pdfs/2026/UNHCR_CORE_LBY_31_07_2026 [123731].pdf",
+    "sha1": "e6b734b355a6f99004e2ccec0fe30058be60d3f9",
+    "report_date": "2026-07-31"
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "Refugees reported worsening socioeconomic conditions, including limited livelihood opportunities, food insecurity, rent arrears, unstable housing arrangements, and growing reliance on negative coping mechanisms.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "community",
+      "place_name_as_written": "Libya",
+      "iso3": "LBY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "socioeconomic_vulnerability"
+        },
+        {
+          "dimension": "need",
+          "tag": "livelihood"
+        },
+        {
+          "dimension": "need",
+          "tag": "food_security"
+        },
+        {
+          "dimension": "need",
+          "tag": "shelter"
+        },
+        {
+          "dimension": "coping",
+          "tag": "negative_coping_mechanisms"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Refugees in remote locations, particularly in Al-Kufra, continue to report urgent needs for food assistance, livelihood support, healthcare services, education, shelter assistance, and psychosocial support.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "community",
+      "place_name_as_written": "Al-Kufra",
+      "iso3": "LBY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food_assistance"
+        },
+        {
+          "dimension": "need",
+          "tag": "livelihood"
+        },
+        {
+          "dimension": "need",
+          "tag": "health"
+        },
+        {
+          "dimension": "need",
+          "tag": "education"
+        },
+        {
+          "dimension": "need",
+          "tag": "shelter"
+        },
+        {
+          "dimension": "need",
+          "tag": "psychosocial_support"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    }
+  ]
+}

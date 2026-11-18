@@ -1,0 +1,23 @@
+{
+  "source": {"rel_path": "insights/x.pdf", "sha1": "abc", "report_date": "2026-03-14"},
+  "producer": {"agent": "claude-code", "model": "claude-opus-5"},
+  "insights": [
+    {
+      "quote": "When it rains we get flash floods, and with the fighting around us the hospitals are gone — we have cholera now and nowhere to take the sick.",
+      "quote_language": "en",
+      "page": 7,
+      "voice_type": "community",
+      "place_name_as_written": "Afar",
+      "iso3": "ETH",
+      "codings": [
+        {"dimension": "hazard", "tag": "flooding"},
+        {"dimension": "hazard", "tag": "disease_outbreak"},
+        {"dimension": "need", "tag": "health"},
+        {"dimension": "need", "tag": "locusts"}
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    }
+  ]
+}

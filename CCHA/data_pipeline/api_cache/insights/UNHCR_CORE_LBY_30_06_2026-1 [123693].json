@@ -1,0 +1,68 @@
+{
+  "source": {
+    "rel_path": "UNHCR Regional Population Movement pdfs/2026/UNHCR_CORE_LBY_30_06_2026-1 [123693].pdf",
+    "sha1": "5773187c4c561f3d27acd020c5da81779384d773",
+    "report_date": "2026-06-30"
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "Many refugees also reported heightened fear, psychological distress, and an increasing desire to relocate or leave Libya.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "community",
+      "place_name_as_written": "Libya",
+      "iso3": "LBY",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "psychosocial_distress"
+        },
+        {
+          "dimension": "movement_pattern",
+          "tag": "intent_to_move"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Sudanese refugees continued to face a deteriorating protection environment in Libya following the protests on 4 June in the west, which resulted in the temporary closure of the UNHCR oﬃce and the suspension of in-person activities.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Libya",
+      "iso3": "LBY",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "protection_risks"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Access to public healthcare remained limited due to the lack of valid documentation, inability to aﬀord fees charged to foreigners, limited hospital capacity, and reports of denial of vaccination at some health facilities.",
+      "quote_language": "en",
+      "page": 1,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Libya",
+      "iso3": "LBY",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    }
+  ]
+}

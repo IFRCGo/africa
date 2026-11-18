@@ -1,0 +1,275 @@
+{
+  "source": {
+    "rel_path": "media/d1af9b18eab1-CORE_MPCA_Sudan_Learning_Brief.pdf",
+    "sha1": "d1af9b18eab1071ac38801ee3f2c97d65574aea2",
+    "report_date": "2025-11-17"
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "The situation is especially severe for female-headed households which experience food insecurity at twice the rate of male-headed households",
+      "quote_language": "en",
+      "page": 3,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "women_at_risk",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        }
+      ],
+      "figures": [],
+      "movements": [],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "All referrals involved women and children and originated from Shargalneel, an area under siege at the time, where access to basic services was extremely limited.",
+      "quote_language": "en",
+      "page": 5,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Shargalneel",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "siege_blockade",
+          "role": "driver"
+        },
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "barrier"
+        }
+      ],
+      "figures": [],
+      "movements": [],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "By the end of the program, the proportion of households in poor food consumption declined by 73%.",
+      "quote_language": "en",
+      "page": 8,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Khartoum State",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "73%",
+          "value": 73,
+          "unit": "percent",
+          "measures": "decline in households with poor food consumption",
+          "applies_to": "households"
+        }
+      ],
+      "movements": [],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "The civil registration system has rendered many program participants unable to renew their identification documents (IDs), thereby preventing them from having valid IDs to open bank accounts.",
+      "quote_language": "en",
+      "page": 14,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "registration_documentation",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "subject"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "statelessness_documentation",
+          "role": "barrier"
+        }
+      ],
+      "figures": [],
+      "movements": [],
+      "people_affected": null,
+      "severity": null,
+      "confidence": "high"
+    },
+    {
+      "quote": "Among the 10% who disagreed, respondents expressed dissatisfaction with the transfer value, which they felt was insufficient due to rising prices and difficulties affording medicines.",
+      "quote_language": "en",
+      "page": 15,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "10%",
+          "value": 10,
+          "unit": "percent",
+          "measures": "dissatisfaction with the transfer value",
+          "applies_to": "respondents"
+        }
+      ],
+      "movements": [],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Participants who preferred a single tranche explained that phased disbursement would reduce their ability to address urgent needs and risk additional value loss due to currency depreciation and high inflation.",
+      "quote_language": "en",
+      "page": 14,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "famine_food_crisis",
+          "role": "driver"
+        }
+      ],
+      "figures": [],
+      "movements": [],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Program participants preferred using an anonymous hotline to report issues or provide feedback.",
+      "quote_language": "en",
+      "page": 17,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "other",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": null,
+      "confidence": "high"
+    },
+    {
+      "quote": "However, frequent power outages and poor network coverage in Sudan limited consistent access, while other CFM options such as community leaders, local representatives, complaint boxes, SMS messages, or emails were less popular.",
+      "quote_language": "en",
+      "page": 17,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "energy_connectivity",
+          "role": "barrier"
+        }
+      ],
+      "people_affected": null,
+      "severity": null,
+      "confidence": "high"
+    },
+    {
+      "quote": "In contrast, older and female participants continued to rely more heavily on emergency coping strategies.",
+      "quote_language": "en",
+      "page": 18,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "negative_coping",
+          "role": "subject"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "disability_elderly",
+          "role": "subject"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "women_at_risk",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "However, PDM survey respondents reported around one-fifth of respondents feeling feelings of unsafety, particularly during registration.",
+      "quote_language": "en",
+      "page": 18,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "other",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "one-fifth",
+          "value": 20,
+          "unit": "percent",
+          "measures": "feeling of unsafety",
+          "applies_to": "PDM survey respondents"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    }
+  ]
+}

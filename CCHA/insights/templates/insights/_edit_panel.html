@@ -1,0 +1,27 @@
+{% comment %}
+One insight's editor, fetched into its row on demand. Lazy, because rendering
+a form for every statement up front would make a 200-row review page heavy in
+read mode, which is the mode it is mostly in.
+{% endcomment %}
+<form class="wiz-edit-panel" method="post"
+      action="{% url 'admin:insights_wizard_edit' insight.id %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <h4>Themes</h4>
+  {{ formset.management_form }}
+  <table class="wiz-files"><tbody class="wiz-coding-rows">
+    {% for coding in formset %}
+      <tr class="wiz-coding-row">{{ coding.id }}<td>{{ coding.dimension }}</td>
+          <td>{{ coding.tag }}</td><td>{{ coding.DELETE }} remove</td></tr>
+    {% endfor %}
+  </tbody></table>
+  <template class="wiz-coding-template">
+    <tr class="wiz-coding-row">{{ formset.empty_form.id }}<td>{{ formset.empty_form.dimension }}</td>
+        <td>{{ formset.empty_form.tag }}</td><td>{{ formset.empty_form.DELETE }} remove</td></tr>
+  </template>
+  <p>
+    <button type="button" class="wiz-add-coding">Add a theme</button>
+    <button type="submit" class="default">Save</button>
+    <button type="button" class="wiz-cancel">Cancel</button>
+  </p>
+</form>

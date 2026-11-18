@@ -1,0 +1,21 @@
+Preset 'granite_vision_v4' already registered for ChartExtractionVlmEngineOptions
+detected formats: [<InputFormat.PDF: 'pdf'>]
+Going to convert document batch...
+Initializing pipeline for StandardPdfPipeline with options hash b3c3f5e0e0cc645a47e4b4a71802bfae
+Loading plugin 'docling_defaults'
+Registered picture descriptions: ['picture_description_vlm_engine', 'vlm', 'api']
+Loading plugin 'docling_defaults'
+Registered ocr engines: ['auto', 'easyocr', 'kserve_v2_ocr', 'nemotron-ocr', 'ocrmac', 'rapidocr', 'tesserocr', 'tesseract']
+Accelerator device: 'cpu'
+Loading plugin 'docling_defaults'
+Registered layout engines: ['layout_object_detection', 'docling_layout_default', 'docling_experimental_table_crops_layout']
+Initializing Transformers object-detection engine
+Accelerator device: 'cpu'
+Loading weights:   0%|          | 0/770 [00:00<?, ?it/s]Loading weights:  21%|██        | 163/770 [00:00<00:00, 1628.83it/s]Loading weights:  42%|████▏     | 326/770 [00:00<00:00, 1354.70it/s]Loading weights:  60%|██████    | 465/770 [00:00<00:00, 945.46it/s] Loading weights:  74%|███████▍  | 571/770 [00:00<00:00, 948.03it/s]Loading weights: 100%|██████████| 770/770 [00:00<00:00, 1344.30it/s]
+Transformers engine ready (device=cpu, dtype=torch.float32)
+Loading plugin 'docling_defaults'
+Registered table structure engines: ['docling_tableformer', 'docling_tableformer_v2', 'granite_vision_table']
+Accelerator device: 'cpu'
+Processing document CORE_MPCA_Sudan_Learning_Brief.pdf
+Finished converting document CORE_MPCA_Sudan_Learning_Brief.pdf in 580.56 sec.
+CORE_MPCA_Sudan_Learning_Brief.pdf: docling, 19 page(s)

@@ -1,0 +1,810 @@
+{
+  "source": {
+    "rel_path": "media/605419b64e52-2026_08_EUAA_COI_Report_Sudan_Country_Focus.pdf",
+    "sha1": "605419b64e523f1812726e64ada51026eb55cd01",
+    "report_date": null
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "The present report has encountered a number of research challenges, including: - lack of or limited reporting on some of the issues covered by the ToR due to the communication outage affecting media coverage and communication opportunities in wide parts of the country, for extended periods of time during the reference period [as outlined in Chapter 1.3.2.(g)]; - targeting of media personnel reporting on the issues addressed by the report, often resulting in self-censorship and relocation [as outlined in Chapter 2.3.2 (g)]; - the sensitivity of the issues at stake.",
+      "quote_language": "en",
+      "page": 12,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "information_access"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "The composition of the cabinet drew criticism from Sudanese political and civilian actors for ‘lacking broad representation’",
+      "quote_language": "en",
+      "page": 17,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "governance"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "A legal commentator deemed these measures as ‘illegitimate, and entirely unconstitutional’, arguing they consolidated military control over legislative, executive and judicial powers and granted military leaders immunity from accountability for actions spanning from the General Command sit-in dispersal in 2019 to the ongoing war.",
+      "quote_language": "en",
+      "page": 18,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "governance"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Complaints about administrative corruption, including bribery and illegal fees imposed by military personnel and officials, could trigger repression rather than accountability according to a Sudanese writer.",
+      "quote_language": "en",
+      "page": 18,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "corruption"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "‘RSF efforts remain fluid and uneven, often relying on violence and coercion’ with authority grounded in ‘perceived legitimacy, relational power, and negotiated tolerance by local actors’ rather than formal rules, accompanied by ‘varying degrees of military oversight and opportunistic revenue extraction.’",
+      "quote_language": "en",
+      "page": 19,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "governance"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Lawyers seeking to assist civilians detained on charge of collaboration with the RSF in SAF-controlled areas reportedly were ‘harassed, threatened, and sometimes accused of the same charges as their clients.’",
+      "quote_language": "en",
+      "page": 23,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "human_rights"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Critics argued that it effectively commodified justice, undermining protection for victims and their property, and appeared to contravene the 2019 Transitional Constitution’s guarantees of access to justice (Art. 48), equality before law (Art. 53) and right to litigation (Art. 56).",
+      "quote_language": "en",
+      "page": 24,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "legal_aid"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Survivors who fled El Fasher after the fall of the city in October 2025, described witnessing the shooting of groups of men and ‘seeing hundreds of dead bodies’ left in the streets and along main roads out of the city.",
+      "quote_language": "en",
+      "page": 27,
+      "voice_type": "community",
+      "place_name_as_written": "El Fasher",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "civilians"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "According to the organisation, documented cases involving men and boys were limited as survivors often requested for their testimonies not to be recorded or shared. This has been particularly observed in Darfur and Al Jazirah, where survivors have explicitly requested that their cases remained undocumented.",
+      "quote_language": "en",
+      "page": 31,
+      "voice_type": "community",
+      "place_name_as_written": "Darfur and Al Jazirah",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "sexual_violence"
+        },
+        {
+          "dimension": "need",
+          "tag": "protection"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Some individuals reported that they based their movements in conflict-affected areas on online content only to discover it was part of deceptive narratives that exposed them to higher risk of violence.",
+      "quote_language": "en",
+      "page": 39,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "misinformation"
+        },
+        {
+          "dimension": "movement_pattern",
+          "tag": "evacuation"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "arbitrary arrests and enforced disappearances, torture, ill-treatment and denial of medical care, targeted killings of and attacks on workers employed in the health, transport and humanitarian sectors, gender-based violence (GBV) against women workers and unionists, threats and harassment leading to forced displacement, seizure and destruction of union offices, mass dismissals without due process in Khartoum and Western Sudan for alleged ‘collaboration’ with the RSF, withholding of salaries for a period of more than two years, forced labour, and bans on union activities",
+      "quote_language": "en",
+      "page": 41,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Khartoum and Western Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "workers"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "these groups detained volunteers",
+      "quote_language": "en",
+      "page": 43,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Khartoum",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "detention"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "aid_workers"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "harassment by SAF-aligned Islamist militias",
+      "quote_language": "en",
+      "page": 43,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Khartoum",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "harassment"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "going to fight is a tribal duty that cannot be avoided",
+      "quote_language": "en",
+      "page": 48,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "forced_recruitment"
+        },
+        {
+          "dimension": "coping",
+          "tag": "tribal_mobilization"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "The article cites hunger, poor living conditions and low wages as reasons for desertion or defection.",
+      "quote_language": "en",
+      "page": 50,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "El Fasher",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "food_insecurity"
+        },
+        {
+          "dimension": "need",
+          "tag": "livelihoods"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "A Sudanese journalist told the Mashawir platform that ‘during the war, women journalists have been subjected to various types of systematic attacks aimed at silencing them and preventing them from reporting facts and covering events. Both sides of the conflict also exert significant pressure on women journalists, including threats of death and physical liquidation [elimination], as well as confiscation of equipment and closure of media institutions.’",
+      "quote_language": "en",
+      "page": 53,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence_and_conflict"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "protection"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "Activists noted that their visibility within local communities increased their exposure to risk, while ‘it remained unclear whether community kitchen volunteers were targeted because of their humanitarian work or because of their perceived affiliation with one of the factions in the war’.",
+      "quote_language": "en",
+      "page": 54,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence_and_conflict"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "protection"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "‘civilians were also extrajudicially killed for being perceived to support the opposing side of the conflict while others, especially in the Darfur region were targeted and killed because of their ethnicity.’",
+      "quote_language": "en",
+      "page": 57,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "ethnicity"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "‘Ethnic labels are complex in Darfur, as explained by the New Humanitarian. ‘Both “Africans” and Arabs are Black and Muslim, have been present in Darfur for centuries, and have intermarried with ‘some non-Arab groups claiming Arab ancestry and others having become Arabised over time’.",
+      "quote_language": "en",
+      "page": 58,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "social_cohesion"
+        }
+      ],
+      "people_affected": null,
+      "severity": null,
+      "confidence": "high"
+    },
+    {
+      "quote": "‘Is there anyone Zaghawa among you? If we find Zaghawa, we will kill them all”’ and ‘‘We want to eliminate anything black from Darfur.”’",
+      "quote_language": "en",
+      "page": 60,
+      "voice_type": "community",
+      "place_name_as_written": "El Fasher",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "ethnicity"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "‘anyone who appeared to be Nuba from western Sudan or from the south was immediately shot.’",
+      "quote_language": "en",
+      "page": 63,
+      "voice_type": "community",
+      "place_name_as_written": "Al Jazirah",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "ethnicity"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "The International Federation for Human Rights (FIDH) noted that, in areas under RSF control, such as in Darfur, the Sudanese legal system has become ineffective in investigating incidents of sexual and gender-based violence (SGBV), resulting in survivors of SGBV no longer reporting incidents to the authorities.",
+      "quote_language": "en",
+      "page": 65,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "gender-based violence"
+        },
+        {
+          "dimension": "need",
+          "tag": "justice"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "‘sexual violence is a defining feature of this conflict – not confined to frontlines, but pervasive across communities’",
+      "quote_language": "en",
+      "page": 66,
+      "voice_type": "community",
+      "place_name_as_written": "Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "conflict"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "gender-based violence"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "Other sources noted that families were using child marriage as a ‘coping mechanism’ in facing financial issues and access to education.",
+      "quote_language": "en",
+      "page": 68,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "child marriage"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "poverty"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "the camps had thousands of recruits, some adults, but mostly children – lots and lots of children. These are children who have never held a weapon. We taught them how to handle assault rifles and machine guns, RPGs [rocket-propelled grenades]. After that, they were sent to the front. We were training them to go and get killed",
+      "quote_language": "en",
+      "page": 73,
+      "voice_type": "community",
+      "place_name_as_written": "Nyala",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "child_recruitment"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "armed_conflict"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "high inflation and currency depreciation have eroded incomes, significantly shrinking the middle class and expanding poverty.",
+      "quote_language": "en",
+      "page": 79,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "poverty"
+        },
+        {
+          "dimension": "need",
+          "tag": "livelihoods"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Sudanese families resorted to burying their loved ones in public spaces and along roadsides.",
+      "quote_language": "en",
+      "page": 82,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Khartoum",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "other"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "As of February 2026, most residents across Khartoum continued to face unresolved drinking water shortages, forcing many returnees to relocate to west, central and east Khartoum.",
+      "quote_language": "en",
+      "page": 83,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Khartoum",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "water"
+        },
+        {
+          "dimension": "movement_pattern",
+          "tag": "displacement"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "A former civil servant who returned to Khartoum in January 2026, reported having been forced into marginal labour during his displacement and finding no work available in a city where business has ceased.",
+      "quote_language": "en",
+      "page": 85,
+      "voice_type": "community",
+      "place_name_as_written": "Khartoum",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "livelihood"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "households ‘increasingly rely on negative coping strategies’ to manage food shortages and income shocks, including reducing spending on health and education, selling assets, and withdrawing children from school.",
+      "quote_language": "en",
+      "page": 87,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "negative_coping"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "65 % of surveyed refugees reported that food rations declined since the start of 2025.",
+      "quote_language": "en",
+      "page": 90,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "about 43% of food insecure IDPs reported receiving food assistance, compared to 78% of refugees.",
+      "quote_language": "en",
+      "page": 90,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Three out of four refugee households among those interviewed (1 112 refugee households across 18 states) cited high school fees and costs as the main reason their children cannot attend school.",
+      "quote_language": "en",
+      "page": 94,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "education"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "In May 2025, the New Arab reported that the reduced policing capacity and the economic collapse have fuelled looting, extorsion and organised crime, while residents in some neighbourhoods of Khartoum have described being effectively confined to certain areas out of fear of robbery, kidnapping, and checkpoint-related abuse.",
+      "quote_language": "en",
+      "page": 98,
+      "voice_type": "community",
+      "place_name_as_written": "Khartoum",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "freedom_of_movement"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "In Khartoum, data from the Sudanese Doctors network released in December 2025 indicated a gradual recovery of the health system driven by local community initiatives.",
+      "quote_language": "en",
+      "page": 97,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Khartoum",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "community_resilience"
+        },
+        {
+          "dimension": "need",
+          "tag": "health"
+        }
+      ],
+      "people_affected": null,
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "Surviving on ambaz in North Darfur – when animal fodder becomes food for people",
+      "quote_language": "en",
+      "page": 111,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "North Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food_security"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "“We were threatened with rape and violence for being Masalit” – from persecution in Sudan to precarity and insecurity in Chadian camps",
+      "quote_language": "en",
+      "page": 115,
+      "voice_type": "community",
+      "place_name_as_written": "Sudan",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "gender-based violence"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "Pay up or be executed: El Fasher survivors speak of kidnappings and mass killings",
+      "quote_language": "en",
+      "page": 125,
+      "voice_type": "community",
+      "place_name_as_written": "El Fasher",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "violence"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "kidnapping"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "Sudan’s displaced return to a ‘capital of ruins’ as savings dry up",
+      "quote_language": "en",
+      "page": 134,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Khartoum",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "livelihoods"
+        },
+        {
+          "dimension": "movement_pattern",
+          "tag": "return"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "From displacement to demolition: Khartoum’s informal residents face new crisis",
+      "quote_language": "en",
+      "page": 132,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Khartoum",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "eviction"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "housing"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Residents of El-Fasher attempting to escape as RSF attacks continue",
+      "quote_language": "en",
+      "page": 148,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "El-Fasher",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "displacement"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "conflict"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    }
+  ]
+}

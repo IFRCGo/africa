@@ -1,0 +1,21 @@
+Preset 'granite_vision_v4' already registered for ChartExtractionVlmEngineOptions
+detected formats: [<InputFormat.PDF: 'pdf'>]
+Going to convert document batch...
+Initializing pipeline for StandardPdfPipeline with options hash 8c8246de7de75a81127e00d3afe53e6b
+Loading plugin 'docling_defaults'
+Registered picture descriptions: ['picture_description_vlm_engine', 'vlm', 'api']
+Loading plugin 'docling_defaults'
+Registered ocr engines: ['auto', 'easyocr', 'kserve_v2_ocr', 'nemotron-ocr', 'ocrmac', 'rapidocr', 'tesserocr', 'tesseract']
+Accelerator device: 'cpu'
+Loading plugin 'docling_defaults'
+Registered layout engines: ['layout_object_detection', 'docling_layout_default', 'docling_experimental_table_crops_layout']
+Initializing Transformers object-detection engine
+Accelerator device: 'cpu'
+Loading weights:   0%|          | 0/770 [00:00<?, ?it/s]Loading weights:  17%|█▋        | 132/770 [00:00<00:00, 938.43it/s]Loading weights:  29%|██▉       | 226/770 [00:00<00:00, 787.77it/s]Loading weights:  40%|███▉      | 305/770 [00:00<00:00, 634.70it/s]Loading weights:  48%|████▊     | 370/770 [00:00<00:00, 579.50it/s]Loading weights:  57%|█████▋    | 439/770 [00:00<00:00, 609.53it/s]Loading weights:  65%|██████▌   | 502/770 [00:00<00:00, 613.42it/s]Loading weights:  75%|███████▍  | 574/770 [00:00<00:00, 641.91it/s]Loading weights: 100%|██████████| 770/770 [00:00<00:00, 800.94it/s]
+Transformers engine ready (device=cpu, dtype=torch.float32)
+Loading plugin 'docling_defaults'
+Registered table structure engines: ['docling_tableformer', 'docling_tableformer_v2', 'granite_vision_table']
+Accelerator device: 'cpu'
+Processing document Humanitarian_Bulletin_week_3738_-_2026.pdf
+Finished converting document Humanitarian_Bulletin_week_3738_-_2026.pdf in 341.29 sec.
+Humanitarian_Bulletin_week_3738_-_2026.pdf: docling, 2 page(s)

@@ -1,0 +1,94 @@
+{% extends "insights/wizard_base.html" %}
+{% load static %}
+{% block wizard_body %}
+<div id="wiz-read"
+     data-progress-url="{% url 'admin:insights_wizard_progress' job.id %}"
+     data-read-url="{% url 'admin:insights_wizard_read' job.id %}"
+     data-done-url="{% url 'admin:insights_wizard_read_done' job.id %}"
+     data-job-url="{% url 'admin:insights_wizard_job' job.id %}"
+     data-status="{{ job.status }}">
+  {% csrf_token %}
+
+  <h2>{{ job.label|default:job }}</h2>
+  <p>
+    {{ job.documents_total }} document(s). Reading converts each one into text the
+    model can follow &mdash; reading order, headings, lists and tables kept, and
+    scanned pages read by OCR. This is the slow step; extraction is the one that
+    costs money, and you get to look at this text before paying for it.
+  </p>
+
+  {% if released %}
+  {% comment %}
+  Shown before the button rather than after the click, because the click is
+  refused: reading a batch whose files have gone badges every document "Docling
+  failed" and keeps the weaker intake text, saying nothing about why.
+  {% endcomment %}
+  <div class="wiz-note is-warn">
+    <p>{{ released_sentence }}</p>
+    <ul>{% for document in released %}<li>{{ document.file_name }}</li>{% endfor %}</ul>
+    <p><a href="{% url 'admin:insights_wizard_start' %}">Start a new import</a></p>
+  </div>
+  {% endif %}
+
+  <p><button type="button" id="wiz-start" class="default">Read these documents</button></p>
+
+  <div class="wiz-bar"><span id="wiz-bar-fill"></span></div>
+  <p id="wiz-counters">Not started.</p>
+
+  <div id="wiz-note" class="wiz-note" hidden></div>
+
+  {% comment %}
+  Same recovery path as the extract step: a detached child killed outright
+  (docker compose restart web) leaves the job at "converting" with no exception
+  anywhere to catch. The changelist action is posted rather than reimplemented,
+  so there stays one implementation of "put this job back".
+  {% endcomment %}
+  <div id="wiz-stall" class="wiz-note is-warn" hidden>
+    <p id="wiz-stall-text"></p>
+    <form method="post" action="{% url 'admin:insights_extractionjob_changelist' %}">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="reset_stuck_job">
+      <input type="hidden" name="_selected_action" value="{{ job.id }}">
+      <input type="hidden" name="index" value="0">
+      <button type="submit">Reset this batch</button>
+    </form>
+  </div>
+
+  {% if job.status == "converted" %}
+  <h3>What the model will read</h3>
+  <p class="help">
+    This is the stored text itself, not a rendering of it &mdash; the markdown
+    below is exactly what each page will be sent as.
+  </p>
+  {% for item in documents %}
+    <div class="wiz-doc">
+      <h4>{{ item.document.file_name }}</h4>
+      {% if item.conversion and item.conversion.ok %}
+        <p class="wiz-badge is-ok">Docling &middot; {{ item.conversion.pages }} page(s)</p>
+      {% elif item.conversion and item.conversion.engine == "skipped" %}
+        <p class="wiz-badge is-warn">Not re-read{% if item.conversion.message %} &mdash; {{ item.conversion.message }}{% endif %}</p>
+      {% else %}
+        <p class="wiz-badge is-bad">
+          Raw text &mdash; Docling failed
+          {% if item.conversion.message %}<br>{{ item.conversion.message }}{% endif %}
+        </p>
+      {% endif %}
+      <pre class="wiz-doc-text">{{ item.text }}</pre>
+    </div>
+  {% endfor %}
+
+  <p><button type="button" id="wiz-continue" class="default">Continue to extract</button></p>
+  {% endif %}
+
+  <h3>Log</h3>
+  <pre class="wiz-log" id="wiz-log"></pre>
+
+  <p>
+    Closing this page does not stop the reading. Come back to this batch from
+    <a href="{% url 'admin:insights_documentstoinsights_changelist' %}">Part 1</a>.
+    The job itself, with its full log and every recovery action, is on
+    <a href="{% url 'admin:insights_extractionjob_change' job.id %}">job {{ job.id }}</a>.
+  </p>
+</div>
+<script src="{% static 'insights/wizard_read.js' %}" defer></script>
+{% endblock %}

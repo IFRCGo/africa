@@ -1,0 +1,60 @@
+{
+  "_comment": "Keyword taxonomy for tagging narrative text. Patterns are case-insensitive regex fragments.",
+  "hazard": {
+    "armed_conflict":   ["fighting", "clashes", "armed confrontation", "hostilities", "offensive", "crossfire", "battle for"],
+    "shelling_airstrikes": ["shelling", "artillery", "airstrike", "air strike", "aerial bombardment", "drone attack", "drone strike", "bombardment"],
+    "attacks_on_civilians": ["attacks? on civilians", "killed civilians", "civilian casualties", "massacre", "atrocities", "ethnic(ally)?[ -]targeted", "summary execution"],
+    "siege_blockade":   ["siege", "besieged", "blockade", "encircle"],
+    "looting_robbery":  ["looting", "looted", "robbery", "robbed", "extortion", "confiscat"],
+    "flooding":         ["flood", "heavy rain", "rainy season", "inundat"],
+    "disease_outbreak": ["cholera", "measles", "dengue", "malaria outbreak", "disease outbreak", "epidemic", "hepatitis"],
+    "famine_food_crisis": ["famine", "IPC", "catastrophic (levels of )?food insecurity", "acute food insecurity", "starvation"],
+    "explosive_ordnance": ["landmine", "unexploded ordnance", "UXO", "explosive remnants"],
+    "extreme_heat_drought": ["drought", "extreme heat", "heatwave", "water scarcity"]
+  },
+  "vulnerability": {
+    "unaccompanied_children": ["unaccompanied (and|or) separated", "unaccompanied (minors|children)", "separated children", "UASC"],
+    "gbv_risk":            ["gender[- ]based violence", "GBV", "sexual violence", "rape", "CRSV", "sexual exploitation"],
+    "women_at_risk":       ["women at risk", "women and girls at risk", "female[- ]headed"],
+    "child_protection":    ["child protection", "children at risk", "child recruitment", "child soldiers", "child labour"],
+    "disability_elderly":  ["persons? with disabilit", "elderly", "older persons", "chronic(ally)? ill"],
+    "malnutrition":        ["malnutrition", "malnourished", "acute malnutrition", "SAM", "MAM", "stunting", "wasting"],
+    "psychosocial_distress": ["trauma", "psychosocial distress", "mental health", "PTSD", "distress"],
+    "statelessness_documentation": ["undocumented", "lack of (civil )?documentation", "statelessness", "no identity documents", "lost.{0,20}documents"],
+    "trafficking_smuggling": ["trafficking", "smuggl", "kidnapp", "abduct", "ransom"],
+    "pregnant_lactating":  ["pregnant", "lactating", "maternal"]
+  },
+  "coping": {
+    "onward_secondary_movement": ["onward movement", "secondary movement", "secondary displacement", "moved? onward", "onward travel"],
+    "pendular_movement":  ["pendular", "back[- ]and[- ]forth", "go[- ]and[- ]see"],
+    "negative_coping":    ["negative coping", "child labour", "early marriage", "child marriage", "survival sex", "transactional sex", "begging", "school drop[- ]?out"],
+    "asset_depletion":    ["sold (their )?(assets|belongings|livestock)", "selling (assets|belongings|livestock|jewellery)", "depleted (their )?savings", "exhausted (their )?resources"],
+    "meal_reduction":     ["skipping meals", "reduce[d]? (the number of )?meals", "eating less", "wild foods", "one meal"],
+    "host_community_support": ["host famil", "host communit(y|ies) (support|sharing|hosting)", "hosted by", "staying with relatives", "community solidarity"],
+    "remittances_informal_work": ["remittance", "informal (work|labour|employment)", "daily labour", "casual labour", "petty trade"],
+    "self_relocation":    ["self[- ]relocat", "spontaneously relocated", "moved on their own"]
+  },
+  "need": {
+    "food":           ["food (assistance|aid|distribution|insecurity|needs|rations)", "hot meals", "food parcels"],
+    "water_wash":     ["water[, ]", "WASH", "latrine", "sanitation", "hygiene", "safe drinking water", "water trucking"],
+    "shelter":        ["shelter", "emergency shelters?", "tents", "plastic sheet", "overcrowd"],
+    "health":         ["health (care|services|facilities|needs)", "medical (care|assistance|supplies)", "medicines", "clinics?", "vaccination"],
+    "nutrition":      ["nutrition", "therapeutic feeding", "supplementary feeding", "RUTF"],
+    "protection":     ["protection (services|needs|monitoring|desks?)", "legal (aid|assistance)", "psychosocial support", "PSS", "MHPSS", "safe spaces"],
+    "cash":           ["cash (assistance|transfers|grants|based)", "CBI", "multi[- ]purpose cash"],
+    "core_relief_items": ["core relief items", "CRIs?", "non[- ]food items", "NFIs?", "blankets", "sleeping mats", "jerry cans"],
+    "education":      ["education", "schools?", "learning spaces", "classrooms"],
+    "registration_documentation": ["registration", "biometric", "pre[- ]registration", "civil documentation", "birth certificates?"],
+    "transport_relocation": ["relocation (away )?from (the )?border", "onward transportation", "transport(ation)? (assistance|to camps)", "convoys?"],
+    "energy_connectivity": ["firewood", "cooking fuel", "connectivity", "telecommunications", "electricity"]
+  },
+  "movement_pattern": {
+    "cross_border_arrival": ["cross(ed|ing)? (the )?border", "new arrivals", "arrived (in|at|from)", "influx", "fled (to|into|across)", "crossing points?"],
+    "internal_displacement": ["internally displaced", "IDPs?", "displaced (within|inside)", "newly displaced"],
+    "return_movement":    ["return(ees|ed|s)? (to|toward|home)", "returning (to )?(Sudan|home|their areas)", "spontaneous returns?", "voluntary repatriation"],
+    "transit_movement":   ["transit", "transiting", "en route", "passing through", "onward to"],
+    "relocation_to_camps": ["relocat(ed|ion) (to|of)", "transferred to (camps?|settlements?)", "moved to camps?"],
+    "mixed_movement":     ["mixed movements?", "third[- ]country nationals?", "TCNs?", "migrants"],
+    "evacuation":         ["evacuat", "airlift", "repositioned"]
+  }
+}

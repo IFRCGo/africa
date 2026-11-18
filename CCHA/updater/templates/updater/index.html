@@ -1,0 +1,68 @@
+{# ------------------------------------------------------------------------ #}
+{# The updater page. Django fills in {{ dashboard_url }} before sending it.   #}
+{# Everything else is ordinary HTML, CSS and JavaScript.                      #}
+{# ------------------------------------------------------------------------ #}{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sudan &amp; Neighbouring Countries - Updater</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="{% static 'updater/css/app.css' %}" rel="stylesheet">
+</head>
+<body data-dashboard-url="{{ dashboard_url }}">
+<header>
+  <img src="https://www.ifrc.org/themes/custom/ifrc_theme/dist/images/Logo-Horizontal-RGB.svg" alt="IFRC Logo">
+  <h1>Sudan &amp; Neighbouring countries <span>- Data Updater</span></h1>
+</header>
+<main>
+  <!-- Card 1: how many new PDFs are waiting, and the buttons that act on them. -->
+  <div class="card">
+    <div id="count" class="count">...</div>
+    <div class="sub" id="count-sub">Checking the UNHCR source folders...</div>
+    <div class="files hidden" id="files"></div>
+    <div class="row">
+      <button id="btn-update" disabled>Update now</button>
+      <button id="btn-refresh">Re-check folders</button>
+    </div>
+    <div class="row links">
+      <span>Also available: <a href="/admin/" target="_blank">database admin</a> &middot;
+      <a href="/api/" target="_blank">JSON API</a></span>
+    </div>
+  </div>
+
+  <!-- Card 2: freshness of the external map layers + the rebuild button. -->
+  <div class="card">
+    <h2>External data layers (MCP)</h2>
+    <p class="note">Fetching <b>brand-new</b> data from the MCP servers (HDX, IPC, FEWS NET, UNHCR)
+      is done in <b>Claude Code</b> - it needs the AI client and API keys, so it cannot run inside this
+      container. That step refreshes the caches listed below. This button <b>re-applies the latest
+      cached data</b> and rebuilds the map layers (pipeline steps 6 and 7), then refreshes the dashboard.</p>
+    <table id="ext-table"><tbody><tr><td>Loading...</td></tr></tbody></table>
+    <div class="row">
+      <button id="btn-rebuild">Rebuild external layers from latest cache</button>
+    </div>
+  </div>
+
+  <!-- Card 3: only appears while an update is running. -->
+  <div class="card hidden" id="progress-card">
+    <h2 id="progress-title">Updating</h2>
+    <div class="barwrap"><div id="bar"></div></div>
+    <div class="row"><span id="pct">0%</span><span id="phase"></span></div>
+    <div id="log"></div>
+    <div class="row hidden" id="done-row" style="margin-top:14px">
+      <a class="btn" href="{{ dashboard_url }}" target="dashboard">Open updated dashboard</a>
+    </div>
+  </div>
+
+  <!-- Card 4: the live dashboard, embedded so you can check the result at once. -->
+  <div class="card">
+    <h2>Dashboard preview</h2>
+    <iframe id="dash" name="dashboard" src="{{ dashboard_url }}"></iframe>
+  </div>
+</main>
+
+<script src="{% static 'updater/js/app.js' %}"></script>
+</body>
+</html>

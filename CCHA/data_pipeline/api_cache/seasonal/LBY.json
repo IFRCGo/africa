@@ -1,0 +1,26 @@
+{
+ "count": 1,
+ "next": null,
+ "previous": null,
+ "results": [
+  {
+   "name": "Annual",
+   "country": "Libyan Arab Jamahiriya",
+   "purpose": "CropProductionIndicator",
+   "season_type": "Harvest",
+   "start_month": 1,
+   "end_month": 12,
+   "alignment": "End",
+   "geographicunit_name": "Libya",
+   "geographicunit_full_name": "Libya",
+   "fnid": "LY",
+   "unit_type": "Admin 0",
+   "description": "calendar year",
+   "order": 1,
+   "aliases": [],
+   "geographicunit": 8098,
+   "country_code": "LY"
+  }
+ ],
+ "_note": "Libya's entire FEWS NET calendar is one placeholder 'Annual' band. Real absence."
+}

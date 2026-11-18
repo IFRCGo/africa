@@ -1,0 +1,620 @@
+{
+  "source": {
+    "rel_path": "media/6e5a1f87aa61-Voices from South Darfur.pdf",
+    "sha1": "6e5a1f87aa614ac19756fa1d093e5bc51ef69f9f",
+    "report_date": "2025-06-03"
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "My home was destroyed, and now I’m living in the countryside.",
+      "quote_language": "en",
+      "page": 7,
+      "voice_type": "community",
+      "place_name_as_written": "al-Geneina",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "internal_displacement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "armed_conflict",
+          "role": "driver"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "But the problem we have is that the medicine we need for her, it is not available here in this hospital. I have to try to find it outside, and also I don’t have any money to buy the medicine.",
+      "quote_language": "en",
+      "page": 7,
+      "voice_type": "community",
+      "place_name_as_written": "Nyala",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "barrier"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "In October 2024, the bed occupancy rate in the maternity department in Nyala Teaching Hospital reached 328%: on average during the month, more than 3 patients were sharing a bed.",
+      "quote_language": "en",
+      "page": 8,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Nyala",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "328%",
+          "value": 328,
+          "unit": "percent",
+          "measures": "bed occupancy rate",
+          "applies_to": "maternity department"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“…medical treatment, it is very, very expensive…Where can I get that money?”",
+      "quote_language": "en",
+      "page": 9,
+      "voice_type": "community",
+      "place_name_as_written": "Kalma IDP camp",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "barrier"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“Sometimes, we come here, to this centre. And they give us medicine. Sometimes, if there is no medicine or if they give us a prescription, then we will go to a private pharmacy. But, if we don’t have any money, then we just wait and hope to get better. What will happen, will happen. We came here today because it is free. But, today, they prescribed for me some medicine, and told me to go and buy it from the pharmacy. But I am not ready, because I don’t have any money.”",
+      "quote_language": "en",
+      "page": 9,
+      "voice_type": "community",
+      "place_name_as_written": "Kas",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "barrier"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“This baby, the smallest one, he needs a surgery but I have nothing to pay for this.”",
+      "quote_language": "en",
+      "page": 9,
+      "voice_type": "community",
+      "place_name_as_written": "Nyala",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "barrier"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“Before the war, there were many [hospitals which can treat people for free]. But, now, there is only one in centre six. And, when we go, they often tell us that there are no medicines, or they ask us to come back another day…To get medicines, it is very difficult.”",
+      "quote_language": "en",
+      "page": 11,
+      "voice_type": "community",
+      "place_name_as_written": "Kalma IDP camp",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“Now my son is outside. They told us to go and make tests in a private clinic, but the tests and medicines are expensive, and I don’t have any money to pay. The little money that I have, I need to use it for food. I buy the food for my children.”",
+      "quote_language": "en",
+      "page": 11,
+      "voice_type": "community",
+      "place_name_as_written": "Kas",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "barrier"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“I was living in Khartoum, and life was very difficult. I came to Nyala from Bahri. We have been in Bahri since the war erupted, and we thought it would pass quickly. We weren’t expecting the war to continue for so long. Since the war started, we have suffered a lot. There is no security, no safety there. The life became so difficult, and so we decided to leave Khartoum and we arrived in Nyala two weeks ago.”",
+      "quote_language": "en",
+      "page": 14,
+      "voice_type": "community",
+      "place_name_as_written": "Nyala",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "internal_displacement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "armed_conflict",
+          "role": "driver"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "Bahri",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": "Nyala",
+          "dest_iso3": "SDN",
+          "flow_type": "internal"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“The children, they don’t understand, if we can’t afford to buy food, they will cry. Adults, they can understand – if they are hungry, they can cope and they can wait – but the children, they cry.”",
+      "quote_language": "en",
+      "page": 15,
+      "voice_type": "community",
+      "place_name_as_written": "Kalma IDP camp",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        },
+        {
+          "dimension": "coping",
+          "tag": "meal_reduction",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“I just depend on what I can find, day to day. If I get something, we will eat. If I don’t get something, we won’t. This is my life.”",
+      "quote_language": "en",
+      "page": 15,
+      "voice_type": "community",
+      "place_name_as_written": "al-Salam IDP camp",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        },
+        {
+          "dimension": "coping",
+          "tag": "remittances_informal_work",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“If my son can go and bring one thousand pounds, and if I can go to the market and bring some leftovers, then this helps. But, today, I am here [in the MSF-supported clinic]. So I won’t eat today. Last night, I didn’t eat. What can I do? If you go and you ask for my name, you will see where we stay…My children are young, and they are sitting there, with no food. Most of the work I do, it is not paid. I wash dishes. I wash cups. They give me leftovers. If there is leftover soap, they will give me this as well.”",
+      "quote_language": "en",
+      "page": 16,
+      "voice_type": "community",
+      "place_name_as_written": "Beleil",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        },
+        {
+          "dimension": "coping",
+          "tag": "meal_reduction",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“I came from el-Fasher in November 2023. We left my husband in el-Fasher. We don’t have anything now. I don’t have work. Sometimes, I go to work on the farms. When I get something, it is good, because then we can eat. When I don’t get something, we have to wait.”",
+      "quote_language": "en",
+      "page": 16,
+      "voice_type": "community",
+      "place_name_as_written": "Kas",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "internal_displacement",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "el-Fasher",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": "Kas",
+          "dest_iso3": "SDN",
+          "flow_type": "internal"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“…when the women try to go outside the camp to farm…they will beat me, they will torture me. And to work in the camp, there are no jobs to do for someone else. This is the only way, to take my son and to go to the market to beg, to ask for money. Some will give me some grain, others millet or sorghum. That is what I do…There is nothing, there is no way to go out…My aunt’s daughter, she was raped by six men, just six days ago…I feel insecure, because if I go out, I will be raped.”",
+      "quote_language": "en",
+      "page": 17,
+      "voice_type": "community",
+      "place_name_as_written": "South Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "attacks_on_civilians",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "gbv_risk",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "Families at our facilities seem very often to be surviving on one meal a day amid soaring costs of food.",
+      "quote_language": "en",
+      "page": 17,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "South Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "meal_reduction",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "one meal a day",
+          "value": 1,
+          "unit": "people",
+          "measures": "meals per day",
+          "applies_to": "Families at our facilities"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“I have suffered a lot in this war. There was daily shelling. My husband, he was working as a guard at the university in al-Fasher. He sent us to Tawila where we spent thirty-seven days. He sent money to us so we could come to Kas. He went to Mawashi market, and while he was there in the market, a shell hit the market, and he died.”",
+      "quote_language": "en",
+      "page": 19,
+      "voice_type": "community",
+      "place_name_as_written": "Kas",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "internal_displacement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "shelling_airstrikes",
+          "role": "driver"
+        }
+      ],
+      "movements": [
+        {
+          "origin_name_as_written": "al-Fasher",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": "Tawila",
+          "dest_iso3": "SDN",
+          "flow_type": "internal"
+        },
+        {
+          "origin_name_as_written": "Tawila",
+          "origin_iso3": "SDN",
+          "dest_name_as_written": "Kas",
+          "dest_iso3": "SDN",
+          "flow_type": "internal"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "“There is no safety at all [on the farms]…You hear so many stories, of people being threatened…If you try to resist, they will kill you. If you have ten thousand Sudanese pounds, and you try to resist, you will be shot. They can take your donkey. If you refuse, they will just shoot you where you stand.”",
+      "quote_language": "en",
+      "page": 21,
+      "voice_type": "community",
+      "place_name_as_written": "al-Salam IDP camp",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "looting_robbery",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "attacks_on_civilians",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "“Our farms are completely destroyed, we have nothing. My husband was killed four months ago. We have nothing now. For three days, I haven’t eaten anything…I have two children.”",
+      "quote_language": "en",
+      "page": 22,
+      "voice_type": "community",
+      "place_name_as_written": "Beleil",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        },
+        {
+          "dimension": "coping",
+          "tag": "meal_reduction",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "“There is no way for me to get a job. I have really tried to work, I have tried to find a way. Last week, I went from my home to Nyala. I was just trying to get something for my children, that is all I was doing. I was in the streets in Nyala, begging for something to take to my children.”",
+      "quote_language": "en",
+      "page": 27,
+      "voice_type": "community",
+      "place_name_as_written": "Nyala",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "cash",
+          "role": "subject"
+        }
+      ],
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "“Every day, when people go to the market, there are four or five cases of rape. When we go to the farm, this happens. Men, they will cover their heads, and they will rape women…It is dangerous for us, going to Gandeh Tu, to Golo, to Nertiti. You have to spend a night somewhere, on the way. That is risky.”",
+      "quote_language": "en",
+      "page": 27,
+      "voice_type": "community",
+      "place_name_as_written": "South Darfur",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "hazard",
+          "tag": "attacks_on_civilians",
+          "role": "subject"
+        },
+        {
+          "dimension": "vulnerability",
+          "tag": "women_at_risk",
+          "role": "subject"
+        }
+      ],
+      "severity": 5,
+      "confidence": "high"
+    },
+    {
+      "quote": "“There are people that we were with in Hasahisa, and we don’t know where they are anymore, we don’t know whether they were killed. My uncle, he went to ad-Damazin. He was sending money to us but, since June, we haven’t heard anything from him, we haven’t received anything from him. We have no way to find him.”",
+      "quote_language": "en",
+      "page": 28,
+      "voice_type": "community",
+      "place_name_as_written": "Hasahisa",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "vulnerability",
+          "tag": "psychosocial_distress",
+          "role": "subject"
+        }
+      ],
+      "severity": 3,
+      "confidence": "high"
+    },
+    {
+      "quote": "“Organisations, they promise to help, but we hear and we see nothing. No one is coming to help. We have been here since 2003 as displaced people. Since the current war, there has been no support from outside.”",
+      "quote_language": "en",
+      "page": 30,
+      "voice_type": "community",
+      "place_name_as_written": "al-Salam IDP camp",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "other",
+          "role": "barrier"
+        }
+      ],
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "“Before the war, there were organisations here that helped us, but since the war started, there has been nothing. I have to go and beg in the market in order to feed my children. Medical treatment, it is very, very expensive…”",
+      "quote_language": "en",
+      "page": 31,
+      "voice_type": "community",
+      "place_name_as_written": "Kalma IDP camp",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "health",
+          "role": "barrier"
+        },
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        }
+      ],
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "I am also waiting patiently. My children don’t understand that we don’t have anything. The neighbours, they can help a little bit. But the help is little, and I can’t ask for more – we are all suffering.",
+      "quote_language": "en",
+      "page": 33,
+      "voice_type": "community",
+      "place_name_as_written": "Kas",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "coping",
+          "tag": "host_community_support",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "People, they mention the role of the community – the circumstances in which the local community is living: for two years, they didn’t receive any help from outside. These are people who have been displaced, and they can’t find anything to eat for an entire day now.",
+      "quote_language": "en",
+      "page": 33,
+      "voice_type": "community",
+      "place_name_as_written": "al-Salam IDP camp",
+      "iso3": "SDN",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food",
+          "role": "subject"
+        },
+        {
+          "dimension": "movement_pattern",
+          "tag": "internal_displacement",
+          "role": "subject"
+        }
+      ],
+      "people_affected": null,
+      "severity": 5,
+      "confidence": "high"
+    }
+  ]
+}

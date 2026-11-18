@@ -1,0 +1,150 @@
+{
+  "source": {
+    "rel_path": "media/fa4db4a07434-ROSEA_El-Nino_Eastern-Africa_20260813.pdf",
+    "sha1": "fa4db4a0743464be3811733d2b7279f37e508e6a",
+    "report_date": null
+  },
+  "producer": {
+    "agent": "openai_compatible",
+    "model": "gemini-3.1-flash-lite"
+  },
+  "insights": [
+    {
+      "quote": "During the 2023 El Niño event, widespread flooding displaced approximately 1.3 million people in Somalia, 633,000 in Ethiopia, and 546,000 in Kenya between October and December 2023",
+      "quote_language": "en",
+      "page": 5,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Somalia, Ethiopia, Kenya",
+      "iso3": "SOM",
+      "codings": [
+        {
+          "dimension": "movement_pattern",
+          "tag": "displacement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "floods",
+          "role": "driver"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "1.3 million",
+          "value": 1300000,
+          "unit": "people",
+          "measures": "displaced",
+          "applies_to": "Somalia"
+        },
+        {
+          "figure_as_written": "633,000",
+          "value": 633000,
+          "unit": "people",
+          "measures": "displaced",
+          "applies_to": "Ethiopia"
+        },
+        {
+          "figure_as_written": "546,000",
+          "value": 546000,
+          "unit": "people",
+          "measures": "displaced",
+          "applies_to": "Kenya"
+        }
+      ],
+      "people_affected": 2479000,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Source for the 48.5M people in need, 40.5M in IPC3+, 8.3M acute malnutrition, 16.7M displacement and regional cholera figures.",
+      "quote_language": "en",
+      "page": 10,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "Eastern Africa",
+      "iso3": "ETH",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food_security",
+          "role": "subject"
+        },
+        {
+          "dimension": "need",
+          "tag": "nutrition",
+          "role": "subject"
+        },
+        {
+          "dimension": "movement_pattern",
+          "tag": "displacement",
+          "role": "subject"
+        },
+        {
+          "dimension": "hazard",
+          "tag": "disease_outbreak",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "48.5M",
+          "value": 48500000,
+          "unit": "people",
+          "measures": "people in need"
+        },
+        {
+          "figure_as_written": "40.5M",
+          "value": 40500000,
+          "unit": "people",
+          "measures": "IPC3+ food insecurity"
+        },
+        {
+          "figure_as_written": "8.3M",
+          "value": 8300000,
+          "unit": "people",
+          "measures": "acute malnutrition"
+        },
+        {
+          "figure_as_written": "16.7M",
+          "value": 16700000,
+          "unit": "people",
+          "measures": "displacement"
+        }
+      ],
+      "people_affected": 48500000,
+      "severity": 4,
+      "confidence": "high"
+    },
+    {
+      "quote": "Source for the 7.55 million (53 per cent) food-insecure caseloads.",
+      "quote_language": "en",
+      "page": 10,
+      "voice_type": "secondary_analysis",
+      "place_name_as_written": "South Sudan",
+      "iso3": "SSD",
+      "codings": [
+        {
+          "dimension": "need",
+          "tag": "food_security",
+          "role": "subject"
+        }
+      ],
+      "figures": [
+        {
+          "figure_as_written": "7.55 million",
+          "value": 7550000,
+          "unit": "people",
+          "measures": "food-insecure caseloads"
+        },
+        {
+          "figure_as_written": "53 per cent",
+          "value": 53,
+          "unit": "percent",
+          "measures": "food-insecure caseloads"
+        }
+      ],
+      "people_affected": 7550000,
+      "severity": 4,
+      "confidence": "high"
+    }
+  ]
+}

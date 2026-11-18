@@ -1,0 +1,50 @@
+{% extends "insights/wizard_base.html" %}
+{% load static %}
+{% block wizard_body %}
+<div id="wiz-extract"
+     data-progress-url="{% url 'admin:insights_wizard_progress' job.id %}"
+     data-extract-url="{% url 'admin:insights_wizard_extract' job.id %}"
+     data-review-url="{% url 'admin:insights_wizard_job' job.id %}">
+  {% csrf_token %}
+
+  <h2>{{ job.label|default:job }}</h2>
+  <p>{{ job.documents_total }} document(s) ready to read.</p>
+
+  <p><button type="button" id="wiz-start" class="default">Start extraction</button></p>
+
+  <div class="wiz-bar"><span id="wiz-bar-fill"></span></div>
+  <p id="wiz-counters">Not started.</p>
+
+  <div id="wiz-note" class="wiz-note" hidden></div>
+
+  {% comment %}
+  The way out of a run whose process was killed outright - `docker compose
+  restart web` kills a detached child with no exception anywhere to catch. It
+  posts the existing changelist action rather than duplicating it: one
+  implementation of "put this job back to queued", and it stays audited by the
+  admin's own action machinery. index=0 is what tells the changelist this is an
+  action POST and not a bulk edit.
+  {% endcomment %}
+  <div id="wiz-stall" class="wiz-note is-warn" hidden>
+    <p id="wiz-stall-text"></p>
+    <form method="post" action="{% url 'admin:insights_extractionjob_changelist' %}">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="reset_stuck_job">
+      <input type="hidden" name="_selected_action" value="{{ job.id }}">
+      <input type="hidden" name="index" value="0">
+      <button type="submit">Reset this batch to queued</button>
+    </form>
+  </div>
+
+  <h3>Log</h3>
+  <pre class="wiz-log" id="wiz-log"></pre>
+
+  <p>
+    Closing this page does not stop the extraction. Come back to this batch from
+    <a href="{% url 'admin:insights_documentstoinsights_changelist' %}">Part 1</a>.
+    The job itself, with its full log and every recovery action, is on
+    <a href="{% url 'admin:insights_extractionjob_change' job.id %}">job {{ job.id }}</a>.
+  </p>
+</div>
+<script src="{% static 'insights/wizard_extract.js' %}" defer></script>
+{% endblock %}
