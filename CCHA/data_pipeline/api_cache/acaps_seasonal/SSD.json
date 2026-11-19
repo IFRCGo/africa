@@ -1,0 +1,1161 @@
+{
+  "count": 35,
+  "results": [
+    {
+      "id": "1000",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.5_1, SSD.7_1, SSD.8_1, SSD.9_1",
+      "adm1_eng_name": [
+        "North Bahr-al-Ghazal",
+        "Upper Nile",
+        "Warap",
+        "West Bahr-al-Ghazal"
+      ],
+      "months": [
+        "November",
+        "December",
+        "January"
+      ],
+      "event": [
+        "2nd harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "General harvest"
+      ],
+      "comment": "Harvest for long cycle crops.",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "1001",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "December",
+        "January",
+        "February",
+        "March"
+      ],
+      "event": [
+        "Dry season"
+      ],
+      "event_type": [
+        "Seasonal hazard"
+      ],
+      "label": [
+        "Dry season"
+      ],
+      "comment": "Dry season in the greater equatorial states",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "1002",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November"
+      ],
+      "event": [
+        "Main wet/ Rainy/ Monsoon season"
+      ],
+      "event_type": [
+        "Seasonal hazard"
+      ],
+      "label": [
+        "Rainy season"
+      ],
+      "comment": "Wet season in the greater equatorial states",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "1003",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "March",
+        "April"
+      ],
+      "event": [
+        "Land preparation"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Land preparation"
+      ],
+      "comment": "1st Land preparation for first crops ",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "1004",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "August",
+        "September"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "General harvest"
+      ],
+      "comment": "Harvest for first crops",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "1005",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "December",
+        "January",
+        "February"
+      ],
+      "event": [
+        "2nd harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "General harvest"
+      ],
+      "comment": "Harvest for second and third crops ",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "1006",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "May",
+        "June",
+        "July"
+      ],
+      "event": [
+        "Planting and growing"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "General planting"
+      ],
+      "comment": "growing season for first crops",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "2541",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.3_1, SSD.4_1, SSD.5_1, SSD.6_1, SSD.7_1, SSD.8_1, SSD.9_1, SSD.10_1",
+      "adm1_eng_name": null,
+      "months": [
+        "August",
+        "September"
+      ],
+      "event": [
+        "Floods"
+      ],
+      "event_type": [
+        "Seasonal hazard"
+      ],
+      "label": [
+        "Floods"
+      ],
+      "comment": "Seasonal flooding ",
+      "source": "FEWS NET",
+      "source_date": "2013-12-01",
+      "source_link": "https://fews.net/east-africa/south-sudan/seasonal-calendar/december-2013"
+    },
+    {
+      "id": "2646",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.3_1, SSD.4_1, SSD.5_1, SSD.6_1, SSD.7_1, SSD.8_1, SSD.9_1, SSD.10_1",
+      "adm1_eng_name": null,
+      "months": [
+        "June",
+        "July",
+        "May"
+      ],
+      "event": [
+        "Lean season"
+      ],
+      "event_type": [
+        "Lean season"
+      ],
+      "label": [
+        "Lean season"
+      ],
+      "comment": "Lean season ",
+      "source": "FEWS NET",
+      "source_date": "2013-12-01",
+      "source_link": "https://fews.net/east-africa/south-sudan/seasonal-calendar/december-2013"
+    },
+    {
+      "id": "4117",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.5_1, SSD.7_1, SSD.8_1, SSD.9_1",
+      "adm1_eng_name": [
+        "North Bahr-al-Ghazal",
+        "Upper Nile",
+        "Warap",
+        "West Bahr-al-Ghazal"
+      ],
+      "months": [
+        "June",
+        "July",
+        "August",
+        "September",
+        "October"
+      ],
+      "event": [
+        "Planting and growing"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "General planting"
+      ],
+      "comment": "Growing season for long cycle crops ",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "4118",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "August",
+        "September"
+      ],
+      "event": [
+        "Land preparation"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Land preparation"
+      ],
+      "comment": "2nd Land preparation for second and third crops ",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "4129",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "October",
+        "November"
+      ],
+      "event": [
+        "Planting and growing"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "General planting"
+      ],
+      "comment": "growing season for second and third crops ",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "4132",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "March",
+        "April"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Maize"
+      ],
+      "comment": "Corn (South, Main) planting period",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4133",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "July",
+        "August"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Maize"
+      ],
+      "comment": "Corn (South, Main) harvest period  ",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4134",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "August",
+        "September"
+      ],
+      "event": [
+        "2nd planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Maize"
+      ],
+      "comment": "Corn (South, Second) planting period",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4135",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "December",
+        "January"
+      ],
+      "event": [
+        "2nd harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Maize"
+      ],
+      "comment": "Corn (South, Second) harvest period  ",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4136",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.3_1, SSD.4_1, SSD.5_1, SSD.6_1, SSD.7_1, SSD.8_1, SSD.9_1, SSD.10_1",
+      "adm1_eng_name": null,
+      "months": [
+        "April",
+        "March"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Maize"
+      ],
+      "comment": "Corn (Unimodal) planting period",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4137",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.3_1, SSD.4_1, SSD.5_1, SSD.6_1, SSD.7_1, SSD.8_1, SSD.9_1, SSD.10_1",
+      "adm1_eng_name": null,
+      "months": [
+        "August",
+        "September",
+        "October"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Maize"
+      ],
+      "comment": "Corn (Unimodal) harvest period  ",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4138",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "March",
+        "April"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Millet"
+      ],
+      "comment": "Millet (South, Main) planting period",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4139",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "July",
+        "August"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Millet"
+      ],
+      "comment": "Millet (South, Main) harvest period  ",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4140",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "August",
+        "September"
+      ],
+      "event": [
+        "2nd planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Millet"
+      ],
+      "comment": "Millet (South, Second) planting period",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4141",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "December",
+        "January"
+      ],
+      "event": [
+        "2nd harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Millet"
+      ],
+      "comment": "Millet (South, Second) harvest period  ",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4142",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.3_1, SSD.4_1, SSD.5_1, SSD.6_1, SSD.7_1, SSD.8_1, SSD.9_1, SSD.10_1",
+      "adm1_eng_name": null,
+      "months": [
+        "April",
+        "May"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Millet"
+      ],
+      "comment": "Millet (Unimodal) planting period",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4143",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.3_1, SSD.4_1, SSD.5_1, SSD.6_1, SSD.7_1, SSD.8_1, SSD.9_1, SSD.10_1",
+      "adm1_eng_name": null,
+      "months": [
+        "August",
+        "September",
+        "October"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Millet"
+      ],
+      "comment": "Millet (Unimodal) harvest period  ",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4144",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "March",
+        "April"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Sorghum"
+      ],
+      "comment": "Sorghum (South, Main) planting period",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4145",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "July",
+        "August"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Sorghum"
+      ],
+      "comment": "Sorghum (South, Main) harvest period  ",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4146",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "August",
+        "September"
+      ],
+      "event": [
+        "2nd planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Sorghum"
+      ],
+      "comment": "Sorghum (South, Second) planting period",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4147",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.10_1",
+      "adm1_eng_name": [
+        "Central Equatoria",
+        "Eastern Equatoria",
+        "West Equatoria"
+      ],
+      "months": [
+        "December",
+        "January"
+      ],
+      "event": [
+        "2nd harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Sorghum"
+      ],
+      "comment": "Sorghum (South, Second) harvest period  ",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4148",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.3_1, SSD.4_1, SSD.5_1, SSD.6_1, SSD.7_1, SSD.8_1, SSD.9_1, SSD.10_1",
+      "adm1_eng_name": null,
+      "months": [
+        "April",
+        "May"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Sorghum"
+      ],
+      "comment": "Sorghum (Unimodal) planting period",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "4149",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SSD.1_1, SSD.2_1, SSD.3_1, SSD.4_1, SSD.5_1, SSD.6_1, SSD.7_1, SSD.8_1, SSD.9_1, SSD.10_1",
+      "adm1_eng_name": null,
+      "months": [
+        "November",
+        "December"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Sorghum"
+      ],
+      "comment": "Sorghum (Unimodal) harvest period  ",
+      "source": "USDA",
+      "source_date": "2023-02-08",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=OD"
+    },
+    {
+      "id": "995",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.5_1, SSD.7_1, SSD.9_1, SSD.8_1",
+      "adm1_eng_name": [
+        "North Bahr-al-Ghazal",
+        "Upper Nile",
+        "West Bahr-al-Ghazal",
+        "Warap"
+      ],
+      "months": [
+        "November",
+        "December",
+        "January",
+        "February",
+        "March",
+        "April"
+      ],
+      "event": [
+        "Dry season"
+      ],
+      "event_type": [
+        "Seasonal hazard"
+      ],
+      "label": [
+        "Dry season"
+      ],
+      "comment": "The greater Upper Nile and the greater Bahr el Ghazal experience longest dry season",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "996",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.5_1, SSD.7_1, SSD.9_1, SSD.8_1",
+      "adm1_eng_name": [
+        "North Bahr-al-Ghazal",
+        "Upper Nile",
+        "West Bahr-al-Ghazal",
+        "Warap"
+      ],
+      "months": [
+        "May",
+        "June",
+        "July",
+        "September",
+        "October",
+        "August"
+      ],
+      "event": [
+        "Main wet/ Rainy/ Monsoon season"
+      ],
+      "event_type": [
+        "Seasonal hazard"
+      ],
+      "label": [
+        "Rainy season"
+      ],
+      "comment": "The rainy season for Upper Nile and Greater Bahr el Ghazal states",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "997",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.5_1, SSD.7_1, SSD.8_1, SSD.9_1",
+      "adm1_eng_name": [
+        "North Bahr-al-Ghazal",
+        "Upper Nile",
+        "Warap",
+        "West Bahr-al-Ghazal"
+      ],
+      "months": [
+        "April",
+        "May"
+      ],
+      "event": [
+        "Land preparation"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Land preparation"
+      ],
+      "comment": "This is the period for land preparation for main crops and long-cycle crops ",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "998",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.5_1, SSD.7_1, SSD.8_1, SSD.9_1",
+      "adm1_eng_name": [
+        "North Bahr-al-Ghazal",
+        "Upper Nile",
+        "Warap",
+        "West Bahr-al-Ghazal"
+      ],
+      "months": [
+        "September",
+        "October"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "General harvest"
+      ],
+      "comment": "Harvest for main crops ",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    },
+    {
+      "id": "999",
+      "iso": [
+        "SSD"
+      ],
+      "country": [
+        "South Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SSD.5_1, SSD.7_1, SSD.8_1, SSD.9_1",
+      "adm1_eng_name": [
+        "North Bahr-al-Ghazal",
+        "Upper Nile",
+        "Warap",
+        "West Bahr-al-Ghazal"
+      ],
+      "months": [
+        "June",
+        "July",
+        "August"
+      ],
+      "event": [
+        "Planting and growing"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "General planting"
+      ],
+      "comment": "Growing season for main crops ",
+      "source": "FAO",
+      "source_date": "2015-07-02",
+      "source_link": "https://www.fao.org/3/i4845e/i4845e.pdf"
+    }
+  ]
+}

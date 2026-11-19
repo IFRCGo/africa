@@ -1230,8 +1230,6 @@ def chapter_refresh(doc):
             "correct because one command reads them both in one transaction."],
            ["file-based - manage.py load_hsps", "The Kobo service-point rows are "
             "loaded from a workbook by that command."],
-           ["CSV export - manage.py load_external acaps_seasonal", "The ACAPS "
-            "seasonal rows come from a CSV export, not an API."],
            ["no API behind this source", "Nothing fetches this row automatically."]],
           widths=[2.4, 4.4])
 
@@ -1567,7 +1565,7 @@ def chapter_sources(doc):
            ["HDX HAPI", "IOM-DTM IDP counts by locality", "HDX_API_TOKEN"],
            ["UNHCR", "Refugee, returnee and asylum-seeker counts - served through "
             "HDX HAPI, so it uses the same token", "HDX_API_TOKEN"],
-           ["ACAPS", "Seasonal calendars, at admin-1, from a CSV export", "none"],
+           ["ACAPS", "Seasonal calendars, at admin-1, from api.acaps.org", "ACAPS_TOKEN"],
            ["IFRC Montandon", "Disaster events and their impacts, as GDACS, PDC and "
             "IDMC published them", "IFRC_API_TOKEN"],
            ["Kobo", "Which services a National Society offers, by district - from a "

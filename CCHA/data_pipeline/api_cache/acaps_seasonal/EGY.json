@@ -1,0 +1,598 @@
+{
+  "count": 20,
+  "results": [
+    {
+      "id": "2705",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "March",
+        "April",
+        "May"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Cotton"
+      ],
+      "comment": "Cotton - Planting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2706",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "September",
+        "October",
+        "November",
+        "December"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Cotton"
+      ],
+      "comment": "Cotton - harvesting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2707",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "October",
+        "November",
+        "December"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Barley"
+      ],
+      "comment": "Barley - planting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2708",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "April",
+        "May"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Barley"
+      ],
+      "comment": "Barley - harvesting period ",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2710",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "April",
+        "May"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Maize"
+      ],
+      "comment": "Corn - planting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2711",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "October",
+        "November"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Maize"
+      ],
+      "comment": "Corn - harvesting period ",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2715",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "April",
+        "May",
+        "June"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Peanuts"
+      ],
+      "comment": "Peanut - planting period ",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2716",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "August",
+        "September"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Peanuts"
+      ],
+      "comment": "Peanut - harvesting period ",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2717",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "April",
+        "May"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Rice"
+      ],
+      "comment": "Rice - planting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2718",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "September",
+        "October"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Rice"
+      ],
+      "comment": "Rice - harvesting period ",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2719",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "April",
+        "May",
+        "June"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Sorghum"
+      ],
+      "comment": "Sorghum - planting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2720",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "August",
+        "September",
+        "October"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Sorghum"
+      ],
+      "comment": "Sorghum - harvesting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2721",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "May"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Soybeans"
+      ],
+      "comment": "Soybean - planting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2722",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "July",
+        "August"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Soybeans"
+      ],
+      "comment": "Soybean - harvesting period ",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2723",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "May",
+        "June"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Sunflower seeds"
+      ],
+      "comment": "Sunflower seed - planting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2724",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "August",
+        "September",
+        "October"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Sunflower seeds"
+      ],
+      "comment": "Sunflower seed - harvesting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2725",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "September",
+        "October",
+        "November"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Wheat"
+      ],
+      "comment": "Wheat - planting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2726",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "April",
+        "May",
+        "June"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Wheat"
+      ],
+      "comment": "Wheat - main harvesting period ",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "4616",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "May",
+        "June",
+        "July",
+        "August",
+        "September"
+      ],
+      "event": [
+        "Dry season"
+      ],
+      "event_type": [
+        "Seasonal hazard"
+      ],
+      "label": [
+        "Dry season"
+      ],
+      "comment": "Hot and dry summer season (May to September). ",
+      "source": "World Bank",
+      "source_date": "2023-04-14",
+      "source_link": "https://climateknowledgeportal.worldbank.org/country/egypt/climate-data-historical"
+    },
+    {
+      "id": "4617",
+      "iso": [
+        "EGY"
+      ],
+      "country": [
+        "Egypt"
+      ],
+      "country_wide": true,
+      "adm1": "EGY.1_1, EGY.2_1, EGY.3_1, EGY.4_1, EGY.5_1, EGY.6_1, EGY.7_1, EGY.8_1, EGY.9_1, EGY.10_1, EGY.11_1, EGY.12_1, EGY.13_1, EGY.14_1, EGY.15_1, EGY.16_1, EGY.17_1, EGY.18_1, EGY.19_1, EGY.20_1, EGY.21_1, EGY.22_1, EGY.23_1, EGY.24_1, EGY.25_1, EGY.26_1, EGY.27_1",
+      "adm1_eng_name": null,
+      "months": [
+        "March",
+        "April",
+        "May"
+      ],
+      "event": [
+        "Sandstorms season"
+      ],
+      "event_type": [
+        "Seasonal hazard"
+      ],
+      "label": [
+        "Sandstorms season"
+      ],
+      "comment": "These khamsin storms typically occur between March and May and can increase the temperature by 20°C in two hours; and can last for several days.",
+      "source": null,
+      "source_date": null,
+      "source_link": null
+    }
+  ]
+}

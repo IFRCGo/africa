@@ -42,8 +42,11 @@ positional argv that both `subprocess.Popen` and `call_command` accept. A second
 rule anywhere else is how an excel row admitted by `stale_rows()` starts failing
 inside every batch while its own button works.
 
-`acaps` still has no button. It takes a CSV export path, and the list names the
-command.
+**The ACAPS seasonal calendar pulls from api.acaps.org** (`fetchers/acaps.py`,
+since 2026-11-19), with `ACAPS_TOKEN` in `.env`. One call per country row
+(`variant="acaps-events"`), paged by `next`, never narrowed. **The API is the
+only route in**: the CSV export route was removed on 2026-11-19, and
+`load_external` reads JSON only.
 
 **Kobo is primary data, and it has buttons.** The Data sources page has a
 Category column, with `kobo` rows listed first under *Primary data*. Each Kobo form
@@ -185,7 +188,7 @@ MAINTENANCE.md §6 has the two statements.
 `fewsnet`, `ifrc-go`, `unhcr-refugees`, `ipc`. Claude Code reads it
 automatically; nothing else needs configuring.
 
-**For an agent, and for the source with no fetcher** (`acaps`), the rule
+**For an agent, and for any source with no fetcher**, the rule
 is unchanged — **fetch, save, then load**, never fetch straight into the database:
 
 1. Check what is already held: `manage.py external_status`.

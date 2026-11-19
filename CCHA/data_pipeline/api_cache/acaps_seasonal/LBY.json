@@ -1,0 +1,160 @@
+{
+  "count": 5,
+  "results": [
+    {
+      "id": "2730",
+      "iso": [
+        "LBY"
+      ],
+      "country": [
+        "Libya"
+      ],
+      "country_wide": true,
+      "adm1": "LBY.1_1, LBY.2_1, LBY.3_1, LBY.4_1, LBY.5_1, LBY.6_1, LBY.7_1, LBY.8_1, LBY.9_1, LBY.10_1, LBY.11_1, LBY.12_1, LBY.13_1, LBY.14_1, LBY.15_1, LBY.16_1, LBY.17_1, LBY.18_1, LBY.19_1, LBY.20_1, LBY.21_1, LBY.22_1",
+      "adm1_eng_name": null,
+      "months": [
+        "October",
+        "November",
+        "December",
+        "January"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Barley"
+      ],
+      "comment": "Barley (Winter) planting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2731",
+      "iso": [
+        "LBY"
+      ],
+      "country": [
+        "Libya"
+      ],
+      "country_wide": true,
+      "adm1": "LBY.1_1, LBY.2_1, LBY.3_1, LBY.4_1, LBY.5_1, LBY.6_1, LBY.7_1, LBY.8_1, LBY.9_1, LBY.10_1, LBY.11_1, LBY.12_1, LBY.13_1, LBY.14_1, LBY.15_1, LBY.16_1, LBY.17_1, LBY.18_1, LBY.19_1, LBY.20_1, LBY.21_1, LBY.22_1",
+      "adm1_eng_name": null,
+      "months": [
+        "May",
+        "June",
+        "July"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Barley"
+      ],
+      "comment": "Barley (Winter) Harvesting period ",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2732",
+      "iso": [
+        "LBY"
+      ],
+      "country": [
+        "Libya"
+      ],
+      "country_wide": true,
+      "adm1": "LBY.1_1, LBY.2_1, LBY.3_1, LBY.4_1, LBY.5_1, LBY.6_1, LBY.7_1, LBY.8_1, LBY.9_1, LBY.10_1, LBY.11_1, LBY.12_1, LBY.13_1, LBY.14_1, LBY.15_1, LBY.16_1, LBY.17_1, LBY.18_1, LBY.19_1, LBY.20_1, LBY.21_1, LBY.22_1",
+      "adm1_eng_name": null,
+      "months": [
+        "October",
+        "November",
+        "December",
+        "January"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Wheat"
+      ],
+      "comment": "Wheat (Winter) planting period",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "2733",
+      "iso": [
+        "LBY"
+      ],
+      "country": [
+        "Libya"
+      ],
+      "country_wide": true,
+      "adm1": "LBY.1_1, LBY.2_1, LBY.3_1, LBY.4_1, LBY.5_1, LBY.6_1, LBY.7_1, LBY.8_1, LBY.9_1, LBY.10_1, LBY.11_1, LBY.12_1, LBY.13_1, LBY.14_1, LBY.15_1, LBY.16_1, LBY.17_1, LBY.18_1, LBY.19_1, LBY.20_1, LBY.21_1, LBY.22_1",
+      "adm1_eng_name": null,
+      "months": [
+        "May",
+        "June",
+        "July"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Wheat"
+      ],
+      "comment": "Wheat (Winter) Harvesting period ",
+      "source": "USDA",
+      "source_date": "2022-11-28",
+      "source_link": "https://ipad.fas.usda.gov/rssiws/al/crop_calendar/na.aspx"
+    },
+    {
+      "id": "3442",
+      "iso": [
+        "LBY"
+      ],
+      "country": [
+        "Libya"
+      ],
+      "country_wide": true,
+      "adm1": "LBY.1_1, LBY.2_1, LBY.3_1, LBY.4_1, LBY.5_1, LBY.6_1, LBY.7_1, LBY.8_1, LBY.9_1, LBY.10_1, LBY.11_1, LBY.12_1, LBY.13_1, LBY.14_1, LBY.15_1, LBY.16_1, LBY.17_1, LBY.18_1, LBY.19_1, LBY.20_1, LBY.21_1, LBY.22_1",
+      "adm1_eng_name": null,
+      "months": [
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September"
+      ],
+      "event": [
+        "Dry season"
+      ],
+      "event_type": [
+        "Seasonal hazard"
+      ],
+      "label": [
+        "Dry season"
+      ],
+      "comment": null,
+      "source": "World Bank",
+      "source_date": "2023-04-14",
+      "source_link": "https://climateknowledgeportal.worldbank.org/country/libya/climate-data-historical"
+    }
+  ]
+}

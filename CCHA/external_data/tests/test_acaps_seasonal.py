@@ -59,11 +59,11 @@ class ParseAssignsTheType(SimpleTestCase):
 
     def test_a_rainy_season_row_parses_as_rainy(self):
         rows = parse_records([{
-            "id": "1", "iso": "['SDN']", "country": "['Sudan']",
-            "event": "['Main wet/ Rainy/ Monsoon season']",
-            "event_type": "['Seasonal hazard']", "label": "['Rainy season']",
-            "months": "['June', 'July', 'August', 'September']",
-            "country_wide": "True", "comment": "The main rains.",
+            "id": "1", "iso": ["SDN"], "country": ["Sudan"],
+            "event": ["Main wet/ Rainy/ Monsoon season"],
+            "event_type": ["Seasonal hazard"], "label": ["Rainy season"],
+            "months": ["June", "July", "August", "September"],
+            "country_wide": True, "comment": "The main rains.",
         }])
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0]["season_type"], "Rainy")

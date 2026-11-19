@@ -28,10 +28,9 @@ SOURCE_LABELS = {
 
 # Why a source has no button. Naming the command that DOES load it turns a dead
 # end into an instruction. `excel` is no longer here: its two workbook rows have
-# a button of their own, which re-reads the file under /work.
-FILE_BASED = {
-    "acaps": "CSV export — manage.py load_external acaps_seasonal",
-}
+# a button of their own, which re-reads the file under /work. Nor is `acaps`,
+# which has pulled from api.acaps.org since 2026-11-19.
+FILE_BASED = {}
 
 
 # Primary data is what IFRC and its National Societies collected themselves, in

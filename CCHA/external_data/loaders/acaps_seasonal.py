@@ -12,13 +12,10 @@ USDA's, FAO's, FEWS NET's or WFP's; `source` records 'acaps' because that is whe
 we got it, and `source_org` records who actually judged it. Losing that distinction
 would credit ACAPS with work it collated rather than did.
 
-The CSV export and the MCP endpoint return the same records, so one parser reads
-both: the CSV stores list fields as Python literals ("['SDN']") while the MCP
-returns real lists, and _as_list flattens that difference.
+THE API IS THE ONLY ROUTE IN (since 2026-11-19). Records arrive from
+api.acaps.org through `fetchers/acaps.py`; the CSV export is no longer read.
+List fields come back as real lists, or null where ACAPS has nothing.
 """
-import ast
-import csv
-import io
 from datetime import datetime
 
 from external_data.loaders import register
@@ -85,16 +82,12 @@ def _season_type(event, event_type):
 
 
 def _as_list(value):
-    """CSV gives "['SDN']"; the MCP gives ['SDN']. Both end up a list."""
+    """The API gives ['SDN'] for a list field, and null where it has nothing."""
     if isinstance(value, list):
         return value
-    if value in (None, "", "[]"):
+    if value in (None, ""):
         return []
-    try:
-        parsed = ast.literal_eval(value)
-        return parsed if isinstance(parsed, list) else [parsed]
-    except (ValueError, SyntaxError):
-        return [v.strip() for v in str(value).split(",") if v.strip()]
+    return [value]
 
 
 def _first(value, default=""):
@@ -202,9 +195,3 @@ class AcapsSeasonalLoader(Loader):
         rows = parse_records(records)
         # The file carries every country ACAPS covers; a load names one.
         return [r for r in rows if not iso3 or r["iso3"] == iso3]
-
-
-def read_csv(path):
-    """The ACAPS CSV export, as records the parser understands."""
-    with io.open(path, encoding="utf-8-sig", newline="") as fh:
-        return list(csv.DictReader(fh))

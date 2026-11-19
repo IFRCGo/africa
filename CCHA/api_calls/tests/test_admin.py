@@ -21,10 +21,10 @@ class AdminTestCase(TestCase):
         self.workbook_row = SourceSync.objects.create(
             source="excel", dataset="idps", iso3="SDN", variant="sudan-idps-workbook")
         # A row with neither an API nor a command wired to the button.
-        # (Was a kobo row until Kobo got fetchers on 2026-11-16; acaps is still
-        # file-based.)
+        # (Was a kobo row until Kobo got fetchers on 2026-11-16, then an acaps
+        # row until ACAPS got one on 2026-11-19.)
         self.file_row = SourceSync.objects.create(
-            source="acaps", dataset="seasonal_calendar", iso3="TCD", variant="")
+            source="curated", dataset="seasonal_calendar", iso3="TCD", variant="")
 
 
 class ListTests(AdminTestCase):
@@ -51,9 +51,17 @@ class ListTests(AdminTestCase):
         response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
         self.assertContains(response, f"pull/{self.api_row.pk}/")
 
-    def test_a_file_based_row_names_the_command_that_loads_it(self):
+    def test_a_row_with_no_api_says_so(self):
         response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
-        self.assertContains(response, "load_external acaps_seasonal")
+        self.assertContains(response, "no API behind this source")
+
+    def test_the_acaps_row_has_a_pull_now_button(self):
+        row = SourceSync.objects.create(
+            source="acaps", dataset="seasonal_calendar", iso3="SDN",
+            variant="acaps-events")
+        with self.settings(ACAPS_TOKEN="t"):
+            response = self.client.get(reverse("admin:api_calls_datasource_changelist"))
+        self.assertContains(response, f"pull/{row.pk}/")
 
     def test_a_workbook_row_offers_a_button(self):
         """The workbook has no API, but it does have a newer file on the share.

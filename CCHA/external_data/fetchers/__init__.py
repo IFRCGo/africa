@@ -27,5 +27,5 @@ def fetcher_for(source, dataset, variant=""):
 
 # Importing the modules is what populates FETCHERS. Kept at the bottom because
 # each module imports `register` from this one.
-from external_data.fetchers import (dtm, fewsnet, hdx, ipc,  # noqa: E402,F401
+from external_data.fetchers import (acaps, dtm, fewsnet, hdx, ipc,  # noqa: E402,F401
                                     kobo, montandon, unhcr_situations)

@@ -1,0 +1,482 @@
+{
+  "count": 16,
+  "results": [
+    {
+      "id": "1363",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "June",
+        "July"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Cotton"
+      ],
+      "comment": "Cotton Planting period",
+      "source": "USDA",
+      "source_date": "2022-05-27",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=SU"
+    },
+    {
+      "id": "244",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "April"
+      ],
+      "event": [
+        "Land preparation"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Land preparation"
+      ],
+      "comment": "Land preparation",
+      "source": "FEWS NET",
+      "source_date": "2013-12-31",
+      "source_link": "https://fews.net/east-africa/sudan/seasonal-calendar/december-2013"
+    },
+    {
+      "id": "305",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "June",
+        "July",
+        "August",
+        "September"
+      ],
+      "event": [
+        "Main wet/ Rainy/ Monsoon season"
+      ],
+      "event_type": [
+        "Seasonal hazard"
+      ],
+      "label": [
+        "Rainy season"
+      ],
+      "comment": "Rainy season ",
+      "source": "FEWS NET",
+      "source_date": "2013-12-31",
+      "source_link": "https://fews.net/east-africa/sudan/seasonal-calendar/december-2013"
+    },
+    {
+      "id": "306",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "May",
+        "June",
+        "July",
+        "August",
+        "September"
+      ],
+      "event": [
+        "Lean season"
+      ],
+      "event_type": [
+        "Lean season"
+      ],
+      "label": [
+        "Lean season"
+      ],
+      "comment": "Lean season ",
+      "source": "FEWS NET",
+      "source_date": "2013-12-31",
+      "source_link": "https://fews.net/east-africa/sudan/seasonal-calendar/december-2013"
+    },
+    {
+      "id": "308",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "August",
+        "September"
+      ],
+      "event": [
+        "Malaria"
+      ],
+      "event_type": [
+        "Outbreak"
+      ],
+      "label": [
+        "Malaria"
+      ],
+      "comment": "The number of malaria cases tend to increase with the start of the rainy season and floods, peaking towards the later part of the flooding season (August-September). Stagnant water pools following rains and flooding result in the propagation of mosquitoes – the vectors of malaria and other diseases.",
+      "source": "OCHA",
+      "source_date": "2020-10-22",
+      "source_link": "https://reports.unocha.org/en/country/sudan/card/uo3qGWNb5i/"
+    },
+    {
+      "id": "4047",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "June",
+        "July"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "General planting"
+      ],
+      "comment": "Planting ",
+      "source": "FEWS NET",
+      "source_date": "2013-12-31",
+      "source_link": "https://fews.net/east-africa/sudan/seasonal-calendar/december-2013"
+    },
+    {
+      "id": "4049",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "June",
+        "July"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Millet"
+      ],
+      "comment": "Millet planting period",
+      "source": "USDA",
+      "source_date": "2022-05-27",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=SU"
+    },
+    {
+      "id": "4050",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "June",
+        "July"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Peanuts"
+      ],
+      "comment": "Peanut planting period",
+      "source": "USDA",
+      "source_date": "2022-05-27",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=SU"
+    },
+    {
+      "id": "4051",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "June",
+        "July"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Sorghum"
+      ],
+      "comment": "Sorghum planting period",
+      "source": "USDA",
+      "source_date": "2022-05-27",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=SU"
+    },
+    {
+      "id": "4052",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "November"
+      ],
+      "event": [
+        "1st/main planting"
+      ],
+      "event_type": [
+        "Planting and growing"
+      ],
+      "label": [
+        "Wheat"
+      ],
+      "comment": "Wheat planting period",
+      "source": "USDA",
+      "source_date": "2022-05-27",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=SU"
+    },
+    {
+      "id": "4053",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "December",
+        "January",
+        "February"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Cotton"
+      ],
+      "comment": "Cotton harvest period  ",
+      "source": "USDA",
+      "source_date": "2022-05-27",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=SU"
+    },
+    {
+      "id": "4054",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "November",
+        "December"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Millet"
+      ],
+      "comment": "Millet harvest period  ",
+      "source": "USDA",
+      "source_date": "2022-05-27",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=SU"
+    },
+    {
+      "id": "4055",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "November",
+        "December"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Sorghum"
+      ],
+      "comment": "Sorghum harvest period  ",
+      "source": "USDA",
+      "source_date": "2022-05-27",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=SU"
+    },
+    {
+      "id": "4056",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "March"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Wheat"
+      ],
+      "comment": "Wheat harvest period  ",
+      "source": "USDA",
+      "source_date": "2022-05-27",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=SU"
+    },
+    {
+      "id": "4057",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": true,
+      "adm1": "SDN.1_1, SDN.2_1, SDN.3_1, SDN.4_1, SDN.5_1, SDN.6_1, SDN.7_1, SDN.8_1, SDN.9_1, SDN.10_1, SDN.11_1, SDN.12_1, SDN.13_1, SDN.14_1, SDN.15_1, SDN.16_1, SDN.17_1, SDN.18_1",
+      "adm1_eng_name": null,
+      "months": [
+        "September",
+        "October"
+      ],
+      "event": [
+        "1st/main harvest"
+      ],
+      "event_type": [
+        "Harvest"
+      ],
+      "label": [
+        "Peanuts"
+      ],
+      "comment": "Peanut harvest period  ",
+      "source": "USDA",
+      "source_date": "2022-05-27",
+      "source_link": "https://ipad.fas.usda.gov/countrysummary/Default.aspx?id=SU"
+    },
+    {
+      "id": "4686",
+      "iso": [
+        "SDN"
+      ],
+      "country": [
+        "Sudan"
+      ],
+      "country_wide": false,
+      "adm1": "SDN.18_1, SDN.14_1, SDN.8_1, SDN.9_1, SDN.13_1, SDN.16_1, SDN.6_1, SDN.7_1",
+      "adm1_eng_name": [
+        "White Nile",
+        "South Darfur",
+        "North Darfur",
+        "North Kurdufan",
+        "Sennar",
+        "West Darfur",
+        "Kassala",
+        "Khartoum"
+      ],
+      "months": [
+        "July",
+        "August",
+        "September"
+      ],
+      "event": [
+        "Floods"
+      ],
+      "event_type": [
+        "Seasonal hazard"
+      ],
+      "label": [
+        "Floods"
+      ],
+      "comment": "Flood prone states - WN, SD, ND,  NK, SEN, GEZ, WD, KASS, KRT.",
+      "source": "OCHA",
+      "source_date": "2022-02-26",
+      "source_link": "https://reliefweb.int/report/sudan/sudan-seasonal-hazards-calendar-typical-year"
+    }
+  ]
+}

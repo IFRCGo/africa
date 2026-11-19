@@ -27,7 +27,8 @@ from django.conf import settings
 from external_data.fetchers import fetcher_for  # noqa: F401  (re-exported)
 
 # Every setting whose value must never appear in a log line or an error message.
-SECRET_SETTINGS = ("IPC_API_KEY", "HDX_API_TOKEN", "IFRC_API_TOKEN", "KOBO_TOKEN")
+SECRET_SETTINGS = ("IPC_API_KEY", "HDX_API_TOKEN", "IFRC_API_TOKEN", "KOBO_TOKEN",
+                   "ACAPS_TOKEN")
 
 # How far BEHIND the watermark a narrowed request starts.
 #

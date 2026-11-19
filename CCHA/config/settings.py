@@ -127,6 +127,11 @@ KOBO_TOKEN = os.environ.get("KOBO_TOKEN") or ""
 HSPS_FORM_ID = os.environ.get("HSPs_FORM_ID") or ""
 UGANDA_CCHA_FORM_ID = os.environ.get("UGANDA_CCHA_FORM_ID") or ""
 
+# ACAPS (api.acaps.org): the Seasonal Events Calendar. Every endpoint wants an
+# account token, sent as "Authorization: Token <key>" - never in a URL.
+ACAPS_URL = (os.environ.get("ACAPS_URL") or "https://api.acaps.org/api/v1").rstrip("/")
+ACAPS_TOKEN = os.environ.get("ACAPS_TOKEN") or ""
+
 
 def env_paths(name: str, default: list) -> list:
     """A path-separator list from the environment, falling back when empty.
